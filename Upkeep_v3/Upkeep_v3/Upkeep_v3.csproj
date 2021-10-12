@@ -173,6 +173,7 @@
   <ItemGroup>
     <Content Include="Analytics\JS\Ticketing.js" />
     <Content Include="Analytics\Ticketing.aspx" />
+    <Content Include="Analytics\View_User_Profile.aspx" />
     <Content Include="AssetManagement\AssetManagementAmcList.aspx" />
     <Content Include="AssetManagement\AssetManagementAmcRequest.aspx" />
     <Content Include="AssetManagement\AssetManagementList.aspx" />
@@ -4229,6 +4230,13 @@
     </Compile>
     <Compile Include="Analytics\Ticketing.aspx.designer.cs">
       <DependentUpon>Ticketing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Analytics\View_User_Profile.aspx.cs">
+      <DependentUpon>View_User_Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Analytics\View_User_Profile.aspx.designer.cs">
+      <DependentUpon>View_User_Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="AssetManagement\AssetManagementAmcList.aspx.cs">
       <DependentUpon>AssetManagementAmcList.aspx</DependentUpon>

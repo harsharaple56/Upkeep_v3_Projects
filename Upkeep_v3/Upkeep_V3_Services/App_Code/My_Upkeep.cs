@@ -1111,7 +1111,22 @@ public class My_Upkeep
 		//return ds;
 	}
 
-	public DataSet Bind_Ticket_Details(int TicketID, int CompanyID)
+    public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.Fetch_Highest_Downtime_Ticket(From_Date, To_Date, CompanyID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        //return ds;
+    }
+
+    public DataSet Bind_Ticket_Details(int TicketID, int CompanyID)
 	{
 		try
 		{
@@ -3494,7 +3509,7 @@ public class My_Upkeep
 
 	#region Ticketing Dashboard
 
-	public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID, string FromDate, string ToDate)
+	public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
 		DataSet ds = new DataSet();
 		try
@@ -3502,7 +3517,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block1(LoggedInUserID, FromDate, ToDate, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block1(LoggedInUserID, CompanyID, FromDate, ToDate, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -3510,7 +3525,7 @@ public class My_Upkeep
 			throw ex;
 		}
 	}
-	public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID, string FromDate, string ToDate)
+	public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
 	{
 		DataSet ds = new DataSet();
 		try
@@ -3518,7 +3533,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block2(LoggedInUserID, FromDate, ToDate, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block2(LoggedInUserID, CompanyID, FromDate, ToDate, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -3526,7 +3541,7 @@ public class My_Upkeep
 			throw ex;
 		}
 	}
-	public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID, string FromDate, string ToDate)
+	public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
 		DataSet ds = new DataSet();
 		try
@@ -3534,7 +3549,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block3(LoggedInUserID, FromDate, ToDate, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block3(LoggedInUserID, CompanyID, FromDate, ToDate, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -3542,7 +3557,7 @@ public class My_Upkeep
 			throw ex;
 		}
 	}
-	public DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID)
+	public DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID, int CompanyID)
 	{
 		DataSet ds = new DataSet();
 		try
@@ -3550,7 +3565,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block4(LoggedInUserID, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block4(LoggedInUserID, CompanyID, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -3558,7 +3573,7 @@ public class My_Upkeep
 			throw ex;
 		}
 	}
-	public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID, string FromDate, string ToDate)
+	public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
 		DataSet ds = new DataSet();
 		try
@@ -3566,7 +3581,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block5(LoggedInUserID, FromDate, ToDate, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block5(LoggedInUserID, CompanyID, FromDate, ToDate, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -3574,7 +3589,7 @@ public class My_Upkeep
 			throw ex;
 		}
 	}
-	public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID, string FromDate, string ToDate)
+	public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
 		DataSet ds = new DataSet();
 		try
@@ -3582,7 +3597,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block6(LoggedInUserID, FromDate, ToDate, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block6(LoggedInUserID, CompanyID, FromDate, ToDate, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -3590,7 +3605,7 @@ public class My_Upkeep
 			throw ex;
 		}
 	}
-	public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID, string FromDate, string ToDate)
+	public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
 		DataSet ds = new DataSet();
 		try
@@ -3598,7 +3613,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block7(LoggedInUserID, FromDate, ToDate, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Analyze_Tkt_Block7(LoggedInUserID, CompanyID, FromDate, ToDate, StrConn);
 			return ds;
 		}
 		catch (Exception ex)

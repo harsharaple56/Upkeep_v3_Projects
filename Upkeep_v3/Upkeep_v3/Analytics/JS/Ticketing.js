@@ -98,6 +98,7 @@ function Block1() {
 }
 
 function Block2() {
+    
     $.ajax({
         type: 'GET',
         url: 'Ticketing.aspx/Fetch_Analyze_Tkt_Block2',
@@ -111,7 +112,14 @@ function Block2() {
             var design = $('#appendBlock2Content').clone().html()
             $('#appendBlock2Content').empty()
             $(dsBlock2).each(function (i, e) {
-                var eachItem = design.replace('##Name##', e.NAME).replace('##ProfilePic##', e.PROFILEPIC).replace('##Designation##', e.DESIGNATION).replace('##Department##', e.DEPARTMENT).replace(/##Pecent##/g, e.TICKETPERCENT).replace("display: none", "")
+                if (e.PROFILEPIC == "") {
+                    e.PROFILEPIC = '/assets/app/media/img/users/user4.png';
+                }
+                else {
+                    e.PROFILEPIC = e.PROFILEPIC;
+                }
+                var profileid = "View_User_Profile.aspx?ProfileID=";
+                var eachItem = design.replace('##Name##', e.NAME).replace('##ProfilePic##', e.PROFILEPIC).replace('##Designation##', e.DESIGNATION).replace('##Department##', e.DEPARTMENT).replace(/##Pecent##/g, e.TICKETPERCENT).replace('##UserID##', profileid + e.UserId).replace("display: none", "")
                 $('#appendBlock2Content').append(eachItem);
             })
 
@@ -197,7 +205,7 @@ function Block4() {
         data: {
             labels: labels,
             datasets: [{
-                label: "Sales Stats",
+                label: "Total Tickets",
                 borderColor: mApp.getColor('brand'),
                 borderWidth: 2,
                 pointBackgroundColor: mApp.getColor('brand'),
@@ -276,20 +284,24 @@ function Block5() {
         contentType: "application/json; charset=utf-8",
         success: function (response) {
             var dsBlock5 = JSON.parse(response.d).Table
-            console.log(dsBlock5);
+            if (dsBlock5.length > 0) {
+                var design = $('#appendBlock5Content').clone().html()
+                $('#appendBlock5Content').empty()
+                $(dsBlock5).each(function (i, e) {
+                    var eachItem = design.replace('##DOWNTIME##', e.DOWNTIME).replace('##PRIORITY##', e.PRIORITY).replace(/##PERCENT##/g, e.PERCENT).replace("display: none", "")
+                    if (e.PRIORITY == 'LOW' || e.PRIORITY == 'NOPRIORITY')
+                        eachItem = eachItem.replace('m--bg-danger', 'm--bg-primary')
 
-            var design = $('#appendBlock5Content').clone().html()
-            $('#appendBlock5Content').empty()
-            $(dsBlock5).each(function (i, e) {
-                var eachItem = design.replace('##DOWNTIME##', e.DOWNTIME).replace('##PRIORITY##', e.PRIORITY).replace(/##PERCENT##/g, e.PERCENT).replace("display: none", "")
-                if (e.PRIORITY == 'LOW' || e.PRIORITY == 'NOPRIORITY')
-                    eachItem = eachItem.replace('m--bg-danger', 'm--bg-primary')
+                    $('#appendBlock5Content').append(eachItem);
+                })
+            }
+            else {
+                $('#appendBlock5Content1').empty()
+                $("#appendBlock5Content1").append("<center><h4 class='m-portlet__head-text'>No Records found..!</h4></center>");
 
-                $('#appendBlock5Content').append(eachItem);
-            })
+            }
 
             AfterContentLoad('dvBlock5')
-
             //$(dsBlock3).each(function (i, e) {
             //    $('#' + e.TICKETSTATUS + 'PerCount').text(e.TICKETPERCOUNT)
             //    $('#' + e.TICKETSTATUS + 'Percent').text(e.TICKETPERCENT + "%")
@@ -318,23 +330,35 @@ function Block6() {
         success: function (response) {
 
             var dsBlock6Tbl1 = JSON.parse(response.d).Table
-            $('#dvBlock6 #ThisMonth tbody').empty()
-            if (dsBlock6Tbl1.length > 4)
-                $('#dvBlock6 #ThisMonth').parent().addClass("within-scroll")
+            if (dsBlock6Tbl1.length > 0) {
+                $('#dvBlock6 #ThisMonth tbody').empty()
+                if (dsBlock6Tbl1.length > 4)
+                    $('#dvBlock6 #ThisMonth').parent().addClass("within-scroll")
 
 
-            $(dsBlock6Tbl1).each(function (i, e) {
-                $('#dvBlock6 #ThisMonth tbody').append("<tr><td><span class='m-widget11__title m--font-brand'>" + e.CATEGORY + "</span><span class='m-widget11__sub'>Total <b>3400</b> Tickets</span></td><td class='m--font-danger'>" + e.OPENTICKET + "</td><td class='m--font-warning'>" + e.PARKEDTICKET + "</td><td class='m--font-success'>" + e.CLOSEDTICKET + "</td><td class='m--align-right m--font-secondary'>" + e.TOTALTICKET + "</td></tr>")
-            })
+                $(dsBlock6Tbl1).each(function (i, e) {
+                    $('#dvBlock6 #ThisMonth tbody').append("<tr><td><span class='m-widget11__title m--font-brand'>" + e.CATEGORY + "</span><span class='m-widget11__sub'>Total <b>" + e.TOTALTICKET + "</b> Tickets</span></td><td class='m--font-danger'>" + e.OPENTICKET + "</td><td class='m--font-warning'>" + e.PARKEDTICKET + "</td><td class='m--font-success'>" + e.CLOSEDTICKET + "</td><td class='m--align-right m--font-secondary'>" + e.TOTALTICKET + "</td></tr>")
+                })
+            }
+            else {
+                $('#appendBlock6Content1').empty()
+                $("#appendBlock6Content1").append("<center><h4 class='m-portlet__head-text'>No Records found..!</h4></center>");
+            }
 
             var dsBlock6Tbl2 = JSON.parse(response.d).Table1
-            $('#dvBlock6 #LastMonth tbody').empty()
-            if (dsBlock6Tbl2.length > 4)
-                $('#dvBlock6 #LastMonth').parent().addClass("within-scroll")
+            if (dsBlock6Tbl2.length > 0) {
+                $('#dvBlock6 #LastMonth tbody').empty()
+                if (dsBlock6Tbl2.length > 4)
+                    $('#dvBlock6 #LastMonth').parent().addClass("within-scroll")
 
-            $(dsBlock6Tbl2).each(function (i, e) {
-                $('#dvBlock6 #LastMonth tbody').append("<tr><td><span class='m-widget11__title m--font-brand'>" + e.CATEGORY + "</span><span class='m-widget11__sub'>Total <b>3400</b> Tickets</span></td><td class='m--font-danger'>" + e.OPENTICKET + "</td><td class='m--font-warning'>" + e.PARKEDTICKET + "</td><td class='m--font-success'>" + e.CLOSEDTICKET + "</td><td class='m--align-right m--font-secondary'>" + e.TOTALTICKET + "</td></tr>")
-            })
+                $(dsBlock6Tbl2).each(function (i, e) {
+                    $('#dvBlock6 #LastMonth tbody').append("<tr><td><span class='m-widget11__title m--font-brand'>" + e.CATEGORY + "</span><span class='m-widget11__sub'>Total <b>" + e.TOTALTICKET + "</b> Tickets</span></td><td class='m--font-danger'>" + e.OPENTICKET + "</td><td class='m--font-warning'>" + e.PARKEDTICKET + "</td><td class='m--font-success'>" + e.CLOSEDTICKET + "</td><td class='m--align-right m--font-secondary'>" + e.TOTALTICKET + "</td></tr>")
+                })
+            }
+            else {
+                $('#appendBlock6Content2').empty()
+                $("#appendBlock6Content2").append("<center><h4 class='m-portlet__head-text'>No Records found..!</h4></center>");
+            }
 
             AfterContentLoad('dvBlock6')
 
@@ -358,23 +382,35 @@ function Block7() {
         contentType: "application/json; charset=utf-8",
         success: function (response) {
             var dsBlock7Tbl1 = JSON.parse(response.d).Table
-            $('#dvBlock7 #ThisMonthDep tbody').empty()
-            if (dsBlock7Tbl1.length > 4)
-                $('#dvBlock7 #ThisMonthDep').parent().addClass("within-scroll")
+            if (dsBlock7Tbl1.length > 0) {
+                $('#dvBlock7 #ThisMonthDep tbody').empty()
+                if (dsBlock7Tbl1.length > 4)
+                    $('#dvBlock7 #ThisMonthDep').parent().addClass("within-scroll")
 
 
-            $(dsBlock7Tbl1).each(function (i, e) {
-                $('#dvBlock7 #ThisMonthDep tbody').append("<tr><td><span class='m-widget11__title m--font-brand'>" + e.DEPARTMENT + "</span><span class='m-widget11__sub'>Total <b>3400</b> Tickets</span></td><td class='m--font-danger'>" + e.OPENTICKET + "</td><td class='m--font-warning'>" + e.PARKEDTICKET + "</td><td class='m--font-success'>" + e.CLOSEDTICKET + "</td><td class='m--align-right m--font-secondary'>" + e.TOTALTICKET + "</td></tr>")
-            })
+                $(dsBlock7Tbl1).each(function (i, e) {
+                    $('#dvBlock7 #ThisMonthDep tbody').append("<tr><td><span class='m-widget11__title m--font-brand'>" + e.DEPARTMENT + "</span><span class='m-widget11__sub'>Total <b>" + e.TOTALTICKET + "</b> Tickets</span></td><td class='m--font-danger'>" + e.OPENTICKET + "</td><td class='m--font-warning'>" + e.PARKEDTICKET + "</td><td class='m--font-success'>" + e.CLOSEDTICKET + "</td><td class='m--align-right m--font-secondary'>" + e.TOTALTICKET + "</td></tr>")
+                })
+            }
+            else {
+                $('#appendBlock7Content1').empty()
+                $("#appendBlock7Content1").append("<center><h4 class='m-portlet__head-text'>No Records found..!</h4></center>");
+            }
 
             var dsBlock7Tbl2 = JSON.parse(response.d).Table1
-            $('#dvBlock7 #LastMonthDep tbody').empty()
-            if (dsBlock7Tbl2.length > 4)
-                $('#dvBlock7 #LastMonthDep').parent().addClass("within-scroll")
+            if (dsBlock7Tbl2.length > 0) {
+                $('#dvBlock7 #LastMonthDep tbody').empty()
+                if (dsBlock7Tbl2.length > 4)
+                    $('#dvBlock7 #LastMonthDep').parent().addClass("within-scroll")
 
-            $(dsBlock7Tbl2).each(function (i, e) {
-                $('#dvBlock7 #LastMonthDep tbody').append("<tr><td><span class='m-widget11__title m--font-brand'>" + e.DEPARTMENT + "</span><span class='m-widget11__sub'>Total <b>3400</b> Tickets</span></td><td class='m--font-danger'>" + e.OPENTICKET + "</td><td class='m--font-warning'>" + e.PARKEDTICKET + "</td><td class='m--font-success'>" + e.CLOSEDTICKET + "</td><td class='m--align-right m--font-secondary'>" + e.TOTALTICKET + "</td></tr>")
-            })
+                $(dsBlock7Tbl2).each(function (i, e) {
+                    $('#dvBlock7 #LastMonthDep tbody').append("<tr><td><span class='m-widget11__title m--font-brand'>" + e.DEPARTMENT + "</span><span class='m-widget11__sub'>Total <b>" + e.TOTALTICKET + "</b> Tickets</span></td><td class='m--font-danger'>" + e.OPENTICKET + "</td><td class='m--font-warning'>" + e.PARKEDTICKET + "</td><td class='m--font-success'>" + e.CLOSEDTICKET + "</td><td class='m--align-right m--font-secondary'>" + e.TOTALTICKET + "</td></tr>")
+                })
+            }
+            else {
+                $('#appendBlock7Content2').empty()
+                $("#appendBlock7Content2").append("<center><h4 class='m-portlet__head-text'>No Records found..!</h4></center>");
+            }
 
             AfterContentLoad('dvBlock7')
 

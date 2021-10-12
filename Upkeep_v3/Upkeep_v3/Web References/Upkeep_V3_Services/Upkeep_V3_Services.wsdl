@@ -3,6 +3,29 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="ASSET_Insert_AssetType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AssetType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ASSET_Insert_AssetTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetTypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ASSET_Insert_AssetCategory">
         <s:complexType>
           <s:sequence>
@@ -1330,6 +1353,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
           </s:sequence>
@@ -1353,6 +1377,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
           </s:sequence>
@@ -1376,6 +1401,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
           </s:sequence>
@@ -1399,6 +1425,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1420,6 +1447,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
           </s:sequence>
@@ -1443,6 +1471,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
           </s:sequence>
@@ -1466,6 +1495,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
           </s:sequence>
@@ -1475,6 +1505,30 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block7Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MIS_Report_Excel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EventID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_MIS_Report_ExcelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MIS_Report_ExcelResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3513,29 +3567,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ASSET_Insert_AssetType">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="companyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="AssetType" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ASSET_Insert_AssetTypeResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ASSET_Insert_AssetTypeResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -5144,6 +5175,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Highest_Downtime_Ticket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Highest_Downtime_TicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Highest_Downtime_TicketResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Bind_Ticket_Details">
         <s:complexType>
           <s:sequence>
@@ -5555,30 +5609,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_MIS_Report_Excel">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="EventID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_MIS_Report_ExcelResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_MIS_Report_ExcelResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -5586,6 +5616,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="ASSET_Insert_AssetTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetType" />
+  </wsdl:message>
+  <wsdl:message name="ASSET_Insert_AssetTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetTypeResponse" />
+  </wsdl:message>
   <wsdl:message name="ASSET_Insert_AssetCategorySoapIn">
     <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetCategory" />
   </wsdl:message>
@@ -5957,6 +5993,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Analyze_Tkt_Block7SoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block7Response" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MIS_Report_ExcelSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_MIS_Report_Excel" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_MIS_Report_ExcelSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_MIS_Report_ExcelResponse" />
   </wsdl:message>
   <wsdl:message name="ImportRetailerSoapIn">
     <wsdl:part name="parameters" element="tns:ImportRetailer" />
@@ -6462,12 +6504,6 @@
   <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDownResponse" />
   </wsdl:message>
-  <wsdl:message name="ASSET_Insert_AssetTypeSoapIn">
-    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetType" />
-  </wsdl:message>
-  <wsdl:message name="ASSET_Insert_AssetTypeSoapOut">
-    <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetTypeResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -6870,6 +6906,12 @@
   <wsdl:message name="Fetch_CTT_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_CTT_ReportResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Highest_Downtime_TicketSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Highest_Downtime_Ticket" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Highest_Downtime_TicketSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Highest_Downtime_TicketResponse" />
+  </wsdl:message>
   <wsdl:message name="Bind_Ticket_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Bind_Ticket_Details" />
   </wsdl:message>
@@ -6966,13 +7008,11 @@
   <wsdl:message name="GetEventListSoapOut">
     <wsdl:part name="parameters" element="tns:GetEventListResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_MIS_Report_ExcelSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_MIS_Report_Excel" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_MIS_Report_ExcelSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_MIS_Report_ExcelResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <wsdl:input message="tns:ASSET_Insert_AssetTypeSoapIn" />
+      <wsdl:output message="tns:ASSET_Insert_AssetTypeSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ASSET_Insert_AssetCategory">
       <wsdl:input message="tns:ASSET_Insert_AssetCategorySoapIn" />
       <wsdl:output message="tns:ASSET_Insert_AssetCategorySoapOut" />
@@ -7220,6 +7260,10 @@
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <wsdl:input message="tns:Fetch_Analyze_Tkt_Block7SoapIn" />
       <wsdl:output message="tns:Fetch_Analyze_Tkt_Block7SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MIS_Report_Excel">
+      <wsdl:input message="tns:Fetch_MIS_Report_ExcelSoapIn" />
+      <wsdl:output message="tns:Fetch_MIS_Report_ExcelSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ImportRetailer">
       <wsdl:input message="tns:ImportRetailerSoapIn" />
@@ -7557,10 +7601,6 @@
       <wsdl:input message="tns:Fetch_Asset_Vendor_DropDownSoapIn" />
       <wsdl:output message="tns:Fetch_Asset_Vendor_DropDownSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetType">
-      <wsdl:input message="tns:ASSET_Insert_AssetTypeSoapIn" />
-      <wsdl:output message="tns:ASSET_Insert_AssetTypeSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -7829,6 +7869,10 @@
       <wsdl:input message="tns:Fetch_CTT_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_CTT_ReportSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Highest_Downtime_Ticket">
+      <wsdl:input message="tns:Fetch_Highest_Downtime_TicketSoapIn" />
+      <wsdl:output message="tns:Fetch_Highest_Downtime_TicketSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Bind_Ticket_Details">
       <wsdl:input message="tns:Bind_Ticket_DetailsSoapIn" />
       <wsdl:output message="tns:Bind_Ticket_DetailsSoapOut" />
@@ -7894,13 +7938,18 @@
       <wsdl:input message="tns:GetEventListSoapIn" />
       <wsdl:output message="tns:GetEventListSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MIS_Report_Excel">
-      <wsdl:input message="tns:Fetch_MIS_Report_ExcelSoapIn" />
-      <wsdl:output message="tns:Fetch_MIS_Report_ExcelSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ASSET_Insert_AssetCategory">
       <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
       <wsdl:input>
@@ -8452,6 +8501,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block7" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MIS_Report_Excel">
+      <soap:operation soapAction="http://tempuri.org/Fetch_MIS_Report_Excel" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9215,15 +9273,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetType">
-      <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -9827,6 +9876,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Highest_Downtime_Ticket">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Highest_Downtime_Ticket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Bind_Ticket_Details">
       <soap:operation soapAction="http://tempuri.org/Bind_Ticket_Details" style="document" />
       <wsdl:input>
@@ -9971,18 +10029,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_MIS_Report_Excel">
-      <soap:operation soapAction="http://tempuri.org/Fetch_MIS_Report_Excel" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ASSET_Insert_AssetType">
+      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ASSET_Insert_AssetCategory">
       <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetCategory" style="document" />
       <wsdl:input>
@@ -10534,6 +10592,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block7" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_MIS_Report_Excel">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_MIS_Report_Excel" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11297,15 +11364,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ASSET_Insert_AssetType">
-      <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -11909,6 +11967,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Highest_Downtime_Ticket">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Highest_Downtime_Ticket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Bind_Ticket_Details">
       <soap12:operation soapAction="http://tempuri.org/Bind_Ticket_Details" style="document" />
       <wsdl:input>
@@ -12046,15 +12113,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetEventList">
       <soap12:operation soapAction="http://tempuri.org/GetEventList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_MIS_Report_Excel">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_MIS_Report_Excel" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

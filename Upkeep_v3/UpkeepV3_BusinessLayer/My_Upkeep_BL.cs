@@ -1566,6 +1566,28 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Highest_Downtime_Ticket", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet Bind_Ticket_Details(int TicketID, int CompanyID, string StrConn)
         {
             try
@@ -4960,6 +4982,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -4982,6 +5006,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -4994,7 +5020,7 @@ namespace UpkeepV3_BusinessLayer
 
         #region Ticketing Dashboard
 
-        public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID,string FromDate,string ToDate, string StrConn)
+        public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID, int CompanyID,string FromDate,string ToDate, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -5005,6 +5031,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@FromDate", FromDate);
                 cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -5015,7 +5042,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID, string FromDate, string ToDate, string StrConn)
+        public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID, int CompanyID, string FromDate, string ToDate, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -5026,6 +5053,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@FromDate", FromDate);
                 cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -5035,7 +5064,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID, string FromDate, string ToDate, string StrConn)
+        public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID, int CompanyID, string FromDate, string ToDate, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -5046,6 +5075,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@FromDate", FromDate);
                 cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -5055,7 +5086,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID, string StrConn)
+        public DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID, int CompanyID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -5064,6 +5095,8 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_Analyze_Tkt_Block4", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -5073,7 +5106,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID, string FromDate, string ToDate, string StrConn)
+        public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID, int CompanyID, string FromDate, string ToDate, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -5084,6 +5117,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@FromDate", FromDate);
                 cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -5093,7 +5128,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID, string FromDate, string ToDate, string StrConn)
+        public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID, int CompanyID, string FromDate, string ToDate, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -5104,6 +5139,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@FromDate", FromDate);
                 cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -5113,7 +5150,7 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
-        public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID, string FromDate, string ToDate, string StrConn)
+        public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID, int CompanyID, string FromDate, string ToDate, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -5124,6 +5161,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@FromDate", FromDate);
                 cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

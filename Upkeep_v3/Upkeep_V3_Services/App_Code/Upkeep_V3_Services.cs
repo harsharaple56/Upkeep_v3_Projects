@@ -1169,6 +1169,20 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Highest_Downtime_Ticket(From_Date, To_Date, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet Bind_Ticket_Details(int TicketID, int CompanyID)
     {
         try
@@ -1553,7 +1567,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Import_AssetList_Master(int CompanyID,string LoggedInUserID)
+    public DataSet Import_AssetList_Master(int CompanyID, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
@@ -2092,7 +2106,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC WorkPermitConfiguration Save
     [WebMethod]
-    public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver,string WPNotify_Emails, string LoggedInUserID)
+    public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string WPNotify_Emails, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
@@ -2563,7 +2577,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Configuration 
     [WebMethod]
-    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string termsCondition,string NotifyEmails,bool Is_TimeLimit_Enabled,string FromTime,string ToTime, string LoggedInUserID)
+    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string termsCondition, string NotifyEmails, bool Is_TimeLimit_Enabled, string FromTime, string ToTime, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
@@ -2643,7 +2657,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Request
     [WebMethod]
-    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string ClosingRemark,string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string Visitor_Photo, string Vaccine_Certificate, string Date_of_Vaccination,string Visitor_IDProof, string LoggedInUserID)
+    public DataSet Insert_VMSRequest(int CompanyID, char Action, int RequestID, int VMS_ConfigID, string ClosingRemark, string Name, string Email, string Phone, string strVMSDate, string strMeetUsrs, string strVMSData, string strVMSCovidColorCode, string strVMSCovidTestDate, string strTemperature, string Visitor_Photo, string Vaccine_Certificate, string Date_of_Vaccination, string Visitor_IDProof, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
@@ -2873,12 +2887,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     #region Asset Management
     [WebMethod]
-    public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID, int TypeID, string Type_Desc,string CategoryTypeID, string Action)
+    public DataSet Fetch_Asset_DropDown(int UserID, int CompanyID, int TypeID, string Type_Desc, string CategoryTypeID, string Action)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Asset_DropDown(UserID, CompanyID,TypeID,Type_Desc, CategoryTypeID, Action);
+            ds = ObjUpkeep.Fetch_Asset_DropDown(UserID, CompanyID, TypeID, Type_Desc, CategoryTypeID, Action);
         }
         catch (Exception ex)
         {
@@ -3415,7 +3429,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         DataSet dsProfile = new DataSet();
         try
         {
-            dsProfile = ObjUpkeep.Update_My_Profile_Details(FirstName,LastName ,PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID);
+            dsProfile = ObjUpkeep.Update_My_Profile_Details(FirstName, LastName, PhoneNo, AltPhoneNo, EmailID, Address, City, State, Postcode, LoggedInUserID, UserType, CompanyID);
         }
         catch (Exception ex)
         {
@@ -3799,12 +3813,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     #region Ticketing Dashboard
 
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID, string FromDate, string ToDate)
+    public DataSet Fetch_Analyze_Tkt_Block1(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block1(LoggedInUserID,FromDate,ToDate);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block1(LoggedInUserID, CompanyID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3813,12 +3827,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID, string FromDate, string ToDate)
+    public DataSet Fetch_Analyze_Tkt_Block2(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block2(LoggedInUserID, FromDate, ToDate);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block2(LoggedInUserID, CompanyID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3827,12 +3841,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID, string FromDate, string ToDate)
+    public DataSet Fetch_Analyze_Tkt_Block3(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block3(LoggedInUserID, FromDate, ToDate);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block3(LoggedInUserID, CompanyID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3841,12 +3855,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID)
+    public DataSet Fetch_Analyze_Tkt_Block4(string LoggedInUserID, int CompanyID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block4(LoggedInUserID);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block4(LoggedInUserID, CompanyID);
         }
         catch (Exception ex)
         {
@@ -3855,12 +3869,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID, string FromDate, string ToDate)
+    public DataSet Fetch_Analyze_Tkt_Block5(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block5(LoggedInUserID, FromDate, ToDate);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block5(LoggedInUserID, CompanyID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3869,12 +3883,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID, string FromDate, string ToDate)
+    public DataSet Fetch_Analyze_Tkt_Block6(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block6(LoggedInUserID, FromDate, ToDate);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block6(LoggedInUserID, CompanyID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
@@ -3883,12 +3897,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
     [WebMethod]
-    public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID, string FromDate, string ToDate)
+    public DataSet Fetch_Analyze_Tkt_Block7(string LoggedInUserID, int CompanyID, string FromDate, string ToDate)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block7(LoggedInUserID, FromDate, ToDate);
+            ds = ObjUpkeep.Fetch_Analyze_Tkt_Block7(LoggedInUserID, CompanyID, FromDate, ToDate);
         }
         catch (Exception ex)
         {
