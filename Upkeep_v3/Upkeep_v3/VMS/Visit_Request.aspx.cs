@@ -29,6 +29,7 @@ namespace Upkeep_v3.VMS
         int ConfigID = 0;
         public static string UserImage_fileData = string.Empty;
         public static string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+        public static int Vaccine_Check_Enable = 0;
         #endregion
 
         #region Store Temporary Photos WebMethods
@@ -380,7 +381,7 @@ namespace Upkeep_v3.VMS
                     divCovid1.Visible = true;
                 }
 
-                int Vaccine_Check_Enable = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
+                Vaccine_Check_Enable = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Vaccine_Check_Enable"]);
 
                 if (Vaccine_Check_Enable == 0)
                 {
@@ -911,7 +912,9 @@ namespace Upkeep_v3.VMS
                 {
                     #region UserData
                     DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim());
-                    DateTime dtDoseDate = Convert.ToDateTime(txtDoseDate.Text.Trim()).Date;
+                    DateTime dtDoseDate = new DateTime();
+                    if (Vaccine_Check_Enable != 0)
+                        dtDoseDate = Convert.ToDateTime(txtDoseDate.Text.Trim()).Date;
                     double eligleDays = 14;
                     double remainDays = 0;
                     int RequestID = 0;
@@ -922,7 +925,7 @@ namespace Upkeep_v3.VMS
                     string UserPhotoSelfPath_Brows = string.Empty;
                     string GetUserPhotoIDPath = string.Empty;
                     string GetUserSelfPhotoPath = string.Empty;
-
+                    string storefilePathtoDB = string.Empty;
                     if (dtVMSDate.Date != null && dtDoseDate.Date != null)
                     {
                         DateTime dtConvertVMSDate = Convert.ToDateTime(dtVMSDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
@@ -935,189 +938,191 @@ namespace Upkeep_v3.VMS
                                 RequestID = Convert.ToInt32(ViewState["RequestID"]);
                             }
 
-                            #region Get Next Request ID
-                            DataSet ds = new DataSet();
-                            int id = 0;
-                            ds = ObjUpkeep.GetLastVMSRequestID(Convert.ToInt32(ViewState["CompanyID"]));
-                            foreach (DataRow row in ds.Tables[0].Rows)
+                            if (Vaccine_Check_Enable != 0)
                             {
-                                id = Convert.ToInt32(row["RequestID"]);
-                            }
-                            id++;
-                            #endregion
-
-                            #region Certificate PDF
-                            string storefilePathtoDB = string.Empty;
-                            if (VCertificate.HasFile)
-                            {
-                                try
+                                #region Get Next Request ID
+                                DataSet ds = new DataSet();
+                                int id = 0;
+                                ds = ObjUpkeep.GetLastVMSRequestID(Convert.ToInt32(ViewState["CompanyID"]));
+                                foreach (DataRow row in ds.Tables[0].Rows)
                                 {
-                                    var supportedTypes = new[] { "pdf" };
-                                    var fileExt = System.IO.Path.GetExtension(VCertificate.FileName).Substring(1);
-                                    if (!supportedTypes.Contains(fileExt))
-                                    {
-                                        lbl_error.Text = "File Extension Is InValid - Only Upload PDF File";
-                                        return;
-                                    }
-
-                                    int maxFileSize = 5000; // 5MB
-                                    int fileSize = VCertificate.PostedFile.ContentLength;
-                                    if (fileSize > (maxFileSize * 1024))
-                                    {
-                                        lbl_error.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
-                                        return;
-                                    }
-
-                                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
-                                    if (!Directory.Exists(fileUploadPath_Profile))
-                                    {
-                                        Directory.CreateDirectory(fileUploadPath_Profile);
-                                    }
-
-                                    string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
-                                    string fileName = VCertificate.FileName;
-                                    string fileExtension = Path.GetExtension(fileName);
-
-
-                                    string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
-                                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
-                                    storefilePathtoDB = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
-                                    VCertificate.SaveAs(pathToSave);
+                                    id = Convert.ToInt32(row["RequestID"]);
                                 }
-                                catch (Exception ex)
+                                id++;
+                                #endregion
+
+                                #region Certificate PDF
+
+                                if (VCertificate.HasFile)
                                 {
-                                    lbl_error.Text = "File Not Uploaded..! " + ex.Message.ToString();
-                                }
-                            }
-                            #endregion
+                                    try
+                                    {
+                                        var supportedTypes = new[] { "pdf" };
+                                        var fileExt = System.IO.Path.GetExtension(VCertificate.FileName).Substring(1);
+                                        if (!supportedTypes.Contains(fileExt))
+                                        {
+                                            lbl_error.Text = "File Extension Is InValid - Only Upload PDF File";
+                                            return;
+                                        }
 
-                            #region User Image Browse User
-                            if (fileupload1.HasFile)
-                            {
-                                try
+                                        int maxFileSize = 5000; // 5MB
+                                        int fileSize = VCertificate.PostedFile.ContentLength;
+                                        if (fileSize > (maxFileSize * 1024))
+                                        {
+                                            lbl_error.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                            return;
+                                        }
+
+                                        string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/");
+                                        if (!Directory.Exists(fileUploadPath_Profile))
+                                        {
+                                            Directory.CreateDirectory(fileUploadPath_Profile);
+                                        }
+
+                                        string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                                        string fileName = VCertificate.FileName;
+                                        string fileExtension = Path.GetExtension(fileName);
+
+
+                                        string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                        string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Certificate/") + str_image;
+                                        storefilePathtoDB = imgPath + "/VMS_Uploads/Vacc_User_Certificate/" + str_image;
+                                        VCertificate.SaveAs(pathToSave);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        lbl_error.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                                    }
+                                }
+                                #endregion
+
+                                #region User Image Browse User
+                                if (fileupload1.HasFile)
                                 {
-                                    var supportedTypesData = new[] { "jpg", "jpeg", "png" };
-                                    var fileExt1 = System.IO.Path.GetExtension(fileupload1.FileName).Substring(1);
-                                    if (!supportedTypesData.Contains(fileExt1))
+                                    try
                                     {
-                                        Label4.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
-                                        return;
-                                    }
+                                        var supportedTypesData = new[] { "jpg", "jpeg", "png" };
+                                        var fileExt1 = System.IO.Path.GetExtension(fileupload1.FileName).Substring(1);
+                                        if (!supportedTypesData.Contains(fileExt1))
+                                        {
+                                            Label4.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
+                                            return;
+                                        }
 
-                                    int maxFileSize = 5000; // 5MB
-                                    int fileSize = fileupload_userpic.PostedFile.ContentLength;
-                                    if (fileSize > (maxFileSize * 1024))
+                                        int maxFileSize = 5000; // 5MB
+                                        int fileSize = fileupload_userpic.PostedFile.ContentLength;
+                                        if (fileSize > (maxFileSize * 1024))
+                                        {
+                                            Label4.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                            return;
+                                        }
+
+                                        string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/");
+                                        if (!Directory.Exists(fileUploadPath_Profile))
+                                        {
+                                            Directory.CreateDirectory(fileUploadPath_Profile);
+                                        }
+
+                                        string fileName = fileupload1.FileName;
+                                        string fileExtension = Path.GetExtension(fileName);
+
+                                        string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                        string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/") + str_image;
+                                        UserPhotoSelfPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + str_image;
+
+                                        Stream strm = fileupload1.PostedFile.InputStream;
+                                        ReduceImageSize(0.5, strm, pathToSave);
+
+                                    }
+                                    catch (Exception ex)
                                     {
-                                        Label4.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
-                                        return;
+                                        Label4.Text = "File Not Uploaded..! " + ex.Message.ToString();
                                     }
-
-                                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/");
-                                    if (!Directory.Exists(fileUploadPath_Profile))
-                                    {
-                                        Directory.CreateDirectory(fileUploadPath_Profile);
-                                    }
-
-                                    string fileName = fileupload1.FileName;
-                                    string fileExtension = Path.GetExtension(fileName);
-
-                                    string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
-                                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_Photo/") + str_image;
-                                    UserPhotoSelfPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + str_image;
-
-                                    Stream strm = fileupload1.PostedFile.InputStream;
-                                    ReduceImageSize(0.5, strm, pathToSave);
-
                                 }
-                                catch (Exception ex)
+                                #endregion
+
+                                #region User Image Web Cam
+                                if (!fileupload1.HasFile && !string.IsNullOrEmpty(UserImage_fileData))
                                 {
-                                    Label4.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                                    string UserImage_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
+
+                                    //Convert Base64 Encoded string to Byte Array.
+                                    byte[] UserImage_imageBytes = Convert.FromBase64String(UserImage_fileData.Split(',')[1]);
+
+                                    //Save the Byte Array as Image File.
+                                    string UserImage_filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_Photo/{0}.jpg", UserImage_fileName));
+
+                                    string UserImage_fileExtension = Path.GetExtension(UserImage_filePath);
+
+                                    UserImage_ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + UserImage_fileName + UserImage_fileExtension;
+
+                                    File.WriteAllBytes(UserImage_filePath, UserImage_imageBytes);
                                 }
-                            }
-                            #endregion
+                                #endregion
 
-                            #region User Image Web Cam
-                            if (!fileupload1.HasFile && !string.IsNullOrEmpty(UserImage_fileData))
-                            {
-                                string UserImage_fileName = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy");
-
-                                //Convert Base64 Encoded string to Byte Array.
-                                byte[] UserImage_imageBytes = Convert.FromBase64String(UserImage_fileData.Split(',')[1]);
-
-                                //Save the Byte Array as Image File.
-                                string UserImage_filePath = HttpContext.Current.Server.MapPath(string.Format("~/VMS_Uploads/Vacc_User_Photo/{0}.jpg", UserImage_fileName));
-
-                                string UserImage_fileExtension = Path.GetExtension(UserImage_filePath);
-
-                                UserImage_ProfilePhoto_FilePath = imgPath + "/VMS_Uploads/Vacc_User_Photo/" + UserImage_fileName + UserImage_fileExtension;
-
-                                File.WriteAllBytes(UserImage_filePath, UserImage_imageBytes);
-                            }
-                            #endregion
-
-                            #region User Image Browse ID proof
-                            if (fileupload_userpic.HasFile)
-                            {
-                                try
+                                #region User Image Browse ID proof
+                                if (fileupload_userpic.HasFile)
                                 {
-                                    var supportedTypesData = new[] { "jpg", "jpeg", "png" };
-                                    var fileExt1 = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
-                                    if (!supportedTypesData.Contains(fileExt1))
+                                    try
                                     {
-                                        lbl_error_userpic.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
-                                        return;
-                                    }
+                                        var supportedTypesData = new[] { "jpg", "jpeg", "png" };
+                                        var fileExt1 = System.IO.Path.GetExtension(fileupload_userpic.FileName).Substring(1);
+                                        if (!supportedTypesData.Contains(fileExt1))
+                                        {
+                                            lbl_error_userpic.Text = "File Extension Is InValid - Only Upload  JPG/JPEG/PNG  Files";
+                                            return;
+                                        }
 
-                                    int maxFileSize = 5000; // 5MB
-                                    int fileSize = fileupload_userpic.PostedFile.ContentLength;
-                                    if (fileSize > (maxFileSize * 1024))
+                                        int maxFileSize = 5000; // 5MB
+                                        int fileSize = fileupload_userpic.PostedFile.ContentLength;
+                                        if (fileSize > (maxFileSize * 1024))
+                                        {
+                                            lbl_error_userpic.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
+                                            return;
+                                        }
+
+                                        string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/");
+                                        if (!Directory.Exists(fileUploadPath_Profile))
+                                        {
+                                            Directory.CreateDirectory(fileUploadPath_Profile);
+                                        }
+
+                                        string fileName = fileupload_userpic.FileName;
+                                        string fileExtension = Path.GetExtension(fileName);
+
+                                        string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
+                                        string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/") + str_image;
+                                        UserPhotoIDPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + str_image;
+                                        Stream strm = fileupload_userpic.PostedFile.InputStream;
+
+                                        ReduceImageSize(0.9, strm, pathToSave);
+                                    }
+                                    catch (Exception ex)
                                     {
-                                        lbl_error_userpic.Text = "Filesize of image is too large. Maximum file size permitted is " + maxFileSize + " KB ( 5 MB )";
-                                        return;
+                                        lbl_error_userpic.Text = "File Not Uploaded..! " + ex.Message.ToString();
                                     }
-
-                                    string fileUploadPath_Profile = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/");
-                                    if (!Directory.Exists(fileUploadPath_Profile))
-                                    {
-                                        Directory.CreateDirectory(fileUploadPath_Profile);
-                                    }
-
-                                    string fileName = fileupload_userpic.FileName;
-                                    string fileExtension = Path.GetExtension(fileName);
-
-                                    string str_image = id + "_" + txtName.Text + "_" + DateTime.Now.ToString("dd-MMM-yyyy") + fileExtension;
-                                    string pathToSave = HttpContext.Current.Server.MapPath("~/VMS_Uploads/Vacc_User_IDProof/") + str_image;
-                                    UserPhotoIDPath_Brows = imgPath + "/VMS_Uploads/Vacc_User_IDProof/" + str_image;
-                                    Stream strm = fileupload_userpic.PostedFile.InputStream;
-
-                                    ReduceImageSize(0.9, strm, pathToSave);
                                 }
-                                catch (Exception ex)
+                                #endregion
+
+                                #region Get User Upload Image Brows or Web cam
+                                if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows) || !string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
                                 {
-                                    lbl_error_userpic.Text = "File Not Uploaded..! " + ex.Message.ToString();
+                                    if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows))
+                                        GetUserPhotoIDPath = UserPhotoIDPath_Brows;
+                                    else if (!string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
+                                        GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
                                 }
+
+                                if (!string.IsNullOrEmpty(UserPhotoSelfPath_Brows) || !string.IsNullOrEmpty(UserImage_ProfilePhoto_FilePath))
+                                {
+                                    if (!string.IsNullOrEmpty(UserPhotoSelfPath_Brows))
+                                        GetUserSelfPhotoPath = UserPhotoSelfPath_Brows;
+                                    else if (!string.IsNullOrEmpty(UserImage_ProfilePhoto_FilePath))
+                                        GetUserSelfPhotoPath = UserImage_ProfilePhoto_FilePath;
+                                }
+
+                                #endregion
                             }
-                            #endregion
-
-                            #region Get User Upload Image Brows or Web cam
-                            if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows) || !string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
-                            {
-                                if (!string.IsNullOrEmpty(UserPhotoIDPath_Brows))
-                                    GetUserPhotoIDPath = UserPhotoIDPath_Brows;
-                                else if (!string.IsNullOrEmpty(UserPhotoID_ProfilePhoto_FilePath))
-                                    GetUserPhotoIDPath = UserPhotoID_ProfilePhoto_FilePath;
-                            }
-
-                            if (!string.IsNullOrEmpty(UserPhotoSelfPath_Brows) || !string.IsNullOrEmpty(UserImage_ProfilePhoto_FilePath))
-                            {
-                                if (!string.IsNullOrEmpty(UserPhotoSelfPath_Brows))
-                                    GetUserSelfPhotoPath = UserPhotoSelfPath_Brows;
-                                else if (!string.IsNullOrEmpty(UserImage_ProfilePhoto_FilePath))
-                                    GetUserSelfPhotoPath = UserImage_ProfilePhoto_FilePath;
-                            }
-
-                            #endregion
-
                             ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                             string LoggedInUser = LoggedInUserID;
                             string strName = txtName.Text;
@@ -1125,7 +1130,9 @@ namespace Upkeep_v3.VMS
                             string strPhone = txtPhone.Text;
                             string strMeetUsers = hdnSelectedUserID.Value;
                             string strVisitDate = dtVMSDate.ToString("MMM dd yyyy hh:mm tt");
-                            string strDoseDate = dtDoseDate.ToString("dd-MMM-yyyy");
+                            string strDoseDate = string.Empty;
+                            if (Vaccine_Check_Enable != 0)
+                                strDoseDate = dtDoseDate.ToString("dd-MMM-yyyy");
                             string strCovidTestDate = txtAsmmtDate.Text != null ? txtAsmmtDate.Text : DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
                             string strTemperature = txtTemperature.Text;
                             string strCovidColor = string.Empty;
