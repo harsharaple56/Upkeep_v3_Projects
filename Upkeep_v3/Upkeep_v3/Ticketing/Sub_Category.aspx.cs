@@ -162,7 +162,11 @@ namespace Upkeep_v3.Ticketing
                             Session["SubCategory_ID"] = "";
                             txtSubCategoryDesc.Text = "";
                             mpeSubCategory.Hide();
-                           
+                            ddlCategory.SelectedValue = "0";
+                            ddlCategory.Items.Clear();
+                            ddlPriority.SelectedValue = "0";
+                            ddlPriority.Items.Clear();
+                            lblSubCategoryErrorMsg.Text = "";
                             Response.Redirect(Page.ResolveClientUrl("~/Ticketing/Sub_Category.aspx"), false);
                         }
                         else if (Status == 3)

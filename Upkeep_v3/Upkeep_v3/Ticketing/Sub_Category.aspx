@@ -19,7 +19,6 @@
             /*background-color: #fff;
             border: 3px solid #ccc;*/
             padding: 10px;
-            width: 300px;
         }
 
         /*.highlight {
@@ -129,19 +128,17 @@
                                         </div>
                                         <div class="form-group m-form__group row">
                                             <%--<div class="col-xl-1 col-lg-3 col-form-label">--%>
-                                            <label for="message-text" class="col-xl-6 col-lg-6 form-control-label">Check the Box if Approval Required :</label>
+                                            <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Check the Box if Approval Required :</label>
 
                                             <%-- <span style="color: red;">*</span><asp:CheckBox ID="chk_Approval" OnCheckedChanged="chk_Approval_CheckedChanged"  runat="server" style="margin-left: 3px;" />--%>
-
-                                            <asp:CheckBox ID="chk_Approval" OnCheckedChanged="chk_Approval_CheckedChanged" runat="server" Class="from-control m-checkbox--metal" Style="margin-left: 6px;" />
-
+                                            <asp:CheckBox ID="chk_Approval" OnCheckedChanged="chk_Approval_CheckedChanged" runat="server" CssClass="from-control m-checkbox--metal" Style="margin-left: 6px;" />
 
                                         </div>
                                         <%-- <label class="col-xl-8 col-lg-3 col-form-label">Check the Box if Approval Required.</label>
                                         --%>
                                         <%--OnCheckedChanged="chk_IsApproval_CheckedChanged"--%>
-                                    </div>
                                     <asp:Label ID="lblSubCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
                                     </div>
                                     <%--<div class="form-group m-form__group row">
                                         <div class="col-xl-9 col-lg-9">
@@ -152,7 +149,6 @@
                                     <div class="modal-footer">
                                         <asp:Button ID="btnCloseSubCategory" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseSubCategory_Click" />
                                         <asp:Button ID="btnSubCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationSubCategory" OnClick="btnSubCategorySave_Click" Text="Save" />
-
                                     </div>
                                 </ContentTemplate>
                                 <Triggers>
