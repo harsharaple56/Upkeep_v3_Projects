@@ -134,6 +134,33 @@
                 },
             });
 
+            $('.SMSTemplate_repeater').repeater({
+                initEmpty: false,
+                show: function () {
+                    $(this).slideDown();
+                    var counter = $(this).parents('.SMSTemplate_repeater').find('.SMSTemplate_count');
+                    var question_count = counter.data('count');
+                    question_count++;
+                    counter.data('count', question_count).html(question_count + ' SMS Template(s)');
+                    $('#error_SMSTemplate').html('');
+
+                    init_autosize();
+                    init_plugins();
+                },
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                    var counter = $(this).parents('.SMSTemplate_repeater').find('.SMSTemplate_count');
+                    var question_count = counter.data('count');
+                    question_count--;
+                    counter.data('count', question_count).html(question_count + ' SMS Template(s)');
+                    //alert(question_count);
+                    if (question_count == 0) {
+                        $('#error_SMSTemplate').html('Add at least one SMS Template.');
+                    }
+                },
+            });
+
+            
 
             $('.AnswerType_repeater').repeater({
                 initEmpty: false,
@@ -458,7 +485,7 @@
                 var arrTerms = terms.split("~");
                 for (var i = 0; i < arrTerms.length; i++) {
                     if (i !== 0)
-                    $("#divTermAdd").click();
+                        $("#divTermAdd").click();
                     //alert(arrTerms[i]);
 
                     var arrIDTerm = arrTerms[i].split("||");
@@ -467,6 +494,27 @@
 
                     //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
                 }
+
+                //custom SMS
+                var sms = $('#hdnSMSTemplate').val();
+                //alert(terms);
+                var arrSMS = sms.split("~");
+                for (var i = 0; i < arrSMS.length; i++) {
+                    if (i !== 0)
+                        $("#divSMSAdd").click();
+                    //alert(arrTerms[i]);
+
+                    var arrIDSMS = arrSMS[i].split("||");
+                    $("input[name~='VMS_SMSTemplate[" + i + "][hdnRepeaterSMSID]']").val(arrIDSMS[0]);
+                    $("textarea[name~='VMS_SMSTemplate[" + i + "][ctl00$ContentPlaceHolder1$txtSMSTemplate]']").val(arrIDSMS[1]);
+
+                    var SMS_Type = $("select[name~='VMS_SMSTemplate[" + i + "][ctl00$ContentPlaceHolder1$ddlSMS]']");
+                    SMS_Type.val(arrIDSMS[2]);
+
+                    //ddlSMS
+                    //alert($("input[name~='AnswerType[" + i + "][txtAnswer]']").val()); WorkPermitTermCondition[0][hdnRepeaterTermID]
+                }
+
 
 
 
@@ -965,6 +1013,69 @@
                             </div>
 
 
+                            <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
+                                <h3 class="m-form__heading-title" style="line-height: 2.0; background: #ffaeae; font-size: 1.2rem;">SMS Templates</h3>
+                            </div>
+                            <br />
+                            <div class="col-xl-12">
+                                <div class="m-form__section">
+                                    <div class="SMSTemplate_repeater">
+                                        <div class="form-group  m-form__group row">
+
+                                            <div data-repeater-list="VMS_SMSTemplate" class="col-lg-12" runat="server" id="VMS_SMSTemplate">
+
+                                                <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="Div3">
+                                                    <div class="col-md-8">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:TextBox ID="txtSMSTemplate" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea" placeholder="Enter SMS Template" ClientIDMode="Static" Rows="1"></asp:TextBox>
+                                                                <span class="error_SMSTemplate text-danger medium"></span>
+                                                                <input type="hidden" name="hdnRepeaterSMSID" id="hdnRepeaterSMSID" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <asp:DropDownList ID="ddlSMS" data-show-content="true" data-show-icon="true" ClientIDMode="Static" class="form-control m-input type_select ddlSMS" placeholder="select" runat="server">
+                                                            <asp:ListItem Value="0" Text="-Select-"></asp:ListItem>
+                                                            <asp:ListItem Value="1" Text="Visit Request Submitted"></asp:ListItem>
+                                                            <asp:ListItem Value="2" Text="Visitor Marked IN"></asp:ListItem>
+                                                            <asp:ListItem Value="3" Text="Visitor Marked OUT"></asp:ListItem>
+                                                            <asp:ListItem Value="4" Text="Visit Request Rejected"></asp:ListItem>
+
+                                                        </asp:DropDownList>
+
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only dltSection" id="dltSectionSMS">
+                                                            <i class="la la-trash"></i>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-form__group form-group row">
+                                            <div class="col-lg-4">
+                                                <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" id="divSMSAdd">
+                                                    <span>
+                                                        <i class="la la-plus"></i>
+                                                        <span>Add SMS Template</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <label id="Label1" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold SMSTemplate_count" data-count="1">1 SMS Template(s)</label>
+                                            </div>
+                                            <span id="error_SMSTemplate" class="text-danger medium"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -1026,6 +1137,7 @@
                     <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
                     <asp:HiddenField ID="hdnVMSQns" ClientIDMode="Static" runat="server" />
                     <asp:HiddenField ID="hdnVMSTerms" ClientIDMode="Static" runat="server" />
+                    <asp:HiddenField ID="hdnSMSTemplate" ClientIDMode="Static" runat="server" />
                     <%--</form>--%>
                 </div>
             </div>

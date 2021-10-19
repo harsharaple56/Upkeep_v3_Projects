@@ -5781,6 +5781,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool Is_TimeLimit_Enabled, 
                     string FromTime, 
                     string ToTime, 
+                    string SMS_Template_Details, 
                     string LoggedInUserID) {
             object[] results = this.Invoke("Insert_Update_VMSConfiguration", new object[] {
                         ConfigID,
@@ -5805,6 +5806,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Is_TimeLimit_Enabled,
                         FromTime,
                         ToTime,
+                        SMS_Template_Details,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
         }
@@ -5833,8 +5835,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool Is_TimeLimit_Enabled, 
                     string FromTime, 
                     string ToTime, 
+                    string SMS_Template_Details, 
                     string LoggedInUserID) {
-            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, termsCondition, NotifyEmails, Is_TimeLimit_Enabled, FromTime, ToTime, LoggedInUserID, null);
+            this.Insert_Update_VMSConfigurationAsync(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, termsCondition, NotifyEmails, Is_TimeLimit_Enabled, FromTime, ToTime, SMS_Template_Details, LoggedInUserID, null);
         }
         
         /// <remarks/>
@@ -5861,6 +5864,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     bool Is_TimeLimit_Enabled, 
                     string FromTime, 
                     string ToTime, 
+                    string SMS_Template_Details, 
                     string LoggedInUserID, 
                     object userState) {
             if ((this.Insert_Update_VMSConfigurationOperationCompleted == null)) {
@@ -5889,6 +5893,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Is_TimeLimit_Enabled,
                         FromTime,
                         ToTime,
+                        SMS_Template_Details,
                         LoggedInUserID}, this.Insert_Update_VMSConfigurationOperationCompleted, userState);
         }
         

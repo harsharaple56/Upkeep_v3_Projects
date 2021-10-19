@@ -64,7 +64,7 @@ namespace Upkeep_v3.VMS
 
                     ViewState["ConfigID"] = ConfigID;
                     DataSet dsVMSConfig = new DataSet();
-                    dsVMSConfig=ObjUpkeep.Delete_VMSConfiguration(ConfigID, LoggedInUserID);
+                    dsVMSConfig = ObjUpkeep.Delete_VMSConfiguration(ConfigID, LoggedInUserID);
                     if (dsVMSConfig.Tables.Count > 0)
                     {
                         if (dsVMSConfig.Tables[0].Rows.Count > 0)
@@ -98,6 +98,7 @@ namespace Upkeep_v3.VMS
                 string VMSQuestionAns = string.Empty;
                 string VMSQuestionAnsData = string.Empty;
                 string VMSTermCondition = string.Empty;
+                string VMS_SMS_Template = string.Empty;
                 //string VMSFeedback = string.Empty;
                 //string VMSFeedbackMandatory = string.Empty;
                 //string VMSFeedbackVisible = string.Empty;
@@ -218,6 +219,42 @@ namespace Upkeep_v3.VMS
 
                 strXmlVMS_TermCondition.Append(@"</VMS_TERM_ROOT>");
 
+                //SMS Template
+                StringBuilder strXmlVMS_SMS_Template = new StringBuilder();
+                strXmlVMS_SMS_Template.Append(@"<?xml version=""1.0"" ?>");
+                strXmlVMS_SMS_Template.Append(@"<VMS_SMS_TEMPLATE>");
+                string SMS_Type = string.Empty;
+
+                int iSMS = Request.Form.Count;
+                for (int j = 0; j < iSMS; j++)
+                {
+                    VMS_SMS_Template = "";
+                    SMS_Type = "";
+                    string[] VMS_SMS_Array = Request.Form.GetValues("VMS_SMSTemplate[" + j + "][ctl00$ContentPlaceHolder1$txtSMSTemplate]");
+                    
+
+                    if (VMS_SMS_Array != null)
+                    {
+                        VMS_SMS_Template = VMS_SMS_Array[0];
+                        SMS_Type = Request.Form.GetValues("VMS_SMSTemplate[" + j + "][ctl00$ContentPlaceHolder1$ddlSMS]")[0];
+                    }
+
+                    if (VMS_SMS_Array != null)
+                    {
+                        if (VMS_SMS_Template != "")
+                        {
+                            strXmlVMS_SMS_Template.Append(@"<VMS_SMS_DESC>");
+                            strXmlVMS_SMS_Template.Append(@"<VMS_SMS>" + VMS_SMS_Template + "</VMS_SMS>");
+                            strXmlVMS_SMS_Template.Append(@"<VMS_SMS_TYPE>" + SMS_Type + "</VMS_SMS_TYPE>");
+                            strXmlVMS_SMS_Template.Append(@"</VMS_SMS_DESC>");
+                        }
+                    }
+                }
+
+                strXmlVMS_SMS_Template.Append(@"</VMS_SMS_TEMPLATE>");
+
+                string SMS_Template_Details = strXmlVMS_SMS_Template.ToString();
+
 
                 int ConfigID = Convert.ToInt32(ViewState["ConfigID"]);
                 string strConfigTitle = string.Empty;
@@ -269,10 +306,10 @@ namespace Upkeep_v3.VMS
                 Is_TimeLimit_Enabled = Convert.ToBoolean(ChkTimeLimit.Checked);
                 FromTime = Convert.ToString(txtFromTime.Text.Trim());
                 ToTime = Convert.ToString(txtToTime.Text.Trim());
-                
+
 
                 DataSet dsVMSConfig = new DataSet();
-                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp,blContactComp,blEmailComp,blMeetingComp,blEmailOtpComp,blContactOtpComp, strXmlVMS_TermCondition.ToString(), NotifyEmails, Is_TimeLimit_Enabled, FromTime, ToTime, LoggedInUserID);
+                dsVMSConfig = ObjUpkeep.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question.ToString(), blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blEnableVaccination, EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, strXmlVMS_TermCondition.ToString(), NotifyEmails, Is_TimeLimit_Enabled, FromTime, ToTime, SMS_Template_Details, LoggedInUserID);
 
                 if (dsVMSConfig.Tables.Count > 0)
                 {
@@ -389,11 +426,13 @@ namespace Upkeep_v3.VMS
                     txtVMSDesc.Text = dsConfig.Tables[0].Rows[0]["Config_Desc"].ToString();
                     txtCount.Text = dsConfig.Tables[0].Rows[0]["EntryCount"].ToString(); ;
                     if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "C")
-                    { rdbCustomer.Checked = true;
+                    {
+                        rdbCustomer.Checked = true;
                         rdbVisitor.Checked = false;
                     }
                     else if (dsConfig.Tables[0].Rows[0]["Initiator"].ToString() == "V")
-                    { rdbVisitor.Checked = true;
+                    {
+                        rdbVisitor.Checked = true;
                         rdbCustomer.Checked = false;
                     }
                     ChkFeedback.Checked = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Feedback_Is_Compulsory"]);
@@ -426,6 +465,10 @@ namespace Upkeep_v3.VMS
                     var TermsValues = dsConfig.Tables[4].AsEnumerable().Select(s => s.Field<Int32>("Terms_ID").ToString() + "||" + s.Field<string>("Terms_Desc").Replace("<br>", System.Environment.NewLine)).ToArray();
 
                     hdnVMSTerms.Value = string.Join("~", TermsValues);
+
+                    var SMSTemplateValues = dsConfig.Tables[6].AsEnumerable().Select(s => s.Field<Int32>("SMS_ID").ToString() + "||" + s.Field<string>("SMS_Desc") + "||" + s.Field<Int32>("SMS_Action_Code").ToString().Replace("<br>", System.Environment.NewLine)).ToArray();
+
+                    hdnSMSTemplate.Value = string.Join("~", SMSTemplateValues);
 
                 }
 

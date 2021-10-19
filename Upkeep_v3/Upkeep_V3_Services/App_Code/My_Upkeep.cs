@@ -2213,7 +2213,7 @@ public class My_Upkeep
 	#region VMS
 
 	//Added by RC This function is used to save VMS Configuration 
-	public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string termsCondition,string NotifyEmails,bool Is_TimeLimit_Enabled,string FromTime,string ToTime, string LoggedInUserID)
+	public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string termsCondition,string NotifyEmails,bool Is_TimeLimit_Enabled,string FromTime,string ToTime,string SMS_Template_Details, string LoggedInUserID)
 	{
 
 		DataSet ds = new DataSet();
@@ -2221,7 +2221,7 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination ,EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, termsCondition, NotifyEmails, Is_TimeLimit_Enabled, FromTime, ToTime, LoggedInUserID, StrConn);
+			ds = ObjUpkeepCC_BL.Insert_Update_VMSConfiguration(ConfigID, strConfigTitle, strConfigDesc, CompanyID, strInitiator, strXmlVMS_Question, blFeedbackCompulsary, FeedbackTitle, blEnableCovid, blChk_Vaccination ,EntryCount, blNameComp, blContactComp, blEmailComp, blMeetingComp, blEmailOtpComp, blContactOtpComp, termsCondition, NotifyEmails, Is_TimeLimit_Enabled, FromTime, ToTime, SMS_Template_Details, LoggedInUserID, StrConn);
 			return ds;
 		}
 		catch (Exception ex)

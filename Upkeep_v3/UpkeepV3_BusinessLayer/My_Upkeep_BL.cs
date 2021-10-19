@@ -3073,7 +3073,7 @@ namespace UpkeepV3_BusinessLayer
         #region VMS
 
         //Added by RC This function is used to save VMS Configuration
-        public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string termsCondition,string NotifyEmails,bool Is_TimeLimit_Enabled,string FromTime,string ToTime, string LoggedInUserID,  string StrConn)
+        public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string termsCondition,string NotifyEmails,bool Is_TimeLimit_Enabled,string FromTime,string ToTime,string SMS_Template_Details, string LoggedInUserID,  string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -3105,6 +3105,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Is_TimeLimit_Enabled", Is_TimeLimit_Enabled);
                 cmd.Parameters.AddWithValue("@FromTime", FromTime);
                 cmd.Parameters.AddWithValue("@ToTime", ToTime);
+                cmd.Parameters.AddWithValue("@SMS_Template_Details", SMS_Template_Details);
 
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
 

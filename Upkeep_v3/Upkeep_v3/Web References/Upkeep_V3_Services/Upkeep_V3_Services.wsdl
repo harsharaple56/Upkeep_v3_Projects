@@ -3078,6 +3078,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="Is_TimeLimit_Enabled" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="FromTime" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ToTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SMS_Template_Details" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
           </s:sequence>
         </s:complexType>
