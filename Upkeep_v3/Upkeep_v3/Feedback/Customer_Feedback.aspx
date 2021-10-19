@@ -304,7 +304,7 @@ background-color: blanchedalmond;
                     }
                 }
 
-                var getID = $(this).parent().attr('ID');
+                var getID = $(this).parent().parent().attr('ID');
                 var getBehindvalue = getID.split('_').pop();
                 var inputdynamicname = 'DynamicTextBox_' + getBehindvalue;
                 if (rating == "1" || rating == "2") {
