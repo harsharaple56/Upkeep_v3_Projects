@@ -331,9 +331,9 @@ namespace Upkeep_v3.General_Masters
                 State_ID = Convert.ToInt32(DDLState.SelectedValue);
                 DataSet ds = new DataSet();
 
-                ds = ObjUpkeepCC.Fetch_City(State_ID); 
+                ds = ObjUpkeepCC.Fetch_City(State_ID);
 
-                if (ds.Tables.Count > 0)
+                if (ds != null && ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
