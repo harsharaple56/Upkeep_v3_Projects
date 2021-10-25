@@ -1215,6 +1215,10 @@ namespace Upkeep_v3.VMS
                         int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
                         string TextMessage = string.Empty;
 
+                        string Custom_SMS_Msg = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_SMS"]);
+                        string Custom_DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_DLT_Template_ID"]);
+                        string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Msg + "%0a%0agenerated from eFacilito.";
+
                         if (status == 1 && Action == 'N')
                         {
                             //SetRepeater();
@@ -1241,6 +1245,10 @@ namespace Upkeep_v3.VMS
                             {
                                 string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
                             }
+                            if (Custom_DLT_Template_ID != "")
+                            {
+                                string custom_sms_response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, Custom_TextMessage, Custom_DLT_Template_ID);
+                            }
 
                             Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
                         }
@@ -1254,6 +1262,10 @@ namespace Upkeep_v3.VMS
                             {
                                 string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
                             }
+                            if (Custom_DLT_Template_ID != "")
+                            {
+                                string custom_sms_response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, Custom_TextMessage, Custom_DLT_Template_ID);
+                            }
 
                             Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
                         }
@@ -1263,6 +1275,11 @@ namespace Upkeep_v3.VMS
                             divAlertClosed.Visible = true;
                             btnSave.Visible = false;
                             txtClosingRemarks.ReadOnly = true;
+
+                            if (Custom_DLT_Template_ID != "")
+                            {
+                                string custom_sms_response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, Custom_TextMessage, Custom_DLT_Template_ID);
+                            }
                         }
                         else if (status == 5)
                         {

@@ -1505,7 +1505,8 @@ namespace Upkeep_v3.VMS
                                     int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
 
 
-                                    if (status == 1 && Action == 'N')
+                                    //if (status == 1 && Action == 'N') //[22/10/2021][commented by ajay]
+                                    if (status == 1 && Action == 'I')
                                     {
                                         //SetRepeater();
                                         //divinsertbutton.visible = false;
@@ -1513,10 +1514,13 @@ namespace Upkeep_v3.VMS
 
                                         int Visit_Request_ID = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["RequestID"]);
                                         string Company_Desc = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Company_Desc"]);
+                                        string Custom_SMS_Msg = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_SMS"]);
+                                        string Custom_DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_DLT_Template_ID"]);
 
                                         mpeVMSRequestSaveSuccess.Show();
 
                                         string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
+                                        string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Msg + "%0a%0agenerated from eFacilito.";
 
                                         if (SMS_Enabled == 1)
                                         {
@@ -1539,7 +1543,15 @@ namespace Upkeep_v3.VMS
                                             {
                                                 string response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, TextMessage, DLT_Template_ID);
                                             }
+
+                                            if (Custom_DLT_Template_ID != "")
+                                            {
+                                                string custom_sms_response = sms1.Send_SMS(Send_SMS_URL, User_ID, Password, strPhone, Custom_TextMessage, Custom_DLT_Template_ID);
+                                            }
+
                                         }
+                                        Response.Write("<script>alert('Status changed.');</script>");
+                                        Response.Redirect(Page.ResolveClientUrl("~/VMS/VMSRequest_Listing.aspx"), false);
                                     }
                                     else if (status == 1 && Action != 'N')
                                     {
