@@ -236,6 +236,7 @@ namespace Upkeep_v3.VMS
                     if (VMS_SMS_Array != null)
                     {
                         VMS_SMS_Template = VMS_SMS_Array[0];
+                        VMS_SMS_Template = VMS_SMS_Template.Replace("&", "&amp;");
                         SMS_Type = Request.Form.GetValues("VMS_SMSTemplate[" + j + "][ctl00$ContentPlaceHolder1$ddlSMS]")[0];
                     }
 

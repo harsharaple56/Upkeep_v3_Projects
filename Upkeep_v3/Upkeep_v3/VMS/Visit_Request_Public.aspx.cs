@@ -2261,6 +2261,8 @@ namespace Upkeep_v3.VMS
                                 string Custom_SMS_Msg = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_SMS"]);
                                 string Custom_DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_DLT_Template_ID"]);
 
+                                Custom_SMS_Msg = Custom_SMS_Msg.Replace("&", "&amp;");
+
                                 mpeVMSRequestSaveSuccess.Show();
 
                                 string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;

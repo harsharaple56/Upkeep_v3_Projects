@@ -290,7 +290,7 @@ namespace Upkeep_v3.Feedback
                                     //string StartDate = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
                                     //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='tooltip' data-placement='top' title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" + FeedbackNo + "</td><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + UserName + "</td><td>" + FeedbackTakenDate + "</td>";
+                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only'  title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" + FeedbackNo + "</td><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + UserName + "</td><td>" + FeedbackTakenDate + "</td>";
 
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 
@@ -310,7 +310,7 @@ namespace Upkeep_v3.Feedback
                                     FeedbackNo = Convert.ToString(ds.Tables[0].Rows[i]["Feedback_No"]);
                                     //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" +  FeedbackNo + " </td> <td>" + Name + " </td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
+                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" +  FeedbackNo + " </td> <td>" + Name + " </td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
 
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 
