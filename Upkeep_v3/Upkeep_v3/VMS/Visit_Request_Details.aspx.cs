@@ -1217,7 +1217,10 @@ namespace Upkeep_v3.VMS
 
                         string Custom_SMS_Msg = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_SMS"]);
                         string Custom_DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_DLT_Template_ID"]);
-                        string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Msg + "%0a%0agenerated from eFacilito.";
+
+                        string Custom_SMS_Message = HttpUtility.UrlEncode(Custom_SMS_Msg, System.Text.Encoding.GetEncoding("ISO-8859-1"));
+
+                        string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Message + "%0a%0agenerated from eFacilito.";
 
                         if (status == 1 && Action == 'N')
                         {

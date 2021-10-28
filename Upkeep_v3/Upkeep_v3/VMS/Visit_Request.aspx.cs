@@ -1519,9 +1519,12 @@ namespace Upkeep_v3.VMS
 
                                         mpeVMSRequestSaveSuccess.Show();
 
-                                        string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
-                                        string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Msg + "%0a%0agenerated from eFacilito.";
+                                        string Custom_SMS_Message = HttpUtility.UrlEncode(Custom_SMS_Msg, System.Text.Encoding.GetEncoding("ISO-8859-1"));
 
+                                        string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
+                                        string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Message + "%0a%0agenerated from eFacilito.";
+
+                                       
                                         if (SMS_Enabled == 1)
                                         {
                                             string Send_SMS_URL = string.Empty;

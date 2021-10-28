@@ -2261,13 +2261,16 @@ namespace Upkeep_v3.VMS
                                 string Custom_SMS_Msg = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_SMS"]);
                                 string Custom_DLT_Template_ID = Convert.ToString(dsVMSQuestionData.Tables[4].Rows[0]["Custom_DLT_Template_ID"]);
 
-                                Custom_SMS_Msg = Custom_SMS_Msg.Replace("&", "&amp;");
+                                //Custom_SMS_Msg = Custom_SMS_Msg.Replace("&", "&amp;");
+
+                                string Custom_SMS_Message = HttpUtility.UrlEncode(Custom_SMS_Msg, System.Text.Encoding.GetEncoding("ISO-8859-1"));
+
 
                                 mpeVMSRequestSaveSuccess.Show();
 
                                 string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
 
-                                string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Msg + "%0a%0agenerated from eFacilito.";
+                                string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Message + "%0a%0agenerated from eFacilito.";
 
 
                                 if (SMS_Enabled == 1)
