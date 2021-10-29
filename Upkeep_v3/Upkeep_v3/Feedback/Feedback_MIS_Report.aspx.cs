@@ -128,11 +128,11 @@ namespace Upkeep_v3.Feedback
                             if (UserType == "R")
                             {
 
-                                data = "<tr><th>Action</th><th>Feedback No</th> <th>Store Name</th><th>Store No.</th><th>Manager Name</th><th>Email</th><th>Phone No</th> <th>User Name</th><th>FeedbackTakenDate</th> ";
+                                data = "<tr><th>Action</th><th>Feedback No</th> <th>Store Name</th><th>Store No.</th><th>Manager Name</th><th>Email</th><th>Phone No</th> <th>User Name</th><th>FeedbackTakenDate</th><th>FeedbackTakenTime</th> ";
                             }
                             else
                             {
-                                data = "<tr><th>Action</th><th>Feedback No</th> <th>Name</th><th>Email</th><th>Mobile</th><th>Gender</th><th>User Name</th><th>FeedbackTakenDate</th> ";
+                                data = "<tr><th>Action</th><th>Feedback No</th> <th>Name</th><th>Email</th><th>Mobile</th><th>Gender</th><th>User Name</th><th>FeedbackTakenDate</th><th>FeedbackTakenTime</th> ";
                             }
                             //for (int k = 1; k <= ds.Tables[0].Columns.Count; k++)
                             //{
@@ -254,6 +254,7 @@ namespace Upkeep_v3.Feedback
                 string StoreNo = string.Empty;
                 string UserName = string.Empty;
                 string FeedbackTakenDate = string.Empty;
+                string FeedbackTakenTime = string.Empty;
                 int UserID = 0;
                 string FeedbackNo = string.Empty;
 
@@ -277,6 +278,7 @@ namespace Upkeep_v3.Feedback
                                 UserName = Convert.ToString(ds.Tables[0].Rows[i]["UserName"]);
                                 FeedbackDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["FeedbackTakenDate"]);
                                 FeedbackTakenDate = FeedbackDate.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                FeedbackTakenTime = Convert.ToString(ds.Tables[0].Rows[i]["FeedbackTakenTime"]);
 
                                 if (UserType == "R")
                                 {
@@ -290,11 +292,11 @@ namespace Upkeep_v3.Feedback
                                     //string StartDate = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
                                     //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only'  title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" + FeedbackNo + "</td><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + UserName + "</td><td>" + FeedbackTakenDate + "</td>";
+                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only'  title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" + FeedbackNo + "</td><td>" + StoreName + "</td><td>" + StoreNo + "</td><td>" + Name + "</td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + UserName + "</td><td>" + FeedbackTakenDate + "</td><td>" + FeedbackTakenTime + "</td>";
 
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 
-                                    for (int j = 11; j < ColumnCount - 1; j++)
+                                    for (int j = 12; j < ColumnCount - 1; j++)
                                     {
                                         Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
                                         data += "<td>" + Answer + "</td>";
@@ -310,11 +312,11 @@ namespace Upkeep_v3.Feedback
                                     FeedbackNo = Convert.ToString(ds.Tables[0].Rows[i]["Feedback_No"]);
                                     //string EndDate = Convert.ToString(ds.Tables[0].Rows[i]["Expiry_Date"]);
 
-                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" +  FeedbackNo + " </td> <td>" + Name + " </td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td>";
+                                    data += "<tr><td><a href='Feedback_Details.aspx?EventID=" + EventID + "&uid=" + UserID + "&fno=" + FeedbackNo + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' title='View Feedback Details'> <i class='la la-eye'></i> </a></td> <td>" +  FeedbackNo + " </td> <td>" + Name + " </td><td>" + EmailID + "</td><td>" + MobileNo + "</td><td>" + Gender + "</td><td>" + UserName + "</td> <td>" + FeedbackTakenDate + "</td><td>" + FeedbackTakenTime + "</td>";
 
                                     ColumnCount = (ds.Tables[0].Columns.Count);
 
-                                    for (int j = 10; j < ColumnCount; j++)
+                                    for (int j = 11; j < ColumnCount; j++)
                                     {
                                         Answer = Convert.ToString(ds.Tables[0].Rows[x][j]);
                                         data += "<td>" + Answer + "</td>";
