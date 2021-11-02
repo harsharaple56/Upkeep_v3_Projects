@@ -344,6 +344,74 @@ background-color: blanchedalmond;
             //    //alert('show msg2312987978');
             //});
 
+
+            $("#Fname").bind("keypress", function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (regex.test(str)) {
+                    var maxlength = new Number(30);
+                    var txtFname = $('#Fname').val();
+                    var txtName_length = $('#Fname').val().length;
+                    if (txtName_length >= maxlength) {
+                        var UserFirstName = txtFname.substring(0, maxlength);
+                        $('#Fname').val(UserFirstName);
+                    }
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
+                }
+
+            });
+
+            $("#Lname").bind("keypress", function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (regex.test(str)) {
+                    var maxlength = new Number(30);
+                    var txtLname = $('#Lname').val();
+                    var txtName_length = $('#Lname').val().length;
+                    if (txtName_length >= maxlength) {
+                        var UserLastName = txtLname.substring(0, maxlength);
+                        $('#Lname').val(UserLastName);
+                    }
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
+                }
+
+            });
+
+             $("#Phoneno").bind("keypress", function (e) {
+                var keyCode = e.which ? e.which : e.keyCode
+
+                if (!(keyCode >= 48 && keyCode <= 57)) {
+                    //$(".error").css("display", "inline");
+                    return false;
+                } else {
+                    //$(".error").css("display", "none");
+                }
+            });
+
+
+            
+            $("#Phoneno").bind("keyup", function (e) {
+                //debugger;
+                var maxlength = new Number(10); // Change number to your max length. 
+                var txtEName = $('#Phoneno').val();
+                var txtEName_length = $('#Phoneno').val().length;
+
+                if (txtEName_length >= maxlength) {
+                    var txtEName_value = txtEName.substring(0, maxlength);
+                    $('#Phoneno').val(txtEName_value);
+                }
+            });
+
+
+
         });
 
 
@@ -595,13 +663,13 @@ background-color: blanchedalmond;
                             <div class="m--form-group row m--align-center">
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-user-circle" aria-hidden="true"></span>First Name</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
-                                    <asp:TextBox ID="Fname" runat="server" class="form-control m-input" placeholder="Enter your First name"></asp:TextBox>
+                                    <asp:TextBox ID="Fname" runat="server" class="form-control m-input" placeholder="Enter your First name" ClientIDMode="Static"></asp:TextBox>
                                     <span id="error_First_name" class="text-danger small"></span>
                                 </div>
 
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-user-circle" aria-hidden="true"></span>Last Name</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
-                                    <asp:TextBox ID="Lname" runat="server" class="form-control m-input" placeholder="Enter your Last Name"></asp:TextBox>
+                                    <asp:TextBox ID="Lname" runat="server" class="form-control m-input" placeholder="Enter your Last Name" ClientIDMode="Static"></asp:TextBox>
                                     <span id="error_Last_Name" class="text-danger small"></span>
                                 </div>
 
@@ -609,14 +677,17 @@ background-color: blanchedalmond;
                             <div class="m--form-group row m--align-center">
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-phone" aria-hidden="true"></span>Contact</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
-                                    <asp:TextBox ID="Phoneno" runat="server" class="form-control m-input" placeholder="Enter your Contact Number"></asp:TextBox>
+                                    <asp:TextBox ID="Phoneno" runat="server" class="form-control m-input" placeholder="Enter your Contact Number" ClientIDMode="Static"></asp:TextBox>
                                     <span id="error_Phone_No" class="text-danger small"></span>
                                 </div>
 
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-envelope" aria-hidden="true"></span>Email</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
-                                    <asp:TextBox ID="EmailID" runat="server" class="form-control m-input" placeholder="Enter your Email ID"></asp:TextBox>
+                                    <asp:TextBox ID="EmailID" runat="server" class="form-control m-input" placeholder="Enter your Email ID" ClientIDMode="Static"></asp:TextBox>
                                     <span id="error_EmailID" class="text-danger small"></span>
+                                    <asp:RegularExpressionValidator ID="validateEmail" runat="server" ErrorMessage="Invalid Email ID."
+                                            ControlToValidate="EmailID" ForeColor="Red" Display="Dynamic" ValidationGroup="validateFeedback"
+                                            ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" />
                                 </div>
 
                             </div>
