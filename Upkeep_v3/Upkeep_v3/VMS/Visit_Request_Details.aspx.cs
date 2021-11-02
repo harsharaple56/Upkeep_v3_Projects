@@ -653,9 +653,7 @@ namespace Upkeep_v3.VMS
 
                     if (dsData.Tables[5].Rows.Count > 0)
                     {
-
-                        txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
-
+                        txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString().Replace("$", ",");
                     }
 
                     //Bind Vaccination_Details Data

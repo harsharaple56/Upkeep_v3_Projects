@@ -15,6 +15,7 @@ using System.Globalization;
 using System.Web.Configuration;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using Newtonsoft.Json;
 
 namespace Upkeep_v3.VMS
 {
@@ -31,6 +32,7 @@ namespace Upkeep_v3.VMS
         public static string UserPhotoID_fileData = string.Empty;
         public static string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
         public static int Vaccine_Check_Enable = 0;
+        public static int CompanyIDForUser = 0;
         #endregion
 
         #region Store Temporary Photos WebMethods
@@ -392,6 +394,7 @@ namespace Upkeep_v3.VMS
                 if (!System.String.IsNullOrWhiteSpace(dsConfig.Tables[0].Rows[0]["Company_ID"].ToString()))
                 {
                     ViewState["CompanyID"] = dsConfig.Tables[0].Rows[0]["Company_ID"];
+                    CompanyIDForUser = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Company_ID"]);
                 }
 
                 if (!string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor) && Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["isCovidEnable"]))
@@ -444,14 +447,14 @@ namespace Upkeep_v3.VMS
                     // rfvMeeting.Enabled = true;
                     div_MeetingWith.Visible = true;
                     div_MeetingWith1.Visible = true;
-                    rfvMeetingNew.Visible = true;
+                    //rfvMeetingNew.Visible = true;
                     //rfvMeetingNew.Enabled = true;
                 }
                 else
                 {
                     div_MeetingWith.Visible = false;
                     div_MeetingWith1.Visible = false;
-                    rfvMeetingNew.Visible = false;
+                    //rfvMeetingNew.Visible = false;
                     //  rfvMeetingNew.Enabled = false;
 
                 }
@@ -775,8 +778,8 @@ namespace Upkeep_v3.VMS
 
                     if (dsData.Tables[5].Rows.Count > 0)
                     {
-                        txtMeetUsers.ReadOnly = true;
-                        txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
+                        //txtMeetUsers.ReadOnly = true;
+                        //txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
                     }
                 }
 
@@ -1206,7 +1209,9 @@ namespace Upkeep_v3.VMS
                                 DateTime dtAsmmtDate = Convert.ToDateTime(txtAsmmtDate.Text.Trim()).Date;
                                 strCovidTestDate = dtAsmmtDate.ToString("dd-MMM-yyyy");
                             }
-                            string strMeetUsers = hdnSelectedUserID.Value;
+                            string GetUsers = Request.Form["param"];
+                            string GetSelectedUsers = GetUsers.Replace(",", "$");
+                            string strMeetUsers = GetSelectedUsers;
                             string strTemperature = txtTemperature.Text;
                             string strCovidColor = string.Empty;
                             if (rdbGreen.Checked == true)
@@ -2356,6 +2361,21 @@ namespace Upkeep_v3.VMS
         protected void btnCloseQuestion2_Click(object sender, EventArgs e)
         {
             Response.Redirect(HttpContext.Current.Request.Url.ToString(), true);
+        }
+
+        [WebMethod]
+        public static string Getusers()
+        {
+            try
+            {
+                Visit_Request_Public vs = new Visit_Request_Public();
+                DataSet ds = vs.ObjUpkeep.Fetch_User_UserGroupList(CompanyIDForUser);
+                return JsonConvert.SerializeObject(ds.Tables[0]);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

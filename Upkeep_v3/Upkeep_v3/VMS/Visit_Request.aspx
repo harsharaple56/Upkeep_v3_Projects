@@ -461,6 +461,7 @@ border: 3px solid #ccc;*/
         /* JS comes here */
         (function () {
 
+
             var width = 280; // We will scale the photo width to this
             var height = 0; // This will be computed based on the input stream
 
@@ -760,6 +761,8 @@ border: 3px solid #ccc;*/
                 return false;
             }
         }
+
+
     </script>
 
     <script type="text/javascript">
@@ -1013,6 +1016,23 @@ border: 3px solid #ccc;*/
 
     </script>
 
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "Visit_Request.aspx/Getusers",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var json = JSON.parse(data.d);
+                    var option = json.map(x => "<option value='" + x.User_ID + "'>" + x.User_Name + "</option>");
+                    $("#m_select2_3").append(option.join(' '));
+                }
+            });
+        });
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -1191,7 +1211,7 @@ border: 3px solid #ccc;*/
                                 <span id ="SpnPhone" runat="server" style="color: red;">*</span>
                                 </div>--%>
                                 <%-- <div id="dvDepartment" runat="server" style="display: block;">--%>
-                                 <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px; padding-left: 7px;"><span class="fa fa-phone"></span>Contact</label>
+                                <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px; padding-left: 7px;"><span class="fa fa-phone"></span>Contact</label>
                                 <div class="col-md-3 col-form-label">
 
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
@@ -1203,7 +1223,7 @@ border: 3px solid #ccc;*/
                             </div>
 
                             <div id="dv_visitor2" runat="server" class="form-group row">
-                               
+
 
                                 <label class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-calendar-alt"></span>Date of Visit</label>
                                 <div class="col-md-4 col-form-label">
@@ -1229,14 +1249,21 @@ border: 3px solid #ccc;*/
                                     <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
                                 </div>
 
-                                <label id="div_MeetingWith" runat="server" visible="false" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                                <label id="div_MeetingWith" runat="server" visible="true" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                                <div id="div_MeetingWith1" runat="server" class="col-md-4 col-form-label">
+                                    <select class="form-control m-select2" id="m_select2_3" name="param" multiple="multiple">
+                                    </select>
+                                </div>
+
+
+                                <%-- <label id="div_MeetingWith" runat="server" visible="false" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
                                 <div id="div_MeetingWith1" runat="server" visible="false" class="col-md-4 col-form-label">
                                     <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                                     <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                                     <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
                                 </div>
                                 <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
-                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>--%>
                             </div>
 
 
@@ -1382,7 +1409,7 @@ border: 3px solid #ccc;*/
                             </div>
                             <br />
                             <div class="row">
-                              <div class="col-xl-12" style="padding-bottom: 1rem;">
+                                <div class="col-xl-12" style="padding-bottom: 1rem;">
                                     <div class="custom-file">
 
                                         <asp:FileUpload ID="fileupload_userpic" runat="server" CssClass="custom-file-input" accept="image/jpg, image/jpeg, image/png" />

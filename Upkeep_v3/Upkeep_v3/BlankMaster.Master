@@ -219,7 +219,6 @@
     </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
-
     </asp:ContentPlaceHolder>
 
 </head>
@@ -912,6 +911,7 @@
 
     <!--begin::Global Theme Bundle -->
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/base/scripts.bundle.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/forms/widgets/select2.js") %>" type="text/javascript"></script>
 
     <!--end::Global Theme Bundle -->
 

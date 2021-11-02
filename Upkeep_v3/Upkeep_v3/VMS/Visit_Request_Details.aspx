@@ -527,7 +527,7 @@ border: 3px solid #ccc;*/
 
                                 <label id="div_MeetingWith1" runat="server" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
                                 <div id="div_MeetingWith2" runat="server" class="col-md-4 col-form-label">
-                                    <asp:Label runat="server" ID="txtMeetUsers" class="form-control m-input" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <asp:Label runat="server" ID="txtMeetUsers" class="form-control m-select2" aria-describedby="emailHelp" placeholder="Enter email">
                                     </asp:Label>
                                 </div>
 

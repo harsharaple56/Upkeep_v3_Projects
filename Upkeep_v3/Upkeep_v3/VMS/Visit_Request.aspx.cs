@@ -14,6 +14,7 @@ using System.Web.Services;
 using System.Globalization;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using Newtonsoft.Json;
 
 namespace Upkeep_v3.VMS
 {
@@ -431,13 +432,13 @@ namespace Upkeep_v3.VMS
                 {
 
                     // rfvMeeting.Enabled = true;
-                    rfvMeetingNew.Enabled = true;
+                    //rfvMeetingNew.Enabled = true;
                     div_MeetingWith.Visible = true;
                     div_MeetingWith1.Visible = true;
                 }
                 else
                 {
-                    rfvMeetingNew.Enabled = false;
+                    //rfvMeetingNew.Enabled = false;
                     div_MeetingWith.Visible = false;
                     div_MeetingWith1.Visible = false;
                 }
@@ -731,14 +732,8 @@ namespace Upkeep_v3.VMS
 
                     if (dsData.Tables[5].Rows.Count > 0)
                     {
-                        txtMeetUsers.ReadOnly = true;
-
-
-                        txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
-
-
-
-
+                        //txtMeetUsers.ReadOnly = true;
+                        //txtMeetUsers.Text = dsData.Tables[5].Rows[0]["Meeting_Host"].ToString();
                     }
                 }
 
@@ -834,6 +829,22 @@ namespace Upkeep_v3.VMS
             }
         }
 
+
+        [WebMethod]
+        public static string Getusers()
+        {
+            try
+            {
+                Visit_Request vs = new Visit_Request();
+                DataSet ds = vs.ObjUpkeep.Fetch_User_UserGroupList(Convert.ToInt32(HttpContext.Current.Session["CompanyId"]));
+                return JsonConvert.SerializeObject(ds.Tables[0]);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Fetch_User_UserGroupList()
         {
             //int CategoryID = 0;
@@ -911,6 +922,8 @@ namespace Upkeep_v3.VMS
                 if (Convert.ToInt32(ddlVMSTitle.SelectedValue) > 0)
                 {
                     #region UserData
+                    string GetUsers = Request.Form["param"];
+                    string GetSelectedUsers = GetUsers.Replace(",", "$");
                     DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim());
                     DateTime dtDoseDate = new DateTime();
                     if (Vaccine_Check_Enable != 0)
@@ -1128,7 +1141,7 @@ namespace Upkeep_v3.VMS
                             string strName = txtName.Text;
                             string strEmail = txtEmail.Text;
                             string strPhone = txtPhone.Text;
-                            string strMeetUsers = hdnSelectedUserID.Value;
+                            string strMeetUsers = GetSelectedUsers;
                             string strVisitDate = dtVMSDate.ToString("MMM dd yyyy hh:mm tt");
                             string strDoseDate = string.Empty;
                             if (Vaccine_Check_Enable != 0)
@@ -1524,7 +1537,7 @@ namespace Upkeep_v3.VMS
                                         string TextMessage = "Dear " + strName + "," + "%0a%0aThanks for registering your Visit Request at " + Company_Desc + " through eFacilito. We will notify you soon once your Visitor ID is ready." + "%0a%0aVisit Request ID : " + Visit_Request_ID;
                                         string Custom_TextMessage = "Dear " + strName + "," + "%0a%0aYou have a new Message. %0a%0a" + Custom_SMS_Message + "%0a%0agenerated from eFacilito.";
 
-                                       
+
                                         if (SMS_Enabled == 1)
                                         {
                                             string Send_SMS_URL = string.Empty;

@@ -714,7 +714,23 @@ border: 3px solid #ccc;*/
         }
 
     </script>
+     <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "Visit_Request_Public.aspx/Getusers",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var json = JSON.parse(data.d);
+                    var option = json.map(x => "<option value='" + x.User_ID + "'>" + x.User_Name + "</option>");
+                    $("#m_select2_3").append(option.join(' '));
+                }
+            });
+        });
 
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -878,14 +894,20 @@ border: 3px solid #ccc;*/
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Date of Visit"></asp:RequiredFieldValidator>
                         </div>
 
-                        <label id="div_MeetingWith" runat="server" visible="false" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                        <label id="div_MeetingWith" runat="server" visible="true" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
+                        <div id="div_MeetingWith1" runat="server" class="col-md-4 col-form-label">
+                            <select class="form-control m-select2" id="m_select2_3" name="param" multiple="multiple">
+                            </select>
+                        </div>
+
+                       <%-- <label id="div_MeetingWith" runat="server" visible="false" class="col-md-2 col-form-label font-weight-bold"><span class="fa fa-user-tie"></span>Meeting with</label>
                         <div id="div_MeetingWith1" runat="server" visible="false" class="col-md-4 col-form-label">
                             <asp:TextBox ID="txtMeetUsers" runat="server" ClientIDMode="Static" ReadOnly="true" CssClass="form-control m-input d-inline w-75"></asp:TextBox>
                             <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" onclick="PopUpGrid();" />
                             <input type="hidden" name="hdnMeetUsersID" id="hdnMeetUsersID" tabindex="0" value="" />
                         </div>
                         <asp:RequiredFieldValidator ID="rfvMeetingNew" runat="server" ControlToValidate="txtMeetUsers" Visible="true" Display="Dynamic" Enabled="false"
-                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>
+                            ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Meeting Person"></asp:RequiredFieldValidator>--%>
 
                     </div>
 
@@ -1561,7 +1583,6 @@ border: 3px solid #ccc;*/
 
             <%--</form>--%>
         </div>
-    </div>
     </div>
 
 
