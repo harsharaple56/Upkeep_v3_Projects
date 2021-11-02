@@ -115,9 +115,9 @@
     
     <div class="m-porlet">
 
-        <div class="row" style="width: fit-content;">
+        <div class="row" style="width:fit-content;">
 
-            <div class="col-xl-6">
+            <div id="Tkt" runat="server" class="col-xl-6" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -263,7 +263,7 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-            <div class="col-xl-6">
+            <div id="Chk" runat="server" class="col-xl-6" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -340,7 +340,7 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-            <div class="col-xl-6">
+            <div id="WP" runat="server" class="col-xl-6" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -457,7 +457,7 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-            <div class="col-xl-6">
+            <div id="GP" runat="server" class="col-xl-6" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -582,7 +582,7 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-            <div class="col-xl-6">
+            <div id="VMS" runat="server" class="col-xl-6" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">

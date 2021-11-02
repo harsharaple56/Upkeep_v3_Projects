@@ -23,13 +23,13 @@ namespace Upkeep_v3
 
         string Role_Name = string.Empty;
         string UserType = string.Empty;
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             UserType = Convert.ToString(Session["UserType"]);
-            
+
 
             //lblSession.Text = Convert.ToString(Application["SessionCount"]);
 
@@ -41,7 +41,7 @@ namespace Upkeep_v3
             hdn_IsPostBack.Value = "yes";
             if (!IsPostBack)
             {
-                if(UserType=="E")
+                if (UserType == "E")
                 {
                     hdn_IsPostBack.Value = "no";
                     //Dashboard_Details();
@@ -50,7 +50,7 @@ namespace Upkeep_v3
                 {
                     Response.Redirect("~/Dashboard_Retailer.aspx");
                 }
-                
+
             }
 
         }
@@ -65,7 +65,7 @@ namespace Upkeep_v3
 
             Role_Name = Convert.ToString(Session["Role_Name"]);
 
-            if (Role_Name=="Property Admin")
+            if (Role_Name == "Property Admin")
             {
                 Response.Redirect("~/Dashboard_Admin.aspx");
             }
@@ -73,7 +73,7 @@ namespace Upkeep_v3
             {
                 Response.Redirect("~/Dashboard_Employee.aspx");
             }
-            
+
         }
 
 
@@ -110,7 +110,7 @@ namespace Upkeep_v3
             DataSet ds = new DataSet();
             try
             {
-                ds = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate);
+                ds = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate, 0, string.Empty);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -146,11 +146,46 @@ namespace Upkeep_v3
                         lbl_VMS_Recieved.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Recieved"]);
                         lbl_VMS_Rejected.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Rejected"]);
 
+                    }
 
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+                        {
+                            DataSet ds1 = new DataSet();
+                            ds1 = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate, Convert.ToInt32(ds.Tables[1].Rows[i].ItemArray[0]), "F");
 
+                            if (ds1.Tables[0].Rows[0]["Module_Code"] != null)
+                            {
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "TKT")
+                                {
+                                    Tkt.Visible = true;
+                                }
+
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "CHK")
+                                {
+                                    Chk.Visible = true;
+                                }
+
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "WP")
+                                {
+                                    WP.Visible = true;
+                                }
+
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "GP")
+                                {
+                                    GP.Visible = true;
+                                }
+
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "VMS")
+                                {
+                                    VMS.Visible = true;
+                                }
+                            }
+
+                        }
                     }
                 }
-
             }
             catch (Exception ex)
             {

@@ -222,11 +222,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+    public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Module_Id, string Action)
     {
         try
         {
-            ds = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate);
+            ds = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate,Module_Id,Action);
 
         }
         catch (Exception ex)

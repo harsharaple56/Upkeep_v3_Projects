@@ -148,7 +148,7 @@ namespace Upkeep_v3.VMS
             DataSet ds = new DataSet();
             try
             {
-                ds = ObjUpkeep.Fetch_Dashboard_Employee(Company_ID, LoggedInUserID, Fromdate, ToDate);
+                ds = ObjUpkeep.Fetch_Dashboard_Employee(Company_ID, LoggedInUserID, Fromdate, ToDate,0,string.Empty);
 
                 if (ds.Tables.Count > 0)
                 {

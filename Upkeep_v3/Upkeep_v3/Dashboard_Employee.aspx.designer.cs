@@ -85,6 +85,15 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.HiddenField hdnCompanyID;
         
         /// <summary>
+        /// Tkt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Tkt;
+        
+        /// <summary>
         /// lbl_tkt_Pending_Close control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lbl_Tkt_Expired_User;
         
         /// <summary>
+        /// Chk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Chk;
+        
+        /// <summary>
         /// lbl_Chk_Open_User control.
         /// </summary>
         /// <remarks>
@@ -173,6 +191,15 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Chk_Closed_User;
+        
+        /// <summary>
+        /// WP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl WP;
         
         /// <summary>
         /// lbl_WP_Pending_Approvals control.
@@ -220,6 +247,15 @@ namespace Upkeep_v3 {
         protected global::System.Web.UI.WebControls.Label lbl_WP_Approved_User;
         
         /// <summary>
+        /// GP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GP;
+        
+        /// <summary>
         /// lbl_GP_Pending_Approval control.
         /// </summary>
         /// <remarks>
@@ -263,6 +299,15 @@ namespace Upkeep_v3 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_GP_Approved_User;
+        
+        /// <summary>
+        /// VMS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl VMS;
         
         /// <summary>
         /// lbl_VMS_Pending control.

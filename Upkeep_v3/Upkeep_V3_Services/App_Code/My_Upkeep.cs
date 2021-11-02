@@ -111,14 +111,14 @@ public class My_Upkeep
 
 	}
 
-	public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+	public DataSet Fetch_Dashboard_Employee(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate,int Module_Id, string Action)
 	{
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
 
-			ds = ObjUpkeepCC_BL.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate,Module_Id,Action, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
