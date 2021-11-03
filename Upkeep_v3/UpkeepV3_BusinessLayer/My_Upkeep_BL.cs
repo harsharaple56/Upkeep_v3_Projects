@@ -13,7 +13,7 @@ namespace UpkeepV3_BusinessLayer
     {
         DataSet ds = new DataSet();
 
-        public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, string StrConn)
+        public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate,int Modular_ID,string Action, string StrConn)
         {
             try
             {
@@ -28,6 +28,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Fromdate", Fromdate);
                 cmd.Parameters.AddWithValue("@ToDate", ToDate);
+                cmd.Parameters.AddWithValue("@Modular_ID", Modular_ID);
+                cmd.Parameters.AddWithValue("@Action", Action);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

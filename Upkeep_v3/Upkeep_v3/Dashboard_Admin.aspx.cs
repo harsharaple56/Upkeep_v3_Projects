@@ -42,38 +42,9 @@ namespace Upkeep_v3
             {
                 hdn_IsPostBack.Value = "no";
 
-                //Dashboard_Details();
-                // Bind_Feedback_Data();
-               // Bind_Feedback_GraphData();
-
-                //DataSet ds = new DataSet();
-                //try
-                //{
-                //    ds = ObjUpkeep.Fetch_License_Module_list(Module_IDs);
-
-                //    if (ds.Tables.Count > 0)
-                //    {
-                //        if (ds.Tables[0].Rows.Count > 0)
-                //        {
-                //            int Module_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["Module_id"]);
-
-                //            if(Module_ID == 1)
-                //            {
-                //                div_Ticketing.Visible = false;
-                //            }
-                //            else if(Module_ID == 2)
-                //            {
-                //                div_Checklist.Visible = false;
-                //            }
-                //        }
-                //    }
-
-                //}
-                //catch
-                //{
-
-                //}
-
+                Dashboard_Details();
+                Bind_Feedback_Data();
+                Bind_Feedback_GraphData();
 
             }
 
@@ -122,7 +93,7 @@ namespace Upkeep_v3
             DataSet ds = new DataSet();
             try
             {
-                ds = ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate);
+                ds = ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate,0,string.Empty);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -159,7 +130,44 @@ namespace Upkeep_v3
                         lbl_Feedback_Total.Text = Convert.ToString(ds.Tables[0].Rows[0]["Feedback_Total"]);
 
                     }
+                }
 
+                if (ds.Tables[1].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+                    {
+                        DataSet ds1 = new DataSet();
+                        ds1 = ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate, Convert.ToInt32(ds.Tables[1].Rows[i].ItemArray[0]), "F");
+
+                        if (ds1.Tables[0].Rows[0]["Module_Code"] != null)
+                        {
+                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "TKT")
+                            {
+                                div_Ticketing.Visible = true;
+                            }
+
+                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "CHK")
+                            {
+                                div_Checklist.Visible = true;
+                            }
+
+                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "WP")
+                            {
+                                div_Workpermit.Visible = true;
+                            }
+
+                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "GP")
+                            {
+                                div_Gatepass.Visible = true;
+                            }
+
+                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "FBK")
+                            {
+                                div_Feedback.Visible = true;
+                            }
+                        }
+
+                    }
                 }
 
             }

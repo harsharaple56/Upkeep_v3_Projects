@@ -6737,22 +6737,24 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Dashboard_Admin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate) {
+        public System.Data.DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Modular_ID, string Action) {
             object[] results = this.Invoke("Fetch_Dashboard_Admin", new object[] {
                         CompanyID,
                         LoggedInUserID,
                         Fromdate,
-                        ToDate});
+                        ToDate,
+                        Modular_ID,
+                        Action});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Dashboard_AdminAsync(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate) {
-            this.Fetch_Dashboard_AdminAsync(CompanyID, LoggedInUserID, Fromdate, ToDate, null);
+        public void Fetch_Dashboard_AdminAsync(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Modular_ID, string Action) {
+            this.Fetch_Dashboard_AdminAsync(CompanyID, LoggedInUserID, Fromdate, ToDate, Modular_ID, Action, null);
         }
         
         /// <remarks/>
-        public void Fetch_Dashboard_AdminAsync(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, object userState) {
+        public void Fetch_Dashboard_AdminAsync(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Modular_ID, string Action, object userState) {
             if ((this.Fetch_Dashboard_AdminOperationCompleted == null)) {
                 this.Fetch_Dashboard_AdminOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Dashboard_AdminOperationCompleted);
             }
@@ -6760,7 +6762,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         CompanyID,
                         LoggedInUserID,
                         Fromdate,
-                        ToDate}, this.Fetch_Dashboard_AdminOperationCompleted, userState);
+                        ToDate,
+                        Modular_ID,
+                        Action}, this.Fetch_Dashboard_AdminOperationCompleted, userState);
         }
         
         private void OnFetch_Dashboard_AdminOperationCompleted(object arg) {
