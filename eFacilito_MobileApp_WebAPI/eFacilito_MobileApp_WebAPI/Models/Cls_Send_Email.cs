@@ -174,6 +174,32 @@ namespace eFacilito_MobileApp_WebAPI.Models
     }
     #endregion
 
+    #region Meet Users Visit Request
+    public class Json_Mail_Root_MeetUsers
+    {
+        public string mail_template_key { get; set; }
+        public string bounce_address { get; set; }
+        public From from { get; set; }
+        public List<To> to { get; set; }
+        //public To to { get; set; }
+        public MergeInfo_MeetUsers merge_info { get; set; }
+        //public ReplyTo reply_to { get; set; }
+        public List<ReplyTo> reply_to { get; set; }
+        public string client_reference { get; set; }
+        public MimeHeaders mime_headers { get; set; }
+    }
+    public class MergeInfo_MeetUsers
+    {
+        public string Meeting_with_Name { get; set; }
+        public string Company_Name { get; set; }
+        public string Visit_Request_ID { get; set; }
+        public string Visitor_Name { get; set; }
+        public string Visitor_ID_Link { get; set; }
+        public string VMS_Config_Title { get; set; }
+        public string Visit_Date { get; set; }
+    }
+    #endregion
+
 
     public class ReplyTo
     {

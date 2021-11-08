@@ -736,6 +736,108 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
+
+        [Route("api/SendEmail/Send_Email_Zepto_Template_MeetUsers")]
+        [HttpPost]
+        public HttpResponseMessage Send_Email_Zepto_Template_MeetUsers(string mail_template_key, string to_email_address, string dynamic_values)
+        {
+            string email_response = string.Empty;
+            string Meeting_with_Name = string.Empty;
+            string Company_Name = string.Empty;
+            string Visit_Request_ID = string.Empty;
+            string Visitor_Name = string.Empty;
+            string Visitor_ID_Link = string.Empty;
+            string VMS_Config_Title = string.Empty;
+            string Visit_Date = string.Empty;
+
+            try
+            {
+                string[] mergeinfo_array = dynamic_values.Split(',');
+
+                Meeting_with_Name = Convert.ToString(mergeinfo_array[0]);
+                Company_Name = Convert.ToString(mergeinfo_array[1]);
+                Visit_Request_ID = Convert.ToString(mergeinfo_array[2]);
+                Visitor_Name = Convert.ToString(mergeinfo_array[3]);
+                Visitor_ID_Link = Convert.ToString(mergeinfo_array[4]);
+                VMS_Config_Title = Convert.ToString(mergeinfo_array[5]);
+                Visit_Date = Convert.ToString(mergeinfo_array[6]);
+
+                Meeting_with_Name = Meeting_with_Name.Replace('$', ',');
+
+                List<To> dataTo = new List<To>();
+                for (int i = 0; i < to_email_address.Split(';').Count(); i++)
+                {
+                    To toItem = new To();
+                    {
+                        toItem.email_address = new EmailAddress
+                        {
+                            address = to_email_address.Split(';')[i],
+                            name = "",
+                        };
+
+                    };
+                    dataTo.Add(toItem);
+                }
+
+                List<ReplyTo> dataReply = new List<ReplyTo>();
+                ReplyTo replyItem = new ReplyTo();
+                {
+                    replyItem.address = "admin@efacilito.com";
+                    replyItem.name = "eFacilito System";
+                };
+                dataReply.Add(replyItem);
+
+                Json_Mail_Root_MeetUsers rootBody = new Json_Mail_Root_MeetUsers()
+                {
+                    mail_template_key = mail_template_key,
+                    bounce_address = "system@bounce.efacilito.com",
+                    from = new From()
+                    {
+                        address = "admin@efacilito.com",
+                        name = "eFacilito System",
+                    },
+                    to = dataTo,
+                    merge_info = new MergeInfo_MeetUsers()
+                    {
+                        Meeting_with_Name = Meeting_with_Name,
+                        Company_Name = Company_Name,
+                        Visit_Request_ID = Visit_Request_ID,
+                        Visitor_Name = Visitor_Name,
+                        Visitor_ID_Link = Visitor_ID_Link,
+                        VMS_Config_Title = VMS_Config_Title,
+                        Visit_Date = Visit_Date
+                    },
+                    reply_to = dataReply,
+                    client_reference = "",
+                    mime_headers = new MimeHeaders()
+                    {
+                        XTest = "",
+                    },
+                };
+
+                string rootBody_Json = JsonConvert.SerializeObject(rootBody);
+
+                var client = new RestClient("https://api.zeptomail.in/v1.1/email/template/batch");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("Authorization", "Zoho-enczapikey PHtE6r1bR+3p2mZ6pxFVsP+5H5KiYIIrqO1nKlFE4d1HXvFSHk1V+ox/kGWxrEosUvFDFPSTzoJh57PN4r6DIzrrZzsaVWqyqK3sx/VYSPOZsbq6x00VslsdcEHbUobsc99i3SXXudfSNA==");
+                request.AddHeader("Cookie", "6389eb1069=abcd21ccb74b786b4877b315e275abe4; tmappgrp=-1");
+
+                request.AddParameter("application/json", rootBody_Json, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                Console.WriteLine(response.Content);
+
+                email_response = Convert.ToString(response.Content);
+
+                return Request.CreateResponse(HttpStatusCode.OK, email_response);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         #endregion
     }
 }
