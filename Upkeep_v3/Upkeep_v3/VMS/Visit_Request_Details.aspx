@@ -81,6 +81,376 @@ border: 3px solid #ccc;*/
             background-color: red;
             color: white;
         }
+
+        .rbl input[type="radio"] {
+            display: inline-block;
+            margin-right: 43px;
+            margin-bottom: 13px;
+            height: 18px;
+            width: 18px;
+            color: #575962;
+            box-sizing: border-box;
+            padding: 0;
+            position: relative;
+            cursor: pointer;
+            font-size: 1rem;
+            -webkit-box-sizing: border-box;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .rbl label {
+            margin-right: 3%;
+            width: 14%;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+
+        /* ----------- Non-Retina Screens ----------- */
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+            .rbl label {
+                margin-right: 16%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 1%;
+            }
+        }
+
+        /* ----------- Retina Screens ----------- */
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+            .rbl label {
+                margin-right: 16%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 1%;
+            }
+        }
+
+        /* ----------- iPhone 4 and 4S ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPhone X ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+            .rbl label {
+                margin-right: 22%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPad 1, 2, Mini and Air ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Portrait */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* Landscape */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 5%;
+            }
+        }
+
+        /* ----------- iPad Pro 10.5" ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 834px) and (max-device-width: 1112px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* Portrait */
+        /* Declare the same value for min- and max-width to avoid colliding with desktops */
+        /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+        @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* Landscape */
+        /* Declare the same value for min- and max-width to avoid colliding with desktops */
+        /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+        @media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* ----------- iPad Pro 12.9" ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* Portrait */
+        /* Declare the same value for min- and max-width to avoid colliding with desktops */
+        /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+        @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
+
+        /* Landscape */
+        /* Declare the same value for min- and max-width to avoid colliding with desktops */
+        /* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+        @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+            .rbl label {
+                margin-right: 9%;
+            }
+
+            .rbl input[type="radio"] {
+                margin-right: 6%;
+            }
+        }
     </style>
 
 
@@ -636,8 +1006,9 @@ border: 3px solid #ccc;*/
                                                     <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
                                                 </div>
 
-                                                <div id="divRadioButton" style="display: none" runat="server">
-                                                    <asp:RadioButtonList class="m-radio-inline" runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="5" CellPadding="5"></asp:RadioButtonList>
+                                                <div id="divRadioButton" class="m-radio-inline" style="display: none" runat="server">
+                                                    <asp:RadioButtonList CssClass="rbl" runat="server" ID="divRadioButtonrdbYes" RepeatLayout="Flow" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static"></asp:RadioButtonList>
+                                                    <hr />
                                                 </div>
 
                                                 <div id="divImage" style="display: none" runat="server">
@@ -761,186 +1132,186 @@ border: 3px solid #ccc;*/
                         </div>
 
 
-                    <div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body m--align-center">
-                                    <div class="row">
-                                        <div class="col-xl-6">
-                                            <video id="video">Video stream not available.</video>
-
-                                            <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                                <span>
-                                                    <i class="fa fa-camera"></i>
-                                                    <span>Click Photo</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <canvas id="canvas">
-                                                <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box.">
-                                            </canvas>
-                                            <button id="Upload_Photo" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                                <span>
-                                                    <i class="fa fa-cloud-upload-alt"></i>
-                                                    <span>Upload Photo</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <asp:Panel ID="pnlVMSReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
-                        <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document" style="max-width: 590px;">
+                        <div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
-                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                        <ContentTemplate>
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel2">Visit Request Confirmation</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
-                                                    <span aria-hidden="true">&times;</span>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Click Photo and Upload</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body m--align-center">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <video id="video">Video stream not available.</video>
+
+                                                <button id="startbutton" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                                    <span>
+                                                        <i class="fa fa-camera"></i>
+                                                        <span>Click Photo</span>
+                                                    </span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
-                                                <div class="form-group m-form__group row">
-                                                    <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
-                                                </div>
-                                                <div class="form-group m-form__group row">
-                                                    <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
-                                                    <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
-                                                    <br />
-                                                    <strong>Please note down your Request ID.</strong>
-                                                </div>
+                                            <div class="col-xl-6">
+                                                <canvas id="canvas">
+                                                    <img id="photo" style="width: 14rem" alt="The screen capture will appear in this box.">
+                                                </canvas>
+                                                <button id="Upload_Photo" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                                    <span>
+                                                        <i class="fa fa-cloud-upload-alt"></i>
+                                                        <span>Upload Photo</span>
+                                                    </span>
+                                                </button>
                                             </div>
-                                            <div class="modal-footer">
-                                                <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnSuccessOk_Click" />
-                                            </div>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
+                                        </div>
 
+
+                                    </div>
 
                                 </div>
                             </div>
                         </div>
 
-                    </asp:Panel>
 
-
-                    <%--Panel for user selection--%>
-
-                    <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%">
-                        <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
-<ContentTemplate>--%>
-
-                                    <div class="modal-header">
-                                        <h3 id="myModalLabel">Select Users for Meeting</h3>
-                                        <button type="button" id="btnClose2" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
-                                    </div>
-                                    <div class="modal-body">
-                                        <asp:UpdatePanel runat="server">
+                        <asp:Panel ID="pnlVMSReqestSuccess" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+                            <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 590px;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                             <ContentTemplate>
-                                                <div class="form-group m-form__group row">
-                                                    <div class="col-md-4">
-                                                        <div class="m-input-icon m-input-icon--left">
-                                                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                                                            <span class="m-input-icon__icon m-input-icon__icon--left">
-                                                                <span><i class="la la-search"></i></span>
-                                                            </span>
-                                                        </div>
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel2">Visit Request Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group m-form__group row">
+                                                        <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
                                                     </div>
-                                                    <div class="col-md-5">
-                                                        <asp:DropDownList ID="ddlDepartment" class="form-control m-input " OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
-
-                                                    </div>
-                                                    <div class="col-md-3" style="text-align: center;">
-                                                        <asp:Button ID="btnSelectUser" runat="server" Text="Select" OnClick="btnSelectUser_Click" Style="width: inherit;" class="btn btn-primary btn-success" />
+                                                    <div class="form-group m-form__group row">
+                                                        <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
+                                                        <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
+                                                        <br />
+                                                        <strong>Please note down your Request ID.</strong>
                                                     </div>
                                                 </div>
-                                                <br />
-
-                                                <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
-                                                <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
-
-                                                <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                    AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: block;">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
-                                                        <asp:TemplateField HeaderText="Select">
-                                                            <ItemTemplate>
-                                                                <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
-
-                                                                <asp:CheckBox ID="chkUserID" runat="server" CssClass="m-checkbox--success" />
-
-                                                                <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
-                                                                <asp:HiddenField ID="hdnUser_Name" runat="server" Value='<%#Eval("User_Name") %>' />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Action/Info Description" SortExpression="User_Name">
-                                                            <ItemTemplate>
-                                                                <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
-                                                                    <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
-                                                                </a>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name_Code" HeaderText="Employee"></asp:BoundField>
-                                                    </Columns>
-
-                                                    <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
-                                                    <EmptyDataRowStyle Height="25%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
-                                                </asp:GridView>
-
+                                                <div class="modal-footer">
+                                                    <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" OnClick="btnSuccessOk_Click" />
+                                                </div>
                                             </ContentTemplate>
                                             <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="ddlDepartment" EventName="SelectedIndexChanged" />
+                                                <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
                                             </Triggers>
                                         </asp:UpdatePanel>
 
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </asp:Panel>
 
-                    <cc1:ModalPopupExtender ID="mpeMeetingUsers" runat="server" PopupControlID="pnlMeetingUsers" TargetControlID="pop2"
-                        CancelControlID="btnClose2" BackgroundCssClass="modalBackground">
-                    </cc1:ModalPopupExtender>
-
-                    <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
-
-                    <input type="hidden" id="HdnID" runat="server" />
-                    <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+                        </asp:Panel>
 
 
+                        <%--Panel for user selection--%>
+
+                        <asp:Panel runat="server" ID="pnlMeetingUsers" CssClass="modalPopup" align="center" Style="display: none; width: 100%">
+                            <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+<ContentTemplate>--%>
+
+                                        <div class="modal-header">
+                                            <h3 id="myModalLabel">Select Users for Meeting</h3>
+                                            <button type="button" id="btnClose2" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <asp:UpdatePanel runat="server">
+                                                <ContentTemplate>
+                                                    <div class="form-group m-form__group row">
+                                                        <div class="col-md-4">
+                                                            <div class="m-input-icon m-input-icon--left">
+                                                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
+                                                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                                    <span><i class="la la-search"></i></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <asp:DropDownList ID="ddlDepartment" class="form-control m-input " OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
+
+                                                        </div>
+                                                        <div class="col-md-3" style="text-align: center;">
+                                                            <asp:Button ID="btnSelectUser" runat="server" Text="Select" OnClick="btnSelectUser_Click" Style="width: inherit;" class="btn btn-primary btn-success" />
+                                                        </div>
+                                                    </div>
+                                                    <br />
+
+                                                    <asp:HiddenField ID="hdnSelectedUserID" runat="server" ClientIDMode="Static" />
+                                                    <asp:HiddenField ID="hdnSelectedUserName" runat="server" ClientIDMode="Static" />
+
+                                                    <asp:GridView ID="grdInfodetails" runat="server" ClientIDMode="Static" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
+                                                        AutoGenerateColumns="false" SkinID="grdSearch" OnRowDataBound="grdInfodetails_RowDataBound" Style="display: block;">
+                                                        <Columns>
+                                                            <asp:BoundField DataField="User_ID" Visible="false"></asp:BoundField>
+                                                            <asp:TemplateField HeaderText="Select">
+                                                                <ItemTemplate>
+                                                                    <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
+
+                                                                    <asp:CheckBox ID="chkUserID" runat="server" CssClass="m-checkbox--success" />
+
+                                                                    <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
+                                                                    <asp:HiddenField ID="hdnUser_Name" runat="server" Value='<%#Eval("User_Name") %>' />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Action/Info Description" SortExpression="User_Name">
+                                                                <ItemTemplate>
+                                                                    <a style="cursor: pointer; text-decoration: underline;" onclick="FunEditClick('<%# (DataBinder.Eval(Container.DataItem,"User_ID")) %>#0','<%# (DataBinder.Eval(Container.DataItem,"User_Name")) %>')">
+                                                                        <%# (DataBinder.Eval(Container.DataItem, "User_Name"))%>
+                                                                    </a>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="User_Name_Code" SortExpression="User_Name_Code" HeaderText="Employee"></asp:BoundField>
+                                                        </Columns>
+
+                                                        <EmptyDataTemplate>No Records Found !!!</EmptyDataTemplate>
+                                                        <EmptyDataRowStyle Height="25%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" HorizontalAlign="Center" />
+                                                    </asp:GridView>
+
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlDepartment" EventName="SelectedIndexChanged" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:Panel>
+
+                        <cc1:ModalPopupExtender ID="mpeMeetingUsers" runat="server" PopupControlID="pnlMeetingUsers" TargetControlID="pop2"
+                            CancelControlID="btnClose2" BackgroundCssClass="modalBackground">
+                        </cc1:ModalPopupExtender>
+
+                        <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
+
+                        <input type="hidden" id="HdnID" runat="server" />
+                        <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
 
 
 
 
-                    <%--</form>--%>
+
+
+                        <%--</form>--%>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </asp:Content>
 
