@@ -923,7 +923,9 @@ namespace Upkeep_v3.VMS
                 {
                     #region UserData
                     string GetUsers = Request.Form["param"];
-                    string GetSelectedUsers = GetUsers.Replace(",", "$");
+                    string GetSelectedUsers = string.Empty;
+                    if (GetUsers != null)
+                        GetSelectedUsers = GetUsers.Replace(",", "$");
                     DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim());
                     DateTime dtDoseDate = new DateTime();
                     if (Vaccine_Check_Enable != 0)
