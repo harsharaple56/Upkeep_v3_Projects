@@ -350,16 +350,16 @@ namespace Upkeep_v3.VMS
                 }
                 if (blMeetingComp == "True")
                 {
-
                     div_MeetingWith1.Visible = true;
                     div_MeetingWith2.Visible = true;
+                    txtMeetUsers.Visible = true;
 
                 }
                 else
                 {
                     div_MeetingWith1.Visible = false;
-                    div_MeetingWith2.Visible = true;
-
+                    div_MeetingWith2.Visible = false;
+                    txtMeetUsers.Visible = false;
                 }
 
 
