@@ -923,7 +923,9 @@ namespace Upkeep_v3.VMS
                 {
                     #region UserData
                     string GetUsers = Request.Form["param"];
-                    string GetSelectedUsers = GetUsers.Replace(",", "$");
+                    string GetSelectedUsers = string.Empty;
+                    if (GetUsers != null)
+                        GetSelectedUsers = GetUsers.Replace(",", "$");
                     DateTime dtVMSDate = Convert.ToDateTime(txtVMSDate.Text.Trim());
                     DateTime dtDoseDate = new DateTime();
                     if (Vaccine_Check_Enable != 0)
@@ -1515,8 +1517,10 @@ namespace Upkeep_v3.VMS
                                 {
                                     int status = Convert.ToInt32(dsVMSQuestionData.Tables[0].Rows[0]["Status"]);
 
-                                    int SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
-
+                                    int SMS_Enabled = 0;
+                                    DataColumnCollection columns = dsVMSQuestionData.Tables[1].Columns;
+                                    if (columns.Contains("SMS_Enabled"))
+                                        SMS_Enabled = Convert.ToInt32(dsVMSQuestionData.Tables[1].Rows[0]["SMS_Enabled"]);
 
                                     //if (status == 1 && Action == 'N') //[22/10/2021][commented by ajay]
                                     if (status == 1 && Action == 'I')

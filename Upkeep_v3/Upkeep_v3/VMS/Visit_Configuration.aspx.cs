@@ -130,10 +130,14 @@ namespace Upkeep_v3.VMS
                     VMSQuestionAns = "";
                     VMSQuestionAnsData = "";
 
-                    VMSQuestionID = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]")[0];
-                    VMSQuestion = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]")[0];
-                    VMSQuestionAns = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]")[0];
-                    VMSQuestionAnsData = Request.Form.GetValues("VMSQuestion[" + i + "][hdnRepeaterAnswer]")[0];
+                    if (Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]")[0] != string.Empty)
+                        VMSQuestionID = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$hdnQnID]")[0];
+                    if (Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]")[0] != string.Empty)
+                        VMSQuestion = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$txtVMSQuestion]")[0];
+                    if (Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]") != null)
+                        VMSQuestionAns = Request.Form.GetValues("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ddlAns]")[0];
+                    if (Request.Form.GetValues("VMSQuestion[" + i + "][hdnRepeaterAnswer]")[0] != string.Empty)
+                        VMSQuestionAnsData = Request.Form.GetValues("VMSQuestion[" + i + "][hdnRepeaterAnswer]")[0];
 
                     if (Request.Form.AllKeys.Contains("VMSQuestion[" + i + "][ctl00$ContentPlaceHolder1$ChkVisible][]"))
                         VMSQuestionVisible = "1";
@@ -231,16 +235,16 @@ namespace Upkeep_v3.VMS
                     VMS_SMS_Template = "";
                     SMS_Type = "";
                     string[] VMS_SMS_Array = Request.Form.GetValues("VMS_SMSTemplate[" + j + "][ctl00$ContentPlaceHolder1$txtSMSTemplate]");
-                    
 
-                    if (VMS_SMS_Array != null)
+
+                    if (VMS_SMS_Array != null && VMS_SMS_Array[0] != string.Empty)
                     {
                         VMS_SMS_Template = VMS_SMS_Array[0];
                         VMS_SMS_Template = VMS_SMS_Template.Replace("&", "&amp;");
                         SMS_Type = Request.Form.GetValues("VMS_SMSTemplate[" + j + "][ctl00$ContentPlaceHolder1$ddlSMS]")[0];
                     }
 
-                    if (VMS_SMS_Array != null)
+                    if (VMS_SMS_Array != null && VMS_SMS_Array[0] != string.Empty)
                     {
                         if (VMS_SMS_Template != "")
                         {

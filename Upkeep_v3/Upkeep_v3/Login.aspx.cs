@@ -48,7 +48,6 @@ namespace Upkeep_v3
             {
                 lblError.Text = "";
                 Validate_Company(txtCompanyCode.Text.Trim());
-                //Session["ModuleID"] = "";
                 //Session["CompanyID"] = "";
             }
             else

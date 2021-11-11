@@ -113,12 +113,11 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+    public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Modular_ID, string Action)
     {
         try
         {
-            ds = ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate);
-
+            ds = ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate, Modular_ID, Action);
         }
         catch (Exception ex)
         {
@@ -226,7 +225,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate,Module_Id,Action);
+            ds = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate, Module_Id, Action);
 
         }
         catch (Exception ex)
@@ -2577,7 +2576,7 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     //Added by RC This function is used to save VMS Configuration 
     [WebMethod]
-    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string termsCondition, string NotifyEmails, bool Is_TimeLimit_Enabled, string FromTime, string ToTime,string SMS_Template_Details, string LoggedInUserID)
+    public DataSet Insert_Update_VMSConfiguration(int ConfigID, string strConfigTitle, string strConfigDesc, int CompanyID, string strInitiator, string strXmlVMS_Question, bool blFeedbackCompulsary, int FeedbackTitle, bool blEnableCovid, bool blChk_Vaccination, int EntryCount, bool blNameComp, bool blContactComp, bool blEmailComp, bool blMeetingComp, bool blEmailOtpComp, bool blContactOtpComp, string termsCondition, string NotifyEmails, bool Is_TimeLimit_Enabled, string FromTime, string ToTime, string SMS_Template_Details, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try

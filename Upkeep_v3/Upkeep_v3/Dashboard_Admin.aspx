@@ -117,7 +117,7 @@
     <div class="m-porlet">
         <div class="row" style="width: fit-content;">
 
-            <div class="col-xl-6" id="div_Ticketing" runat="server">
+            <div class="col-xl-6" id="div_Ticketing" runat="server" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -238,7 +238,7 @@
                 <!--end:: Ticketing Section-->
             </div>
 
-            <div class="col-xl-6" id="div_Checklist" runat="server">
+            <div class="col-xl-6" id="div_Checklist" runat="server" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -331,7 +331,7 @@
             </div>
 
         
-            <div class="col-xl-6" id="div_Gatepass" runat="server">
+            <div class="col-xl-6" id="div_Gatepass" runat="server" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
@@ -509,7 +509,7 @@
             </div>
 
 
-            <div class="col-xl-6" id="div_Workpermit" runat="server">
+            <div class="col-xl-6" id="div_Workpermit" runat="server" visible="false">
 
                 <!--begin:: Ticketing Section-->
                 <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">

@@ -94,14 +94,14 @@ public class My_Upkeep
 
 
 
-    public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate)
+    public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Modular_ID, string Action)
 	{
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
 
-			ds = ObjUpkeepCC_BL.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate,Modular_ID,Action, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
