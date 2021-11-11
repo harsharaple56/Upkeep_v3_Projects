@@ -105,7 +105,7 @@
             });
 
             //Gate Pass Document Section Added By Suju 13-July-2020
-            
+
             $('.GatepassDoc_repeater').repeater({
                 initEmpty: false,
                 show: function () {
@@ -276,12 +276,13 @@
     <script type="text/javascript">
         var txtControl = null;
         var txtHdn = null;
-        function PopUpGrid(obj, objhdn) {
+        function PopUpGrid(obj, objhdn, call_type) {
             //debugger;
             //alert($('#<%= mpeApprovalMatrix.ClientID %>').text());
             <%--$find('<%= mpeApprovalMatrix.ClientID %>').show();--%>
            <%-- $('#<%= pnlApprovalMatrix.ClientID %>').show();--%>
-
+            //alert(call_type);
+            $('#hdn_call_type').val(call_type);
 
             $find('<%= mpeApprovalMatrix.ClientID %>').show();
             txtHdn = objhdn.toString();
@@ -294,12 +295,23 @@
             //document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
             //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
 
-            if (txtHdn == "") {
-                document.getElementById('txtGPClosure').value = Desc;
-                $('#hdnGPClosureBy').val(ID);
+            if ($('#hdn_call_type').val() == 'close') {
+                if (txtHdn == "") {
+                    document.getElementById('txtGPClosure').value = Desc;
+                    $('#hdnGPClosureBy').val(ID);
+                }
+                else {
+                    document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
+                }
             }
-            else {
-                document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
+            else if ($('#hdn_call_type').val() == 'return') {
+                if (txtHdn == "") {
+                    document.getElementById('txtGPReceivedBy').value = Desc;
+                    $('#hdnGPReceivedBy').val(ID);
+                }
+                else {
+                    document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
+                }
             }
 
             $find('<%= mpeApprovalMatrix.ClientID %>').hide();
@@ -483,7 +495,7 @@
                                     </a>
                                     <div class="btn-group">
 
-                                        <asp:Button ID="btnSave" runat="server" ClientIDMode="Static"  class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGatePass" OnClientClick="return FunSetXML();" OnClick="btnSave_Click" Text="Save" />
+                                        <asp:Button ID="btnSave" runat="server" ClientIDMode="Static" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGatePass" OnClientClick="return FunSetXML();" OnClick="btnSave_Click" Text="Save" />
 
                                     </div>
                                 </div>
@@ -548,15 +560,20 @@
                                                 ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please enter Title"></asp:RequiredFieldValidator>--%>
                                         <span class="error_Prefix text-danger medium"></span>
                                     </div>
+
+                                    <div class="col-xl-4 col-lg-5" id="Div1" runat="server">
+                                        <asp:CheckBox ID="chk_returnable_gatepass" CssClass="m-checkbox--success" runat="server" />
+                                        <label class="col-xl-10 col-lg-10 col-form-label m-checkbox--success">Returnable Gatepass</label>
+                                    </div>
                                 </div>
 
-                                  <div class="form-group m-form__group row"  style="padding-left: 1%;">
-                                    <label class="col-xl-3 col-lg-2 form-control-label"> <span style="color: red;">*</span>Gatepass Description:</label>
+                                <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                    <label class="col-xl-3 col-lg-2 form-control-label"><span style="color: red;">*</span>Gatepass Description:</label>
                                     <div class="col-xl-4 col-lg-4">
-                                       <%-- <div class="m-form__group">
+                                        <%-- <div class="m-form__group">
                                             <div class="m-form__control">--%>
-                                                <asp:TextBox ID="txtGatepassDescription" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea" ClientIDMode="Static" placeholder="Enter Gatepass Description"></asp:TextBox>
-                                          <%--  </div>
+                                        <asp:TextBox ID="txtGatepassDescription" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea" ClientIDMode="Static" placeholder="Enter Gatepass Description"></asp:TextBox>
+                                        <%--  </div>
                                         </div>--%>
                                     </div>
                                 </div>
@@ -575,7 +592,7 @@
                                                 <div data-repeater-list="GatepassHeader" class="col-lg-12" runat="server" id="GatepassHeader">
 
                                                     <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvGatepassHeader">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-5">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
                                                                     <asp:TextBox ID="txtGatepassHeader" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Header" Rows="1"></asp:TextBox>
@@ -596,7 +613,7 @@
                                                             <div class="d-md-none m--margin-bottom-10"></div>
                                                         </div>
 
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2" style="padding-left: 1px !important;">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
                                                                     <%--<select name="type" class="form-control m-input type_select">
@@ -611,6 +628,18 @@
                                                             </div>
                                                             <div class="d-md-none m--margin-bottom-10"></div>
                                                         </div>
+
+                                                        <div class="col-md-2">
+                                                            <div class="m-form__group">
+                                                                <div class="m-form__control">
+                                                                    <asp:CheckBox ID="chk_is_quantity" runat="server" ClientIDMode="Static" />
+                                                                    <label class="col-xl-10 col-lg-5 col-form-label">Is Quantity</label>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-md-none m--margin-bottom-10"></div>
+                                                        </div>
+
                                                         <div class="col-md-1">
                                                             <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
                                                                 <i class="la la-trash"></i>
@@ -695,7 +724,7 @@
                                     </div>
                                 </div>
                                 <%-- Document section added by Suju 13-July-2020 --%>
-                                
+
                                 <br />
 
                                 <div class="form-group row" style="background-color: #00c5dc;">
@@ -719,7 +748,7 @@
                                                             </div>
                                                             <div class="d-md-none m--margin-bottom-10"></div>
                                                         </div>
-                                                         <div class="col-md-2">
+                                                        <div class="col-md-2">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
                                                                     <asp:CheckBox ID="chkDocMandatory" runat="server" ClientIDMode="Static" />
@@ -835,8 +864,72 @@
                                         <span class="error_GPClosure text-danger medium"></span>
                                     </div>
                                     <div class="col-xl-4 col-lg-4">
-                                        <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" title="Click here to add user" onclick="PopUpGrid(0,'');" />
+                                        <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" title="Click here to add user" onclick="PopUpGrid(0,'','close');" />
                                     </div>
+                                </div>
+
+                                <%--returnable gatepass matrix--%>
+                                <div id="dvReturnable" runat="server">
+                                    <div class="form-group m-form__group row" style="padding-left: 1%;">
+                                        <label class="col-xl-3 col-lg-2 form-control-label"><span style="color: red;">*</span>Received By User :</label>
+                                        <div class="col-xl-4 col-lg-4">
+                                            <asp:TextBox ID="txtGPReceivedBy" runat="server" ClientIDMode="Static" class="form-control"></asp:TextBox>
+                                            <asp:HiddenField ID="hdnGPReceivedBy" runat="server" ClientIDMode="Static" />
+
+                                            <span class="error_GPClosure text-danger medium"></span>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4">
+                                            <img src="../assets/app/media/img/icons/AddUser.png" width="32" height="32" title="Click here to add user" onclick="PopUpGrid(0,'','return');" />
+                                        </div>
+                                    </div>
+
+                                    <br />
+
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                        <ContentTemplate>
+
+                                            <div class="form-group row" style="margin-bottom: 0;">
+                                                <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">No Of Levels :</label>
+                                                <asp:TextBox ID="txtNoOfLevel_Returnable" runat="server" class="form-control" Style="width: 21%;"></asp:TextBox>
+
+                                                <asp:Button ID="btnMakeCombination_Returnable" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Returnable_Click" Text="Make Combination" ValidationGroup="validationApprovalMatrx_returnable" />
+
+                                            </div>
+
+                                            <div class="row">
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNoOfLevel_Returnable" Visible="true" Display="Dynamic"
+                                                    Style="margin-left: 1%; margin-top: 1%;" ValidationGroup="validationApprovalMatrx_returnable" ForeColor="Red" ErrorMessage="Please enter No of Level"></asp:RequiredFieldValidator>
+                                                <br />
+                                            </div>
+
+
+                                            <table class="table table-nomargin" id="TblLevels_Returnable" runat="server" border="1" visible="true" style="margin-left: -3%; width: 106%;">
+                                                <thead>
+
+                                                    <tr>
+                                                        <th>Level</th>
+                                                        <th>Action/Action Group</th>
+                                                        <th>Email Notification</th>
+                                                        <th>SMS Notification</th>
+                                                        <th>App Notification</th>
+                                                        <th>Mobile Access</th>
+                                                        <th>Web Access</th>
+                                                        <th>Approval Rights</th>
+                                                        <th>Hold Rights</th>
+                                                        <th>Reject Rights</th>
+                                                        <th>Next Level</th>
+
+                                                    </tr>
+                                                </thead>
+
+                                            </table>
+
+
+
+                                            <asp:Label ID="lblWorkflowErrorMsg_return" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+
                                 </div>
 
 
@@ -894,7 +987,7 @@
 
                                 <br />
 
-                              
+
                                 <br />
 
                                 <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
@@ -932,7 +1025,7 @@
                                                 <div class="box-body">
                                                     <div class="tab-content">
                                                         <div class="tab-pane active" id="t1">
-
+                                                            <asp:HiddenField ID="hdn_call_type" runat="server" ClientIDMode="Static" />
                                                             <%-- <div class="form-group row" style="margin-bottom: 0;">
                                                                     <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">Search :</label>
                                                                     <asp:TextBox ID="txtUserSearch" runat="server" class="form-control" Style="width: 21%;"></asp:TextBox>
