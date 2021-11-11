@@ -796,29 +796,28 @@
                                 <br />
 
 
-                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                    <ContentTemplate>
 
-                                        <div class="form-group row" style="margin-bottom: 0;">
-                                            <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">No Of Levels :</label>
-                                            <asp:TextBox ID="txtNoOfLevel" runat="server" class="form-control" Style="width: 21%;"></asp:TextBox>
+                                <div class="form-group row" style="margin-bottom: 0;">
+                                    <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">No Of Levels :</label>
+                                    <asp:TextBox ID="txtNoOfLevel" runat="server" class="form-control" Style="width: 21%;"></asp:TextBox>
 
-                                            <asp:Button ID="btnMakeCombination" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Click" Text="Make Combination" ValidationGroup="validationApprovalMatrx" />
+                                    <asp:Button ID="btnMakeCombination" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Click" Text="Make Combination" ValidationGroup="validationApprovalMatrx" />
 
-                                            <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNoOfLevel" Visible="true"
+                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNoOfLevel" Visible="true"
                                                     Style="margin-left: 1%; margin-top: 1%;" ValidationGroup="validationApprovalMatrx" ForeColor="Red" ErrorMessage="Please enter No of Level"></asp:RequiredFieldValidator>--%>
 
-                                            <label for="message-text" class="col-xs-8 col-lg-4 form-control-label" style="text-align: center;">Show Approval Matrix to Initiator :</label>
-                                            <asp:CheckBox ID="chkShowApprovalMatrix" CssClass="m-checkbox--success" runat="server" />
+                                    <label for="message-text" class="col-xs-8 col-lg-4 form-control-label" style="text-align: center;">Show Approval Matrix to Initiator :</label>
+                                    <asp:CheckBox ID="chkShowApprovalMatrix" CssClass="m-checkbox--success" runat="server" />
 
-                                        </div>
+                                </div>
 
-                                        <div class="row">
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNoOfLevel" Visible="true"
-                                                Style="margin-left: 1%; margin-top: 1%;" ValidationGroup="validationApprovalMatrx" ForeColor="Red" ErrorMessage="Please enter No of Level"></asp:RequiredFieldValidator>
-                                            <br />
-                                        </div>
-
+                                <div class="row">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNoOfLevel" Visible="true"
+                                        Style="margin-left: 1%; margin-top: 1%;" ValidationGroup="validationApprovalMatrx" ForeColor="Red" ErrorMessage="Please enter No of Level"></asp:RequiredFieldValidator>
+                                    <br />
+                                </div>
+                                <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
 
                                         <table class="table table-nomargin" id="TblLevels" runat="server" border="1" visible="true" style="margin-left: -3%; width: 106%;">
                                             <thead>
@@ -847,12 +846,15 @@
                                             </thead>
 
                                         </table>
-
-
-
-                                        <asp:Label ID="lblWorkflowErrorMsg1" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                                     </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btnMakeCombination" EventName="Click" />
+                                    </Triggers>
                                 </asp:UpdatePanel>
+
+
+                                <asp:Label ID="lblWorkflowErrorMsg1" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
 
 
                                 <div class="form-group m-form__group row" style="padding-left: 1%;">
@@ -885,24 +887,23 @@
 
                                     <br />
 
-                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
+                                    <div class="form-group row" style="margin-bottom: 0;">
+                                        <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">No Of Levels :</label>
+                                        <asp:TextBox ID="txtNoOfLevel_Returnable" runat="server" class="form-control" Style="width: 21%;"></asp:TextBox>
+
+                                        <asp:Button ID="btnMakeCombination_Returnable" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Returnable_Click" Text="Make Combination" ValidationGroup="validationApprovalMatrx_returnable" />
+
+                                    </div>
+
+                                    <div class="row">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNoOfLevel_Returnable" Visible="true" Display="Dynamic"
+                                            Style="margin-left: 1%; margin-top: 1%;" ValidationGroup="validationApprovalMatrx_returnable" ForeColor="Red" ErrorMessage="Please enter No of Level"></asp:RequiredFieldValidator>
+                                        <br />
+                                    </div>
+
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-
-                                            <div class="form-group row" style="margin-bottom: 0;">
-                                                <label for="message-text" class="col-xs-8 col-lg-2 form-control-label" style="text-align: center;">No Of Levels :</label>
-                                                <asp:TextBox ID="txtNoOfLevel_Returnable" runat="server" class="form-control" Style="width: 21%;"></asp:TextBox>
-
-                                                <asp:Button ID="btnMakeCombination_Returnable" runat="server" class="m-badge m-badge--brand m-badge--wide" Style="margin-left: 5%; cursor: pointer;" OnClick="btnMakeCombination_Returnable_Click" Text="Make Combination" ValidationGroup="validationApprovalMatrx_returnable" />
-
-                                            </div>
-
-                                            <div class="row">
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtNoOfLevel_Returnable" Visible="true" Display="Dynamic"
-                                                    Style="margin-left: 1%; margin-top: 1%;" ValidationGroup="validationApprovalMatrx_returnable" ForeColor="Red" ErrorMessage="Please enter No of Level"></asp:RequiredFieldValidator>
-                                                <br />
-                                            </div>
-
-
                                             <table class="table table-nomargin" id="TblLevels_Returnable" runat="server" border="1" visible="true" style="margin-left: -3%; width: 106%;">
                                                 <thead>
 
@@ -923,12 +924,15 @@
                                                 </thead>
 
                                             </table>
-
-
-
-                                            <asp:Label ID="lblWorkflowErrorMsg_return" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnMakeCombination_Returnable" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
+
+
+                                    <asp:Label ID="lblWorkflowErrorMsg_return" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
 
                                 </div>
 
