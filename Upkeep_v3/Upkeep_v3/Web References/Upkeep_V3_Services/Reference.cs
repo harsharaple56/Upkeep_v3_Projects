@@ -4184,7 +4184,24 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_GatePassConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, bool is_Returnable_Gatepass, string LoggedInUserID) {
+        public System.Data.DataSet Insert_GatePassConfiguration(
+                    string strConfigTitle, 
+                    int CompanyID, 
+                    string strInitiator, 
+                    bool LinkDepartment, 
+                    string strTransactionPrefix, 
+                    string strXmlGatepass_Header, 
+                    string strXmlGatepass_Type, 
+                    string strXmlGatepass_Doc, 
+                    string strXmlGatepass_TermCondition, 
+                    string strXmlApprovalMatrix, 
+                    string strXmlApprovalMatrix_Returnable, 
+                    bool ShowApprovalMatrix, 
+                    string strGPClosureBy, 
+                    string strGPReceivedBy, 
+                    string GatepassDescription, 
+                    bool is_Returnable_Gatepass, 
+                    string LoggedInUserID) {
             object[] results = this.Invoke("Insert_GatePassConfiguration", new object[] {
                         strConfigTitle,
                         CompanyID,
@@ -4196,17 +4213,14 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         strXmlGatepass_Doc,
                         strXmlGatepass_TermCondition,
                         strXmlApprovalMatrix,
+                        strXmlApprovalMatrix_Returnable,
                         ShowApprovalMatrix,
                         strGPClosureBy,
+                        strGPReceivedBy,
                         GatepassDescription,
                         is_Returnable_Gatepass,
                         LoggedInUserID});
             return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Insert_GatePassConfigurationAsync(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, bool is_Returnable_Gatepass, string LoggedInUserID) {
-            this.Insert_GatePassConfigurationAsync(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_Doc, strXmlGatepass_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID, null);
         }
         
         /// <remarks/>
@@ -4221,8 +4235,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                     string strXmlGatepass_Doc, 
                     string strXmlGatepass_TermCondition, 
                     string strXmlApprovalMatrix, 
+                    string strXmlApprovalMatrix_Returnable, 
                     bool ShowApprovalMatrix, 
                     string strGPClosureBy, 
+                    string strGPReceivedBy, 
+                    string GatepassDescription, 
+                    bool is_Returnable_Gatepass, 
+                    string LoggedInUserID) {
+            this.Insert_GatePassConfigurationAsync(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_Doc, strXmlGatepass_TermCondition, strXmlApprovalMatrix, strXmlApprovalMatrix_Returnable, ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_GatePassConfigurationAsync(
+                    string strConfigTitle, 
+                    int CompanyID, 
+                    string strInitiator, 
+                    bool LinkDepartment, 
+                    string strTransactionPrefix, 
+                    string strXmlGatepass_Header, 
+                    string strXmlGatepass_Type, 
+                    string strXmlGatepass_Doc, 
+                    string strXmlGatepass_TermCondition, 
+                    string strXmlApprovalMatrix, 
+                    string strXmlApprovalMatrix_Returnable, 
+                    bool ShowApprovalMatrix, 
+                    string strGPClosureBy, 
+                    string strGPReceivedBy, 
                     string GatepassDescription, 
                     bool is_Returnable_Gatepass, 
                     string LoggedInUserID, 
@@ -4241,8 +4279,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         strXmlGatepass_Doc,
                         strXmlGatepass_TermCondition,
                         strXmlApprovalMatrix,
+                        strXmlApprovalMatrix_Returnable,
                         ShowApprovalMatrix,
                         strGPClosureBy,
+                        strGPReceivedBy,
                         GatepassDescription,
                         is_Returnable_Gatepass,
                         LoggedInUserID}, this.Insert_GatePassConfigurationOperationCompleted, userState);

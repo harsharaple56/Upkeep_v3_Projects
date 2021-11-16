@@ -310,7 +310,7 @@
 
 
 
-                        <div class="col-2">
+                        <div class="col-3">
                             <a href="#" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" data-toggle="modal" data-target="#m_modal_1">
                                 <span>
                                     <i class="la la-plus"></i>
@@ -318,7 +318,7 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="col-7">
+                        <div class="col-6">
                             <div class="alert m-alert m-alert--default" role="alert">
                                 <b>NOTE : </b>If Closing Stock for an Item is <b><span class="m--font-danger">NEGATIVE</span></b> It means that many <b><i>SOILED</i></b> Clothes needs to be collected from the Department.
                             </div>

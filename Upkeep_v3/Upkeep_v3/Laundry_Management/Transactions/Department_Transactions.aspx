@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-        <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -139,22 +139,24 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-6 order-1 order-xl-2 m--align-right">
-                        <a href="<%= Page.ResolveClientUrl("~/Laundry_Management/Transactions/Select_Transactions.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                            <span>
-                                <i class="la la-backward"></i>
-                                <span>Back</span>
-                            </span>
-                        </a>
-                        <div class="m-separator m-separator--dashed d-xl-none"></div>
+                    <div class="col-xl-6 col-lg-6 order-1 order-xl-2 m--align-right row">
+                        <div class="col-xl-12 col-lg-12">
+                            <a href="<%= Page.ResolveClientUrl("~/Laundry_Management/Transactions/Select_Transactions.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <span>
+                                    <i class="la la-backward"></i>
+                                    <span>Back</span>
+                                </span>
+                            </a>
+                            <%-- <div class="m-separator m-separator--dashed d-xl-none"></div>--%>
 
-                        <a href="<%= Page.ResolveClientUrl("~/Laundry_Management/Transactions/Add_Dept_Transaction.aspx") %>" style="margin-top: 5%;" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-                            <span>
-                                <i class="la la-plus"></i>
-                                <span>Add New Transaction</span>
-                            </span>
-                        </a>
-                        <div class="m-separator m-separator--dashed d-xl-none"></div>
+                            <a href="<%= Page.ResolveClientUrl("~/Laundry_Management/Transactions/Add_Dept_Transaction.aspx") %>" style="margin-top: 5%;" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                                <span>
+                                    <i class="la la-plus"></i>
+                                    <span>Add New Transaction</span>
+                                </span>
+                            </a>
+                            <%--<div class="m-separator m-separator--dashed d-xl-none"></div>--%>
+                        </div>
                     </div>
 
                 </div>

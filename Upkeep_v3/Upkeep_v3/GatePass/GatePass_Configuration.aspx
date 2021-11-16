@@ -313,6 +313,9 @@
                     document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
                 }
             }
+            else {
+                document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
+            }
 
             $find('<%= mpeApprovalMatrix.ClientID %>').hide();
             //window.close();
@@ -324,23 +327,20 @@
         }
 
         function FunSetXML() {
-
-
-            //debugger;
+            debugger;
             window.document.getElementById("<%= txtHdn.ClientID%>").value = "";
             var VarLocTab = window.document.getElementById("<%=TblLevels.ClientID%>");
             for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
                 var VarLocRowObj = VarLocTab.rows[i].id;
                 var lvl = window.document.getElementById(VarLocRowObj).children[0].innerHTML;
                 if ((window.document.getElementById(VarLocRowObj).children[1].children[2].value) == "") {
-                    ShowNotification("Warning !", "Action Details Should not be blank");
+                    //ShowNotification("Warning !", "Action Details Should not be blank");
                     alert('Action Details Should not be blank');
                     return false;
                 }
                 else {
                     var action = window.document.getElementById(VarLocRowObj).children[1].children[2].value;
                 }
-                //        var action = window.document.getElementById(VarLocRowObj).children[1].children[2].value;
 
 
 
@@ -451,7 +451,98 @@
                     <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + "=$=";--%>
                     window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + ",";
                 }
+            }
 
+            if ($("#chk_returnable_gatepass").is(':checked')) {
+
+                window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value = "";
+                var VarLocTab = window.document.getElementById("<%=TblLevels_Returnable.ClientID%>");
+                for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
+                    var VarLocRowObj = VarLocTab.rows[i].id;
+                    var lvl = window.document.getElementById(VarLocRowObj).children[0].innerHTML;
+                    if ((window.document.getElementById(VarLocRowObj).children[1].children[2].value) == "") {
+                        //ShowNotification("Warning !", "Action Details Should not be blank");
+                        alert('Action Details Should not be blank');
+                        return false;
+                    }
+                    else {
+                        var action = window.document.getElementById(VarLocRowObj).children[1].children[2].value;
+                    }
+                    //        var action = window.document.getElementById(VarLocRowObj).children[1].children[2].value;
+
+
+
+                    if (document.getElementById(VarLocRowObj).children[2].children[0].checked == true) {
+                        var SendEmail = 1;
+                    }
+                    else {
+                        var SendEmail = 0;
+
+                    }
+
+                    if (document.getElementById(VarLocRowObj).children[3].children[0].checked == true) {
+                        var SendSMS = 1;
+                    }
+                    else {
+                        var SendSMS = 0;
+                    }
+
+                    if (document.getElementById(VarLocRowObj).children[4].children[0].checked == true) {
+                        var SendNotification = 1;
+                    }
+                    else {
+                        var SendNotification = 0;
+                    }
+
+                    if (document.getElementById(VarLocRowObj).children[5].children[0].checked == true) {
+                        var MobileAccess = 1;
+                    }
+                    else {
+                        var MobileAccess = 0;
+                    }
+
+                    if (document.getElementById(VarLocRowObj).children[6].children[0].checked == true) {
+                        var WebAccess = 1;
+                    }
+                    else {
+                        var WebAccess = 0;
+                    }
+
+                    if (document.getElementById(VarLocRowObj).children[7].children[0].checked == true) {
+                        var ApprovalRights = 1;
+                    }
+                    else {
+                        var ApprovalRights = 0;
+                    }
+
+                    if (document.getElementById(VarLocRowObj).children[8].children[0].checked == true) {
+                        var HoldRights = 1;
+                    }
+                    else {
+                        var HoldRights = 0;
+                    }
+
+                    if (document.getElementById(VarLocRowObj).children[9].children[0].checked == true) {
+                        var RejectRights = 1;
+                    }
+                    else {
+                        var RejectRights = 0;
+                    }
+
+                    var nxtlvl = window.document.getElementById(VarLocRowObj).children[10].innerHTML;
+                    var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendSMS + "#" + SendNotification + "#" + MobileAccess + "#" + WebAccess + "#" + ApprovalRights + "#" + HoldRights + "#" + RejectRights + "#" + nxtlvl;
+
+                    //alert(strInfo);
+
+                    if (window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value == "") {
+                    <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += "=$=" + strInfo + "=$=";--%>
+                        window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value += strInfo + ",";
+                    }
+                    else {
+                    <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + "=$=";--%>
+                        window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value += strInfo + ",";
+                    }
+                }
 
             }
 
@@ -562,7 +653,7 @@
                                     </div>
 
                                     <div class="col-xl-4 col-lg-5" id="Div1" runat="server">
-                                        <asp:CheckBox ID="chk_returnable_gatepass" CssClass="m-checkbox--success" runat="server" />
+                                        <asp:CheckBox ID="chk_returnable_gatepass" CssClass="m-checkbox--success" runat="server" ClientIDMode="Static" />
                                         <label class="col-xl-10 col-lg-10 col-form-label m-checkbox--success">Returnable Gatepass</label>
                                     </div>
                                 </div>
@@ -1111,6 +1202,7 @@
 
                         <input type="hidden" id="HdnID" runat="server" />
                         <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+                        <asp:TextBox ID="txtHdn_Returnable" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
 
                         <%--</form>--%>
                     </div>

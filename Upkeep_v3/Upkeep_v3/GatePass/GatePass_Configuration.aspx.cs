@@ -184,10 +184,9 @@ namespace Upkeep_v3.GatePass
                 strXmlGatepass_TermCondition.Append(@"</GATEPASS_TERM_ROOT>");
 
 
+                //Normal approval matrix
                 string hdnApprovalMatrix = txtHdn.Text;
-
                 string[] strArrayApprovalMatrix = hdnApprovalMatrix.Split(',');
-
 
                 XmlDocument xmlDocProm = null;
                 xmlDocProm = new XmlDocument();
@@ -224,12 +223,54 @@ namespace Upkeep_v3.GatePass
                 }
                 strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_ROOT>");
 
+                //Returnable approval matrix
+                string hdnApprovalMatrix_Returnable = txtHdn_Returnable.Text;
+                string[] strArrayApprovalMatrix_Returnable = hdnApprovalMatrix_Returnable.Split(',');
+
+                XmlDocument xmlDocProm_return = null;
+                xmlDocProm_return = new XmlDocument();
+                int ApprovalLevel_Returnable = 0;
+                ApprovalLevel_Returnable = strArrayApprovalMatrix_Returnable.Length - 1;
+
+                StringBuilder strXmlApprovalMatrix_Returnable = new StringBuilder();
+                strXmlApprovalMatrix_Returnable.Append(@"<?xml version=""1.0"" ?>");
+                strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_RETURN_ROOT>");
+
+                for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel_Returnable; intLocRowCtr++)
+                {
+                    if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix_Returnable[intLocRowCtr])))
+                    {
+                        string[] LocArr = strArrayApprovalMatrix_Returnable[intLocRowCtr].Split('#');
+
+                        strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_DETAILS>");
+
+                        strXmlApprovalMatrix_Returnable.Append(@"<level>" + LocArr[0] + "</level>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<Userid>" + LocArr[1] + "</Userid>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
+
+                        strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_DETAILS>");
+                    }
+                }
+                strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_RETURN_ROOT>");
+
+
+
                 string strConfigTitle = string.Empty;
                 //int CompanyID = 0;
                 string strInitiator = string.Empty;
                 bool LinkDepartment = false;
                 string strTransactionPrefix = string.Empty;
                 string strGPClosureBy = string.Empty;
+                string strGPReceivedBy = string.Empty;
 
                 bool is_Returnable_Gatepass = false;
 
@@ -254,13 +295,14 @@ namespace Upkeep_v3.GatePass
                 strTransactionPrefix = Convert.ToString(txtGPPrefix.Text.Trim());
 
                 strGPClosureBy = Convert.ToString(hdnGPClosureBy.Value);
+                strGPReceivedBy = Convert.ToString(hdnGPReceivedBy.Value);
 
                 string GatepassDescription = string.Empty;
                 GatepassDescription = Convert.ToString(txtGatepassDescription.Text.Trim());
 
                 DataSet dsGatePassConfig = new DataSet();
                 //Gate Pass Document Section Added By Suju 13-July-2020
-                dsGatePassConfig = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_Doc.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, strGPClosureBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID);
+                dsGatePassConfig = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_Doc.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), strXmlApprovalMatrix_Returnable.ToString(), ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID);
 
                 if (dsGatePassConfig.Tables.Count > 0)
                 {
@@ -370,6 +412,8 @@ namespace Upkeep_v3.GatePass
                         LocImgBtnHelp.Attributes.Add("width", "32");
                         LocImgBtnHelp.Attributes.Add("height", "32");
                         //LocImgBtnHelp.Style.Add("vertical-align", "bottom");
+                        string call_type = "Approve";
+                        //LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + ","" + call_type+"");");
                         LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + "');");
                         // ---------------------------------------------------------
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocImgBtnHelp);

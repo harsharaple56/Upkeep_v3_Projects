@@ -2004,7 +2004,7 @@ namespace UpkeepV3_BusinessLayer
 
         #region GatePass
 
-        public DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription,bool is_Returnable_Gatepass, string LoggedInUserID, string StrConn)
+        public DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy,string strGPReceivedBy, string GatepassDescription,bool is_Returnable_Gatepass, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2023,8 +2023,10 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@XmlGatepass_Doc", strXmlGatepass_Doc);
                 cmd.Parameters.AddWithValue("@XmlGatepass_TermCondition", strXmlGatepass_TermCondition);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix);
+                cmd.Parameters.AddWithValue("@XmlApprovalMatrix_Returnable", strXmlApprovalMatrix_Returnable);
                 cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
                 cmd.Parameters.AddWithValue("@GPClosureBy", strGPClosureBy);
+                cmd.Parameters.AddWithValue("@GPReceivedBy", strGPReceivedBy);
                 cmd.Parameters.AddWithValue("@GatepassDescription", GatepassDescription);
                 cmd.Parameters.AddWithValue("@Is_Returnable_Gatepass", is_Returnable_Gatepass);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
