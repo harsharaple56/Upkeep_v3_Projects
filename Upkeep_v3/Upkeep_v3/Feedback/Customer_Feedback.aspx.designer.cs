@@ -166,6 +166,15 @@ namespace Upkeep_v3.Feedback {
         protected global::System.Web.UI.WebControls.TextBox Fname;
         
         /// <summary>
+        /// reqFName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqFName;
+        
+        /// <summary>
         /// Lname control.
         /// </summary>
         /// <remarks>
@@ -173,6 +182,15 @@ namespace Upkeep_v3.Feedback {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Lname;
+        
+        /// <summary>
+        /// reqLName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqLName;
         
         /// <summary>
         /// Phoneno control.
@@ -184,6 +202,15 @@ namespace Upkeep_v3.Feedback {
         protected global::System.Web.UI.WebControls.TextBox Phoneno;
         
         /// <summary>
+        /// reqPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqPhone;
+        
+        /// <summary>
         /// EmailID control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,15 @@ namespace Upkeep_v3.Feedback {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox EmailID;
+        
+        /// <summary>
+        /// reqEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqEmail;
         
         /// <summary>
         /// validateEmail control.
@@ -202,31 +238,22 @@ namespace Upkeep_v3.Feedback {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator validateEmail;
         
         /// <summary>
-        /// rdbMale control.
+        /// rdbGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbMale;
+        protected global::System.Web.UI.WebControls.RadioButtonList rdbGender;
         
         /// <summary>
-        /// rdbFemale control.
+        /// reqGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbFemale;
-        
-        /// <summary>
-        /// rdbOther control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbOther;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqGender;
         
         /// <summary>
         /// lblFeedbackError control.
