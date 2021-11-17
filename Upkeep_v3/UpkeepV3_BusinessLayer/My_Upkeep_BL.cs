@@ -2172,7 +2172,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID, string StrConn)
+        public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix,string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2187,6 +2187,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LinkDepartment", LinkDepartment);
                 cmd.Parameters.AddWithValue("@TransactionPrefix", strTransactionPrefix);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix);
+                cmd.Parameters.AddWithValue("@XmlApprovalMatrix_Returnable", strXmlApprovalMatrix_Returnable);
                 cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
                 cmd.Parameters.AddWithValue("@GPClosureBy", strGPClosureBy);
                 cmd.Parameters.AddWithValue("@GatepassDescription", GatepassDescription);
