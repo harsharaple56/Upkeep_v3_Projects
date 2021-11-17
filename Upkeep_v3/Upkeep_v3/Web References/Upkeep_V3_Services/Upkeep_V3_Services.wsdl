@@ -3,6 +3,54 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_Asset_DropDown">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TypeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryTypeID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_DropDownResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_DropDownResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_Vendor_DropDown">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VendorPrefix" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Asset_Vendor_DropDownResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_Vendor_DropDownResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ASSET_Insert_AssetType">
         <s:complexType>
           <s:sequence>
@@ -1515,6 +1563,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetEventList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventFor" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_MIS_Report_Excel">
         <s:complexType>
           <s:sequence>
@@ -2263,6 +2333,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_MyActionableGatePassResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GP_Header_Data">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="GP_Header_Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_GP_Header_DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_GP_Header_DataResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3524,54 +3616,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_Asset_DropDown">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="TypeID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Type_Desc" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="CategoryTypeID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Asset_DropDownResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_DropDownResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Asset_Vendor_DropDown">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="VendorPrefix" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_Asset_Vendor_DropDownResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Asset_Vendor_DropDownResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -3614,6 +3658,31 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Get_VMS_Verify_Visitor_IDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Returnable_Qty">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GP_Trans_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GP_Header_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Received_Qty" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Received_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Received_By" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Returnable_QtyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_Returnable_QtyResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5601,28 +5670,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetEventList">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="EventFor" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetEventListResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetEventListResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -5630,6 +5677,18 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_Asset_DropDownSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDown" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_DropDownSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDownResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDown" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDownResponse" />
+  </wsdl:message>
   <wsdl:message name="ASSET_Insert_AssetTypeSoapIn">
     <wsdl:part name="parameters" element="tns:ASSET_Insert_AssetType" />
   </wsdl:message>
@@ -6008,6 +6067,12 @@
   <wsdl:message name="Fetch_Analyze_Tkt_Block7SoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block7Response" />
   </wsdl:message>
+  <wsdl:message name="GetEventListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventList" />
+  </wsdl:message>
+  <wsdl:message name="GetEventListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventListResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_MIS_Report_ExcelSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_MIS_Report_Excel" />
   </wsdl:message>
@@ -6193,6 +6258,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_MyActionableGatePassSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MyActionableGatePassResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GP_Header_DataSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_GP_Header_Data" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_GP_Header_DataSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_GP_Header_DataResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_GatePassRequest_Approval_DetailsSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_GatePassRequest_Approval_Details" />
@@ -6506,18 +6577,6 @@
   <wsdl:message name="Error_LogSoapOut">
     <wsdl:part name="parameters" element="tns:Error_LogResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_Asset_DropDownSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDown" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Asset_DropDownSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Asset_DropDownResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDown" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_Asset_Vendor_DropDownSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_Asset_Vendor_DropDownResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -6535,6 +6594,12 @@
   </wsdl:message>
   <wsdl:message name="Get_VMS_Verify_Visitor_IDSoapOut">
     <wsdl:part name="parameters" element="tns:Get_VMS_Verify_Visitor_IDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Returnable_QtySoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Returnable_Qty" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Returnable_QtySoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_Returnable_QtyResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Dashboard_AdminSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Dashboard_Admin" />
@@ -7016,13 +7081,15 @@
   <wsdl:message name="Event_UpdateSoapOut">
     <wsdl:part name="parameters" element="tns:Event_UpdateResponse" />
   </wsdl:message>
-  <wsdl:message name="GetEventListSoapIn">
-    <wsdl:part name="parameters" element="tns:GetEventList" />
-  </wsdl:message>
-  <wsdl:message name="GetEventListSoapOut">
-    <wsdl:part name="parameters" element="tns:GetEventListResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <wsdl:input message="tns:Fetch_Asset_DropDownSoapIn" />
+      <wsdl:output message="tns:Fetch_Asset_DropDownSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <wsdl:input message="tns:Fetch_Asset_Vendor_DropDownSoapIn" />
+      <wsdl:output message="tns:Fetch_Asset_Vendor_DropDownSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ASSET_Insert_AssetType">
       <wsdl:input message="tns:ASSET_Insert_AssetTypeSoapIn" />
       <wsdl:output message="tns:ASSET_Insert_AssetTypeSoapOut" />
@@ -7275,6 +7342,11 @@
       <wsdl:input message="tns:Fetch_Analyze_Tkt_Block7SoapIn" />
       <wsdl:output message="tns:Fetch_Analyze_Tkt_Block7SoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetEventList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fetch event list for MIS</wsdl:documentation>
+      <wsdl:input message="tns:GetEventListSoapIn" />
+      <wsdl:output message="tns:GetEventListSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MIS_Report_Excel">
       <wsdl:input message="tns:Fetch_MIS_Report_ExcelSoapIn" />
       <wsdl:output message="tns:Fetch_MIS_Report_ExcelSoapOut" />
@@ -7398,6 +7470,10 @@
     <wsdl:operation name="Fetch_MyActionableGatePass">
       <wsdl:input message="tns:Fetch_MyActionableGatePassSoapIn" />
       <wsdl:output message="tns:Fetch_MyActionableGatePassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GP_Header_Data">
+      <wsdl:input message="tns:Fetch_GP_Header_DataSoapIn" />
+      <wsdl:output message="tns:Fetch_GP_Header_DataSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_GatePassRequest_Approval_Details">
       <wsdl:input message="tns:Fetch_GatePassRequest_Approval_DetailsSoapIn" />
@@ -7607,14 +7683,6 @@
       <wsdl:input message="tns:Error_LogSoapIn" />
       <wsdl:output message="tns:Error_LogSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_DropDown">
-      <wsdl:input message="tns:Fetch_Asset_DropDownSoapIn" />
-      <wsdl:output message="tns:Fetch_Asset_DropDownSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
-      <wsdl:input message="tns:Fetch_Asset_Vendor_DropDownSoapIn" />
-      <wsdl:output message="tns:Fetch_Asset_Vendor_DropDownSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -7626,6 +7694,10 @@
     <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
       <wsdl:input message="tns:Get_VMS_Verify_Visitor_IDSoapIn" />
       <wsdl:output message="tns:Get_VMS_Verify_Visitor_IDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Returnable_Qty">
+      <wsdl:input message="tns:Insert_Returnable_QtySoapIn" />
+      <wsdl:output message="tns:Insert_Returnable_QtySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <wsdl:input message="tns:Fetch_Dashboard_AdminSoapIn" />
@@ -7947,14 +8019,27 @@
       <wsdl:input message="tns:Event_UpdateSoapIn" />
       <wsdl:output message="tns:Event_UpdateSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetEventList">
-      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fetch event list for MIS</wsdl:documentation>
-      <wsdl:input message="tns:GetEventListSoapIn" />
-      <wsdl:output message="tns:GetEventListSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ASSET_Insert_AssetType">
       <soap:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
       <wsdl:input>
@@ -8522,6 +8607,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetEventList">
+      <soap:operation soapAction="http://tempuri.org/GetEventList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MIS_Report_Excel">
       <soap:operation soapAction="http://tempuri.org/Fetch_MIS_Report_Excel" style="document" />
       <wsdl:input>
@@ -8794,6 +8888,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyActionableGatePass">
       <soap:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GP_Header_Data">
+      <soap:operation soapAction="http://tempuri.org/Fetch_GP_Header_Data" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9269,24 +9372,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_DropDown">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
-      <soap:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -9307,6 +9392,15 @@
     </wsdl:operation>
     <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
       <soap:operation soapAction="http://tempuri.org/Get_VMS_Verify_Visitor_ID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Returnable_Qty">
+      <soap:operation soapAction="http://tempuri.org/Insert_Returnable_Qty" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -10034,18 +10128,27 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEventList">
-      <soap:operation soapAction="http://tempuri.org/GetEventList" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_Asset_DropDown">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ASSET_Insert_AssetType">
       <soap12:operation soapAction="http://tempuri.org/ASSET_Insert_AssetType" style="document" />
       <wsdl:input>
@@ -10613,6 +10716,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetEventList">
+      <soap12:operation soapAction="http://tempuri.org/GetEventList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_MIS_Report_Excel">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MIS_Report_Excel" style="document" />
       <wsdl:input>
@@ -10885,6 +10997,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MyActionableGatePass">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MyActionableGatePass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_GP_Header_Data">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_GP_Header_Data" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11360,24 +11481,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_DropDown">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_DropDown" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_Asset_Vendor_DropDown">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_Asset_Vendor_DropDown" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -11398,6 +11501,15 @@
     </wsdl:operation>
     <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
       <soap12:operation soapAction="http://tempuri.org/Get_VMS_Verify_Visitor_ID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Returnable_Qty">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Returnable_Qty" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -12118,15 +12230,6 @@
     </wsdl:operation>
     <wsdl:operation name="Event_Update">
       <soap12:operation soapAction="http://tempuri.org/Event_Update" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetEventList">
-      <soap12:operation soapAction="http://tempuri.org/GetEventList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

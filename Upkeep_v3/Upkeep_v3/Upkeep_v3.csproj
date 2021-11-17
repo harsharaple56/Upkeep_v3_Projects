@@ -1151,6 +1151,7 @@
     <Content Include="GatePass\GatePass_Request.aspx" />
     <Content Include="GatePass\MyActionable_GatePass.aspx" />
     <Content Include="GatePass\MyGatePass.aspx" />
+    <Content Include="GatePass\Returnable_Gatepass.aspx" />
     <Content Include="General_Masters\Add_Department.aspx" />
     <Content Include="General_Masters\Add_Frequency.aspx" />
     <Content Include="General_Masters\Add_Locations_Mst.aspx" />
@@ -4974,6 +4975,13 @@
     </Compile>
     <Compile Include="GatePass\MyGatePass.aspx.designer.cs">
       <DependentUpon>MyGatePass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GatePass\Returnable_Gatepass.aspx.cs">
+      <DependentUpon>Returnable_Gatepass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GatePass\Returnable_Gatepass.aspx.designer.cs">
+      <DependentUpon>Returnable_Gatepass.aspx</DependentUpon>
     </Compile>
     <Compile Include="General_Masters\Add_Department.aspx.cs">
       <DependentUpon>Add_Department.aspx</DependentUpon>
