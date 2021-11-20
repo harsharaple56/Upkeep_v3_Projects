@@ -343,9 +343,16 @@
 
 
                             <div class="form-group row">
-                                <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">Gatepass Description</label>
+                                <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Gatepass Description</label>
                                 <div class="col-xl-9 col-lg-9 col-form-label">
                                     <asp:Label ID="lblGatepassDescription" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Returnable Gatepass</label>
+                                <div class="col-xl-9 col-lg-9 col-form-label">
+                                    <asp:Label ID="lbl_Returnable_Gatepass" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                 </div>
                             </div>
 

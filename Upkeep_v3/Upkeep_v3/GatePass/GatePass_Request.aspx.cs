@@ -549,6 +549,22 @@ namespace Upkeep_v3.GatePass
 
                     lblGatepassDescription.Text = Convert.ToString(dsConfig.Tables[0].Rows[0]["Gatepass_Description"]);
 
+                    bool Is_Returnable_Gatepass = false;
+
+                    if (Convert.ToString(dsConfig.Tables[0].Rows[0]["Is_Returnable_Gatepass"]) != "")
+                    {
+                        Is_Returnable_Gatepass = Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Returnable_Gatepass"]);
+                    }
+
+                    if (Is_Returnable_Gatepass == true)
+                    {
+                        lbl_Returnable_Gatepass.Text = "Yes";
+                    }
+                    else
+                    {
+                        lbl_Returnable_Gatepass.Text = "No";
+                    }
+
                     string strUserType = Convert.ToString(dsConfig.Tables[1].Rows[0]["UserType"]);
                     if (strUserType == "E")
                     {

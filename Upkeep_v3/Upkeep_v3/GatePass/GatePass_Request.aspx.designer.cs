@@ -94,6 +94,15 @@ namespace Upkeep_v3.GatePass {
         protected global::System.Web.UI.WebControls.Label lblGatepassDescription;
         
         /// <summary>
+        /// lbl_Returnable_Gatepass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Returnable_Gatepass;
+        
+        /// <summary>
         /// dvEmployee control.
         /// </summary>
         /// <remarks>
