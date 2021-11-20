@@ -113,6 +113,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By)
+    {
+        try
+        {
+            ds = ObjUpkeep.Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Modular_ID, string Action)
     {
         try
@@ -1966,12 +1981,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID)
+    public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix,string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Update_GatePassConfiguration(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
+            ds = ObjUpkeep.Update_GatePassConfiguration(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, strXmlApprovalMatrix_Returnable, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -2032,6 +2047,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         try
         {
             ds = ObjUpkeep.Fetch_MyActionableGatePass(CompanyID, LoggedInUserID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_GP_Header_Data(int TransactionID, string GP_Header_Name)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_GP_Header_Data(TransactionID, GP_Header_Name);
         }
         catch (Exception ex)
         {

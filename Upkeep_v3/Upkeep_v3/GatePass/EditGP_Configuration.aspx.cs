@@ -460,7 +460,7 @@ namespace Upkeep_v3.GatePass
                 GatepassDescription = Convert.ToString(txtGatepassDescription.Text.Trim());
 
                 DataSet dsGatePassConfig = new DataSet();
-                dsGatePassConfig = ObjUpkeep.Update_GatePassConfiguration(GP_ConfigID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix.ToString(), ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
+                dsGatePassConfig = ObjUpkeep.Update_GatePassConfiguration(GP_ConfigID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix.ToString(),string.Empty, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
 
                 if (dsGatePassConfig.Tables.Count > 0)
                 {

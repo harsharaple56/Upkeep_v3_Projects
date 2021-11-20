@@ -41,7 +41,99 @@
             });
         });
     </script>--%>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tbl_GP_Header').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+            $('#tbl_GP_Type').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+            $('#tbl_GP_Document').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+            $('#tbl_GP_Terms').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function BindGP_Header(GP_HeaderID) {
+            $("#hdnGPHeaderID").val(GP_HeaderID)
+            document.getElementById('<%= btnBindGPHeader.ClientID %>').click();
+        }
 
+        function DeleteGP_Header(GP_HeaderID) {
+            $("#hdnDeleteGPHeaderID").val(GP_HeaderID)
+            if (confirm('Are you sure you want to delete this Gate Pass Header?')) {
+                document.getElementById('<%= btnBindGPHeader.ClientID %>').click();
+            } else {
+                // Do nothing!
+            }
+        }
+
+
+        function BindGP_Type(GP_TypeID) {
+            $("#hdnGPTypeID").val(GP_TypeID)
+            document.getElementById('<%= btnBindGPType.ClientID %>').click();
+        }
+
+        function DeleteGP_Type(GP_TypeID) {
+            $("#hdnDeleteGPTypeID").val(GP_TypeID)
+            if (confirm('Are you sure you want to delete this Gate Pass Type?')) {
+                document.getElementById('<%= btnBindGPType.ClientID %>').click();
+            } else {
+                // Do nothing!
+            }
+        }
+
+        function BindGP_Doc(Doc_Config_ID) {
+            $("#hdnGPDocID").val(Doc_Config_ID)
+            document.getElementById('<%= btnBindGPDoc.ClientID %>').click();
+        }
+
+        function DeleteGP_Doc(Doc_Config_ID) {
+            $("#hdnDeleteGPDocID").val(Doc_Config_ID)
+            if (confirm('Are you sure you want to delete this Gate Pass Document?')) {
+                document.getElementById('<%= btnBindGPDoc.ClientID %>').click();
+            } else {
+                // Do nothing!
+            }
+        }
+
+
+        function BindGP_Term(GP_TermID) {
+            $("#hdnGPTermID").val(GP_TermID)
+            document.getElementById('<%= btnBindGPTerms.ClientID %>').click();
+        }
+
+        function DeleteGP_Term(GP_TermID) {
+            $("#hdnDeleteGPTermID").val(GP_TermID)
+            if (confirm('Are you sure you want to delete this Gate Pass Terms?')) {
+                document.getElementById('<%= btnBindGPTerms.ClientID %>').click();
+            } else {
+                // Do nothing!
+            }
+        }
+
+
+    </script>
     <script>
         function init_autosize() {
             var autosize_textarea = $('.autosize_textarea');
@@ -551,6 +643,24 @@
         }
 
     </script>
+    <script>
+        $(document).ready(function () {
+            if ($("[id*=chk_returnable_gatepass]").prop('checked') == true) {
+                $("[id*=dvReturnable]").show();
+            } else {
+                $("[id*=dvReturnable]").hide();
+            }
+
+            $("[id*=chk_returnable_gatepass]").change(function () {
+                if ($("[id*=chk_returnable_gatepass]").prop('checked') == true) {
+                    $("[id*=dvReturnable]").show();
+                } else {
+                    $("[id*=dvReturnable]").hide();
+                }
+            });
+        });
+
+    </script>
 
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
@@ -562,7 +672,15 @@
 
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmGatePass" method="post">--%>
                         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+                        <asp:HiddenField runat="server" ID="hdnGPHeaderID" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnDeleteGPHeaderID" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnGPTypeID" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnDeleteGPTypeID" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnGPTermID" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnDeleteGPTermID" ClientIDMode="Static" />
 
+                        <asp:HiddenField runat="server" ID="hdnGPDocID" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnDeleteGPDocID" ClientIDMode="Static" />
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
 
@@ -628,7 +746,7 @@
 													<span></span>
                                             </label>
                                             <label class="m-radio">
-                                                <asp:RadioButton ID="rdbRetailer" runat="server" GroupName="Initiator" Checked="true" />
+                                                <asp:RadioButton ID="rdbRetailer" runat="server" GroupName="Initiator" />
                                                 Retailers
 													<span></span>
                                             </label>
@@ -653,7 +771,7 @@
                                     </div>
 
                                     <div class="col-xl-4 col-lg-5" id="Div1" runat="server">
-                                        <asp:CheckBox ID="chk_returnable_gatepass" CssClass="m-checkbox--success" runat="server" ClientIDMode="Static" />
+                                        <asp:CheckBox ID="chk_returnable_gatepass" CssClass="m-checkbox--success" runat="server" />
                                         <label class="col-xl-10 col-lg-10 col-form-label m-checkbox--success">Returnable Gatepass</label>
                                     </div>
                                 </div>
@@ -675,7 +793,40 @@
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Headers</label>
                                 </div>
                                 <br />
-                                <div class="col-xl-12">
+                                <div class="col-xl-12" id="dv_GP_Header2" runat="server">
+                                    <div class="m-portlet__body">
+
+                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Header">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>Sr. No.</th>
+                                                    <th>Header Description</th>
+                                                    <th>Mandatory</th>
+                                                    <th>Answer Type</th>
+                                                    <th>Action</th>
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                                <%=bindGP_Header_Type_Terms()%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-lg-4">
+                                            <span>
+                                                <asp:Button ID="btnAddGPHeader" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Header" />
+                                                <cc1:ModalPopupExtender ID="mpeGPHeader" runat="server" PopupControlID="pnlAddEditGPHeader" TargetControlID="btnAddGPHeader"
+                                                    CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
+                                                </cc1:ModalPopupExtender>
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12" id="dv_GP_Header" runat="server">
                                     <div class="m-form__section">
                                         <div class="GatepassHeader_repeater">
                                             <div class="form-group  m-form__group row">
@@ -766,7 +917,38 @@
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Type</label>
                                 </div>
                                 <br />
-                                <div class="col-xl-12">
+                                <div class="col-xl-12" id="dv_GP_Type2" runat="server">
+                                    <div class="m-portlet__body">
+                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Type">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>Sr. No.</th>
+                                                    <th>Gate Pass Type</th>
+                                                    <th>Action</th>
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                                <%=bindGP_Type()%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-lg-4">
+                                            <span>
+                                                <asp:Button ID="btnAddGatePassType" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Gate Pass Type" />
+                                                <cc1:ModalPopupExtender ID="mpeGatePassType" runat="server" PopupControlID="pnlAddEditGPType" TargetControlID="btnAddGatePassType"
+                                                    CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                                </cc1:ModalPopupExtender>
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-12" id="dv_GP_Type" runat="server">
                                     <div class="m-form__section">
                                         <div class="GatepassType_repeater">
                                             <div class="form-group  m-form__group row">
@@ -791,8 +973,6 @@
                                                             </div>
                                                         </div>
 
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -810,6 +990,10 @@
                                                 </div>
                                                 <span id="error_GatepassType" class="text-danger medium"></span>
                                             </div>
+                                            <div class="form-group row" style="background-color: #00c5dc;">
+                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Type</label>
+                                            </div>
+
 
                                         </div>
                                     </div>
@@ -822,7 +1006,40 @@
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Document</label>
                                 </div>
                                 <br />
-                                <div class="col-xl-12">
+                                <div class="col-xl-12" id="dv_Doc_Grid2" runat="server">
+                                    <div class="m-portlet__body">
+                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Document">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>Sr. No.</th>
+                                                    <th>Gate Pass Document</th>
+                                                    <th>Mandatory</th>
+                                                    <th>Action</th>
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                                <%=bindGP_Document()%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-lg-4">
+                                            <span>
+                                                <asp:Button ID="btnAddGatePassDocument" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Gate Pass Document" />
+                                                <cc1:ModalPopupExtender ID="mpeAddEditGPDoc" runat="server" PopupControlID="pnlAddEditGPDoc" TargetControlID="btnAddGatePassDocument"
+                                                    CancelControlID="btnCloseHeaderDoc" BackgroundCssClass="modalBackground">
+                                                </cc1:ModalPopupExtender>
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-12" id="dv_Doc_Grid" runat="server">
                                     <div class="m-form__section">
                                         <div class="GatepassDoc_repeater">
                                             <div class="form-group  m-form__group row">
@@ -910,7 +1127,7 @@
                                 <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
 
-                                        <table class="table table-nomargin" id="TblLevels" runat="server" border="1" visible="true" style="margin-left: -3%; width: 106%;">
+                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="TblLevels" runat="server" border="1" visible="true" style="margin-left: -3%; width: 106%;">
                                             <thead>
                                                 <%--<tr>
                                                 <th rowspan="2">Level</th>
@@ -995,7 +1212,7 @@
 
                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                         <ContentTemplate>
-                                            <table class="table table-nomargin" id="TblLevels_Returnable" runat="server" border="1" visible="true" style="margin-left: -3%; width: 106%;">
+                                            <table class="table table-striped- table-bordered table-hover table-checkable" id="TblLevels_Returnable" runat="server" border="1" visible="true" style="margin-left: -3%; width: 106%;">
                                                 <thead>
 
                                                     <tr>
@@ -1034,7 +1251,41 @@
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Terms & Condition</label>
                                 </div>
                                 <br />
-                                <div class="col-xl-12">
+                                <div class="col-xl-12" id="dv_Termcondition2" runat="server">
+
+                                    <div class="m-portlet__body">
+
+                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Terms">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>Sr. No.</th>
+                                                    <th>Gate Pass Terms And Conditions</th>
+                                                    <th>Action</th>
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                                <%=bindGP_Terms()%>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-lg-4">
+                                            <span>
+                                                <asp:Button ID="btnAddGPTerms" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Gate Pass Terms & Condition" />
+                                                <cc1:ModalPopupExtender ID="mpeGatePassTerm" runat="server" PopupControlID="pnlAddEditGPTerms" TargetControlID="btnAddGPTerms"
+                                                    CancelControlID="btnCloseHeader3" BackgroundCssClass="modalBackground">
+                                                </cc1:ModalPopupExtender>
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-12" id="dv_Termcondition" runat="server">
                                     <div class="m-form__section">
                                         <div class="TermComdition_repeater">
                                             <div class="form-group  m-form__group row">
@@ -1090,6 +1341,228 @@
                             </div>
                         </div>
 
+                        <asp:Button ID="btnBindGPType" runat="server" OnClick="btnBindGPType_Click" Style="display: none" />
+                        <asp:Button ID="btnBindGPHeader" runat="server" OnClick="btnBindGPHeader_Click" Style="display: none" />
+                        <asp:Button ID="btnBindGPTerms" runat="server" OnClick="btnBindGPTerms_Click" Style="display: none" />
+                        <asp:Button ID="btnBindGPDoc" runat="server" OnClick="btnBindGPDoc_Click" Style="display: none" />
+
+
+                        <asp:Panel ID="pnlAddEditGPHeader" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
+                            <div class="" id="add_GPHeader" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 79%;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                                            <ContentTemplate>
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Add GatePass Header</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body row">
+                                                    <div class="col-md-6">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:TextBox ID="txtGatepassHeader1" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Header" Rows="1"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtGatepassHeader" Visible="true" Display="Dynamic"
+                                                                    ValidationGroup="validateGPHeader" ForeColor="Red" ErrorMessage="Please enter Gatepass Header"></asp:RequiredFieldValidator>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:CheckBox ID="ChkNumeric1" runat="server" ClientIDMode="Static" />
+                                                                <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:DropDownList ID="ddlUnit1" class="form-control m-input type_select" runat="server"></asp:DropDownList>
+                                                                <span class="error_type text-danger medium"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                </div>
+                                                <asp:Label ID="lblGPHeaderErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
+
+                                                <div class="modal-footer">
+                                                    <asp:Button ID="btnCloseAddGPHeader" Text="Close" Visible="false" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseAddGPHeader_Click" />
+                                                    <asp:Button ID="btnSaveGPHeader" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateChkPoint" OnClick="btnSaveGPHeader_Click" Text="Save" />
+
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnSaveGPHeader" EventName="Click" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </asp:Panel>
+                        <asp:Panel ID="pnlAddEditGPType" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
+                            <div class="" id="add_GPType" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 45%;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                            <ContentTemplate>
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel1">Add GatePass Type</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader2">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body row">
+                                                    <div class="col-md-9">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:TextBox ID="txtGatePassType1" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Type" Rows="1"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtGatePassType" Visible="true" Display="Dynamic"
+                                                                    ValidationGroup="validateGPType" ForeColor="Red" ErrorMessage="Please enter Gatepass Type"></asp:RequiredFieldValidator>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                </div>
+                                                <asp:Label ID="lblErrorGPType" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
+
+                                                <div class="modal-footer">
+                                                    <div class="col-md-9">
+                                                        <asp:Button ID="btnGPTypeCancel" Text="Close" runat="server" Visible="false" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnGPTypeCancel_Click" />
+                                                        <asp:Button ID="btnGPTypeSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGPType" OnClick="btnGPTypeSave_Click" Text="Save" />
+                                                    </div>
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnGPTypeSave" EventName="Click" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </asp:Panel>
+                        <asp:Panel ID="pnlAddEditGPTerms" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
+                            <div class="" id="add_GPTerms" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 45%;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                                            <ContentTemplate>
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel2">Add Gate Pass Terms & Conditions</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader3">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body row">
+                                                    <div class="col-md-11">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:TextBox ID="txtTerms" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea" placeholder="Enter Gate Pass Terms" Style="height: 110px;" Rows="1"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTerms" Visible="true" Display="Dynamic"
+                                                                    ValidationGroup="validateGPTerm" ForeColor="Red" ErrorMessage="Please enter Gate Pass Terms & Condition"></asp:RequiredFieldValidator>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                </div>
+                                                <asp:Label ID="Label4" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
+
+                                                <div class="modal-footer">
+                                                    <div class="col-md-9">
+                                                        <asp:Button ID="btnCloseGatePassTerms" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseGatePassTerms_Click" />
+                                                        <asp:Button ID="btnSaveGatePassTerms" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGPTerm" OnClick="btnSaveGatePassTerms_Click" Text="Save" />
+                                                    </div>
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnSaveGatePassTerms" EventName="Click" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </asp:Panel>
+
+                        <asp:Panel ID="pnlAddEditGPDoc" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
+                            <div class="" id="add_GPDoc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 65%;">
+                                    <div class="modal-content">
+                                        <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                                            <ContentTemplate>
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabelDoc">Add GatePass Document</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeaderDoc">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body row">
+                                                    <div class="col-md-9">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:TextBox ID="txtGP_Doc" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Document" Rows="1"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtGP_Doc" Visible="true" Display="Dynamic"
+                                                                    ValidationGroup="validateGPDoc" ForeColor="Red" ErrorMessage="Please enter Gatepass Document"></asp:RequiredFieldValidator>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="m-form__group">
+                                                            <div class="m-form__control">
+                                                                <asp:CheckBox ID="chkGPDocMandatory" runat="server" ClientIDMode="Static" />
+                                                                <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-md-none m--margin-bottom-10"></div>
+                                                    </div>
+
+                                                </div>
+                                                <asp:Label ID="lblErrorGPDoc" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
+
+                                                <div class="modal-footer">
+                                                    <div class="col-md-9">
+                                                        <asp:Button ID="btnGPDocCancel" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnGPDocCancel_Click" />
+                                                        <asp:Button ID="btnGPDocSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGPDoc" OnClick="btnGPDocSave_Click" Text="Save" />
+                                                    </div>
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="btnGPTypeSave" EventName="Click" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </asp:Panel>
 
                         <asp:Panel runat="server" ID="pnlApprovalMatrix" CssClass="modalPopup" align="center" Style="display: none; width: 100%; top: 0px !important">
 

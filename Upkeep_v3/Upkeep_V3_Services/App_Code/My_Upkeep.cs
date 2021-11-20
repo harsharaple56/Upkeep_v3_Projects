@@ -92,6 +92,22 @@ public class My_Upkeep
 
     }
 
+    public DataSet Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+
+            ds = ObjUpkeepCC_BL.Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By,StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
 
     public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Modular_ID, string Action)
@@ -1564,14 +1580,14 @@ public class My_Upkeep
 		}
 	}
 
-	public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID)
+	public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID)
 	{
 		DataSet ds = new DataSet();
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Update_GatePassConfiguration(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID, StrConn);
+			ds = ObjUpkeepCC_BL.Update_GatePassConfiguration(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, strXmlApprovalMatrix_Returnable, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
@@ -1651,7 +1667,23 @@ public class My_Upkeep
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Fetch_GatePassRequest_Approval_Details(TransactionID, LoggedInUserID, StrConn);
+			ds = ObjUpkeepCC_BL.Fetch_GatePassRequest_Approval_Details(TransactionID,LoggedInUserID, StrConn);
+			return ds;
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	}
+
+    public DataSet Fetch_GP_Header_Data(int TransactionID,string GP_Header_Name)
+	{
+		DataSet ds = new DataSet();
+		try
+		{
+			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+			string strOutput = string.Empty;
+			ds = ObjUpkeepCC_BL.Fetch_GP_Header_Data(TransactionID, GP_Header_Name, StrConn);
 			return ds;
 		}
 		catch (Exception ex)
