@@ -69,8 +69,9 @@ namespace Upkeep_v3.GatePass
                     lblDepartment.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["DepartmentName"]);
                     lblRequestDate.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["GatePassDate"]);
                     lblGatePassType.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Type_Desc"]);
+                    lbl_Returnable_Gatepass.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["Returnable_Gatepass"]);
 
-                    RequestStatus= Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Status"]);
+                    RequestStatus = Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Status"]);
                     if (Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Status"]) == "Open")
                     {
                         dvApprovalHistory.Attributes.Add("Style", "display:none;");
