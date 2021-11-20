@@ -388,7 +388,13 @@ namespace Upkeep_v3.GatePass
                             chkShowApprovalMatrix.Checked = false;
                         }
                         AddRows(Convert.ToInt32(ds.Tables[0].Rows[0]["NoOfLevel"]), ds);
-                        AddRows_Returnable(Convert.ToInt32(ds.Tables[0].Rows[0]["NoOfLevel_Returable"]), ds);
+                        if (!string.IsNullOrEmpty(ds.Tables[0].Rows[0]["NoOfLevel_Returable"].ToString()))
+                        {
+                            dvReturnable.Visible = true;
+                            AddRows_Returnable(Convert.ToInt32(ds.Tables[0].Rows[0]["NoOfLevel_Returable"]), ds);
+                        }
+                        else
+                            dvReturnable.Visible = false;
                     }
                 }
 
@@ -820,43 +826,46 @@ namespace Upkeep_v3.GatePass
                     strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_ROOT>");
 
                     //Returnable approval matrix
+
                     string hdnApprovalMatrix_Returnable = txtHdn_Returnable.Text;
                     string[] strArrayApprovalMatrix_Returnable = hdnApprovalMatrix_Returnable.Split(',');
-
-                    XmlDocument xmlDocProm_return = null;
-                    xmlDocProm_return = new XmlDocument();
-                    int ApprovalLevel_Returnable = 0;
-                    ApprovalLevel_Returnable = strArrayApprovalMatrix_Returnable.Length - 1;
-
                     StringBuilder strXmlApprovalMatrix_Returnable = new StringBuilder();
-                    strXmlApprovalMatrix_Returnable.Append(@"<?xml version=""1.0"" ?>");
-                    strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_RETURN_ROOT>");
-
-                    for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel_Returnable; intLocRowCtr++)
+                    if (!string.IsNullOrEmpty(txtHdn_Returnable.Text))
                     {
-                        if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix_Returnable[intLocRowCtr])))
+                        XmlDocument xmlDocProm_return = null;
+                        xmlDocProm_return = new XmlDocument();
+                        int ApprovalLevel_Returnable = 0;
+                        ApprovalLevel_Returnable = strArrayApprovalMatrix_Returnable.Length - 1;
+
+                        strXmlApprovalMatrix_Returnable.Append(@"<?xml version=""1.0"" ?>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_RETURN_ROOT>");
+
+                        for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel_Returnable; intLocRowCtr++)
                         {
-                            string[] LocArr = strArrayApprovalMatrix_Returnable[intLocRowCtr].Split('#');
+                            if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix_Returnable[intLocRowCtr])))
+                            {
+                                string[] LocArr = strArrayApprovalMatrix_Returnable[intLocRowCtr].Split('#');
 
-                            strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_DETAILS>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_DETAILS>");
 
-                            strXmlApprovalMatrix_Returnable.Append(@"<level>" + LocArr[0] + "</level>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<Userid>" + LocArr[1] + "</Userid>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<level>" + LocArr[0] + "</level>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<Userid>" + LocArr[1] + "</Userid>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
+                                strXmlApprovalMatrix_Returnable.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
 
-                            strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_DETAILS>");
+                                strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_DETAILS>");
+                            }
                         }
+                        strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_RETURN_ROOT>");
                     }
-                    strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_RETURN_ROOT>");
 
                     string strConfigTitle = string.Empty;
                     //int CompanyID = 0;
@@ -919,7 +928,7 @@ namespace Upkeep_v3.GatePass
                         }
                     }
                 }
-                
+
             }
 
             catch (Exception ex)
@@ -2094,7 +2103,7 @@ namespace Upkeep_v3.GatePass
             string strAction = string.Empty;
             try
             {
-                strGPHeader = Convert.ToString(txtGatepassHeader.Text.Trim());
+                strGPHeader = Convert.ToString(txtGatepassHeader1.Text.Trim());
                 if (ChkNumeric.Checked == true)
                 {
                     GPHeaderNumeric = true;
@@ -2128,7 +2137,7 @@ namespace Upkeep_v3.GatePass
                             Session["GPHeaderID"] = "";
                             txtGatepassHeader1.Text = "";
                             ChkNumeric1.Checked = false;
-                            ddlUnit1.SelectedValue = "0";
+                            ddlUnit1.SelectedIndex = -1;
                             Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
                             btnAddGPHeader.Focus();
                         }

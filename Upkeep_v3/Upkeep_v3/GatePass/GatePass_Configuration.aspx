@@ -290,77 +290,77 @@
                 }
             });
 
-            //$('#frmGatePass').submit(function (event) {
-            $('#btnSave').click(function () {
-                //alert('hiiiii');
-                var is_valid = true;
-                //debugger;
-                if ($('#txtTitle').val() == "") {
-                    is_valid = false;
-                    $(this).parent().find('.error_title').html('Enter Title.').parents('.form-group').addClass('has-error');
-                }
-                else {
-                    var error_ele = $(this).parent().find('.error_title');
-                    error_ele.html('').parents('.form-group').removeClass('has-error');
-                }
+            ////$('#frmGatePass').submit(function (event) {
+            //$('#btnSave').click(function () {
+            //    //alert('hiiiii');
+            //    var is_valid = true;
+            //    //debugger;
+            //    if ($('#txtTitle').val() == "") {
+            //        is_valid = false;
+            //        $(this).parent().find('.error_title').html('Enter Title.').parents('.form-group').addClass('has-error');
+            //    }
+            //    else {
+            //        var error_ele = $(this).parent().find('.error_title');
+            //        error_ele.html('').parents('.form-group').removeClass('has-error');
+            //    }
 
-                if ($('#txtGPPrefix').val() == "") {
-                    is_valid = false;
-                    $(this).parent().find('.error_Prefix').html('Enter Prefix.').parents('.form-group').addClass('has-error');
-                }
-                else {
-                    var error_ele = $(this).parent().find('.error_Prefix');
-                    error_ele.html('').parents('.form-group').removeClass('has-error');
-                }
-
-
-                $('.GatepassHeader_repeater .question_textarea').each(function (index, element) {
-                    if ($(this).val().trim() == '') {
-                        is_valid = false;
-                        $(this).parent().find('.error_question').html('Enter Header.').parents('.form-group').addClass('has-error');
-                    }
-                });
-
-                $('.GatepassType_repeater .GatepassType_textarea').each(function (index, element) {
-                    if ($(this).val().trim() == '') {
-                        is_valid = false;
-                        $(this).parent().find('.error_GatepassType').html('Enter Type.').parents('.form-group').addClass('has-error');
-                    }
-                });
-
-                $('.TermComdition_repeater .TermCondition_textarea').each(function (index, element) {
-                    if ($(this).val().trim() == '') {
-                        is_valid = false;
-                        $(this).parent().find('.error_TermCondition').html('Enter Terms and Condition.').parents('.form-group').addClass('has-error');
-                    }
-                });
+            //    if ($('#txtGPPrefix').val() == "") {
+            //        is_valid = false;
+            //        $(this).parent().find('.error_Prefix').html('Enter Prefix.').parents('.form-group').addClass('has-error');
+            //    }
+            //    else {
+            //        var error_ele = $(this).parent().find('.error_Prefix');
+            //        error_ele.html('').parents('.form-group').removeClass('has-error');
+            //    }
 
 
-                if ($('.GatepassHeader_repeater .question_textarea').length == 0) {
-                    //alert('sdf');
-                    is_valid = false;
+            //    $('.GatepassHeader_repeater .question_textarea').each(function (index, element) {
+            //        if ($(this).val().trim() == '') {
+            //            is_valid = false;
+            //            $(this).parent().find('.error_question').html('Enter Header.').parents('.form-group').addClass('has-error');
+            //        }
+            //    });
 
-                    $('#error_question_repeater').html('Add at least one Header.');
-                }
+            //    $('.GatepassType_repeater .GatepassType_textarea').each(function (index, element) {
+            //        if ($(this).val().trim() == '') {
+            //            is_valid = false;
+            //            $(this).parent().find('.error_GatepassType').html('Enter Type.').parents('.form-group').addClass('has-error');
+            //        }
+            //    });
 
-                if ($('#txtGatepassDescription').val() == "") {
-                    is_valid = false;
-                    $(this).parent().find('.error_title').html('Enter Gatepass Description.').parents('.form-group').addClass('has-error');
-                }
-                else {
-                    var error_ele = $(this).parent().find('.error_title');
-                    error_ele.html('').parents('.form-group').removeClass('has-error');
-                }
+            //    $('.TermComdition_repeater .TermCondition_textarea').each(function (index, element) {
+            //        if ($(this).val().trim() == '') {
+            //            is_valid = false;
+            //            $(this).parent().find('.error_TermCondition').html('Enter Terms and Condition.').parents('.form-group').addClass('has-error');
+            //        }
+            //    });
 
-                console.log('is_valid = ' + is_valid);
 
-                // alert('sgdfgdfgfdfdfdfddf');
+            //    if ($('.GatepassHeader_repeater .question_textarea').length == 0) {
+            //        //alert('sdf');
+            //        is_valid = false;
 
-                if (!is_valid) {
-                    //alert('sgdfgdfgdf');
-                    event.preventDefault();
-                }
-            });
+            //        $('#error_question_repeater').html('Add at least one Header.');
+            //    }
+
+            //    if ($('#txtGatepassDescription').val() == "") {
+            //        is_valid = false;
+            //        $(this).parent().find('.error_title').html('Enter Gatepass Description.').parents('.form-group').addClass('has-error');
+            //    }
+            //    else {
+            //        var error_ele = $(this).parent().find('.error_title');
+            //        error_ele.html('').parents('.form-group').removeClass('has-error');
+            //    }
+
+            //    console.log('is_valid = ' + is_valid);
+
+            //    // alert('sgdfgdfgfdfdfdfddf');
+
+            //    if (!is_valid) {
+            //        //alert('sgdfgdfgdf');
+            //        event.preventDefault();
+            //    }
+            //});
         });
     </script>
 
@@ -419,7 +419,6 @@
         }
 
         function FunSetXML() {
-            debugger;
             window.document.getElementById("<%= txtHdn.ClientID%>").value = "";
             var VarLocTab = window.document.getElementById("<%=TblLevels.ClientID%>");
             for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
