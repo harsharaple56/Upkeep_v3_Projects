@@ -582,7 +582,7 @@ namespace Upkeep_v3.GatePass
                 { 
                     int GP_Trans_ID = Convert.ToInt32(Request.QueryString["TransactionID"]);
                     string GP_Header_Name = dt_ReturnableSave.Rows[i]["Item Description"].ToString();
-                    int Received_Qty = Convert.ToInt32(dt_ReturnableSave.Rows[i]["Receive Quantity"]);
+                    int Received_Qty = Convert.ToInt32(dt_ReturnableSave.Rows[i]["Received Quantity"]);
                     DateTime date = DateTime.Now;
                     string Received_Date = "";
                     int Received_By = Convert.ToInt32(Request.QueryString["TransactionID"]);
