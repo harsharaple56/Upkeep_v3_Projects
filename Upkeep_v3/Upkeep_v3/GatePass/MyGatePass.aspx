@@ -32,7 +32,8 @@
                                 "Expired": { title: "Expired", class: "bg-secondary text-black" },
                                 "Hold": { title: "Hold", class: " m-badge--warning" },
                                 "Rejected": { title: "Rejected", class: " m-badge--danger" },
-                                "In Progress": { title: "In Progress", class: " m-badge--success" }
+                                "In Progress": { title: "In Progress", class: " m-badge--success" },
+                                "Outward Closed": { title: "Outward Closed", class: " m-badge--success" }
                             }; return '<span class="m-badge ' + t[e.Status].class + ' m-badge--wide">' + t[e.Status].title + "</span>"
                         }
                         }

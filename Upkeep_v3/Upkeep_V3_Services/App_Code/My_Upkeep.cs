@@ -1724,13 +1724,46 @@ public class My_Upkeep
 		}
 	}
 
-	#endregion
+    public DataSet Fetch_MyActionableReturnableGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_MyActionableReturnableGatePass(CompanyID, LoggedInUserID, From_Date, To_Date, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
-	#region Work_Permit
+    public DataSet Fetch_GatePassRequest_Approval_Details_Returnable(int TransactionID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_GatePassRequest_Approval_Details_Returnable(TransactionID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
 
-	//Added by RC WorkPermitConfiguration Save
-	public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver,string WPNotify_Emails, string LoggedInUserID)
+    #endregion
+
+    #region Work_Permit
+
+
+    //Added by RC WorkPermitConfiguration Save
+    public DataSet Insert_WorkPermitConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver,string WPNotify_Emails, string LoggedInUserID)
 	{
 		DataSet ds = new DataSet();
 		try

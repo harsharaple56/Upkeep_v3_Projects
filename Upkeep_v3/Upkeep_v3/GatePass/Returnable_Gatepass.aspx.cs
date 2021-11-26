@@ -44,7 +44,7 @@ namespace Upkeep_v3.GatePass
             string RequestStatus = string.Empty;
             try
             {
-                dsApproval = ObjUpkeep.Fetch_GatePassRequest_Approval_Details(TransactionID, LoggedInUserID);
+                dsApproval = ObjUpkeep.Fetch_GatePassRequest_Approval_Details_Returnable(TransactionID, LoggedInUserID);
 
                 if (dsApproval.Tables.Count > 0)
                 {
@@ -582,7 +582,7 @@ namespace Upkeep_v3.GatePass
                 { 
                     int GP_Trans_ID = Convert.ToInt32(Request.QueryString["TransactionID"]);
                     string GP_Header_Name = dt_ReturnableSave.Rows[i]["Item Description"].ToString();
-                    int Received_Qty = Convert.ToInt32(dt_ReturnableSave.Rows[i]["Returnable Qty"]);
+                    int Received_Qty = Convert.ToInt32(dt_ReturnableSave.Rows[i]["Receive Quantity"]);
                     DateTime date = DateTime.Now;
                     string Received_Date = "";
                     int Received_By = Convert.ToInt32(Request.QueryString["TransactionID"]);
@@ -590,7 +590,7 @@ namespace Upkeep_v3.GatePass
 
                     DataSet ds = new DataSet();
                     ds = ObjUpkeep.Fetch_GP_Header_Data(GP_Trans_ID,GP_Header_Name);
-                    GP_Header_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["GP_Head_Data_ID"]);
+                    GP_Header_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["GP_Head_Data_ID"]);
 
                     DataSet ds_Return = new DataSet();
                     ds_Return = ObjUpkeep.Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By);

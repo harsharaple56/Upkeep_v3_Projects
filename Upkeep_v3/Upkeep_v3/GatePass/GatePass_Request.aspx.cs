@@ -559,10 +559,13 @@ namespace Upkeep_v3.GatePass
                     if (Is_Returnable_Gatepass == true)
                     {
                         lbl_Returnable_Gatepass.Text = "Yes";
+                        dvReturnableDate.Attributes.Add("style", "display:block;");
+                        dvReturnableDate.Attributes.Add("class", "form-group row");
                     }
                     else
                     {
                         lbl_Returnable_Gatepass.Text = "No";
+                        dvReturnableDate.Attributes.Add("style", "display:none;");
                     }
 
                     string strUserType = Convert.ToString(dsConfig.Tables[1].Rows[0]["UserType"]);

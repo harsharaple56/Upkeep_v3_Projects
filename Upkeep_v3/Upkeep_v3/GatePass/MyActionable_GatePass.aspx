@@ -32,7 +32,8 @@
                                 "Expired": { title: "Expired", class: "bg-secondary text-black" },
                                 "Hold": { title: "Hold", class: " m-badge--warning" },
                                 "Rejected": { title: "Rejected", class: " m-badge--danger" },
-                                "In Progress": { title: "In Progress", class: " m-badge--success" }
+                                "In Progress": { title: "In Progress", class: " m-badge--success" },
+                                "Outward Closed": { title: "Outward Closed", class: " m-badge--success" }
                             }; return '<span class="m-badge ' + t[e.Status].class + ' m-badge--wide">' + t[e.Status].title + "</span>"
                         }
                         }
@@ -151,15 +152,15 @@
                             </div>
                         </div>
 
-                        <%--<div class="col-xl-4 order-1 order-xl-2 m--align-right">
-                            <a href="<%= Page.ResolveClientUrl("~/GatePass/GatePass_Request.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                        <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                            <a href="<%= Page.ResolveClientUrl("~/GatePass/Update_Gatepass.aspx") %>" style="margin-top: 5%;" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
                                 <span>
                                     <i class="la la-plus"></i>
-                                    <span>New Request</span>
+                                    <span>Update Returnable Gatepass</span>
                                 </span>
                             </a>
                             <div class="m-separator m-separator--dashed d-xl-none"></div>
-                        </div>--%>
+                        </div>
 
                     </div>
                     <div class="m-portlet__body">

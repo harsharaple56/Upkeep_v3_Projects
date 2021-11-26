@@ -216,9 +216,10 @@
 
                                             <asp:BoundField ItemStyle-HorizontalAlign="Center" HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="SrNo" HeaderText="SrNo" SortExpression="SrNo" />
                                             <asp:BoundField ItemStyle-HorizontalAlign="Center" HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="Item Description" HeaderText="Item Description" SortExpression="Item Description" />
-                                            <asp:BoundField ItemStyle-HorizontalAlign="Center" HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
+                                            <asp:BoundField ItemStyle-HorizontalAlign="Center" HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="Actual Quantity" HeaderText="Actual Quantity" SortExpression="Actual Quantity" />
+                                            <asp:BoundField ItemStyle-HorizontalAlign="Center" HeaderStyle-ForeColor="GrayText" ControlStyle-CssClass="form-control" DataField="Returned Quantity" HeaderText="Returned Quantity" SortExpression="Returned Quantity" />
 
-                                            <asp:TemplateField HeaderText="Returnable Qty" ItemStyle-HorizontalAlign="Center">
+                                            <asp:TemplateField HeaderText="Receive Quantity" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:TextBox autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtreturnableqty"
                                                         Width="100px" CssClass="form-control" runat="server"></asp:TextBox>

@@ -2131,8 +2131,35 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_MyActionableReturnableGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_MyActionableReturnableGatePass(CompanyID, LoggedInUserID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
-
+    [WebMethod]
+    public DataSet Fetch_GatePassRequest_Approval_Details_Returnable(int TransactionID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_GatePassRequest_Approval_Details_Returnable(TransactionID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
     #endregion
 
