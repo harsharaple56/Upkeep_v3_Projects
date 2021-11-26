@@ -3714,7 +3714,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Insert_Returnable_Qty">
+      <s:element name="GP_Insert_Returnable_Qty">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="GP_Trans_ID" type="s:int" />
@@ -3722,13 +3722,15 @@
             <s:element minOccurs="1" maxOccurs="1" name="Received_Qty" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="Received_Date" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="Received_By" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Received_Remark" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FullyReturned" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Insert_Returnable_QtyResponse">
+      <s:element name="GP_Insert_Returnable_QtyResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Insert_Returnable_QtyResult">
+            <s:element minOccurs="0" maxOccurs="1" name="GP_Insert_Returnable_QtyResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -6653,11 +6655,11 @@
   <wsdl:message name="Get_VMS_Verify_Visitor_IDSoapOut">
     <wsdl:part name="parameters" element="tns:Get_VMS_Verify_Visitor_IDResponse" />
   </wsdl:message>
-  <wsdl:message name="Insert_Returnable_QtySoapIn">
-    <wsdl:part name="parameters" element="tns:Insert_Returnable_Qty" />
+  <wsdl:message name="GP_Insert_Returnable_QtySoapIn">
+    <wsdl:part name="parameters" element="tns:GP_Insert_Returnable_Qty" />
   </wsdl:message>
-  <wsdl:message name="Insert_Returnable_QtySoapOut">
-    <wsdl:part name="parameters" element="tns:Insert_Returnable_QtyResponse" />
+  <wsdl:message name="GP_Insert_Returnable_QtySoapOut">
+    <wsdl:part name="parameters" element="tns:GP_Insert_Returnable_QtyResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Dashboard_AdminSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Dashboard_Admin" />
@@ -7761,9 +7763,9 @@
       <wsdl:input message="tns:Get_VMS_Verify_Visitor_IDSoapIn" />
       <wsdl:output message="tns:Get_VMS_Verify_Visitor_IDSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Insert_Returnable_Qty">
-      <wsdl:input message="tns:Insert_Returnable_QtySoapIn" />
-      <wsdl:output message="tns:Insert_Returnable_QtySoapOut" />
+    <wsdl:operation name="GP_Insert_Returnable_Qty">
+      <wsdl:input message="tns:GP_Insert_Returnable_QtySoapIn" />
+      <wsdl:output message="tns:GP_Insert_Returnable_QtySoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Dashboard_Admin">
       <wsdl:input message="tns:Fetch_Dashboard_AdminSoapIn" />
@@ -9483,8 +9485,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_Returnable_Qty">
-      <soap:operation soapAction="http://tempuri.org/Insert_Returnable_Qty" style="document" />
+    <wsdl:operation name="GP_Insert_Returnable_Qty">
+      <soap:operation soapAction="http://tempuri.org/GP_Insert_Returnable_Qty" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -11610,8 +11612,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Insert_Returnable_Qty">
-      <soap12:operation soapAction="http://tempuri.org/Insert_Returnable_Qty" style="document" />
+    <wsdl:operation name="GP_Insert_Returnable_Qty">
+      <soap12:operation soapAction="http://tempuri.org/GP_Insert_Returnable_Qty" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

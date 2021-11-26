@@ -8,6 +8,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
+            let hidebtns;
+            let btn_ReturnSave = $("[id*=btn_ReturnableSave]");
+            let btn_ForceSave = $("[id*=btn_ReturnableForcefullySave]");
+
+            btn_ReturnSave.hide();
+            btn_ForceSave.hide();
 
             toastr.options = {
                 "closeButton": true,
@@ -18,9 +24,9 @@
                 "preventDuplicates": false,
                 "onclick": null,
                 "showDuration": "1500",
-                "hideDuration": "1000",
-                "timeOut": "1000",
-                "extendedTimeOut": "1000",
+                "hideDuration": "2000",
+                "timeOut": "2000",
+                "extendedTimeOut": "2000",
                 "showEasing": "swing",
                 "hideEasing": "linear",
                 "showMethod": "fadeIn",
@@ -30,11 +36,38 @@
             $("[id*=txtreturnableqty]").keyup(function () {
                 //calculate total for current row
                 var val1 = $(this).val() == "" ? 0 : $(this).val();
-                var val2 = $(this).closest('tr').find("td:eq(2)").text();
-                var checkval = val2 >= val1;
+                var val2 = $(this).closest('tr').find("td:eq(4)").text();
+                var checkval = parseInt(val2) >= parseInt(val1);
                 if (!checkval) {
+                    $(this).val("");
+                    hidebtns = true;
                     toastr.error("Please enter correct value.");
                 }
+                else {
+                    var grid = document.getElementById("<%= gvGPHeader.ClientID %>");
+                    for (var i = 0; i < grid.rows.length - 1; i++) {
+                        let received = $("input[id*=txtreturnableqty]");
+                        let pending = grid.rows[i + 1].cells[4].innerText
+                        if (parseInt(pending) == parseInt(received[i].value)) {
+                            hidebtns = true;
+                        }
+                        else if (parseInt(pending) != parseInt(received[i].value)) {
+                            hidebtns = false;
+                            break;
+                        }
+                    }
+
+                    if (hidebtns) {
+                        btn_ReturnSave.show();
+                        btn_ForceSave.hide();
+                    }
+                    else {
+                        btn_ReturnSave.show();
+                        btn_ForceSave.show();
+                    }
+                }
+
+
 
             });
         });
@@ -340,50 +373,57 @@
                                 </div>
                                 <br />
 
-                                <div class="form-group row" style="background-color: #00c5dc;" id="dvApprovalDetHeader" runat="server">
-                                    <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Approval Details</label>
-                                </div>
+                                <div id="dv_Approval" runat="server">
 
-                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="dvApprovalDetails" runat="server">
-                                    <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Action :</label>
-                                    <div class="col-xl-2 col-lg-4">
-                                        <asp:DropDownList ID="ddlAction" class="form-control m-input" runat="server"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlAction" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Action"></asp:RequiredFieldValidator>
+                                    <div class="form-group row" style="background-color: #00c5dc;" id="dvApprovalDetHeader" runat="server">
+                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Approval Details</label>
                                     </div>
 
-                                    <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Remarks :</label>
-                                    <div class="col-xl-6 col-lg-4">
-                                        <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtRemarks" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please enter Remarks"></asp:RequiredFieldValidator>
+                                    <div class="form-group m-form__group row" style="padding-left: 1%;" id="dvApprovalDetails" runat="server">
+                                        <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Action :</label>
+                                        <div class="col-xl-2 col-lg-4">
+                                            <asp:DropDownList ID="ddlAction" class="form-control m-input" runat="server"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlAction" Visible="true" Display="Dynamic"
+                                                ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Action"></asp:RequiredFieldValidator>
+                                        </div>
+
+
                                     </div>
+
+                                    <div id="dvApprovalMatrix" runat="server">
+                                        <div class="form-group row" style="background-color: #00c5dc;">
+                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>
+                                        </div>
+                                        <div>
+                                            <asp:GridView ID="gvApprovalMatrix" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
+                                        </div>
+                                    </div>
+
+                                    <hr />
+
+                                    <div id="dvSubmitSection" runat="server">
+                                        <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" Text="Submit" ValidationGroup="validateGatePass" />
+
+                                        <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
+
+
+                                    </div>
+
                                 </div>
 
-                                <div id="dvApprovalMatrix" runat="server">
-                                    <div class="form-group row" style="background-color: #00c5dc;">
-                                        <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Approval Matrix</label>
-                                    </div>
-                                    <div>
-                                        <asp:GridView ID="gvApprovalMatrix" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
-                                    </div>
+                                <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold">Remarks :</label>
+                                <div class="col-xl-12 col-lg-4">
+                                    <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtRemarks"
+                                        ValidationGroup="validateGatePass1" ForeColor="Red" ErrorMessage="Please enter Remarks"></asp:RequiredFieldValidator>
                                 </div>
+                                <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
-                                <br />
-
-                                <div class="col-lg-9 ml-lg-auto" id="dvSubmitSection" runat="server">
-                                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" Text="Submit" ValidationGroup="validateGatePass" />
-
-                                    <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
-
-                                    <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-
-                                </div>
                                 <hr />
 
-                                <div id="Div1"  runat="server">
-                                    <asp:Button ID="btn_ReturnableSave" runat="server" class="btn btn-success m-btn--wide"  OnClick="btn_ReturnableSave_Click" Text="Save" ValidationGroup="validateGatePass" />
-                                    <asp:Button ID="btn_ReturnableForcefullySave" runat="server" class="btn btn-info m-btn--wide mx-2" OnClick="btn_ReturnableForcefullySave_Click" Text="Forcefully Save" />
+                                <div id="dv_returnable" runat="server">
+                                    <asp:Button ID="btn_ReturnableSave" runat="server" class="btn btn-success m-btn--wide" OnClick="btn_ReturnableSave_Click" Text="Save" ValidationGroup="validateGatePass1" />
+                                    <asp:Button ID="btn_ReturnableForcefullySave" runat="server" class="btn btn-info m-btn--wide mx-2" OnClick="btn_ReturnableForcefullySave_Click" Text="Forcefully Close" />
                                 </div>
 
                             </div>

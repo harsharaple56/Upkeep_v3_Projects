@@ -92,7 +92,7 @@ public class My_Upkeep
 
     }
 
-    public DataSet Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By)
+    public DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By,string Received_Remark, bool FullyReturned)
     {
         DataSet ds = new DataSet();
         try
@@ -100,7 +100,7 @@ public class My_Upkeep
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjUpkeepCC_BL.Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By,StrConn);
+            ds = ObjUpkeepCC_BL.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remark,FullyReturned, StrConn);
             return ds;
         }
         catch (Exception ex)

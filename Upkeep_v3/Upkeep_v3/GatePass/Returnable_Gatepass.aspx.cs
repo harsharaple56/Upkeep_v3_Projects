@@ -20,6 +20,8 @@ namespace Upkeep_v3.GatePass
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             int TransactionID = Convert.ToInt32(Request.QueryString["TransactionID"]);
+            dv_Approval.Visible = false;
+            dv_returnable.Visible = false;
             MyActionFlag = Convert.ToString(Request.QueryString["MyAction"]);
             if (LoggedInUserID == "")
             {
@@ -42,6 +44,7 @@ namespace Upkeep_v3.GatePass
         {
             DataSet dsApproval = new DataSet();
             string RequestStatus = string.Empty;
+
             try
             {
                 dsApproval = ObjUpkeep.Fetch_GatePassRequest_Approval_Details_Returnable(TransactionID, LoggedInUserID);
@@ -235,6 +238,23 @@ namespace Upkeep_v3.GatePass
                     dvApprovalDetHeader.Attributes.Add("Style", "display:none;");
                     dvApprovalDetails.Attributes.Add("Style", "display:none;");
                     dvSubmitSection.Attributes.Add("Style", "display:none;"); ;
+                }
+
+                if (dsApproval.Tables.Count >= 11)
+                {
+                    if (dsApproval.Tables[11].Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dsApproval.Tables[11].Rows[0]["Is_Reciever"]))
+                        {
+                            dv_returnable.Visible = true;
+                            dv_Approval.Visible = false;
+                        }
+                        else
+                        {
+                            dv_Approval.Visible = true;
+                            dv_returnable.Visible = false;
+                        }
+                    }
                 }
 
             }
@@ -557,6 +577,83 @@ namespace Upkeep_v3.GatePass
                 #region Clone data grid to datatable
                 DataTable dt_ReturnableSave = new DataTable();
                 int rowIndex = 0;
+
+                for (int i = 0; i < gvGPHeader.Columns.Count; i++)
+                {
+                    dt_ReturnableSave.Columns.Add(gvGPHeader.Columns[i].ToString());
+                }
+                foreach (GridViewRow row in gvGPHeader.Rows)
+                {
+                    DataRow dr = dt_ReturnableSave.NewRow();
+                    TextBox txtreturnableqty = gvGPHeader.Rows[rowIndex].FindControl("txtreturnableqty") as TextBox;
+                    for (int j = 0; j < gvGPHeader.Columns.Count; j++)
+                    {
+                        dr[gvGPHeader.Columns[j].ToString()] = row.Cells[j].Text;
+                        if (string.IsNullOrEmpty(row.Cells[j].Text))
+                        {
+                            dr[gvGPHeader.Columns[j].ToString()] = txtreturnableqty.Text;
+                        }
+                    }
+                    rowIndex++;
+                    dt_ReturnableSave.Rows.Add(dr);
+                }
+                #endregion
+
+
+                for (int i = 0; i < dt_ReturnableSave.Rows.Count; i++)
+                {
+                    int GP_Trans_ID = Convert.ToInt32(Request.QueryString["TransactionID"]);
+                    string GP_Header_Name = dt_ReturnableSave.Rows[i]["Item Description"].ToString();
+                    int Received_Qty = Convert.ToInt32(dt_ReturnableSave.Rows[i]["Received Quantity"]);
+                    DateTime date = DateTime.Now;
+                    string Received_Date = date.ToString();
+                    int Received_By = Convert.ToInt32(LoggedInUserID);
+                    int GP_Header_ID = 0;
+                    string Received_Remarks = txtRemarks.Text;
+                    bool FullyReturned = true;
+                    DataSet ds = new DataSet();
+                    ds = ObjUpkeep.Fetch_GP_Header_Data(GP_Trans_ID, GP_Header_Name);
+                    GP_Header_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["GP_Head_Data_ID"]);
+
+                    DataSet ds_Return = new DataSet();
+                    ds_Return = ObjUpkeep.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remarks, FullyReturned);
+
+                    if (ds_Return.Tables.Count > 0)
+                    {
+                        if (ds_Return.Tables[0].Rows.Count > 0)
+                        {
+                            int Status = Convert.ToInt32(ds_Return.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
+                            {
+                                Response.Redirect(Page.ResolveClientUrl("~/GatePass/Update_Gatepass.aspx"), false);
+                            }
+                            else if (Status == 2)
+                            {
+                                lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                            }
+                            else if (Status == 3)
+                            {
+                                lblErrorMsg.Text = "Duplicate data found..!";
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void btn_ReturnableForcefullySave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                #region Clone data grid to datatable
+                DataTable dt_ReturnableSave = new DataTable();
+                int rowIndex = 0;
                 for (int i = 0; i < gvGPHeader.Columns.Count; i++)
                 {
                     dt_ReturnableSave.Columns.Add(gvGPHeader.Columns[i].ToString());
@@ -579,34 +676,44 @@ namespace Upkeep_v3.GatePass
                 #endregion
 
                 for (int i = 0; i < dt_ReturnableSave.Rows.Count; i++)
-                { 
+                {
                     int GP_Trans_ID = Convert.ToInt32(Request.QueryString["TransactionID"]);
                     string GP_Header_Name = dt_ReturnableSave.Rows[i]["Item Description"].ToString();
                     int Received_Qty = Convert.ToInt32(dt_ReturnableSave.Rows[i]["Received Quantity"]);
                     DateTime date = DateTime.Now;
-                    string Received_Date = "";
-                    int Received_By = Convert.ToInt32(Request.QueryString["TransactionID"]);
+                    string Received_Date = date.ToString();
+                    int Received_By = Convert.ToInt32(LoggedInUserID);
                     int GP_Header_ID = 0;
+                    string Received_Remarks = txtRemarks.Text;
+                    bool FullyReturned = false;
 
                     DataSet ds = new DataSet();
-                    ds = ObjUpkeep.Fetch_GP_Header_Data(GP_Trans_ID,GP_Header_Name);
+                    ds = ObjUpkeep.Fetch_GP_Header_Data(GP_Trans_ID, GP_Header_Name);
                     GP_Header_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["GP_Head_Data_ID"]);
 
                     DataSet ds_Return = new DataSet();
-                    ds_Return = ObjUpkeep.Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By);
+                    ds_Return = ObjUpkeep.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remarks, FullyReturned);
+
+                    if (ds_Return.Tables.Count > 0)
+                    {
+                        if (ds_Return.Tables[0].Rows.Count > 0)
+                        {
+                            int Status = Convert.ToInt32(ds_Return.Tables[0].Rows[0]["Status"]);
+                            if (Status == 1)
+                            {
+                                Response.Redirect(Page.ResolveClientUrl("~/GatePass/Update_Gatepass.aspx"), false);
+                            }
+                            else if (Status == 2)
+                            {
+                                lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                            }
+                            else if (Status == 3)
+                            {
+                                lblErrorMsg.Text = "Duplicate data found..!";
+                            }
+                        }
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        protected void btn_ReturnableForcefullySave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
             }
             catch (Exception ex)
             {

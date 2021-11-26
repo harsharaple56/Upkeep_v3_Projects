@@ -2202,19 +2202,21 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Insert_Returnable_Qty(int GP_Trans_ID,int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string StrConn)
+        public DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID,int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By,string Received_Remark,bool FullyReturned, string StrConn)
         {
             DataSet ds = new DataSet();
             try
             {
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("SPR_Insert_Returnable_Qty", con);
+                SqlCommand cmd = new SqlCommand("SPR_GP_Insert_Returnable_Qty", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@GP_Trans_ID", GP_Trans_ID);
                 cmd.Parameters.AddWithValue("@GP_Header_ID", GP_Header_ID);
                 cmd.Parameters.AddWithValue("@Received_Qty", Received_Qty);
                 cmd.Parameters.AddWithValue("@Received_Date", Received_Date);
                 cmd.Parameters.AddWithValue("@Received_By", Received_By);
+                cmd.Parameters.AddWithValue("@Received_Remarks", Received_Remark);
+                cmd.Parameters.AddWithValue("@FullyReturned", FullyReturned);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
