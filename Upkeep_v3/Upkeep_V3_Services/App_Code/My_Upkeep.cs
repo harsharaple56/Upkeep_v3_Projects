@@ -1580,15 +1580,15 @@ public class My_Upkeep
 		}
 	}
 
-	public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID)
-	{
+	public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy, string strGPReceivedBy, string GatepassDescription, bool is_Returnable_Gatepass, string LoggedInUserID)
+    {
 		DataSet ds = new DataSet();
 		try
 		{
 			StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
 			string strOutput = string.Empty;
-			ds = ObjUpkeepCC_BL.Update_GatePassConfiguration(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, strXmlApprovalMatrix_Returnable, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID, StrConn);
-			return ds;
+			ds = ObjUpkeepCC_BL.Update_GatePassConfiguration(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_Doc, strXmlGatepass_TermCondition, strXmlApprovalMatrix, strXmlApprovalMatrix_Returnable, ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID, StrConn);
+            return ds;
 		}
 		catch (Exception ex)
 		{

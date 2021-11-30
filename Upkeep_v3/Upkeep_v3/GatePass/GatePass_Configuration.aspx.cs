@@ -58,18 +58,9 @@ namespace Upkeep_v3.GatePass
                     {
                         Initiator = string.Empty;
                         Bind_GatePassConfiguration(Convert.ToInt32(ViewState["ConfigID"].ToString()));
-                        dv_Termcondition.Visible = false;
-                        dv_GP_Header.Visible = false;
-                        dv_GP_Type.Visible = false;
-                        dv_Doc_Grid.Visible = false;
-                        dv_Termcondition2.Visible = true;
-                        dv_GP_Header2.Visible = true;
-                        dv_GP_Type2.Visible = true;
-                        dv_Doc_Grid2.Visible = true;
                     }
                     if (Convert.ToString(Session["CurrentURL"]) != "")
                     {
-                        btnAddGPHeader.Focus();
                         Session["CurrentURL"] = "";
                     }
                 }
@@ -81,248 +72,9 @@ namespace Upkeep_v3.GatePass
                     if (GP_ConfigID != 0)
                         ObjUpkeep.Delete_GatePassConfiguration(GP_ConfigID, LoggedInUserID);
                 }
-                else if (GP_ConfigID == 0)
-                {
-                    dv_Termcondition2.Visible = false;
-                    dv_GP_Header2.Visible = false;
-                    dv_GP_Type2.Visible = false;
-                    dv_Doc_Grid2.Visible = false;
-                    dv_Termcondition.Visible = true;
-                    dv_GP_Header.Visible = true;
-                    dv_GP_Type.Visible = true;
-                    dv_Doc_Grid.Visible = true;
-                }
+
                 Fetch_User_UserGroupList(Initiator);
             }
-        }
-
-        public string bindGP_Document()
-        {
-            string data = "";
-            DataSet ds_GP_Document = new DataSet();
-            try
-            {
-                ds_GP_Document = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID, 0, "", 0, "", "R");
-
-                if (ds_GP_Document.Tables.Count > 0)
-                {
-                    if (ds_GP_Document.Tables[0].Rows.Count > 0)
-                    {
-                        int count = Convert.ToInt32(ds_GP_Document.Tables[0].Rows.Count);
-
-                        for (int i = 0; i < count; i++)
-                        {
-                            string strSrNo = Convert.ToString(ds_GP_Document.Tables[0].Rows[i]["SrNo"]);
-                            int Doc_Config_ID = Convert.ToInt32(ds_GP_Document.Tables[0].Rows[i]["Doc_Config_ID"]);
-                            string Doc_Desc = Convert.ToString(ds_GP_Document.Tables[0].Rows[i]["Doc_Desc"]);
-                            string Mandatory = Convert.ToString(ds_GP_Document.Tables[0].Rows[i]["Mandatory"]);
-
-                            data += "<tr><td>" + strSrNo + "</td><td>" + Doc_Desc + "</td><td>" + Mandatory + "</td><td><a class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' onclick='BindGP_Doc(" + Doc_Config_ID + ")' style='color: white;' class='la la-edit'></i> </a>  <a class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'  title='Delete record'><i id='btnDeleteHeader' onclick='DeleteGP_Doc(" + Doc_Config_ID + ")' style='color: white;' class='la la-trash'></i> </a> </td></tr>";
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return data;
-        }
-
-        protected void btnGPDocCancel_Click(object sender, EventArgs e)
-        {
-            txtGP_Doc.Text = "";
-            mpeAddEditGPDoc.Hide();
-        }
-
-        protected void btnBindGPDoc_Click(object sender, EventArgs e)
-        {
-            Session["GPDocID"] = Convert.ToString(hdnGPDocID.Value);
-            int GatePassDocID = 0;
-            DataSet dsGatePassDoc = new DataSet();
-            DataSet dsDeleteGPDoc = new DataSet();
-            try
-            {
-                if (Convert.ToString(Session["GPDocID"]) != "")
-                {
-                    hdnGPTypeID.Value = "";
-                    GatePassDocID = Convert.ToInt32(Session["GPDocID"]);
-
-                    dsGatePassDoc = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID, GatePassDocID, "", 0, LoggedInUserID, "R");
-
-                    if (dsGatePassDoc.Tables.Count > 0)
-                    {
-                        if (dsGatePassDoc.Tables[0].Rows.Count > 0)
-                        {
-                            txtGP_Doc.Text = Convert.ToString(dsGatePassDoc.Tables[0].Rows[0]["Doc_Desc"]);
-                            int Is_Mandatory = Convert.ToInt32(dsGatePassDoc.Tables[0].Rows[0]["Is_Mandatory"]);
-                            if (Is_Mandatory == 1)
-                            {
-                                chkGPDocMandatory.Checked = true;
-                            }
-                            else
-                            {
-                                chkGPDocMandatory.Checked = false;
-                            }
-                            mpeAddEditGPDoc.Show();
-                        }
-                    }
-                }
-
-                int DeleteGatePassDocID = 0;
-                Session["DeleteGPDocID"] = Convert.ToString(hdnDeleteGPDocID.Value);
-                if (Convert.ToString(Session["DeleteGPDocID"]) != "")
-                {
-                    DeleteGatePassDocID = Convert.ToInt32(Session["DeleteGPDocID"]);
-
-                    dsDeleteGPDoc = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID, DeleteGatePassDocID, "", 0, LoggedInUserID, "D");
-                    if (dsDeleteGPDoc.Tables.Count > 0)
-                    {
-                        if (dsDeleteGPDoc.Tables[0].Rows.Count > 0)
-                        {
-                            Session["DeleteGPDocID"] = "";
-                            Session["GPDocID"] = "";
-                            int Status = Convert.ToInt32(dsDeleteGPDoc.Tables[0].Rows[0]["Status"]);
-                            if (Status == 1)
-                            {
-                                Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
-                                btnAddGPHeader.Focus();
-                            }
-                        }
-                    }
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        protected void btnCloseGatePassTerms_Click(object sender, EventArgs e)
-        {
-            Session["GPTermID"] = "";
-            txtTerms.Text = "";
-            mpeGatePassTerm.Hide();
-        }
-
-        protected void btnSaveGatePassTerms_Click(object sender, EventArgs e)
-        {
-            DataSet dsGatePassTerm = new DataSet();
-            string strGPTerm = string.Empty;
-            int GatePassTermID = 0;
-            string strAction = string.Empty;
-            try
-            {
-                if (Convert.ToString(Session["GPTermID"]) != "")
-                {
-                    GatePassTermID = Convert.ToInt32(Session["GPTermID"]);
-                }
-                strGPTerm = Convert.ToString(txtTerms.Text.Trim());
-
-                if (GatePassTermID > 0)
-                {
-                    strAction = "U";
-                }
-                else
-                {
-                    strAction = "C";
-                }
-
-                dsGatePassTerm = ObjUpkeep.GatePassTerm_CRUD(GatePassTermID, strGPTerm, GP_ConfigID, LoggedInUserID, strAction);
-                if (dsGatePassTerm.Tables.Count > 0)
-                {
-                    if (dsGatePassTerm.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(dsGatePassTerm.Tables[0].Rows[0]["Status"]);
-                        if (Status == 1)
-                        {
-                            Session["GPTermID"] = "";
-                            txtTerms.Text = "";
-                            Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
-                            btnAddGPHeader.Focus();
-                        }
-                        else if (Status == 3)
-                        {
-                            lblErrorGPType.Text = "Gate Pass Terms already exists";
-                        }
-                        else if (Status == 2)
-                        {
-                            lblErrorGPType.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-        protected void btnGPTypeCancel_Click(object sender, EventArgs e)
-        {
-            txtGatePassType1.Text = "";
-            Session["GPTypeID"] = "";
-            mpeGatePassType.Hide();
-        }
-
-        protected void btnGPTypeSave_Click(object sender, EventArgs e)
-        {
-            DataSet dsGatePassType = new DataSet();
-            string strGPType = string.Empty;
-            int GatePassTypeID = 0;
-            string strAction = string.Empty;
-            try
-            {
-                if (Convert.ToString(Session["GPTypeID"]) != "")
-                {
-                    GatePassTypeID = Convert.ToInt32(Session["GPTypeID"]);
-                }
-                strGPType = Convert.ToString(txtGatePassType1.Text.Trim());
-
-                if (GatePassTypeID > 0)
-                {
-                    strAction = "U";
-                }
-                else
-                {
-                    strAction = "C";
-                }
-
-                dsGatePassType = ObjUpkeep.GatePassType_CRUD(GatePassTypeID, strGPType, GP_ConfigID, LoggedInUserID, strAction);
-                if (dsGatePassType.Tables.Count > 0)
-                {
-                    if (dsGatePassType.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(dsGatePassType.Tables[0].Rows[0]["Status"]);
-                        if (Status == 1)
-                        {
-                            Session["GPTypeID"] = "";
-                            txtGatePassType1.Text = "";
-                            Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
-                            btnAddGPHeader.Focus();
-                        }
-                        else if (Status == 3)
-                        {
-                            lblErrorGPType.Text = "Gate Pass Type already exists";
-                        }
-                        else if (Status == 2)
-                        {
-                            lblErrorGPType.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
         }
 
         public void Bind_GatePassConfiguration(int GP_ConfigID)
@@ -332,7 +84,7 @@ namespace Upkeep_v3.GatePass
             {
 
                 ds = ObjUpkeep.Bind_GatePassConfiguration(GP_ConfigID);
-
+                hdnGPConfigID.Value = Convert.ToString(GP_ConfigID);
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -396,6 +148,32 @@ namespace Upkeep_v3.GatePass
                         else
                             dvReturnable.Visible = false;
                     }
+
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        var HeaderValues = ds.Tables[1].AsEnumerable().Select(s =>
+                                            s.Field<decimal>("GP_Header_ID").ToString() + "||"
+                                            + s.Field<string>("Header_Name").ToString() + "||" + s.Field<string>("Numeric").ToString() + "||"
+                                            + s.Field<decimal>("Ans_Type_ID")).ToArray();
+
+                        hdnGPHeaderValues.Value = string.Join("~", HeaderValues);
+                    }
+
+                    if (ds.Tables[3].Rows.Count > 0)
+                    {
+                        var TermsValues = ds.Tables[3].AsEnumerable().Select(s => s.Field<decimal>("GP_Terms_ID").ToString()
+                        + "||" + s.Field<string>("Terms_Desc").Replace("<br>", System.Environment.NewLine)).ToArray(); //Added by RC 
+
+                        hdnGPTermsValues.Value = string.Join("~", TermsValues);
+                    }
+
+                    if (ds.Tables[2].Rows.Count > 0)
+                    {
+                        var TermsValues = ds.Tables[2].AsEnumerable().Select(s => s.Field<decimal>("GP_Type_ID").ToString()
+                        + "||" + s.Field<string>("GP_Type_Desc").Replace("<br>", System.Environment.NewLine)).ToArray(); //Added by RC 
+
+                        hdnGPTypeValues.Value = string.Join("~", TermsValues);
+                    }
                 }
 
                 if (ds.Tables.Count > 4)
@@ -426,509 +204,350 @@ namespace Upkeep_v3.GatePass
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
-        protected void btnGPDocSave_Click(object sender, EventArgs e)
-        {
-            DataSet dsGatePassDoc = new DataSet();
-            string strGPTDoc = string.Empty;
-            int GatePassDocID = 0;
-            int Mandatory = 0;
-            string strAction = string.Empty;
-            try
-            {
-                if (Convert.ToString(Session["GPDocID"]) != "")
-                {
-                    GatePassDocID = Convert.ToInt32(Session["GPDocID"]);
-                }
-                strGPTDoc = Convert.ToString(txtGP_Doc.Text.Trim());
-
-                if (chkGPDocMandatory.Checked)
-                {
-                    Mandatory = 1;
-                }
-                else
-                {
-                    Mandatory = 0;
-                }
-
-                if (GatePassDocID > 0)
-                {
-                    strAction = "U";
-                }
-                else
-                {
-                    strAction = "C";
-                }
-
-                //dsGatePassDoc = ObjUpkeep.GatePassType_CRUD(GatePassTypeID, strGPType, GP_ConfigID, LoggedInUserID, strAction);
-                dsGatePassDoc = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID, GatePassDocID, strGPTDoc, Mandatory, LoggedInUserID, strAction);
+                DataSet dsGatePassDoc = new DataSet();
+                Session["GPDocID"] = Convert.ToString(hdnGPDocID.Value);
+                int GatePassDocID = 0;
+                hdnGPTypeID.Value = "";
+                GatePassDocID = Session["GPDocID"].ToString() != "" ? Convert.ToInt32(Session["GPDocID"]) : 0;
+                dsGatePassDoc = ObjUpkeep.GatePassConfiguration_Document_CRUD(GP_ConfigID, GatePassDocID, "", 0, LoggedInUserID, "R");
 
                 if (dsGatePassDoc.Tables.Count > 0)
                 {
-                    if (dsGatePassDoc.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(dsGatePassDoc.Tables[0].Rows[0]["Status"]);
-                        if (Status == 1)
-                        {
-                            Session["GPDocID"] = "";
-                            txtGatePassType1.Text = "";
-                            Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
-                            btnAddGPHeader.Focus();
-                        }
-                        else if (Status == 3)
-                        {
-                            lblErrorGPDoc.Text = "Gate Pass Document already exists";
-                        }
-                        else if (Status == 2)
-                        {
-                            lblErrorGPDoc.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                        }
-                    }
-                }
+                    var DocValues = dsGatePassDoc.Tables[0].AsEnumerable().Select(s =>
+                                        s.Field<decimal>("Doc_Config_Id").ToString() + "||"
+                                        + s.Field<string>("Doc_Desc").ToString() + "||" + s.Field<bool>("Is_Mandatory").ToString()).ToArray();
 
+                    hdnGPDocumentValues.Value = string.Join("~", DocValues);
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+
+                string GatePassHeader = string.Empty;
+                string GatePassHeaderID = string.Empty;
+                string GPHeaderNumeric = string.Empty;
+                string GPHeaderUnit = string.Empty;
+
+                string GatePassType = string.Empty;
+                string GatePassTypeID = string.Empty;
+                string GatePassTermCondition = string.Empty;
+                string GatePassTermConditionID = string.Empty;
+                string GatePassDoc = string.Empty;
+                string GatePassDocID = string.Empty;
+                string GPDocMandatory = string.Empty;
+                string is_quantity = string.Empty;
+
+                StringBuilder strXmlGatepass_Header = new StringBuilder();
+                strXmlGatepass_Header.Append(@"<GATEPASS_HEADER_ROOT>");
+
+                StringBuilder strXmlGatepass_Type = new StringBuilder();
+                strXmlGatepass_Type.Append(@"<GATEPASS_TYPE_ROOT>");
+
+                StringBuilder strXmlGatepass_TermCondition = new StringBuilder();
+                strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM_ROOT>");
+
+                StringBuilder strXmlGatepass_Doc = new StringBuilder();
+                strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_ROOT>");
+
+                int ccc = Request.Form.Count;
+                for (int i = 0; i < ccc; i++)
+                {
+                    GatePassHeader = "";
+                    GatePassHeaderID = "";
+                    GPHeaderUnit = "";
+                    GPHeaderNumeric = "0";
+                    GatePassType = "";
+                    GatePassTypeID = "";
+                    GatePassDoc = "";
+                    GatePassDocID = "";
+                    GPDocMandatory = "0";
+
+                    is_quantity = "0";
+
+                    GatePassTermCondition = "";
+                    GatePassTermConditionID = "";
+
+                    string[] GatePassHeaderArray = Request.Form.GetValues("GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$txtGatepassHeader]");
+                    string[] GatePassHeaderIDArray = Request.Form.GetValues("GatepassHeader[" + i + "][hdntxtGatepassHeader]");
+                    string[] GatePassHeader_UnitArray = Request.Form.GetValues("GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$ddlUnit]");
+
+                    if (GatePassHeaderArray != null)
+                    {
+                        GatePassHeader = GatePassHeaderArray[0];
+                    }
+
+                    if (GatePassHeaderIDArray != null)
+                    {
+                        GatePassHeaderID = GatePassHeaderIDArray[0];
+                    }
+                    
+                    if (GatePassHeader_UnitArray != null)
+                    {
+                        GPHeaderUnit = GatePassHeader_UnitArray[0];
+                    }
+
+                    foreach (string key in Request.Form.AllKeys)
+                    {
+                        if (key == "GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkNumeric][]")
+                        {
+                            GPHeaderNumeric = "1";
+                        }
+                        if (key == "GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$chk_is_quantity][]")
+                        {
+                            is_quantity = "1";
+                        }
+                    }
+
+                    string[] GatePassType_Array = Request.Form.GetValues("GatepassType[" + i + "][ctl00$ContentPlaceHolder1$txtGatepassType]");
+                    string[] GatePassTypeID_Array = Request.Form.GetValues("GatepassType[" + i + "][hdnRepeaterGPTID]");
+                    if (GatePassType_Array != null)
+                    {
+                        GatePassType = GatePassType_Array[0];
+                    }
+
+                    if (GatePassTypeID_Array != null)
+                    {
+                        GatePassTypeID = GatePassTypeID_Array[0];
+                    }
+
+
+
+                    string[] GatePassDoc_Array = Request.Form.GetValues("GatepassDoc[" + i + "][ctl00$ContentPlaceHolder1$txtGPDoc]");
+                    string[] GatePassDocID_Array = Request.Form.GetValues("GatepassDoc[" + i + "][hdnRepeaterGPDocID]");
+                    if (GatePassDoc_Array != null)
+                    {
+                        GatePassDoc = GatePassDoc_Array[0];
+                    }
+
+                    if (GatePassDocID_Array != null)
+                    {
+                        GatePassDocID = GatePassDocID_Array[0];
+                    }
+
+                    foreach (string key in Request.Form.AllKeys)
+                    {
+                        if (key == "GatepassDoc[" + i + "][ctl00$ContentPlaceHolder1$chkDocMandatory][]")
+                        {
+                            GPDocMandatory = "1";
+                        }
+                    }
+
+
+                    string[] GatePassTermCondition_Array = Request.Form.GetValues("GatepassTermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]");
+                    string[] GatePassTermConditionID_Array = Request.Form.GetValues("GatepassTermCondition[" + i + "][hdnRepeaterTermID]");
+
+                    if (GatePassTermCondition_Array != null)
+                    {
+                        GatePassTermCondition = GatePassTermCondition_Array[0];
+                    }
+
+                    if (GatePassTermConditionID_Array != null)
+                    {
+                        GatePassTermConditionID = GatePassTermConditionID_Array[0];
+                    }
+
+                    if (GatePassHeaderArray != null)
+                    {
+                        strXmlGatepass_Header.Append(@"<GATEPASS_HEADER_DESC>");
+                        strXmlGatepass_Header.Append(@"<GATEPASS_HEADER_ID>" + GatePassHeaderID + "</GATEPASS_HEADER_ID>");
+                        strXmlGatepass_Header.Append(@"<GATEPASS_HEADER>" + GatePassHeader + "</GATEPASS_HEADER>");
+                        strXmlGatepass_Header.Append(@"<GATEPASS_NUMERIC>" + GPHeaderNumeric + "</GATEPASS_NUMERIC>");
+                        strXmlGatepass_Header.Append(@"<GATEPASS_UNIT>" + GPHeaderUnit + "</GATEPASS_UNIT>");
+                        strXmlGatepass_Header.Append(@"<GATEPASS_IS_QUANTITY>" + is_quantity + "</GATEPASS_IS_QUANTITY>");
+                        strXmlGatepass_Header.Append(@"</GATEPASS_HEADER_DESC>");
+                    }
+
+                    if (GatePassType_Array != null)
+                    {
+                        strXmlGatepass_Type.Append(@"<GATEPASS_TYPE_DESC>");
+                        strXmlGatepass_Type.Append(@"<GATEPASS_TYPE_ID>" + GatePassTypeID + "</GATEPASS_TYPE_ID>");
+                        strXmlGatepass_Type.Append(@"<GATEPASS_TYPE>" + GatePassType + "</GATEPASS_TYPE>");
+                        strXmlGatepass_Type.Append(@"</GATEPASS_TYPE_DESC>");
+                    }
+
+                    if (GatePassDoc_Array != null)
+                    {
+                        strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_DESC>");
+                        strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_HEADER_ID>" + GatePassDocID + "</GATEPASS_DOC_HEADER_ID>");
+                        strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_HEADER>" + GatePassDoc + "</GATEPASS_DOC_HEADER>");
+                        strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_MANDATORY>" + GPDocMandatory + "</GATEPASS_DOC_MANDATORY>");
+                        strXmlGatepass_Doc.Append(@"</GATEPASS_DOC_DESC>");
+                    }
+
+                    if (GatePassTermCondition_Array != null)
+                    {
+                        strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM_DESC>");
+                        strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM_ID>" + GatePassTermConditionID + "</GATEPASS_TERM_ID>");
+                        strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM>" + GatePassTermCondition + "</GATEPASS_TERM>");
+                        strXmlGatepass_TermCondition.Append(@"</GATEPASS_TERM_DESC>");
+                    }
+
+                }
+
+                strXmlGatepass_Header.Append(@"</GATEPASS_HEADER_ROOT>");
+                strXmlGatepass_Type.Append(@"</GATEPASS_TYPE_ROOT>");
+                strXmlGatepass_Doc.Append(@"</GATEPASS_DOC_ROOT>");
+                strXmlGatepass_TermCondition.Append(@"</GATEPASS_TERM_ROOT>");
+
+
+                //Normal approval matrix
+                string hdnApprovalMatrix = txtHdn.Text;
+                string[] strArrayApprovalMatrix = hdnApprovalMatrix.Split(',');
+
+                XmlDocument xmlDocProm = null;
+                xmlDocProm = new XmlDocument();
+                int ApprovalLevel = 0;
+                ApprovalLevel = strArrayApprovalMatrix.Length - 1;
+
+                StringBuilder strXmlApprovalMatrix = new StringBuilder();
+                strXmlApprovalMatrix.Append(@"<?xml version=""1.0"" ?>");
+                strXmlApprovalMatrix.Append(@"<APPROVAL_MATRIX_ROOT>");
+
+                for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel; intLocRowCtr++)
+                {
+                    if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix[intLocRowCtr])))
+                    {
+                        string[] LocArr = strArrayApprovalMatrix[intLocRowCtr].Split('#');
+
+                        strXmlApprovalMatrix.Append(@"<APPROVAL_MATRIX_DETAILS>");
+
+                        strXmlApprovalMatrix.Append(@"<level>" + LocArr[0] + "</level>");
+                        strXmlApprovalMatrix.Append(@"<Userid>" + LocArr[1] + "</Userid>");
+                        strXmlApprovalMatrix.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
+                        strXmlApprovalMatrix.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
+                        strXmlApprovalMatrix.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
+                        strXmlApprovalMatrix.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
+                        strXmlApprovalMatrix.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
+                        strXmlApprovalMatrix.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
+                        strXmlApprovalMatrix.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
+                        strXmlApprovalMatrix.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
+                        strXmlApprovalMatrix.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
+                        strXmlApprovalMatrix.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
+
+                        strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_DETAILS>");
+                    }
+                }
+                strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_ROOT>");
+
+                //Returnable approval matrix
+                string hdnApprovalMatrix_Returnable = txtHdn_Returnable.Text;
+                string[] strArrayApprovalMatrix_Returnable = hdnApprovalMatrix_Returnable.Split(',');
+
+                XmlDocument xmlDocProm_return = null;
+                xmlDocProm_return = new XmlDocument();
+                int ApprovalLevel_Returnable = 0;
+                ApprovalLevel_Returnable = strArrayApprovalMatrix_Returnable.Length - 1;
+
+                StringBuilder strXmlApprovalMatrix_Returnable = new StringBuilder();
+                strXmlApprovalMatrix_Returnable.Append(@"<?xml version=""1.0"" ?>");
+                strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_RETURN_ROOT>");
+
+                for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel_Returnable; intLocRowCtr++)
+                {
+                    if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix_Returnable[intLocRowCtr])))
+                    {
+                        string[] LocArr = strArrayApprovalMatrix_Returnable[intLocRowCtr].Split('#');
+
+                        strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_DETAILS>");
+
+                        strXmlApprovalMatrix_Returnable.Append(@"<level>" + LocArr[0] + "</level>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<Userid>" + LocArr[1] + "</Userid>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
+                        strXmlApprovalMatrix_Returnable.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
+
+                        strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_DETAILS>");
+                    }
+                }
+                strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_RETURN_ROOT>");
+
+
+
+                string strConfigTitle = string.Empty;
+                //int CompanyID = 0;
+                string strInitiator = string.Empty;
+                bool LinkDepartment = false;
+                string strTransactionPrefix = string.Empty;
+                string strGPClosureBy = string.Empty;
+                string strGPReceivedBy = string.Empty;
+
+                bool is_Returnable_Gatepass = false;
+
+                bool ShowApprovalMatrix = false;
+
+                strConfigTitle = txtTitle.Text.Trim();
+                //CompanyID = Convert.ToInt32(Convert.ToString(Session["LoggedInUserID"]));
+                LinkDepartment = Convert.ToBoolean(ChkLinkDept.Checked);
+                ShowApprovalMatrix = Convert.ToBoolean(chkShowApprovalMatrix.Checked);
+
+                is_Returnable_Gatepass = Convert.ToBoolean(chk_returnable_gatepass.Checked);
+
+                if (rdbEmployee.Checked == true)
+                {
+                    strInitiator = "E";
+                }
+                else if (rdbRetailer.Checked == true)
+                {
+                    strInitiator = "R";
+                }
+
+                strTransactionPrefix = Convert.ToString(txtGPPrefix.Text.Trim());
+
+                strGPClosureBy = Convert.ToString(hdnGPClosureBy.Value);
+                strGPReceivedBy = Convert.ToString(hdnGPReceivedBy.Value);
+
+                string GatepassDescription = string.Empty;
+                GatepassDescription = Convert.ToString(txtGatepassDescription.Text.Trim());
+
+                DataSet dsGatePassConfig = new DataSet();
                 if (GP_ConfigID == 0)
                 {
-                    string GatePassHeader = string.Empty;
-                    string GPHeaderNumeric = string.Empty;
-                    string GPHeaderUnit = string.Empty;
-
-                    string GatePassType = string.Empty;
-                    string GatePassTermCondition = string.Empty;
-                    string GatePassDoc = string.Empty;
-                    string GPDocMandatory = string.Empty;
-                    string is_quantity = string.Empty;
-
-                    StringBuilder strXmlGatepass_Header = new StringBuilder();
-                    strXmlGatepass_Header.Append(@"<?xml version=""1.0"" ?>");
-                    strXmlGatepass_Header.Append(@"<GATEPASS_HEADER_ROOT>");
-
-                    StringBuilder strXmlGatepass_Type = new StringBuilder();
-                    strXmlGatepass_Type.Append(@"<?xml version=""1.0"" ?>");
-                    strXmlGatepass_Type.Append(@"<GATEPASS_TYPE_ROOT>");
-
-                    StringBuilder strXmlGatepass_TermCondition = new StringBuilder();
-                    strXmlGatepass_TermCondition.Append(@"<?xml version=""1.0"" ?>");
-                    strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM_ROOT>");
-
-                    StringBuilder strXmlGatepass_Doc = new StringBuilder();
-                    strXmlGatepass_Doc.Append(@"<?xml version=""1.0"" ?>");
-                    strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_ROOT>");
-
-                    int ccc = Request.Form.Count;
-                    for (int i = 0; i < ccc; i++)
-                    {
-                        GatePassHeader = "";
-                        GPHeaderUnit = "";
-                        GPHeaderNumeric = "0";
-                        GatePassType = "";
-                        GatePassDoc = "";
-                        GPDocMandatory = "0";
-
-                        is_quantity = "0";
-
-                        GatePassTermCondition = "";
-                        string[] GatePassHeaderArray = Request.Form.GetValues("GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$txtGatepassHeader]");
-                        //string[] GatePassHeader_NumericArray = Request.Form.GetValues("GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkNumeric]");
-
-                        string[] GatePassHeader_UnitArray = Request.Form.GetValues("GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$ddlUnit]");
-
-                        if (GatePassHeaderArray != null)
-                        {
-                            GatePassHeader = GatePassHeaderArray[0];
-                        }
-                        //if (GatePassHeader_NumericArray != null)
-                        //{
-                        //    GPHeaderNumeric = GatePassHeader_NumericArray[0];
-                        //}
-                        if (GatePassHeader_UnitArray != null)
-                        {
-                            GPHeaderUnit = GatePassHeader_UnitArray[0];
-                        }
-
-                        foreach (string key in Request.Form.AllKeys)
-                        {
-                            if (key == "GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$ChkNumeric][]")
-                            {
-                                GPHeaderNumeric = "1";
-                            }
-                            if (key == "GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$chk_is_quantity][]")
-                            {
-                                is_quantity = "1";
-                            }
-                        }
-
-                        string[] GatePassType_Array = Request.Form.GetValues("GatepassType[" + i + "][ctl00$ContentPlaceHolder1$txtGatepassType]");
-                        if (GatePassType_Array != null)
-                        {
-                            GatePassType = GatePassType_Array[0];
-                        }
-
-                        string[] GatePassDoc_Array = Request.Form.GetValues("GatepassDoc[" + i + "][ctl00$ContentPlaceHolder1$txtGPDoc]");
-                        if (GatePassDoc_Array != null)
-                        {
-                            GatePassDoc = GatePassDoc_Array[0];
-                        }
-
-                        foreach (string key in Request.Form.AllKeys)
-                        {
-                            if (key == "GatepassDoc[" + i + "][ctl00$ContentPlaceHolder1$chkDocMandatory][]")
-                            {
-                                GPDocMandatory = "1";
-                            }
-                        }
-
-
-                        string[] GatePassTermCondition_Array = Request.Form.GetValues("GatepassTermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]");
-                        if (GatePassTermCondition_Array != null)
-                        {
-                            GatePassTermCondition = GatePassTermCondition_Array[0];
-                        }
-
-                        if (GatePassHeaderArray != null)
-                        {
-                            strXmlGatepass_Header.Append(@"<GATEPASS_HEADER_DESC>");
-                            strXmlGatepass_Header.Append(@"<GATEPASS_HEADER>" + GatePassHeader + "</GATEPASS_HEADER>");
-                            strXmlGatepass_Header.Append(@"<GATEPASS_NUMERIC>" + GPHeaderNumeric + "</GATEPASS_NUMERIC>");
-                            strXmlGatepass_Header.Append(@"<GATEPASS_UNIT>" + GPHeaderUnit + "</GATEPASS_UNIT>");
-                            strXmlGatepass_Header.Append(@"<GATEPASS_IS_QUANTITY>" + is_quantity + "</GATEPASS_IS_QUANTITY>");
-                            strXmlGatepass_Header.Append(@"</GATEPASS_HEADER_DESC>");
-                        }
-
-                        if (GatePassType_Array != null)
-                        {
-                            strXmlGatepass_Type.Append(@"<GATEPASS_TYPE_DESC>");
-                            strXmlGatepass_Type.Append(@"<GATEPASS_TYPE>" + GatePassType + "</GATEPASS_TYPE>");
-                            strXmlGatepass_Type.Append(@"</GATEPASS_TYPE_DESC>");
-                        }
-
-                        if (GatePassDoc_Array != null)
-                        {
-                            strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_DESC>");
-                            strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_HEADER>" + GatePassDoc + "</GATEPASS_DOC_HEADER>");
-                            strXmlGatepass_Doc.Append(@"<GATEPASS_DOC_MANDATORY>" + GPDocMandatory + "</GATEPASS_DOC_MANDATORY>");
-                            strXmlGatepass_Doc.Append(@"</GATEPASS_DOC_DESC>");
-                        }
-
-                        if (GatePassTermCondition_Array != null)
-                        {
-                            strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM_DESC>");
-                            strXmlGatepass_TermCondition.Append(@"<GATEPASS_TERM>" + GatePassTermCondition + "</GATEPASS_TERM>");
-                            strXmlGatepass_TermCondition.Append(@"</GATEPASS_TERM_DESC>");
-                        }
-
-                    }
-
-                    strXmlGatepass_Header.Append(@"</GATEPASS_HEADER_ROOT>");
-                    strXmlGatepass_Type.Append(@"</GATEPASS_TYPE_ROOT>");
-                    strXmlGatepass_Doc.Append(@"</GATEPASS_DOC_ROOT>");
-                    strXmlGatepass_TermCondition.Append(@"</GATEPASS_TERM_ROOT>");
-
-
-                    //Normal approval matrix
-                    string hdnApprovalMatrix = txtHdn.Text;
-                    string[] strArrayApprovalMatrix = hdnApprovalMatrix.Split(',');
-
-                    XmlDocument xmlDocProm = null;
-                    xmlDocProm = new XmlDocument();
-                    int ApprovalLevel = 0;
-                    ApprovalLevel = strArrayApprovalMatrix.Length - 1;
-
-                    StringBuilder strXmlApprovalMatrix = new StringBuilder();
-                    strXmlApprovalMatrix.Append(@"<?xml version=""1.0"" ?>");
-                    strXmlApprovalMatrix.Append(@"<APPROVAL_MATRIX_ROOT>");
-
-                    for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel; intLocRowCtr++)
-                    {
-                        if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix[intLocRowCtr])))
-                        {
-                            string[] LocArr = strArrayApprovalMatrix[intLocRowCtr].Split('#');
-
-                            strXmlApprovalMatrix.Append(@"<APPROVAL_MATRIX_DETAILS>");
-
-                            strXmlApprovalMatrix.Append(@"<level>" + LocArr[0] + "</level>");
-                            strXmlApprovalMatrix.Append(@"<Userid>" + LocArr[1] + "</Userid>");
-                            strXmlApprovalMatrix.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
-                            strXmlApprovalMatrix.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
-                            strXmlApprovalMatrix.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
-                            strXmlApprovalMatrix.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
-                            strXmlApprovalMatrix.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
-                            strXmlApprovalMatrix.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
-                            strXmlApprovalMatrix.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
-                            strXmlApprovalMatrix.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
-                            strXmlApprovalMatrix.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
-                            strXmlApprovalMatrix.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
-
-                            strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_DETAILS>");
-                        }
-                    }
-                    strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_ROOT>");
-
-                    //Returnable approval matrix
-                    string hdnApprovalMatrix_Returnable = txtHdn_Returnable.Text;
-                    string[] strArrayApprovalMatrix_Returnable = hdnApprovalMatrix_Returnable.Split(',');
-
-                    XmlDocument xmlDocProm_return = null;
-                    xmlDocProm_return = new XmlDocument();
-                    int ApprovalLevel_Returnable = 0;
-                    ApprovalLevel_Returnable = strArrayApprovalMatrix_Returnable.Length - 1;
-
-                    StringBuilder strXmlApprovalMatrix_Returnable = new StringBuilder();
-                    strXmlApprovalMatrix_Returnable.Append(@"<?xml version=""1.0"" ?>");
-                    strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_RETURN_ROOT>");
-
-                    for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel_Returnable; intLocRowCtr++)
-                    {
-                        if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix_Returnable[intLocRowCtr])))
-                        {
-                            string[] LocArr = strArrayApprovalMatrix_Returnable[intLocRowCtr].Split('#');
-
-                            strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_DETAILS>");
-
-                            strXmlApprovalMatrix_Returnable.Append(@"<level>" + LocArr[0] + "</level>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<Userid>" + LocArr[1] + "</Userid>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
-                            strXmlApprovalMatrix_Returnable.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
-
-                            strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_DETAILS>");
-                        }
-                    }
-                    strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_RETURN_ROOT>");
-
-
-
-                    string strConfigTitle = string.Empty;
-                    //int CompanyID = 0;
-                    string strInitiator = string.Empty;
-                    bool LinkDepartment = false;
-                    string strTransactionPrefix = string.Empty;
-                    string strGPClosureBy = string.Empty;
-                    string strGPReceivedBy = string.Empty;
-
-                    bool is_Returnable_Gatepass = false;
-
-                    bool ShowApprovalMatrix = false;
-
-                    strConfigTitle = txtTitle.Text.Trim();
-                    //CompanyID = Convert.ToInt32(Convert.ToString(Session["LoggedInUserID"]));
-                    LinkDepartment = Convert.ToBoolean(ChkLinkDept.Checked);
-                    ShowApprovalMatrix = Convert.ToBoolean(chkShowApprovalMatrix.Checked);
-
-                    is_Returnable_Gatepass = Convert.ToBoolean(chk_returnable_gatepass.Checked);
-
-                    if (rdbEmployee.Checked == true)
-                    {
-                        strInitiator = "E";
-                    }
-                    else if (rdbRetailer.Checked == true)
-                    {
-                        strInitiator = "R";
-                    }
-
-                    strTransactionPrefix = Convert.ToString(txtGPPrefix.Text.Trim());
-
-                    strGPClosureBy = Convert.ToString(hdnGPClosureBy.Value);
-                    strGPReceivedBy = Convert.ToString(hdnGPReceivedBy.Value);
-
-                    string GatepassDescription = string.Empty;
-                    GatepassDescription = Convert.ToString(txtGatepassDescription.Text.Trim());
-
-                    DataSet dsGatePassConfig = new DataSet();
-                    //Gate Pass Document Section Added By Suju 13-July-2020
                     dsGatePassConfig = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_Doc.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), strXmlApprovalMatrix_Returnable.ToString(), ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID);
-
-                    if (dsGatePassConfig.Tables.Count > 0)
-                    {
-                        if (dsGatePassConfig.Tables[0].Rows.Count > 0)
-                        {
-                            int Status = Convert.ToInt32(dsGatePassConfig.Tables[0].Rows[0]["Status"]);
-                            if (Status == 1)
-                            {
-
-                                Response.Redirect(Page.ResolveClientUrl("~/GatePass/GatePassConfig_Listing.aspx"), false);
-                            }
-                            else if (Status == 3)
-                            {
-                                lblErrorMsg.Text = "Title already exists";
-                            }
-                            else if (Status == 4)
-                            {
-                                lblErrorMsg.Text = "Prefix already exists";
-                            }
-                            else if (Status == 2)
-                            {
-                                lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                            }
-                        }
-                    }
                 }
                 else
                 {
-                    string hdnApprovalMatrix = txtHdn.Text;
-                    string[] strArrayApprovalMatrix = hdnApprovalMatrix.Split(',');
+                    dsGatePassConfig = ObjUpkeep.Update_GatePassConfiguration(GP_ConfigID,strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_Doc.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), strXmlApprovalMatrix_Returnable.ToString(), ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID);
+                }
 
-                    XmlDocument xmlDocProm = null;
-                    xmlDocProm = new XmlDocument();
-                    int ApprovalLevel = 0;
-                    ApprovalLevel = strArrayApprovalMatrix.Length - 1;
-
-                    StringBuilder strXmlApprovalMatrix = new StringBuilder();
-                    strXmlApprovalMatrix.Append(@"<?xml version=""1.0"" ?>");
-                    strXmlApprovalMatrix.Append(@"<APPROVAL_MATRIX_ROOT>");
-
-                    for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel; intLocRowCtr++)
+                if (dsGatePassConfig.Tables.Count > 0)
+                {
+                    if (dsGatePassConfig.Tables[0].Rows.Count > 0)
                     {
-                        if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix[intLocRowCtr])))
+                        int Status = Convert.ToInt32(dsGatePassConfig.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
                         {
-                            string[] LocArr = strArrayApprovalMatrix[intLocRowCtr].Split('#');
-
-                            strXmlApprovalMatrix.Append(@"<APPROVAL_MATRIX_DETAILS>");
-
-                            strXmlApprovalMatrix.Append(@"<level>" + LocArr[0] + "</level>");
-                            strXmlApprovalMatrix.Append(@"<Userid>" + LocArr[1] + "</Userid>");
-                            strXmlApprovalMatrix.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
-                            strXmlApprovalMatrix.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
-                            strXmlApprovalMatrix.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
-                            strXmlApprovalMatrix.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
-                            strXmlApprovalMatrix.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
-                            strXmlApprovalMatrix.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
-                            strXmlApprovalMatrix.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
-                            strXmlApprovalMatrix.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
-                            strXmlApprovalMatrix.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
-                            strXmlApprovalMatrix.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
-
-                            strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_DETAILS>");
+                            Response.Redirect(Page.ResolveClientUrl("~/GatePass/GatePassConfig_Listing.aspx"), false);
                         }
-                    }
-                    strXmlApprovalMatrix.Append(@"</APPROVAL_MATRIX_ROOT>");
-
-                    //Returnable approval matrix
-
-                    string hdnApprovalMatrix_Returnable = txtHdn_Returnable.Text;
-                    string[] strArrayApprovalMatrix_Returnable = hdnApprovalMatrix_Returnable.Split(',');
-                    StringBuilder strXmlApprovalMatrix_Returnable = new StringBuilder();
-                    if (!string.IsNullOrEmpty(txtHdn_Returnable.Text))
-                    {
-                        XmlDocument xmlDocProm_return = null;
-                        xmlDocProm_return = new XmlDocument();
-                        int ApprovalLevel_Returnable = 0;
-                        ApprovalLevel_Returnable = strArrayApprovalMatrix_Returnable.Length - 1;
-
-                        strXmlApprovalMatrix_Returnable.Append(@"<?xml version=""1.0"" ?>");
-                        strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_RETURN_ROOT>");
-
-                        for (int intLocRowCtr = 0; intLocRowCtr <= ApprovalLevel_Returnable; intLocRowCtr++)
+                        else if (Status == 3)
                         {
-                            if (!string.IsNullOrEmpty(Convert.ToString(strArrayApprovalMatrix_Returnable[intLocRowCtr])))
-                            {
-                                string[] LocArr = strArrayApprovalMatrix_Returnable[intLocRowCtr].Split('#');
-
-                                strXmlApprovalMatrix_Returnable.Append(@"<APPROVAL_MATRIX_DETAILS>");
-
-                                strXmlApprovalMatrix_Returnable.Append(@"<level>" + LocArr[0] + "</level>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<Userid>" + LocArr[1] + "</Userid>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<UserGroupid>" + LocArr[2] + "</UserGroupid>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<SendEmail>" + LocArr[3] + "</SendEmail>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<SendSMS>" + LocArr[4] + "</SendSMS>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<SendNotification>" + LocArr[5] + "</SendNotification>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<MobileAccess>" + LocArr[6] + "</MobileAccess>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<WebAccess>" + LocArr[7] + "</WebAccess>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<ApprovalRights>" + LocArr[8] + "</ApprovalRights>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<HoldRights>" + LocArr[9] + "</HoldRights>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<RejectRights>" + LocArr[10] + "</RejectRights>");
-                                strXmlApprovalMatrix_Returnable.Append(@"<nextactionlevel>" + LocArr[11] + "</nextactionlevel>");
-
-                                strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_DETAILS>");
-                            }
+                            lblErrorMsg.Text = "Title already exists";
                         }
-                        strXmlApprovalMatrix_Returnable.Append(@"</APPROVAL_MATRIX_RETURN_ROOT>");
-                    }
-
-                    string strConfigTitle = string.Empty;
-                    //int CompanyID = 0;
-                    string strInitiator = string.Empty;
-                    bool LinkDepartment = false;
-                    string strTransactionPrefix = string.Empty;
-                    string strGPClosureBy = string.Empty;
-                    string strGPReceivedBy = string.Empty;
-
-                    bool is_Returnable_Gatepass = false;
-
-                    bool ShowApprovalMatrix = false;
-
-                    strConfigTitle = txtTitle.Text.Trim();
-                    //CompanyID = Convert.ToInt32(Session["CompanyID"]);
-                    LinkDepartment = Convert.ToBoolean(ChkLinkDept.Checked);
-                    ShowApprovalMatrix = Convert.ToBoolean(chkShowApprovalMatrix.Checked);
-                    is_Returnable_Gatepass = Convert.ToBoolean(chk_returnable_gatepass.Checked);
-                    if (rdbEmployee.Checked == true)
-                    {
-                        strInitiator = "E";
-                    }
-                    else if (rdbRetailer.Checked == true)
-                    {
-                        strInitiator = "R";
-                    }
-                    strTransactionPrefix = Convert.ToString(txtGPPrefix.Text.Trim());
-                    strGPClosureBy = Convert.ToString(hdnGPClosureBy.Value);
-
-                    string GatepassDescription = string.Empty;
-                    GatepassDescription = Convert.ToString(txtGatepassDescription.Text.Trim());
-
-                    DataSet dsGatePassConfig = new DataSet();
-                    dsGatePassConfig = ObjUpkeep.Update_GatePassConfiguration(GP_ConfigID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix.ToString(), strXmlApprovalMatrix_Returnable.ToString(), ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
-
-                    if (dsGatePassConfig.Tables.Count > 0)
-                    {
-                        if (dsGatePassConfig.Tables[0].Rows.Count > 0)
+                        else if (Status == 4)
                         {
-                            int Status = Convert.ToInt32(dsGatePassConfig.Tables[0].Rows[0]["Status"]);
-                            if (Status == 1)
-                            {
-                                Response.Redirect(Page.ResolveClientUrl("~/GatePass/GatePassConfig_Listing.aspx"), false);
-                            }
-                            else if (Status == 3)
-                            {
-                                btnAddGPTerms.Focus();
-                                lblErrorMsg.Text = "Title already exists";
-                            }
-                            else if (Status == 4)
-                            {
-                                btnAddGPTerms.Focus();
-                                lblErrorMsg.Text = "Prefix already exists";
-                            }
-                            else if (Status == 2)
-                            {
-                                btnAddGPTerms.Focus();
-                                lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                            }
+                            lblErrorMsg.Text = "Prefix already exists";
+                        }
+                        else if (Status == 2)
+                        {
+                            lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
                         }
                     }
                 }
-
             }
 
             catch (Exception ex)
@@ -1391,12 +1010,6 @@ namespace Upkeep_v3.GatePass
                         ddlUnit.DataValueField = "Unit_ID";
                         ddlUnit.DataBind();
                         ddlUnit.Items.Insert(0, new ListItem("--Select--", "0"));
-
-                        ddlUnit1.DataSource = ds.Tables[1];
-                        ddlUnit1.DataTextField = "Unit_Type_Desc";
-                        ddlUnit1.DataValueField = "Unit_ID";
-                        ddlUnit1.DataBind();
-                        ddlUnit1.Items.Insert(0, new ListItem("--Select--", "0"));
                     }
                 }
             }
@@ -1405,7 +1018,6 @@ namespace Upkeep_v3.GatePass
                 throw ex;
             }
         }
-
 
         public void Fetch_Answer()
         {
@@ -1425,19 +1037,10 @@ namespace Upkeep_v3.GatePass
                         ddlUnit.DataTextField = "Ans_Type_Desc";
                         ddlUnit.DataValueField = "Ans_Type_ID";
 
-                        ddlUnit1.DataSource = ds.Tables[0];
-                        ddlUnit1.DataTextField = "Ans_Type_Desc";
-                        ddlUnit1.DataValueField = "Ans_Type_ID";
-
-
                         ddlUnit.DataBind();
-                        ddlUnit1.DataBind();
 
                         for (int i = 0; i < ddlUnit.Items.Count - 1; i++)
                             ddlUnit.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString();
-                        for (int i = 0; i < ddlUnit1.Items.Count - 1; i++)
-                            ddlUnit1.Items[i].Attributes["data-isMulti"] = ds.Tables[0].Rows[i]["IS_MultiValue"].ToString(); //ddlAns.Items.Insert(0, new ListItem("--Select--", "0"));
-                                                                                                                             //ddlAns.SelectedIndex = 0;
 
                         //ddlAns.Items[0].Attributes["disabled"] = "disabled";
                         //ddlAns.Items[1].Attributes["data-icon"] = "glyphicon-music";
@@ -1786,376 +1389,6 @@ namespace Upkeep_v3.GatePass
                 {
                     throw ex;
                 }
-        }
-
-        public string bindGP_Type()
-        {
-            string data = "";
-            DataSet ds_GP_Type = (DataSet)Session["ds_GP_Type"];
-
-            if (ds_GP_Type.Tables[2].Rows.Count > 0)
-            {
-                int count = Convert.ToInt32(ds_GP_Type.Tables[2].Rows.Count);
-
-                for (int i = 0; i < count; i++)
-                {
-                    string strSrNo = Convert.ToString(ds_GP_Type.Tables[2].Rows[i]["SrNo"]);
-                    int GP_TypeID = Convert.ToInt32(ds_GP_Type.Tables[2].Rows[i]["GP_Type_ID"]);
-                    string GP_Type = Convert.ToString(ds_GP_Type.Tables[2].Rows[i]["GP_Type_Desc"]);
-
-                    data += "<tr><td>" + strSrNo + "</td><td>" + GP_Type + "</td><td><a class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' onclick='BindGP_Type(" + GP_TypeID + ")' style='color: white;' class='la la-edit'></i> </a>  <a class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'  title='Delete record'><i id='btnDeleteHeader' onclick='DeleteGP_Type(" + GP_TypeID + ")' style='color: white;' class='la la-trash'></i> </a> </td></tr>";
-                }
-            }
-            return data;
-        }
-
-        public string bindGP_Header_Type_Terms()
-        {
-            string data = "";
-            DataSet ds = new DataSet();
-            try
-            {
-                ds = ObjUpkeep.Bind_GatePassConfiguration(GP_ConfigID);
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables.Count > 1)
-                    {
-                        if (ds.Tables[1].Rows.Count > 0)
-                        {
-                            int count = Convert.ToInt32(ds.Tables[1].Rows.Count);
-
-                            for (int i = 0; i < count; i++)
-                            {
-                                string strSrNo = Convert.ToString(ds.Tables[1].Rows[i]["SrNo"]);
-                                int GP_HeaderID = Convert.ToInt32(ds.Tables[1].Rows[i]["GP_Header_ID"]);
-                                string GP_Header = Convert.ToString(ds.Tables[1].Rows[i]["Header_Name"]);
-                                string Numeric = Convert.ToString(ds.Tables[1].Rows[i]["Numeric"]);
-                                string Unit = Convert.ToString(ds.Tables[1].Rows[i]["Unit_Type_Desc"]);
-
-                                data += "<tr><td>" + strSrNo + "</td><td>" + GP_Header + "</td><td>" + Numeric + "</td><td>" + Unit + "</td><td><a class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' onclick='BindGP_Header(" + GP_HeaderID + ")' style='color: white;' class='la la-edit'></i> </a>  <a class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'  title='Delete record'><i id='btnDeleteHeader' onclick='DeleteGP_Header(" + GP_HeaderID + ")' style='color: white;' class='la la-trash'></i> </a> </td></tr>";
-
-
-                            }
-                        }
-                    }
-                    if (ds.Tables.Count > 2)
-                    {
-                        Session["ds_GP_Type"] = ds;
-                        bindGP_Type();
-                        bindGP_Terms();
-                    }
-                }
-
-                //if (ds.Tables.Count > 1)
-                //{
-                //    if (ds.Tables[1].Rows.Count > 0)
-                //    {
-
-
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return data;
-        }
-
-        public string bindGP_Terms()
-        {
-            string data = "";
-            DataSet ds_GP_Type = (DataSet)Session["ds_GP_Type"];
-
-            if (ds_GP_Type.Tables[3].Rows.Count > 0)
-            {
-                int count = Convert.ToInt32(ds_GP_Type.Tables[3].Rows.Count);
-
-                for (int i = 0; i < count; i++)
-                {
-                    string strSrNo = Convert.ToString(ds_GP_Type.Tables[3].Rows[i]["SrNo"]);
-                    int GP_Terms_ID = Convert.ToInt32(ds_GP_Type.Tables[3].Rows[i]["GP_Terms_ID"]);
-                    string Terms_Desc = Convert.ToString(ds_GP_Type.Tables[3].Rows[i]["Terms_Desc"]);
-
-                    data += "<tr><td>" + strSrNo + "</td><td>" + Terms_Desc + "</td><td><a class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' onclick='BindGP_Term(" + GP_Terms_ID + ")' style='color: white;' class='la la-edit'></i> </a>  <a class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top'  title='Delete record'><i id='btnDeleteHeader' onclick='DeleteGP_Term(" + GP_Terms_ID + ")' style='color: white;' class='la la-trash'></i> </a> </td></tr>";
-
-
-                }
-            }
-
-            return data;
-        }
-
-        protected void btnBindGPType_Click(object sender, EventArgs e)
-        {
-            Session["GPTypeID"] = Convert.ToString(hdnGPTypeID.Value);
-            int GatePassTypeID = 0;
-            DataSet dsGatePassType = new DataSet();
-            DataSet dsDeleteGPType = new DataSet();
-            try
-            {
-                if (Convert.ToString(Session["GPTypeID"]) != "")
-                {
-                    hdnGPTypeID.Value = "";
-                    GatePassTypeID = Convert.ToInt32(Session["GPTypeID"]);
-
-                    dsGatePassType = ObjUpkeep.GatePassType_CRUD(GatePassTypeID, "", 0, LoggedInUserID, "R");
-
-                    if (dsGatePassType.Tables.Count > 0)
-                    {
-                        if (dsGatePassType.Tables[0].Rows.Count > 0)
-                        {
-                            txtGatePassType1.Text = Convert.ToString(dsGatePassType.Tables[0].Rows[0]["GP_Type_Desc"]);
-
-                            mpeGatePassType.Show();
-                        }
-                    }
-                }
-
-                int DeleteGatePassTypeID = 0;
-                Session["DeleteGPTypeID"] = Convert.ToString(hdnDeleteGPTypeID.Value);
-                if (Convert.ToString(Session["DeleteGPTypeID"]) != "")
-                {
-                    DeleteGatePassTypeID = Convert.ToInt32(Session["DeleteGPTypeID"]);
-
-                    dsDeleteGPType = ObjUpkeep.GatePassType_CRUD(DeleteGatePassTypeID, "", 0, LoggedInUserID, "D");
-                    if (dsDeleteGPType.Tables.Count > 0)
-                    {
-                        if (dsDeleteGPType.Tables[0].Rows.Count > 0)
-                        {
-                            Session["DeleteGPTypeID"] = "";
-                            Session["GPTypeID"] = "";
-                            int Status = Convert.ToInt32(dsDeleteGPType.Tables[0].Rows[0]["Status"]);
-                            if (Status == 1)
-                            {
-                                Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
-                                btnAddGPHeader.Focus();
-                            }
-
-
-                        }
-                    }
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-        protected void btnBindGPHeader_Click(object sender, EventArgs e)
-        {
-            Session["GPHeaderID"] = Convert.ToString(hdnGPHeaderID.Value);
-            int GatePassHeaderID = 0;
-            DataSet dsGatePassHeader = new DataSet();
-            DataSet dsDeleteGPHeader = new DataSet();
-            try
-            {
-                if (Convert.ToString(Session["GPHeaderID"]) != "")
-                {
-                    hdnGPHeaderID.Value = "";
-                    GatePassHeaderID = Convert.ToInt32(Session["GPHeaderID"]);
-                    //bindChecklistPoint(ChecklistPointID);
-                    dsGatePassHeader = ObjUpkeep.GatePassHeader_CRUD(GatePassHeaderID, "", false, 0, 0, LoggedInUserID, "R");
-
-                    if (dsGatePassHeader.Tables.Count > 0)
-                    {
-                        if (dsGatePassHeader.Tables[0].Rows.Count > 0)
-                        {
-                            txtGatepassHeader1.Text = Convert.ToString(dsGatePassHeader.Tables[0].Rows[0]["Header_Name"]);
-                            int Is_Numeric = Convert.ToInt32(dsGatePassHeader.Tables[0].Rows[0]["Is_Numeric"]);
-                            if (Is_Numeric == 1)
-                            {
-                                ChkNumeric1.Checked = true;
-                            }
-                            else
-                            {
-                                ChkNumeric1.Checked = false;
-                            }
-
-                            ddlUnit1.SelectedValue = Convert.ToString(dsGatePassHeader.Tables[0].Rows[0]["Unit_ID"]);
-
-                            mpeGPHeader.Show();
-                        }
-                    }
-                }
-
-                int DeleteGatePassHeaderID = 0;
-                Session["DeleteGPHeaderID"] = Convert.ToString(hdnDeleteGPHeaderID.Value);
-                if (Convert.ToString(Session["DeleteGPHeaderID"]) != "")
-                {
-                    DeleteGatePassHeaderID = Convert.ToInt32(Session["DeleteGPHeaderID"]);
-
-                    dsDeleteGPHeader = ObjUpkeep.GatePassHeader_CRUD(DeleteGatePassHeaderID, "", false, 0, GP_ConfigID, LoggedInUserID, "D");
-                    if (dsDeleteGPHeader.Tables.Count > 0)
-                    {
-                        if (dsDeleteGPHeader.Tables[0].Rows.Count > 0)
-                        {
-                            Session["DeleteGPHeaderID"] = "";
-                            Session["GPHeaderID"] = "";
-                            int Status = Convert.ToInt32(dsDeleteGPHeader.Tables[0].Rows[0]["Status"]);
-                            if (Status == 1)
-                            {
-                                Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
-                                btnAddGPHeader.Focus();
-                            }
-
-                            else if (Status == 2)
-                            {
-                                lblGPHeaderErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                            }
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        protected void btnBindGPTerms_Click(object sender, EventArgs e)
-        {
-            Session["GPTermID"] = Convert.ToString(hdnGPTermID.Value);
-            int GatePassTermID = 0;
-            DataSet dsGatePassTerm = new DataSet();
-            DataSet dsDeleteGPTerm = new DataSet();
-
-            try
-            {
-                if (Convert.ToString(Session["GPTermID"]) != "")
-                {
-                    hdnGPTermID.Value = "";
-                    GatePassTermID = Convert.ToInt32(Session["GPTermID"]);
-
-                    dsGatePassTerm = ObjUpkeep.GatePassTerm_CRUD(GatePassTermID, "", 0, LoggedInUserID, "R");
-
-                    if (dsGatePassTerm.Tables.Count > 0)
-                    {
-                        if (dsGatePassTerm.Tables[0].Rows.Count > 0)
-                        {
-                            txtTerms.Text = Convert.ToString(dsGatePassTerm.Tables[0].Rows[0]["Terms_Desc"]);
-
-                            mpeGatePassTerm.Show();
-                        }
-                    }
-                }
-
-                int DeleteGatePassTermID = 0;
-                Session["DeleteGPTermID"] = Convert.ToString(hdnDeleteGPTermID.Value);
-                if (Convert.ToString(Session["DeleteGPTermID"]) != "")
-                {
-                    DeleteGatePassTermID = Convert.ToInt32(Session["DeleteGPTermID"]);
-
-                    dsDeleteGPTerm = ObjUpkeep.GatePassTerm_CRUD(DeleteGatePassTermID, "", 0, LoggedInUserID, "D");
-                    if (dsDeleteGPTerm.Tables.Count > 0)
-                    {
-                        if (dsDeleteGPTerm.Tables[0].Rows.Count > 0)
-                        {
-                            Session["DeleteGPTermID"] = "";
-                            Session["GPTermID"] = "";
-                            int Status = Convert.ToInt32(dsDeleteGPTerm.Tables[0].Rows[0]["Status"]);
-                            if (Status == 1)
-                            {
-                                Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
-                                btnAddGPHeader.Focus();
-                            }
-
-
-                        }
-                    }
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-
-        protected void btnCloseAddGPHeader_Click(object sender, EventArgs e)
-        {
-            Session["GPHeaderID"] = "";
-            txtGatepassHeader1.Text = "";
-            ChkNumeric1.Checked = false;
-            ddlUnit1.SelectedValue = "0";
-            mpeGPHeader.Hide();
-        }
-
-        protected void btnSaveGPHeader_Click(object sender, EventArgs e)
-        {
-            DataSet dsGatePassHeader = new DataSet();
-            string strGPHeader = string.Empty;
-            bool GPHeaderNumeric = false;
-            int GPHeaderUnit = 0;
-            int GatePassHeaderID = 0;
-            string strAction = string.Empty;
-            try
-            {
-                strGPHeader = Convert.ToString(txtGatepassHeader1.Text.Trim());
-                if (ChkNumeric.Checked == true)
-                {
-                    GPHeaderNumeric = true;
-                }
-                else
-                {
-                    GPHeaderNumeric = false;
-                }
-                GPHeaderUnit = Convert.ToInt32(ddlUnit.SelectedValue);
-                if (Convert.ToString(Session["GPHeaderID"]) != "")
-                {
-                    GatePassHeaderID = Convert.ToInt32(Session["GPHeaderID"]);
-                }
-                if (GatePassHeaderID > 0)
-                {
-                    strAction = "U";
-                }
-                else
-                {
-                    strAction = "C";
-                }
-
-                dsGatePassHeader = ObjUpkeep.GatePassHeader_CRUD(GatePassHeaderID, strGPHeader, GPHeaderNumeric, GPHeaderUnit, GP_ConfigID, LoggedInUserID, strAction);
-                if (dsGatePassHeader.Tables.Count > 0)
-                {
-                    if (dsGatePassHeader.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(dsGatePassHeader.Tables[0].Rows[0]["Status"]);
-                        if (Status == 1)
-                        {
-                            Session["GPHeaderID"] = "";
-                            txtGatepassHeader1.Text = "";
-                            ChkNumeric1.Checked = false;
-                            ddlUnit1.SelectedIndex = -1;
-                            Response.Redirect(Page.ResolveClientUrl(Convert.ToString(Session["CurrentURL"])), false);
-                            btnAddGPHeader.Focus();
-                        }
-                        else if (Status == 3)
-                        {
-                            lblGPHeaderErrorMsg.Text = "Gate Pass Header already exists";
-                        }
-                        else if (Status == 2)
-                        {
-                            lblGPHeaderErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
     }

@@ -73,67 +73,7 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        function BindGP_Header(GP_HeaderID) {
-            $("#hdnGPHeaderID").val(GP_HeaderID)
-            document.getElementById('<%= btnBindGPHeader.ClientID %>').click();
-        }
 
-        function DeleteGP_Header(GP_HeaderID) {
-            $("#hdnDeleteGPHeaderID").val(GP_HeaderID)
-            if (confirm('Are you sure you want to delete this Gate Pass Header?')) {
-                document.getElementById('<%= btnBindGPHeader.ClientID %>').click();
-            } else {
-                // Do nothing!
-            }
-        }
-
-
-        function BindGP_Type(GP_TypeID) {
-            $("#hdnGPTypeID").val(GP_TypeID)
-            document.getElementById('<%= btnBindGPType.ClientID %>').click();
-        }
-
-        function DeleteGP_Type(GP_TypeID) {
-            $("#hdnDeleteGPTypeID").val(GP_TypeID)
-            if (confirm('Are you sure you want to delete this Gate Pass Type?')) {
-                document.getElementById('<%= btnBindGPType.ClientID %>').click();
-            } else {
-                // Do nothing!
-            }
-        }
-
-        function BindGP_Doc(Doc_Config_ID) {
-            $("#hdnGPDocID").val(Doc_Config_ID)
-            document.getElementById('<%= btnBindGPDoc.ClientID %>').click();
-        }
-
-        function DeleteGP_Doc(Doc_Config_ID) {
-            $("#hdnDeleteGPDocID").val(Doc_Config_ID)
-            if (confirm('Are you sure you want to delete this Gate Pass Document?')) {
-                document.getElementById('<%= btnBindGPDoc.ClientID %>').click();
-            } else {
-                // Do nothing!
-            }
-        }
-
-
-        function BindGP_Term(GP_TermID) {
-            $("#hdnGPTermID").val(GP_TermID)
-            document.getElementById('<%= btnBindGPTerms.ClientID %>').click();
-        }
-
-        function DeleteGP_Term(GP_TermID) {
-            $("#hdnDeleteGPTermID").val(GP_TermID)
-            if (confirm('Are you sure you want to delete this Gate Pass Terms?')) {
-                document.getElementById('<%= btnBindGPTerms.ClientID %>').click();
-            } else {
-                // Do nothing!
-            }
-        }
-
-
-    </script>
     <script>
         function init_autosize() {
             var autosize_textarea = $('.autosize_textarea');
@@ -147,7 +87,7 @@
             init_plugins();
 
             $('.GatepassHeader_repeater').repeater({
-                initEmpty: false,
+                initEmpty: true,
                 show: function () {
                     $(this).slideDown();
                     var counter = $(this).parents('.GatepassHeader_repeater').find('.question_count');
@@ -172,7 +112,7 @@
             });
 
             $('.GatepassType_repeater').repeater({
-                initEmpty: false,
+                initEmpty: true,
                 show: function () {
                     $(this).slideDown();
                     var counter = $(this).parents('.GatepassType_repeater').find('.GatepassType_count');
@@ -199,7 +139,7 @@
             //Gate Pass Document Section Added By Suju 13-July-2020
 
             $('.GatepassDoc_repeater').repeater({
-                initEmpty: false,
+                initEmpty: true,
                 show: function () {
                     $(this).slideDown();
                     var counter = $(this).parents('.GatepassDoc_repeater').find('.GatepassDoc_count');
@@ -225,7 +165,7 @@
             //End Gate Pass Document Section
 
             $('.TermComdition_repeater').repeater({
-                initEmpty: false,
+                initEmpty: true,
                 show: function () {
                     $(this).slideDown();
                     var counter = $(this).parents('.TermComdition_repeater').find('.TermCondition_count');
@@ -249,6 +189,7 @@
                 },
             });
 
+
             $('body').on('change', '.GatepassHeader_repeater .question_textarea', function () {
                 var error_ele = $(this).parent().find('.error_question');
                 error_ele.html('').parents('.form-group').removeClass('has-error');
@@ -257,22 +198,7 @@
                 }
             });
 
-            //$('body').on('change', '.question_repeater .type_select', function()
-            //{
-            //    var error_ele = $(this).parent().find('.error_type');
-            //    error_ele.html('').parents('.form-group').removeClass('has-error');
-            //    if($(this).val() == '')
-            //    {
-            //        $(this).parent().find('.error_type').html('Select answer type.').parents('.form-group').addClass('has-error');
-            //    }
-            //    if ($(this).val() == 'Options')
-            //    {
-            //        $(this).closest('.form-group').find('.options_group').slideDown();
-            //    }
-            //    else {
-            //        $(this).closest('.form-group').find('.options_group').slideUp();
-            //    }
-            //});
+
 
             $('body').on('change', '.GatepassType_repeater .GatepassType_textarea', function () {
                 var error_ele = $(this).parent().find('.error_GatepassType');
@@ -290,77 +216,7 @@
                 }
             });
 
-            ////$('#frmGatePass').submit(function (event) {
-            //$('#btnSave').click(function () {
-            //    //alert('hiiiii');
-            //    var is_valid = true;
-            //    //debugger;
-            //    if ($('#txtTitle').val() == "") {
-            //        is_valid = false;
-            //        $(this).parent().find('.error_title').html('Enter Title.').parents('.form-group').addClass('has-error');
-            //    }
-            //    else {
-            //        var error_ele = $(this).parent().find('.error_title');
-            //        error_ele.html('').parents('.form-group').removeClass('has-error');
-            //    }
 
-            //    if ($('#txtGPPrefix').val() == "") {
-            //        is_valid = false;
-            //        $(this).parent().find('.error_Prefix').html('Enter Prefix.').parents('.form-group').addClass('has-error');
-            //    }
-            //    else {
-            //        var error_ele = $(this).parent().find('.error_Prefix');
-            //        error_ele.html('').parents('.form-group').removeClass('has-error');
-            //    }
-
-
-            //    $('.GatepassHeader_repeater .question_textarea').each(function (index, element) {
-            //        if ($(this).val().trim() == '') {
-            //            is_valid = false;
-            //            $(this).parent().find('.error_question').html('Enter Header.').parents('.form-group').addClass('has-error');
-            //        }
-            //    });
-
-            //    $('.GatepassType_repeater .GatepassType_textarea').each(function (index, element) {
-            //        if ($(this).val().trim() == '') {
-            //            is_valid = false;
-            //            $(this).parent().find('.error_GatepassType').html('Enter Type.').parents('.form-group').addClass('has-error');
-            //        }
-            //    });
-
-            //    $('.TermComdition_repeater .TermCondition_textarea').each(function (index, element) {
-            //        if ($(this).val().trim() == '') {
-            //            is_valid = false;
-            //            $(this).parent().find('.error_TermCondition').html('Enter Terms and Condition.').parents('.form-group').addClass('has-error');
-            //        }
-            //    });
-
-
-            //    if ($('.GatepassHeader_repeater .question_textarea').length == 0) {
-            //        //alert('sdf');
-            //        is_valid = false;
-
-            //        $('#error_question_repeater').html('Add at least one Header.');
-            //    }
-
-            //    if ($('#txtGatepassDescription').val() == "") {
-            //        is_valid = false;
-            //        $(this).parent().find('.error_title').html('Enter Gatepass Description.').parents('.form-group').addClass('has-error');
-            //    }
-            //    else {
-            //        var error_ele = $(this).parent().find('.error_title');
-            //        error_ele.html('').parents('.form-group').removeClass('has-error');
-            //    }
-
-            //    console.log('is_valid = ' + is_valid);
-
-            //    // alert('sgdfgdfgfdfdfdfddf');
-
-            //    if (!is_valid) {
-            //        //alert('sgdfgdfgdf');
-            //        event.preventDefault();
-            //    }
-            //});
         });
     </script>
 
@@ -369,23 +225,14 @@
         var txtControl = null;
         var txtHdn = null;
         function PopUpGrid(obj, objhdn, call_type) {
-            //debugger;
-            //alert($('#<%= mpeApprovalMatrix.ClientID %>').text());
-            <%--$find('<%= mpeApprovalMatrix.ClientID %>').show();--%>
-           <%-- $('#<%= pnlApprovalMatrix.ClientID %>').show();--%>
-            //alert(call_type);
             $('#hdn_call_type').val(call_type);
-
             $find('<%= mpeApprovalMatrix.ClientID %>').show();
             txtHdn = objhdn.toString();
             txtControl = obj;
         }
 
         function FunEditClick(ID, Desc) {
-            //debugger;
             txtControl.value = Desc;
-            //document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
-            //document.getElementById("<%= txtHdn.ClientID%>").value = ID;
 
             if ($('#hdn_call_type').val() == 'close') {
                 if (txtHdn == "") {
@@ -491,49 +338,8 @@
                 else {
                     var RejectRights = 0;
                 }
-
-
-                //if (window.document.getElementById(VarLocRowObj).children[5].children[0].value == "") {
-                //    ShowNotification("Warning !", "Time Should not be blank");
-                //    //alert('Time Should not be blank');
-                //    return false;
-                //}
-                //else {
-                //    var time = window.document.getElementById(VarLocRowObj).children[5].children[0].value;
-                //}
-
-
                 var nxtlvl = window.document.getElementById(VarLocRowObj).children[10].innerHTML;
-
-                //if (window.document.getElementById(VarLocRowObj).children[6].children[2].value == "") {
-                //    var inf = "0#0";
-                //}
-                //else {
-                //    var inf = window.document.getElementById(VarLocRowObj).children[6].children[2].value;
-                //}
-
-
-                //if (document.getElementById(VarLocRowObj).children[7].children[0].checked == true) {
-                //    var SendEmailInformation = 1;
-                //}
-                //else {
-                //    var SendEmailInformation = 0;
-                //}
-
-                //if (document.getElementById(VarLocRowObj).children[8].children[0].checked == true) {
-                //    var SendEmailTextInformation = 1;
-                //}
-                //else {
-                //    var SendEmailTextInformation = 0;
-                //}
-
-
-                //var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendEmailText + "#" + time + "#" + nxtlvl + "#" + inf + "#" + SendEmailInformation + "#" + SendEmailTextInformation;
-                //var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendSMS + "#" + SendNotification + "#" + time + "#" + nxtlvl;
                 var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendSMS + "#" + SendNotification + "#" + MobileAccess + "#" + WebAccess + "#" + ApprovalRights + "#" + HoldRights + "#" + RejectRights + "#" + nxtlvl;
-
-                //alert(strInfo);
-
                 if (window.document.getElementById("<%= txtHdn.ClientID%>").value == "") {
                     <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += "=$=" + strInfo + "=$=";--%>
                     window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + ",";
@@ -661,6 +467,74 @@
 
     </script>
 
+    <script>
+        $(document).ready(function () {
+            if ($('#hdnGPConfigID').val() != "0") {
+                Bind_GatePassConfiguration($('#hdnGPConfigID').val());
+            }
+
+            function Bind_GatePassConfiguration(WPConfigID) {
+
+                //Gate Pass Type
+                var GPTypes = $('#hdnGPTypeValues').val();
+                var arrGPT = GPTypes.split("~");
+                for (var i = 0; i < arrGPT.length; i++) {
+                    $("#GPT_Repeater_Create").click();
+                    var arrIDGPT = arrGPT[i].split("||");
+                    $("input[name~='GatepassType[" + i + "][hdnRepeaterGPTID]']").val(arrIDGPT[0]);
+                    $("textarea[name~='GatepassType[" + i + "][ctl00$ContentPlaceHolder1$txtGatepassType]']").val(arrIDGPT[1]);
+                }
+
+                //Gate Pass Document
+                var GPDocs = $('#hdnGPDocumentValues').val();
+                var arrGPDoc = GPDocs.split("~");
+                for (var i = 0; i < arrGPDoc.length; i++) {
+                    var header = $(".dvGatePassDoc");
+                    $("#GPDocs_Repeater_Create").click();
+                    var arrIDDocs = arrGPDoc[i].split("||");
+                    $("input[name~='GatepassDoc[" + i + "][hdnRepeaterGPDocID]']").val(arrIDDocs[0]);
+                    $("textarea[name~='GatepassDoc[" + i + "][ctl00$ContentPlaceHolder1$txtGPDoc]']").val(arrIDDocs[1]);
+
+                    var IsMandatory = arrIDDocs[2];
+                    if (IsMandatory == "True") {
+                        header.children().find("#chkDocMandatory").prop('checked', true);
+                    }
+                }
+
+                //Terms and Condiition 
+                var terms = $('#hdnGPTermsValues').val();
+                var arrTerms = terms.split("~");
+                for (var i = 0; i < arrTerms.length; i++) {
+                    $("#divTermAdd").click();
+                    var arrIDTerm = arrTerms[i].split("||");
+                    $("input[name~='GatepassTermCondition[" + i + "][hdnRepeaterTermID]']").val(arrIDTerm[0]);
+                    $("textarea[name~='GatepassTermCondition[" + i + "][ctl00$ContentPlaceHolder1$txtTermComdition]']").val(arrIDTerm[1]);
+                }
+
+
+                //Bind GP Headers with answesrs
+                var headers = $('#hdnGPHeaderValues').val();
+                var arrHeaders = headers.split("~");
+                for (var i = 0; i < arrHeaders.length; i++) {
+                    $("#divHeaderAdd").click();
+                    var arrHeaderData = arrHeaders[i].split("||");
+                    $("input[name~='GatepassHeader[" + i + "][hdntxtGatepassHeader]']").val(arrHeaderData[0]);
+                    $("input[name~='GatepassHeader[" + i + "][ctl00$ContentPlaceHolder1$txtGatepassHeader]']").val(arrHeaderData[1]);
+                    var headerList = $(".dvGatepassHeader");
+                    headerList.not(".updated").attr("data-HeaderID", arrHeaderData[0]);
+                    headerList.addClass("updated");
+                    var headerData = $("[data-headerid='" + arrHeaderData[0] + "']");
+                    var IsMandatory = arrHeaderData[2];
+                    if (IsMandatory == "Yes") {
+                        headerData.children().find("#ChkNumeric").prop('checked', true);
+                    }
+                    headerData.children().find("select").val(arrHeaderData[3]);
+
+                }
+            }
+        });
+    </script>
+
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="row">
@@ -671,15 +545,16 @@
 
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmGatePass" method="post">--%>
                         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
-                        <asp:HiddenField runat="server" ID="hdnGPHeaderID" ClientIDMode="Static" />
-                        <asp:HiddenField runat="server" ID="hdnDeleteGPHeaderID" ClientIDMode="Static" />
                         <asp:HiddenField runat="server" ID="hdnGPTypeID" ClientIDMode="Static" />
-                        <asp:HiddenField runat="server" ID="hdnDeleteGPTypeID" ClientIDMode="Static" />
-                        <asp:HiddenField runat="server" ID="hdnGPTermID" ClientIDMode="Static" />
-                        <asp:HiddenField runat="server" ID="hdnDeleteGPTermID" ClientIDMode="Static" />
-
                         <asp:HiddenField runat="server" ID="hdnGPDocID" ClientIDMode="Static" />
-                        <asp:HiddenField runat="server" ID="hdnDeleteGPDocID" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnGPHeaderValues" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnGPTypeValues" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnGPDocumentValues" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnGPTermsValues" ClientIDMode="Static" />
+                        <asp:HiddenField runat="server" ID="hdnGPConfigID" ClientIDMode="Static" />
+
+
+
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-progress">
 
@@ -792,39 +667,7 @@
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Headers</label>
                                 </div>
                                 <br />
-                                <div class="col-xl-12" id="dv_GP_Header2" runat="server">
-                                    <div class="m-portlet__body">
 
-                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Header">
-                                            <thead>
-
-                                                <tr>
-                                                    <th>Sr. No.</th>
-                                                    <th>Header Description</th>
-                                                    <th>Mandatory</th>
-                                                    <th>Answer Type</th>
-                                                    <th>Action</th>
-                                                </tr>
-
-                                            </thead>
-
-                                            <tbody>
-                                                <%=bindGP_Header_Type_Terms()%>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="m-form__group form-group row">
-                                        <div class="col-lg-4">
-                                            <span>
-                                                <asp:Button ID="btnAddGPHeader" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Header" />
-                                                <cc1:ModalPopupExtender ID="mpeGPHeader" runat="server" PopupControlID="pnlAddEditGPHeader" TargetControlID="btnAddGPHeader"
-                                                    CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
-                                                </cc1:ModalPopupExtender>
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-xl-12" id="dv_GP_Header" runat="server">
                                     <div class="m-form__section">
                                         <div class="GatepassHeader_repeater">
@@ -832,11 +675,12 @@
 
                                                 <div data-repeater-list="GatepassHeader" class="col-lg-12" runat="server" id="GatepassHeader">
 
-                                                    <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvGatepassHeader">
+                                                    <div data-repeater-item="" class="dvGatepassHeader form-group m-form__group row" runat="server" id="dvGatepassHeader">
                                                         <div class="col-md-5">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
                                                                     <asp:TextBox ID="txtGatepassHeader" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Header" Rows="1"></asp:TextBox>
+                                                                    <input type="hidden" name="hdntxtGatepassHeader" id="hdntxtGatepassHeader" />
                                                                     <span class="error_question text-danger medium"></span>
                                                                 </div>
                                                             </div>
@@ -846,7 +690,7 @@
                                                         <div class="col-md-2">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
-                                                                    <asp:CheckBox ID="ChkNumeric" runat="server" ClientIDMode="Static" />
+                                                                    <asp:CheckBox ID="ChkNumeric" class="clsMandatory" runat="server" ClientIDMode="Static" />
                                                                     <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
 
                                                                 </div>
@@ -857,12 +701,9 @@
                                                         <div class="col-md-2" style="padding-left: 1px !important;">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
-                                                                    <%--<select name="type" class="form-control m-input type_select">
-                                                                            <option value="" selected="selected">Select Answer Type</option>
-                                                                            <option value="YesNo">Yes/No</option>
-                                                                            <option value="Text">Text</option>
-                                                                        </select>--%>
-                                                                    <asp:DropDownList ID="ddlUnit" class="form-control m-input type_select" runat="server"></asp:DropDownList>
+                                                                    <asp:DropDownList ID="ddlUnit" ClientIDMode="Static"
+                                                                        class="form-control m-input type_select" placeholder="select" runat="server">
+                                                                    </asp:DropDownList>
 
                                                                     <span class="error_type text-danger medium"></span>
                                                                 </div>
@@ -894,7 +735,7 @@
                                             </div>
                                             <div class="m-form__group form-group row">
                                                 <div class="col-lg-4">
-                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
+                                                    <div data-repeater-create="" id="divHeaderAdd" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
                                                         <span>
                                                             <i class="la la-plus"></i>
                                                             <span>Add Header</span>
@@ -902,7 +743,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <label id="lblHeaderCount" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="1">1 Header(s)</label>
+                                                    <label id="lblHeaderCount" runat="server" class="col-xl-3 col-lg-3 col-form-label font-weight-bold question_count" data-count="0">0 Header(s)</label>
                                                 </div>
                                                 <span id="error_question_repeater" class="text-danger medium"></span>
                                             </div>
@@ -916,37 +757,7 @@
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Type</label>
                                 </div>
                                 <br />
-                                <div class="col-xl-12" id="dv_GP_Type2" runat="server">
-                                    <div class="m-portlet__body">
-                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Type">
-                                            <thead>
 
-                                                <tr>
-                                                    <th>Sr. No.</th>
-                                                    <th>Gate Pass Type</th>
-                                                    <th>Action</th>
-                                                </tr>
-
-                                            </thead>
-
-                                            <tbody>
-                                                <%=bindGP_Type()%>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="m-form__group form-group row">
-                                        <div class="col-lg-4">
-                                            <span>
-                                                <asp:Button ID="btnAddGatePassType" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Gate Pass Type" />
-                                                <cc1:ModalPopupExtender ID="mpeGatePassType" runat="server" PopupControlID="pnlAddEditGPType" TargetControlID="btnAddGatePassType"
-                                                    CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                                </cc1:ModalPopupExtender>
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-                                </div>
                                 <div class="col-xl-12" id="dv_GP_Type" runat="server">
                                     <div class="m-form__section">
                                         <div class="GatepassType_repeater">
@@ -955,10 +766,11 @@
                                                 <div data-repeater-list="GatepassType" class="col-lg-12" runat="server" id="GatepassType">
 
                                                     <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvGatepassType">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-11">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
-                                                                    <asp:TextBox ID="txtGatepassType" runat="server" class="form-control m-input autosize_textarea GatepassType_textarea" placeholder="Enter Gatepass Type" Rows="1"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtGatepassType" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea GatepassType_textarea" placeholder="Enter Gatepass Type" Rows="1"></asp:TextBox>
+                                                                    <input type="hidden" name="hdnRepeaterGPTID" id="hdnRepeaterGPTID" />
                                                                     <span class="error_GatepassType text-danger medium"></span>
                                                                 </div>
                                                             </div>
@@ -977,7 +789,7 @@
                                             </div>
                                             <div class="m-form__group form-group row">
                                                 <div class="col-lg-4">
-                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
+                                                    <div data-repeater-create="" id="GPT_Repeater_Create" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
                                                         <span>
                                                             <i class="la la-plus"></i>
                                                             <span>Add GatePass Type</span>
@@ -985,15 +797,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <label id="Label1" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold GatepassType_count" data-count="1">1 GatePass Type(s)</label>
+                                                    <label id="Label1" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold GatepassType_count" data-count="0">0 GatePass Type(s)</label>
                                                 </div>
                                                 <span id="error_GatepassType" class="text-danger medium"></span>
                                             </div>
-                                            <div class="form-group row" style="background-color: #00c5dc;">
-                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Type</label>
-                                            </div>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -1005,39 +812,7 @@
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Document</label>
                                 </div>
                                 <br />
-                                <div class="col-xl-12" id="dv_Doc_Grid2" runat="server">
-                                    <div class="m-portlet__body">
-                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Document">
-                                            <thead>
 
-                                                <tr>
-                                                    <th>Sr. No.</th>
-                                                    <th>Gate Pass Document</th>
-                                                    <th>Mandatory</th>
-                                                    <th>Action</th>
-                                                </tr>
-
-                                            </thead>
-
-                                            <tbody>
-                                                <%=bindGP_Document()%>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="m-form__group form-group row">
-                                        <div class="col-lg-4">
-                                            <span>
-                                                <asp:Button ID="btnAddGatePassDocument" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Gate Pass Document" />
-                                                <cc1:ModalPopupExtender ID="mpeAddEditGPDoc" runat="server" PopupControlID="pnlAddEditGPDoc" TargetControlID="btnAddGatePassDocument"
-                                                    CancelControlID="btnCloseHeaderDoc" BackgroundCssClass="modalBackground">
-                                                </cc1:ModalPopupExtender>
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-                                </div>
                                 <div class="col-xl-12" id="dv_Doc_Grid" runat="server">
                                     <div class="m-form__section">
                                         <div class="GatepassDoc_repeater">
@@ -1045,11 +820,12 @@
 
                                                 <div data-repeater-list="GatepassDoc" class="col-lg-12" runat="server" id="GatePassDoc">
 
-                                                    <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="dvGatePassDoc">
-                                                        <div class="col-md-6">
+                                                    <div data-repeater-item="" class="dvGatePassDoc form-group m-form__group row" runat="server" id="dvGatePassDoc">
+                                                        <div class="col-md-9">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
-                                                                    <asp:TextBox ID="txtGPDoc" runat="server" class="form-control m-input autosize_textarea GatepassDoc_textarea" placeholder="Enter Document Description" Rows="1"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtGPDoc" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea GatepassDoc_textarea" placeholder="Enter Document Description" Rows="1"></asp:TextBox>
+                                                                    <input type="hidden" name="hdnRepeaterGPDocID" id="hdnRepeaterGPDocID" />
                                                                     <span class="error_GatepassDoc text-danger medium"></span>
                                                                 </div>
                                                             </div>
@@ -1079,7 +855,7 @@
                                             </div>
                                             <div class="m-form__group form-group row">
                                                 <div class="col-lg-4">
-                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
+                                                    <div data-repeater-create="" id="GPDocs_Repeater_Create" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
                                                         <span>
                                                             <i class="la la-plus"></i>
                                                             <span>Add Document Header</span>
@@ -1087,7 +863,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <label id="Label3" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold GatepassDoc_count" data-count="1">1 Document Header(s)</label>
+                                                    <label id="Label3" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold GatepassDoc_count" data-count="0">0 Document Header(s)</label>
                                                 </div>
                                                 <span id="error_GatepassDoc" class="text-danger medium"></span>
                                             </div>
@@ -1250,40 +1026,8 @@
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Terms & Condition</label>
                                 </div>
                                 <br />
-                                <div class="col-xl-12" id="dv_Termcondition2" runat="server">
 
-                                    <div class="m-portlet__body">
 
-                                        <table class="table table-striped- table-bordered table-hover table-checkable" id="tbl_GP_Terms">
-                                            <thead>
-
-                                                <tr>
-                                                    <th>Sr. No.</th>
-                                                    <th>Gate Pass Terms And Conditions</th>
-                                                    <th>Action</th>
-                                                </tr>
-
-                                            </thead>
-
-                                            <tbody>
-                                                <%=bindGP_Terms()%>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <div class="m-form__group form-group row">
-                                        <div class="col-lg-4">
-                                            <span>
-                                                <asp:Button ID="btnAddGPTerms" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide" Text="+ New Gate Pass Terms & Condition" />
-                                                <cc1:ModalPopupExtender ID="mpeGatePassTerm" runat="server" PopupControlID="pnlAddEditGPTerms" TargetControlID="btnAddGPTerms"
-                                                    CancelControlID="btnCloseHeader3" BackgroundCssClass="modalBackground">
-                                                </cc1:ModalPopupExtender>
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-                                </div>
                                 <div class="col-xl-12" id="dv_Termcondition" runat="server">
                                     <div class="m-form__section">
                                         <div class="TermComdition_repeater">
@@ -1292,10 +1036,11 @@
                                                 <div data-repeater-list="GatepassTermCondition" class="col-lg-12" runat="server" id="GatepassTermCondition">
 
                                                     <div data-repeater-item="" class="form-group m-form__group row" runat="server" id="Div2">
-                                                        <div class="col-md-9">
+                                                        <div class="col-md-11">
                                                             <div class="m-form__group">
                                                                 <div class="m-form__control">
                                                                     <asp:TextBox ID="txtTermComdition" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea" placeholder="Enter Term & Condition" Rows="1"></asp:TextBox>
+                                                                    <input type="hidden" name="hdnRepeaterTermID" id="hdnRepeaterTermID" />
                                                                     <span class="error_TermCondition text-danger medium"></span>
                                                                 </div>
                                                             </div>
@@ -1313,7 +1058,7 @@
                                             </div>
                                             <div class="m-form__group form-group row">
                                                 <div class="col-lg-4">
-                                                    <div data-repeater-create="" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
+                                                    <div data-repeater-create="" id="divTermAdd" class="btn btn-accent m-btn m-btn--icon m-btn--pill m-btn--wide">
                                                         <span>
                                                             <i class="la la-plus"></i>
                                                             <span>Add Term & Condition</span>
@@ -1321,9 +1066,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <label id="Label2" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold TermCondition_count" data-count="1">1 Term & Condition(s)</label>
+                                                    <label id="Label2" runat="server" class="col-xl-6 col-lg-3 col-form-label font-weight-bold TermCondition_count" data-count="0">0 Term & Condition(s)</label>
                                                 </div>
-                                                <span id="error_TermCondition" class="text-danger medium"></span>
+                                                <span id="error_TermCondition1" class="text-danger medium"></span>
                                             </div>
 
                                         </div>
@@ -1340,228 +1085,6 @@
                             </div>
                         </div>
 
-                        <asp:Button ID="btnBindGPType" runat="server" OnClick="btnBindGPType_Click" Style="display: none" />
-                        <asp:Button ID="btnBindGPHeader" runat="server" OnClick="btnBindGPHeader_Click" Style="display: none" />
-                        <asp:Button ID="btnBindGPTerms" runat="server" OnClick="btnBindGPTerms_Click" Style="display: none" />
-                        <asp:Button ID="btnBindGPDoc" runat="server" OnClick="btnBindGPDoc_Click" Style="display: none" />
-
-
-                        <asp:Panel ID="pnlAddEditGPHeader" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
-                            <div class="" id="add_GPHeader" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 79%;">
-                                    <div class="modal-content">
-                                        <asp:UpdatePanel ID="UpdatePanel6" runat="server">
-                                            <ContentTemplate>
-
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Add GatePass Header</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body row">
-                                                    <div class="col-md-6">
-                                                        <div class="m-form__group">
-                                                            <div class="m-form__control">
-                                                                <asp:TextBox ID="txtGatepassHeader1" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Header" Rows="1"></asp:TextBox>
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtGatepassHeader" Visible="true" Display="Dynamic"
-                                                                    ValidationGroup="validateGPHeader" ForeColor="Red" ErrorMessage="Please enter Gatepass Header"></asp:RequiredFieldValidator>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                                    </div>
-
-                                                    <div class="col-md-2">
-                                                        <div class="m-form__group">
-                                                            <div class="m-form__control">
-                                                                <asp:CheckBox ID="ChkNumeric1" runat="server" ClientIDMode="Static" />
-                                                                <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                                    </div>
-
-                                                    <div class="col-md-3">
-                                                        <div class="m-form__group">
-                                                            <div class="m-form__control">
-                                                                <asp:DropDownList ID="ddlUnit1" class="form-control m-input type_select" runat="server"></asp:DropDownList>
-                                                                <span class="error_type text-danger medium"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                                    </div>
-
-                                                </div>
-                                                <asp:Label ID="lblGPHeaderErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-
-
-                                                <div class="modal-footer">
-                                                    <asp:Button ID="btnCloseAddGPHeader" Text="Close" Visible="false" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseAddGPHeader_Click" />
-                                                    <asp:Button ID="btnSaveGPHeader" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateChkPoint" OnClick="btnSaveGPHeader_Click" Text="Save" />
-
-                                                </div>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnSaveGPHeader" EventName="Click" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal -->
-                        </asp:Panel>
-                        <asp:Panel ID="pnlAddEditGPType" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
-                            <div class="" id="add_GPType" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 45%;">
-                                    <div class="modal-content">
-                                        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                            <ContentTemplate>
-
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel1">Add GatePass Type</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader2">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body row">
-                                                    <div class="col-md-9">
-                                                        <div class="m-form__group">
-                                                            <div class="m-form__control">
-                                                                <asp:TextBox ID="txtGatePassType1" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Type" Rows="1"></asp:TextBox>
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtGatePassType" Visible="true" Display="Dynamic"
-                                                                    ValidationGroup="validateGPType" ForeColor="Red" ErrorMessage="Please enter Gatepass Type"></asp:RequiredFieldValidator>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                                    </div>
-
-                                                </div>
-                                                <asp:Label ID="lblErrorGPType" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-
-
-                                                <div class="modal-footer">
-                                                    <div class="col-md-9">
-                                                        <asp:Button ID="btnGPTypeCancel" Text="Close" runat="server" Visible="false" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnGPTypeCancel_Click" />
-                                                        <asp:Button ID="btnGPTypeSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGPType" OnClick="btnGPTypeSave_Click" Text="Save" />
-                                                    </div>
-                                                </div>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnGPTypeSave" EventName="Click" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal -->
-                        </asp:Panel>
-                        <asp:Panel ID="pnlAddEditGPTerms" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
-                            <div class="" id="add_GPTerms" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 45%;">
-                                    <div class="modal-content">
-                                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                            <ContentTemplate>
-
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel2">Add Gate Pass Terms & Conditions</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader3">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body row">
-                                                    <div class="col-md-11">
-                                                        <div class="m-form__group">
-                                                            <div class="m-form__control">
-                                                                <asp:TextBox ID="txtTerms" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea" placeholder="Enter Gate Pass Terms" Style="height: 110px;" Rows="1"></asp:TextBox>
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTerms" Visible="true" Display="Dynamic"
-                                                                    ValidationGroup="validateGPTerm" ForeColor="Red" ErrorMessage="Please enter Gate Pass Terms & Condition"></asp:RequiredFieldValidator>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                                    </div>
-
-                                                </div>
-                                                <asp:Label ID="Label4" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-
-
-                                                <div class="modal-footer">
-                                                    <div class="col-md-9">
-                                                        <asp:Button ID="btnCloseGatePassTerms" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseGatePassTerms_Click" />
-                                                        <asp:Button ID="btnSaveGatePassTerms" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGPTerm" OnClick="btnSaveGatePassTerms_Click" Text="Save" />
-                                                    </div>
-                                                </div>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnSaveGatePassTerms" EventName="Click" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal -->
-                        </asp:Panel>
-
-                        <asp:Panel ID="pnlAddEditGPDoc" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 80%;">
-                            <div class="" id="add_GPDoc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 65%;">
-                                    <div class="modal-content">
-                                        <asp:UpdatePanel ID="UpdatePanel5" runat="server">
-                                            <ContentTemplate>
-
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabelDoc">Add GatePass Document</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeaderDoc">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body row">
-                                                    <div class="col-md-9">
-                                                        <div class="m-form__group">
-                                                            <div class="m-form__control">
-                                                                <asp:TextBox ID="txtGP_Doc" runat="server" class="form-control m-input autosize_textarea question_textarea" placeholder="Enter Gatepass Document" Rows="1"></asp:TextBox>
-                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtGP_Doc" Visible="true" Display="Dynamic"
-                                                                    ValidationGroup="validateGPDoc" ForeColor="Red" ErrorMessage="Please enter Gatepass Document"></asp:RequiredFieldValidator>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                                    </div>
-
-                                                    <div class="col-md-2">
-                                                        <div class="m-form__group">
-                                                            <div class="m-form__control">
-                                                                <asp:CheckBox ID="chkGPDocMandatory" runat="server" ClientIDMode="Static" />
-                                                                <label class="col-xl-6 col-lg-6 col-form-label">Mandatory</label>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-md-none m--margin-bottom-10"></div>
-                                                    </div>
-
-                                                </div>
-                                                <asp:Label ID="lblErrorGPDoc" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-
-
-                                                <div class="modal-footer">
-                                                    <div class="col-md-9">
-                                                        <asp:Button ID="btnGPDocCancel" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnGPDocCancel_Click" />
-                                                        <asp:Button ID="btnGPDocSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validateGPDoc" OnClick="btnGPDocSave_Click" Text="Save" />
-                                                    </div>
-                                                </div>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="btnGPTypeSave" EventName="Click" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Modal -->
-                        </asp:Panel>
 
                         <asp:Panel runat="server" ID="pnlApprovalMatrix" CssClass="modalPopup" align="center" Style="display: none; width: 100%; top: 0px !important">
 
