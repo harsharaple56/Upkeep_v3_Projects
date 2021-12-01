@@ -561,11 +561,13 @@ namespace Upkeep_v3.GatePass
                         lbl_Returnable_Gatepass.Text = "Yes";
                         dvReturnableDate.Attributes.Add("style", "display:block;");
                         dvReturnableDate.Attributes.Add("class", "form-group row");
+                        RequiredFieldValidator4.Enabled = true;
                     }
                     else
                     {
                         lbl_Returnable_Gatepass.Text = "No";
                         dvReturnableDate.Attributes.Add("style", "display:none;");
+                        RequiredFieldValidator4.Enabled = false;
                     }
 
                     string strUserType = Convert.ToString(dsConfig.Tables[1].Rows[0]["UserType"]);
