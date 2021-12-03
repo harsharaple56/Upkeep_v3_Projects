@@ -66,6 +66,35 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet Insert_LocationTree(string parentNode, string childNode, string emptyParentNode,string rowColumnNumber, int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Insert_LocationTree", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@parentNode", parentNode);
+                cmd.Parameters.AddWithValue("@childNode", childNode);
+                cmd.Parameters.AddWithValue("@emptyParentNode", emptyParentNode);
+                cmd.Parameters.AddWithValue("@rowColumnNumber", rowColumnNumber);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public DataSet Get_VMS_Verify_Visitor_ID(string Visit_Request_Code, string StrConn)
         {
             try

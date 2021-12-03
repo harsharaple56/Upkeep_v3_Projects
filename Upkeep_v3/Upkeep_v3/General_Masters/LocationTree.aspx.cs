@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Data.OleDb;
+using System.Data.Common;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Upkeep_v3.General_Masters
 {
@@ -31,6 +35,152 @@ namespace Upkeep_v3.General_Masters
             }
         }
 
+        protected void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string parentNode, childNode, description, tempNode, emptyParentNode, rowColumnNumber;
+                parentNode = childNode = description = tempNode = emptyParentNode = rowColumnNumber = string.Empty;
+                DataTable dt = new DataTable();
+                bool forjloop = false;
+
+                string path = string.Concat(Server.MapPath("~/Checklist/ImportFile/" + FU_ChecklistMst.FileName));
+                FU_ChecklistMst.SaveAs(path);
+                string excelCS = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}; Extended Properties='Excel 12.0 Xml;HDR=YES'", path);
+                OleDbConnection oledbconn = new OleDbConnection(excelCS);
+                oledbconn.Open();
+                OleDbCommand cmdSelect = new OleDbCommand("select * from [Sheet1$]", oledbconn);
+                OleDbDataAdapter oledbda = new OleDbDataAdapter();
+                oledbda.SelectCommand = cmdSelect;
+                oledbda.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    int noOfRows = dt.Rows.Count;
+                    int noOfColumns = dt.Columns.Count;
+
+                    for (int i = 0; i < noOfRows; i++)
+                    {
+                        for (int j = 0; j < noOfColumns; j++)
+                        {
+                            tempNode = dt.Rows[i][j].ToString();
+
+                            if (tempNode != "")
+                            {
+                                childNode = tempNode;
+                                if (j == 0)
+                                {
+                                    parentNode = dt.Rows[i][j].ToString();
+                                }
+                                else
+                                {
+                                    int n = j - 1;
+                                    parentNode = dt.Rows[i][n].ToString();
+                                }
+
+                            }
+
+                            if (parentNode == "")
+                            {
+                                int q = i;
+
+                                for (int p = 0; p < i; p++)
+                                {
+                                    string sa = dt.Rows[q][j].ToString();
+                                    if (sa != "")
+                                    {
+                                        emptyParentNode = sa.ToString();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        q = q - 1;
+                                        continue;
+                                    }
+                                }
+                                break;
+                            }
+
+                            DataSet dsChkerror = new DataSet();
+                            DataTable dterror = new DataTable();
+                            rowColumnNumber = "At Row Number : " + i + " , And At Column Number : " + j ;
+                            dsChkerror = Insert_Treview_ImportExcel(parentNode, childNode, emptyParentNode, rowColumnNumber, CompanyID, LoggedInUserID);
+                            if (dsChkerror.Tables.Count > 0)
+                            {
+                                if (dsChkerror.Tables[0].Rows.Count > 0)
+                                {
+                                    int Status = Convert.ToInt32(dsChkerror.Tables[0].Rows[0]["Status"]);
+                                    if (Status == 1)
+                                    {
+                                        Response.Redirect(Page.ResolveClientUrl("~/General_Masters/LocationTree.aspx"), false);
+                                    }
+                                    else
+                                    if (Status == 2)
+                                    {
+                                        forjloop = true;
+                                        dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:100px;");
+                                        pnlImportExport.Attributes.Add("style", "height:580px; width:700px; top:-14px !important;");
+                                        mpeUserMst.Show();
+                                        lblImportErrorMsg.Text = "Below checklist can not be created, kindly check error message.";
+
+                                        dterror = dsChkerror.Tables[0];
+                                        dterror.Columns.Remove("Status");
+                                        gvImportError.DataSource = dterror;
+                                        gvImportError.DataBind();
+                                        dterror.AcceptChanges();
+                                    }
+                                }
+                            }
+                            parentNode = childNode = tempNode = emptyParentNode =rowColumnNumber = string.Empty;
+
+                            if (forjloop)
+                                break;
+                        }
+                        if (forjloop)
+                            break;
+                    }
+                }
+                oledbconn.Close();
+                oledbda = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected DataSet Insert_Treview_ImportExcel(string parentNode, string childNode, string emptyParentNode,string rowColumnNumber, int CompanyID, string LoggedInUserID)
+        {
+            DataSet dsNodes = new DataSet();
+            dsNodes = ObjUpkeep.Insert_LocationTree(parentNode, childNode, emptyParentNode, rowColumnNumber, CompanyID, LoggedInUserID);
+            return dsNodes;
+        }
+
+        protected void btnCloseImportPopUp_Click(object sender, EventArgs e)
+        {
+            lblImportErrorMsg.Text = "";
+            gvImportError.DataSource = null;
+            gvImportError.DataBind();
+            mpeUserMst.Hide();
+        }
+
+        protected void lnkSampleFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = "~/General_Masters/Template/Location_Import.xlsx";
+                string filename = "Location_Import.xlsx";
+                Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
+                Response.TransmitFile(Server.MapPath(filePath));
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private void PopulateRootLevel()
         {
             DataSet dsRoot = new DataSet();
@@ -51,8 +201,6 @@ namespace Upkeep_v3.General_Masters
                 throw ex;
             }
 
-
-           
         }
 
         private void PopulateNodes(DataTable dt, TreeNodeCollection nodes)
@@ -60,17 +208,11 @@ namespace Upkeep_v3.General_Masters
             foreach (DataRow dr in dt.Rows)
             {
                 TreeNode tn = new TreeNode();
-                //tn.Text = dr["title"].ToString();
-                //tn.Value = dr["id"].ToString();
                 tn.Text = dr["Loc_Desc"].ToString();
                 tn.Value = dr["Loc_id"].ToString();
                 nodes.Add(tn);
-                // If node has child nodes, then enable on-demand populating
-                //tn.PopulateOnDemand = (int.Parse(dr["childnodecount"]) > 0);
                 tn.PopulateOnDemand = (Convert.ToInt32(dr["childnodecount"]) > 0);
-
             }
-
         }
 
         private void PopulateSubLevel(int parentid, TreeNode parentNode)
@@ -92,15 +234,12 @@ namespace Upkeep_v3.General_Masters
             {
                 throw ex;
             }
-
-
-
         }
 
         protected void TreeView1_TreeNodePopulate(object sender, System.Web.UI.WebControls.TreeNodeEventArgs e)
         {
             PopulateSubLevel(int.Parse(e.Node.Value), e.Node);
-           
+
         }
 
         protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
@@ -294,7 +433,7 @@ namespace Upkeep_v3.General_Masters
                             lblErrorMsg.Text = "";
                             lblSuccessMsg.Text = "Location Deleted successfully.";
                             TreeView1.Nodes.Clear();
-                            
+
                             PopulateRootLevel();
                         }
                         //else if (Status == 2)
@@ -330,9 +469,6 @@ namespace Upkeep_v3.General_Masters
             //}
 
         }
-
-      
-
 
 
     }

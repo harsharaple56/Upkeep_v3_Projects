@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Fetch_User_UserGroupListGPWPOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_CompanyOperationCompleted;
         
         private System.Threading.SendOrPostCallback Error_LogOperationCompleted;
@@ -163,6 +165,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block6OperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block7OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Event_UpdateOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetEventListOperationCompleted;
         
@@ -332,13 +336,13 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_AnswerForAllOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_User_UserGroupListGPWPOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetLastVMSRequestIDOperationCompleted;
         
         private System.Threading.SendOrPostCallback Get_VMS_Verify_Visitor_IDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_LocationTreeOperationCompleted;
         
         private System.Threading.SendOrPostCallback GP_Insert_Returnable_QtyOperationCompleted;
         
@@ -500,8 +504,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_MIS_ReportOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Event_UpdateOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -539,6 +541,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Fetch_User_UserGroupListGPWPCompletedEventHandler Fetch_User_UserGroupListGPWPCompleted;
         
         /// <remarks/>
         public event Fetch_CompanyCompletedEventHandler Fetch_CompanyCompleted;
@@ -740,6 +745,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Analyze_Tkt_Block7CompletedEventHandler Fetch_Analyze_Tkt_Block7Completed;
+        
+        /// <remarks/>
+        public event Event_UpdateCompletedEventHandler Event_UpdateCompleted;
         
         /// <remarks/>
         public event GetEventListCompletedEventHandler GetEventListCompleted;
@@ -994,9 +1002,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_AnswerForAllCompletedEventHandler Fetch_AnswerForAllCompleted;
         
         /// <remarks/>
-        public event Fetch_User_UserGroupListGPWPCompletedEventHandler Fetch_User_UserGroupListGPWPCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
@@ -1004,6 +1009,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Get_VMS_Verify_Visitor_IDCompletedEventHandler Get_VMS_Verify_Visitor_IDCompleted;
+        
+        /// <remarks/>
+        public event Insert_LocationTreeCompletedEventHandler Insert_LocationTreeCompleted;
         
         /// <remarks/>
         public event GP_Insert_Returnable_QtyCompletedEventHandler GP_Insert_Returnable_QtyCompleted;
@@ -1246,7 +1254,33 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_MIS_ReportCompletedEventHandler Fetch_MIS_ReportCompleted;
         
         /// <remarks/>
-        public event Event_UpdateCompletedEventHandler Event_UpdateCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_User_UserGroupListGPWP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_User_UserGroupListGPWP(string Initiator) {
+            object[] results = this.Invoke("Fetch_User_UserGroupListGPWP", new object[] {
+                        Initiator});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_User_UserGroupListGPWPAsync(string Initiator) {
+            this.Fetch_User_UserGroupListGPWPAsync(Initiator, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_User_UserGroupListGPWPAsync(string Initiator, object userState) {
+            if ((this.Fetch_User_UserGroupListGPWPOperationCompleted == null)) {
+                this.Fetch_User_UserGroupListGPWPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_User_UserGroupListGPWPOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_User_UserGroupListGPWP", new object[] {
+                        Initiator}, this.Fetch_User_UserGroupListGPWPOperationCompleted, userState);
+        }
+        
+        private void OnFetch_User_UserGroupListGPWPOperationCompleted(object arg) {
+            if ((this.Fetch_User_UserGroupListGPWPCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_User_UserGroupListGPWPCompleted(this, new Fetch_User_UserGroupListGPWPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Company", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3586,6 +3620,51 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Analyze_Tkt_Block7Completed != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Analyze_Tkt_Block7Completed(this, new Fetch_Analyze_Tkt_Block7CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Event_Update", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Event_Update(int EventID, string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType) {
+            object[] results = this.Invoke("Event_Update", new object[] {
+                        EventID,
+                        EventName,
+                        Location,
+                        QuesFor,
+                        EventMode,
+                        startDate,
+                        endDate,
+                        LoggedInUserID,
+                        ActionType});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Event_UpdateAsync(int EventID, string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType) {
+            this.Event_UpdateAsync(EventID, EventName, Location, QuesFor, EventMode, startDate, endDate, LoggedInUserID, ActionType, null);
+        }
+        
+        /// <remarks/>
+        public void Event_UpdateAsync(int EventID, string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType, object userState) {
+            if ((this.Event_UpdateOperationCompleted == null)) {
+                this.Event_UpdateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEvent_UpdateOperationCompleted);
+            }
+            this.InvokeAsync("Event_Update", new object[] {
+                        EventID,
+                        EventName,
+                        Location,
+                        QuesFor,
+                        EventMode,
+                        startDate,
+                        endDate,
+                        LoggedInUserID,
+                        ActionType}, this.Event_UpdateOperationCompleted, userState);
+        }
+        
+        private void OnEvent_UpdateOperationCompleted(object arg) {
+            if ((this.Event_UpdateCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Event_UpdateCompleted(this, new Event_UpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -6897,35 +6976,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_User_UserGroupListGPWP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_User_UserGroupListGPWP(string Initiator) {
-            object[] results = this.Invoke("Fetch_User_UserGroupListGPWP", new object[] {
-                        Initiator});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_User_UserGroupListGPWPAsync(string Initiator) {
-            this.Fetch_User_UserGroupListGPWPAsync(Initiator, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_User_UserGroupListGPWPAsync(string Initiator, object userState) {
-            if ((this.Fetch_User_UserGroupListGPWPOperationCompleted == null)) {
-                this.Fetch_User_UserGroupListGPWPOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_User_UserGroupListGPWPOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_User_UserGroupListGPWP", new object[] {
-                        Initiator}, this.Fetch_User_UserGroupListGPWPOperationCompleted, userState);
-        }
-        
-        private void OnFetch_User_UserGroupListGPWPOperationCompleted(object arg) {
-            if ((this.Fetch_User_UserGroupListGPWPCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_User_UserGroupListGPWPCompleted(this, new Fetch_User_UserGroupListGPWPCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -7007,6 +7057,45 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Get_VMS_Verify_Visitor_IDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Get_VMS_Verify_Visitor_IDCompleted(this, new Get_VMS_Verify_Visitor_IDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_LocationTree", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_LocationTree(string parentNode, string childNode, string emptyParentNode, string rowColumnNumber, int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Insert_LocationTree", new object[] {
+                        parentNode,
+                        childNode,
+                        emptyParentNode,
+                        rowColumnNumber,
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_LocationTreeAsync(string parentNode, string childNode, string emptyParentNode, string rowColumnNumber, int CompanyID, string LoggedInUserID) {
+            this.Insert_LocationTreeAsync(parentNode, childNode, emptyParentNode, rowColumnNumber, CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_LocationTreeAsync(string parentNode, string childNode, string emptyParentNode, string rowColumnNumber, int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Insert_LocationTreeOperationCompleted == null)) {
+                this.Insert_LocationTreeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_LocationTreeOperationCompleted);
+            }
+            this.InvokeAsync("Insert_LocationTree", new object[] {
+                        parentNode,
+                        childNode,
+                        emptyParentNode,
+                        rowColumnNumber,
+                        CompanyID,
+                        LoggedInUserID}, this.Insert_LocationTreeOperationCompleted, userState);
+        }
+        
+        private void OnInsert_LocationTreeOperationCompleted(object arg) {
+            if ((this.Insert_LocationTreeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_LocationTreeCompleted(this, new Insert_LocationTreeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -10115,51 +10204,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Event_Update", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Event_Update(int EventID, string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType) {
-            object[] results = this.Invoke("Event_Update", new object[] {
-                        EventID,
-                        EventName,
-                        Location,
-                        QuesFor,
-                        EventMode,
-                        startDate,
-                        endDate,
-                        LoggedInUserID,
-                        ActionType});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Event_UpdateAsync(int EventID, string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType) {
-            this.Event_UpdateAsync(EventID, EventName, Location, QuesFor, EventMode, startDate, endDate, LoggedInUserID, ActionType, null);
-        }
-        
-        /// <remarks/>
-        public void Event_UpdateAsync(int EventID, string EventName, string Location, string QuesFor, string EventMode, string startDate, string endDate, string LoggedInUserID, string ActionType, object userState) {
-            if ((this.Event_UpdateOperationCompleted == null)) {
-                this.Event_UpdateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEvent_UpdateOperationCompleted);
-            }
-            this.InvokeAsync("Event_Update", new object[] {
-                        EventID,
-                        EventName,
-                        Location,
-                        QuesFor,
-                        EventMode,
-                        startDate,
-                        endDate,
-                        LoggedInUserID,
-                        ActionType}, this.Event_UpdateOperationCompleted, userState);
-        }
-        
-        private void OnEvent_UpdateOperationCompleted(object arg) {
-            if ((this.Event_UpdateCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Event_UpdateCompleted(this, new Event_UpdateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -10175,6 +10219,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Fetch_User_UserGroupListGPWPCompletedEventHandler(object sender, Fetch_User_UserGroupListGPWPCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_User_UserGroupListGPWPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_User_UserGroupListGPWPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -11907,6 +11977,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Analyze_Tkt_Block7CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Event_UpdateCompletedEventHandler(object sender, Event_UpdateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Event_UpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Event_UpdateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -14106,32 +14202,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void Fetch_User_UserGroupListGPWPCompletedEventHandler(object sender, Fetch_User_UserGroupListGPWPCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_User_UserGroupListGPWPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_User_UserGroupListGPWPCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -14195,6 +14265,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Get_VMS_Verify_Visitor_IDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Insert_LocationTreeCompletedEventHandler(object sender, Insert_LocationTreeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_LocationTreeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_LocationTreeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -16253,32 +16349,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_MIS_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void Event_UpdateCompletedEventHandler(object sender, Event_UpdateCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Event_UpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Event_UpdateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

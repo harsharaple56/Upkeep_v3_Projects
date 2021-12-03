@@ -3,6 +3,27 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_User_UserGroupListGPWP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_User_UserGroupListGPWPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_User_UserGroupListGPWPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Company">
         <s:complexType />
       </s:element>
@@ -1596,6 +1617,35 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block7Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Event_Update">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QuesFor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventMode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="startDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="endDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Event_UpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Event_UpdateResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3647,27 +3697,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_User_UserGroupListGPWP">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_User_UserGroupListGPWPResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_User_UserGroupListGPWPResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -3710,6 +3739,32 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Get_VMS_Verify_Visitor_IDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_LocationTree">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="parentNode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="childNode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emptyParentNode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rowColumnNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_LocationTreeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_LocationTreeResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5695,35 +5750,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Event_Update">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="EventName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="QuesFor" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="EventMode" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="startDate" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="endDate" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ActionType" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Event_UpdateResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Event_UpdateResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -5731,6 +5757,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_User_UserGroupListGPWPSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_User_UserGroupListGPWP" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_User_UserGroupListGPWPSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_User_UserGroupListGPWPResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_CompanySoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Company" />
   </wsdl:message>
@@ -6132,6 +6164,12 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Analyze_Tkt_Block7SoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block7Response" />
+  </wsdl:message>
+  <wsdl:message name="Event_UpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:Event_Update" />
+  </wsdl:message>
+  <wsdl:message name="Event_UpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:Event_UpdateResponse" />
   </wsdl:message>
   <wsdl:message name="GetEventListSoapIn">
     <wsdl:part name="parameters" element="tns:GetEventList" />
@@ -6637,12 +6675,6 @@
   <wsdl:message name="Fetch_AnswerForAllSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_AnswerForAllResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_User_UserGroupListGPWPSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_User_UserGroupListGPWP" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_User_UserGroupListGPWPSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_User_UserGroupListGPWPResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -6660,6 +6692,12 @@
   </wsdl:message>
   <wsdl:message name="Get_VMS_Verify_Visitor_IDSoapOut">
     <wsdl:part name="parameters" element="tns:Get_VMS_Verify_Visitor_IDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_LocationTreeSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_LocationTree" />
+  </wsdl:message>
+  <wsdl:message name="Insert_LocationTreeSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_LocationTreeResponse" />
   </wsdl:message>
   <wsdl:message name="GP_Insert_Returnable_QtySoapIn">
     <wsdl:part name="parameters" element="tns:GP_Insert_Returnable_Qty" />
@@ -7141,13 +7179,11 @@
   <wsdl:message name="Fetch_MIS_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_MIS_ReportResponse" />
   </wsdl:message>
-  <wsdl:message name="Event_UpdateSoapIn">
-    <wsdl:part name="parameters" element="tns:Event_Update" />
-  </wsdl:message>
-  <wsdl:message name="Event_UpdateSoapOut">
-    <wsdl:part name="parameters" element="tns:Event_UpdateResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
+      <wsdl:input message="tns:Fetch_User_UserGroupListGPWPSoapIn" />
+      <wsdl:output message="tns:Fetch_User_UserGroupListGPWPSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Company">
       <wsdl:input message="tns:Fetch_CompanySoapIn" />
       <wsdl:output message="tns:Fetch_CompanySoapOut" />
@@ -7415,6 +7451,10 @@
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <wsdl:input message="tns:Fetch_Analyze_Tkt_Block7SoapIn" />
       <wsdl:output message="tns:Fetch_Analyze_Tkt_Block7SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Event_Update">
+      <wsdl:input message="tns:Event_UpdateSoapIn" />
+      <wsdl:output message="tns:Event_UpdateSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetEventList">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Fetch event list for MIS</wsdl:documentation>
@@ -7753,10 +7793,6 @@
       <wsdl:input message="tns:Fetch_AnswerForAllSoapIn" />
       <wsdl:output message="tns:Fetch_AnswerForAllSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
-      <wsdl:input message="tns:Fetch_User_UserGroupListGPWPSoapIn" />
-      <wsdl:output message="tns:Fetch_User_UserGroupListGPWPSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -7768,6 +7804,10 @@
     <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
       <wsdl:input message="tns:Get_VMS_Verify_Visitor_IDSoapIn" />
       <wsdl:output message="tns:Get_VMS_Verify_Visitor_IDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_LocationTree">
+      <wsdl:input message="tns:Insert_LocationTreeSoapIn" />
+      <wsdl:output message="tns:Insert_LocationTreeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GP_Insert_Returnable_Qty">
       <wsdl:input message="tns:GP_Insert_Returnable_QtySoapIn" />
@@ -8089,13 +8129,18 @@
       <wsdl:input message="tns:Fetch_MIS_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_MIS_ReportSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Event_Update">
-      <wsdl:input message="tns:Event_UpdateSoapIn" />
-      <wsdl:output message="tns:Event_UpdateSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
+      <soap:operation soapAction="http://tempuri.org/Fetch_User_UserGroupListGPWP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Company">
       <soap:operation soapAction="http://tempuri.org/Fetch_Company" style="document" />
       <wsdl:input>
@@ -8692,6 +8737,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block7" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Event_Update">
+      <soap:operation soapAction="http://tempuri.org/Event_Update" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9455,15 +9509,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
-      <soap:operation soapAction="http://tempuri.org/Fetch_User_UserGroupListGPWP" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -9484,6 +9529,15 @@
     </wsdl:operation>
     <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
       <soap:operation soapAction="http://tempuri.org/Get_VMS_Verify_Visitor_ID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_LocationTree">
+      <soap:operation soapAction="http://tempuri.org/Insert_LocationTree" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -10211,18 +10265,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Event_Update">
-      <soap:operation soapAction="http://tempuri.org/Event_Update" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_User_UserGroupListGPWP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Company">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Company" style="document" />
       <wsdl:input>
@@ -10819,6 +10873,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block7" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Event_Update">
+      <soap12:operation soapAction="http://tempuri.org/Event_Update" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11582,15 +11645,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_User_UserGroupListGPWP">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_User_UserGroupListGPWP" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -11611,6 +11665,15 @@
     </wsdl:operation>
     <wsdl:operation name="Get_VMS_Verify_Visitor_ID">
       <soap12:operation soapAction="http://tempuri.org/Get_VMS_Verify_Visitor_ID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_LocationTree">
+      <soap12:operation soapAction="http://tempuri.org/Insert_LocationTree" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -12331,15 +12394,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_MIS_Report">
       <soap12:operation soapAction="http://tempuri.org/Fetch_MIS_Report" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Event_Update">
-      <soap12:operation soapAction="http://tempuri.org/Event_Update" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
