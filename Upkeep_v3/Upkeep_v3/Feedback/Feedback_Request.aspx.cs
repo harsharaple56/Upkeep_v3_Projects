@@ -46,7 +46,7 @@ namespace Upkeep_v3.Feedback
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             SessionVisitor = Convert.ToString(Session["Visitor"]);
-
+            dv_Feedback.Visible = false;
             if (!IsPostBack)
             {
                 if (string.IsNullOrEmpty(LoggedInUserID) && string.IsNullOrEmpty(SessionVisitor))
@@ -67,7 +67,6 @@ namespace Upkeep_v3.Feedback
 
                         BindEvent();
 
-                        dvBackButton.Attributes.Add("style","display:none;");
                     }
                 }
 
@@ -165,27 +164,16 @@ namespace Upkeep_v3.Feedback
                 if (AnswerType == "Options")
                 {
                     RadioButtonList divRadioButtonrdbYes = e.Item.FindControl("divRadioButtonrdbYes") as RadioButtonList;
-
-
-
                     if (dt.Rows.Count > 0)
                     {
                         divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option1"].ToString(), "1"));
                         divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option2"].ToString(), "2"));
                         divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option3"].ToString(), "3"));
                         divRadioButtonrdbYes.Items.Add(new ListItem(dt.Rows[0]["Option4"].ToString(), "4"));
-                        //rptRadio.DataSource = dt;
-                        //rptRadio.DataBind(); 
-                        //divRadioButtonrdbYes.DataTextField = "Ans_Type_Data"; // "Ans_Type_Desc";
-                        //divRadioButtonrdbYes.DataValueField = "Ans_Type_Data_ID";  // "Ans_Type_ID";// 
-                        //divRadioButtonrdbYes.DataSource = dt;
-                        //divRadioButtonrdbYes.DataBind();
                     }
                     else
                     {
                         DataTable dt1 = new DataTable();
-                        //rptRadio.DataSource = dt1;
-                        //rptRadio.DataBind();
                         divRadioButtonrdbYes.DataSource = dt;
                         divRadioButtonrdbYes.DataBind();
                     }
@@ -313,16 +301,6 @@ namespace Upkeep_v3.Feedback
                             }
                         }
 
-                        //if (Is_Mandatory == "*")
-                        //{
-                        //    if (isField == "False")
-                        //    {
-                        //        Is_Not_Valid = "True";
-                        //        lblQuestionErr.Text = "Please provide valid data.";
-                        //    }
-                        //}
-
-                        //String YrStr = String.Join(";", chkStrList.ToArray());
                     }
 
                     else if (AnswerType == "Star") //Star Rating 
@@ -356,14 +334,6 @@ namespace Upkeep_v3.Feedback
                         dt.Rows.Add(dtRow);
 
 
-                        //if (Is_Mandatory == "*")
-                        //{
-                        //    if (isField == "False")
-                        //    {
-                        //        Is_Not_Valid = "True";
-                        //        lblQuestionErr.Text = "Please provide valid data.";
-                        //    }
-                        //}
 
                     }
                     else if (AnswerType == "NPS") //NPS SCORING
@@ -378,15 +348,6 @@ namespace Upkeep_v3.Feedback
                         dtRow["NegativeFeedback"] = string.Empty;
                         dt.Rows.Add(dtRow);
 
-
-                        //if (Is_Mandatory == "*")
-                        //{
-                        //    if (isField == "False")
-                        //    {
-                        //        Is_Not_Valid = "True";
-                        //        lblQuestionErr.Text = "Please provide valid data.";
-                        //    }
-                        //}
 
                     }
                     else if (AnswerType == "Emoji") //Emoji Rating
@@ -595,7 +556,10 @@ namespace Upkeep_v3.Feedback
 
                 EventID = Convert.ToInt32(ViewState["EventID"]);
                 dsConfig = ObjUpkeep.bindEventDetails(CompanyID, EventID);
-
+                if (dsConfig.Tables[0].Rows.Count > 0)
+                    dv_Feedback.Visible = true;
+                else
+                    dv_Feedback.Visible = false;
                 rptHeaderDetails.DataSource = dsConfig.Tables[0];
                 rptHeaderDetails.DataBind();
 

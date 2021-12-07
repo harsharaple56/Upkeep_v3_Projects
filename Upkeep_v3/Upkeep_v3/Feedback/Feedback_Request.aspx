@@ -497,14 +497,6 @@ background-color: blanchedalmond;
                                 </div>
 
                                 <div class="m-portlet__head-tools">
-                                    <div id="dvBackButton" runat="server">
-                                        <a href="<%= Page.ResolveClientUrl("~/Feedback/MyFeedback.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                            <span>
-                                                <i class="la la-arrow-left"></i>
-                                                <span>Back</span>
-                                            </span>
-                                        </a>
-                                    </div>
                                     <div class="btn-group">
 
                                         <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
@@ -526,16 +518,9 @@ background-color: blanchedalmond;
                         <div class="m-portlet__body" style="padding: 0.4rem 2.2rem;">
 
                             <div class="m-portlet__body" style="padding: 0.3rem 2.2rem;">
-
-                                <%-- <div class="form-group m-form__group row" id="dvBanner" runat="server">
-
-                                    <img alt="" src="https://compelapps.in/eFacilito_UAT/Feedback_Form_banners/Banner1.jpg" style="width: 100%; height: 225px;" />
-
-                                </div>--%>
-
-                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="divTitle" runat="server">
-                                    <label class="col-md-3 form-control-label"><span style="color: red;">*</span> Feedback Title :</label>
-                                    <div class="col-md-4">
+                                <div class="form-group m-form__group row" id="divTitle" runat="server">
+                                    <label for="example-text-input" class="col-2 col-form-label"><span style="color: red;">*</span> Feedback Title :</label>
+                                    <div class="col-6">
                                         <asp:DropDownList ID="ddlFeedbackTitle" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlFeedbackTitle_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlFeedbackTitle" Visible="true" Display="Dynamic"
                                             ValidationGroup="validateFeedback" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Feedback Title"></asp:RequiredFieldValidator>
@@ -607,7 +592,7 @@ background-color: blanchedalmond;
 
                                 </div>
 
-                                <div class="form-group row" style="background-color: #00c5dc;">
+                                <div id="dv_Feedback" runat="server" class="form-group row" style="background-color: #00c5dc;">
                                     <label class="col-md-3" style="color: #ffffff; margin-top: 1%;">Feedback Details</label>
                                 </div>
 
