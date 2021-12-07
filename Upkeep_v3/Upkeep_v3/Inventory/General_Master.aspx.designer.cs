@@ -94,13 +94,13 @@ namespace Upkeep_v3.Inventory {
         protected global::System.Web.UI.WebControls.TextBox hdnTxtCategory;
         
         /// <summary>
-        /// btnAddCategory control.
+        /// btnAddCate1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddCategory;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddCate1;
         
         /// <summary>
         /// mpeCategory control.
@@ -112,13 +112,22 @@ namespace Upkeep_v3.Inventory {
         protected global::AjaxControlToolkit.ModalPopupExtender mpeCategory;
         
         /// <summary>
-        /// btnAddLocation control.
+        /// btnAddLoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddLocation;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddLoc;
+        
+        /// <summary>
+        /// btnAddLocc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddLocc;
         
         /// <summary>
         /// mpeSubCategory control.
@@ -130,13 +139,22 @@ namespace Upkeep_v3.Inventory {
         protected global::AjaxControlToolkit.ModalPopupExtender mpeSubCategory;
         
         /// <summary>
-        /// btnItem control.
+        /// btnItems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnItem;
+        protected global::System.Web.UI.WebControls.LinkButton btnItems;
+        
+        /// <summary>
+        /// btnItems1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnItems1;
         
         /// <summary>
         /// mpeItem control.

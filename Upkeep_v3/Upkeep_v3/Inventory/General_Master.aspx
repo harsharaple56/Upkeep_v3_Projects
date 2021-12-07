@@ -13,77 +13,79 @@
         }
 
         .modalPopup {
-            /*background-color: #fff;
-            border: 3px solid #ccc;*/
             padding: 10px;
-            width: 300px;
+            width: 500px;
         }
 
         .highlight {
-            background-color: blanchedalmond;
+            background-color: #b4cae6;
         }
     </style>
-
     <script type="text/javascript">
+
         $(document).ready(function () {
+            var CategoryTableName = $("input[name=CategoryName]").val();
+            if (CategoryTableName != undefined) {
+                $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                    if ($(this).children('td').text().includes(CategoryTableName)) {
+                        var selected = $(this).hasClass("highlight");
+                        $("#tblCategory tr").removeClass("highlight");
+                        if (!selected)
+                            $(this).addClass("highlight");
+                    }
+                });
+            }
+
+            var SubCategoryTableName = $("input[name=SubCatName]").val();
+            if (SubCategoryTableName != undefined) {
+                $('#tblLocation > tbody  > tr').each(function (index, tr) {
+                    if ($(this).children('td').text().includes(SubCategoryTableName)) {
+                        var selected = $(this).hasClass("highlight");
+                        $("#tblLocation tr").removeClass("highlight");
+                        if (!selected)
+                            $(this).addClass("highlight");
+                    }
+                });
+            }
+
+
+
             $("#tblCategory tr").click(function () {
 
-                //alert($("#tblCategory tr").index(this));
                 var table = document.getElementById("tblCategory");
                 var rowID = $("#tblCategory tr").index(this);
 
                 var row = table.rows[rowID];
-                var CategoryID, CategoryName;
+                var CategoryID;
 
-                // alert($(this).attr('id'));
-                // CategoryID = $(this).attr('id');
 
                 CategoryID = row.cells[0].innerHTML;
-                //CategoryID = CategoryID.substring(0, CategoryID.indexOf(' -'));
 
                 $("#hdnCategory").val(CategoryID);
                 $("#hdnCategoryName").val(CategoryID);
 
                 $("#lblCategoryName").text(CategoryID);
                 document.getElementById("hdnTxtCategory").value = CategoryID;
-                //$("#lblCategoryName").text(CategoryID); 
-                //alert(CategoryID);
                 var selected = $(this).hasClass("highlight");
                 $("#tblCategory tr").removeClass("highlight");
                 if (!selected)
                     $(this).addClass("highlight");
 
-                //$("#tblLItems tbody tr").remove(); 
-                //$("#tblLocation tbody tr").remove(); 
-
-                //alert('asdasdas');
-
-                var obj = {};
-
                 var dataString = { 'Category': CategoryID };
                 var param = JSON.stringify(dataString);
 
-
-                //debugger;
+                var row = "";
                 $.ajax({
                     type: 'POST',
                     url: 'General_Master.aspx/SubCategory_bindgrid1',
-                    //data: '{EmpId :' + empId + '}',
-                    //data: JSON.stringify(obj),
-                    //data: dataString,
                     data: param,
-                    //data: '',
                     contentType: 'application/json; charset=utf-8',
                     datatype: 'json',
-                    //async: true,
-                    //cache: false,
-                    success: function (response) {
-                        //alert('Success');
+                    success: function (msg) {
                         location.reload(true);
                     },
                     error: function (xhr, status, error) {
 
-                        //alert(xhr.responseText);  // to see the error message
                     }
                 });
 
@@ -91,24 +93,15 @@
 
             $("#tblLocation tr").click(function () {
 
-                //alert($("#tblCategory tr").index(this));
                 var table = document.getElementById("tblLocation");
                 var rowID = $("#tblLocation tr").index(this);
 
                 var row = table.rows[rowID];
-                var Location, SubCategoryID, SubCategoryName;
+                var Location;
 
-                //alert($(this).attr('id'));
-                //SubCategoryID = $(this).attr('id');
                 Location = row.cells[0].innerHTML;
-                //Location = Location.substring(0, Location.indexOf(' -'));
-
-
-
                 $("#hdnLocation").val(Location);
 
-                //alert(Location);
-                //document.getElementById("lblLocation").val = Location;
                 $("#lblLocation").text(Location);
                 document.getElementById("hdnTxtSubCategory").value = Location;
 
@@ -117,57 +110,33 @@
                 if (!selected)
                     $(this).addClass("highlight");
 
-
-                //alert('asdasdas');
-
-
-                var obj = {};
-
                 var dataString = { 'SubCategory': Location };
                 var param = JSON.stringify(dataString);
 
-                //debugger;
                 $.ajax({
                     type: 'POST',
                     url: 'General_Master.aspx/Item_bindgrid1',
-                    //data: '{EmpId :' + empId + '}',
-                    //data: JSON.stringify(obj),
-                    //data: dataString,
                     data: param,
-                    //data: '',
                     contentType: 'application/json; charset=utf-8',
                     datatype: 'json',
-                    //async: true,
-                    //cache: false,
+
                     success: function (response) {
-                        //alert('Success');
                         location.reload(true);
                     },
                     error: function (xhr, status, error) {
 
-                        //alert(xhr.responseText);  // to see the error message
                     }
                 });
             });
 
             $('.text-success').click(function () {
-                //event.preventDefault();
-
-                //$("#hdnEditTableClicked").val('');
-                //$("#hdnEditClickedID").val('');
 
                 var tbl = $(this).closest('table').attr('id');;
                 var strs = $(this).attr('data-val');
                 var n = strs.includes("=");
 
                 if (n == true) {
-                    var IDa = strs.split('=')[1]; // strs.substr(strs.indexOf('=')); 
-
-                    //alert(tbl);
-                    //alert(IDa);
-
-                    //$("#hdnEditTableClicked").val('');
-                    //$("#hdnEditClickedID").val('');
+                    var IDa = strs.split('=')[1];
 
                     $("#hdnEditTableClicked").val(tbl);
                     $("#hdnEditClickedID").val(IDa);
@@ -177,7 +146,6 @@
                     var dataString = { 'hdnEditTableClicked': tbl, 'hdnEditClickedID': IDa };
                     var param = JSON.stringify(dataString);
 
-                    //debugger;
                     $.ajax({
                         type: 'POST',
                         url: 'General_Master.aspx/SetSeesions',
@@ -194,105 +162,42 @@
                     });
                 }
 
-                //return false;
             });
-
-
-
-            //$('.text-danger').click(function (event) {
-
-            //    var tbl = $(this).closest('table').attr('id');;
-            //    var strs = $(this).attr('data-val');
-            //    var n = strs.includes("=");
-            //    alert(strs);
-            //    if (n == true) {
-            //        var IDa = strs.split('=')[1]; // strs.substr(strs.indexOf('='));  
-            //        var obj = {};
-            //        var dataString = {'Table': tbl, 'ColID': IDa };
-            //        var param = JSON.stringify(dataString);
-
-            //        //debugger;
-            //        $.ajax({
-            //            type: 'POST',
-            //            url: 'General_Master.aspx/DeleteRecord',
-            //            data: param,
-            //            //data: '',
-            //            contentType: 'application/json; charset=utf-8',
-            //            datatype: 'json',
-            //            success: function (response) {
-
-            //            },
-            //            error: function (xhr, status, error) {
-
-            //            }
-            //        });
-            //    }
-            //});
 
         });
 
 
-
-        //function functionDelete(x) {
-        //    var tbl = $(x).closest('table').attr('id');;
-        //    var strs = $(x).attr('data-val');
-        //    var n = strs.includes("=");
-
-        //    if (n == true) {
-        //        var IDa = strs.split('=')[1]; // strs.substr(strs.indexOf('='));  
-        //        var obj = {};
-        //        var dataString = { 'Table': tbl, 'ColID': IDa };
-        //        var param = JSON.stringify(dataString);
-
-        //        //debugger;
-        //        $.ajax({
-        //            type: 'POST',
-        //            url: 'General_Master.aspx/DeleteRecord',
-        //            data: param,
-        //            //data: '',
-        //            contentType: 'application/json; charset=utf-8',
-        //            datatype: 'json',
-        //            success: function (response) {
-
-        //            },
-        //            error: function (xhr, status, error) {
-
-        //            }
-        //        });
-        //    }
-        //}
-
-        function HighlightCategoryTable() {
-            $("#tblCategory tr").click(function () {
-
-                //alert($("#tblCategory tr").index(this));
-                var table = document.getElementById("tblCategory");
-                var rowID = $("#tblCategory tr").index(this);
-
-                var row = table.rows[rowID];
-                var CategoryID, CategoryName;
-
-                //alert($(this).attr('id'));
-                //CategoryID = $(this).attr('id');
-
-                CategoryID = row.cells[0].innerHTML;
-                //CategoryID = CategoryID.substring(0, CategoryID.indexOf(' -'));
-
-
-
-                //alert('asdasdas');
-
-                //alert(CategoryID);
-                var selected = $(this).hasClass("highlight");
-
-                //alert(selected);
-                $(this).addClass("highlight");
-
-                $("#tblCategory tr").removeClass("highlight");
-                if (!selected)
-                    $(this).addClass("highlight");
-            });
+        function confirmSubCategoryAction() {
+            var catename = $("#lblCategoryName").text();
+            if (catename != "") {
+                document.getElementById("<%= btnAddLocc.ClientID %>").click();
+                return false;
+            }
+            else {
+                document.getElementById("m_sweetalert_demo_3_1").click();
+                $("#swal2-title").text('Please select Category ..!');
+                $("#swal2-content").hide();
+                return false;
+            }
         }
+
+        function confirmItemAction() {
+            var catename = $("#lblCategoryName").text();
+            var subcatename = $("#lblSubCategory").text();
+
+            if (catename != "" && subcatename != "") {
+                document.getElementById("<%= btnItems1.ClientID %>").click();
+                return false;
+            }
+            else{
+                document.getElementById("m_sweetalert_demo_3_1").click();
+                $("#swal2-title").hide();
+                $("#swal2-content").text('Please select Category & Sub-Category ..!');
+                return false;
+            }
+        }
+
+
 
     </script>
 </asp:Content>
@@ -341,9 +246,13 @@
                                 <div class="m-portlet__head-tools">
                                     <ul class="m-portlet__nav">
                                         <li class="m-portlet__nav-item">
-                                            <%--<a href="#add_Category" class="m-portlet__nav-link m-portlet__nav-link--icon" data-toggle="modal"><i class="la la-plus"></i></a>--%>
-                                            <asp:Button ID="btnAddCategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="+" />
-                                            <cc1:ModalPopupExtender ID="mpeCategory" runat="server" PopupControlID="pnlAddCategory" TargetControlID="btnAddCategory"
+                                            <asp:LinkButton class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnAddCate1">
+                                            <div class="m-demo-icon__preview">
+														<i class="la la-plus"></i>
+													</div>
+                                            </asp:LinkButton>
+
+                                            <cc1:ModalPopupExtender ID="mpeCategory" runat="server" PopupControlID="pnlAddCategory" TargetControlID="btnAddCate1"
                                                 CancelControlID="btnClose" BackgroundCssClass="modalBackground">
                                             </cc1:ModalPopupExtender>
 
@@ -351,44 +260,10 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="m-portlet__body py-1 px-2">
-                                <table id="tblCategory" class="table m-table table-sm table-hover">
+                            <div class="m-portlet__body">
+                                <table id="tblCategory" class="table table-sm m-table m-table--head-bg-brand">
                                     <tbody>
-
                                         <%=Category_bindgrid()%>
-
-                                        <%--<tr class="cursor-pointer">
-                                                <td>Category 1
-													
-                                            <span class="pull-right">
-                                                <a href="javascript:;" class="text-success"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:;" class="text-danger" data-toggle="confirmation"><i class="fa fa-trash fa-fw"></i></a>
-                                                <i class="fa fa-caret-right fa-fw invisible"></i>
-                                            </span>
-                                                </td>
-                                            </tr>--%>
-
-
-                                        <%--  <tr class="table-secondary">
-                                        <td>Category 2
-													
-                                            <span class="pull-right">
-                                                <a href="javascript:;" class="text-success"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:;" class="text-danger" data-toggle="confirmation"><i class="fa fa-trash fa-fw"></i></a>
-                                                <i class="fa fa-caret-right fa-fw"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="cursor-pointer">
-                                        <td>Category 3
-													
-                                            <span class="pull-right">
-                                                <a href="javascript:;" class="text-success"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:;" class="text-danger" data-toggle="confirmation"><i class="fa fa-trash fa-fw"></i></a>
-                                                <i class="fa fa-caret-right fa-fw invisible"></i>
-                                            </span>
-                                        </td>
-                                    </tr>--%>
                                     </tbody>
                                 </table>
                             </div>
@@ -410,9 +285,15 @@
                                 <div class="m-portlet__head-tools">
                                     <ul class="m-portlet__nav">
                                         <li class="m-portlet__nav-item">
-                                            <%--<a href="#add_location" class="m-portlet__nav-link m-portlet__nav-link--icon" data-toggle="modal"><i class="la la-plus"></i></a>--%>
-                                            <asp:Button ID="btnAddLocation" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="+" OnClick="btnAddLocation_Click" />
-                                            <cc1:ModalPopupExtender ID="mpeSubCategory" runat="server" PopupControlID="pnlAddSubCategory" TargetControlID="btnAddLocation"
+                                            <asp:LinkButton OnClientClick="return confirmSubCategoryAction()"
+                                                class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnAddLoc">
+                                            <div class="m-demo-icon__preview">
+														<i class="la la-plus"></i>
+													</div>
+                                            </asp:LinkButton>
+                                            <button style="display: none" type="button" class="btn btn-warning m-btn m-btn--custom" id="m_sweetalert_demo_3_1"></button>
+                                            <asp:Button ID="btnAddLocc" runat="server" Style="display: none" />
+                                            <cc1:ModalPopupExtender ID="mpeSubCategory" runat="server" PopupControlID="pnlAddSubCategory" TargetControlID="btnAddLocc"
                                                 CancelControlID="btnCloseLoc" BackgroundCssClass="modalBackground">
                                             </cc1:ModalPopupExtender>
 
@@ -420,52 +301,13 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="m-portlet__body py-1 px-2">
-                                <table id="tblLocation" class="table m-table table-sm">
+                            <div class="m-portlet__body">
+                                <table id="tblLocation" class="table table-sm m-table m-table--head-bg-brand">
                                     <tbody>
-
                                         <%=SubCategory_bindgrid()%>
-
-                                        <%--<tr class="cursor-pointer">
-                                                <td>Location 1
-													
-                                            <span class="pull-right">
-                                                <a href="javascript:;" class="text-success"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:;" class="text-danger" data-toggle="confirmation"><i class="fa fa-trash fa-fw"></i></a>
-                                                <i class="fa fa-caret-right fa-fw invisible"></i>
-                                            </span>
-                                                </td>
-                                            </tr>--%>
-
-                                        <%--<tr class="cursor-pointer">
-                                        <td>Location 2
-													
-                                            <span class="pull-right">
-                                                <a href="javascript:;" class="text-success"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:;" class="text-danger" data-toggle="confirmation"><i class="fa fa-trash fa-fw"></i></a>
-                                                <i class="fa fa-caret-right fa-fw invisible"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="table-secondary">
-                                        <td>Location 3
-													
-                                            <span class="pull-right">
-                                                <a href="javascript:;" class="text-success"><i class="fa fa-edit fa-fw"></i></a>
-                                                <a href="javascript:;" class="text-danger" data-toggle="confirmation"><i class="fa fa-trash fa-fw"></i></a>
-                                                <i class="fa fa-caret-right fa-fw"></i>
-                                            </span>
-                                        </td>
-                                    </tr>--%>
                                     </tbody>
                                 </table>
 
-
-                                <%--<asp:GridView ID="gvLocation" runat="server" CssClass="table m-table table-sm" AutoGenerateColumns="false">
-                                        <Columns>
-                                            <asp:BoundField DataField="Location" HeaderText="Location" ItemStyle-Width="150px" />
-                                        </Columns>
-                                    </asp:GridView>--%>
                             </div>
                         </div>
                     </div>
@@ -485,10 +327,14 @@
                                 <div class="m-portlet__head-tools">
                                     <ul class="m-portlet__nav">
                                         <li class="m-portlet__nav-item">
-                                            <%--<a href="#add_sub_location" class="m-portlet__nav-link m-portlet__nav-link--icon" data-toggle="modal"><i class="la la-plus"></i></a>--%>
-
-                                            <asp:Button ID="btnItem" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="+" />
-                                            <cc1:ModalPopupExtender ID="mpeItem" runat="server" PopupControlID="pnlAddItem" TargetControlID="btnItem"
+                                            <asp:LinkButton OnClientClick="javascript:return confirmItemAction();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnItems">
+                                            <div class="m-demo-icon__preview">
+														<i class="la la-plus"></i>
+													</div>
+                                            </asp:LinkButton>
+                                            <button style="display: none" type="button" class="btn btn-warning m-btn m-btn--custom" id="m_sweetalert_demo_3_1"></button>
+                                            <asp:Button ID="btnItems1" runat="server" Style="display: none" />
+                                            <cc1:ModalPopupExtender ID="mpeItem" runat="server" PopupControlID="pnlAddItem" TargetControlID="btnItems1"
                                                 CancelControlID="btnCloseItem" BackgroundCssClass="modalBackground">
                                             </cc1:ModalPopupExtender>
 
@@ -496,8 +342,9 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="m-portlet__body py-1 px-2">
-                                <table id="tblLItems" class="table m-table table-sm">
+                            <div class="m-portlet__body">
+                                <table id="tblLItems" class="table table-sm m-table m-table--head-bg-brand">
+
                                     <tbody>
                                         <%=Item_bindgrid()%>
                                     </tbody>
@@ -597,7 +444,7 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSubCategoryCode" Visible="true" ValidationGroup="validationSubCategory" ForeColor="Red" ErrorMessage="Please enter SubCategory code"></asp:RequiredFieldValidator>
 
                                     </div>--%>
-                                     <div class="form-group m-form__group row">
+                                    <div class="form-group m-form__group row">
                                         <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
                                         <asp:Label ID="lblCategoryName1" Text="" ClientIDMode="Static" runat="server" class="form-control-label" Style="font-weight: bold"></asp:Label>
                                     </div>
@@ -632,7 +479,7 @@
 
         </asp:Panel>
 
-        <asp:Panel ID="pnlAddItem" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+        <asp:Panel ID="pnlAddItem" runat="server" CssClass="modalPopup" align="center" Style="display: none;">
             <div class="" id="add_sub_SubCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document" style="max-width: 476px;">
                     <div class="modal-content">
