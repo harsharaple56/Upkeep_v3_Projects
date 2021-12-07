@@ -42,7 +42,6 @@ namespace Upkeep_v3.General_Masters
                 string parentNode, childNode, description, tempNode, emptyParentNode, rowColumnNumber;
                 parentNode = childNode = description = tempNode = emptyParentNode = rowColumnNumber = string.Empty;
                 DataTable dt = new DataTable();
-                bool forjloop = false;
 
                 string path = string.Concat(Server.MapPath("~/Checklist/ImportFile/" + FU_ChecklistMst.FileName));
                 FU_ChecklistMst.SaveAs(path);
@@ -103,7 +102,7 @@ namespace Upkeep_v3.General_Masters
 
                             DataSet dsChkerror = new DataSet();
                             DataTable dterror = new DataTable();
-                            rowColumnNumber = "At Row Number : " + i + " , And At Column Number : " + j ;
+                            rowColumnNumber = "At Row Number : " + i + " , And At Column Number : " + j;
                             dsChkerror = Insert_Treview_ImportExcel(parentNode, childNode, emptyParentNode, rowColumnNumber, CompanyID, LoggedInUserID);
                             if (dsChkerror.Tables.Count > 0)
                             {
@@ -117,7 +116,6 @@ namespace Upkeep_v3.General_Masters
                                     else
                                     if (Status == 2)
                                     {
-                                        forjloop = true;
                                         dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:100px;");
                                         pnlImportExport.Attributes.Add("style", "height:580px; width:700px; top:-14px !important;");
                                         mpeUserMst.Show();
@@ -131,13 +129,8 @@ namespace Upkeep_v3.General_Masters
                                     }
                                 }
                             }
-                            parentNode = childNode = tempNode = emptyParentNode =rowColumnNumber = string.Empty;
-
-                            if (forjloop)
-                                break;
+                            parentNode = childNode = tempNode = emptyParentNode = rowColumnNumber = string.Empty;
                         }
-                        if (forjloop)
-                            break;
                     }
                 }
                 oledbconn.Close();
@@ -150,7 +143,7 @@ namespace Upkeep_v3.General_Masters
             }
         }
 
-        protected DataSet Insert_Treview_ImportExcel(string parentNode, string childNode, string emptyParentNode,string rowColumnNumber, int CompanyID, string LoggedInUserID)
+        protected DataSet Insert_Treview_ImportExcel(string parentNode, string childNode, string emptyParentNode, string rowColumnNumber, int CompanyID, string LoggedInUserID)
         {
             DataSet dsNodes = new DataSet();
             dsNodes = ObjUpkeep.Insert_LocationTree(parentNode, childNode, emptyParentNode, rowColumnNumber, CompanyID, LoggedInUserID);
