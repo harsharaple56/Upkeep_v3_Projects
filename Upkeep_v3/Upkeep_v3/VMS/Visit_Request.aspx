@@ -676,7 +676,7 @@ border: 3px solid #ccc;*/
                 tryNumber++;
                 self.attr('disabled', true);
             }
-            else if ($("[id*=txtName]").val() == '' || $("[id*=txtEmail]").val() == '' || $("[id*=txtPhone]").val() == '' || $("[id*=txtVMSDate]").val() == ''  ) {
+            else if ($("[id*=txtName]").val() == '' || $("[id*=txtEmail]").val() == '' || $("[id*=txtPhone]").val() == '' || $("[id*=txtVMSDate]").val() == '') {
                 tryNumber = 0;
             }
             else {
@@ -957,7 +957,7 @@ border: 3px solid #ccc;*/
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="m-grid__item m-grid__item--fluid">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="row">
                 <div class="col-md-12">
