@@ -265,6 +265,15 @@ namespace Upkeep_v3.VMS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
         
         /// <summary>
+        /// validateEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator validateEmail;
+        
+        /// <summary>
         /// txtPhone control.
         /// </summary>
         /// <remarks>
