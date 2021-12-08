@@ -52,31 +52,20 @@ namespace Upkeep_v3.Analytics
 
         }
 
-        public void Dashboard_Details()
+        [System.Web.Services.WebMethod]
+        public static void GetDashboardDetails(string start_Date, string end_Date)
         {
-            if (start_date.Value != "")
-            {
-                FromDate = Convert.ToString(start_date.Value);
-            }
-            else
-            {
-                DateTime Fromdate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(-30);
-                FromDate = Fromdate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-            }
-
-            if (end_date.Value != "")
-            {
-                ToDate = Convert.ToString(end_date.Value);
-            }
-            else
-            {
-                ToDate = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-            }
-        }
-
-        protected void btnSearchDashboard_Click(object sender, EventArgs e)
-        {
-            Dashboard_Details();
+            Ticketing obj = new Ticketing();
+            FromDate = start_Date;
+            ToDate = end_Date;
+            obj.BindDowntimeTickets();
+            //Fetch_Analyze_Tkt_Block1();
+            //Fetch_Analyze_Tkt_Block2();
+            //Fetch_Analyze_Tkt_Block3();
+            //Fetch_Analyze_Tkt_Block4();
+            //Fetch_Analyze_Tkt_Block5();
+            //Fetch_Analyze_Tkt_Block6();
+            //Fetch_Analyze_Tkt_Block7();
         }
 
         [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
