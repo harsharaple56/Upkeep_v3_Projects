@@ -1211,6 +1211,23 @@ public class My_Upkeep
         return dsAddChecklist;
     }
 
+    public DataSet Import_DepartmentList_Master(int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsAddChecklist = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            dsAddChecklist = ObjUpkeepCC_BL.Import_DepartmentList_Master(CompanyID, LoggedInUserID, StrConn);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return dsAddChecklist;
+    }
+
     public DataSet FetchMenu(int parentMenuId)
     {
         DataSet dtMenu = new DataSet();

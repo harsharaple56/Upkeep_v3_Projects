@@ -3,6 +3,27 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Fetch_AnswerForAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Key" type="s1:char" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_AnswerForAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_AnswerForAllResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_User_UserGroupListGPWP">
         <s:complexType>
           <s:sequence>
@@ -1735,6 +1756,28 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Import_AssetList_MasterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_DepartmentList_Master">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_DepartmentList_MasterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_DepartmentList_MasterResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3666,27 +3709,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Bind_CSMRequestDetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_AnswerForAll">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Key" type="s1:char" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_AnswerForAllResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_AnswerForAllResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5757,6 +5779,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Fetch_AnswerForAllSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_AnswerForAll" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_AnswerForAllSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_AnswerForAllResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_User_UserGroupListGPWPSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_User_UserGroupListGPWP" />
   </wsdl:message>
@@ -6194,6 +6222,12 @@
   </wsdl:message>
   <wsdl:message name="Import_AssetList_MasterSoapOut">
     <wsdl:part name="parameters" element="tns:Import_AssetList_MasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_DepartmentList_MasterSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_DepartmentList_Master" />
+  </wsdl:message>
+  <wsdl:message name="Import_DepartmentList_MasterSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_DepartmentList_MasterResponse" />
   </wsdl:message>
   <wsdl:message name="AddChecklistMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:AddChecklistMaster_CRUD" />
@@ -6668,12 +6702,6 @@
   </wsdl:message>
   <wsdl:message name="Bind_CSMRequestDetailsSoapOut">
     <wsdl:part name="parameters" element="tns:Bind_CSMRequestDetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_AnswerForAllSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_AnswerForAll" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_AnswerForAllSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_AnswerForAllResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -7180,6 +7208,10 @@
     <wsdl:part name="parameters" element="tns:Fetch_MIS_ReportResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Fetch_AnswerForAll">
+      <wsdl:input message="tns:Fetch_AnswerForAllSoapIn" />
+      <wsdl:output message="tns:Fetch_AnswerForAllSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_User_UserGroupListGPWP">
       <wsdl:input message="tns:Fetch_User_UserGroupListGPWPSoapIn" />
       <wsdl:output message="tns:Fetch_User_UserGroupListGPWPSoapOut" />
@@ -7472,6 +7504,10 @@
     <wsdl:operation name="Import_AssetList_Master">
       <wsdl:input message="tns:Import_AssetList_MasterSoapIn" />
       <wsdl:output message="tns:Import_AssetList_MasterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_DepartmentList_Master">
+      <wsdl:input message="tns:Import_DepartmentList_MasterSoapIn" />
+      <wsdl:output message="tns:Import_DepartmentList_MasterSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddChecklistMaster_CRUD">
       <wsdl:input message="tns:AddChecklistMaster_CRUDSoapIn" />
@@ -7788,10 +7824,6 @@
     <wsdl:operation name="Bind_CSMRequestDetails">
       <wsdl:input message="tns:Bind_CSMRequestDetailsSoapIn" />
       <wsdl:output message="tns:Bind_CSMRequestDetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_AnswerForAll">
-      <wsdl:input message="tns:Fetch_AnswerForAllSoapIn" />
-      <wsdl:output message="tns:Fetch_AnswerForAllSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -8132,6 +8164,15 @@
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_AnswerForAll">
+      <soap:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_User_UserGroupListGPWP">
       <soap:operation soapAction="http://tempuri.org/Fetch_User_UserGroupListGPWP" style="document" />
       <wsdl:input>
@@ -8782,6 +8823,15 @@
     </wsdl:operation>
     <wsdl:operation name="Import_AssetList_Master">
       <soap:operation soapAction="http://tempuri.org/Import_AssetList_Master" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_DepartmentList_Master">
+      <soap:operation soapAction="http://tempuri.org/Import_DepartmentList_Master" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9493,15 +9543,6 @@
     </wsdl:operation>
     <wsdl:operation name="Bind_CSMRequestDetails">
       <soap:operation soapAction="http://tempuri.org/Bind_CSMRequestDetails" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_AnswerForAll">
-      <soap:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -10268,6 +10309,15 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Fetch_AnswerForAll">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_User_UserGroupListGPWP">
       <soap12:operation soapAction="http://tempuri.org/Fetch_User_UserGroupListGPWP" style="document" />
       <wsdl:input>
@@ -10918,6 +10968,15 @@
     </wsdl:operation>
     <wsdl:operation name="Import_AssetList_Master">
       <soap12:operation soapAction="http://tempuri.org/Import_AssetList_Master" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_DepartmentList_Master">
+      <soap12:operation soapAction="http://tempuri.org/Import_DepartmentList_Master" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11629,15 +11688,6 @@
     </wsdl:operation>
     <wsdl:operation name="Bind_CSMRequestDetails">
       <soap12:operation soapAction="http://tempuri.org/Bind_CSMRequestDetails" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Fetch_AnswerForAll">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

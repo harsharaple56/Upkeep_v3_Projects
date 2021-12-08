@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Fetch_AnswerForAllOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_User_UserGroupListGPWPOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_CompanyOperationCompleted;
@@ -175,6 +177,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback ImportRetailerOperationCompleted;
         
         private System.Threading.SendOrPostCallback Import_AssetList_MasterOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_DepartmentList_MasterOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddChecklistMaster_CRUDOperationCompleted;
         
@@ -333,8 +337,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_CSMRequestListOperationCompleted;
         
         private System.Threading.SendOrPostCallback Bind_CSMRequestDetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Fetch_AnswerForAllOperationCompleted;
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
@@ -541,6 +543,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Fetch_AnswerForAllCompletedEventHandler Fetch_AnswerForAllCompleted;
         
         /// <remarks/>
         public event Fetch_User_UserGroupListGPWPCompletedEventHandler Fetch_User_UserGroupListGPWPCompleted;
@@ -760,6 +765,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Import_AssetList_MasterCompletedEventHandler Import_AssetList_MasterCompleted;
+        
+        /// <remarks/>
+        public event Import_DepartmentList_MasterCompletedEventHandler Import_DepartmentList_MasterCompleted;
         
         /// <remarks/>
         public event AddChecklistMaster_CRUDCompletedEventHandler AddChecklistMaster_CRUDCompleted;
@@ -997,9 +1005,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Bind_CSMRequestDetailsCompletedEventHandler Bind_CSMRequestDetailsCompleted;
-        
-        /// <remarks/>
-        public event Fetch_AnswerForAllCompletedEventHandler Fetch_AnswerForAllCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -1252,6 +1257,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_MIS_ReportCompletedEventHandler Fetch_MIS_ReportCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_AnswerForAll", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_AnswerForAll(char Key) {
+            object[] results = this.Invoke("Fetch_AnswerForAll", new object[] {
+                        Key});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_AnswerForAllAsync(char Key) {
+            this.Fetch_AnswerForAllAsync(Key, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_AnswerForAllAsync(char Key, object userState) {
+            if ((this.Fetch_AnswerForAllOperationCompleted == null)) {
+                this.Fetch_AnswerForAllOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_AnswerForAllOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_AnswerForAll", new object[] {
+                        Key}, this.Fetch_AnswerForAllOperationCompleted, userState);
+        }
+        
+        private void OnFetch_AnswerForAllOperationCompleted(object arg) {
+            if ((this.Fetch_AnswerForAllCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_AnswerForAllCompleted(this, new Fetch_AnswerForAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_User_UserGroupListGPWP", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3791,6 +3825,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Import_AssetList_MasterCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Import_AssetList_MasterCompleted(this, new Import_AssetList_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_DepartmentList_Master", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_DepartmentList_Master(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_DepartmentList_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_DepartmentList_MasterAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_DepartmentList_MasterAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_DepartmentList_MasterAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_DepartmentList_MasterOperationCompleted == null)) {
+                this.Import_DepartmentList_MasterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_DepartmentList_MasterOperationCompleted);
+            }
+            this.InvokeAsync("Import_DepartmentList_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_DepartmentList_MasterOperationCompleted, userState);
+        }
+        
+        private void OnImport_DepartmentList_MasterOperationCompleted(object arg) {
+            if ((this.Import_DepartmentList_MasterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_DepartmentList_MasterCompleted(this, new Import_DepartmentList_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -6943,35 +7008,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Bind_CSMRequestDetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Bind_CSMRequestDetailsCompleted(this, new Bind_CSMRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_AnswerForAll", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_AnswerForAll(char Key) {
-            object[] results = this.Invoke("Fetch_AnswerForAll", new object[] {
-                        Key});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_AnswerForAllAsync(char Key) {
-            this.Fetch_AnswerForAllAsync(Key, null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_AnswerForAllAsync(char Key, object userState) {
-            if ((this.Fetch_AnswerForAllOperationCompleted == null)) {
-                this.Fetch_AnswerForAllOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_AnswerForAllOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_AnswerForAll", new object[] {
-                        Key}, this.Fetch_AnswerForAllOperationCompleted, userState);
-        }
-        
-        private void OnFetch_AnswerForAllOperationCompleted(object arg) {
-            if ((this.Fetch_AnswerForAllCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_AnswerForAllCompleted(this, new Fetch_AnswerForAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -10224,6 +10260,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Fetch_AnswerForAllCompletedEventHandler(object sender, Fetch_AnswerForAllCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_AnswerForAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_AnswerForAllCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_User_UserGroupListGPWPCompletedEventHandler(object sender, Fetch_User_UserGroupListGPWPCompletedEventArgs e);
     
     /// <remarks/>
@@ -12107,6 +12169,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Import_AssetList_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_DepartmentList_MasterCompletedEventHandler(object sender, Import_DepartmentList_MasterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_DepartmentList_MasterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_DepartmentList_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -14161,32 +14249,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Bind_CSMRequestDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void Fetch_AnswerForAllCompletedEventHandler(object sender, Fetch_AnswerForAllCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_AnswerForAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_AnswerForAllCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
