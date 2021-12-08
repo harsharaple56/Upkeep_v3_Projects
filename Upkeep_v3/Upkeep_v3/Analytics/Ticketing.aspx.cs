@@ -59,13 +59,6 @@ namespace Upkeep_v3.Analytics
             FromDate = start_Date;
             ToDate = end_Date;
             obj.BindDowntimeTickets();
-            //Fetch_Analyze_Tkt_Block1();
-            //Fetch_Analyze_Tkt_Block2();
-            //Fetch_Analyze_Tkt_Block3();
-            //Fetch_Analyze_Tkt_Block4();
-            //Fetch_Analyze_Tkt_Block5();
-            //Fetch_Analyze_Tkt_Block6();
-            //Fetch_Analyze_Tkt_Block7();
         }
 
         [WebMethod, ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
