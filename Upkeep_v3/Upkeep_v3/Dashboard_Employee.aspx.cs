@@ -18,8 +18,8 @@ namespace Upkeep_v3
     public partial class Dashboard_Employee : System.Web.UI.Page
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
-        string LoggedInUserID = string.Empty;
-        int CompanyID = 0;
+        public static string LoggedInUserID = string.Empty;
+        public static int CompanyID = 0;
 
         string Role_Name = string.Empty;
         string UserType = string.Empty;
@@ -29,9 +29,6 @@ namespace Upkeep_v3
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             UserType = Convert.ToString(Session["UserType"]);
-
-
-            //lblSession.Text = Convert.ToString(Application["SessionCount"]);
 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
@@ -44,7 +41,6 @@ namespace Upkeep_v3
                 if (UserType == "E")
                 {
                     hdn_IsPostBack.Value = "no";
-                    //Dashboard_Details();
                 }
                 else
                 {
@@ -76,75 +72,51 @@ namespace Upkeep_v3
 
         }
 
-
-        public void Dashboard_Details()
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> GetDashboardDetails(string start_Date, string end_Date)
         {
-            string Fromdate = string.Empty;
-            string ToDate = string.Empty;
-
-
-            if (start_date.Value != "")
-            {
-                Fromdate = Convert.ToString(start_date.Value);
-            }
-            else
-            {
-                DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(-30);
-                Fromdate = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-
-                //From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-            }
-
-            if (end_date.Value != "")
-            {
-                ToDate = Convert.ToString(end_date.Value);
-            }
-            else
-            {
-                //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
-                //To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-                ToDate = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-            }
-
-
+            Dashboard_Employee obj = new Dashboard_Employee();
+            string Fromdate = start_Date;
+            string ToDate = end_Date;
             DataSet ds = new DataSet();
+            Dictionary<string, string> list = new Dictionary<string, string>();
+
             try
             {
-                ds = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate, 0, string.Empty);
+                ds = obj.ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate, 0, string.Empty);
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        lbl_tkt_Pending_Close.Text = Convert.ToString(ds.Tables[0].Rows[0]["Pending_Closure_Tickets"]);
-                        lbl_tkt_Open_Accepted.Text = Convert.ToString(ds.Tables[0].Rows[0]["Accepted_Tickets"]);
-                        lbl_Tkt_Open_Assigned.Text = Convert.ToString(ds.Tables[0].Rows[0]["Assigned_Tickets"]);
-                        lbl_Tkt_Parked_Hold.Text = Convert.ToString(ds.Tables[0].Rows[0]["Parked_Tickets"]);
-                        lbl_Tkt_Open_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Open_Tickets"]);
-                        lbl_tkt_Closed_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Closed_Tickets"]);
-                        lbl_Tkt_Expired_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Expired_Tickets"]);
+                        list.Add("lbl_tkt_Pending_Close", Convert.ToString(ds.Tables[0].Rows[0]["Pending_Closure_Tickets"]));
+                        list.Add("lbl_tkt_Open_Accepted", Convert.ToString(ds.Tables[0].Rows[0]["Accepted_Tickets"]));
+                        list.Add("lbl_Tkt_Open_Assigned", Convert.ToString(ds.Tables[0].Rows[0]["Assigned_Tickets"]));
+                        list.Add("lbl_Tkt_Parked_Hold", Convert.ToString(ds.Tables[0].Rows[0]["Parked_Tickets"]));
+                        list.Add("lbl_Tkt_Open_User", Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Open_Tickets"]));
+                        list.Add("lbl_tkt_Closed_User", Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Closed_Tickets"]));
+                        list.Add("lbl_Tkt_Expired_User", Convert.ToString(ds.Tables[0].Rows[0]["MyAcc_Expired_Tickets"]));
+                        list.Add("lbl_Chk_Total", Convert.ToString(ds.Tables[0].Rows[0]["Chk_Pending"]));
+                        list.Add("lbl_Chk_Open_User", Convert.ToString(ds.Tables[0].Rows[0]["Chk_Draft"]));
+                        list.Add("lbl_Chk_Closed_User", Convert.ToString(ds.Tables[0].Rows[0]["Chk_Closed"]));
 
-                        lbl_Chk_Total.Text = Convert.ToString(ds.Tables[0].Rows[0]["Chk_Pending"]);
-                        lbl_Chk_Open_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["Chk_Draft"]);
-                        lbl_Chk_Closed_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["Chk_Closed"]);
+                        list.Add("lbl_WP_Pending_Approvals",Convert.ToString(ds.Tables[0].Rows[0]["WP_Pending_Approvals"]));
+                        list.Add("lbl_WP_Open_User", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Open"]));
+                        list.Add("lbl_WP_InProgress_User", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_InProgress"]));
+                        list.Add("lbl_WP_OnHold_User", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Hold"]));
+                        list.Add("lbl_WP_Approved_User", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Approved"]));
 
-                        lbl_WP_Pending_Approvals.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Pending_Approvals"]);
-                        lbl_WP_Open_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Open"]);
-                        lbl_WP_InProgress_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_InProgress"]);
-                        lbl_WP_OnHold_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Hold"]);
-                        lbl_WP_Approved_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Approved"]);
+                        list.Add("lbl_GP_Pending_Approval", Convert.ToString(ds.Tables[0].Rows[0]["GP_Pending_Approvals"]));
+                        list.Add("lbl_GP_Open_User", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Open"]));
+                        list.Add("lbl_GP_InProgress", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_InProgress"]));
+                        list.Add("lbl_GP_OnHold", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Hold"]));
+                        list.Add("lbl_GP_Approved_User", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Approved"]));
 
-                        lbl_GP_Pending_Approval.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Pending_Approvals"]);
-                        lbl_GP_Open_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Open"]);
-                        lbl_GP_InProgress.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_InProgress"]);
-                        lbl_GP_OnHold.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Hold"]);
-                        lbl_GP_Approved_User.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Approved"]);
-
-                        lbl_VMS_IN.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_IN"]);
-                        lbl_VMS_OUT.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_OUT"]);
-                        lbl_VMS_Pending.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Pending"]);
-                        lbl_VMS_Recieved.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Recieved"]);
-                        lbl_VMS_Rejected.Text = Convert.ToString(ds.Tables[0].Rows[0]["VMS_Rejected"]);
+                        list.Add("lbl_VMS_IN",  Convert.ToString(ds.Tables[0].Rows[0]["VMS_IN"]));
+                        list.Add("lbl_VMS_OUT", Convert.ToString(ds.Tables[0].Rows[0]["VMS_OUT"]));
+                        list.Add("lbl_VMS_Pending", Convert.ToString(ds.Tables[0].Rows[0]["VMS_Pending"]));
+                        list.Add("lbl_VMS_Recieved", Convert.ToString(ds.Tables[0].Rows[0]["VMS_Recieved"]));
+                        list.Add("lbl_VMS_Rejected",  Convert.ToString(ds.Tables[0].Rows[0]["VMS_Rejected"]));
 
                     }
 
@@ -153,49 +125,48 @@ namespace Upkeep_v3
                         for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
                         {
                             DataSet ds1 = new DataSet();
-                            ds1 = ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate, Convert.ToInt32(ds.Tables[1].Rows[i].ItemArray[0]), "F");
+                            ds1 = obj.ObjUpkeep.Fetch_Dashboard_Employee(CompanyID, LoggedInUserID, Fromdate, ToDate, Convert.ToInt32(ds.Tables[1].Rows[i].ItemArray[0]), "F");
 
                             if (ds1.Tables[0].Rows[0]["Module_Code"] != null)
                             {
                                 if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "TKT")
                                 {
-                                    Tkt.Visible = true;
+                                    list.Add("Tkt_Visible","true");
                                 }
 
                                 if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "CHK")
                                 {
-                                    Chk.Visible = true;
+                                    list.Add("Chk_Visible", "true");
                                 }
 
                                 if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "WP")
                                 {
-                                    WP.Visible = true;
+                                    list.Add("WP_Visible", "true");
+
                                 }
 
                                 if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "GP")
                                 {
-                                    GP.Visible = true;
+                                    list.Add("GP_Visible", "true");
                                 }
 
                                 if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "VMS")
                                 {
-                                    VMS.Visible = true;
+                                    list.Add("VMS_Visible", "true");
                                 }
                             }
 
                         }
                     }
+
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }
 
-        protected void btnSearchDashboard_Click(object sender, EventArgs e)
-        {
-            Dashboard_Details();
+            return list ;
         }
     }
 }

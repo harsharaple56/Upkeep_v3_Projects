@@ -385,7 +385,7 @@ background-color: blanchedalmond;
 
             });
 
-             $("#Phoneno").bind("keypress", function (e) {
+            $("#Phoneno").bind("keypress", function (e) {
                 var keyCode = e.which ? e.which : e.keyCode
 
                 if (!(keyCode >= 48 && keyCode <= 57)) {
@@ -397,7 +397,7 @@ background-color: blanchedalmond;
             });
 
 
-            
+
             $("#Phoneno").bind("keyup", function (e) {
                 //debugger;
                 var maxlength = new Number(10); // Change number to your max length. 
@@ -664,13 +664,13 @@ background-color: blanchedalmond;
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-user-circle" aria-hidden="true"></span>First Name</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
                                     <asp:TextBox ID="Fname" runat="server" class="form-control m-input" placeholder="Enter your First name" ClientIDMode="Static"></asp:TextBox>
-                                    <span id="error_First_name" class="text-danger small"></span>
+                                    <asp:RequiredFieldValidator ValidationGroup="validateFeedback" ID="reqFName" ForeColor="Red" ErrorMessage="Please enter first name" runat="server"></asp:RequiredFieldValidator>
                                 </div>
 
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-user-circle" aria-hidden="true"></span>Last Name</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
                                     <asp:TextBox ID="Lname" runat="server" class="form-control m-input" placeholder="Enter your Last Name" ClientIDMode="Static"></asp:TextBox>
-                                    <span id="error_Last_Name" class="text-danger small"></span>
+                                    <asp:RequiredFieldValidator ValidationGroup="validateFeedback" ID="reqLName" ForeColor="Red" ErrorMessage="Please enter last name" runat="server"></asp:RequiredFieldValidator>
                                 </div>
 
                             </div>
@@ -678,16 +678,16 @@ background-color: blanchedalmond;
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-phone" aria-hidden="true"></span>Contact</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
                                     <asp:TextBox ID="Phoneno" runat="server" class="form-control m-input" placeholder="Enter your Contact Number" ClientIDMode="Static"></asp:TextBox>
-                                    <span id="error_Phone_No" class="text-danger small"></span>
+                                    <asp:RequiredFieldValidator ValidationGroup="validateFeedback" ID="reqPhone" ForeColor="Red" ErrorMessage="Please enter phone no" runat="server"></asp:RequiredFieldValidator>
                                 </div>
 
                                 <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold"><span class="fa fa-envelope" aria-hidden="true"></span>Email</label>
                                 <div class="col-xl-4 col-lg-3 col-form-label">
                                     <asp:TextBox ID="EmailID" runat="server" class="form-control m-input" placeholder="Enter your Email ID" ClientIDMode="Static"></asp:TextBox>
-                                    <span id="error_EmailID" class="text-danger small"></span>
+                                    <asp:RequiredFieldValidator ValidationGroup="validateFeedback" ID="reqEmail" ForeColor="Red" ErrorMessage="Please enter email" runat="server"></asp:RequiredFieldValidator>
                                     <asp:RegularExpressionValidator ID="validateEmail" runat="server" ErrorMessage="Invalid Email ID."
-                                            ControlToValidate="EmailID" ForeColor="Red" Display="Dynamic" ValidationGroup="validateFeedback"
-                                            ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" />
+                                        ControlToValidate="EmailID" ForeColor="Red" Display="Dynamic" ValidationGroup="validateFeedback"
+                                        ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" />
                                 </div>
 
                             </div>
@@ -697,24 +697,14 @@ background-color: blanchedalmond;
                                     <span class="fa fa-user" aria-hidden="true"></span>Select your Gender
                                     <div class="col-form-label">
                                         <div class="m-radio-inline" style="padding: inherit;">
-                                            <label class="m-radio">
-                                                <asp:RadioButton ID="rdbMale" runat="server" GroupName="Gender" Checked="true" />
-                                                Male
-																			<span></span>
-                                            </label>
-                                            <label class="m-radio">
-                                                <asp:RadioButton ID="rdbFemale" runat="server" GroupName="Gender" />
-                                                Female
-																			<span></span>
-                                            </label>
-
-                                            <label class="m-radio">
-                                                <asp:RadioButton ID="rdbOther" runat="server" GroupName="Gender" />
-                                                Trans
-																			<span></span>
-                                            </label>
+                                            <asp:RadioButtonList runat="server" ID="rdbGender" RepeatDirection="Horizontal" RepeatLayout="Flow" >
+                                                <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
+                                                <asp:ListItem Text="Female" Value="Female" ></asp:ListItem>
+                                                <asp:ListItem Text="Other" Value="Other"></asp:ListItem>
+                                            </asp:RadioButtonList>
                                         </div>
-                                        <span id="error_Gender" class="text-danger small"></span>
+                                        <asp:RequiredFieldValidator runat="server" ID="reqGender" Display="Dynamic" ForeColor="Red"
+                                            ErrorMessage="Please enter Gender" ValidationGroup="validateFeedback"></asp:RequiredFieldValidator>
                                     </div>
                                 </label>
 

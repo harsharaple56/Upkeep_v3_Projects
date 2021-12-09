@@ -66,6 +66,35 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet Insert_LocationTree(string parentNode, string childNode, string emptyParentNode,string rowColumnNumber, int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Insert_LocationTree", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@parentNode", parentNode);
+                cmd.Parameters.AddWithValue("@childNode", childNode);
+                cmd.Parameters.AddWithValue("@emptyParentNode", emptyParentNode);
+                cmd.Parameters.AddWithValue("@rowColumnNumber", rowColumnNumber);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public DataSet Get_VMS_Verify_Visitor_ID(string Visit_Request_Code, string StrConn)
         {
             try
@@ -2004,7 +2033,7 @@ namespace UpkeepV3_BusinessLayer
 
         #region GatePass
 
-        public DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID, string StrConn)
+        public DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy,string strGPReceivedBy, string GatepassDescription,bool is_Returnable_Gatepass, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2023,9 +2052,12 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@XmlGatepass_Doc", strXmlGatepass_Doc);
                 cmd.Parameters.AddWithValue("@XmlGatepass_TermCondition", strXmlGatepass_TermCondition);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix);
+                cmd.Parameters.AddWithValue("@XmlApprovalMatrix_Returnable", strXmlApprovalMatrix_Returnable);
                 cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
                 cmd.Parameters.AddWithValue("@GPClosureBy", strGPClosureBy);
+                cmd.Parameters.AddWithValue("@GPReceivedBy", strGPReceivedBy);
                 cmd.Parameters.AddWithValue("@GatepassDescription", GatepassDescription);
+                cmd.Parameters.AddWithValue("@Is_Returnable_Gatepass", is_Returnable_Gatepass);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -2169,7 +2201,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID, string StrConn)
+        public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy, string strGPReceivedBy, string GatepassDescription, bool is_Returnable_Gatepass, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2183,11 +2215,43 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Initiator", strInitiator);
                 cmd.Parameters.AddWithValue("@LinkDepartment", LinkDepartment);
                 cmd.Parameters.AddWithValue("@TransactionPrefix", strTransactionPrefix);
+                cmd.Parameters.AddWithValue("@XmlGatepass_Header", strXmlGatepass_Header);
+                cmd.Parameters.AddWithValue("@XmlGatepass_Type", strXmlGatepass_Type);
+                cmd.Parameters.AddWithValue("@XmlGatepass_Doc", strXmlGatepass_Doc);
+                cmd.Parameters.AddWithValue("@XmlGatepass_TermCondition", strXmlGatepass_TermCondition);
                 cmd.Parameters.AddWithValue("@XmlApprovalMatrix", strXmlApprovalMatrix);
+                cmd.Parameters.AddWithValue("@XmlApprovalMatrix_Returnable", strXmlApprovalMatrix_Returnable);
                 cmd.Parameters.AddWithValue("@ShowApprovalMatrix", ShowApprovalMatrix);
                 cmd.Parameters.AddWithValue("@GPClosureBy", strGPClosureBy);
+                cmd.Parameters.AddWithValue("@GPReceivedBy", strGPReceivedBy);
                 cmd.Parameters.AddWithValue("@GatepassDescription", GatepassDescription);
+                cmd.Parameters.AddWithValue("@Is_Returnable_Gatepass", is_Returnable_Gatepass);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID,int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By,string Received_Remark,bool FullyReturned, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_GP_Insert_Returnable_Qty", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@GP_Trans_ID", GP_Trans_ID);
+                cmd.Parameters.AddWithValue("@GP_Header_ID", GP_Header_ID);
+                cmd.Parameters.AddWithValue("@Received_Qty", Received_Qty);
+                cmd.Parameters.AddWithValue("@Received_Date", Received_Date);
+                cmd.Parameters.AddWithValue("@Received_By", Received_By);
+                cmd.Parameters.AddWithValue("@Received_Remarks", Received_Remark);
+                cmd.Parameters.AddWithValue("@FullyReturned", FullyReturned);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -2309,6 +2373,26 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_GP_Header_Data(int TransactionID,string GP_Header_Name, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_Fetch_GP_Header_Data", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TransactionID", TransactionID);
+                cmd.Parameters.AddWithValue("@Header_Data", GP_Header_Name);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet UpdateAction_GatePassRequest(string TransactionID, string CurrentLevel, string ActionStatus, string strRemarks, string LoggedInUserID, string StrConn)
         {
             DataSet ds = new DataSet();
@@ -2355,6 +2439,50 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Fetch_MyActionableReturnableGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_MyActionable_GP_Returnable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_GatePassRequest_Approval_Details_Returnable(int TransactionID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_GP_REQUEST_APPROVAL_DETAILS_RETURNABLE", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TransactionID", TransactionID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
 
 
         #endregion
@@ -4563,6 +4691,26 @@ namespace UpkeepV3_BusinessLayer
             {
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Import_Asset_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.CommandTimeout = 300;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Import_DepartmentList_Master(int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Import_DepartmentList_Mst", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);

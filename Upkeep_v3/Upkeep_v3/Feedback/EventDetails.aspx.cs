@@ -287,12 +287,21 @@ namespace Upkeep_v3.Feedback
                     //}
 
 
+                    bool is_fname_manadatory = CheckBox1.Checked ? true : false; 
+                    bool is_lname_manadatory = CheckBox2.Checked ? true : false;
+                    bool is_email_manadatory = CheckBox3.Checked ? true : false;
+                    bool is_contact_manadatory = CheckBox4.Checked ? true : false; 
+                    bool is_gender_manadatory = CheckBox5.Checked ? true : false; 
+
                     if (CustQuesArray != null)
                     {
                         //ds = objFeedbackService.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType, EventID);
 
                         //ds = ObjUpkeepFeedback.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, CompanyID);
-                        ds = ObjUpkeepFeedback.Event_Insert(eventName, locationName, startDateTime, endDateTime, Is_Enable_AutomatedTicket, CategoryID, SubCategoryID, LocationID, Total_Negative_Flag, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, Is_Flag_Negative, Is_IncludeTicketRemarks, CompanyID);
+                        ds = ObjUpkeepFeedback.Event_Insert(eventName, locationName, startDateTime, endDateTime, Is_Enable_AutomatedTicket, CategoryID,
+                            SubCategoryID, LocationID, Total_Negative_Flag, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, 
+                            option1, option2, option3, option4, Is_Flag_Negative, Is_IncludeTicketRemarks, 
+                            is_fname_manadatory, is_lname_manadatory, is_email_manadatory, is_contact_manadatory, is_gender_manadatory, CompanyID);
 
                         if (ds.Tables.Count > 0)
                         {

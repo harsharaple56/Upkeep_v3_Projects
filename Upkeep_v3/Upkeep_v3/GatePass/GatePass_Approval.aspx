@@ -88,6 +88,13 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row" style="padding-left: 1%; margin-bottom: 0;">
+                                    <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Returnable Gatepass :</label>
+                                    <div class="col-xl-9 col-lg-9 col-form-label">
+                                        <asp:Label ID="lbl_Returnable_Gatepass" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                    </div>
+                                </div>
+
                                 <%--<br />--%>
 
                                 <div class="form-group row" style="background-color: #00c5dc;">

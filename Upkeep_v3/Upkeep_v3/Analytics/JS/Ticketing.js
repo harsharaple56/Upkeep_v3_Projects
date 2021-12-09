@@ -83,7 +83,6 @@ function Block1() {
         success: function (response) {
             var dsTotalCount = JSON.parse(response.d)
             $('#totalCount').text(dsTotalCount["Table"][0].COUNT)
-
             $('#openTicket').text(dsTotalCount["Table1"][0].OPEN)
             $('#closedTicket').text(dsTotalCount["Table1"][0].CLOSED)
             $('#parkedTicket').text(dsTotalCount["Table1"][0].PARKED)
@@ -98,7 +97,7 @@ function Block1() {
 }
 
 function Block2() {
-    
+
     $.ajax({
         type: 'GET',
         url: 'Ticketing.aspx/Fetch_Analyze_Tkt_Block2',
@@ -109,8 +108,17 @@ function Block2() {
         contentType: "application/json; charset=utf-8",
         success: function (response) {
             var dsBlock2 = JSON.parse(response.d).Table
-            var design = $('#appendBlock2Content').clone().html()
-            $('#appendBlock2Content').empty()
+            var design = '\n<div class="m-widget4__item" style="display: none">\n<div class="m-widget4__img m-widget4__img--pic">' +
+                '\n<img src="##ProfilePic##" alt="">\n</div>\n<div class="m-widget4__info">\n<span class="m-widget4__title">##Name##' +
+                '\n</span>\n<br>\n<span class="m-widget4__sub">##Designation##,<br>\n<b>##Department##</b>\n</span>\n</div>' +
+                '\n<div class="m-widget4__progress">\n<div class="m-widget4__progress-wrapper">\n<span class="m-widget17__progress-number">##Pecent##%' +
+                '</span>\n<span class="m-widget17__progress-label">Tickets</span>\n<div class="progress m-progress--sm">\n' +
+                '<div class="progress-bar bg-danger h-100" role="progressbar" style="width: ##Pecent##%;" aria-valuenow="25" aria-valuemin="40" aria-valuemax="##Pecent##"></div>' +
+                '\n</div>\n</div>\n</div>\n<div class="m-widget4__ext">\n<a href="##UserID##" class="m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary">Profile</a>' +
+                '\n</div>\n</div>\n\n';
+
+            $('#appendBlock2Content').empty();
+            var profileid = "View_User_Profile.aspx?ProfileID=";
             $(dsBlock2).each(function (i, e) {
                 if (e.PROFILEPIC == "") {
                     e.PROFILEPIC = '/assets/app/media/img/users/user4.png';
@@ -118,7 +126,6 @@ function Block2() {
                 else {
                     e.PROFILEPIC = e.PROFILEPIC;
                 }
-                var profileid = "View_User_Profile.aspx?ProfileID=";
                 var eachItem = design.replace('##Name##', e.NAME).replace('##ProfilePic##', e.PROFILEPIC).replace('##Designation##', e.DESIGNATION).replace('##Department##', e.DEPARTMENT).replace(/##Pecent##/g, e.TICKETPERCENT).replace('##UserID##', profileid + e.UserId).replace("display: none", "")
                 $('#appendBlock2Content').append(eachItem);
             })
@@ -126,7 +133,6 @@ function Block2() {
             AfterContentLoad('dvBlock2')
         },
         error: function (xhr, status, error) {
-
             //alert(xhr.responseText);  // to see the error message
         }
     });

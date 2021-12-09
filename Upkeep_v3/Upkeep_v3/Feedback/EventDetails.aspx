@@ -474,27 +474,27 @@
                                                     </label>
                                                     <div class="col-xl-8 m-checkbox-inline" style="padding: 10px;">
                                                         <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
-                                                            <input type="checkbox" checked="true">
+                                                            <input id="CheckBox1" runat="server" type="checkbox" checked="true" />
                                                             First Name
 									                    <span></span>
                                                         </label>
                                                         <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
-                                                            <input type="checkbox" checked="true">
+                                                            <input id="CheckBox2" runat="server" type="checkbox" checked="true" />
                                                             Last Name
 									                    <span></span>
                                                         </label>
                                                         <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
-                                                            <input type="checkbox" checked="true">
+                                                            <input id="CheckBox3" runat="server" type="checkbox" checked="true" />
                                                             Email
 										                <span></span>
                                                         </label>
                                                         <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
-                                                            <input type="checkbox" checked="true">
+                                                            <input id="CheckBox4" runat="server" type="checkbox" checked="true"/>
                                                             Contact
 										                <span></span>
                                                         </label>
                                                         <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
-                                                            <input type="checkbox" checked="true">
+                                                            <input id="CheckBox5" runat="server" type="checkbox" checked="true"/>
                                                             Gender
 										                <span></span>
                                                         </label>

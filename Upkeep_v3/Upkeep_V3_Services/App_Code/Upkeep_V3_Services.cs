@@ -113,6 +113,36 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet Insert_LocationTree(string parentNode, string childNode, string emptyParentNode,string rowColumnNumber, int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Insert_LocationTree(parentNode, childNode, emptyParentNode, rowColumnNumber, CompanyID, LoggedInUserID);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned)
+    {
+        try
+        {
+            ds = ObjUpkeep.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remark, FullyReturned);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet Fetch_Dashboard_Admin(int CompanyID, string LoggedInUserID, string Fromdate, string ToDate, int Modular_ID, string Action)
     {
         try
@@ -1313,7 +1343,10 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, int Is_Enable_AutomatedTicket, int CategoryID, int SubCategoryID, int LocationID, int Total_Negative_Flag, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4, int Is_Flag_Negative, int Is_IncludeTicketRemarks, int CompanyID)
+    public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, int Is_Enable_AutomatedTicket, int CategoryID,
+        int SubCategoryID, int LocationID, int Total_Negative_Flag, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID,
+        string option1, string option2, string option3, string option4, int Is_Flag_Negative, int Is_IncludeTicketRemarks
+        , bool Is_Fname_Manadatory, bool Is_Lname_Manadatory, bool Is_Email_Manadatory, bool Is_Contact_Manadatory, bool Is_Gender_Manadatory, int CompanyID)
     {
         DataSet ds = new DataSet();
 
@@ -1322,7 +1355,9 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
             My_FeedbackSystem obj = new My_FeedbackSystem();
 
             //ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, CustomerQuestion, CustQuesType, RetailerQuestion, RetQuesType, EventID);
-            ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, Is_Enable_AutomatedTicket, CategoryID, SubCategoryID, LocationID, Total_Negative_Flag, CustomerQuestion, CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, Is_Flag_Negative, Is_IncludeTicketRemarks, CompanyID);
+            ds = obj.Event_Insert(eventName, locationName, startDateTime, endDateTime, Is_Enable_AutomatedTicket, CategoryID, SubCategoryID, LocationID, Total_Negative_Flag, CustomerQuestion,
+                CustQuesType, QuesFor, EventID, EventMode, LoggedInUserID, option1, option2, option3, option4, Is_Flag_Negative, Is_IncludeTicketRemarks
+                , Is_Fname_Manadatory, Is_Lname_Manadatory, Is_Email_Manadatory, Is_Contact_Manadatory, Is_Gender_Manadatory, CompanyID);
 
         }
         catch (Exception ex)
@@ -1573,6 +1608,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         {
             My_Upkeep obj = new My_Upkeep();
             ds = obj.Import_AssetList_Master(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_DepartmentList_Master(int CompanyID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            My_Upkeep obj = new My_Upkeep();
+            ds = obj.Import_DepartmentList_Master(CompanyID, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1870,12 +1921,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     #region GatePass
 
     [WebMethod]
-    public DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID)
+    public DataSet Insert_GatePassConfiguration(string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy, string strGPReceivedBy, string GatepassDescription, bool is_Returnable_Gatepass, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_Doc, strXmlGatepass_TermCondition, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
+            ds = ObjUpkeep.Insert_GatePassConfiguration(strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_Doc, strXmlGatepass_TermCondition, strXmlApprovalMatrix, strXmlApprovalMatrix_Returnable, ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -1961,12 +2012,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlApprovalMatrix, bool ShowApprovalMatrix, string strGPClosureBy, string GatepassDescription, string LoggedInUserID)
+    public DataSet Update_GatePassConfiguration(int GP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlGatepass_Header, string strXmlGatepass_Type, string strXmlGatepass_Doc, string strXmlGatepass_TermCondition, string strXmlApprovalMatrix, string strXmlApprovalMatrix_Returnable, bool ShowApprovalMatrix, string strGPClosureBy, string strGPReceivedBy, string GatepassDescription, bool is_Returnable_Gatepass, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.Update_GatePassConfiguration(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlApprovalMatrix, ShowApprovalMatrix, strGPClosureBy, GatepassDescription, LoggedInUserID);
+            ds = ObjUpkeep.Update_GatePassConfiguration(GP_Config_ID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header, strXmlGatepass_Type, strXmlGatepass_Doc, strXmlGatepass_TermCondition, strXmlApprovalMatrix, strXmlApprovalMatrix_Returnable, ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID);
         }
         catch (Exception ex)
         {
@@ -2036,6 +2087,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet Fetch_GP_Header_Data(int TransactionID, string GP_Header_Name)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_GP_Header_Data(TransactionID, GP_Header_Name);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet Fetch_GatePassRequest_Approval_Details(int TransactionID, string LoggedInUserID)
     {
         DataSet ds = new DataSet();
@@ -2096,8 +2162,35 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_MyActionableReturnableGatePass(int CompanyID, string LoggedInUserID, string From_Date, string To_Date)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_MyActionableReturnableGatePass(CompanyID, LoggedInUserID, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
-
+    [WebMethod]
+    public DataSet Fetch_GatePassRequest_Approval_Details_Returnable(int TransactionID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_GatePassRequest_Approval_Details_Returnable(TransactionID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
     #endregion
 

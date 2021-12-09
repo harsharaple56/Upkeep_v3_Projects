@@ -238,11 +238,11 @@ namespace Upkeep_v3.Feedback
                 string strPhone = Phoneno.Text;
                 string strEmailID = EmailID.Text;
                 string strGender = string.Empty;
-                if (rdbMale.Checked == true)
+                if (rdbGender.SelectedItem.Value == "Male")
                 { strGender = "Male"; }
-                if (rdbFemale.Checked == true)
+                else if (rdbGender.SelectedItem.Value == "Female")
                 { strGender = "Female"; }
-                if (rdbOther.Checked == true)
+                else if (rdbGender.SelectedItem.Value == "Other")
                 { strGender = "Other"; }
 
 
@@ -592,6 +592,48 @@ namespace Upkeep_v3.Feedback
 
                 rptHeaderDetails.DataSource = dsConfig.Tables[0];
                 rptHeaderDetails.DataBind();
+
+                if (Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Fname_Mandatory"]))
+                    reqFName.ControlToValidate = Fname.ID;
+                else
+                {
+                    reqFName.Enabled = false;
+                    reqFName.Visible = false;
+                }
+
+                if (Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Lname_Mandatory"]))
+                    reqLName.ControlToValidate = Lname.ID;
+                else
+                {
+                    reqLName.Enabled = false;
+                    reqLName.Visible = false;
+                }
+
+                if (Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Gender_Manadatoy"]))
+                {
+                    reqGender.ControlToValidate = rdbGender.ID;
+                }
+                else
+                {
+                    reqGender.Enabled = false;
+                    reqGender.Visible = false;
+                }
+
+                if (Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Email_Manadatoy"]))
+                    reqEmail.ControlToValidate = EmailID.ID;
+                else
+                {
+                    reqEmail.Enabled = false;
+                    reqEmail.Visible = false;
+                }
+
+                if (Convert.ToBoolean(dsConfig.Tables[0].Rows[0]["Is_Contact_Manadatoy"]))
+                    reqPhone.ControlToValidate = Phoneno.ID;
+                else
+                {
+                    reqPhone.Enabled = false;
+                    reqPhone.Visible = false;
+                }
 
                 lblEventName.Text = Convert.ToString(dsConfig.Tables[0].Rows[0]["Event_Name"]);
 

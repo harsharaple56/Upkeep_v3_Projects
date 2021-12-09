@@ -200,7 +200,10 @@ namespace UpkeepV3_BusinessLayer
             return ds;
         }
 
-        public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, int Is_Enable_AutomatedTicket, int CategoryID, int SubCategoryID, int LocationID, int Total_Negative_Flag, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, string LoggedInUserID, string option1, string option2, string option3, string option4,int Is_Flag_Negative,int Is_IncludeTicketRemarks, int CompanyID, string strConn)
+        public DataSet Event_Insert(string eventName, string locationName, string startDateTime, string endDateTime, int Is_Enable_AutomatedTicket, int CategoryID, 
+            int SubCategoryID, int LocationID, int Total_Negative_Flag, string CustomerQuestion, string CustQuesType, string QuesFor, int EventID, string EventMode, 
+            string LoggedInUserID, string option1, string option2, string option3, string option4,int Is_Flag_Negative,int Is_IncludeTicketRemarks
+            ,bool Is_Fname_Manadatory, bool Is_Lname_Manadatory, bool Is_Email_Manadatory, bool Is_Contact_Manadatory, bool Is_Gender_Manadatory, int CompanyID, string strConn)
         {
             DataSet ds = new DataSet();
             string strOutput = string.Empty;
@@ -235,6 +238,12 @@ namespace UpkeepV3_BusinessLayer
 
             cmd.Parameters.AddWithValue("@Is_Flag_Negative", Is_Flag_Negative);
             cmd.Parameters.AddWithValue("@Is_IncludeTicketRemarks", Is_IncludeTicketRemarks);
+
+            cmd.Parameters.AddWithValue("@Is_Fname_Manadatory", Is_Fname_Manadatory);
+            cmd.Parameters.AddWithValue("@Is_Lname_Manadatory", Is_Lname_Manadatory);
+            cmd.Parameters.AddWithValue("@Is_Email_Manadatory", Is_Email_Manadatory);
+            cmd.Parameters.AddWithValue("@Is_Contact_Manadatory", Is_Contact_Manadatory);
+            cmd.Parameters.AddWithValue("@Is_Gender_Manadatory", Is_Gender_Manadatory);
 
             cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
 

@@ -18,8 +18,8 @@ namespace Upkeep_v3
     {
 
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
-        string LoggedInUserID = string.Empty;
-        int CompanyID = 0;
+        public static string LoggedInUserID = string.Empty;
+        public static int CompanyID = 0;
 
         string Role_Name = string.Empty;
         string Module_IDs = string.Empty;
@@ -29,7 +29,7 @@ namespace Upkeep_v3
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             Module_IDs = Convert.ToString(Session["ModuleID"]);
-            
+
 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
@@ -42,10 +42,8 @@ namespace Upkeep_v3
             {
                 hdn_IsPostBack.Value = "no";
 
-                Dashboard_Details();
                 Bind_Feedback_Data();
                 Bind_Feedback_GraphData();
-
             }
 
         }
@@ -60,128 +58,9 @@ namespace Upkeep_v3
             Response.Redirect("~/Dashboard_Admin.aspx");
         }
 
-
-        public void Dashboard_Details()
-        {
-            string Fromdate = string.Empty;
-            string ToDate = string.Empty;
-
-            if (start_date.Value != "")
-            {
-                Fromdate = Convert.ToString(start_date.Value);
-            }
-            else
-            {
-                DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(-30);
-                Fromdate = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-
-                //From_Date = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-            }
-
-            if (end_date.Value != "")
-            {
-                ToDate = Convert.ToString(end_date.Value);
-            }
-            else
-            {
-                //DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture)).AddDays(30);
-                //To_Date = FromDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-                ToDate = DateTime.Now.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture);
-            }
-
-
-            DataSet ds = new DataSet();
-            try
-            {
-                ds = ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate,0,string.Empty);
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        lbl_Tkt_Total.Text = Convert.ToString(ds.Tables[0].Rows[0]["Total_Tickets"]);
-                        lbl_Tkt_open.Text = Convert.ToString(ds.Tables[0].Rows[0]["Open_Tickets"]);
-                        lbl_Tkt_Parked.Text = Convert.ToString(ds.Tables[0].Rows[0]["Parked_Tickets"]);
-                        lbl_Tkt_Closed.Text = Convert.ToString(ds.Tables[0].Rows[0]["Closed_Tickets"]);
-                        lbl_Tkt_Expired.Text = Convert.ToString(ds.Tables[0].Rows[0]["Expired_Tickets"]);
-
-                        lbl_Chk_Total_Attended.Text = Convert.ToString(ds.Tables[0].Rows[0]["Chk_Total_Attended"]);
-                        lbl_chk_Open.Text = Convert.ToString(ds.Tables[0].Rows[0]["Chk_Pending"]);
-                        lbl_chk_Closed.Text = Convert.ToString(ds.Tables[0].Rows[0]["Chk_Closed"]);
-
-                        lbl_WP_Total.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Total"]);
-                        lbl_WP_Open.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Open"]);
-                        lbl_WP_InProgress.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_InProgress"]);
-                        lbl_WP_Hold.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Hold"]);
-                        lbl_WP_Approved.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Approved"]);
-                        lbl_WP_Rejected.Text = Convert.ToString(ds.Tables[0].Rows[0]["wP_Raised_Rejected"]);
-                        lbl_WP_Expired.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Expired"]);
-                        lbl_WP_Closed.Text = Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Closed"]);
-
-                        lbl_GP_Total.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Total"]);
-                        lbl_GP_Open.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Open"]);
-                        lbl_GP_InProgress.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_InProgress"]);
-                        lbl_GP_Hold.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Hold"]);
-                        lbl_GP_Approved.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Approved"]);
-                        lbl_GP_Rejected.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Rejected"]);
-                        lbl_GP_Expired.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Expired"]);
-                        lbl_GP_Closed.Text = Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Closed"]);
-
-                        lbl_Feedback_Total.Text = Convert.ToString(ds.Tables[0].Rows[0]["Feedback_Total"]);
-
-                    }
-                }
-
-                if (ds.Tables[1].Rows.Count > 0)
-                {
-                    for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
-                    {
-                        DataSet ds1 = new DataSet();
-                        ds1 = ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate, Convert.ToInt32(ds.Tables[1].Rows[i].ItemArray[0]), "F");
-
-                        if (ds1.Tables[0].Rows[0]["Module_Code"] != null)
-                        {
-                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "TKT")
-                            {
-                                div_Ticketing.Visible = true;
-                            }
-
-                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "CHK")
-                            {
-                                div_Checklist.Visible = true;
-                            }
-
-                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "WP")
-                            {
-                                div_Workpermit.Visible = true;
-                            }
-
-                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "GP")
-                            {
-                                div_Gatepass.Visible = true;
-                            }
-
-                            if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "FBK")
-                            {
-                                div_Feedback.Visible = true;
-                            }
-                        }
-
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-
         public string Bind_Feedback_Data()
         {
-            DataSet ds_Feedback= new DataSet();
+            DataSet ds_Feedback = new DataSet();
             string data = "";
             string Fromdate = string.Empty;
             string Todate = string.Empty;
@@ -219,7 +98,7 @@ namespace Upkeep_v3
                 {
                     if (ds_Feedback.Tables[0].Rows.Count > 0)
                     {
-                        
+
                         int count = Convert.ToInt32(ds_Feedback.Tables[0].Rows.Count);
 
                         for (int i = 0; i < count; i++)
@@ -234,11 +113,11 @@ namespace Upkeep_v3
                             int TotalNegative = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["TotalNegative"]);
                             decimal NegativePercent = Convert.ToInt32(ds_Feedback.Tables[0].Rows[i]["NegativePercent"]);
 
-                            
+
                             data += "<tr><td>" + Event_Name + "</td><td>" + PositivePercent + "</td><td>" + NegativePercent + "</td><td>" + NeutralPercent + "</td></tr>";
 
                         }
-                        
+
                     }
                     else
                     {
@@ -328,20 +207,109 @@ namespace Upkeep_v3
 
                 }
 
-               
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        protected void btnDashboard_Click(object sender, EventArgs e)
-        {
-            Dashboard_Details();
-            //Bind_Feedback_Data();
-            Bind_Feedback_GraphData();
-        }
 
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> GetDashboardDetails(string start_Date, string end_Date)
+        {
+            Dashboard_v2 obj = new Dashboard_v2();
+            string Fromdate = start_Date;
+            string ToDate = end_Date;
+            DataSet ds = new DataSet();
+            Dictionary<string, string> list = new Dictionary<string, string>();
+            try
+            {
+                ds = obj.ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate, 0, string.Empty);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        list.Add("lbl_Tkt_Total", Convert.ToString(ds.Tables[0].Rows[0]["Total_Tickets"]));
+                        list.Add("lbl_Tkt_open", Convert.ToString(ds.Tables[0].Rows[0]["Open_Tickets"]));
+                        list.Add("lbl_Tkt_Parked", Convert.ToString(ds.Tables[0].Rows[0]["Parked_Tickets"]));
+                        list.Add("lbl_Tkt_Closed", Convert.ToString(ds.Tables[0].Rows[0]["Closed_Tickets"]));
+                        list.Add("lbl_Tkt_Expired", Convert.ToString(ds.Tables[0].Rows[0]["Expired_Tickets"]));
+
+                        list.Add("lbl_Chk_Total_Attended", Convert.ToString(ds.Tables[0].Rows[0]["Chk_Total_Attended"]));
+                        list.Add("lbl_chk_Open", Convert.ToString(ds.Tables[0].Rows[0]["Chk_Pending"]));
+                        list.Add("lbl_chk_Closed", Convert.ToString(ds.Tables[0].Rows[0]["Chk_Closed"]));
+
+                        list.Add("lbl_WP_Total", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Total"]));
+                        list.Add("lbl_WP_Open", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Open"]));
+                        list.Add("lbl_WP_InProgress", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_InProgress"]));
+                        list.Add("lbl_WP_Hold", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Hold"]));
+                        list.Add("lbl_WP_Approved", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Approved"]));
+                        list.Add("lbl_WP_Rejected", Convert.ToString(ds.Tables[0].Rows[0]["wP_Raised_Rejected"]));
+                        list.Add("lbl_WP_Expired", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Expired"]));
+                        list.Add("lbl_WP_Closed", Convert.ToString(ds.Tables[0].Rows[0]["WP_Raised_Closed"]));
+
+                        list.Add("lbl_GP_Total", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Total"]));
+                        list.Add("lbl_GP_Open", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Open"]));
+                        list.Add("lbl_GP_InProgress", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_InProgress"]));
+                        list.Add("lbl_GP_Hold", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Hold"]));
+                        list.Add("lbl_GP_Approved", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Approved"]));
+                        list.Add("lbl_GP_Rejected", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Rejected"]));
+                        list.Add("lbl_GP_Expired", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Expired"]));
+                        list.Add("lbl_GP_Closed", Convert.ToString(ds.Tables[0].Rows[0]["GP_Raised_Closed"]));
+
+                        list.Add("lbl_Feedback_Total", Convert.ToString(ds.Tables[0].Rows[0]["Feedback_Total"]));
+                    }
+
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+                        {
+                            DataSet ds1 = new DataSet();
+                            ds1 = obj.ObjUpkeep.Fetch_Dashboard_Admin(CompanyID, LoggedInUserID, Fromdate, ToDate, Convert.ToInt32(ds.Tables[1].Rows[i].ItemArray[0]), "F");
+
+                            if (ds1.Tables[0].Rows[0]["Module_Code"] != null)
+                            {
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "TKT")
+                                {
+                                    list.Add("Tkt_Visible", "true");
+                                }
+
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "CHK")
+                                {
+                                    list.Add("Chk_Visible", "true");
+                                }
+
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "WP")
+                                {
+                                    list.Add("WP_Visible", "true");
+
+                                }
+
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "GP")
+                                {
+                                    list.Add("GP_Visible", "true");
+                                }
+
+                                if (Convert.ToString(ds1.Tables[0].Rows[0]["Module_Code"]) == "VMS")
+                                {
+                                    list.Add("VMS_Visible", "true");
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return list;
+        }
 
 
     }

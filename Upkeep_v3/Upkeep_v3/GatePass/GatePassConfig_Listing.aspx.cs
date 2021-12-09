@@ -61,8 +61,13 @@ namespace Upkeep_v3.GatePass
                             string Company = Convert.ToString(ds.Tables[0].Rows[i]["Company"]);
                             string Initiator = Convert.ToString(ds.Tables[0].Rows[i]["Initiator"]);
                             string CreatedOn = Convert.ToString(ds.Tables[0].Rows[i]["Created_Date"]);
-                           
-                            data += "<tr><td>" + GatePass_Title + "</td><td>" + Company + "</td><td>" + Initiator + "</td><td>" + CreatedOn + "</td><td><a href='EditGP_Configuration.aspx?GPConfigID=" + ConfigID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  <a href='EditGP_Configuration.aspx?DelGPConfigID=" + ConfigID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+
+                            data += "<tr>" +
+                                    "<td>" + GatePass_Title + "</td>" +
+                                    "<td>" + Company + "</td>" +
+                                    "<td>" + Initiator + "</td>" +
+                                    "<td>" + CreatedOn + "</td>" +
+                                    "<td><a href='GatePass_Configuration.aspx?GPConfigID=" + ConfigID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Edit record'> <i class='la la-edit'></i> </a>  <a href='GatePass_Configuration.aspx?DelGPConfigID=" + ConfigID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
 

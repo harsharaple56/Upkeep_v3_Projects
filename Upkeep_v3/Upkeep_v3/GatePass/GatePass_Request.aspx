@@ -98,6 +98,7 @@
 
         }
 
+        var isSubmitted = false;
 
         function SubmitHeader() {
             //alert('sdf');
@@ -268,6 +269,15 @@
             }
             document.getElementById("hdnGpHeaderData").value = info.innerHTML;
             //alert(info.innerHTML);
+
+            if (!isSubmitted) {
+                $('#<%=btnSubmit.ClientID %>').val('Submitting..');
+                isSubmitted = true;
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
     </script>
@@ -303,16 +313,16 @@
 
                                 <div class="m-portlet__head-tools">
                                     <%--<asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>--%>
-                                    
-                                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                        <cc1:ModalPopupExtender ID="mpeGpRequestSaveSuccess" runat="server" PopupControlID="pnlGpReqestSuccess" TargetControlID="btnTest"
-                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                        </cc1:ModalPopupExtender>
 
-                                    
-                                        <cc1:ModalPopupExtender ID="mpe_No_Gatepass" runat="server" PopupControlID="pnl_NoGatepass" TargetControlID="btnTest"
-                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                        </cc1:ModalPopupExtender>
+                                    <asp:Button ID="btnTest" Style="display: none;" runat="server" />
+                                    <cc1:ModalPopupExtender ID="mpeGpRequestSaveSuccess" runat="server" PopupControlID="pnlGpReqestSuccess" TargetControlID="btnTest"
+                                        CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                    </cc1:ModalPopupExtender>
+
+
+                                    <cc1:ModalPopupExtender ID="mpe_No_Gatepass" runat="server" PopupControlID="pnl_NoGatepass" TargetControlID="btnTest"
+                                        CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
+                                    </cc1:ModalPopupExtender>
 
 
                                     <a href="<%= Page.ResolveClientUrl("~/GatePass/MyGatePass.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
@@ -322,8 +332,9 @@
                                         </span>
                                     </a>
 
-                                    
-                                        <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" Style="margin-right: 20px;" OnClick="btnSubmit_Click" OnClientClick="SubmitHeader()" Text="Submit" ValidationGroup="validateGatePass" />
+
+                                    <asp:Button ID="btnSubmit" runat="server" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air"
+                                        Style="margin-right: 20px;" OnClick="btnSubmit_Click" OnClientClick="return SubmitHeader();" Text="Submit" ValidationGroup="validateGatePass" />
 
                                 </div>
 
@@ -343,9 +354,16 @@
 
 
                             <div class="form-group row">
-                                <label class="col-xl-2 col-lg-3 col-form-label font-weight-bold">Gatepass Description</label>
+                                <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Gatepass Description</label>
                                 <div class="col-xl-9 col-lg-9 col-form-label">
                                     <asp:Label ID="lblGatepassDescription" runat="server" Text="" CssClass="form-control-label"></asp:Label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Returnable Gatepass</label>
+                                <div class="col-xl-9 col-lg-9 col-form-label">
+                                    <asp:Label ID="lbl_Returnable_Gatepass" runat="server" Text="" CssClass="form-control-label"></asp:Label>
                                 </div>
                             </div>
 
@@ -405,7 +423,7 @@
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                     <div class="input-group date">
                                         <asp:TextBox ID="txtGatePassDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker" placeholder="Select Gate Pass date & time"></asp:TextBox>
-                                        
+
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
                                         </div>
@@ -429,6 +447,32 @@
                                 <%-- </div>--%>
                             </div>
 
+
+                            <div class="form-group row" id="dvReturnableDate" runat="server" style="overflow: hidden; display: none;">
+                                <%--<div class="col-xl-2 col-lg-2">--%>
+                                <%-- <label class="col-form-label font-weight-bold">
+                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the returnable Date and time">
+                                        <i class="fa fa-info-circle"></i>
+                                    </a>
+                                    GatePass Returnable Date</label>--%>
+
+                                <div class="input-group date">
+                                    <span class="col-form-label font-weight-bold">GatePass Returnable Date </span>
+                                    <asp:TextBox ID="txtGatepassReturnableDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker col-xl-3 col-lg-3" placeholder="Select Gate Pass returnable date & time"></asp:TextBox>
+
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                    </div>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtGatepassReturnableDate" Visible="true" Display="Dynamic"
+                                        ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please select Gate Pass returnable Date"></asp:RequiredFieldValidator>
+                                </div>
+
+                            </div>
+                            <%--<div class="col-xl-4 col-lg-3 col-form-label">
+                                    
+                                    <span id="error_returnDate" class="text-danger small"></span>
+                                </div>--%>
+                            <%--</div>--%>
 
                             <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
                                 <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Gatepass Details</h3>
@@ -527,10 +571,10 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group m-form__group row">
-                                                        <label for="recipient-name" class="col-xl-12 col-lg-3 form-control-label">It looks Like no Gatepass Forms have been configured in your Company for <span id="lbl_Retailer_NoForm" runat="server"></span> <span id="lbl_Employee_NoForm" runat="server"></span> </label>
-                                                        
+                                                        <label for="recipient-name" class="col-xl-12 col-lg-3 form-control-label">It looks Like no Gatepass Forms have been configured in your Company for <span id="lbl_Retailer_NoForm" runat="server"></span><span id="lbl_Employee_NoForm" runat="server"></span></label>
+
                                                         <label class="col-xl-12 col-lg-3 form-control-label font-weight-bold">Please contact your Property Administrator to get New Gatepass Forms Configured</label>
-                                                        
+
 
                                                     </div>
                                                 </div>
@@ -573,12 +617,15 @@
                                                     </div>
                                                     <div class="form-group m-form__group row">
                                                         <div class="col-xl-12 col-lg-3">
-                                                            <h2 class="m--font-info"><label class="form-control-label font-weight-bold">Gatepass ID</label></h2>
-                                                        
-                                                            <h2 class="m--font-danger"><label ID="lblGPRequestCode" runat="server" class="form-control-label" ></label></h2>
+                                                            <h2 class="m--font-info">
+                                                                <label class="form-control-label font-weight-bold">Gatepass ID</label></h2>
+
+                                                            <h2 class="m--font-danger">
+                                                                <label id="lblGPRequestCode" runat="server" class="form-control-label"></label>
+                                                            </h2>
 
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

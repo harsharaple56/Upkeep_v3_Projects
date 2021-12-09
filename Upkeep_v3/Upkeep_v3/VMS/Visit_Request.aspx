@@ -618,89 +618,6 @@ border: 3px solid #ccc;*/
         }
 
 
-        //function AddRow() {
-        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
-        //    var len = tbl.rows.length;
-        //    var row = tbl.insertRow(len);
-        //    for (var i = 0; i < tbl.rows[0].cells.length - 1; i++) {
-        //        row.insertCell(i).innerHTML = "<input type=text id=txt" + len + "_" + i + " class='form-control' >";
-        //    }
-        //    //row.insertCell(tbl.rows[0].cells.length - 1).innerHTML = '<INPUT TYPE="button" ONCLICK="deleteRow(this)" class="btn btn-outline btn-circle dark btn-sm black" data-container="body" data-toggle="m-tooltip" data-placement="top" title="Delete record">';
-
-        //    row.insertCell(tbl.rows[0].cells.length - 1).innerHTML = '<a ONCLICK="deleteRow(this)" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="top" title="Delete record"> <i class="la la-trash"></i> </a>';
-        //}
-
-        //function deleteRow(obj) {
-        //    var row = obj;
-        //    while (row.nodeName.toLowerCase() != 'tr') {
-        //        row = row.parentNode;
-        //    }
-        //    var tbl = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
-        //    tbl.deleteRow(row.rowIndex);
-
-        //}
-
-
-        //function SubmitQuestion() {
-
-        //    var cols_len = 0;
-        //    $('#ContentPlaceHolder1_tblVMSQuestion').find('tr:first td').each(function () {
-        //        var cspan = $(this).attr('colspan');
-        //        if (!cspan) cspan = 1;
-        //        cols_len += parseInt(cspan, 10);
-        //    });
-
-        //    document.getElementById("hdnVMSQuestionData").value = '';
-        //    document.getElementById("hdnVMSQuestion").value = '';
-
-        //    var arrDataParent = [];
-        //    var arrDataChild = [];
-        //    // loop over each table row (tr)
-        //    $("#ContentPlaceHolder1_tblVMSQuestion tr").each(function () {
-        //        var currentRow = $(this);
-        //        // debugger;
-        //        var k = 0;
-        //        for (var j = 0; j < cols_len - 1; j++) {
-        //            k = currentRow;
-        //            var col1_value = currentRow.find("td:eq(" + j + ")").text();
-        //            //var col2_value = currentRow.find("td:eq(1)").text();
-        //            //var col3_value = currentRow.find("td:eq(2)").text();
-
-        //            var obj = {};
-        //            obj.colNo = col1_value;
-        //            //obj.col2 = col2_value;
-        //            //obj.col3 = col3_value;
-
-        //            infox.innerHTML = infox.innerHTML + '#' + col1_value;
-        //            arrDataChild.push(obj);
-        //        }
-        //        infox.innerHTML = infox.innerHTML + ',';
-        //        arrDataParent.push(arrDataChild);
-        //    });
-        //    // alert(infox.innerHTML);
-        //    // alert(JSON.stringify(arrDataParent));
-        //    document.getElementById("hdnVMSQuestion").value = infox.innerHTML;
-        //    var myTab = document.getElementById('ContentPlaceHolder1_tblVMSQuestion');
-
-
-        //    // LOOP THROUGH EACH ROW OF THE TABLE AFTER Question.
-        //    for (i = 2; i < myTab.rows.length; i++) {
-
-        //        // GET THE CELLS COLLECTION OF THE CURRENT ROW.
-        //        var objCells = myTab.rows.item(i).cells;
-        //        //var objCells = myTab.rows.item(i).cells.find('input').val();
-
-        //        // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
-        //        //for (var j = 0; j < objCells.length; j++) {
-        //        for (var j = 0; j < cols_len - 1; j++) {
-        //            info.innerHTML = info.innerHTML + '#' + $(myTab.rows.item(i).cells[j]).find('input').val();
-
-        //        }
-        //        info.innerHTML = info.innerHTML + ','; // ADD A BREAK (TAG).
-        //    }
-        //    document.getElementById("hdnVMSQuestionData").value = info.innerHTML;
-        //    //alert(info.innerHTML);
-        //}
         var txtControl = null;
         var txtHdn = null;
         function PopUpGrid() {
@@ -749,19 +666,23 @@ border: 3px solid #ccc;*/
         }
 
     </script>
+
     <script type="text/javascript">
-        var isSubmitted = false;
+        var tryNumber = 0;
         function preventMultipleSubmissions() {
-            if (!isSubmitted) {
-                $('#<%=btnSave.ClientID %>').val('Mark IN');
-                isSubmitted = true;
-                return true;
+            var self = $("[id*=btnSave]");
+
+            if (tryNumber > 0) {
+                tryNumber++;
+                self.attr('disabled', true);
+            }
+            else if ($("[id*=txtName]").val() == '' || $("[id*=txtEmail]").val() == '' || $("[id*=txtPhone]").val() == '' || $("[id*=txtVMSDate]").val() == '') {
+                tryNumber = 0;
             }
             else {
-                return false;
+                tryNumber++;
             }
         }
-
 
     </script>
 
@@ -1036,7 +957,7 @@ border: 3px solid #ccc;*/
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="m-grid__item m-grid__item--fluid">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="row">
                 <div class="col-md-12">
@@ -1144,7 +1065,7 @@ border: 3px solid #ccc;*/
                                    &nbsp;
                                    &nbsp;
                                     <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" ValidationGroup="validateVMS"
-                                        OnClientClick="return preventMultipleSubmissions();" OnClick="btnSave_Click" Text="Save" />
+                                        OnClientClick="preventMultipleSubmissions();" OnClick="btnSave_Click" Text="Save" />
 
                                     <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                     <cc1:ModalPopupExtender ID="mpeVMSRequestSaveSuccess" runat="server" PopupControlID="pnlVMSReqestSuccess" TargetControlID="btnTest"
@@ -1188,8 +1109,10 @@ border: 3px solid #ccc;*/
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
 
                                     <asp:TextBox ID="txtName" TextMode="SingleLine" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Name"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" Visible="true" Display="Dynamic"
+                                    <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName"
                                         ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Name"></asp:RequiredFieldValidator>
+
+
 
                                 </div>
                                 <%-- <div id="divEmailComp" runat="server" style="display: block;">
@@ -1200,9 +1123,13 @@ border: 3px solid #ccc;*/
 
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                     <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Email ID"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic" Enabled="false"
-                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
+
+                                    <asp:RequiredFieldValidator ValidationGroup="validateVMS" ID="rfvEmail" ForeColor="Red"
+                                        ErrorMessage="Please enter email" ControlToValidate="txtEmail" runat="server"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="validateEmail" runat="server" ErrorMessage="Invalid Email ID."
+                                        ControlToValidate="txtEmail" ForeColor="Red" Display="Dynamic" ValidationGroup="validateVMS"
+                                        ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" />
 
                                     <%--        <asp:HiddenField ID="hdnIs_EmailMandatory" runat="server" Value='<%# Convert.ToBoolean(Eval("Is_EnamilMandatory"))  ? "*" : " " %>' />
                                             <asp:Label ID="lblQuestionErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>--%>
@@ -1216,7 +1143,7 @@ border: 3px solid #ccc;*/
 
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                                     <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone" Visible="true" Display="Dynamic" Enabled="false"
+                                    <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone"
                                         ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 
                                 </div>
@@ -1240,10 +1167,11 @@ border: 3px solid #ccc;*/
                                     <asp:HiddenField ID="hdnValidTimeError" runat="server" ClientIDMode="Static" Value="" />
                                     <asp:HiddenField ID="hdnIs_TimeLimit_Enabled" runat="server" ClientIDMode="Static" Value="" />
                                     <asp:Label ID="lblTimeError" runat="server" CssClass="col-form-label text-danger" ClientIDMode="Static"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="rfVMSDate" runat="server" ControlToValidate="txtVMSDate"
+                                        ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
                                 </div>
 
-                                <asp:RequiredFieldValidator ID="rfVMSDate" runat="server" ControlToValidate="txtVMSDate" Visible="true" Display="Dynamic"
-                                    ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please select Date"></asp:RequiredFieldValidator>
+
 
                                 <div>
                                     <asp:Label ID="lblVisitingTime" runat="server" CssClass="col-form-label"></asp:Label>
