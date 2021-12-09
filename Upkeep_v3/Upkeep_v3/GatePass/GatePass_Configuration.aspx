@@ -228,8 +228,17 @@
             $('#hdn_call_type').val(call_type);
             $find('<%= mpeApprovalMatrix.ClientID %>').show();
             txtHdn = objhdn.toString();
-            txtControl = obj;
+            if (call_type == 'close' && obj.length == undefined)
+                txtControl = obj;
+            if (call_type == 'close' && obj.length > 0)
+                txtControl = obj[0];
+            if (call_type == 'return' && obj.length > 0)
+                txtControl = obj[1];
+            if (call_type == 'return' && obj.length == undefined)
+                txtControl = obj;
+
         }
+
 
         function FunEditClick(ID, Desc) {
             txtControl.value = Desc;
@@ -351,7 +360,6 @@
             }
 
             if ($("#chk_returnable_gatepass").is(':checked')) {
-
                 window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value = "";
                 var VarLocTab = window.document.getElementById("<%=TblLevels_Returnable.ClientID%>");
                 for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {

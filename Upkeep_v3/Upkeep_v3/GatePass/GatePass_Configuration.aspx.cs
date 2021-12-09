@@ -632,7 +632,7 @@ namespace Upkeep_v3.GatePass
                         //LocImgBtnHelp.Style.Add("vertical-align", "bottom");
                         string call_type = "Approve";
                         //LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + ","" + call_type+"");");
-                        LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + "');");
+                        LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + "', 'close');");
                         // ---------------------------------------------------------
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocImgBtnHelp);
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocHdnAction);
@@ -1139,7 +1139,7 @@ namespace Upkeep_v3.GatePass
                         //LocImgBtnHelp.Style.Add("vertical-align", "bottom");
                         string call_type = "Approve";
                         //LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + ","" + call_type+"");");
-                        LocImgBtnHelp1.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup1.ClientID + ",'" + LocHdnAction1.ClientID + "');");
+                        LocImgBtnHelp1.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup1.ClientID + ",'" + LocHdnAction1.ClientID + "', 'return');");
                         // ---------------------------------------------------------
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocImgBtnHelp1);
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocHdnAction1);
