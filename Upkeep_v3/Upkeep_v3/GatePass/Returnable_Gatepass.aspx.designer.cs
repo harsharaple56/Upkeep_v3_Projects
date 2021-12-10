@@ -13,6 +13,15 @@ namespace Upkeep_v3.GatePass {
     public partial class Returnable_Gatepass {
         
         /// <summary>
+        /// hdnFullySave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnFullySave;
+        
+        /// <summary>
         /// hdnGpHeaderData control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace Upkeep_v3.GatePass {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_GP_Print_PDF_Retailer;
+        
+        /// <summary>
+        /// lnbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnbtn;
         
         /// <summary>
         /// lblTicketNo control.

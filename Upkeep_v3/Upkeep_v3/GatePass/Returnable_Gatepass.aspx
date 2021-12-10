@@ -50,9 +50,11 @@
                         let pending = grid.rows[i + 1].cells[4].innerText
                         if (parseInt(pending) == parseInt(received[i].value)) {
                             hidebtns = true;
+                            $("input[id*=hdnFullySave]").val('true');
                         }
                         else if (parseInt(pending) != parseInt(received[i].value)) {
                             hidebtns = false;
+                            $("input[id*=hdnFullySave]").val('false');
                             break;
                         }
                     }
@@ -93,7 +95,7 @@
 
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmGatePass" method="post">--%>
                         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
-
+                        <asp:HiddenField ID="hdnFullySave" runat="server"  ClientIDMode="Static" />  
                         <asp:HiddenField ID="hdnGpHeaderData" runat="server" ClientIDMode="Static" />
                         <asp:HiddenField ID="hdnGpHeader" runat="server" ClientIDMode="Static" />
                         <p id="info" style="display: none;"></p>
@@ -116,12 +118,14 @@
                                     <asp:Button ID="Btn_GP_Print_PDF_Employee" runat="server" Text="Print PDF E" OnClick="btn_GP_Print_PDF_Employee" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" />
                                     <asp:Button ID="Btn_GP_Print_PDF_Retailer" runat="server" Text="Print PDF R" OnClick="btn_GP_Print_PDF_Retailer" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" />
 
-                                    <a class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" onclick="FunctionBack();">
+                                    <asp:LinkButton ID="lnbtn" OnClick="btnCancel_Click" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" >
                                         <span>
                                             <i class="la la-arrow-left"></i>
                                             <span>Back</span>
                                         </span>
-                                    </a>
+                                    </asp:LinkButton>
+
+
                                 </div>
 
                             </div>

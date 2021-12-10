@@ -109,7 +109,7 @@ public class My_Upkeep
 
     }
 
-    public DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned)
+    public DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned,bool ForceClose)
     {
         DataSet ds = new DataSet();
         try
@@ -117,7 +117,7 @@ public class My_Upkeep
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjUpkeepCC_BL.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remark, FullyReturned, StrConn);
+            ds = ObjUpkeepCC_BL.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remark, FullyReturned,ForceClose, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -3286,6 +3286,36 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             dsUsers = ObjUpkeepCC_BL.Import_User_Master(CompanyID, LoggedInUserID, StrConn);
+            return dsUsers;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Import_Category_Master(int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsUsers = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsUsers = ObjUpkeepCC_BL.Import_Category_Master(CompanyID, LoggedInUserID, StrConn);
+            return dsUsers;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Import_SubCategory_Master(int CompanyID, string LoggedInUserID)
+    {
+        DataSet dsUsers = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            dsUsers = ObjUpkeepCC_BL.Import_SubCategory_Master(CompanyID, LoggedInUserID, StrConn);
             return dsUsers;
         }
         catch (Exception ex)

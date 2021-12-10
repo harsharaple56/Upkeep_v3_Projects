@@ -2237,7 +2237,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID,int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By,string Received_Remark,bool FullyReturned, string StrConn)
+        public DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID,int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By,string Received_Remark,bool FullyReturned,bool ForceClose, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -2252,6 +2252,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Received_By", Received_By);
                 cmd.Parameters.AddWithValue("@Received_Remarks", Received_Remark);
                 cmd.Parameters.AddWithValue("@FullyReturned", FullyReturned);
+                cmd.Parameters.AddWithValue("@ForceClose", ForceClose);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -4671,6 +4672,46 @@ namespace UpkeepV3_BusinessLayer
             {
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Import_Users_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Import_Category_Master(int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Import_Category_Mst", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Import_SubCategory_Master(int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Import_SubCategory_Mst", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
