@@ -610,13 +610,14 @@ namespace Upkeep_v3.GatePass
                     int Received_By = Convert.ToInt32(LoggedInUserID);
                     int GP_Header_ID = 0;
                     string Received_Remarks = txtRemarks.Text;
-                    bool FullyReturned = true;
+                    bool FullyReturned = Convert.ToBoolean(hdnFullySave.Value);
+                    bool ForceClose = false;
                     DataSet ds = new DataSet();
                     ds = ObjUpkeep.Fetch_GP_Header_Data(GP_Trans_ID, GP_Header_Name);
                     GP_Header_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["GP_Head_Data_ID"]);
 
                     DataSet ds_Return = new DataSet();
-                    ds_Return = ObjUpkeep.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remarks, FullyReturned);
+                    ds_Return = ObjUpkeep.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remarks, FullyReturned, ForceClose);
 
                     if (ds_Return.Tables.Count > 0)
                     {
@@ -686,13 +687,14 @@ namespace Upkeep_v3.GatePass
                     int GP_Header_ID = 0;
                     string Received_Remarks = txtRemarks.Text;
                     bool FullyReturned = false;
+                    bool ForceClose = true;
 
                     DataSet ds = new DataSet();
                     ds = ObjUpkeep.Fetch_GP_Header_Data(GP_Trans_ID, GP_Header_Name);
                     GP_Header_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["GP_Head_Data_ID"]);
 
                     DataSet ds_Return = new DataSet();
-                    ds_Return = ObjUpkeep.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remarks, FullyReturned);
+                    ds_Return = ObjUpkeep.GP_Insert_Returnable_Qty(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remarks, FullyReturned, ForceClose);
 
                     if (ds_Return.Tables.Count > 0)
                     {
