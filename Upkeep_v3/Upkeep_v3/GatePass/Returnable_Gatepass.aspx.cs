@@ -98,6 +98,21 @@ namespace Upkeep_v3.GatePass
                         lblRequestStatus.Text = "Rejected";
                         lblRequestStatus.Attributes.Add("class", "m-badge m-badge--danger m-badge--wide");
                     }
+                    else if (RequestStatus == "Outward Closed")
+                    {
+                        lblRequestStatus.Text = "Outward Closed";
+                        lblRequestStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                    }
+                    else if (RequestStatus == "Return Approval Pending")
+                    {
+                        lblRequestStatus.Text = "Return Approval Pending";
+                        lblRequestStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                    }
+                    else if (RequestStatus == "Returnable Pending")
+                    {
+                        lblRequestStatus.Text = "Return Approval Pending";
+                        lblRequestStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                    }
 
                 }
                 if (dsApproval.Tables.Count > 1)
@@ -223,6 +238,11 @@ namespace Upkeep_v3.GatePass
                     {
                         rptGP_Doc_Upload.DataSource = dsApproval.Tables[8];
                         rptGP_Doc_Upload.DataBind();
+                        dv_GP_Document.Visible = true;
+                    }
+                    else {
+                        dv_GP_Document.Visible = false;
+
                     }
                 }
 
@@ -680,7 +700,12 @@ namespace Upkeep_v3.GatePass
                 {
                     int GP_Trans_ID = Convert.ToInt32(Request.QueryString["TransactionID"]);
                     string GP_Header_Name = dt_ReturnableSave.Rows[i]["Item Description"].ToString();
-                    int Received_Qty = Convert.ToInt32(dt_ReturnableSave.Rows[i]["Received Quantity"]);
+                    int Received_Qty = 0;
+                    object valueofReceived = dt_ReturnableSave.Rows[i]["Received Quantity"];
+                    if (valueofReceived != DBNull.Value && !string.IsNullOrEmpty(valueofReceived.ToString()))
+                    {
+                        Received_Qty = Convert.ToInt32(dt_ReturnableSave.Rows[i]["Received Quantity"]);
+                    }
                     DateTime date = DateTime.Now;
                     string Received_Date = date.ToString();
                     int Received_By = Convert.ToInt32(LoggedInUserID);
@@ -698,9 +723,9 @@ namespace Upkeep_v3.GatePass
 
                     if (ds_Return.Tables.Count > 0)
                     {
-                        if (ds_Return.Tables[0].Rows.Count > 0)
+                        if (ds_Return.Tables[1].Rows.Count > 0)
                         {
-                            int Status = Convert.ToInt32(ds_Return.Tables[0].Rows[0]["Status"]);
+                            int Status = Convert.ToInt32(ds_Return.Tables[1].Rows[0]["Status"]);
                             if (Status == 1)
                             {
                                 Response.Redirect(Page.ResolveClientUrl("~/GatePass/Update_Gatepass.aspx"), false);

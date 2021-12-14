@@ -535,7 +535,8 @@ namespace Upkeep_v3.GatePass
                         //ddlDepartment.SelectedValue = "0";
                         //ddlDepartment.Attributes.Add("class", "form-control m-input disabled");
                         //ddlDepartment.Attributes.Add("disabled", "disabled");
-                        ddlDepartment.Attributes.Add("class", "form-control m-input");
+                        //ddlDepartment.Attributes.Add("class", "form-control m-input");
+                        ddlDepartment.CssClass = "form-control m-input";
                         ddlDepartment.Enabled = false;
                     }
                     else
@@ -559,7 +560,8 @@ namespace Upkeep_v3.GatePass
                     if (Is_Returnable_Gatepass == true)
                     {
                         lbl_Returnable_Gatepass.Text = "Yes";
-                        dvReturnableDate.Attributes.Add("style", "display:block;");
+                        dvReturnableDate.Attributes.Add("style", "display:flex;");
+                        dvReturnableDate.Attributes.Add("style", "align-items: center;");
                         dvReturnableDate.Attributes.Add("class", "form-group row");
                         RequiredFieldValidator4.Enabled = true;
                     }

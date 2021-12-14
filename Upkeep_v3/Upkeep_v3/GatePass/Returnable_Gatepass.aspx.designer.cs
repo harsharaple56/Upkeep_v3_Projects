@@ -211,6 +211,15 @@ namespace Upkeep_v3.GatePass {
         protected global::System.Web.UI.WebControls.GridView gvGPHeader;
         
         /// <summary>
+        /// dv_GP_Document control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_GP_Document;
+        
+        /// <summary>
         /// rptGP_Doc_Upload control.
         /// </summary>
         /// <remarks>

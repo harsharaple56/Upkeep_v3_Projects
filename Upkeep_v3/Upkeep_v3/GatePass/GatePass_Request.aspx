@@ -447,27 +447,23 @@
                                 <%-- </div>--%>
                             </div>
 
-
                             <div class="form-group row" id="dvReturnableDate" runat="server" style="overflow: hidden; display: none;">
-                                <%--<div class="col-xl-2 col-lg-2">--%>
-                                <%-- <label class="col-form-label font-weight-bold">
-                                    <a href="#" style="width: 25px; height: 25px; }" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only" data-container="body" data-toggle="m-tooltip" data-placement="left" title="" data-original-title="Select the returnable Date and time">
-                                        <i class="fa fa-info-circle"></i>
-                                    </a>
-                                    GatePass Returnable Date</label>--%>
+                                <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold">GatePass Returnable Date</label>
+                                <div class="col-xl-10 col-lg-3 col-form-label">
+                                    <div class="input-group date">
+                                        <asp:TextBox ID="txtGatepassReturnableDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker col-xl-3 col-lg-3" placeholder="Select Gate Pass returnable date & time"></asp:TextBox>
 
-                                <div class="input-group date">
-                                    <span class="col-form-label font-weight-bold">GatePass Returnable Date </span>
-                                    <asp:TextBox ID="txtGatepassReturnableDate" runat="server" autocomplete="off" class="form-control m-input datetimepicker col-xl-3 col-lg-3" placeholder="Select Gate Pass returnable date & time"></asp:TextBox>
-
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="la la-calendar-check-o glyphicon-th"></i></span>
+                                        </div>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtGatepassReturnableDate" Visible="true" Display="Dynamic"
+                                            ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please select Gate Pass returnable Date"></asp:RequiredFieldValidator>
                                     </div>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtGatepassReturnableDate" Visible="true" Display="Dynamic"
-                                        ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please select Gate Pass returnable Date"></asp:RequiredFieldValidator>
                                 </div>
-
                             </div>
+
+
+
                             <%--<div class="col-xl-4 col-lg-3 col-form-label">
                                     
                                     <span id="error_returnDate" class="text-danger small"></span>
@@ -528,13 +524,30 @@
                             <h6 class="m--font-danger m--align-center" style="margin-bottom: 1rem;">Please upload jpg, jpeg, png, pdf file only.</h6>
                             <asp:Repeater ID="rptDocuments" runat="server" ClientIDMode="Static">
                                 <ItemTemplate>
+                                    <%-- <div class="col-xl-5" style="padding-bottom: 1rem;">
+                                    <div class="custom-file">
+                                        <input type="file" name="ctl00$ContentPlaceHolder1$fileupload1" id="ContentPlaceHolder1_fileupload1" class="custom-file-input" accept="image/jpg, image/jpeg, image/png">
+                                        <label id="lbl_userpic1" class="custom-file-label" for="customFile">
+                                            Choose file
+                                        <span id="ContentPlaceHolder1_Label3" style="color:Red;">(Max File Limit : 5 MB)</span></label>
+                                        <span id="ContentPlaceHolder1_Label4" style="color:Red;"></span>
+                                        <span id="ContentPlaceHolder1_RegularExpressionValidator6" style="color:Red;visibility:hidden;">Only (.png , .jpg , .jpeg) files are allowed</span>
 
+                                    </div>
+
+
+                                </div>--%>
 
                                     <div class="form-group m-form__group row" style="margin-bottom: 1rem;">
-                                        <label class="col-xl-5 col-lg-2 form-control-label font-weight-bold"><%# Convert.ToBoolean(Eval("Mandatory"))  ? "<span style='color: red;'>*</span>" : "&nbsp;" %> <%#Eval("Doc_Desc") %>:</label>
-                                        <div class="col-xl-7 col-lg-8">
+                                        <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><%# Convert.ToBoolean(Eval("Mandatory"))  ? "<span style='color: red;'>*</span>" : "&nbsp;" %> <%#Eval("Doc_Desc") %>:</label>
+
+                                        <div class="custom-file col-xl-7 col-lg-8">
+
                                             <asp:HiddenField ID="hdnDocID" Value='<%#Eval("Doc_Config_Id") %>' runat="server" />
-                                            <asp:FileUpload AllowMultiple="false" ID="flDoc" runat="server" />
+                                            <asp:FileUpload AllowMultiple="false" CssClass="custom-file-input" ID="flDoc" runat="server" />
+                                            <label id="lbl_userpic" class="custom-file-label" for="customFile" style="padding-right: 418px;">
+                                                Choose file
+                                            </label>
                                         </div>
                                     </div>
                                 </ItemTemplate>
