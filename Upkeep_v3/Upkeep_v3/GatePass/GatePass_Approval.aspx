@@ -18,10 +18,10 @@
             $("[id*=ddlAction]").change(function () {
                 var value = $("[id*=ddlAction]").val();
                 if (value == "2" || value == "3") {
-                    ValidatorEnable(document.getElementById('<%= RequiredFieldValidator2.ClientID %>'), false);
-                }
-                else if (value == "0" || value == "1" || value == "4") {
                     ValidatorEnable(document.getElementById('<%= RequiredFieldValidator2.ClientID %>'), true);
+                }
+                else if (value == "1" || value == "4") {
+                    ValidatorEnable(document.getElementById('<%= RequiredFieldValidator2.ClientID %>'), false);
                 }
             });
         });

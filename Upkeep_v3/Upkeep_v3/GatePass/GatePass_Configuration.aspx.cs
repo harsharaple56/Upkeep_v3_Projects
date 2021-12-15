@@ -636,6 +636,7 @@ namespace Upkeep_v3.GatePass
                         LocTxtActionGroup.Attributes.Add("class", "form-control m-input");
                         LocTxtActionGroup.Attributes.Add("style", "display: inline");
                         LocTxtActionGroup.ReadOnly = true;
+                        LocTxtActionGroup.ID = "txtActionGroup_R" + IntPriCounter;
                         this.TblLevels.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocTxtActionGroup);
 
 
@@ -1095,12 +1096,6 @@ namespace Upkeep_v3.GatePass
         {
             int NoOfLevels_Return = Convert.ToInt32(txtNoOfLevel_Returnable.Text);
             AddRows_Returnable(NoOfLevels_Return, null);
-
-            //int NoOfLevels = Convert.ToInt32(txtNoOfLevel.Text);
-            //if (NoOfLevels > 0)
-            //{
-            //    AddRows(NoOfLevels, null);
-            //}
         }
 
         private void AddRows_Returnable(int NoOfLevels, DataSet dsReturableMatrix)
@@ -1110,10 +1105,9 @@ namespace Upkeep_v3.GatePass
 
             if (dsReturableMatrix != null)
             {
-                ObjDt = dsReturableMatrix.Tables[6];
+                ObjDt = dsReturableMatrix.Tables[4];
             }
-            //TblLevels.Visible = true;
-            //TblSave.Visible = true;
+
             if (dsReturableMatrix == null)
             {
                 try
@@ -1133,100 +1127,90 @@ namespace Upkeep_v3.GatePass
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Attributes.Add("style", "width:25%");
 
-                        System.Web.UI.WebControls.TextBox LocTxtActionGroup1 = new System.Web.UI.WebControls.TextBox();
-                        System.Web.UI.HtmlControls.HtmlImage LocImgBtnHelp1 = new System.Web.UI.HtmlControls.HtmlImage();
+                        System.Web.UI.WebControls.TextBox LocTxtActionGroup = new System.Web.UI.WebControls.TextBox();
+                        System.Web.UI.HtmlControls.HtmlImage LocImgBtnHelp = new System.Web.UI.HtmlControls.HtmlImage();
 
-                        System.Web.UI.WebControls.HiddenField LocHdnAction1 = new System.Web.UI.WebControls.HiddenField();
+                        System.Web.UI.WebControls.HiddenField LocHdnAction = new System.Web.UI.WebControls.HiddenField();
                         // LocHdnAction.Style.Add("display", "none")
-                        LocHdnAction1.ID = "hdn2" + IntPriCounter;
-                        LocTxtActionGroup1.Width = 176;
-                        LocTxtActionGroup1.Attributes.Add("class", "form-control m-input");
-                        LocTxtActionGroup1.Attributes.Add("style", "display: inline");
-                        LocTxtActionGroup1.ReadOnly = true;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocTxtActionGroup1);
+                        LocHdnAction.ID = "hdn2_Returnable" + IntPriCounter;
+                        LocTxtActionGroup.Width = 176;
+                        LocTxtActionGroup.Attributes.Add("class", "form-control m-input");
+                        LocTxtActionGroup.Attributes.Add("style", "display: inline");
+                        LocTxtActionGroup.ReadOnly = true;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocTxtActionGroup);
 
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[2].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox LocChkBoxEmail1 = new System.Web.UI.WebControls.CheckBox();
-                        LocChkBoxEmail1.Checked = false;
+                        System.Web.UI.WebControls.CheckBox LocChkBoxEmail = new System.Web.UI.WebControls.CheckBox();
+                        LocChkBoxEmail.Checked = false;
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[3].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox LocChkBoxTxt1 = new System.Web.UI.WebControls.CheckBox();
-                        LocChkBoxTxt1.Checked = false;
+                        System.Web.UI.WebControls.CheckBox LocChkBoxTxt = new System.Web.UI.WebControls.CheckBox();
+                        LocChkBoxTxt.Checked = false;
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[4].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkBoxNotification1 = new System.Web.UI.WebControls.CheckBox();
-                        ChkBoxNotification1.Checked = false;
+                        System.Web.UI.WebControls.CheckBox ChkBoxNotification = new System.Web.UI.WebControls.CheckBox();
+                        ChkBoxNotification.Checked = false;
 
 
                         // ---------------ADD HELP BUTTON---------------------
-                        //LocImgBtnHelp.Src = "../generalimages/mypc_search.png";
-                        LocImgBtnHelp1.Src = Page.ResolveClientUrl("~/assets/app/media/img/icons/AddUser.png");
-                        LocImgBtnHelp1.Attributes.Add("width", "32");
-                        LocImgBtnHelp1.Attributes.Add("height", "32");
-                        //LocImgBtnHelp.Style.Add("vertical-align", "bottom");
-                        string call_type = "Approve";
-                        //LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + ","" + call_type+"");");
-                        LocImgBtnHelp1.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup1.ClientID + ",'" + LocHdnAction1.ClientID + "', 'return');");
+                        LocImgBtnHelp.Src = Page.ResolveClientUrl("~/assets/app/media/img/icons/AddUser.png");
+                        LocImgBtnHelp.Attributes.Add("width", "32");
+                        LocImgBtnHelp.Attributes.Add("height", "32");
+                        LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + "', 'return');");
                         // ---------------------------------------------------------
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocImgBtnHelp1);
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocHdnAction1);
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocImgBtnHelp);
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocHdnAction);
 
 
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[2].Controls.Add(LocChkBoxEmail1);
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[3].Controls.Add(LocChkBoxTxt1);
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[4].Controls.Add(ChkBoxNotification1);
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[2].Controls.Add(LocChkBoxEmail);
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[3].Controls.Add(LocChkBoxTxt);
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[4].Controls.Add(ChkBoxNotification);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Attributes.Add("class", "GridItem");
 
-                        //System.Web.UI.WebControls.TextBox LocTxtTime = new System.Web.UI.WebControls.TextBox();
-                        //LocTxtTime.Width = 30;
-                        //LocTxtTime.Attributes.Add("data-rule-number", "true");
-                        //this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[5].Controls.Add(LocTxtTime);
-
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[5].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkMobile1 = new System.Web.UI.WebControls.CheckBox();
-                        ChkMobile1.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[5].Controls.Add(ChkMobile1);
+                        System.Web.UI.WebControls.CheckBox ChkMobile = new System.Web.UI.WebControls.CheckBox();
+                        ChkMobile.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[5].Controls.Add(ChkMobile);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[6].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkWeb1 = new System.Web.UI.WebControls.CheckBox();
-                        ChkWeb1.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[6].Controls.Add(ChkWeb1);
+                        System.Web.UI.WebControls.CheckBox ChkWeb = new System.Web.UI.WebControls.CheckBox();
+                        ChkWeb.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[6].Controls.Add(ChkWeb);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[7].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkApprove1 = new System.Web.UI.WebControls.CheckBox();
-                        ChkApprove1.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[7].Controls.Add(ChkApprove1);
+                        System.Web.UI.WebControls.CheckBox ChkApprove = new System.Web.UI.WebControls.CheckBox();
+                        ChkApprove.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[7].Controls.Add(ChkApprove);
 
                         if (IntPriCounter == 0 || IntPriCounter == ctr - 1)
                         {
-                            ChkApprove1.Checked = true;
-                            ChkApprove1.Enabled = false;
+                            ChkApprove.Checked = true;
+                            ChkApprove.Enabled = false;
                         }
 
 
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[8].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkHold1 = new System.Web.UI.WebControls.CheckBox();
-                        ChkHold1.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[8].Controls.Add(ChkHold1);
+                        System.Web.UI.WebControls.CheckBox ChkHold = new System.Web.UI.WebControls.CheckBox();
+                        ChkHold.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[8].Controls.Add(ChkHold);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[9].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkReject1 = new System.Web.UI.WebControls.CheckBox();
-                        ChkReject1.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[9].Controls.Add(ChkReject1);
+                        System.Web.UI.WebControls.CheckBox ChkReject = new System.Web.UI.WebControls.CheckBox();
+                        ChkReject.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[9].Controls.Add(ChkReject);
 
-                        //this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         if (IntPriCounter == ctr - 1)
                         {
                             this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[10].InnerHtml = "0";
@@ -1238,15 +1222,14 @@ namespace Upkeep_v3.GatePass
                             this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[10].Attributes.Add("class", "GridItem");
                         }
 
-                        //this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
-                        System.Web.UI.WebControls.TextBox LocTxtInf1 = new System.Web.UI.WebControls.TextBox();
-                        System.Web.UI.HtmlControls.HtmlImage LocImgBtnHelp11 = new System.Web.UI.HtmlControls.HtmlImage();
+                        System.Web.UI.WebControls.TextBox LocTxtInf = new System.Web.UI.WebControls.TextBox();
+                        System.Web.UI.HtmlControls.HtmlImage LocImgBtnHelp1 = new System.Web.UI.HtmlControls.HtmlImage();
 
-                        System.Web.UI.WebControls.HiddenField LocHdnInf1 = new System.Web.UI.WebControls.HiddenField();
+                        System.Web.UI.WebControls.HiddenField LocHdnInf = new System.Web.UI.WebControls.HiddenField();
                         // LocHdnInf.Style.Add("display", "none")
-                        LocHdnInf1.ID = "hdn3" + IntPriCounter;
-                        LocTxtInf1.Width = 150;
-                        LocTxtInf1.ReadOnly = true;
+                        LocHdnInf.ID = "hdn3" + IntPriCounter;
+                        LocTxtInf.Width = 150;
+                        LocTxtInf.ReadOnly = true;
                     }
                 }
                 catch (Exception ex)
@@ -1271,130 +1254,121 @@ namespace Upkeep_v3.GatePass
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Attributes.Add("class", "form-control m-input");
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Attributes.Add("style", "width:25%");
 
-                        System.Web.UI.WebControls.TextBox LocTxtActionGroup2 = new System.Web.UI.WebControls.TextBox();
-                        System.Web.UI.HtmlControls.HtmlImage LocImgBtnHelp2 = new System.Web.UI.HtmlControls.HtmlImage();
+                        System.Web.UI.WebControls.TextBox LocTxtActionGroup = new System.Web.UI.WebControls.TextBox();
+                        System.Web.UI.HtmlControls.HtmlImage LocImgBtnHelp = new System.Web.UI.HtmlControls.HtmlImage();
 
-                        System.Web.UI.WebControls.HiddenField LocHdnAction2 = new System.Web.UI.WebControls.HiddenField();
-                        // LocHdnAction.Style.Add("display", "none")
-                        LocHdnAction2.ID = "hdn_Returnable" + IntPriCounter;
-                        LocTxtActionGroup2.Width = 180;
-                        LocTxtActionGroup2.ReadOnly = true;
-                        LocTxtActionGroup2.Attributes.Add("class", "form-control m-input");
-                        LocTxtActionGroup2.Attributes.Add("style", "display: inline");
+                        System.Web.UI.WebControls.HiddenField LocHdnAction = new System.Web.UI.WebControls.HiddenField();
+                        LocHdnAction.ID = "hdn_Returnable" + IntPriCounter;
+                        LocTxtActionGroup.Width = 180;
+                        LocTxtActionGroup.ReadOnly = true;
+                        LocTxtActionGroup.Attributes.Add("class", "form-control m-input");
+                        LocTxtActionGroup.Attributes.Add("style", "display: inline");
                         // Assign dt value
                         if (!string.IsNullOrEmpty(Convert.ToString((ObjDt.Rows[IntPriCounter]["UserDesc"]))))
                         {
-                            LocTxtActionGroup2.Text = Convert.ToString(ObjDt.Rows[IntPriCounter]["UserDesc"]);
-                            LocHdnAction2.Value = Convert.ToString(ObjDt.Rows[IntPriCounter]["ActionId"]);
+                            LocTxtActionGroup.Text = Convert.ToString(ObjDt.Rows[IntPriCounter]["UserDesc"]);
+                            LocHdnAction.Value = Convert.ToString(ObjDt.Rows[IntPriCounter]["ActionId"]);
                         }
                         else if (!string.IsNullOrEmpty(Convert.ToString((ObjDt.Rows[IntPriCounter]["GroupDesc"]))))
                         {
-                            LocTxtActionGroup2.Text = Convert.ToString(ObjDt.Rows[IntPriCounter]["GroupDesc"]);
-                            LocHdnAction2.Value = Convert.ToString(ObjDt.Rows[IntPriCounter]["ActionId"]);
+                            LocTxtActionGroup.Text = Convert.ToString(ObjDt.Rows[IntPriCounter]["GroupDesc"]);
+                            LocHdnAction.Value = Convert.ToString(ObjDt.Rows[IntPriCounter]["ActionId"]);
                         }
 
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocTxtActionGroup2);
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocTxtActionGroup);
 
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[2].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox LocChkBoxEmail2 = new System.Web.UI.WebControls.CheckBox();
+                        System.Web.UI.WebControls.CheckBox LocChkBoxEmail = new System.Web.UI.WebControls.CheckBox();
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[3].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox LocChkBoxTxt2 = new System.Web.UI.WebControls.CheckBox();
+                        System.Web.UI.WebControls.CheckBox LocChkBoxTxt = new System.Web.UI.WebControls.CheckBox();
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[4].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkBoxAppNotification2 = new System.Web.UI.WebControls.CheckBox();
+                        System.Web.UI.WebControls.CheckBox ChkBoxAppNotification = new System.Web.UI.WebControls.CheckBox();
 
                         // ---------------ADD HELP BUTTON---------------------
-                        LocImgBtnHelp2.Src = "~/assets/app/media/img/icons/AddUser.png";
-                        LocImgBtnHelp2.Attributes.Add("width", "32");
-                        LocImgBtnHelp2.Attributes.Add("height", "32");
+                        LocImgBtnHelp.Src = "~/assets/app/media/img/icons/AddUser.png";
+                        LocImgBtnHelp.Attributes.Add("width", "32");
+                        LocImgBtnHelp.Attributes.Add("height", "32");
                         //LocImgBtnHelp.Style.Add("vertical-align", "bottom");
-                        LocImgBtnHelp2.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup2.ClientID + ",'" + LocHdnAction2.ClientID + "');");
+                        LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + "');");
                         // ---------------------------------------------------------
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocImgBtnHelp2);
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocHdnAction2);
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocImgBtnHelp);
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Controls.Add(LocHdnAction);
 
 
 
                         if (Convert.ToBoolean(ObjDt.Rows[IntPriCounter]["EmailNotification"]) == true)
-                            LocChkBoxEmail2.Checked = true;
+                            LocChkBoxEmail.Checked = true;
                         else
-                            LocChkBoxEmail2.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[2].Controls.Add(LocChkBoxEmail2);
+                            LocChkBoxEmail.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[2].Controls.Add(LocChkBoxEmail);
 
                         if (Convert.ToBoolean(ObjDt.Rows[IntPriCounter]["SMSNotification"]) == true)
-                            LocChkBoxTxt2.Checked = true;
+                            LocChkBoxTxt.Checked = true;
                         else
-                            LocChkBoxTxt2.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[3].Controls.Add(LocChkBoxTxt2);
+                            LocChkBoxTxt.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[3].Controls.Add(LocChkBoxTxt);
 
 
                         if (Convert.ToBoolean(ObjDt.Rows[IntPriCounter]["AppNotification"]) == true)
-                            ChkBoxAppNotification2.Checked = true;
+                            ChkBoxAppNotification.Checked = true;
                         else
-                            ChkBoxAppNotification2.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[4].Controls.Add(ChkBoxAppNotification2);
+                            ChkBoxAppNotification.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[4].Controls.Add(ChkBoxAppNotification);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[5].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkBoxMobileAccess2 = new System.Web.UI.WebControls.CheckBox();
+                        System.Web.UI.WebControls.CheckBox ChkBoxMobileAccess = new System.Web.UI.WebControls.CheckBox();
                         if (Convert.ToBoolean(ObjDt.Rows[IntPriCounter]["MobileAccess"]) == true)
-                            ChkBoxMobileAccess2.Checked = true;
+                            ChkBoxMobileAccess.Checked = true;
                         else
-                            ChkBoxMobileAccess2.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[5].Controls.Add(ChkBoxMobileAccess2);
+                            ChkBoxMobileAccess.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[5].Controls.Add(ChkBoxMobileAccess);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[6].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkBoxWebAccess2 = new System.Web.UI.WebControls.CheckBox();
+                        System.Web.UI.WebControls.CheckBox ChkBoxWebAccess = new System.Web.UI.WebControls.CheckBox();
                         if (Convert.ToBoolean(ObjDt.Rows[IntPriCounter]["WebAccess"]) == true)
-                            ChkBoxWebAccess2.Checked = true;
+                            ChkBoxWebAccess.Checked = true;
                         else
-                            ChkBoxWebAccess2.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[6].Controls.Add(ChkBoxWebAccess2);
+                            ChkBoxWebAccess.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[6].Controls.Add(ChkBoxWebAccess);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[7].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkBoxIs_Approve2 = new System.Web.UI.WebControls.CheckBox();
+                        System.Web.UI.WebControls.CheckBox ChkBoxIs_Approve = new System.Web.UI.WebControls.CheckBox();
                         if (Convert.ToBoolean(ObjDt.Rows[IntPriCounter]["Is_Approve"]) == true)
-                            ChkBoxIs_Approve2.Checked = true;
+                            ChkBoxIs_Approve.Checked = true;
                         else
-                            ChkBoxIs_Approve2.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[7].Controls.Add(ChkBoxIs_Approve2);
+                            ChkBoxIs_Approve.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[7].Controls.Add(ChkBoxIs_Approve);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[8].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkBoxIs_Hold2 = new System.Web.UI.WebControls.CheckBox();
+                        System.Web.UI.WebControls.CheckBox ChkBoxIs_Hold = new System.Web.UI.WebControls.CheckBox();
                         if (Convert.ToBoolean(ObjDt.Rows[IntPriCounter]["Is_Hold"]) == true)
-                            ChkBoxIs_Hold2.Checked = true;
+                            ChkBoxIs_Hold.Checked = true;
                         else
-                            ChkBoxIs_Hold2.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[8].Controls.Add(ChkBoxIs_Hold2);
+                            ChkBoxIs_Hold.Checked = false;
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[8].Controls.Add(ChkBoxIs_Hold);
 
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[9].Attributes.Add("class", "GridItem");
-                        System.Web.UI.WebControls.CheckBox ChkBoxIs_Reject2 = new System.Web.UI.WebControls.CheckBox();
+                        System.Web.UI.WebControls.CheckBox ChkBoxIs_Reject = new System.Web.UI.WebControls.CheckBox();
                         if (Convert.ToBoolean(ObjDt.Rows[IntPriCounter]["Is_Reject"]) == true)
-                            ChkBoxIs_Reject2.Checked = true;
+                            ChkBoxIs_Reject.Checked = true;
                         else
-                            ChkBoxIs_Reject2.Checked = false;
-                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[9].Controls.Add(ChkBoxIs_Reject2);
+                            ChkBoxIs_Reject.Checked = false;
 
-
+                        this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[9].Controls.Add(ChkBoxIs_Reject);
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
                         this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[1].Attributes.Add("class", "GridItem");
-                        //System.Web.UI.WebControls.TextBox LocTxtTime = new System.Web.UI.WebControls.TextBox();
-                        //LocTxtTime.Width = 30;
-
-                        //LocTxtTime.Text = Convert.ToString(ObjDt.Rows[IntPriCounter]["Escalate_Time"]);
-                        //LocTxtTime.Attributes.Add("data-rule-number", "true");
-                        //this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[5].Controls.Add(LocTxtTime);
-
-                        //this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
+                        
                         if (IntPriCounter == ctr - 1)
                         {
                             this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[10].InnerHtml = "0";
@@ -1406,13 +1380,12 @@ namespace Upkeep_v3.GatePass
                             this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells[10].Attributes.Add("class", "GridItem");
                         }
 
-                        //this.TblLevels_Returnable.Rows[IntPriCounter + 1].Cells.Add(new HtmlTableCell());
-                        System.Web.UI.WebControls.TextBox LocTxtInf2 = new System.Web.UI.WebControls.TextBox();
-                        System.Web.UI.HtmlControls.HtmlImage LocImgBtnHelp22 = new System.Web.UI.HtmlControls.HtmlImage();
-                        System.Web.UI.WebControls.HiddenField LocHdnInf2 = new System.Web.UI.WebControls.HiddenField();
-                        LocHdnInf2.ID = "LocHdnInf4" + IntPriCounter;
-                        LocTxtInf2.Width = 150;
-                        LocTxtInf2.ReadOnly = true;
+                        System.Web.UI.WebControls.TextBox LocTxtInf = new System.Web.UI.WebControls.TextBox();
+                        System.Web.UI.HtmlControls.HtmlImage LocImgBtnHelp1 = new System.Web.UI.HtmlControls.HtmlImage();
+                        System.Web.UI.WebControls.HiddenField LocHdnInf = new System.Web.UI.WebControls.HiddenField();
+                        LocHdnInf.ID = "LocHdnInf4" + IntPriCounter;
+                        LocTxtInf.Width = 150;
+                        LocTxtInf.ReadOnly = true;
 
                     }
                 }
