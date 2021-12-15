@@ -35,7 +35,7 @@ namespace Upkeep_v3.GatePass
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             int TransactionID = Convert.ToInt32(Request.QueryString["TransactionID"]);
-            MyActionFlag= Convert.ToString(Request.QueryString["MyAction"]);
+            MyActionFlag = Convert.ToString(Request.QueryString["MyAction"]);
             if (LoggedInUserID == "")
             {
                 // redirect to custom error page -- session timeout
@@ -63,9 +63,9 @@ namespace Upkeep_v3.GatePass
 
                 if (dsApproval.Tables.Count > 0)
                 {
-                    lblGatepassTitle.Text= Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Title"]);
+                    lblGatepassTitle.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Title"]);
                     lblGatepassDescription.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["Gatepass_Description"]);
-                    lblTicketNo.Text= Convert.ToString(dsApproval.Tables[0].Rows[0]["TicketNo"]);
+                    lblTicketNo.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["TicketNo"]);
                     lblDepartment.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["DepartmentName"]);
                     lblRequestDate.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["GatePassDate"]);
                     lblGatePassType.Text = Convert.ToString(dsApproval.Tables[0].Rows[0]["GP_Type_Desc"]);
@@ -110,6 +110,21 @@ namespace Upkeep_v3.GatePass
                     {
                         lblRequestStatus.Text = "Rejected";
                         lblRequestStatus.Attributes.Add("class", "m-badge m-badge--danger m-badge--wide");
+                    }
+                    else if (RequestStatus == "Outward Closed")
+                    {
+                        lblRequestStatus.Text = "Outward Closed";
+                        lblRequestStatus.Attributes.Add("class", "m-badge m-badge--success m-badge--wide");
+                    }
+                    else if (RequestStatus == "Return Approval Pending")
+                    {
+                        lblRequestStatus.Text = "Return Approval Pending";
+                        lblRequestStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
+                    }
+                    else if (RequestStatus == "Returnable Pending")
+                    {
+                        lblRequestStatus.Text = "Return Approval Pending";
+                        lblRequestStatus.Attributes.Add("class", "m-badge m-badge--warning m-badge--wide");
                     }
 
                 }
@@ -239,7 +254,7 @@ namespace Upkeep_v3.GatePass
                     }
                 }
 
-                if (MyActionFlag=="1")
+                if (MyActionFlag == "1")
                 {
 
                     //dvApprovalDetHeader.Attributes.Add("Style", "display:block;");
@@ -270,14 +285,14 @@ namespace Upkeep_v3.GatePass
 
             try
             {
-                
+
                 dsApproval = ObjUpkeep.Fetch_GatePassRequest_Approval_Details(TransactionID, LoggedInUserID);
 
-                if(dsApproval != null)
+                if (dsApproval != null)
                 {
-                    if(dsApproval.Tables.Count > 0)
+                    if (dsApproval.Tables.Count > 0)
                     {
-                        if(dsApproval.Tables[0].Rows.Count > 0)
+                        if (dsApproval.Tables[0].Rows.Count > 0)
                         {
 
                             ReportViewer1.ProcessingMode = ProcessingMode.Local;
@@ -350,7 +365,7 @@ namespace Upkeep_v3.GatePass
                     }
                 }
             }
-           catch (Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -460,7 +475,7 @@ namespace Upkeep_v3.GatePass
 
         protected async void btnSubmit_Click(object sender, EventArgs e)
         {
-            string CurrentLevel =string.Empty;
+            string CurrentLevel = string.Empty;
             string TransactionID = string.Empty;
             string ActionStatus = string.Empty;
             string strRemarks = string.Empty;
@@ -558,7 +573,6 @@ namespace Upkeep_v3.GatePass
             }
         }
 
-        
     }
 
     public class ReportCell

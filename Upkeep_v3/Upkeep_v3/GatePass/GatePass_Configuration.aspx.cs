@@ -70,7 +70,21 @@ namespace Upkeep_v3.GatePass
                     if (strGPConfigID.All(char.IsDigit))
                         GP_ConfigID = Convert.ToInt32(strGPConfigID);
                     if (GP_ConfigID != 0)
-                        ObjUpkeep.Delete_GatePassConfiguration(GP_ConfigID, LoggedInUserID);
+                    {
+                        DataSet ds = new DataSet();
+                        ds = ObjUpkeep.Delete_GatePassConfiguration(GP_ConfigID, LoggedInUserID);
+                        if (ds.Tables.Count > 0)
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                                if (Status == 1)
+                                {
+                                    Response.Redirect(Page.ResolveClientUrl("~/GatePass/GatePassConfig_Listing.aspx"), false);
+                                }
+                            }
+                        }
+                    }
                 }
 
                 Fetch_User_UserGroupList(Initiator);
@@ -116,7 +130,18 @@ namespace Upkeep_v3.GatePass
                             ChkLinkDept.Checked = false;
                         }
 
-                        bool Is_Returnable_GP = Convert.ToBoolean(ds.Tables[0].Rows[0]["Is_Returnable_Gatepass"]);
+
+                        bool Is_Returnable_GP = false;
+                        object value = ds.Tables[0].Rows[0]["Is_Returnable_Gatepass"];
+                        if (value == DBNull.Value)
+                        {
+                            Is_Returnable_GP = false;
+                        }
+                        else
+                        {
+                            Is_Returnable_GP = true;
+                        }
+
                         if (Is_Returnable_GP == true)
                         {
                             chk_returnable_gatepass.Checked = true;
@@ -139,7 +164,13 @@ namespace Upkeep_v3.GatePass
                         {
                             chkShowApprovalMatrix.Checked = false;
                         }
-                        AddRows(Convert.ToInt32(ds.Tables[0].Rows[0]["NoOfLevel"]), ds);
+
+                        object NoOfLevel = ds.Tables[0].Rows[0]["NoOfLevel"];
+                        if (NoOfLevel != DBNull.Value)
+                        {
+                            AddRows(Convert.ToInt32(ds.Tables[0].Rows[0]["NoOfLevel"]), ds);
+                        }
+
                         if (!string.IsNullOrEmpty(ds.Tables[0].Rows[0]["NoOfLevel_Returable"].ToString()))
                         {
                             dvReturnable.Visible = true;
@@ -289,7 +320,7 @@ namespace Upkeep_v3.GatePass
                     {
                         GatePassHeaderID = GatePassHeaderIDArray[0];
                     }
-                    
+
                     if (GatePassHeader_UnitArray != null)
                     {
                         GPHeaderUnit = GatePassHeader_UnitArray[0];
@@ -522,7 +553,7 @@ namespace Upkeep_v3.GatePass
                 }
                 else
                 {
-                    dsGatePassConfig = ObjUpkeep.Update_GatePassConfiguration(GP_ConfigID,strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_Doc.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), strXmlApprovalMatrix_Returnable.ToString(), ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID);
+                    dsGatePassConfig = ObjUpkeep.Update_GatePassConfiguration(GP_ConfigID, strConfigTitle, CompanyID, strInitiator, LinkDepartment, strTransactionPrefix, strXmlGatepass_Header.ToString(), strXmlGatepass_Type.ToString(), strXmlGatepass_Doc.ToString(), strXmlGatepass_TermCondition.ToString(), strXmlApprovalMatrix.ToString(), strXmlApprovalMatrix_Returnable.ToString(), ShowApprovalMatrix, strGPClosureBy, strGPReceivedBy, GatepassDescription, is_Returnable_Gatepass, LoggedInUserID);
                 }
 
                 if (dsGatePassConfig.Tables.Count > 0)

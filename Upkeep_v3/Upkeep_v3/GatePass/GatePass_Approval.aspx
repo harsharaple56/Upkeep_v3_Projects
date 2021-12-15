@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="GatePass_Approval.aspx.cs" Inherits="Upkeep_v3.GatePass.GatePass_Approval" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -13,6 +13,18 @@
         function FunctionBack() {
             document.getElementById("<%=btnCancel.ClientID %>").click();
         }
+
+        $(document).ready(function () {
+            $("[id*=ddlAction]").change(function () {
+                var value = $("[id*=ddlAction]").val();
+                if (value == "2" || value == "3") {
+                    ValidatorEnable(document.getElementById('<%= RequiredFieldValidator2.ClientID %>'), false);
+                }
+                else if (value == "0" || value == "1" || value == "4") {
+                    ValidatorEnable(document.getElementById('<%= RequiredFieldValidator2.ClientID %>'), true);
+                }
+            });
+        });
     </script>
 
     <div class="m-grid__item m-grid__item--fluid">
@@ -45,8 +57,8 @@
                                 </div>
 
                                 <div class="m-portlet__head-tools">
-                                    <asp:Button ID="Btn_GP_Print_PDF_Employee" runat="server" Text="Print PDF E" onclick="btn_GP_Print_PDF_Employee" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
-                                    <asp:Button ID="Btn_GP_Print_PDF_Retailer" runat="server" Text="Print PDF R" onclick="btn_GP_Print_PDF_Retailer" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
+                                    <asp:Button ID="Btn_GP_Print_PDF_Employee" runat="server" Text="Print PDF E" OnClick="btn_GP_Print_PDF_Employee" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" />
+                                    <asp:Button ID="Btn_GP_Print_PDF_Retailer" runat="server" Text="Print PDF R" OnClick="btn_GP_Print_PDF_Retailer" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" />
 
                                     <a class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" onclick="FunctionBack();">
                                         <span>
@@ -201,10 +213,10 @@
                                                         <i class='la la-image' style="margin-left: -106%; font-size: 2.3rem;"></i>
                                                     </button>--%>
                                                     <asp:LinkButton ID="lnk" runat="server" href='<%# DataBinder.Eval(Container.DataItem, "Doc_Path") %>' Text="Click Here" ToolTip="Click here to view Uploaded documents"
-                                                   class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" target="_blank"></asp:LinkButton>
+                                                        class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" target="_blank"></asp:LinkButton>
                                                 </td>
 
-                                                
+
 
                                             </tr>
                                             <br />
@@ -217,9 +229,6 @@
                                                 </td>
 
                                             </tr>--%>
-
-
-
                                         </table>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -290,14 +299,14 @@
                                     <div class="col-xl-2 col-lg-4">
                                         <asp:DropDownList ID="ddlAction" class="form-control m-input" runat="server"></asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlAction" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please select Action"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please select Action"></asp:RequiredFieldValidator>
                                     </div>
 
                                     <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Remarks :</label>
                                     <div class="col-xl-6 col-lg-4">
                                         <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtRemarks" Visible="true" Display="Dynamic"
-                                            ValidationGroup="validateGatePass" ForeColor="Red" InitialValue="0" ErrorMessage="Please enter Remarks"></asp:RequiredFieldValidator>
+                                            ValidationGroup="validateGatePass" ForeColor="Red" ErrorMessage="Please enter Remarks"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -309,10 +318,10 @@
                                         <asp:GridView ID="gvApprovalMatrix" runat="server" CssClass="table table-hover table-striped" HorizontalAlign="Center" AutoGenerateColumns="true"></asp:GridView>
                                     </div>
                                 </div>
-
                                 <br />
+                                <hr />
 
-                                <div class="col-lg-9 ml-lg-auto" id="dvSubmitSection" runat="server">
+                                <div class="" id="dvSubmitSection" runat="server">
                                     <asp:Button ID="btnSubmit" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Style="margin-right: 20px;" OnClick="btnSubmit_Click" Text="Submit" ValidationGroup="validateGatePass" />
 
                                     <asp:Button ID="btnCancel" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" Style="margin-right: 20px;" OnClick="btnCancel_Click" Text="Cancel" />
@@ -320,8 +329,6 @@
                                     <asp:Label ID="lblErrorMsg" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
 
                                 </div>
-                                <br />
-                                <br />
 
                             </div>
                         </div>
@@ -367,8 +374,8 @@
         </div>
     </div>
 
-          <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" BorderWidth="0px" Visible="false" ShowFindControls="False" Height="100%" ShowBackButton="True"
-                        ProcessingMode="Remote" ShowPromptAreaButton="False">
-        </rsweb:ReportViewer>
+    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" BorderWidth="0px" Visible="false" ShowFindControls="False" Height="100%" ShowBackButton="True"
+        ProcessingMode="Remote" ShowPromptAreaButton="False">
+    </rsweb:ReportViewer>
 
 </asp:Content>

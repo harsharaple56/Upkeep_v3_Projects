@@ -33,6 +33,16 @@
                 "hideMethod": "fadeOut"
             };
 
+            $("[id*=ddlAction]").change(function () {
+                var value = $("[id*=ddlAction]").val();
+                if (value == "2" || value == "3") {
+                    ValidatorEnable(document.getElementById('<%= RequiredFieldValidator2.ClientID %>'), false);
+                }
+                else if (value == "0" || value == "1" || value == "4") {
+                    ValidatorEnable(document.getElementById('<%= RequiredFieldValidator2.ClientID %>'), true);
+                }
+            });
+
             $("[id*=txtreturnableqty]").keyup(function () {
                 //calculate total for current row
                 var val1 = $(this).val() == "" ? 0 : $(this).val();
@@ -95,7 +105,7 @@
 
                         <%--<form class="m-form m-form--label-align-left- m-form--state-" runat="server" id="frmGatePass" method="post">--%>
                         <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
-                        <asp:HiddenField ID="hdnFullySave" runat="server"  ClientIDMode="Static" />  
+                        <asp:HiddenField ID="hdnFullySave" runat="server" ClientIDMode="Static" />
                         <asp:HiddenField ID="hdnGpHeaderData" runat="server" ClientIDMode="Static" />
                         <asp:HiddenField ID="hdnGpHeader" runat="server" ClientIDMode="Static" />
                         <p id="info" style="display: none;"></p>
@@ -118,7 +128,7 @@
                                     <asp:Button ID="Btn_GP_Print_PDF_Employee" runat="server" Text="Print PDF E" OnClick="btn_GP_Print_PDF_Employee" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" />
                                     <asp:Button ID="Btn_GP_Print_PDF_Retailer" runat="server" Text="Print PDF R" OnClick="btn_GP_Print_PDF_Retailer" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" />
 
-                                    <asp:LinkButton ID="lnbtn" OnClick="btnCancel_Click" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" >
+                                    <asp:LinkButton ID="lnbtn" OnClick="btnCancel_Click" runat="server" class="btn btn-secondary btn-outline-hover-danger btn-sm m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>
                                             <span>Back</span>
@@ -282,7 +292,7 @@
 
                                 <br />
 
-                                <div class="form-group row" style="background-color: #00c5dc;">
+                                <div class="form-group row" id="dv_GP_Document" runat="server" style="background-color: #00c5dc;">
                                     <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Gate Pass Documents</label>
                                 </div>
 
