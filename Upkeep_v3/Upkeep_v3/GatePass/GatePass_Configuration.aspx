@@ -224,10 +224,14 @@
     <script type="text/javascript">
         var txtControl = null;
         var txtHdn = null;
+        var txtHdn_Returnable = null;
         function PopUpGrid(obj, objhdn, call_type) {
             $('#hdn_call_type').val(call_type);
             $find('<%= mpeApprovalMatrix.ClientID %>').show();
-            txtHdn = objhdn.toString();
+            if (call_type == 'close')
+                txtHdn = objhdn.toString();
+            else if (call_type == 'return')
+                txtHdn_Returnable = objhdn.toString();
             if (call_type == 'close' && obj.length == undefined)
                 txtControl = obj;
             if (call_type == 'close' && obj.length > 0)
@@ -253,17 +257,15 @@
                 }
             }
             else if ($('#hdn_call_type').val() == 'return') {
-                if (txtHdn == "") {
+                if (txtHdn_Returnable == "") {
                     document.getElementById('txtGPReceivedBy').value = Desc;
                     $('#hdnGPReceivedBy').val(ID);
                 }
                 else {
-                    document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
+                    document.getElementById('ContentPlaceHolder1_' + txtHdn_Returnable).value = ID;
                 }
             }
-            else {
-                document.getElementById('ContentPlaceHolder1_' + txtHdn).value = ID;
-            }
+
 
             $find('<%= mpeApprovalMatrix.ClientID %>').hide();
             //window.close();
@@ -274,6 +276,10 @@
             $("#ctl00_cntPlaceHolder_TblLevels").find("tr:gt(0)").remove();
         }
 
+        function removeRowsReturnable() {
+            $("#ctl00_cntPlaceHolder_TblLevels_Returnable").find("tr:gt(0)").remove();
+        }
+
         function FunSetXML() {
             window.document.getElementById("<%= txtHdn.ClientID%>").value = "";
             var VarLocTab = window.document.getElementById("<%=TblLevels.ClientID%>");
@@ -281,15 +287,12 @@
                 var VarLocRowObj = VarLocTab.rows[i].id;
                 var lvl = window.document.getElementById(VarLocRowObj).children[0].innerHTML;
                 if ((window.document.getElementById(VarLocRowObj).children[1].children[2].value) == "") {
-                    //ShowNotification("Warning !", "Action Details Should not be blank");
                     alert('Action Details Should not be blank');
                     return false;
                 }
                 else {
                     var action = window.document.getElementById(VarLocRowObj).children[1].children[2].value;
                 }
-
-
 
                 if (document.getElementById(VarLocRowObj).children[2].children[0].checked == true) {
                     var SendEmail = 1;
@@ -350,31 +353,28 @@
                 var nxtlvl = window.document.getElementById(VarLocRowObj).children[10].innerHTML;
                 var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendSMS + "#" + SendNotification + "#" + MobileAccess + "#" + WebAccess + "#" + ApprovalRights + "#" + HoldRights + "#" + RejectRights + "#" + nxtlvl;
                 if (window.document.getElementById("<%= txtHdn.ClientID%>").value == "") {
-                    <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += "=$=" + strInfo + "=$=";--%>
                     window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + ",";
                 }
                 else {
-                    <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + "=$=";--%>
                     window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + ",";
                 }
+                alert(strInfo)
             }
 
-            if ($("#chk_returnable_gatepass").is(':checked')) {
+            if ($("[id*=chk_returnable_gatepass]").prop('checked') == true) {
+                debugger
                 window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value = "";
-                var VarLocTab = window.document.getElementById("<%=TblLevels_Returnable.ClientID%>");
-                for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
-                    var VarLocRowObj = VarLocTab.rows[i].id;
-                    var lvl = window.document.getElementById(VarLocRowObj).children[0].innerHTML;
-                    if ((window.document.getElementById(VarLocRowObj).children[1].children[2].value) == "") {
-                        //ShowNotification("Warning !", "Action Details Should not be blank");
-                        alert('Action Details Should not be blank');
+                var VarLocTab1 = window.document.getElementById("<%=TblLevels_Returnable.ClientID%>");
+                for (var i = 1; i <= VarLocTab1.rows.length - 1; i++) {
+                    var VarLocRowObj1 = VarLocTab1.rows[i].id;
+                    var lvl = window.document.getElementById(VarLocRowObj1).children[0].innerHTML;
+                    if ((window.document.getElementById(VarLocRowObj1).children[1].children[2].value) == "") {
+                        alert('Action Details Should not be blank _retarbel');
                         return false;
                     }
                     else {
                         var action = window.document.getElementById(VarLocRowObj).children[1].children[2].value;
                     }
-                    //        var action = window.document.getElementById(VarLocRowObj).children[1].children[2].value;
-
 
 
                     if (document.getElementById(VarLocRowObj).children[2].children[0].checked == true) {
@@ -440,11 +440,9 @@
                     //alert(strInfo);
 
                     if (window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value == "") {
-                    <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += "=$=" + strInfo + "=$=";--%>
                         window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value += strInfo + ",";
                     }
                     else {
-                    <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + "=$=";--%>
                         window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value += strInfo + ",";
                     }
                 }
