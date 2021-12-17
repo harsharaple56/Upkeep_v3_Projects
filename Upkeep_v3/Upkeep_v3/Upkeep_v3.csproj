@@ -4178,6 +4178,8 @@
       <DependentUpon>Visitor_ID.xsd</DependentUpon>
     </Content>
     <Content Include="General_Masters\Template\Location_Import.xlsx" />
+    <Content Include="General_Masters\Template\Department.xlsx" />
+    <Content Include="General_Masters\Template\Category.xlsx" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="VMS\Visitor_ID.xsd">
       <SubType>Designer</SubType>

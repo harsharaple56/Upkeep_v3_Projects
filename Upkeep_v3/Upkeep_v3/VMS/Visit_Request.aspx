@@ -954,6 +954,17 @@ border: 3px solid #ccc;*/
         });
 
     </script>
+    <script type="text/javascript">
+        function numeric(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && ((charCode >= 48 && charCode <= 57) || charCode == 46))
+                return true;
+            else {
+                toastr.warning('Please Enter Numeric values.');
+                return false;
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -1142,7 +1153,7 @@ border: 3px solid #ccc;*/
                                 <div class="col-md-3 col-form-label">
 
                                     <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
-                                    <asp:TextBox ID="txtPhone" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="txtPhone" onkeypress="return numeric(event)" TextMode="Phone" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Contact No." OnTextChanged="txtPhone_TextChanged"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="rfvphone" runat="server" ControlToValidate="txtPhone"
                                         ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Contact Number"></asp:RequiredFieldValidator>
 

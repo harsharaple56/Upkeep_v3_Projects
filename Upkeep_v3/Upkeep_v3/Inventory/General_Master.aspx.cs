@@ -13,423 +13,21 @@ using System.Web.UI.WebControls;
 
 namespace Upkeep_v3.Inventory
 {
-    public partial class General_Master : System.Web.UI.Page
+    public partial class General_Master2 : System.Web.UI.Page
     {
 
         #region Global variables
-
-        DataSet ds = new DataSet();
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
-        static string CategoryName = string.Empty;
-        static string SubCatName = string.Empty;
-
         #endregion
 
-        #region Events
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(CategoryName))
-            {
-                Page.ClientScript.RegisterHiddenField("CategoryName", CategoryName);
-            }
-            if (!string.IsNullOrEmpty(SubCatName))
-            {
-                Page.ClientScript.RegisterHiddenField("SubCatName", SubCatName);
-            }
-            if (!string.IsNullOrEmpty(hdnTxtSubCategory.Text))
-            {
-                lblSubCategory.Text = hdnTxtSubCategory.Text;
-                Session["hdnSubCategory"] = hdnTxtSubCategory.Text;
-            }
-            if (!string.IsNullOrEmpty(Convert.ToString(Session["hdnSubCategory"])))
-            {
-                lblSubCategory.Text = Convert.ToString(Session["hdnSubCategory"]);
-            }
-
-            if (!string.IsNullOrEmpty(hdnTxtCategory.Text))
-            {
-                lblCategoryName.Text = hdnTxtCategory.Text;
-                lblCategoryName1.Text = hdnTxtCategory.Text;
-                Session["CategoryName"] = hdnTxtCategory.Text;
-            }
-            if (!string.IsNullOrEmpty(Convert.ToString(Session["CategoryName"])))
-            {
-                lblCategoryName.Text = Convert.ToString(Session["CategoryName"]);
-                lblCategoryName1.Text = Convert.ToString(Session["CategoryName"]);
-            }
-
-            string ncn = Convert.ToString(hdnCategory.Value);
-            //SubCategory_bindgrid();
             if (!IsPostBack)
             {
-                if (Session["hdnEditTableClicked"] != null)
-                { hdnEditTableClicked.Value = Session["hdnEditTableClicked"].ToString(); }
-                if (Session["hdnEditClickedID"] != null)
-                { hdnEditClickedID.Value = Session["hdnEditClickedID"].ToString(); }
-
-                if (hdnEditClickedID.Value != "")
-                {
-                    int IDx = Convert.ToInt32(hdnEditClickedID.Value);
-                    if (hdnEditTableClicked.Value == "tblCategory")
-                    {
-                        FetchCategory(IDx);
-                    }
-                    else if (hdnEditTableClicked.Value == "tblLocation")
-                    {
-                        FetchSubCategory(IDx);
-                    }
-                    else if (hdnEditTableClicked.Value == "tblLItems")
-                    {
-                        FetchItem(IDx);
-                    }
-
-                    if (Session["hdnEditTableClicked"] != null)
-                    { Session["hdnEditTableClicked"] = ""; }
-                    if (Session["hdnEditClickedID"] != null)
-                    { Session["hdnEditClickedID"] = ""; }
-                }
-                hdnEditTableClicked.Value = "";
-                hdnEditClickedID.Value = "";
-
-                string DeleteTable = "";
-                int DeleteID = 0;
-
-                //if (Session["DeleteTable"] != null)
-                //{ DeleteTable = Session["DeleteTable"].ToString(); }
-                //if (Session["DeleteID"] != null)
-                //{ DeleteID = Session["DeleteID"].ToString(); }
-
-                int CategoryID = Convert.ToInt32(Request.QueryString["delcategory_id"]);
-                int SubCategoryID = Convert.ToInt32(Request.QueryString["delsubcategory_id"]);
-                int ItemID = Convert.ToInt32(Request.QueryString["delitem_id"]);
-
-                if (CategoryID > 0)
-                {
-                    DeleteID = CategoryID;
-                }
-                else if (SubCategoryID > 0)
-                {
-                    DeleteID = SubCategoryID;
-                }
-                else if (ItemID > 0)
-                {
-                    DeleteID = ItemID;
-                }
-
-
-                if (DeleteID > 0)
-                {
-                    int IDx = Convert.ToInt32(DeleteID);
-                    if (CategoryID > 0)
-                    {
-                        DeleteTable = "tblCategory";
-                    }
-                    else if (SubCategoryID > 0)
-                    {
-                        DeleteTable = "tblLocation";
-                    }
-                    else if (ItemID > 0)
-                    {
-                        DeleteTable = "tblLItems";
-                    }
-
-                    DeleteData(DeleteTable, IDx);
-
-                }
-
-
-                BindDropDown();
             }
         }
 
-        protected void btnClose_Click(object sender, EventArgs e)
-        {
-            //txtCategoryCode.Text = "";
-            txtCategoryDesc.Text = "";
-            mpeCategory.Hide();
-        }
-
-        protected void btnItemSave_Click(object sender, EventArgs e)
-        {
-            int ItemID = 0, DeptID = 0,
-             Opening = 0, Optimum = 0, Reorder = 0, Base = 0, CostRate = 0;
-
-            string SubCategory = "";
-            if (Convert.ToString(lblSubCategory.Text) != "")
-            {
-                SubCategory = Convert.ToString(lblSubCategory.Text);
-            }
-            //else if (CategoryName != "")
-            //{
-            //    SubCategory = CategoryName;
-            //    //CategoryName = "";
-            //}
-
-            if (ddlDepartment.SelectedValue.All(char.IsDigit))
-                DeptID = Convert.ToInt32(ddlDepartment.SelectedValue);
-            if (txtOpening.Text.All(char.IsDigit))
-                Opening = Convert.ToInt32(txtOpening.Text);
-            if (txtOptimun.Text.All(char.IsDigit))
-                Optimum = Convert.ToInt32(txtOptimun.Text);
-            if (txtReOrder.Text.All(char.IsDigit))
-                Reorder = Convert.ToInt32(txtReOrder.Text);
-            if (txtBase.Text.All(char.IsDigit))
-                Base = Convert.ToInt32(txtBase.Text);
-            if (txtCostRate.Text.All(char.IsDigit))
-                CostRate = Convert.ToInt32(txtCostRate.Text);
-
-
-            string CategoryName = Convert.ToString(Session["CategoryName"]);
-
-            //Session["Category"] = Category;
-
-            try
-            {
-                if (Convert.ToString(Session["ItemID"]) != "")
-                {
-                    ItemID = Convert.ToInt32(Session["ItemID"]);
-                }
-                string Action = "";
-
-                if (ItemID > 0)
-                {
-                    Action = "U";
-                }
-                else
-                {
-                    Action = "C";
-                }
-
-                ds = ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(Session["LoggedInUserID"]),
-                    Convert.ToString(Session["CompanyID"]), CategoryName, SubCategory, ItemID,
-                    txtItem.Text.Trim(), DeptID, Opening, Optimum, Reorder, Base, CostRate, Action);
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
-                        if (Status == 0)
-                        {
-
-                        }
-                        else if (Status == 1)
-                        {
-                            //Session["SubCategoryID"] = "";
-                            //txtItemCode.Text = "";
-
-                            //CategoryName = lblCategoryName.Text;
-                            //SubCatName = lblSubCategory.Text;
-                            txtItem.Text = "";
-                            mpeItem.Hide();
-                            //Category_bindgrid();
-                            Response.Redirect("~/Inventory/General_Master.aspx", false);
-                        }
-                        else if (Status == 3)
-                        {
-                            lblItemErrorMsg.Text = "Sub Location already exists";
-                        }
-                        else if (Status == 2)
-                        {
-                            lblItemErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                        }
-                    }
-                }
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        protected void btnCloseItem_Click(object sender, EventArgs e)
-        {
-            //lblLocation.Text = "";
-            txtItem.Text = "";
-            //txtItemCode.Text = "";
-            lblItemErrorMsg.Text = "";
-            mpeItem.Hide();
-        }
-
-        protected void btnCategorySave_Click(object sender, EventArgs e)
-        {
-            //int Convert.ToInt32(Session["CompanyID"]) = 2;
-            int CategoryID = 0;
-
-            try
-            {
-
-                if (Convert.ToString(Session["CategoryID"]) != "")
-                {
-                    CategoryID = Convert.ToInt32(Session["CategoryID"]);
-                }
-                string Action = "";
-
-                if (CategoryID > 0)
-                {
-                    Action = "U";
-                }
-                else
-                {
-                    Action = "C";
-                }
-
-                ds = ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), CategoryID, txtCategoryDesc.Text.Trim(), Action);
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
-                        if (Status == 0)
-                        {
-
-                        }
-                        else if (Status == 1)
-                        {
-                            Session["CategoryID"] = "";
-                            //txtCategoryCode.Text = "";
-                            CategoryName = txtCategoryDesc.Text;
-                            txtCategoryDesc.Text = "";
-                            mpeCategory.Hide();
-                            //Category_bindgrid();
-                            Response.Redirect("~/Inventory/General_Master.aspx", false);
-                        }
-                        else if (Status == 3)
-                        {
-                            lblCategoryErrorMsg.Text = "Category already exists";
-                        }
-                        else if (Status == 2)
-                        {
-                            lblCategoryErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                        }
-                    }
-                }
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-        protected void btnSubCategorySave_Click(object sender, EventArgs e)
-        {
-            int SubCategoryID = 0;
-
-
-            string Category = "";
-            if (Convert.ToString(Session["Category"]) != "")
-            {
-                Category = Convert.ToString(Session["Category"]);
-            }
-            else if (CategoryName != "")
-            {
-                Category = CategoryName;
-                //CategoryName = "";
-            }
-
-
-
-            //string Category = Convert.ToString(hdnCategory.Value);
-
-            //Session["Category"] = Category;
-
-            try
-            {
-                if (Convert.ToString(Session["SubCategoryID"]) != "")
-                {
-                    SubCategoryID = Convert.ToInt32(Session["SubCategoryID"]);
-                }
-                string Action = "";
-
-                if (SubCategoryID > 0)
-                {
-                    Action = "U";
-                }
-                else
-                {
-                    Action = "C";
-                }
-
-                ds = ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), Category, SubCategoryID, txtSubCategory.Text.Trim(), Action);
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
-                        if (Status == 0)
-                        {
-
-                        }
-                        else if (Status == 1)
-                        {
-                            Session["SubCategoryID"] = "";
-                            //txtSubCategoryCode.Text = "";
-                            txtSubCategory.Text = "";
-                            mpeSubCategory.Hide();
-                            //Category_bindgrid();
-                            Response.Redirect("~/Inventory/General_Master.aspx", false);
-                        }
-                        else if (Status == 3)
-                        {
-                            lblSubCategoryErrorMsg.Text = "SubCategory already exists";
-                        }
-                        else if (Status == 2)
-                        {
-                            lblSubCategoryErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
-                        }
-                    }
-                }
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        protected void btnCloseSubCategory_Click(object sender, EventArgs e)
-        {
-            txtSubCategory.Text = "";
-            //txtSubCategoryCode.Text = "";
-            mpeSubCategory.Hide();
-        }
-
-        protected void btnAddLocation_Click(object sender, EventArgs e)
-        {
-            txtSubCategory.Text = "";
-
-        }
-
-        //protected void btnoo_Click(object sender, EventArgs e)
-        //{
-        //    if (hdnEditClickedID.Value != "")
-        //    {
-        //        int IDx = Convert.ToInt32(hdnEditClickedID.Value);
-        //        if (hdnEditTableClicked.Value == "tblLocation")
-        //        {
-        //            FetchCategory(IDx);
-        //        }
-        //        else if (hdnEditTableClicked.Value == "tblCategory")
-        //        {
-        //            FetchSubCategory(IDx);
-        //        }
-        //        else if (hdnEditTableClicked.Value == "tblLItems")
-        //        {
-        //            FetchItem(IDx);
-        //        }
-        //    }
-        //    hdnEditTableClicked.Value = "";
-        //    hdnEditClickedID.Value = "";
-        //}
-
-        #endregion
-
-        #region Functions
+        #region WebMethods
         public void DeleteData(string Table, int ID)
         {
             try
@@ -464,11 +62,11 @@ namespace Upkeep_v3.Inventory
                         }
                         else if (Status == 2)
                         {
-                            lblItemErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                            //  lblItemErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
                         }
                         else if (Status == 3)
                         {
-                            lblItemErrorMsg.Text = "Sub Location already exists";
+                            //  lblItemErrorMsg.Text = "Sub Location already exists";
                         }
                     }
                 }
@@ -480,116 +78,15 @@ namespace Upkeep_v3.Inventory
 
         }
 
-        public void FetchCategory(int CategoryID)
+        [System.Web.Services.WebMethod]
+        public static string Category_bindgrid(string txtName)
         {
-            try
-            {
-                ds = ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), CategoryID, "", "R");
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-
-                        Session["CategoryID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]);
-                        //txtCategoryCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Code"]);
-                        txtCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"].ToString());
-
-                        mpeCategory.Show();
-                    }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void FetchSubCategory(int SubCategoryID)
-        {
-            try
-            {
-                //ds = ObjUpkeep.CategoryMaster_CRUD(CategoryID, 0, "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
-                ds = ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), "",
-                    SubCategoryID, "", "R");
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        Session["SubCategoryID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategory_ID"]);
-                        //txtSubCategoryCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Code"]);
-                        txtSubCategory.Text = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Desc"]);
-
-                        mpeSubCategory.Show();
-                    }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void FetchItem(int ItemID)
-        {
-            try
-            {
-                //ds = ObjUpkeep.LocationMaster_CRUD(LocID, "", "", "", Convert.ToString(Session["LoggedInUserID"]), "R");
-                ds = ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), "", "",
-                    ItemID, "", 0, 0, 0, 0, 0, 0, "R");
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        Session["SubCategoryID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategory_ID"]);
-                        //txtItemCode.Text = Convert.ToString(ds.Tables[0].Rows[0]["Item_Code"]);
-                        txtItem.Text = Convert.ToString(ds.Tables[0].Rows[0]["Item_Desc"]);
-
-                        mpeItem.Show();
-                    }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public string Category_bindgrid()
-        {
+            General_Master2 obj = new General_Master2();
             string data = "";
-            string URL = "";
-            Session["hdnSubCategory"] = null;
-            URL = Page.ResolveClientUrl("~/Inventory/General_Master.aspx");
+            DataSet ds = new DataSet();
             try
             {
-                ds = ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), 0, "", "R");
+                ds = obj.ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]), 0, "", "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -601,15 +98,14 @@ namespace Upkeep_v3.Inventory
                         {
                             int CategoryID = Convert.ToInt32(ds.Tables[0].Rows[i]["Category_ID"]);
                             string Category = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
-
                             data += "<tr id ='" + CategoryID + "'>" +
-                                "<td>" + Category + "</td>" +
+                                "<td width='250px'>" + Category + "</td>" +
+                                "<td></td>" +
                                 "<td>" +
-                               "<a href='#' data-val='General_Master.aspx?CategoryID=" + CategoryID + "' class='text-success' data-placement='top' title='Edit record'> <i id='btnedit' " +
-                               "runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
-                               "<a href='General_Master.aspx?DelCategory_ID=" + CategoryID + "' " +
-                               "class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
-                               "	<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> " +
+                               "<a href='#' class='text-success' data-placement='top' title='Edit record'> <i data-name='" + Category + "' id='btnedit' " +
+                               "onclick='editCategory(this)' class='fa fa-edit fa-fw'></i> </a>  " +
+                               "<a href='#' class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
+                               "<i data-id='" + CategoryID + "' onclick='deleteCategory(this)' class='fa fa-trash fa-fw'></i> </a>" +
                                " </td>" +
                                "</tr>";
                         }
@@ -627,27 +123,18 @@ namespace Upkeep_v3.Inventory
             return data;
         }
 
-        public string SubCategory_bindgrid()
+        [System.Web.Services.WebMethod]
+        public static string SubCategory_bindgrid(string Category)
         {
-
+            DataSet ds = new DataSet();
+            General_Master2 obj = new General_Master2();
             string data = "";
-            string Category = "";
-
-            if (Convert.ToString(Session["Category"]) != "")
-            {
-                Category = Convert.ToString(Session["Category"]);
-            }
-            else if (CategoryName != "")
-            {
-                Session["CategoryName"] = CategoryName;
-                Category = CategoryName;
-            }
 
             try
             {
                 if (Category != "")
                 {
-                    ds = ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]),
+                    ds = obj.ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]),
                          Category, 0, "", "R");
 
                     if (ds.Tables.Count > 0)
@@ -655,30 +142,30 @@ namespace Upkeep_v3.Inventory
                         if (ds.Tables[0].Rows.Count > 0)
                         {
                             int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
-
-
                             for (int i = 0; i < count; i++)
                             {
                                 int SubCategoryID = Convert.ToInt32(ds.Tables[0].Rows[i]["SubCategory_ID"]);
                                 string SubCategory = Convert.ToString(ds.Tables[0].Rows[i]["SubCategory"]);
 
-                                data += "<tr id ='" + SubCategoryID + "'><td runat='server' id='mySubCategoryTable'>" + SubCategory + " </td><td>" +
-                              "<span style='float: right;'><a href='#' data-val='General_Master.aspx?SubCategoryID=" + SubCategoryID + "' class='text-success' data-placement='top' title='Edit record'> " +
-                              "<i id='btnedit' runat='server' class='fa fa-edit fa-fw'></i> </a>  " +
-                              "<a href='General_Master.aspx?DelSubCategory_ID=" + SubCategoryID + "' class='text-danger has-confirmation' " +
-                              "data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	" +
-                              "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i></span> </td></tr>";
+                                data += "<tr id = '" + SubCategoryID + "' > " +
+                                "<td width='250px'>" + SubCategory + "</td>" +
+                                "<td></td>" +
+                                "<td>" +
+                               "<a href='#' class='text-success' data-placement='top' title='Edit record'> <i data-Category='" + Category + "' data-name='" + SubCategory + "' id='btnedit' " +
+                               "onclick='editSubCategory(this)' class='fa fa-edit fa-fw'></i> </a>  " +
+                               "<a href='#' class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
+                               "<i data-id='" + SubCategoryID + "' onclick='deleteSubCategory(this)' class='fa fa-trash fa-fw'></i> </a>" +
+                               " </td>" +
+                               "</tr> ";
                             }
                         }
                         else
                         {
-                            SubCatName = string.Empty;
-                            Session["hdnSubCategory"] = null;
                         }
                     }
-                    else 
+                    else
                     {
-                       
+
                     }
                 }
             }
@@ -689,39 +176,18 @@ namespace Upkeep_v3.Inventory
             return data;
         }
 
-        public string Item_bindgrid()
+        [System.Web.Services.WebMethod]
+        public static string Item_bindgrid(string Category, string SubCategory)
         {
-
             string data = "";
-            string Category = Convert.ToString(Session["CategoryName"]);
-            if (Convert.ToString(Session["Category"]) != "")
-            {
-                Category = Convert.ToString(Session["Category"]);
-            }
-            else if (CategoryName != "")
-            {
-                Session["CategoryName"] = CategoryName;
-                Category = CategoryName;
-            }
-
-            string SubCategory = "";
-
-
-            if (Convert.ToString(Session["hdnSubCategory"]) != "")
-            {
-                SubCategory = Convert.ToString(Session["hdnSubCategory"]);
-            }
-            if (SubCatName != "")
-            {
-                Session["hdnSubCategory"] = SubCatName;
-                SubCategory = SubCatName;
-            }
+            General_Master2 obj = new General_Master2();
+            DataSet ds = new DataSet();
 
             try
             {
-                if (Category != "")
+                if (Category != "" && SubCategory != "")
                 {
-                    ds = ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]),
+                    ds = obj.ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]),
                         Category, SubCategory, 0, "", 0, 0, 0, 0, 0, 0, "R");
 
                     if (ds.Tables.Count > 1)
@@ -735,14 +201,26 @@ namespace Upkeep_v3.Inventory
                                 int Item_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Item_ID"]);
                                 string Item = Convert.ToString(ds.Tables[0].Rows[i]["Item_Desc"]);
                                 string Current_Stock = Convert.ToString(ds.Tables[0].Rows[i]["Current_Stock"]);
+                                string Department_ID = Convert.ToString(ds.Tables[0].Rows[i]["Department_ID"]);
+                                string Base_Value = Convert.ToString(ds.Tables[0].Rows[i]["Base_Value"]);
+                                string Cost_Rate = Convert.ToString(ds.Tables[0].Rows[i]["Cost_Rate"]);
+                                string Opening_Stock = Convert.ToString(ds.Tables[0].Rows[i]["Opening_Stock"]);
+                                string Optimum_Value = Convert.ToString(ds.Tables[0].Rows[i]["Optimum_Value"]);
+                                string Reorder_Value = Convert.ToString(ds.Tables[0].Rows[i]["Reorder_Value"]);
 
-                                data += "<tr><td runat='server' id='myTable'> " + Item + "" +
-                                    " <span style='float: center; color: red; font-weight:bold;'> [ " + Current_Stock + " ] </span> " +
-                                    "<span style='float: right;'> " +
-                                    " <a href='General_Master.aspx?DelItem_ID=" + Item_ID + "'  class='text-danger has-confirmation' data-container='body'  " +
-                                    "data-toggle='m-tooltip' data-placement='top' " +
-                                    "title='Delete record'> 	" +
-                                    "<i class='fa fa-trash fa-fw'></i> </a><i class='fa fa-caret - right fa - fw invisible'></i> </span></td></tr>";
+                                data += "<tr id = '" + Item_ID + "' > " +
+                               "<td width='250px'>" + Item + "<span style='float: center; color: red; font-weight:bold;'> [ " + Current_Stock + " ] </span> </td>" +
+                               "<td></td>" +
+                               "<td>" +
+                              //"<a href='#' class='text-success' data-placement='top' title='Edit record'> <i  id='btnedit' " +
+                              //" data-category='" + Category + "' data-subcategory='" + SubCategory + "' data-description='" + Item + "' " +
+                              //"data-department='" + Department_ID + "' data-opening='" + Opening_Stock + "' data-optimum='" + Optimum_Value + "' data-reorder='" + Reorder_Value + "'" +
+                              //"data-base='" + Base_Value + "' data-cost='" + Cost_Rate + "'" +
+                              //"onclick='editItem(this)' class='fa fa-edit fa-fw'></i> </a>  " +
+                              "<a href='#' class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
+                              "<i data-id='" + Item_ID + "' onclick='deleteItem(this)' class='fa fa-trash fa-fw'></i> </a>" +
+                              " </td>" +
+                              "</tr> ";
                             }
                         }
                         else
@@ -763,24 +241,344 @@ namespace Upkeep_v3.Inventory
             return data;
         }
 
-
-        public void BindDropDown()
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> CategorySave_Click(int txtCategoryID, string txtCategory)
         {
+            General_Master2 obj = new General_Master2();
+            DataSet ds = new DataSet();
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            int CategoryID = txtCategoryID;
+            try
+            {
+                string Action = "";
+
+                if (CategoryID > 0)
+                {
+                    Action = "U";
+                }
+                else
+                {
+                    Action = "C";
+                }
+
+                ds = obj.ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]), CategoryID, txtCategory.Trim(), Action);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+
+                            data.Add("1", "<tr id = '" + ds.Tables[0].Rows[0]["CategoryID"].ToString() + "' > " +
+                                "<td width='250px'>" + txtCategory + "</td>" +
+                                "<td></td>" +
+                                "<td>" +
+                               "<a href='#' class='text-success' data-placement='top' title='Edit record'> <i data-name='" + txtCategory + "' id='btnedit' " +
+                               "onclick='editSubCategory(this)' class='fa fa-edit fa-fw'></i> </a>  " +
+                               "<a href='#' class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
+                               "<i data-id='" + ds.Tables[0].Rows[0]["CategoryID"].ToString() + "' onclick='deleteSubCategory(this)' class='fa fa-trash fa-fw'></i> </a>" +
+                               " </td>" +
+                               "</tr> ");
+                        }
+                        else if (Status == 3)
+                        {
+                            data.Add("3", "Category already exists");
+                        }
+                        else if (Status == 2)
+                        {
+                            data.Add("2", "Due to some technical issue your request can not be process. Kindly try after some time");
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> SubCategorySave_Click(int txtSubCategoryID, string txtSubCategory, string Category)
+        {
+            General_Master2 obj = new General_Master2();
+            DataSet ds = new DataSet();
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            int SubCategoryID = txtSubCategoryID;
+            try
+            {
+                string Action = "";
+                if (SubCategoryID > 0)
+                {
+                    Action = "U";
+                }
+                else
+                {
+                    Action = "C";
+                }
+
+                ds = obj.ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]), Category, SubCategoryID, txtSubCategory.Trim(), Action);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+
+                            data.Add("1", "<tr id = '" + ds.Tables[0].Rows[0]["SubCategoryID"].ToString() + "' > " +
+                                "<td width='250px'>" + txtSubCategory + "</td>" +
+                                "<td></td>" +
+                                "<td>" +
+                               "<a href='#' class='text-success' data-placement='top' title='Edit record'> <i data-Category='" + ds.Tables[0].Rows[0]["Category"].ToString() + "' data-name='" + txtSubCategory + "' id='btnedit' " +
+                               "onclick='editSubCategory(this)' class='fa fa-edit fa-fw'></i> </a>  " +
+                               "<a href='#' class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
+                               "<i data-id='" + ds.Tables[0].Rows[0]["SubCategoryID"].ToString() + "' onclick='deleteSubCategory(this)' class='fa fa-trash fa-fw'></i> </a>" +
+                               " </td>" +
+                               "</tr> ");
+                        }
+                        else if (Status == 3)
+                        {
+                            data.Add("3", "Sub Category already exists");
+                        }
+                        else if (Status == 2)
+                        {
+                            data.Add("2", "Due to some technical issue your request can not be process. Kindly try after some time");
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> ItemSave_Click(string CategoryID, string SubCategoryID, int ItemID, string ItemDesc, int DeptID, int Opening, int Optimum, int Reorder, int Base, int CostRate)
+        {
+            General_Master2 obj = new General_Master2();
+            DataSet ds = new DataSet();
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            try
+            {
+                string Action = "";
+                if (ItemID > 0)
+                {
+                    Action = "U";
+                }
+                else
+                {
+                    Action = "C";
+                }
+
+                ds = obj.ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(obj.Session["LoggedInUserID"]),
+                                   Convert.ToString(obj.Session["CompanyID"]), CategoryID, SubCategoryID, ItemID,
+                                   ItemDesc.Trim(), DeptID, Opening, Optimum, Reorder, Base, CostRate, Action);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        
+
+                        if (Status == 1)
+                        {
+                            int Item_ID = Convert.ToInt32(ds.Tables[0].Rows[0]["Item_ID"]);
+                            string Item = Convert.ToString(ds.Tables[0].Rows[0]["Item_Desc"]);
+                            string Current_Stock = string.Empty;
+                            object Current_Stockval = ds.Tables[0].Rows[0]["Current_Stock"];
+                            if (Current_Stockval != DBNull.Value && !string.IsNullOrEmpty(Current_Stockval.ToString()))
+                            {
+                                Current_Stock = Convert.ToInt32(ds.Tables[0].Rows[0]["Current_Stock"]).ToString(); ;
+                            }
+                            else
+                            {
+                                Current_Stock = "0";
+                            }
+                            data.Add("1", "<tr id = '" + Item_ID + "' > " +
+                               "<td width='250px'>" + Item + "<span style='float: center; color: red; font-weight:bold;'> [ " + Current_Stock + " ] </span> </td>" +
+                               "<td></td>" +
+                               "<td>" +
+                              //"<a href='#' class='text-success' data-placement='top' title='Edit record'> <i  id='btnedit' " +
+                              //" data-category='" + Category + "' data-subcategory='" + SubCategory + "' data-description='" + Item + "' " +
+                              //"data-department='" + Department_ID + "' data-opening='" + Opening_Stock + "' data-optimum='" + Optimum_Value + "' data-reorder='" + Reorder_Value + "'" +
+                              //"data-base='" + Base_Value + "' data-cost='" + Cost_Rate + "'" +
+                              //"onclick='editItem(this)' class='fa fa-edit fa-fw'></i> </a>  " +
+                              "<a href='#' class='text-danger has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> " +
+                              "<i data-id='" + Item_ID + "' onclick='deleteItem(this)' class='fa fa-trash fa-fw'></i> </a>" +
+                              " </td>" +
+                              "</tr> ");
+                        }
+                        else if (Status == 3)
+                        {
+                            data.Add("3", "Item already exists");
+                        }
+                        else if (Status == 2)
+                        {
+                            data.Add("2", "Due to some technical issue your request can not be process. Kindly try after some time");
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> DeleteCategory(int txtCategoryID)
+        {
+            General_Master2 obj = new General_Master2();
+            DataSet ds = new DataSet();
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            int CategoryID = txtCategoryID;
+            string Action = "D";
+            try
+            {
+                ds = obj.ObjUpkeep.Crud_Inv_Category_Mst(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]), CategoryID, "", Action);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            data.Add("1", "Success");
+                        }
+                        else if (Status == 3)
+                        {
+                            data.Add("3", "Category already exists");
+                        }
+                        else if (Status == 2)
+                        {
+                            data.Add("2", "Due to some technical issue your request can not be process. Kindly try after some time");
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> DeleteSubCategory(int txtSubCategoryID)
+        {
+            General_Master2 obj = new General_Master2();
+            DataSet ds = new DataSet();
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            int SubCategoryID = txtSubCategoryID;
+            string Action = "D";
+            try
+            {
+                ds = obj.ObjUpkeep.Crud_Inv_SubCategory_Mst(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]), string.Empty, SubCategoryID, string.Empty, Action);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            data.Add("1", "Success");
+                        }
+                        else if (Status == 3)
+                        {
+                            data.Add("3", "Category already exists");
+                        }
+                        else if (Status == 2)
+                        {
+                            data.Add("2", "Due to some technical issue your request can not be process. Kindly try after some time");
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> DeleteItem(int txtItemID)
+        {
+            General_Master2 obj = new General_Master2();
+            DataSet ds = new DataSet();
+            Dictionary<string, string> data = new Dictionary<string, string>();
+            int ItemID = txtItemID;
+            string Action = "D";
+            try
+            {
+                ds = obj.ObjUpkeep.Crud_Inv_Item_Mst(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]), "", "", ItemID, "", 0, 0, 0, 0, 0, 0, Action);
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            data.Add("1", "Success");
+                        }
+                        else if (Status == 3)
+                        {
+                            data.Add("3", "Category already exists");
+                        }
+                        else if (Status == 2)
+                        {
+                            data.Add("2", "Due to some technical issue your request can not be process. Kindly try after some time");
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static Dictionary<string, string> FetchDepartment(string item)
+        {
+            General_Master2 obj = new General_Master2();
+            Dictionary<string, string> dlst = new Dictionary<string, string>();
             try
             {
                 DataSet dsTitle = new DataSet();
-
-                dsTitle = ObjUpkeep.Fetch_Inv_Item_Stock_Ddl(Convert.ToString(Session["LoggedInUserID"]), Convert.ToString(Session["CompanyID"]), Convert.ToString(0));
-
+                dsTitle = obj.ObjUpkeep.Fetch_Inv_Item_Stock_Ddl(Convert.ToString(obj.Session["LoggedInUserID"]), Convert.ToString(obj.Session["CompanyID"]), Convert.ToString(0));
+                dlst.Add("0", "---- Select ----");
                 if (dsTitle.Tables.Count > 0)
                 {
                     if (dsTitle.Tables[1].Rows.Count > 0)
                     {
-                        ddlDepartment.DataSource = dsTitle.Tables[1];
-                        ddlDepartment.DataTextField = "Dept_Desc";
-                        ddlDepartment.DataValueField = "Department_ID";
-                        ddlDepartment.DataBind();
-                        ddlDepartment.Items.Insert(0, new ListItem("--Select--", "0"));
+                        for (int i = 0; i < dsTitle.Tables[1].Rows.Count; i++)
+                        {
+                            dlst.Add(dsTitle.Tables[1].Rows[i]["Department_ID"].ToString(), dsTitle.Tables[1].Rows[i]["Dept_Desc"].ToString());
+                        }
                     }
                 }
             }
@@ -788,43 +586,10 @@ namespace Upkeep_v3.Inventory
             {
                 throw ex;
             }
+            return dlst;
         }
 
         #endregion
 
-        #region WebMethods
-
-        [System.Web.Services.WebMethod]
-        public static void SubCategory_bindgrid1(string Category)
-        {
-            CategoryName = Category;
-            General_Master obj = new General_Master();
-            obj.SubCategory_bindgrid();
-        }
-
-        [System.Web.Services.WebMethod]
-        public static void Item_bindgrid1(string SubCategory)
-        {
-            SubCatName = SubCategory;
-            General_Master obj = new General_Master();
-            obj.Item_bindgrid();
-
-        }
-
-        [System.Web.Services.WebMethod]
-        public static void SetSeesions(string hdnEditTableClicked, string hdnEditClickedID)
-        {
-            General_Master obj = new General_Master();
-            obj.SetSeesion(hdnEditTableClicked, hdnEditClickedID);
-        }
-
-        public void SetSeesion(string hdnEditTableClicked, string hdnEditClickedID)
-        {
-            Session["hdnEditTableClicked"] = hdnEditTableClicked;
-            Session["hdnEditClickedID"] = hdnEditClickedID;
-
-        }
-
-        #endregion
     }
 }

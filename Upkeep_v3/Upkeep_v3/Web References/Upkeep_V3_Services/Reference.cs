@@ -120,6 +120,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Import_User_MasterOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Import_Category_MasterOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_SubCategory_MasterOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Import_Checklist_MasterOperationCompleted;
         
         private System.Threading.SendOrPostCallback Schedule_Checklist_CRUDOperationCompleted;
@@ -678,6 +682,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Import_User_MasterCompletedEventHandler Import_User_MasterCompleted;
+        
+        /// <remarks/>
+        public event Import_Category_MasterCompletedEventHandler Import_Category_MasterCompleted;
+        
+        /// <remarks/>
+        public event Import_SubCategory_MasterCompletedEventHandler Import_SubCategory_MasterCompleted;
         
         /// <remarks/>
         public event Import_Checklist_MasterCompletedEventHandler Import_Checklist_MasterCompleted;
@@ -2814,6 +2824,68 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Import_User_MasterCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Import_User_MasterCompleted(this, new Import_User_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_Category_Master", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_Category_Master(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_Category_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_Category_MasterAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_Category_MasterAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_Category_MasterAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_Category_MasterOperationCompleted == null)) {
+                this.Import_Category_MasterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_Category_MasterOperationCompleted);
+            }
+            this.InvokeAsync("Import_Category_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_Category_MasterOperationCompleted, userState);
+        }
+        
+        private void OnImport_Category_MasterOperationCompleted(object arg) {
+            if ((this.Import_Category_MasterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_Category_MasterCompleted(this, new Import_Category_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_SubCategory_Master", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_SubCategory_Master(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_SubCategory_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_SubCategory_MasterAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_SubCategory_MasterAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_SubCategory_MasterAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_SubCategory_MasterOperationCompleted == null)) {
+                this.Import_SubCategory_MasterOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_SubCategory_MasterOperationCompleted);
+            }
+            this.InvokeAsync("Import_SubCategory_Master", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_SubCategory_MasterOperationCompleted, userState);
+        }
+        
+        private void OnImport_SubCategory_MasterOperationCompleted(object arg) {
+            if ((this.Import_SubCategory_MasterCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_SubCategory_MasterCompleted(this, new Import_SubCategory_MasterCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -7137,7 +7209,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GP_Insert_Returnable_Qty", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned) {
+        public System.Data.DataSet GP_Insert_Returnable_Qty(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned, bool ForceClose) {
             object[] results = this.Invoke("GP_Insert_Returnable_Qty", new object[] {
                         GP_Trans_ID,
                         GP_Header_ID,
@@ -7145,17 +7217,18 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Received_Date,
                         Received_By,
                         Received_Remark,
-                        FullyReturned});
+                        FullyReturned,
+                        ForceClose});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void GP_Insert_Returnable_QtyAsync(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned) {
-            this.GP_Insert_Returnable_QtyAsync(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remark, FullyReturned, null);
+        public void GP_Insert_Returnable_QtyAsync(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned, bool ForceClose) {
+            this.GP_Insert_Returnable_QtyAsync(GP_Trans_ID, GP_Header_ID, Received_Qty, Received_Date, Received_By, Received_Remark, FullyReturned, ForceClose, null);
         }
         
         /// <remarks/>
-        public void GP_Insert_Returnable_QtyAsync(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned, object userState) {
+        public void GP_Insert_Returnable_QtyAsync(int GP_Trans_ID, int GP_Header_ID, int Received_Qty, string Received_Date, int Received_By, string Received_Remark, bool FullyReturned, bool ForceClose, object userState) {
             if ((this.GP_Insert_Returnable_QtyOperationCompleted == null)) {
                 this.GP_Insert_Returnable_QtyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGP_Insert_Returnable_QtyOperationCompleted);
             }
@@ -7166,7 +7239,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Received_Date,
                         Received_By,
                         Received_Remark,
-                        FullyReturned}, this.GP_Insert_Returnable_QtyOperationCompleted, userState);
+                        FullyReturned,
+                        ForceClose}, this.GP_Insert_Returnable_QtyOperationCompleted, userState);
         }
         
         private void OnGP_Insert_Returnable_QtyOperationCompleted(object arg) {
@@ -11415,6 +11489,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Import_User_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_Category_MasterCompletedEventHandler(object sender, Import_Category_MasterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_Category_MasterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_Category_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_SubCategory_MasterCompletedEventHandler(object sender, Import_SubCategory_MasterCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_SubCategory_MasterCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_SubCategory_MasterCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

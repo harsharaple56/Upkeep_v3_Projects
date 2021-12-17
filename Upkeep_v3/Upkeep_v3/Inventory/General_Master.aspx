@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="General_Master.aspx.cs" Inherits="Upkeep_v3.Inventory.General_Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UpkeepMaster.Master" CodeBehind="General_Master.aspx.cs" Inherits="Upkeep_v3.Inventory.General_Master2" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
-
     <style type="text/css">
         .modalBackground {
             background-color: grey;
@@ -21,187 +20,826 @@
             background-color: #b4cae6;
         }
     </style>
-    <script type="text/javascript">
-
+    <script>
         $(document).ready(function () {
-            var CategoryTableName = $("input[name=CategoryName]").val();
-            if (CategoryTableName != undefined) {
-                $('#tblCategory > tbody  > tr').each(function (index, tr) {
-                    if ($(this).children('td').text().includes(CategoryTableName)) {
-                        var selected = $(this).hasClass("highlight");
-                        $("#tblCategory tr").removeClass("highlight");
-                        if (!selected)
-                            $(this).addClass("highlight");
-                    }
-                });
-            }
-
-            var SubCategoryTableName = $("input[name=SubCatName]").val();
-            if (SubCategoryTableName != undefined) {
-                $('#tblLocation > tbody  > tr').each(function (index, tr) {
-                    if ($(this).children('td').text().includes(SubCategoryTableName)) {
-                        var selected = $(this).hasClass("highlight");
-                        $("#tblLocation tr").removeClass("highlight");
-                        if (!selected)
-                            $(this).addClass("highlight");
-                    }
-                });
-            }
-
-
-
-            $("#tblCategory tr").click(function () {
-
-                var table = document.getElementById("tblCategory");
-                var rowID = $("#tblCategory tr").index(this);
-
-                var row = table.rows[rowID];
-                var CategoryID;
-
-
-                CategoryID = row.cells[0].innerHTML;
-
-                $("#hdnCategory").val(CategoryID);
-                $("#hdnCategoryName").val(CategoryID);
-
-                $("#lblCategoryName").text(CategoryID);
-                document.getElementById("hdnTxtCategory").value = CategoryID;
-                var selected = $(this).hasClass("highlight");
-                $("#tblCategory tr").removeClass("highlight");
-                if (!selected)
-                    $(this).addClass("highlight");
-
-                var dataString = { 'Category': CategoryID };
-                var param = JSON.stringify(dataString);
-
-                var row = "";
-                $.ajax({
-                    type: 'POST',
-                    url: 'General_Master.aspx/SubCategory_bindgrid1',
-                    data: param,
-                    contentType: 'application/json; charset=utf-8',
-                    datatype: 'json',
-                    success: function (msg) {
-                        location.reload(true);
-                    },
-                    error: function (xhr, status, error) {
-
-                    }
-                });
-
-            });
-
-            $("#tblLocation tr").click(function () {
-
-                var table = document.getElementById("tblLocation");
-                var rowID = $("#tblLocation tr").index(this);
-
-                var row = table.rows[rowID];
-                var Location;
-
-                Location = row.cells[0].innerHTML;
-                $("#hdnLocation").val(Location);
-
-                $("#lblLocation").text(Location);
-                document.getElementById("hdnTxtSubCategory").value = Location;
-
-                var selected = $(this).hasClass("highlight");
-                $("#tblLocation tr").removeClass("highlight");
-                if (!selected)
-                    $(this).addClass("highlight");
-
-                var dataString = { 'SubCategory': Location };
-                var param = JSON.stringify(dataString);
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'General_Master.aspx/Item_bindgrid1',
-                    data: param,
-                    contentType: 'application/json; charset=utf-8',
-                    datatype: 'json',
-
-                    success: function (response) {
-                        location.reload(true);
-                    },
-                    error: function (xhr, status, error) {
-
-                    }
-                });
-            });
-
-            $('.text-success').click(function () {
-
-                var tbl = $(this).closest('table').attr('id');;
-                var strs = $(this).attr('data-val');
-                var n = strs.includes("=");
-
-                if (n == true) {
-                    var IDa = strs.split('=')[1];
-
-                    $("#hdnEditTableClicked").val(tbl);
-                    $("#hdnEditClickedID").val(IDa);
-
-
-                    var obj = {};
-                    var dataString = { 'hdnEditTableClicked': tbl, 'hdnEditClickedID': IDa };
-                    var param = JSON.stringify(dataString);
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'General_Master.aspx/SetSeesions',
-                        data: param,
-                        //data: '',
-                        contentType: 'application/json; charset=utf-8',
-                        datatype: 'json',
-                        success: function (response) {
-
-                        },
-                        error: function (xhr, status, error) {
-
-                        }
-                    });
-                }
-
-            });
-
+            $('#modal_Category').hide();
+            $('#modal_SubCategory').hide();
+            $('#modal_Item').hide();
+            ShowCategory();
+            ShowSubCategory();
+            ShowItems();
+            EditCategory();
+            EditSubCategory();
+            EditItem();
+            SaveCategory();
+            SaveSubCategory();
+            SaveItem();
+            CheckValidationCategory();
+            CheckValidationSubCategory();
+            CheckValidationItems();
+            FetchDepartment();
+            HightlightItemTable();
+            PreesEntertoSave();
         });
 
+        function PreesEntertoSave() {
+            $('#txtCategory').keypress(function (e) {
+                $("#lblCategory").text('');
+                $("#lblCategory").hide();
+                var key = e.which;
+                if (key == 13)  // the enter key code
+                {
+                    $("[id*=editCategory_Click]").click();
+                    return false;
+                }
+            });
+
+            $('#txtSubCategory').keypress(function (e) {
+                $("#lblSubCategory").text('');
+                $("#lblSubCategory").hide();
+                var key = e.which;
+                if (key == 13)  // the enter key code
+                {
+                    $("[id*=editSubCategory_Click]").click();
+                    return false;
+                }
+            });
+
+            $('#txtItemDescription').keypress(function (e) {
+                $("#lblItemDescription").text('');
+                $("#lblItemDescription").hide();
+                var key = e.which;
+                if (key == 13)  // the enter key code
+                {
+                    $("[id*=editItem_Click]").click();
+                    return false;
+                }
+            });
+        }
+
+        function HightlightItemTable() {
+            $('#divItems').on('click', 'table tr', function () {
+                var selected = $(this).hasClass("highlight");
+                if (!selected)
+                    $("#tblItems tr").removeClass("highlight");
+                if (!selected)
+                    $(this).addClass("highlight");
+            });
+        }
 
         function confirmSubCategoryAction() {
-            var catename = $("#lblCategoryName").text();
+            var catename = '';
+            $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                var selected = $(this).hasClass("highlight");
+                if (selected) {
+                    catename = $.trim($(this)[0].textContent);
+                }
+            });
             if (catename != "") {
-                document.getElementById("<%= btnAddLocc.ClientID %>").click();
+
                 return false;
             }
             else {
-                document.getElementById("m_sweetalert_demo_3_1").click();
-                $("#swal2-title").text('Please select Category ..!');
-                $("#swal2-content").hide();
+                Swal.fire({
+                    title: 'Please select Category...',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
                 return false;
             }
         }
 
         function confirmItemAction() {
-            var catename = $("#lblCategoryName").text();
-            var subcatename = $("#lblSubCategory").text();
+            var catename = '';
+            var subcatename = '';
+            $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                var selected = $(this).hasClass("highlight");
+                if (selected) {
+                    catename = $.trim($(this)[0].textContent);
+                }
+            });
+            $('#tblSubCategory > tbody  > tr').each(function (index, tr) {
+                var selected = $(this).hasClass("highlight");
+                if (selected) {
+                    subcatename = $.trim($(this)[0].textContent);
+                }
+            });
 
             if (catename != "" && subcatename != "") {
-                document.getElementById("<%= btnItems1.ClientID %>").click();
                 return false;
             }
-            else{
-                document.getElementById("m_sweetalert_demo_3_1").click();
-                $("#swal2-title").hide();
-                $("#swal2-content").text('Please select Category & Sub-Category ..!');
+            else {
+                Swal.fire({
+                    title: 'Please select Category & SubCategory...',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
                 return false;
             }
         }
 
+        function FetchDepartment() {
+            var mySelect = $('#ddl_Department');
+            var item = '';
+            var dataString = {
+                'item': item,
+            };
+            var param = JSON.stringify(dataString);
+            $.ajax({
+                type: 'POST',
+                url: 'General_Master2.aspx/FetchDepartment',
+                data: param,
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                success: function (response) {
+                    if (response.d) {
+                        $.each(response.d, function (val, text) {
+                            mySelect.append($('<option></option>').val(val).html(text));
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                }
+            });
+            return false;
+        }
 
+        function CheckValidationCategory() {
+            $("#txtCategory").keyup(function (e) {
+                $("#lblCategory").text('');
+                $("#lblCategory").hide();
+            });
+        }
+
+        function CheckValidationSubCategory() {
+            $("#txtSubCategory").keyup(function (e) {
+                $("#lblSubCategory").text('');
+                $("#lblSubCategory").hide();
+            });
+        }
+
+        function CheckValidationItems() {
+            $("#txtOpening").keyup(function (e) {
+                $("#lblOpening").text('');
+                $("#lblOpening").hide();
+            });
+            $("#txtOptimun").keyup(function (e) {
+                $("#lblOptimun").text('');
+                $("#lblOptimun").hide();
+            });
+            $("#txtReorder").keyup(function (e) {
+                $("#lblReorder").text('');
+                $("#lblReorder").hide();
+            });
+            $("#txtBase").keyup(function (e) {
+                $("#lblBase").text('');
+                $("#lblBase").hide();
+            });
+            $("#txtCostRate").keyup(function (e) {
+                $("#lblCostRate").text('');
+                $("#lblCostRate").hide();
+            });
+            $("#txtItemDescription").keyup(function (e) {
+                $("#lblItemDescription").text('');
+                $("#lblItemDescription").hide();
+            });
+
+            $('#ddl_Department').change(function () {
+                $("#lblddl_Department").text('');
+                $("#lblddl_Department").hide();
+            });
+        }
+
+        function SaveCategory() {
+            $("[id*=btnCategory]").click(function () {
+                $('#modal_Category').modal('toggle');
+                $("#editCategoryModalLabel").text('Save Category');
+                $("#txtCategory").val('');
+                $("#lblCategory").text('');
+                $("#hdn_Category").val('save');
+                return false;
+            });
+        }
+
+        function SaveSubCategory() {
+            $("[id*=btnSubCategory]").click(function () {
+                var catename = '';
+                $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                    var selected = $(this).hasClass("highlight");
+                    if (selected) {
+                        catename = $.trim($(this)[0].textContent);
+                    }
+                });
+                if (catename == "") {
+                    document.getElementById("m_sweetalert_demo_3_1").click();
+                    $("#swal2-title").text('Please select Category ..!');
+                    $("#swal2-content").hide();
+                }
+                else {
+                    $('#modal_SubCategory').modal('toggle');
+                    $("#editSubCategoryModalLabel").text('Save Sub Category');
+                    $("#txtSubCategory").val('');
+                    $("#lblSubCategoryName").text(catename);
+                    $("#lblSubCategory").text('');
+                    $("#lblSubCategory").hide();
+                }
+                return false;
+            });
+        }
+
+        function SaveItem() {
+            $("[id*=btnItems]").click(function () {
+                var catename = '';
+                var subcatename = '';
+                $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                    var selected = $(this).hasClass("highlight");
+                    if (selected) {
+                        catename = $.trim($(this)[0].textContent);
+                    }
+                });
+                $('#tblSubCategory > tbody  > tr').each(function (index, tr) {
+                    var selected = $(this).hasClass("highlight");
+                    if (selected) {
+                        subcatename = $.trim($(this)[0].textContent);
+                    }
+                });
+                if (catename != "" && subcatename != "") {
+                    $('#modal_Item').modal('toggle');
+                    $("#editItemModalLabel").text('Save Item');
+                    $("#lblItemCategoryName").text(catename);
+                    $("#lblItemSubCategoryName").text(subcatename);
+                    $("#txtOpening").val('0');
+                    $("#lblOpening").text('');
+                    $("#lblOpening").hide();
+                    $("#txtOptimun").val('0');
+                    $("#lblOptimun").text('');
+                    $("#lblOptimun").hide();
+                    $("#txtReorder").val('0');
+                    $("#lblReorder").text('');
+                    $("#lblReorder").hide();
+                    $("#txtBase").val('0');
+                    $("#lblBase").text('');
+                    $("#lblBase").hide();
+                    $("#txtCostRate").val('0');
+                    $("#lblCostRate").text('');
+                    $("#lblCostRate").hide();
+                    $("#txtItemDescription").val('');
+                    $("#lblItemDescription").text('');
+                    $("#lblItemDescription").hide();
+                }
+                else {
+                    document.getElementById("m_sweetalert_demo_3_1").click();
+                    $("#swal2-title").hide();
+                    $("#swal2-content").text('Please select Category & Sub-Category ..!');
+                }
+                return false;
+
+            });
+        }
+
+        function EditSubCategory() {
+            $("[id*=editSubCategory_Click]").click(function () {
+                var txtSubCategory = $("#txtSubCategory").val();
+                var hdn_SubCategory = $("#hdn_SubCategory").val();
+                var txtSubCategoryID = 0;
+                var txtCategory = 0;
+
+                if (hdn_SubCategory != 'save') {
+                    $('#tblSubCategory > tbody  > tr').each(function (index, tr) {
+                        var selected = $(this).hasClass("highlight");
+                        if (selected) {
+                            txtSubCategoryID = $(this)[0].id;
+                        }
+                    });
+
+                    $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                        var selected = $(this).hasClass("highlight");
+                        if (selected) {
+                            txtCategory = $.trim($(this)[0].textContent);
+                        }
+                    });
+                }
+
+                if (txtSubCategory != "") {
+                    var dataString = {
+                        'txtSubCategoryID': txtSubCategoryID,
+                        'txtSubCategory': txtSubCategory,
+                        'Category': txtCategory,
+                    };
+                    var param = JSON.stringify(dataString);
+                    $.ajax({
+                        type: 'POST',
+                        url: 'General_Master2.aspx/SubCategorySave_Click',
+                        data: param,
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (response) {
+                            if (response.d[1]) {
+                                if (txtSubCategoryID > 0) {
+                                    $('#tblSubCategory > tbody  > tr').each(function (index, tr) {
+                                        var selected = $(this).hasClass("highlight");
+                                        if (selected) {
+                                            $(this).replaceWith(response.d[1]);
+                                            $("#hdn_SubCategory").val('');
+                                            $("#modal_SubCategory").modal('hide');
+                                        }
+                                    });
+                                } else {
+                                    $("#tblSubCategory").append(response.d[1]);
+                                    $("#modal_SubCategory").modal('hide');
+                                }
+                            }
+                            else if (response.d[2]) {
+                                $("#lblSubCategory").text('');
+                                $("#lblSubCategory").text(response.d[2]);
+                                $("#lblSubCategory").show();
+                            }
+                            else if (response.d[3]) {
+                                $("#lblSubCategory").text('');
+                                $("#lblSubCategory").text(response.d[3]);
+                                $("#lblSubCategory").show();
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                        }
+                    });
+                    return false;
+                } else {
+                    $("#lblSubCategory").text('');
+                    $("#lblSubCategory").text('Please enter sub category');
+                    $("#lblSubCategory").show();
+                }
+            });
+        }
+
+        function EditCategory() {
+            $("[id*=editCategory_Click]").click(function () {
+                var hdn_Category = $("#hdn_Category").val();
+                var txtCategory = $("#txtCategory").val();
+                var txtCategoryID = 0;
+
+                if (hdn_Category != 'save') {
+                    $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                        var selected = $(this).hasClass("highlight");
+                        if (selected) {
+                            txtCategoryID = $(this)[0].id;
+                        }
+                    });
+                }
+                if (txtCategory != "") {
+                    var dataString = {
+                        'txtCategoryID': txtCategoryID,
+                        'txtCategory': txtCategory,
+                    };
+                    var param = JSON.stringify(dataString);
+                    $.ajax({
+                        type: 'POST',
+                        url: 'General_Master2.aspx/CategorySave_Click',
+                        data: param,
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (response) {
+                            if (response.d[1]) {
+                                if (txtCategoryID > 0) {
+                                    $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                                        var selected = $(this).hasClass("highlight");
+                                        if (selected) {
+                                            $(this).replaceWith(response.d[1]);
+                                            $("#hdn_Category").val('');
+                                            $("#modal_Category").modal('hide');
+                                        }
+                                    });
+                                } else {
+                                    $("#tbodyCategory").append(response.d[1]);
+                                    $("#modal_Category").modal('hide');
+                                }
+                            }
+                            else if (response.d[2]) {
+                                $("#lblCategory").text('');
+                                $("#lblCategory").text(response.d[2]);
+                                $("#lblCategory").show();
+                            }
+                            else if (response.d[3]) {
+                                $("#lblCategory").text('');
+                                $("#lblCategory").text(response.d[3]);
+                                $("#lblCategory").show();
+
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                        }
+                    });
+                    return false;
+                } else {
+                    $("#lblCategory").text('');
+                    $("#lblCategory").text('Please enter category');
+                    $("#lblCategory").show();
+                }
+            });
+        }
+
+        function EditItem() {
+            $("#editItem_Click").click(function () {
+                var hdn_Item = $("#hdn_Item").val();
+                var txtOpening = $("#txtOpening").val();
+                var txtItemDescription = $("#txtItemDescription").val();
+                var txtOptimun = $("#txtOptimun").val();
+                var txtReorder = $("#txtReorder").val();
+                var txtBase = $("#txtBase").val();
+                var txtCostRate = $("#txtCostRate").val();
+                var txtDepartment = $("#ddl_Department").val();
+                var txtCategoryID = 0;
+                var txtSubCategoryID = 0;
+                var txtItemID = 0;
+
+                if (hdn_Item != 'save') {
+                    $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                        var selected = $(this).hasClass("highlight");
+                        if (selected) {
+                            txtCategoryID = $.trim($(this)[0].textContent);
+                        }
+                    });
+                    $('#tblSubCategory > tbody  > tr').each(function (index, tr) {
+                        var selected = $(this).hasClass("highlight");
+                        if (selected) {
+                            txtSubCategoryID = $.trim($(this)[0].textContent);
+                        }
+                    });
+                    $('#tblItems > tbody  > tr').each(function (index, tr) {
+                        var selected = $(this).hasClass("highlight");
+                        if (selected) {
+                            txtItemID = $(this)[0].id;
+                        }
+                    });
+                }
+
+                if (txtItemDescription != "" || txtDepartment != "0") {
+                    if (txtItemDescription != "") {
+                        if (txtDepartment != "0") {
+                            var dataString = {
+                                'CategoryID': txtCategoryID,
+                                'SubCategoryID': txtSubCategoryID,
+                                'ItemID': txtItemID,
+                                'ItemDesc': txtItemDescription,
+                                'DeptID': txtDepartment,
+                                'Opening': txtOpening,
+                                'Optimum': txtOptimun,
+                                'Reorder': txtReorder,
+                                'Base': txtBase,
+                                'CostRate': txtCostRate,
+                            };
+                            var param = JSON.stringify(dataString);
+                            $.ajax({
+                                type: 'POST',
+                                url: 'General_Master2.aspx/ItemSave_Click',
+                                data: param,
+                                contentType: 'application/json; charset=utf-8',
+                                datatype: 'json',
+                                success: function (response) {
+                                    if (response.d[1]) {
+                                        if (txtCategoryID > 0) {
+                                            $('#tblItems > tbody  > tr').each(function (index, tr) {
+                                                var selected = $(this).hasClass("highlight");
+                                                if (selected) {
+                                                    $(this).replaceWith(response.d[1]);
+                                                    $("#modal_Item").modal('hide');
+                                                }
+                                            });
+                                        } else {
+                                            $("#tblItems").append(response.d[1]);
+                                            $("#hdn_Item").val('');
+                                            $("#modal_Item").modal('hide');
+                                        }
+                                    }
+                                    else if (response.d[2]) {
+                                        $("#lblAllItems").text('');
+                                        $("#lblAllItems").text(response.d[2]);
+                                        $("#lblAllItems").show();
+                                    }
+                                    else if (response.d[3]) {
+                                        $("#lblAllItems").text('');
+                                        $("#lblAllItems").text(response.d[3]);
+                                        $("#lblAllItems").show();
+                                    }
+                                },
+                                error: function (xhr, status, error) {
+                                }
+                            });
+                            return false;
+                        } else {
+                            $("#lblddl_Department").text('');
+                            $("#lblddl_Department").text('Please enter Description');
+                            $("#lblddl_Department").show();
+                        }
+                    } else {
+                        $("#lblItemDescription").text('');
+                        $("#lblItemDescription").text('Please enter Description');
+                        $("#lblItemDescription").show();
+                    }
+                } else {
+                    $("#lblddl_Department").text('');
+                    $("#lblddl_Department").text('Please enter Description');
+                    $("#lblddl_Department").show();
+                    $("#lblItemDescription").text('');
+                    $("#lblItemDescription").text('Please enter Description');
+                    $("#lblItemDescription").show();
+                }
+            });
+        }
+
+        function editCategory(data) {
+            $('#modal_Category').modal('toggle');
+            $("#editCategoryModalLabel").text('Edit Category');
+            $("#txtCategory").val(data.dataset.name);
+        }
+
+        function editSubCategory(data) {
+            $('#modal_SubCategory').modal('toggle');
+            $("#editSubCategoryModalLabel").text('Edit Sub Category');
+            $("#txtSubCategory").val(data.dataset.name);
+            $("#lblSubCategoryName").text(data.dataset.category);
+        }
+
+        function editItem(data) {
+            $('#modal_Item').modal('toggle');
+            $("#editItemModalLabel").text('Edit Item');
+            $("#lblItemCategoryName").text(data.dataset.category);
+            $("#lblItemSubCategoryName").text(data.dataset.subcategory);
+            $("#ddl_Department").val(data.dataset.department);
+            $("#txtOpening").val(data.dataset.opening);
+            $("#txtOptimun").val(data.dataset.optimum);
+            $("#txtReorder").val(data.dataset.reorder);
+            $("#txtBase").val(data.dataset.base);
+            $("#txtCostRate").val(data.dataset.cost);
+            $("#txtItemDescription").val(data.dataset.description);
+        }
+
+        function deleteSubCategory(data) {
+            var dataString = {
+                'txtSubCategoryID': data.dataset.id,
+            };
+            var param = JSON.stringify(dataString);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'General_Master2.aspx/DeleteSubCategory',
+                        data: param,
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (response) {
+                            if (response.d[1]) {
+                                $('#tblSubCategory > tbody  > tr').each(function (index, tr) {
+                                    var selected = $(this).hasClass("highlight");
+                                    if (selected) {
+                                        $(this).remove();
+                                    }
+                                });
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your data has been deleted.',
+                                    'success'
+                                )
+                            }
+                            else if (response.d[2]) {
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                        }
+                    });
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelled',
+                        'Your data is safe :)',
+                        'error'
+                    )
+                }
+            });
+        }
+
+        function deleteCategory(data) {
+            var dataString = {
+                'txtCategoryID': data.dataset.id,
+            };
+            var param = JSON.stringify(dataString);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'General_Master2.aspx/DeleteCategory',
+                        data: param,
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (response) {
+                            if (response.d[1]) {
+                                $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                                    var selected = $(this).hasClass("highlight");
+                                    if (selected) {
+                                        $(this).remove();
+                                    }
+                                });
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your data has been deleted.',
+                                    'success'
+                                )
+                            }
+                            else if (response.d[2]) {
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                        }
+                    });
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelled',
+                        'Your data is safe :)',
+                        'error'
+                    )
+                }
+            });
+        }
+
+        function deleteItem(data) {
+            var dataString = {
+                'txtItemID': data.dataset.id,
+            };
+            var param = JSON.stringify(dataString);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'General_Master2.aspx/DeleteItem',
+                        data: param,
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (response) {
+                            if (response.d[1]) {
+                                $('#tblItems > tbody  > tr').each(function (index, tr) {
+                                    var selected = $(this).hasClass("highlight");
+                                    if (selected) {
+                                        $(this).remove();
+                                    }
+                                });
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your data has been deleted.',
+                                    'success'
+                                )
+                            }
+                            else if (response.d[2]) {
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                        }
+                    });
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Cancelled',
+                        'Your data is safe :)',
+                        'error'
+                    )
+                }
+            });
+        }
+
+        function ShowItems() {
+            $('#divSubCategory').on('click', 'table tr', function () {
+                var selected = $(this).hasClass("highlight");
+                if (!selected)
+                    $("#tblSubCategory tr").removeClass("highlight");
+                if (!selected)
+                    $(this).addClass("highlight");
+
+                var SubCatetable = document.getElementById("tblSubCategory");
+                var SubCaterowID = $("#tblSubCategory tr").index(this);
+                var Subrow = SubCatetable.rows[SubCaterowID];
+                var SubCategory = Subrow.cells[0].innerHTML;
+                var Category = '';
+
+                $('#tblCategory > tbody  > tr').each(function (index, tr) {
+                    var selected = $(this).hasClass("highlight");
+                    if (selected) {
+                        Category = $.trim($(this)[0].textContent);
+                    }
+                });
+
+                var dataString = {
+                    'Category': Category,
+                    'SubCategory': SubCategory
+                };
+                var param = JSON.stringify(dataString);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'General_Master2.aspx/Item_bindgrid',
+                    data: param,
+                    contentType: 'application/json; charset=utf-8',
+                    datatype: 'json',
+                    success: function (response) {
+                        document.getElementById("tbodyItem").innerHTML = response.d;
+                    },
+                    error: function (xhr, status, error) {
+
+                    }
+                });
+
+            });
+        }
+
+        function ShowSubCategory() {
+            $('#divCategory').on('click', 'table tr', function () {
+                var table = document.getElementById("tblCategory");
+                var rowID = $("#tblCategory tr").index(this);
+
+                var row = table.rows[rowID];
+                var CategoryID;
+                CategoryID = row.cells[0].innerHTML;
+
+                var selected = $(this).hasClass("highlight");
+                if (!selected)
+                    $("#tblCategory tr").removeClass("highlight");
+                if (!selected)
+                    $(this).addClass("highlight");
+
+                var dataString = { 'Category': CategoryID };
+                var param = JSON.stringify(dataString);
+                var row = "";
+                $.ajax({
+                    type: 'POST',
+                    url: 'General_Master2.aspx/SubCategory_bindgrid',
+                    data: param,
+                    contentType: 'application/json; charset=utf-8',
+                    datatype: 'json',
+                    success: function (response) {
+                        document.getElementById("tbodySubCategory").innerHTML = response.d;
+                    },
+                    error: function (xhr, status, error) {
+
+                    }
+                });
+
+            });
+        }
+
+        function ShowCategory() {
+            var dataString = {
+                'txtName': '',
+            };
+            var param = JSON.stringify(dataString);
+            $.ajax({
+                type: 'POST',
+                url: "General_Master2.aspx/Category_bindgrid",
+                data: param,
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                success: function (response) {
+                    document.getElementById("tbodyCategory").innerHTML = response.d;
+                },
+                failure: function (response) {
+                }
+            });
+        }
 
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
 
     <div runat="server" id="FrmMain">
         <cc1:ToolkitScriptManager runat="server">
@@ -229,8 +867,6 @@
 
             <div class="m-content">
                 <div class="row">
-
-
                     <div class="col-md-4">
                         <div class="m-portlet">
                             <div class="m-portlet__head p-3">
@@ -246,24 +882,18 @@
                                 <div class="m-portlet__head-tools">
                                     <ul class="m-portlet__nav">
                                         <li class="m-portlet__nav-item">
-                                            <asp:LinkButton class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnAddCate1">
+                                            <asp:LinkButton class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnCategory">
                                             <div class="m-demo-icon__preview">
 														<i class="la la-plus"></i>
 													</div>
                                             </asp:LinkButton>
-
-                                            <cc1:ModalPopupExtender ID="mpeCategory" runat="server" PopupControlID="pnlAddCategory" TargetControlID="btnAddCate1"
-                                                CancelControlID="btnClose" BackgroundCssClass="modalBackground">
-                                            </cc1:ModalPopupExtender>
-
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="m-portlet__body">
+                            <div id="divCategory" class="m-portlet__body">
                                 <table id="tblCategory" class="table table-sm m-table m-table--head-bg-brand">
-                                    <tbody>
-                                        <%=Category_bindgrid()%>
+                                    <tbody id="tbodyCategory">
                                     </tbody>
                                 </table>
                             </div>
@@ -286,28 +916,21 @@
                                     <ul class="m-portlet__nav">
                                         <li class="m-portlet__nav-item">
                                             <asp:LinkButton OnClientClick="return confirmSubCategoryAction()"
-                                                class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnAddLoc">
+                                                class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnSubCategory">
                                             <div class="m-demo-icon__preview">
 														<i class="la la-plus"></i>
 													</div>
                                             </asp:LinkButton>
-                                            <button style="display: none" type="button" class="btn btn-warning m-btn m-btn--custom" id="m_sweetalert_demo_3_1"></button>
-                                            <asp:Button ID="btnAddLocc" runat="server" Style="display: none" />
-                                            <cc1:ModalPopupExtender ID="mpeSubCategory" runat="server" PopupControlID="pnlAddSubCategory" TargetControlID="btnAddLocc"
-                                                CancelControlID="btnCloseLoc" BackgroundCssClass="modalBackground">
-                                            </cc1:ModalPopupExtender>
 
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="m-portlet__body">
-                                <table id="tblLocation" class="table table-sm m-table m-table--head-bg-brand">
-                                    <tbody>
-                                        <%=SubCategory_bindgrid()%>
+                            <div id="divSubCategory" class="m-portlet__body">
+                                <table id="tblSubCategory" class="table table-sm m-table m-table--head-bg-brand">
+                                    <tbody id="tbodySubCategory">
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -327,26 +950,20 @@
                                 <div class="m-portlet__head-tools">
                                     <ul class="m-portlet__nav">
                                         <li class="m-portlet__nav-item">
-                                            <asp:LinkButton OnClientClick="javascript:return confirmItemAction();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnItems">
+                                            <asp:LinkButton OnClientClick="javascript:return confirmItemAction();"
+                                                class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" runat="server" ID="btnItems">
                                             <div class="m-demo-icon__preview">
 														<i class="la la-plus"></i>
 													</div>
                                             </asp:LinkButton>
-                                            <button style="display: none" type="button" class="btn btn-warning m-btn m-btn--custom" id="m_sweetalert_demo_3_1"></button>
-                                            <asp:Button ID="btnItems1" runat="server" Style="display: none" />
-                                            <cc1:ModalPopupExtender ID="mpeItem" runat="server" PopupControlID="pnlAddItem" TargetControlID="btnItems1"
-                                                CancelControlID="btnCloseItem" BackgroundCssClass="modalBackground">
-                                            </cc1:ModalPopupExtender>
 
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="m-portlet__body">
-                                <table id="tblLItems" class="table table-sm m-table m-table--head-bg-brand">
-
-                                    <tbody>
-                                        <%=Item_bindgrid()%>
+                            <div id="divItems" class="m-portlet__body">
+                                <table id="tblItems" class="table table-sm m-table m-table--head-bg-brand">
+                                    <tbody id="tbodyItem">
                                     </tbody>
                                 </table>
                             </div>
@@ -357,237 +974,158 @@
         </div>
         <%--</div>--%>
 
-        <!-- Start Modal -->
 
-        <asp:Panel ID="pnlAddCategory" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
-            <div class="" id="add_Category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-
-                    <%-- <asp:ScriptManager ID="scriptmanager2" runat="server">
-                </asp:ScriptManager>--%>
-
-
-                    <div class="modal-content">
-
-                        <asp:UpdatePanel ID="updatepnl" runat="server">
-                            <ContentTemplate>
-
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <%--<span aria-hidden="true">&times;</span>--%>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <%-- <form>--%>
-                                    <%-- <div class="form-group" visible="false">
-                                        <label for="recipient-name" class="form-control-label">Category code:</label>
-
-                                        <asp:TextBox ID="txtCategoryCode" runat="server" class="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvCategoryCode" runat="server" ControlToValidate="txtCategoryCode" Visible="true" ValidationGroup="validationCategory" ForeColor="Red" ErrorMessage="Please enter Category code"></asp:RequiredFieldValidator>
-                                    </div>--%>
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label">Category Description:</label>
-                                        <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtCategoryDesc" runat="server" class="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtCategoryDesc" Visible="true" ValidationGroup="validationCategory" ForeColor="Red" ErrorMessage="Please enter Category Desc"></asp:RequiredFieldValidator>
-                                    </div>
-
-
-
-                                    <%--</form>--%>
-                                </div>
-
-                                <div class="form-group m-form__group row">
-                                    <div class="col-xl-9 col-lg-9">
-                                        <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <%--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
-                                    <asp:Button ID="btnClose" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnClose_Click" />
-                                    <asp:Button ID="btnCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationCategory" OnClick="btnCategorySave_Click" Text="Save" />
-                                </div>
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="btnCategorySave" EventName="Click" />
-                            </Triggers>
-                        </asp:UpdatePanel>
-
+        <div class="modal fade" id="modal_Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 16px;">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
-
-                </div>
-            </div>
-
-        </asp:Panel>
-
-        <asp:Panel ID="pnlAddSubCategory" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
-            <div class="" id="add_SubCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                    <div class="modal-content">
-
-                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                            <ContentTemplate>
-
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add new SubCategory</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <%--<span aria-hidden="true">&times;</span>--%>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <%-- <div class="form-group" visible="false">
-                                        <label for="recipient-name" class="form-control-label">SubCategory code:</label>
-                                        <asp:TextBox ID="txtSubCategoryCode" runat="server" class="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSubCategoryCode" Visible="true" ValidationGroup="validationSubCategory" ForeColor="Red" ErrorMessage="Please enter SubCategory code"></asp:RequiredFieldValidator>
-
-                                    </div>--%>
-                                    <div class="form-group m-form__group row">
-                                        <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
-                                        <asp:Label ID="lblCategoryName1" Text="" ClientIDMode="Static" runat="server" class="form-control-label" Style="font-weight: bold"></asp:Label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label">SubCategory Description:</label>
-                                        <asp:TextBox ID="txtSubCategory" runat="server" class="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSubCategory" Visible="true" ValidationGroup="validationSubCategory" ForeColor="Red" ErrorMessage="Please enter SubCategory"></asp:RequiredFieldValidator>
-
-                                    </div>
-
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <div class="col-xl-9 col-lg-9">
-                                        <asp:Label ID="lblSubCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <asp:Button ID="btnCloseLoc" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" />
-                                    <asp:Button ID="btnSubCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationSubCategory" OnClick="btnSubCategorySave_Click" Text="Save" />
-
-                                </div>
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="btnCategorySave" EventName="Click" />
-                            </Triggers>
-                        </asp:UpdatePanel>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" id="hdn_Category" />
+                            <label for="txtCategory" class="form-control-label">Category :</label>
+                            <input placeholder="Enter Category" type="text" class="form-control m-input m-input--air" id="txtCategory" />
+                            <label id="lblCategory" style="color: Red; display: block; text-align: center;" for="txtCategory"></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="editCategory_Click">Save</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-        </asp:Panel>
+        <div class="modal fade" id="modal_SubCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 16px;">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editSubCategoryModalLabel">Edit Sub Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="form-control-label">Category :</label>
+                            <label id="lblSubCategoryName" style="font-weight: bold; margin-left: 10px"></label>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" id="hdn_SubCategory" />
+                            <label for="txtSubCategory" class="form-control-label">Sub Category :</label>
+                            <input placeholder="Enter Sub Category" type="text" class="form-control m-input m-input--air" id="txtSubCategory" />
+                            <label id="lblSubCategory" style="color: Red; display: block; text-align: center;" for="txtSubCategory"></label>
+                        </div>
 
-        <asp:Panel ID="pnlAddItem" runat="server" CssClass="modalPopup" align="center" Style="display: none;">
-            <div class="" id="add_sub_SubCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document" style="max-width: 476px;">
-                    <div class="modal-content">
-                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                            <ContentTemplate>
-
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add New Item</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <%--<span aria-hidden="true">&times;</span>--%>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group m-form__group row">
-                                        <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
-                                        <asp:Label ID="lblCategoryName" Text="" ClientIDMode="Static" runat="server" class="form-control-label" Style="font-weight: bold"></asp:Label>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">SubCategory :</label>
-                                        <asp:Label ID="lblSubCategory" Text="" ClientIDMode="Static" runat="server" class="form-control-label" Style="font-weight: bold"></asp:Label>
-                                    </div>
-
-                                    <%--  <div class="form-group m-form__group row" visible="false">
-                                        <label for="recipient-name" class="col-xl-4 col-lg-3 form-control-label">Sub-location code:</label>
-                                        <asp:TextBox ID="txtItemCode" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtItemCode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red" ErrorMessage="Please enter Sub Location code"></asp:RequiredFieldValidator>
-                                    </div>--%>
-
-                                    <div class="form-group m-form__group row">
-                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Description:</label>
-                                        <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtItem" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtItem" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red" ErrorMessage="Please enter Sub Location"></asp:RequiredFieldValidator>
-
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Department:</label>
-                                        <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:DropDownList ID="ddlDepartment" class="form-control" Style="width: 60%;" runat="server">
-                                        </asp:DropDownList>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlDepartment" Visible="true"
-                                            Display="Dynamic" ValidationGroup="validateStock" ForeColor="Red" InitialValue="0"
-                                            ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Opening:</label>
-                                        <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtOpening" value="0" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtOpening"
-                                            Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
-                                            ErrorMessage="Please enter Opening stock"></asp:RequiredFieldValidator>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Optimun:</label>
-                                        <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtOptimun" value="0" runat="server" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtOptimun"
-                                            Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
-                                            ErrorMessage="Please enter Optimun stock"></asp:RequiredFieldValidator>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Re Order:</label>
-                                        <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtReOrder" runat="server" value="0" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtReOrder"
-                                            Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
-                                            ErrorMessage="Please enter Re Order"></asp:RequiredFieldValidator>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Base:</label>
-                                        <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtBase" runat="server" value="0" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtBase"
-                                            Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
-                                            ErrorMessage="Please enter Base"></asp:RequiredFieldValidator>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Cost Rate:</label>
-                                        <%--<textarea class="form-control" id="message-text"></textarea>--%>
-                                        <asp:TextBox ID="txtCostRate" runat="server" value="0" class="form-control" Style="width: 60%;" TextMode="Number"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtCostRate"
-                                            Visible="true" Style="margin-left: 34%;" ValidationGroup="validationItem" ForeColor="Red"
-                                            ErrorMessage="Please enter Cost Rate"></asp:RequiredFieldValidator>
-                                    </div>
-
-                                    <asp:Label ID="lblItemErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                </div>
-                                <%--<div class="form-group m-form__group row">
-                                        <div class="col-xl-9 col-lg-9">
-                                            <asp:Label ID="Label1" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                        </div>
-                                    </div>--%>
-
-                                <div class="modal-footer">
-                                    <asp:Button ID="btnCloseItem" Text="Close" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnCloseItem_Click" />
-                                    <asp:Button ID="btnItemSave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationItem" OnClick="btnItemSave_Click" Text="Save" />
-
-                                </div>
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="btnItemSave" EventName="Click" />
-                            </Triggers>
-                        </asp:UpdatePanel>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="editSubCategory_Click">Save</button>
                     </div>
                 </div>
             </div>
-            <!-- End Modal -->
-        </asp:Panel>
+        </div>
+
+        <div class="modal fade" id="modal_Item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 16px;">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editItemModalLabel">Edit Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 form-control-label">Category :</label>
+                                <div class="col-lg-4">
+                                    <label id="lblItemCategoryName" class="form-text" style="font-weight: bold;"></label>
+                                </div>
+                                <label class="col-lg-2 form-control-label">Sub Category :</label>
+                                <div class="col-lg-4">
+                                    <label id="lblItemSubCategoryName" class="form-text" style="font-weight: bold;"></label>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Description :</label>
+                                <div class="col-lg-10">
+                                    <div class="m-input-icon m-input-icon--right">
+                                        <input type="hidden" id="hdn_Item" />
+                                        <input placeholder="Enter Description" type="text" class="form-control" id="txtItemDescription" />
+                                        <label id="lblItemDescription" style="color: Red; display: block; text-align: center;" for="txtSubCategory"></label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Department :</label>
+                                <div class="col-lg-4">
+                                    <div class="m-input-icon m-input-icon--right">
+                                        <select class="form-control m-input" id='ddl_Department'></select>
+                                        <label id="lblddl_Department" style="color: Red; display: block; text-align: center;" for="ddl_Department"></label>
+                                    </div>
+                                </div>
+                                <label class="col-lg-2 col-form-label">Opening :</label>
+                                <div class="col-lg-4">
+                                    <div class="m-input-icon m-input-icon--right">
+                                        <input placeholder="Enter Opening" type="text" class="form-control" id="txtOpening" />
+                                        <label id="lblOpening" style="color: Red; display: block; text-align: center;" for="txtOpening"></label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Optimun :</label>
+                                <div class="col-lg-4">
+                                    <div class="m-input-icon m-input-icon--right">
+                                        <input placeholder="Enter Optimun" type="text" class="form-control" id="txtOptimun" />
+                                        <label id="lblOptimun" style="font-weight: bold; margin-left: 10px"></label>
+                                    </div>
+                                </div>
+                                <label class="col-lg-2 col-form-label">Re Order :</label>
+                                <div class="col-lg-4">
+                                    <div class="m-input-icon m-input-icon--right">
+                                        <input placeholder="Enter Reorder" type="text" class="form-control" id="txtReorder" />
+                                        <label id="lblReorder" style="color: Red; display: block; text-align: center;" for="txtReorder"></label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Base :</label>
+                                <div class="col-lg-4">
+                                    <div class="m-input-icon m-input-icon--right">
+                                        <input placeholder="Enter Base" type="text" class="form-control" id="txtBase" />
+                                        <label id="lblBase" style="font-weight: bold; margin-left: 10px"></label>
+                                    </div>
+                                </div>
+                                <label class="col-lg-2 col-form-label">Cost Rate :</label>
+                                <div class="col-lg-4">
+                                    <div class="m-input-icon m-input-icon--right">
+                                        <input placeholder="Enter Sub Category" type="text" class="form-control" id="txtCostRate" />
+                                        <label id="lblCostRate" style="font-weight: bold; margin-left: 10px"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <label id="lblAllItems" style="color: Red; display: block; text-align: center;"></label>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="editItem_Click">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- end:: Body -->
 
         <!-- begin::Scroll Top -->
