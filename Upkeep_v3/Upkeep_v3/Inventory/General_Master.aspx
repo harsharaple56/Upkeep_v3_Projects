@@ -155,7 +155,7 @@
             var param = JSON.stringify(dataString);
             $.ajax({
                 type: 'POST',
-                url: 'General_Master2.aspx/FetchDepartment',
+                url: 'General_Master.aspx/FetchDepartment',
                 data: param,
                 contentType: 'application/json; charset=utf-8',
                 datatype: 'json',
@@ -337,7 +337,7 @@
                     var param = JSON.stringify(dataString);
                     $.ajax({
                         type: 'POST',
-                        url: 'General_Master2.aspx/SubCategorySave_Click',
+                        url: 'General_Master.aspx/SubCategorySave_Click',
                         data: param,
                         contentType: 'application/json; charset=utf-8',
                         datatype: 'json',
@@ -402,7 +402,7 @@
                     var param = JSON.stringify(dataString);
                     $.ajax({
                         type: 'POST',
-                        url: 'General_Master2.aspx/CategorySave_Click',
+                        url: 'General_Master.aspx/CategorySave_Click',
                         data: param,
                         contentType: 'application/json; charset=utf-8',
                         datatype: 'json',
@@ -499,7 +499,7 @@
                             var param = JSON.stringify(dataString);
                             $.ajax({
                                 type: 'POST',
-                                url: 'General_Master2.aspx/ItemSave_Click',
+                                url: 'General_Master.aspx/ItemSave_Click',
                                 data: param,
                                 contentType: 'application/json; charset=utf-8',
                                 datatype: 'json',
@@ -599,7 +599,7 @@
                 if (result.value) {
                     $.ajax({
                         type: 'POST',
-                        url: 'General_Master2.aspx/DeleteSubCategory',
+                        url: 'General_Master.aspx/DeleteSubCategory',
                         data: param,
                         contentType: 'application/json; charset=utf-8',
                         datatype: 'json',
@@ -651,7 +651,7 @@
                 if (result.value) {
                     $.ajax({
                         type: 'POST',
-                        url: 'General_Master2.aspx/DeleteCategory',
+                        url: 'General_Master.aspx/DeleteCategory',
                         data: param,
                         contentType: 'application/json; charset=utf-8',
                         datatype: 'json',
@@ -703,7 +703,7 @@
                 if (result.value) {
                     $.ajax({
                         type: 'POST',
-                        url: 'General_Master2.aspx/DeleteItem',
+                        url: 'General_Master.aspx/DeleteItem',
                         data: param,
                         contentType: 'application/json; charset=utf-8',
                         datatype: 'json',
@@ -767,7 +767,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: 'General_Master2.aspx/Item_bindgrid',
+                    url: 'General_Master.aspx/Item_bindgrid',
                     data: param,
                     contentType: 'application/json; charset=utf-8',
                     datatype: 'json',
@@ -802,7 +802,7 @@
                 var row = "";
                 $.ajax({
                     type: 'POST',
-                    url: 'General_Master2.aspx/SubCategory_bindgrid',
+                    url: 'General_Master.aspx/SubCategory_bindgrid',
                     data: param,
                     contentType: 'application/json; charset=utf-8',
                     datatype: 'json',
@@ -824,7 +824,7 @@
             var param = JSON.stringify(dataString);
             $.ajax({
                 type: 'POST',
-                url: "General_Master2.aspx/Category_bindgrid",
+                url: "General_Master.aspx/Category_bindgrid",
                 data: param,
                 contentType: 'application/json; charset=utf-8',
                 datatype: 'json',
