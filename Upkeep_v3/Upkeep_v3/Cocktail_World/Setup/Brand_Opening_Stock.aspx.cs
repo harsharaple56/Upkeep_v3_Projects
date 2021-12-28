@@ -14,48 +14,16 @@ namespace Upkeep_v3.Cocktail_World.Setup
     {
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
         DataSet ds = new DataSet();
-        int LoggedInUserID = 0;
+        string LoggedInUserID = string.Empty;
         int CompanyID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoggedInUserID = Convert.ToInt32(Session["LoggedInUserID"]);
+            LoggedInUserID = Session["LoggedInUserID"].ToString();
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
             {
-                int BrandOpening_ID = Convert.ToInt32(Request.QueryString["BrandOpening_ID"]);
-                if (BrandOpening_ID > 0)
-                {
-                    UpdateBrandOpening(BrandOpening_ID);
-                }
-                int DelBrandOpening_ID = Convert.ToInt32(Request.QueryString["DelBrandOpening_ID"]);
-                if (DelBrandOpening_ID > 0)
-                {
-                    DeleteBrandOpening(DelBrandOpening_ID);
-                }
-            }
-        }
 
-        public void UpdateBrandOpening(int BrandOpening_ID)
-        {
-            try
-            {
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, 0, 0, "U", LoggedInUserID, CompanyID);
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-
-                    }
-                }
-                else
-                {
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
@@ -64,7 +32,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, 0, 0, "F", LoggedInUserID, CompanyID);
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0, CompanyID, LoggedInUserID, "F");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -97,7 +65,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             data += "<td>" + Optimum_Level + "</td>";
                             data += "<td>" +
                                 "<a href='Add_Brand_Opening_Stock.aspx?BrandOpening_ID=" + Opening_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  " +
-                                "<a href='Brand_Opening_Stoc.aspx?DelBrandOpening_ID=" + Opening_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> " +
+                                "<a href='Add_Brand_Opening_Stock.aspx?DelBrandOpening_ID=" + Opening_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> " +
                                 "</td>";
                             data += "</tr>";
                         }
@@ -119,33 +87,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
             return data;
         }
 
-        public void DeleteBrandOpening(int BrandOpening_ID)
-        {
-            try
-            {
-                DataSet ds = new DataSet();
-
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, 0, 0, "D", LoggedInUserID, CompanyID);
-
-                if (ds.Tables.Count > 0)
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Opening_Stock.aspx"), false);
-                    }
-                }
-                else
-                {
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-
-        }
-
         protected void btnExport_Click(object sender, EventArgs e)
         {
             GridView dgGrid = new GridView();
@@ -154,7 +95,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             try
             {
-                dsExport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, 0, 0, "F", LoggedInUserID, CompanyID);
+                dsExport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0, CompanyID, LoggedInUserID, "F");
 
                 DataTable dtCocktailMasterReport = new DataTable();
 
@@ -229,54 +170,68 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         protected void btnPdf_Click(object sender, EventArgs e)
         {
+            GridView dgGrid = new GridView();
+            Document doc = new Document();
             try
             {
-                GridView dgGrid = new GridView();
-                DataSet dsCocktailMasterReport = new DataSet();
-                dsCocktailMasterReport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, 0, 0, "F", LoggedInUserID, CompanyID);
+                DataSet dsReport = new DataSet();
+                dsReport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0, CompanyID, LoggedInUserID, "F");
 
-                DataTable dtCocktailMasterReport = new DataTable();
-                dtCocktailMasterReport = dsCocktailMasterReport.Tables[0];
+                System.Data.DataTable dtReport = new System.Data.DataTable();
+                dtReport = dsReport.Tables[0];
 
-                if (dsCocktailMasterReport != null)
+                if (dsReport != null)
                 {
-                    if (dsCocktailMasterReport.Tables.Count > 0)
+                    if (dsReport.Tables.Count > 0)
                     {
-                        if (dsCocktailMasterReport.Tables[0].Rows.Count > 0)
+                        if (dsReport.Tables[0].Rows.Count > 0)
                         {
-                            dtCocktailMasterReport.Columns.Remove("Opening_ID");
-                            dtCocktailMasterReport.Columns["Category_Desc"].ColumnName = "Category Name";
-                            dtCocktailMasterReport.Columns["Brand_Desc"].ColumnName = "Brand Name";
-                            dtCocktailMasterReport.Columns["Size_Desc"].ColumnName = "Size Name";
-                            dtCocktailMasterReport.Columns["Bottle_Qty"].ColumnName = "Bottle Qty";
-                            dtCocktailMasterReport.Columns["SPeg_Qty"].ColumnName = "SPeg Qty";
-                            dtCocktailMasterReport.Columns["Bottle_Rate"].ColumnName = "Bottle Rate";
-                            dtCocktailMasterReport.Columns["Base_Qty"].ColumnName = "Base Qty";
-                            dtCocktailMasterReport.Columns["Re_Order_Level"].ColumnName = "Re-Order Level";
-                            dtCocktailMasterReport.Columns["Optimum_Level"].ColumnName = "Optimum Level";
-                            dtCocktailMasterReport.AcceptChanges();
+                            dtReport.Columns.Remove("Opening_ID");
+                            dtReport.Columns["Category_Desc"].ColumnName = "Category Name";
+                            dtReport.Columns["Brand_Desc"].ColumnName = "Brand Name";
+                            dtReport.Columns["Size_Desc"].ColumnName = "Size Name";
+                            dtReport.Columns["Bottle_Qty"].ColumnName = "Bottle Qty";
+                            dtReport.Columns["SPeg_Qty"].ColumnName = "SPeg Qty";
+                            dtReport.Columns["Bottle_Rate"].ColumnName = "Bottle Rate";
+                            dtReport.Columns["Base_Qty"].ColumnName = "Base Qty";
+                            dtReport.Columns["Re_Order_Level"].ColumnName = "Re-Order Level";
+                            dtReport.Columns["Optimum_Level"].ColumnName = "Optimum Level";
+                            dtReport.AcceptChanges();
+
+                            dgGrid.DataSource = dtReport;
+                            dgGrid.DataBind();
+
 
                             System.IO.StringWriter tw = new System.IO.StringWriter();
                             System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
 
                             string filename = "Brand_Opening_Stock" + DateTime.Now + ".pdf";
+
                             string HeaderText = "Brand Opening Stock AS ON " + DateTime.Now;
 
-                            Response.ContentType = "application/pdf";
-                            Response.AddHeader("Content-Disposition", String.Format("attachment; filename={0}.pdf", "BRAND OPENING STOCK MASTER AS ON " + DateTime.Now));
+                            Style textStyle = new Style();
+                            textStyle.ForeColor = System.Drawing.Color.DarkCyan;
+                            hw.EnterStyle(textStyle);
 
-                            Document doc = new Document();
+                            hw.Write("<h2><center>" + HeaderText + "</center></h2> </br>");
+                            hw.ExitStyle(textStyle);
+
+                            //Write the HTML back to the browser.
+
+                            Response.ContentType = "application/pdf";
+                            Response.AddHeader("Content-Disposition", String.Format("attachment; filename={0}.pdf", "Brand Opening Stock Report"));
+
                             iTextSharp.text.pdf.PdfPTable grd;
 
                             PdfWriter writer = PdfWriter.GetInstance(doc, Response.OutputStream);
                             doc.Open();
 
-                            grd = new PdfPTable(dtCocktailMasterReport.Columns.Count);
+                            grd = new PdfPTable(dtReport.Columns.Count);
                             grd.WidthPercentage = 100.0F;
 
-                            PdfPCell cellRptNm = new PdfPCell(new Phrase("BRAND OPENING STOCK MASTER AS ON " + DateTime.Now));
+                            PdfPCell cellRptNm = new PdfPCell(new Phrase("Brand Opening Stock AS ON " + DateTime.Now));
                             cellRptNm.HorizontalAlignment = 1;
-                            cellRptNm.Colspan = dtCocktailMasterReport.Columns.Count;
+                            cellRptNm.Colspan = dtReport.Columns.Count;
                             cellRptNm.Border = 0;
                             cellRptNm.PaddingBottom = 20.0F;
                             grd.AddCell(cellRptNm);
@@ -284,9 +239,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             BaseFont bfTimes = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
                             iTextSharp.text.Font fnt = new iTextSharp.text.Font(bfTimes, 7);
 
-                            for (var IntLocColCnt = 0; IntLocColCnt <= dtCocktailMasterReport.Columns.Count - 1; IntLocColCnt++)
+                            for (var IntLocColCnt = 0; IntLocColCnt <= dtReport.Columns.Count - 1; IntLocColCnt++)
                             {
-                                PdfPCell cellHD1 = new PdfPCell(new Phrase(dtCocktailMasterReport.Columns[IntLocColCnt].ColumnName, fnt));
+                                PdfPCell cellHD1 = new PdfPCell(new Phrase(dtReport.Columns[IntLocColCnt].ColumnName, fnt));
                                 cellHD1.PaddingBottom = 10.0F;
                                 cellHD1.BackgroundColor = iTextSharp.text.Color.LIGHT_GRAY;
                                 cellHD1.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
@@ -294,11 +249,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
                                 grd.AddCell(cellHD1);
                             }
 
-                            for (var IntLocRowCnt = 0; IntLocRowCnt <= dtCocktailMasterReport.Rows.Count - 1; IntLocRowCnt++)
+                            for (var IntLocRowCnt = 0; IntLocRowCnt <= dtReport.Rows.Count - 1; IntLocRowCnt++)
                             {
-                                for (var IntLocColCnt = 0; IntLocColCnt <= dtCocktailMasterReport.Columns.Count - 1; IntLocColCnt++)
+                                for (var IntLocColCnt = 0; IntLocColCnt <= dtReport.Columns.Count - 1; IntLocColCnt++)
                                 {
-                                    string str = Convert.ToString(dtCocktailMasterReport.Rows[IntLocRowCnt][IntLocColCnt]);
+                                    string str = Convert.ToString(dtReport.Rows[IntLocRowCnt][IntLocColCnt]);
                                     PdfPCell cell = new PdfPCell(new Phrase(str, fnt));
                                     cell.PaddingBottom = 10.0F;
                                     grd.AddCell(cell);
@@ -308,19 +263,18 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         }
                     }
                 }
-                else
-                {
-                    dgGrid.DataSource = null;
-                    dgGrid.DataBind();
-
-                    return;
-                }
 
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            finally
+            {
+                doc.Close();
+            }
+            // Indicate that the data to send to the client has ended
+            Response.End();
         }
     }
 }

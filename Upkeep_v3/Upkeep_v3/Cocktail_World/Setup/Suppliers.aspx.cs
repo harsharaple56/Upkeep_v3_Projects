@@ -17,31 +17,20 @@ namespace Upkeep_v3.Cocktail_World.Setup
         int CompanyID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
             {
-
-
                 int Supplier_ID = Convert.ToInt32(Request.QueryString["Supplier_ID"]);
                 if (Supplier_ID > 0)
                 {
-                    // BindSubCategory(SubCategory_ID);
-
                     BindSupplier(Supplier_ID);
-
                 }
                 int DelSupplier_ID = Convert.ToInt32(Request.QueryString["DelSupplier_ID"]);
                 if (DelSupplier_ID > 0)
                 {
                     DeleteSupplier(DelSupplier_ID);
                 }
-
-
-
-
             }
         }
 
@@ -83,27 +72,19 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         mpeCategoryMaster.Show();
                     }
                 }
-                else
-                {
-
-                }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            // return data;
-
-        }
-
-
-        protected void btnAddcategory_Click(object sender, EventArgs e)
-        {
-
         }
 
         protected void btnCloseCategory_Click(object sender, EventArgs e)
+        {
+            Closecontrol();
+        }
+
+        public void Closecontrol()
         {
             txtAddress.Text = "";
             txtCode.Text = "";
@@ -111,20 +92,15 @@ namespace Upkeep_v3.Cocktail_World.Setup
             txtEmail.Text = "";
             txtPincode.Text = "";
             txtContct.Text = "";
-
             lblCategoryErrorMsg.Text = "";
             mpeCategoryMaster.Hide();
-            Session[""] = "";
             Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Suppliers.aspx"), false);
         }
 
         protected void btnCategorySave_Click(object sender, EventArgs e)
         {
-
             int Supplier_ID = 0;
             string supplierName = string.Empty;
-            // string Pincode = string.Empty;
-            //int Code = 0;
             string Code = string.Empty;
             string Contact = string.Empty;
             string City = string.Empty;
@@ -132,13 +108,13 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string Address = string.Empty;
             string Email = string.Empty;
 
-
             try
             {
-                if (Convert.ToString(Session["Supplier_ID"]) != "")
+                if (Convert.ToString(Request.QueryString["Supplier_ID"]) != "")
                 {
-                    Supplier_ID = Convert.ToInt32(Session["Supplier_ID"]);
+                    Supplier_ID = Convert.ToInt32(Request.QueryString["Supplier_ID"]);
                 }
+
                 string Action = "";
 
                 if (Supplier_ID > 0)
@@ -149,13 +125,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     Action = "C";
                 }
-
-                // DepartmentID = Convert.ToInt32(ddlDept.SelectedValue);
-
                 supplierName = txtSupplierName.Text.Trim();
-                // Code = Convert.ToInt32(txtCode.Text.Trim());
                 Code = txtCode.Text.Trim();
-                //Contact = Convert.ToInt64(txtContct.Text.Trim());
                 Contact = txtContct.Text.Trim();
                 City = txtcity.Text.Trim();
                 Pincode = Convert.ToInt32(txtPincode.Text.Trim());
@@ -169,25 +140,15 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
-                        if (Status == 0)
+                        if (Status == 1)
                         {
-
-                        }
-                        else if (Status == 1)
-                        {
-                            Session["Supplier_ID"] = "";
-                            //txt.Text = "";
                             txtSupplierName.Text = "";
                             txtAddress.Text = "";
                             txtCode.Text = "";
                             txtContct.Text = "";
                             txtEmail.Text = "";
                             txtPincode.Text = "";
-
                             mpeCategoryMaster.Hide();
-
-                            //mpeZone.Hide();
-                            //bindgrid();
                             Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Suppliers.aspx"), false);
                         }
                         else if (Status == 3)
@@ -235,23 +196,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                             string City = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_City"]);
                             int Pincode = Convert.ToInt32(ds.Tables[0].Rows[i]["Supplier_PINCODE"]);
-                            // string Address = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Address"]);
                             string Email = Convert.ToString(ds.Tables[0].Rows[i]["Supplier_Email"]);
-
-
-
                             data += "<tr><td>" + SupplierName + "</td><td>" + SupplierCode + "</td><td>" + Contact + "</td><td>" + City + "</td><td>" + Pincode + "</td><td>" + Email + "</td> <td><a href='Suppliers.aspx?Supplier_ID=" + Supplier_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Suppliers.aspx?DelSupplier_ID=" + Supplier_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
                     }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
                 }
             }
             catch (Exception ex)
@@ -261,9 +210,5 @@ namespace Upkeep_v3.Cocktail_World.Setup
             return data;
         }
 
-        protected void btnCloseHeader_ServerClick(object sender, EventArgs e)
-        {
-
-        }
     }
 }

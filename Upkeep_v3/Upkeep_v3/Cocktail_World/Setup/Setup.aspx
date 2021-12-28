@@ -69,7 +69,7 @@
 
                 </div>
 
-                <div class="col-lg-6">
+                 <div class="col-lg-6">
 
                     <!--begin::Portlet-->
                     <div class="m-portlet" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="bottom" title="" data-original-title="Create Different Items &amp; Assigned Different Categories &amp; Sub-Categories for ease of Management Create , View , Update &amp; Delete Items">
@@ -77,14 +77,13 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <span class="m-portlet__head-icon">
-                                        <i class="fa fa-sitemap" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                        <i class="fa fa-glass-cheers" style="font-size: 2.4rem;" aria-hidden="true"></i>
                                     </span>
-                                    <h3 class="m-portlet__head-text">Brand Categories
-                                    </h3>
+                                    <h5 class="m-portlet__head-text">Brands Categories
+                                    </h5>
                                 </div>
                             </div>
-                            
-                            <div class="m-portlet__head-tools">
+                             <div class="m-portlet__head-tools">
 
                                 <div class="btn-group">
                                     <a href="Brand_Categories.aspx" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air">
@@ -101,8 +100,7 @@
 
                 </div>
 
-
-                <div class="col-lg-6">
+                 <div class="col-lg-6">
                     <!--begin::Portlet-->
                     <div class="m-portlet"  data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="bottom" title="" data-original-title="Create Different Items &amp; Assigned Different Categories &amp; Sub-Categories for ease of Management Create , View , Update &amp; Delete Items">
                         <div class="m-portlet__head">
@@ -133,8 +131,7 @@
 
                 </div>
 
-
-                <div class="col-lg-6">
+                 <div class="col-lg-6">
 
                     <!--begin::Portlet-->
                     <div class="m-portlet" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="bottom" title="" data-original-title="Create Different Items &amp; Assigned Different Categories &amp; Sub-Categories for ease of Management Create , View , Update &amp; Delete Items">
@@ -142,7 +139,7 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <span class="m-portlet__head-icon">
-                                        <i class="fa fa-glass-cheers" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                        <i class="fa fa-glass" style="font-size: 2.4rem;" aria-hidden="true"></i>
                                     </span>
                                     <h5 class="m-portlet__head-text">Brands
                                     </h5>
@@ -165,6 +162,42 @@
 
                 </div>
 
+
+               
+
+
+               
+                <div class="col-lg-6">
+
+                    <!--begin::Portlet-->
+                    <div class="m-portlet" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="bottom" title="" data-original-title="Create Different Items &amp; Assigned Different Categories &amp; Sub-Categories for ease of Management Create , View , Update &amp; Delete Items">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="fa fa-sitemap" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                    </span>
+                                    <h3 class="m-portlet__head-text">Assign Brand Sizes
+                                    </h3>
+                                </div>
+                            </div>
+                            
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="Assign_Brand_Size.aspx" class="btn btn-primary m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Click Here</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
 
                 <div class="col-lg-6">
 

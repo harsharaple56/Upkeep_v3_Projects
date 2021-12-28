@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
 
 namespace Upkeep_v3.Cocktail_World.Setup
@@ -21,8 +17,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
             {
-                bindgrid();
-
+                BindGrid();
                 int License_ID = Convert.ToInt32(Request.QueryString["License_ID"]);
                 if (License_ID > 0)
                 {
@@ -41,7 +36,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             try
             {
-                ds = ds = ObjCocktailWorld.License(License_ID, string.Empty, string.Empty, LoggedInUserID, CompanyID, "D");
+                ds = ds = ObjCocktailWorld.License_CRUD(License_ID, string.Empty, string.Empty, LoggedInUserID, CompanyID, "D");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -60,7 +55,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             try
             {
-                ds = ds = ObjCocktailWorld.License(License_ID, txtLicenseName.Text.Trim(),txtLicenseNo.Text.Trim(), LoggedInUserID, CompanyID, "F");
+                ds = ObjCocktailWorld.License_CRUD(License_ID, txtLicenseName.Text.Trim(), txtLicenseNo.Text.Trim(), LoggedInUserID, CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -70,14 +65,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         txtLicenseNo.Text = Convert.ToString(ds.Tables[0].Rows[0]["License_No"]);
                         mpeLicenseMaster.Show();
                     }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
                 }
             }
             catch (Exception ex)
@@ -86,12 +73,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-        public string bindgrid()
+        public string BindGrid()
         {
             string data = "";
             try
             {
-                ds = ds = ObjCocktailWorld.License(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
+                ds = ObjCocktailWorld.License_CRUD(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -116,14 +103,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                         }
                     }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
                 }
             }
             catch (Exception ex)
@@ -154,18 +133,22 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     Action = "C";
                 }
-                dsCreate = ObjCocktailWorld.License(License_ID, txtLicenseName.Text.Trim(), txtLicenseNo.Text.Trim(), LoggedInUserID, CompanyID, Action);
+                dsCreate = ObjCocktailWorld.License_CRUD(License_ID, txtLicenseName.Text.Trim(), txtLicenseNo.Text.Trim(), LoggedInUserID, CompanyID, Action);
                 if (dsCreate.Tables[0].Rows.Count > 0)
                 {
                     int Status = Convert.ToInt32(dsCreate.Tables[0].Rows[0]["Status"]);
-                    if (Status == 0)
-                    {
-
-                    }
-                    else if (Status == 1)
+                    if (Status == 1)
                     {
                         mpeLicenseMaster.Hide();
                         Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Licenses.aspx"), false);
+                    }
+                    else if (Status == 2)
+                    {
+                        lblError.Text = "Due to some technical issue , please try after some time";
+                    }
+                    else if (Status == 3)
+                    {
+                        lblError.Text = "License name already exists";
                     }
 
                 }
@@ -178,9 +161,16 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         protected void btnCloseLicense_Click(object sender, EventArgs e)
         {
+            Closecontrol();
+        }
+
+        public void Closecontrol()
+        {
             txtLicenseName.Text = string.Empty;
             txtLicenseNo.Text = string.Empty;
             mpeLicenseMaster.Hide();
+            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Licenses.aspx"), false);
         }
+
     }
 }

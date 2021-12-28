@@ -13,21 +13,30 @@ namespace Upkeep_v3.Cocktail_World.Setup {
     public partial class Brand_Opening_Stock {
         
         /// <summary>
-        /// export_excel control.
+        /// A1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor export_excel;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
         
         /// <summary>
-        /// export_pdf control.
+        /// A2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor export_pdf;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
+        
+        /// <summary>
+        /// A11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A11;
     }
 }

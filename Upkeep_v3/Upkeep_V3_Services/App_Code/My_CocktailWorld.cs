@@ -47,14 +47,14 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet BrandOpeningMaster_CRUD(int Opening_ID, decimal Closing_Bottle, decimal Closing_Speg, string Action, int LoggedInUser, int Company_ID)
+    public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, int Company_ID, string LoggedInUser, string Action)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.BrandOpeningMaster_CRUD(Opening_ID, Closing_Bottle, Closing_Speg, Action, LoggedInUser, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, Company_ID, LoggedInUser, Action,StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -175,7 +175,7 @@ public class My_CocktailWorld
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.Category_CRUD(Company_ID, Category_ID, Category_Desc, Category_Alias, LoggedInUserID, Action, StrConn);
+            ds = ObjcocktailWorld_Master_BL.CategoryMaster_CRUD(Company_ID, Category_ID, Category_Desc, Category_Alias, LoggedInUserID, Action, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -335,14 +335,14 @@ public class My_CocktailWorld
 
     }
 
-    public DataSet CocktailBrandsMaster_CRUD(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action)
+    public DataSet CocktailBrandsMaster_CRUD(int Cocktail_Brand_ID, int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.CocktailBrandsMaster_CRUD(Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action, StrConn);
+            ds = ObjcocktailWorld_Master_BL.CocktailBrandsMaster_CRUD(Cocktail_Brand_ID,Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -385,14 +385,14 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet License(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action)
+    public DataSet License_CRUD(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.License(LicenseID,LicenseName,LicenseNo,LoggedInUserID, Company_ID, Action, StrConn);
+            ds = ObjcocktailWorld_Master_BL.License_CRUD(LicenseID,LicenseName,LicenseNo,LoggedInUserID, Company_ID, Action, StrConn);
             return ds;
         }
         catch (Exception ex)

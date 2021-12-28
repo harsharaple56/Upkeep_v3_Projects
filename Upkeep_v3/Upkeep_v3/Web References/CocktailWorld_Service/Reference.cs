@@ -14,12 +14,12 @@
 #pragma warning disable 1591
 
 namespace Upkeep_v3.CocktailWorld_Service {
-    using System;
-    using System.Web.Services;
     using System.Diagnostics;
-    using System.Web.Services.Protocols;
+    using System;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Web.Services.Protocols;
+    using System.Web.Services;
     using System.Data;
     
     
@@ -74,7 +74,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Save_BrandOpeningOperationCompleted;
         
-        private System.Threading.SendOrPostCallback LicenseOperationCompleted;
+        private System.Threading.SendOrPostCallback License_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback SupplierMaster_CRUDOperationCompleted;
         
@@ -185,7 +185,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public event Save_BrandOpeningCompletedEventHandler Save_BrandOpeningCompleted;
         
         /// <remarks/>
-        public event LicenseCompletedEventHandler LicenseCompleted;
+        public event License_CRUDCompletedEventHandler License_CRUDCompleted;
         
         /// <remarks/>
         public event SupplierMaster_CRUDCompletedEventHandler SupplierMaster_CRUDCompleted;
@@ -251,34 +251,34 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/BrandOpeningMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet BrandOpeningMaster_CRUD(int Opening_ID, decimal Closing_Bottle, decimal Closing_Speg, string Action, int LoggedInUser, int Company_ID) {
+        public System.Data.DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, int Company_ID, string LoggedInUser, string Action) {
             object[] results = this.Invoke("BrandOpeningMaster_CRUD", new object[] {
-                        Opening_ID,
-                        Closing_Bottle,
-                        Closing_Speg,
-                        Action,
+                        BrandOpening_ID,
+                        CategoryDetails,
+                        BrandID,
+                        Company_ID,
                         LoggedInUser,
-                        Company_ID});
+                        Action});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void BrandOpeningMaster_CRUDAsync(int Opening_ID, decimal Closing_Bottle, decimal Closing_Speg, string Action, int LoggedInUser, int Company_ID) {
-            this.BrandOpeningMaster_CRUDAsync(Opening_ID, Closing_Bottle, Closing_Speg, Action, LoggedInUser, Company_ID, null);
+        public void BrandOpeningMaster_CRUDAsync(int BrandOpening_ID, string CategoryDetails, int BrandID, int Company_ID, string LoggedInUser, string Action) {
+            this.BrandOpeningMaster_CRUDAsync(BrandOpening_ID, CategoryDetails, BrandID, Company_ID, LoggedInUser, Action, null);
         }
         
         /// <remarks/>
-        public void BrandOpeningMaster_CRUDAsync(int Opening_ID, decimal Closing_Bottle, decimal Closing_Speg, string Action, int LoggedInUser, int Company_ID, object userState) {
+        public void BrandOpeningMaster_CRUDAsync(int BrandOpening_ID, string CategoryDetails, int BrandID, int Company_ID, string LoggedInUser, string Action, object userState) {
             if ((this.BrandOpeningMaster_CRUDOperationCompleted == null)) {
                 this.BrandOpeningMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBrandOpeningMaster_CRUDOperationCompleted);
             }
             this.InvokeAsync("BrandOpeningMaster_CRUD", new object[] {
-                        Opening_ID,
-                        Closing_Bottle,
-                        Closing_Speg,
-                        Action,
+                        BrandOpening_ID,
+                        CategoryDetails,
+                        BrandID,
+                        Company_ID,
                         LoggedInUser,
-                        Company_ID}, this.BrandOpeningMaster_CRUDOperationCompleted, userState);
+                        Action}, this.BrandOpeningMaster_CRUDOperationCompleted, userState);
         }
         
         private void OnBrandOpeningMaster_CRUDOperationCompleted(object arg) {
@@ -961,8 +961,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CocktailBrandsMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet CocktailBrandsMaster_CRUD(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action) {
+        public System.Data.DataSet CocktailBrandsMaster_CRUD(int Cocktail_Brand_ID, int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("CocktailBrandsMaster_CRUD", new object[] {
+                        Cocktail_Brand_ID,
                         Cocktail_ID,
                         Brand_ID,
                         Pegml,
@@ -974,16 +975,17 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void CocktailBrandsMaster_CRUDAsync(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action) {
-            this.CocktailBrandsMaster_CRUDAsync(Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action, null);
+        public void CocktailBrandsMaster_CRUDAsync(int Cocktail_Brand_ID, int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action) {
+            this.CocktailBrandsMaster_CRUDAsync(Cocktail_Brand_ID, Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void CocktailBrandsMaster_CRUDAsync(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action, object userState) {
+        public void CocktailBrandsMaster_CRUDAsync(int Cocktail_Brand_ID, int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action, object userState) {
             if ((this.CocktailBrandsMaster_CRUDOperationCompleted == null)) {
                 this.CocktailBrandsMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCocktailBrandsMaster_CRUDOperationCompleted);
             }
             this.InvokeAsync("CocktailBrandsMaster_CRUD", new object[] {
+                        Cocktail_Brand_ID,
                         Cocktail_ID,
                         Brand_ID,
                         Pegml,
@@ -1284,9 +1286,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/License", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet License(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action) {
-            object[] results = this.Invoke("License", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/License_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet License_CRUD(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action) {
+            object[] results = this.Invoke("License_CRUD", new object[] {
                         LicenseID,
                         LicenseName,
                         LicenseNo,
@@ -1297,28 +1299,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void LicenseAsync(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action) {
-            this.LicenseAsync(LicenseID, LicenseName, LicenseNo, LoggedInUserID, Company_ID, Action, null);
+        public void License_CRUDAsync(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action) {
+            this.License_CRUDAsync(LicenseID, LicenseName, LicenseNo, LoggedInUserID, Company_ID, Action, null);
         }
         
         /// <remarks/>
-        public void LicenseAsync(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action, object userState) {
-            if ((this.LicenseOperationCompleted == null)) {
-                this.LicenseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLicenseOperationCompleted);
+        public void License_CRUDAsync(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action, object userState) {
+            if ((this.License_CRUDOperationCompleted == null)) {
+                this.License_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLicense_CRUDOperationCompleted);
             }
-            this.InvokeAsync("License", new object[] {
+            this.InvokeAsync("License_CRUD", new object[] {
                         LicenseID,
                         LicenseName,
                         LicenseNo,
                         LoggedInUserID,
                         Company_ID,
-                        Action}, this.LicenseOperationCompleted, userState);
+                        Action}, this.License_CRUDOperationCompleted, userState);
         }
         
-        private void OnLicenseOperationCompleted(object arg) {
-            if ((this.LicenseCompleted != null)) {
+        private void OnLicense_CRUDOperationCompleted(object arg) {
+            if ((this.License_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.LicenseCompleted(this, new LicenseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.License_CRUDCompleted(this, new License_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1991,17 +1993,17 @@ namespace Upkeep_v3.CocktailWorld_Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void LicenseCompletedEventHandler(object sender, LicenseCompletedEventArgs e);
+    public delegate void License_CRUDCompletedEventHandler(object sender, License_CRUDCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class LicenseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class License_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal LicenseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal License_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

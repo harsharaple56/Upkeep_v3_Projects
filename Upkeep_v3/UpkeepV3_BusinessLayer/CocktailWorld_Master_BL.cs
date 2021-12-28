@@ -55,7 +55,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet BrandOpeningMaster_CRUD(int Opening_ID, decimal Closing_Bottle, decimal Closing_Speg, string Action, int LoggedInUser, int Company_ID, string StrConn)
+        public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, int Company_ID, string LoggedInUser, string Action, string StrConn)
         {
             try
             {
@@ -65,9 +65,9 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_BrandOpening", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Opening_ID", Opening_ID);
-                cmd.Parameters.AddWithValue("@Closing_Bottle", Closing_Bottle);
-                cmd.Parameters.AddWithValue("@Closing_Speg", Closing_Speg);
+                cmd.Parameters.AddWithValue("@BrandOpening_ID", BrandOpening_ID);
+                cmd.Parameters.AddWithValue("@CategoryDetails", CategoryDetails);
+                cmd.Parameters.AddWithValue("@BrandID", BrandID);
                 cmd.Parameters.AddWithValue("@LoggedInUser", LoggedInUser);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@Action", Action);
@@ -145,6 +145,33 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Category_Desc", Category_Desc);
                 cmd.Parameters.AddWithValue("@Category_Alias", Category_Alias);
                 cmd.Parameters.AddWithValue("@loginId", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataSet CategoryMaster_CRUD(int Company_ID, int Category_ID, string Category_Desc, string Category_Alias, string LoggedInUserID, string Action, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Category", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Company_ID",Company_ID);
+                cmd.Parameters.AddWithValue("@Category_ID", Category_ID);
+                cmd.Parameters.AddWithValue("@Category_Desc", Category_Desc);
+                cmd.Parameters.AddWithValue("@Category_Alias", Category_Alias);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -561,7 +588,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet License(int LicenseID,string LicenseName,string LicenseNo, string LoggedInUserID,int Company_ID, string Action, string StrConn)
+        public DataSet License_CRUD(int LicenseID,string LicenseName,string LicenseNo, string LoggedInUserID,int Company_ID, string Action, string StrConn)
         {
             try
             {
@@ -652,7 +679,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet CocktailBrandsMaster_CRUD(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CocktailBrandsMaster_CRUD(int Cocktail_Brand_ID ,int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -662,6 +689,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_CocktailBrandMaster", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@Cocktail_Brand_ID", Cocktail_Brand_ID);
                 cmd.Parameters.AddWithValue("@Cocktail_ID", Cocktail_ID);
                 cmd.Parameters.AddWithValue("@Brand_ID", Brand_ID);
                 cmd.Parameters.AddWithValue("@Pegml", Pegml);
