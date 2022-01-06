@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Cocktail_World.Setup {
-    
-    
-    public partial class Licenses {
-        
+namespace Upkeep_v3.Cocktail_World.Setup
+{
+
+
+    public partial class Licenses
+    {
+
         /// <summary>
         /// btnAddLicense control.
         /// </summary>
@@ -19,8 +21,8 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddLicense;
-        
+        protected global::System.Web.UI.WebControls.LinkButton btnAddLicense;
+
         /// <summary>
         /// mpeLicenseMaster control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpeLicenseMaster;
-        
+
         /// <summary>
         /// pnlLicenseMaster control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlLicenseMaster;
-        
+
         /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
@@ -47,16 +49,16 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
-        /// btnCloseHeader control.
+        /// lnkbtnClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnCloseHeader;
-        
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnClose;
+
         /// <summary>
         /// txtLicenseName control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLicenseName;
-        
+
         /// <summary>
         /// rfvLicenseName control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLicenseName;
-        
+
         /// <summary>
         /// txtLicenseNo control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLicenseNo;
-        
+
         /// <summary>
         /// rfvLicenseNo control.
         /// </summary>
@@ -92,7 +94,16 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLicenseNo;
-        
+
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+
         /// <summary>
         /// btnCloseCategory control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCloseCategory;
-        
+
         /// <summary>
         /// btnLicenseSave control.
         /// </summary>

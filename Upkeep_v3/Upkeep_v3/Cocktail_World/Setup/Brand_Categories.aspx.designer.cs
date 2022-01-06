@@ -7,83 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Cocktail_World.Setup {
-    
-    
-    public partial class Brand_Categories {
-        
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnSave;
-        
-        /// <summary>
-        /// hdn_IsPostBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_IsPostBack;
-        
-        /// <summary>
-        /// ddlCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
-        
-        /// <summary>
-        /// rfvDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDept;
-        
-        /// <summary>
-        /// btn_edit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_edit;
-        
-        /// <summary>
-        /// I1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl I1;
-        
-        /// <summary>
-        /// btn_delete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_delete;
-        
-        /// <summary>
-        /// I2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl I2;
-        
+namespace Upkeep_v3.Cocktail_World.Setup
+{
+
+
+    public partial class Brand_Categories
+    {
+
         /// <summary>
         /// btnAddcategory control.
         /// </summary>
@@ -91,8 +21,8 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAddcategory;
-        
+        protected global::System.Web.UI.WebControls.LinkButton btnAddcategory;
+
         /// <summary>
         /// mpeCategoryMaster control.
         /// </summary>
@@ -101,34 +31,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpeCategoryMaster;
-        
-        /// <summary>
-        /// grdCatagLinkUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdCatagLinkUp;
-        
-        /// <summary>
-        /// lblwarn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblwarn;
-        
-        /// <summary>
-        /// txtDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDetails;
-        
+
         /// <summary>
         /// pnlCategoryMaster control.
         /// </summary>
@@ -137,7 +40,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlCategoryMaster;
-        
+
         /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
@@ -146,25 +49,25 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
-        /// btnCloseHeader control.
+        /// lnkbtnClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnCloseHeader;
-        
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnClose;
+
         /// <summary>
-        /// txtCategoryDesc control.
+        /// txtCategoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCategoryDesc;
-        
+        protected global::System.Web.UI.WebControls.TextBox txtCategoryName;
+
         /// <summary>
         /// rfvCategory control.
         /// </summary>
@@ -173,7 +76,25 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategory;
-        
+
+        /// <summary>
+        /// txtCategoryAlias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCategoryAlias;
+
+        /// <summary>
+        /// rfvCategory1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategory1;
+
         /// <summary>
         /// lblCategoryErrorMsg control.
         /// </summary>
@@ -182,7 +103,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCategoryErrorMsg;
-        
+
         /// <summary>
         /// btnCloseCategory control.
         /// </summary>
@@ -191,7 +112,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCloseCategory;
-        
+
         /// <summary>
         /// btnCategorySave control.
         /// </summary>

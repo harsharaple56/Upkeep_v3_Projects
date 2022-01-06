@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Cocktail_World.Setup {
-    
-    
-    public partial class Add_Brand_Opening_Stock {
-        
+namespace Upkeep_v3.Cocktail_World.Setup
+{
+
+
+    public partial class Add_Brand_Opening_Stock
+    {
+
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -19,8 +21,17 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-        
+        protected global::System.Web.UI.WebControls.LinkButton btnSave;
+
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+
         /// <summary>
         /// ddlCategory control.
         /// </summary>
@@ -29,7 +40,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
-        
+
         /// <summary>
         /// rfvddlCategory control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlCategory;
-        
+
         /// <summary>
         /// ddlBrand control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlBrand;
-        
+
         /// <summary>
         /// rfvddlBrand control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlBrand;
-        
+
         /// <summary>
         /// dv_Size control.
         /// </summary>
@@ -65,7 +76,16 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_Size;
-        
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
         /// <summary>
         /// grdCatagLinkUp control.
         /// </summary>

@@ -23,12 +23,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
     {
 
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
-        public ArrayList gblArrMDICheckedLicensegblArrMDICheckedLicense = new ArrayList();
-        DataSet Ds = new DataSet();
+        DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
-        public static bool getUpdate = false;
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,288 +33,159 @@ namespace Upkeep_v3.Cocktail_World.Setup
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
             {
-                btn_edit.Visible = false;
-                btn_delete.Visible = false;
-                BindCategory();
+                int Category_ID = Convert.ToInt32(Request.QueryString["Category_ID"]);
+                if (Category_ID > 0)
+                {
+                    BindCategoryData(Category_ID);
+                }
+                int DelCategory_ID = Convert.ToInt32(Request.QueryString["DelCategory_ID"]);
+                if (DelCategory_ID > 0)
+                {
+                    DeleteCategory(DelCategory_ID);
+                }
             }
         }
 
-        protected void btn_Edit_Click(object sender, EventArgs e)
+        public void BindCategoryData(int Category_ID)
         {
-            getUpdate = true;
-            ListItemCollection liCol = ddlCategory.Items;
-            for (int i = 0; i < liCol.Count; i++)
+            try
             {
-                ListItem li = liCol[i];
-                if (li.Selected)
+                ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Category_ID, string.Empty, string.Empty, LoggedInUserID, "R");
+                if (ds.Tables.Count > 0)
                 {
-                    DataSet ds = new DataSet();
-                    ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Convert.ToInt32(liCol[i].Value), "", "", LoggedInUserID, "select");
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        txtCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"]);
+                        txtCategoryName.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"]);
+                        txtCategoryAlias.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Alias"]);
                         mpeCategoryMaster.Show();
                     }
                 }
             }
-        }
-
-        protected void btn_Delete_Click(object sender, EventArgs e)
-        {
-            ListItemCollection liCol = ddlCategory.Items;
-            for (int i = 0; i < liCol.Count; i++)
+            catch (Exception ex)
             {
-                ListItem li = liCol[i];
-                if (li.Selected)
-                {
-                    ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Convert.ToInt32(liCol[i].Value), "", "", LoggedInUserID, "Delete");
-                    Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Categories.aspx"), false);
-                }
+                throw ex;
             }
         }
 
-        public void BindCategory()
+        protected void btnCloseCategory_Click(object sender, EventArgs e)
         {
+            Closecontrol();
+        }
+
+        public void Closecontrol()
+        {
+            txtCategoryAlias.Text = "";
+            txtCategoryName.Text = "";
+            lblCategoryErrorMsg.Text = "";
+            mpeCategoryMaster.Hide();
+            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Categories.aspx"), false);
+        }
+
+        protected void btnCategorySave_Click(object sender, EventArgs e)
+        {
+            int CategoryID = 0;
+            string category_desc = string.Empty;
+            string category_alias = string.Empty;
+            string Action = string.Empty;
+
             try
             {
-                DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, 0, "", "", LoggedInUserID, "select");
+                if (Convert.ToInt32(Request.QueryString["Category_ID"]) > 0)
+                {
+                    CategoryID = Convert.ToInt32(Request.QueryString["Category_ID"]);
+                }
+
+                if (CategoryID > 0)
+                {
+                    Action = "U";
+                }
+                else
+                {
+                    Action = "C";
+                }
+
+                category_desc = txtCategoryName.Text.Trim();
+                category_alias = txtCategoryAlias.Text.Trim();
+
+                ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, CategoryID, category_desc, category_alias, LoggedInUserID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        ddlCategory.DataSource = ds.Tables[0];
-                        ddlCategory.DataTextField = "Category_Desc";
-                        ddlCategory.DataValueField = "Category_ID";
-                        ddlCategory.DataBind();
-                        ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FetchCategorySizeLinkUp();
-        }
-
-        protected void btnAddcategory_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnCloseCategory_Click(object sender, EventArgs e)
-        {
-            mpeCategoryMaster.Hide();
-        }
-
-        protected void btnCategorySave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int Category_ID = 0;
-                string Cate_Desc = txtCategoryDesc.Text;
-                string Action = string.Empty;
-                if (getUpdate)
-                {
-                    ListItemCollection liCol = ddlCategory.Items;
-                    for (int i = 0; i < liCol.Count; i++)
-                    {
-                        ListItem li = liCol[i];
-                        if (li.Selected)
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
                         {
-                            Category_ID = Convert.ToInt32(liCol[i].Value);
-                            Action = "update";
-                            getUpdate = false;
-                        }
-                    }
-                }
-                else
-                {
-                    Action = "insert";
-                }
-                ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Category_ID, Cate_Desc, "", LoggedInUserID, Action);
-                mpeCategoryMaster.Hide();
-                Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Categories.aspx"), false);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-        public void FetchCategorySizeLinkUp()
-        {
-            try
-            {
-
-                int Category_ID;
-
-
-                //ObjCategorySizeLnkUp = new ClsCategorySizelinlup();
-                // ds = new DataTable();
-
-                DataSet ds = new DataSet();
-                //  ds = ObjCocktailWorld.CategoryMaster_CRUD(24, 0, "", "", LoggedInUserID, "select");
-                Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
-
-                ds = ObjCocktailWorld.FetchCategorySizeLinkup(Category_ID);
-
-
-                //  ObjCategorySizeLnkUp.CategoryID = DDLCatag.SelectedValue;
-                // ObjCategorySizeLnkUp.LicenseID = Session("LicID");
-                // ObjDt = ObjCategorySizeLnkUp.FunFetch;
-                //txtDetails.Text = "";
-                //txtDetails.Text = "=$=";
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-
-                    if (ddlCategory.SelectedIndex == 0)
-                    {
-                        btn_edit.Visible = false;
-                        btn_delete.Visible = false;
-                        grdCatagLinkUp.DataSource = null;
-                        grdCatagLinkUp.DataBind();
-                    }
-                    else
-                    {
-                        btn_edit.Visible = true;
-                        btn_delete.Visible = true;
-                        grdCatagLinkUp.DataSource = ds.Tables[0];
-                        grdCatagLinkUp.DataBind();
-                    }
-                    //for (int index = 0; index <= ds.Tables[0].Rows.Count - 1; index++)
-                    //{
-                    //    //if (ds.Tables[0].Rows[index]["Selected"] == 1)
-                    //    //    txtDetails.Text += ds.Tables[0].Rows[index]["SizeID"] + "=$=";
-                    //}
-                }
-                else
-                {
-                    grdCatagLinkUp.DataSource = null;
-                    grdCatagLinkUp.DataBind();
-                    btn_edit.Visible = false;
-                    btn_delete.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                //if (!IsNothing(ObjCategorySizeLnkUp))
-                //    ObjCategorySizeLnkUp = null;
-                //if (!Information.IsNothing(ObjDt))
-                //    ObjDt = null;
-            }
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            string CategoryDetails = string.Empty;
-            var rows = grdCatagLinkUp.Rows;
-            int count = grdCatagLinkUp.Rows.Count;
-
-            int CategoryID = 0;
-            int LicenseID = 0;
-
-            try
-            {
-                StringBuilder strXmlCategory = new StringBuilder();
-                strXmlCategory.Append(@"<?xml version=""1.0"" ?>");
-                strXmlCategory.Append(@"<CategoryRoot>");
-
-                for (int i = 0; i < count; i++)
-                {
-
-                    bool isChecked = ((CheckBox)rows[i].FindControl("chkSelct")).Checked;
-                    if (isChecked)
-                    {
-                        string hdnSize_ID = ((HiddenField)rows[i].FindControl("hdnSize_ID")).Value;
-                        string txtalias = ((TextBox)rows[i].FindControl("txtalias")).Text;
-
-                        DropDownList ddlStockIn = (DropDownList)rows[i].FindControl("ddlStockIn");
-                        string StockIn = ddlStockIn.SelectedItem.Value;
-
-                        string txtnoofspeg = ((TextBox)rows[i].FindControl("txtnoofspeg")).Text;
-                        string txtpegsize = ((TextBox)rows[i].FindControl("txtpegsize")).Text;
-
-                        strXmlCategory.Append(@"<Category>");
-                        strXmlCategory.Append(@"<Size_ID>" + hdnSize_ID + "</Size_ID>");
-                        strXmlCategory.Append(@"<Alias>" + txtalias + "</Alias>");
-                        strXmlCategory.Append(@"<PegSizeML>" + txtpegsize + "</PegSizeML>");
-                        strXmlCategory.Append(@"<StockIn>" + StockIn + "</StockIn>");
-                        strXmlCategory.Append(@"<Size_Qty>" + txtnoofspeg + "</Size_Qty>");
-
-                        strXmlCategory.Append(@"</Category>");
-                    }
-                }
-
-                strXmlCategory.Append(@"</CategoryRoot>");
-
-                CategoryDetails = strXmlCategory.ToString();
-
-                CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
-                //LicenseID = Convert.ToInt32(ddllicense.SelectedValue);
-                LicenseID = 3;
-
-                DataSet dsCatSave = new DataSet();
-
-                dsCatSave = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID, CompanyID, LoggedInUserID);
-
-                if (Ds.Tables.Count > 0)
-                {
-                    if (Ds.Tables[0].Rows.Count > 0)
-                    {
-                        int Status = Convert.ToInt32(Ds.Tables[0].Rows[0]["Status"]);
-                        if (Status == 0)
-                        {
-
-                        }
-                        else if (Status == 1)
-                        {
-
-                            //  Response.Redirect(Page.ResolveClientUrl(""), false);
+                            category_desc = "";
+                            category_alias = "";
+                            mpeCategoryMaster.Hide();
+                            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Categories.aspx"), false);
                         }
                         else if (Status == 3)
                         {
-                            //lblErrorMsg.Text = "";
+                            lblCategoryErrorMsg.Text = "Category already exists";
                         }
                         else if (Status == 2)
                         {
-                            // lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                            lblCategoryErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
         }
 
-        protected void grdCatagLinkUp_RowDataBound(object sender, GridViewRowEventArgs e)
+        public string BindCategory()
+        {
+            string data = "";
+            try
+            {
+                ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, 0, "", "", LoggedInUserID, "R");
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            string Category_ID = Convert.ToString(ds.Tables[0].Rows[i]["Category_ID"]);
+                            string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
+                            string Category_Alias = Convert.ToString(ds.Tables[0].Rows[i]["Category_Alias"]);
+
+                            data += "<tr>";
+                            data += "<td>" + Category_Desc + "</td>";
+                            data += "<td>" + Category_Alias + "</td>";
+                            data += "<td>" +
+                                "<a href='Brand_Categories.aspx?Category_ID=" + Category_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  " +
+                                "<a href='Brand_Categories.aspx?DelCategory_ID=" + Category_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> " +
+                                "</td>";
+                            data += "</tr>";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+        }
+
+        public void DeleteCategory(int Category_ID)
         {
             try
             {
-                GridViewRow gvRow = (GridViewRow)e.Row;
-                HiddenField hdnStockIn = (HiddenField)gvRow.FindControl("hdnStockIn");
-                if (hdnStockIn != null)
+                DataSet ds = new DataSet();
+                ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID,Category_ID,string.Empty,string.Empty, LoggedInUserID, "D");
+                if (ds.Tables.Count > 0)
                 {
-                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        DropDownList ddlStockIn = (DropDownList)gvRow.FindControl("ddlStockIn");
-                        ddlStockIn.SelectedValue = hdnStockIn.Value;
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Categories.aspx"), false);
                     }
                 }
             }
@@ -326,121 +194,5 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 throw ex;
             }
         }
-
-        protected void grdCatagLinkUp_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            grdCatagLinkUp.PageIndex = e.NewPageIndex;
-            BindCategory();
-        }
-
-
-
-
-
-
-
-
-
-
-
-        //   // GetSelectedLicense();
-        //    int cnt;
-        //   // cnt = getcount();
-        //       if (cnt == 0)
-        //        {
-        //            for (int index = 0, loopTo = gblArrMDICheckedLicense.Count - 1; index <= loopTo; index++)
-        //            {
-        //               // var objsize = new ClsCategorySizelinlup();
-        //                objsize.CategoryID = ddlCategory.SelectedValue;
-        //                objsize.CategorySizeLnkUpXML = generateXml(gblArrMDICheckedLicense.Item(index));
-        //                objsize.Username = Session("username");
-        //                objsize.LicenseID = gblArrMDICheckedLicense.Item(index);
-        //                objsize.FunSave();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            foreach (DataListItem dli in DataList1.Items)
-        //            {
-        //                CheckBox chk = (CheckBox)dli.FindControl("LicenseId");
-        //                Label lbl = (Label)dli.FindControl("DescriptionLabel");
-        //                if (chk.Checked)
-        //                {
-        //                    // Dl += (lbl.Text + "<br />")
-        //                    var objsize = new ClsCategorySizelinlup();
-        //                    objsize.CategoryID = DDLCatag.SelectedValue;
-        //                    objsize.CategorySizeLnkUpXML = generateXml();
-        //                  //  objsize.Username = Session("username");
-        //                    objsize.LicenseID = Convert.ToDouble(lbl.Text);
-        //                    objsize.FunSave();
-
-        //                    // FetchCategorySizeLinkUp()
-        //                }
-        //            }
-        //        }
-
-        //    //    lblInfo.Text = "Saved successfully";
-        //      //  divInfo.Style.Add("display", "inline");
-        //        txtDetails.Text = "";
-        //        txtDetails.Text = "=$=";
-        //        FetchCategorySizeLinkUp();
-        //    }
-        //}
-
-
-
-        // private XmlDocument GenerateXml()
-        //{
-        // Array arr = Split(txtDetails.Text, "=$=");
-        //XmlDocument xmlDocProm = null/* TODO Change to default(_) if this is not a reference type */;
-        //try
-        //{
-        //    xmlDocProm = new XmlDocument();
-        //    xmlDocProm.LoadXml("<Master><CatgSizeLnk></CatgSizeLnk></Master>");
-        //    XmlElement XmlElt = xmlDocProm.CreateElement("CatgSize");
-
-
-        //    for (int i = 0; i <= arrRowIndex.Count - 1; i++)
-        //    {
-        //        // if (arrRowLicenses.Item(i) == DblLocLicenseid)
-        //        //{
-        //        //    int j = arrRowIndex.Item(i);
-        //        //    if ((CheckBox)grdCatagLinkUp.Rows(j).Cells(0).FindControl("chkSelct").Checked == true)
-        //        //    {
-        //        //        XmlElt = xmlDocProm.CreateElement("CatgSize");
-
-
-
-        //        //        XmlElt.SetAttribute("SizeID", grdCatagLinkUp.Rows(j).Cells(2).Text);
-
-
-
-        //        //        XmlElt.SetAttribute("Alias", (TextBox)grdCatagLinkUp.Rows(j).Cells(4).FindControl("txtalias").Text);
-        //        //        XmlElt.SetAttribute("ML", (TextBox)grdCatagLinkUp.Rows(j).Cells(5).FindControl("txtml").Text);
-        //        //        XmlElt.SetAttribute("Speg", (TextBox)grdCatagLinkUp.Rows(j).Cells(6).FindControl("txtspeg").Text);
-        //        //        XmlElt.SetAttribute("StockIN", (TextBox)grdCatagLinkUp.Rows(j).Cells(7).FindControl("txtstockin").Text);
-        //        //        XmlElt.SetAttribute("noofspeg", (TextBox)grdCatagLinkUp.Rows(j).Cells(8).FindControl("txtnoofspeg").Text);
-        //        //        XmlElt.SetAttribute("pegsize", (TextBox)grdCatagLinkUp.Rows(j).Cells(9).FindControl("txtpegsize").Text);
-        //        //        xmlDocProm.DocumentElement.Item("CatgSizeLnk").AppendChild(XmlElt);
-        //        //    }
-        //        }
-        //    }
-
-        //    return xmlDocProm;
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
-        //finally
-        //{
-        //}
-        // }
-
-
-
-
-
-
     }
 }

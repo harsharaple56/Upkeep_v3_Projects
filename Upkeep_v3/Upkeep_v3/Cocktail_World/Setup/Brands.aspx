@@ -6,64 +6,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-
-
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
-    <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>--%>
+    <script language="C#" runat="server">
 
-    <%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
-
-    <style type="text/css">
-        .modalBackground {
-            background-color: grey;
-            filter: alpha(opacity=90);
-            opacity: 0.8;
-        }
-
-        .modalPopup {
-            /*background-color: #fff;
-            border: 3px solid #ccc;*/
-            padding: 10px;
-            width: 300px;
-        }
-    </style>
-
-    <script type="text/javascript">
-
-        function CheckForm() {
-            if ($('#<%=txtBrandDesc.ClientID %>').val() == "") {
-                alert('Please Enter Category Desc');
-                return false;
-            }
-            return true;
-        }
-
-        function openModal() {
-            //alert('hgfhfghfg');
-            $('#Add_Category').modal('show');
-        }
-
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //$('#btnedit').click(function () {
-            $("#btnedit").click(function () {
-                //alert('edit');
-                $('#Add_Category').modal('show');
-
-            });
-
-        });
-
-        function openModal() {
-            //alert('Hii');
-            $('#Add_Category').modal('show');
+        protected void LinkButton_Click(Object sender, EventArgs e)
+        {
+            Closecontrol();
         }
 
     </script>
@@ -99,37 +48,20 @@
                             </div>
                         </div>
                         <div class="m-portlet__head-tools">
-                            <ul class="m-portlet__nav">
-                                <li class="m-portlet__nav-item">
-                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                        <span>
-                                            <i class="la la-arrow-left"></i>
-                                            <span>Back</span>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="m-portlet__nav-item">
+                            <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
+                                <span>
+                                    <i class="la la-arrow-left"></i>
+                                    <span>Back</span>
+                                </span>
+                            </a>
+                            <asp:LinkButton ID="btnAddcategory" runat="server" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                <span>
+                                    <i class="fa fa-plus"></i>
+                                    <span>Add Brand</span>
+                                </span>
+                            </asp:LinkButton>
+                            <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"/>
 
-                                    <asp:Button ID="btnAddcategory" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddcategory_Click" Text="+ New Brand" />
-
-
-                                    <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
-                                        CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
-                                    </cc1:ModalPopupExtender>
-
-                                    <%--<a href="#Add_Category" class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--air" data-toggle="modal">
-                                        <span>
-                                    --%>        <%--<i class="la la-plus"></i>
-                                            <span>New Category</span>--%>
-                                    <%-- </span>
-                                    </a>--%>
-
-
-                                </li>
-                            </ul>
-
-                            <%--  <asp:Button ID="Add_Category1" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md"  OnClick="btnAddCategory_Click" Text="+ New Category" />
-                            --%>
                         </div>
                     </div>
                     <div class="m-portlet__body">
@@ -144,7 +76,7 @@
                                     <th>Brand Name</th>
                                     <th>Brand Short Name</th>
                                     <th>Assigned Category</th>
-                                    <%-- <th>Short Name</th>--%>
+                                    <th>Assigned SubCategory</th>
                                     <th>Action</th>
                                 </tr>
 
@@ -160,59 +92,16 @@
             </div>
         </div>
 
-        <!-- Start Modal -->
-        <%--   <div class="modal fade" id="Add_Category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content" id="dvpopup" runat="server">
-
-                
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="form-group">
-                            <label for="recipient-name" class="form-control-label">Category Desc:</label>
-
-                            <asp:TextBox ID="txtCategoryDesc" runat="server" class="form-control"></asp:TextBox>
-                            <%--<asp:RequiredFieldValidator ID="rfvDeptDesc" runat="server" ControlToValidate="txtDeptDesc" Visible="true" ValidationGroup="validationZone" ForeColor="Red" ErrorMessage="Please enter Department Desc"></asp:RequiredFieldValidator>--%>
-        <%-- </div>
-
-                    </div>
-
-                    
-                                    <div class="form-group m-form__group row">
-                                        <div class="col-xl-9 col-lg-9">
-                                            <asp:Label ID="lblZoneErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-                                        </div>
-                                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <asp:Button ID="btnCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationZone" OnClick="btnCategorySave_Click" OnClientClick="return CheckForm()" Text="Save" />
-                    </div>
-
-                </div>
-
-            </div>
-        </div>--%>
-        <!-- End Modal -->
-
         <asp:Panel ID="pnlCategoryMaster" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
             <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document" style="max-width: fit-content;">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                             <ContentTemplate>
 
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Brand Master</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader" runat="server" onserverclick="btnCloseHeader_ServerClick">
-                                        <span aria-hidden="true">&times;</span>
-                                        <%-- <asp:Button ID="btnCloseHeader" runat="server" class="Close"/>--%>
-                                    </button>
+                                      <asp:LinkButton ID="lnkbtnClose" OnClick="LinkButton_Click" runat="server"><i style="color:red" class="la la-close"></i></asp:LinkButton>
                                 </div>
                                 <div class="modal-body">
 
@@ -222,23 +111,19 @@
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
                                                 <asp:DropDownList ID="ddlcategory" class="form-control" Style="width: 60%" AutoPostBack="true" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
-
                                                 <asp:RequiredFieldValidator ID="rfvDept" runat="server" ControlToValidate="ddlcategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
-
                                             </div>
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Sub Category:</label>
-                                                <asp:DropDownList ID="ddlSubCategory" class="form-control" Style="width: 60%" OnSelectedIndexChanged="ddlSubCategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
-
+                                                <asp:DropDownList ID="ddlSubCategory" class="form-control" Style="width: 60%" runat="server"></asp:DropDownList>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
-
                                             </div>
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Description :</label>
                                                 <asp:TextBox ID="txtBrandDesc" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtBrandDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red"  ErrorMessage="Please enter Brand Description"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtBrandDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Brand Description"></asp:RequiredFieldValidator>
 
                                             </div>
 
@@ -255,38 +140,37 @@
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Strength :</label>
                                                 <asp:TextBox ID="txtShortname" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtShortname" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtShortname" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Strength"></asp:RequiredFieldValidator>
 
                                             </div>
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Purchase Rate ( Peg - INR ) :</label>
                                                 <asp:TextBox ID="txtPurchRatepeg" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPurchRatepeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPurchRatepeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Purchase Rate"></asp:RequiredFieldValidator>
 
                                             </div>
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Selling Rate in Peg:</label>
                                                 <asp:TextBox ID="txtSellingRatePeg" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSellingRatePeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSellingRatePeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Selling Rate in Peg"></asp:RequiredFieldValidator>
 
                                             </div>
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Selling Rate in Bottle:</label>
                                                 <asp:TextBox ID="txtSellingRateBotle" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtSellingRateBotle" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Value"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtSellingRateBotle" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Selling Rate in Bottle"></asp:RequiredFieldValidator>
 
                                             </div>
 
                                         </div>
+
                                         <div class="col-12">
-
                                             <div class="form-group m-form__group row">
-
                                                 <div class="col-lg-12">
                                                     <asp:CheckBox ID="chkBrndDisable" CssClass="m-checkbox--success" runat="server" />
-                                                    <label for="message-text" class="form-control-label" style="text-align: center;">Click for Disable this brand in Transaction</label>
+                                                    <label for="message-text" style="text-align: center;">Click for Disable this brand in Transaction</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -298,8 +182,8 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <asp:Button ID="btnCategorySave" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnCategorySave_Click" Text="Save" />
-
+                                    <asp:Button ID="btnCloseCategory" Text="Close" runat="server" class="btn btn-danger" OnClick="btnCloseCategory_Click" />
+                                    <asp:Button ID="btnCategorySave" runat="server" class="btn btn-primary" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnCategorySave_Click" Text="Save" />
                                 </div>
                             </ContentTemplate>
                             <Triggers>
@@ -311,18 +195,5 @@
             </div>
             <!-- End Modal -->
         </asp:Panel>
-
-
-
-
-
     </div>
-
-
-
-
-
-
-
-
 </asp:Content>

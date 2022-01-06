@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.4.5.3\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.4.5.3\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -127,6 +128,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -1087,6 +1089,7 @@
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report1.aspx" />
     <Content Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx" />
     <Content Include="Cocktail_World\Setup\Add_Cocktail_Recipes.aspx" />
+    <Content Include="Cocktail_World\Setup\Assign_Brand_Size.aspx" />
     <Content Include="Cocktail_World\Setup\Bill_Book.aspx" />
     <Content Include="Cocktail_World\Setup\Brands.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Categories.aspx" />
@@ -1094,7 +1097,6 @@
     <Content Include="Cocktail_World\Setup\Brand_Sizes.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Sub_Categories.aspx" />
     <Content Include="Cocktail_World\Setup\Cocktail_Recipes.aspx" />
-    <Content Include="Cocktail_World\Setup\Frm_Category_Master.aspx" />
     <Content Include="Cocktail_World\Setup\Licenses.aspx" />
     <Content Include="Cocktail_World\Setup\Permit_Holders.aspx" />
     <Content Include="Cocktail_World\Setup\Setup.aspx" />
@@ -1108,6 +1110,16 @@
     <Content Include="Cocktail_World\Transactions\Select_Transaction.aspx" />
     <Content Include="Cocktail_World\Transactions\Transfers.aspx" />
     <Content Include="Coming_Soon.aspx" />
+    <Content Include="Connected Services\ServiceReference1\Upkeep_v3.ServiceReference1.Insert_WhatSappLogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServiceReference1\Upkeep_V3_Services.disco" />
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
     <Content Include="CSM\List_Service_Requests_Type.aspx" />
@@ -4162,6 +4174,7 @@
     <Content Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xss">
       <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
     </Content>
+    <None Include="Connected Services\ServiceReference1\Upkeep_V3_Services.wsdl" />
     <None Include="GatePass\Gatepass_Details_Print.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4178,6 +4191,9 @@
       <DependentUpon>Visitor_ID.xsd</DependentUpon>
     </Content>
     <Content Include="General_Masters\Template\Location_Import.xlsx" />
+    <Content Include="General_Masters\Template\Department.xlsx" />
+    <Content Include="General_Masters\Template\Category.xlsx" />
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="VMS\Visitor_ID.xsd">
       <SubType>Designer</SubType>
@@ -4187,18 +4203,16 @@
     <Content Include="VMS\Visitor_ID.xss">
       <DependentUpon>Visitor_ID.xsd</DependentUpon>
     </Content>
-    <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Web References\CocktailWorld_Service\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
-    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+    <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
+    <Content Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
+    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
@@ -4538,6 +4552,13 @@
     <Compile Include="Cocktail_World\Setup\Add_Cocktail_Recipes.aspx.designer.cs">
       <DependentUpon>Add_Cocktail_Recipes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Setup\Assign_Brand_Size.aspx.cs">
+      <DependentUpon>Assign_Brand_Size.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Assign_Brand_Size.aspx.designer.cs">
+      <DependentUpon>Assign_Brand_Size.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Setup\Bill_Book.aspx.cs">
       <DependentUpon>Bill_Book.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4586,13 +4607,6 @@
     </Compile>
     <Compile Include="Cocktail_World\Setup\Cocktail_Recipes.aspx.designer.cs">
       <DependentUpon>Cocktail_Recipes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Cocktail_World\Setup\Frm_Category_Master.aspx.cs">
-      <DependentUpon>Frm_Category_Master.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cocktail_World\Setup\Frm_Category_Master.aspx.designer.cs">
-      <DependentUpon>Frm_Category_Master.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Setup\Licenses.aspx.cs">
       <DependentUpon>Licenses.aspx</DependentUpon>
@@ -4684,6 +4698,11 @@
     </Compile>
     <Compile Include="Coming_Soon.aspx.designer.cs">
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\eFacilito_Controller.cs" />
     <Compile Include="CSM\CSMConfig_Listing.aspx.cs">
@@ -6675,6 +6694,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UpkeepV3_BusinessLayer\UpkeepV3_BusinessLayer.csproj">
+      <Project>{9AD65256-E522-4F39-83E3-F3E45EAC36DD}</Project>
+      <Name>UpkeepV3_BusinessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\CocktailWorld_Service\</RelPath>
@@ -6697,6 +6722,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Upkeep_v3_Upkeep_V3_Services_Upkeep_V3_Services</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -6729,7 +6757,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.4.5.3\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.4.5.3\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.4.5.3\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.4.5.3\build\Microsoft.TypeScript.MSBuild.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.4.5.3\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.4.5.3\build\Microsoft.TypeScript.MSBuild.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

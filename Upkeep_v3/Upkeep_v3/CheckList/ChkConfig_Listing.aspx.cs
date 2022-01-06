@@ -117,13 +117,33 @@ namespace Upkeep_v3.CheckList
         }
          
         public string DeleteChkRequestListing()
-        { 
-            if (hdnDeleteID.Value != "")
+        {
+            DataSet dsConfig = new DataSet();
+            lblErrorMsg.Text = "";
+            try
             {
-               ObjUpkeep.Delete_CHKConfiguration(Convert.ToInt32(hdnDeleteID.Value.ToString()), LoggedInUserID);
-            }
-            hdnDeleteID.Value = "";
+                if (hdnDeleteID.Value != "")
+                {
+                    dsConfig= ObjUpkeep.Delete_CHKConfiguration(Convert.ToInt32(hdnDeleteID.Value.ToString()), LoggedInUserID);
 
+                    if (dsConfig.Tables.Count > 0)
+                    {
+                        if (dsConfig.Tables[0].Rows.Count > 0)
+                        {
+                            int Status = Convert.ToInt32(dsConfig.Tables[0].Rows[0]["Status"]);
+                            if (Status == 4)
+                            {
+                                lblErrorMsg.Text = Convert.ToString(dsConfig.Tables[0].Rows[0]["ErrorMessage"]);
+                            }
+                        }
+                    }
+                }
+                hdnDeleteID.Value = "";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return "";
         }
         protected void btnDelete_Click(object sender, EventArgs e)

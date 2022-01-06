@@ -140,6 +140,8 @@
                         Style="display: none;" OnClick="btnDelete_Click" Text="Search" />
                     <!--end: Search Form -->
 
+                    <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red" style="font-size: larger;" Text=""></asp:Label>
+
                     <!--begin: Datatable -->
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>

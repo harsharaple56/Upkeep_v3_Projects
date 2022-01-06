@@ -90,9 +90,9 @@
                     var question_count = counter.data('count');
                     question_count++;
                     $('#txtQuestionCount').val(question_count);
+                    $(this).find("#ddlAns").val(1);
                     counter.data('count', question_count).html(question_count + ' Question(s)');
                     $('#error_question_repeater').html('');
-
                     init_autosize();
                     init_plugins();
                 },
@@ -138,12 +138,12 @@
                 initEmpty: false,
                 show: function () {
                     $(this).slideDown();
+                    $(this).find("#ddlSMS").val(0);
                     var counter = $(this).parents('.SMSTemplate_repeater').find('.SMSTemplate_count');
                     var question_count = counter.data('count');
                     question_count++;
                     counter.data('count', question_count).html(question_count + ' SMS Template(s)');
                     $('#error_SMSTemplate').html('');
-
                     init_autosize();
                     init_plugins();
                 },

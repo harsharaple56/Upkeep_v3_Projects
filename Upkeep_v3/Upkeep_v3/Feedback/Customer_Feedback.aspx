@@ -204,6 +204,7 @@ background-color: blanchedalmond;
     <script>
 
         $(document).ready(function () {
+
             $('.datetimepicker').datetimepicker({
                 todayHighlight: true,
                 autoclose: true,
@@ -442,8 +443,11 @@ background-color: blanchedalmond;
         }
 
 
+        var isSubmitted = false;
+
         function SubmitHeader() {
             //debugger;
+
             var cols_len = 0;
             $('#ContentPlaceHolder1_tblFeedbackHeader').find('tr:first td').each(function () {
                 var cspan = $(this).attr('colspan');
@@ -483,24 +487,40 @@ background-color: blanchedalmond;
             document.getElementById("hdnFeedbackHeader").value = infox.innerHTML;
             var myTab = document.getElementById('ContentPlaceHolder1_tblFeedbackHeader');
 
+            if (myTab != null) {
+                // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+                for (i = 2; i < myTab.rows.length; i++) {
 
-            // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
-            for (i = 2; i < myTab.rows.length; i++) {
+                    // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+                    var objCells = myTab.rows.item(i).cells;
+                    //var objCells = myTab.rows.item(i).cells.find('input').val();
 
-                // GET THE CELLS COLLECTION OF THE CURRENT ROW.
-                var objCells = myTab.rows.item(i).cells;
-                //var objCells = myTab.rows.item(i).cells.find('input').val();
+                    // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
+                    //for (var j = 0; j < objCells.length; j++) {
+                    for (var j = 0; j < cols_len - 1; j++) {
+                        info.innerHTML = info.innerHTML + '#' + $(myTab.rows.item(i).cells[j]).find('input').val();
 
-                // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
-                //for (var j = 0; j < objCells.length; j++) {
-                for (var j = 0; j < cols_len - 1; j++) {
-                    info.innerHTML = info.innerHTML + '#' + $(myTab.rows.item(i).cells[j]).find('input').val();
-
+                    }
+                    info.innerHTML = info.innerHTML + ','; // ADD A BREAK (TAG).
                 }
-                info.innerHTML = info.innerHTML + ','; // ADD A BREAK (TAG).
+                document.getElementById("hdnFeedbackHeaderData").value = info.innerHTML;
             }
-            document.getElementById("hdnFeedbackHeaderData").value = info.innerHTML;
-            //alert(info.innerHTML);
+
+            if (!isSubmitted) {
+                var rb = document.getElementById("<%=rdbGender.ClientID%>");
+                var radio = rb.getElementsByTagName("input");
+                var isChecked = false;
+                for (var i = 0; i < radio.length; i++) {
+                    if (radio[i].checked) {
+                        isChecked = true;
+                        break;
+                    }
+                }
+                if ($('#Fname').val() != '' && $('#Lname').val() != '' && $('#Phoneno').val() != '' && $('#EmailID').val() != '' && isChecked) {
+                    $('#<%=btnSave.ClientID %>').val('Saving...');
+                    isSubmitted = true;
+                }
+            }
         }
         var txtControl = null;
         var txtHdn = null;
@@ -569,7 +589,12 @@ background-color: blanchedalmond;
         }
 
     </script>
+    <script type="text/javascript">
+        var isSubmitted = false;
+        function preventMultipleSubmissions() {
 
+        }
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -617,7 +642,9 @@ background-color: blanchedalmond;
                             </div>
                             <div class="btn-group">
 
-                                <asp:Button ID="btnSave" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
+                                <asp:Button ID="btnSave" ValidationGroup="validateFeedback" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md"
+                                    OnClientClick="SubmitHeader();"
+                                    OnClick="btnSave_Click" Text="Submit Feedback" />
 
                                 <asp:Button ID="m_sweetalert_demo_61" ClientIDMode="Static" Style="display: none;" runat="server" Text="Popup" OnClick="btntest1_Click" />
 
@@ -697,9 +724,9 @@ background-color: blanchedalmond;
                                     <span class="fa fa-user" aria-hidden="true"></span>Select your Gender
                                     <div class="col-form-label">
                                         <div class="m-radio-inline" style="padding: inherit;">
-                                            <asp:RadioButtonList runat="server" ID="rdbGender" RepeatDirection="Horizontal" RepeatLayout="Flow" >
+                                            <asp:RadioButtonList runat="server" ID="rdbGender" RepeatDirection="Horizontal" RepeatLayout="Flow">
                                                 <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
-                                                <asp:ListItem Text="Female" Value="Female" ></asp:ListItem>
+                                                <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
                                                 <asp:ListItem Text="Other" Value="Other"></asp:ListItem>
                                             </asp:RadioButtonList>
                                         </div>
@@ -710,157 +737,158 @@ background-color: blanchedalmond;
 
                             </div>
                         </div>
-
                     </div>
 
-                    <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
-                        <h3 class="m-form__heading-title" style="line-height: 2.0; background: gold; font-size: 1.2rem;">Feedback Details</h3>
-                    </div>
-
-                    <asp:Label ID="lblFeedbackError" Text="" runat="server" ForeColor="Red"></asp:Label>
-                    <br />
-                    <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
-                        <ItemTemplate>
-
-                            <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Answer_Type") %>' />
-                            <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
-
-                            <div class="form-group" style="text-align: center;">
-                                <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("Question_ID") %>' />
-                                <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;+ &nbsp; <%#Eval("Question") %> :</label>
-                                <%--<asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />--%>
-                                <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
-
-                                <div id="divStar" style="display: none" runat="server">
-                                    <section class='rating-widget'>
-                                        <input type="hidden" clientidmode="Static" runat="server" class="hdnStar" id="hdnStar" />
-                                        <!-- Rating Stars Box -->
-                                        <div class='rating-stars text-center'>
-                                            <ul id='stars' class="ulStars">
-                                                <li class='star' title='Poor' data-value='1'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class='star' title='Fair' data-value='2'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class='star' title='Good' data-value='3'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class='star' title='Excellent' data-value='4'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class='star' title='WOW!!!' data-value='5'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                            </ul>
-                                            <div id="Div1" runat="server"></div>
-                                        </div>
-
-                                        <div class='success-box' style="display: none;">
-                                            <div class='clearfix'></div>
-                                            <img alt='tick image' width='32' src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K' />
-                                            <div class='text-message'></div>
-                                            <div class='clearfix'></div>
-                                        </div>
-                                    </section>
-
-                                </div>
-                                <div id="divNPS" style="display: none" runat="server">
-                                    <div class="slidecontainer">
-                                        <input type="range" min="1" max="10" clientidmode="Static" runat="server" value="5" class="slider NPRSlider" id="myRange" />
-                                        <p class="NPRValue">Value: 5</p>
-                                    </div>
-                                </div>
-                                <div id="divTextArea" style="display: none" runat="server">
-                                    <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
-                                </div>
-                                <div id="divOptions" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
-                                    <div class="m-radio-inline" style="padding-left: 0px;">
-                                        <label class="m-radio">
-                                            <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
-                                            </asp:RadioButtonList>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div id="divOptions1" style="display: none" runat="server">
-                                    <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
-                                </div>
-                                <div id="divEmoji" style="display: none" runat="server">
-                                    <div id="divRating" class="ratingSmiley text-center">
-                                        <input type="Hidden" clientidmode="Static" runat="server" class="hdnEmoji" id="hdnEmoji" />
-                                        <span class="rating1">😶</span>
-                                        <span class="rating2">😶</span>
-                                        <span class="rating3">😶</span>
-                                        <span class="rating4">😶</span>
-                                        <span class="rating5">😶</span>
-                                    </div>
-                                    <div id="example" runat="server"></div>
-                                </div>
-                            </div>
-
-                        </ItemTemplate>
-                        <FooterTemplate>
-                            <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
-                                Style="display: none;"></asp:Label>
-                        </FooterTemplate>
-
-                    </asp:Repeater>
-
-                    <div style="text-align: center;">
-                        <asp:Button ID="Button1" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
-                    </div>
-                    <br />
-                    <br />
                 </div>
 
+                <div class="m-form__heading" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+                    <h3 class="m-form__heading-title" style="line-height: 2.0; background: gold; font-size: 1.2rem;">Feedback Details</h3>
+                </div>
+
+                <asp:Label ID="lblFeedbackError" Text="" runat="server" ForeColor="Red"></asp:Label>
+                <br />
+                <asp:Repeater ID="rptHeaderDetails" runat="server" OnItemDataBound="rptHeaderDetails_ItemDataBound">
+                    <ItemTemplate>
+
+                        <asp:HiddenField ID="hdnlblAnswerType" runat="server" Value='<%# Eval("Answer_Type") %>' />
+                        <%--<asp:HiddenField ID="hdnlblAnswerTypeData" runat="server" Value='<%# Eval("Ans_Type_Data_ID") %>' />--%>
+
+                        <div class="form-group" style="text-align: center;">
+                            <asp:HiddenField ID="hfHeaderId" runat="server" Value='<%# Eval("Question_ID") %>' />
+                            <label class="form-control-label font-weight-bold" id=' <%#Eval("Question_ID") %> '>&nbsp;+ &nbsp; <%#Eval("Question") %> :</label>
+                            <%--<asp:HiddenField ID="hdnIs_Mandatory" runat="server" Value='<%# Eval("Is_Mandatory") %>' />--%>
+                            <asp:Label ID="lblHeaderErr" Text="" runat="server" CssClass="col-md-8 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
+
+                            <div id="divStar" style="display: none" runat="server">
+                                <section class='rating-widget'>
+                                    <input type="hidden" clientidmode="Static" runat="server" class="hdnStar" id="hdnStar" />
+                                    <!-- Rating Stars Box -->
+                                    <div class='rating-stars text-center'>
+                                        <ul id='stars' class="ulStars">
+                                            <li class='star' title='Poor' data-value='1'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Fair' data-value='2'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Good' data-value='3'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='Excellent' data-value='4'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                            <li class='star' title='WOW!!!' data-value='5'>
+                                                <i class='fa fa-star fa-fw'></i>
+                                            </li>
+                                        </ul>
+                                        <div id="Div1" runat="server"></div>
+                                    </div>
+
+                                    <div class='success-box' style="display: none;">
+                                        <div class='clearfix'></div>
+                                        <img alt='tick image' width='32' src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K' />
+                                        <div class='text-message'></div>
+                                        <div class='clearfix'></div>
+                                    </div>
+                                </section>
+
+                            </div>
+                            <div id="divNPS" style="display: none" runat="server">
+                                <div class="slidecontainer">
+                                    <input type="range" min="1" max="10" clientidmode="Static" runat="server" value="5" class="slider NPRSlider" id="myRange" />
+                                    <p class="NPRValue">Value: 5</p>
+                                </div>
+                            </div>
+                            <div id="divTextArea" style="display: none" runat="server">
+                                <textarea rows="4" cols="50" name="divTextAreaName" id="divTextAreaid" class="form-control" runat="server"></textarea>
+                            </div>
+                            <div id="divOptions" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
+                                <div class="m-radio-inline" style="padding-left: 0px;">
+                                    <label class="m-radio">
+                                        <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
+                                        </asp:RadioButtonList>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="divOptions1" style="display: none" runat="server">
+                                <asp:CheckBoxList ID="divCheckBoxIDI" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CellPadding="1" CellSpacing="1" ClientIDMode="Static"></asp:CheckBoxList>
+                            </div>
+                            <div id="divEmoji" style="display: none" runat="server">
+                                <div id="divRating" class="ratingSmiley text-center">
+                                    <input type="Hidden" clientidmode="Static" runat="server" class="hdnEmoji" id="hdnEmoji" />
+                                    <span class="rating1">😶</span>
+                                    <span class="rating2">😶</span>
+                                    <span class="rating3">😶</span>
+                                    <span class="rating4">😶</span>
+                                    <span class="rating5">😶</span>
+                                </div>
+                                <div id="example" runat="server"></div>
+                            </div>
+                        </div>
+
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        <asp:Label ID="HeaderFooter" runat="server" Text='No Records Found' CssClass="form-control-label col-form-label"
+                            Style="display: none;"></asp:Label>
+                    </FooterTemplate>
+
+                </asp:Repeater>
+
+                <%--                    <div style="text-align: center;">
+                        <asp:Button ID="Button1" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" OnClientClick="if(this.value === 'Saving...') { return false; } else { this.value = 'Saving...'; }SubmitHeader();" ValidationGroup="validateFeedback" OnClick="btnSave_Click" Text="Submit Feedback" />
+                    </div>--%>
+                <br />
+                <br />
+            </div>
 
 
-                <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
 
-                <input type="hidden" id="HdnID" runat="server" />
-                <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+            <asp:Button Text="text" Style="display: none" ID="pop2" runat="server" />
 
-                <asp:Panel ID="pnlFeedbackReqestSuccess" runat="server" CssClass="modalPopup" align="center">
-                    <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document" style="max-width: 590px;">
-                            <div class="modal-content">
-                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                    <ContentTemplate>
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel2">Feedback Request Confirmation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+            <input type="hidden" id="HdnID" runat="server" />
+            <asp:TextBox ID="txtHdn" runat="server" ClientIDMode="Static" Width="100%" Style="display: none"></asp:TextBox>
+
+            <asp:Panel ID="pnlFeedbackReqestSuccess" runat="server" CssClass="modalPopup" align="center">
+                <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="max-width: 590px;">
+                        <div class="modal-content">
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                <ContentTemplate>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel2">Feedback Request Confirmation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseQuestion2">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group m-form__group row">
+                                            <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="form-group m-form__group row">
-                                                <label for="recipient-name" class="col-md-8 form-control-label">Visit Request has been submitted successfully</label>
-                                            </div>
-                                            <%-- <div class="form-group m-form__group row">
+                                        <%-- <div class="form-group m-form__group row">
                                                         <label for="message-text" class="col-md-5 form-control-label font-weight-bold">Request ID :</label>
                                                         <asp:Label ID="lblVMSRequestCode" Text="" runat="server" CssClass="col-md-1 col-form-label" Style="padding-top: calc(0.15rem + 1px); margin-left: -10%;"></asp:Label>
                                                         <br />
                                                         <strong>Please note down your Request ID.</strong>
                                                     </div>--%>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" />
-                                        </div>
-                                    </ContentTemplate>
-                                    <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
-                                    </Triggers>
-                                </asp:UpdatePanel>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <asp:Button ID="btnSuccessOk" runat="server" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--md" Text="Ok" />
+                                    </div>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="btnTest" EventName="Click" />
+                                </Triggers>
+                            </asp:UpdatePanel>
 
 
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                </asp:Panel>
-                <%--</form>--%>
-            </div>
+            </asp:Panel>
+            <%--</form>--%>
         </div>
+    </div>
     </div>
 
 
