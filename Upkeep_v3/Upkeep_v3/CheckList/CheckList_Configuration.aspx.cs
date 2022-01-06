@@ -449,6 +449,10 @@ namespace Upkeep_v3.CheckList
                             else
                                 lblErrorMsg.Text = "Missing Config";
                         }
+                        else if (Status == 4)
+                        {
+                            lblErrorMsg.Text = Convert.ToString(dsChecklistConfig.Tables[0].Rows[0]["ErrorMessage"]);
+                        }
                         else if (Status == 2)
                         {
                             lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
