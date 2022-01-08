@@ -32,7 +32,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0, CompanyID, LoggedInUserID, "F");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0 ,CompanyID, LoggedInUserID, "F");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -95,7 +95,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             try
             {
-                dsExport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0, CompanyID, LoggedInUserID, "F");
+                dsExport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0, CompanyID, LoggedInUserID, "F");
 
                 DataTable dtCocktailMasterReport = new DataTable();
 
@@ -175,7 +175,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet dsReport = new DataSet();
-                dsReport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0, CompanyID, LoggedInUserID, "F");
+                dsReport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0, CompanyID, LoggedInUserID, "F");
 
                 System.Data.DataTable dtReport = new System.Data.DataTable();
                 dtReport = dsReport.Tables[0];

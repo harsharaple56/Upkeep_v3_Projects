@@ -14,12 +14,12 @@
 #pragma warning disable 1591
 
 namespace Upkeep_v3.CocktailWorld_Service {
-    using System.Diagnostics;
     using System;
+    using System.Web.Services;
+    using System.Diagnostics;
+    using System.Web.Services.Protocols;
     using System.Xml.Serialization;
     using System.ComponentModel;
-    using System.Web.Services.Protocols;
-    using System.Web.Services;
     using System.Data;
     
     
@@ -251,11 +251,13 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/BrandOpeningMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, int Company_ID, string LoggedInUser, string Action) {
+        public System.Data.DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int Company_ID, string LoggedInUser, string Action) {
             object[] results = this.Invoke("BrandOpeningMaster_CRUD", new object[] {
                         BrandOpening_ID,
                         CategoryDetails,
                         BrandID,
+                        closingBottle,
+                        closingSpeg,
                         Company_ID,
                         LoggedInUser,
                         Action});
@@ -263,12 +265,12 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void BrandOpeningMaster_CRUDAsync(int BrandOpening_ID, string CategoryDetails, int BrandID, int Company_ID, string LoggedInUser, string Action) {
-            this.BrandOpeningMaster_CRUDAsync(BrandOpening_ID, CategoryDetails, BrandID, Company_ID, LoggedInUser, Action, null);
+        public void BrandOpeningMaster_CRUDAsync(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int Company_ID, string LoggedInUser, string Action) {
+            this.BrandOpeningMaster_CRUDAsync(BrandOpening_ID, CategoryDetails, BrandID, closingBottle, closingSpeg, Company_ID, LoggedInUser, Action, null);
         }
         
         /// <remarks/>
-        public void BrandOpeningMaster_CRUDAsync(int BrandOpening_ID, string CategoryDetails, int BrandID, int Company_ID, string LoggedInUser, string Action, object userState) {
+        public void BrandOpeningMaster_CRUDAsync(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int Company_ID, string LoggedInUser, string Action, object userState) {
             if ((this.BrandOpeningMaster_CRUDOperationCompleted == null)) {
                 this.BrandOpeningMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBrandOpeningMaster_CRUDOperationCompleted);
             }
@@ -276,6 +278,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         BrandOpening_ID,
                         CategoryDetails,
                         BrandID,
+                        closingBottle,
+                        closingSpeg,
                         Company_ID,
                         LoggedInUser,
                         Action}, this.BrandOpeningMaster_CRUDOperationCompleted, userState);
@@ -624,6 +628,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SaleDetailsMaster_Crud", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet SaleDetailsMaster_Crud(
                     int Sale_ID, 
+                    int SaleDetail_ID, 
                     string Brand_Desc, 
                     string Size_Desc, 
                     string Cocktail_Desc, 
@@ -644,6 +649,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
                     int Company_ID) {
             object[] results = this.Invoke("SaleDetailsMaster_Crud", new object[] {
                         Sale_ID,
+                        SaleDetail_ID,
                         Brand_Desc,
                         Size_Desc,
                         Cocktail_Desc,
@@ -668,6 +674,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         /// <remarks/>
         public void SaleDetailsMaster_CrudAsync(
                     int Sale_ID, 
+                    int SaleDetail_ID, 
                     string Brand_Desc, 
                     string Size_Desc, 
                     string Cocktail_Desc, 
@@ -686,12 +693,13 @@ namespace Upkeep_v3.CocktailWorld_Service {
                     string Action, 
                     int LoggedInUser, 
                     int Company_ID) {
-            this.SaleDetailsMaster_CrudAsync(Sale_ID, Brand_Desc, Size_Desc, Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount, Permit_Holder, License_ID, Action, LoggedInUser, Company_ID, null);
+            this.SaleDetailsMaster_CrudAsync(Sale_ID, SaleDetail_ID, Brand_Desc, Size_Desc, Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount, Permit_Holder, License_ID, Action, LoggedInUser, Company_ID, null);
         }
         
         /// <remarks/>
         public void SaleDetailsMaster_CrudAsync(
                     int Sale_ID, 
+                    int SaleDetail_ID, 
                     string Brand_Desc, 
                     string Size_Desc, 
                     string Cocktail_Desc, 
@@ -716,6 +724,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
             }
             this.InvokeAsync("SaleDetailsMaster_Crud", new object[] {
                         Sale_ID,
+                        SaleDetail_ID,
                         Brand_Desc,
                         Size_Desc,
                         Cocktail_Desc,
@@ -745,8 +754,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SaleMaster_Crud", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet SaleMaster_Crud(string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID) {
+        public System.Data.DataSet SaleMaster_Crud(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID) {
             object[] results = this.Invoke("SaleMaster_Crud", new object[] {
+                        Sale_ID,
                         date,
                         Bill_No,
                         license,
@@ -757,16 +767,17 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void SaleMaster_CrudAsync(string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID) {
-            this.SaleMaster_CrudAsync(date, Bill_No, license, Action, LoggedInUser, Company_ID, null);
+        public void SaleMaster_CrudAsync(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID) {
+            this.SaleMaster_CrudAsync(Sale_ID, date, Bill_No, license, Action, LoggedInUser, Company_ID, null);
         }
         
         /// <remarks/>
-        public void SaleMaster_CrudAsync(string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID, object userState) {
+        public void SaleMaster_CrudAsync(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID, object userState) {
             if ((this.SaleMaster_CrudOperationCompleted == null)) {
                 this.SaleMaster_CrudOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaleMaster_CrudOperationCompleted);
             }
             this.InvokeAsync("SaleMaster_Crud", new object[] {
+                        Sale_ID,
                         date,
                         Bill_No,
                         license,

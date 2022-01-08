@@ -29,17 +29,163 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 SetBrandInitialRow();
                 Fetch_CocktailName();
                 SetCocktailInitialRow();
+
+                #region Edit and Delete Sale
+                int Sale_ID = Convert.ToInt32(Request.QueryString["Sale_ID"]);
+                int DelSale_ID = Convert.ToInt32(Request.QueryString["DelSale_ID"]);
+                if (Sale_ID > 0)
+                {
+                    Bind_SaleMaster(Sale_ID);
+                }
+                if (DelSale_ID > 0)
+                {
+                    Delete_SaleMaster(DelSale_ID);
+                }
+                #endregion
+            }
+        }
+
+        public void Bind_SaleMaster(int Sale_ID)
+        {
+            try
+            {
+                DataSet dsSale = new DataSet();
+                dsSale = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, string.Empty, string.Empty, 0, "Fetch", Convert.ToInt32(LoggedInUserID), CompanyID);
+
+                DataSet dsSaleDetail = new DataSet();
+                dsSaleDetail = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, 0, string.Empty, string.Empty, string.Empty, 0, string.Empty, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Fetch", Convert.ToInt32(LoggedInUserID), CompanyID);
+
+                if (dsSale.Tables.Count > 0)
+                {
+                    if (dsSale.Tables[0].Rows.Count > 0)
+                    {
+                        DateTime saleDate = Convert.ToDateTime(dsSale.Tables[0].Rows[0]["Sale_Date"]);
+                        txtBrandDate.Text = saleDate.ToString("dd-MMMM-yyyy");
+                        txtBill.Text = Convert.ToString(dsSale.Tables[0].Rows[0]["Bill_No"]);
+                        string txtLicen = Convert.ToString(dsSale.Tables[0].Rows[0]["License_ID"]);
+
+                        Fetch_License();
+                        ddlLicense.ClearSelection(); //making sure the previous selection has been cleared
+                        ddlLicense.Items.FindByValue(txtLicen).Selected = true;
+
+                        DataRow drCurrentRow = null;
+                        DataTable dtCurrentTable = new DataTable();
+
+                        dtCurrentTable.Columns.Add("Brand", typeof(String));
+                        dtCurrentTable.Columns.Add("Size", typeof(String));
+                        dtCurrentTable.Columns.Add("sPegQty", typeof(String));
+                        dtCurrentTable.Columns.Add("sPegRate", typeof(String));
+                        dtCurrentTable.Columns.Add("lPegQty", typeof(String));
+                        dtCurrentTable.Columns.Add("lPegRate", typeof(String));
+                        dtCurrentTable.Columns.Add("Bottle_Qty", typeof(String));
+                        dtCurrentTable.Columns.Add("Bottle_Rate", typeof(String));
+                        dtCurrentTable.Columns.Add("Stock", typeof(String));
+                        dtCurrentTable.Columns.Add("Total_Amount", typeof(String));
+                        dtCurrentTable.Columns.Add("Tax_Amount", typeof(String));
+                        dtCurrentTable.Columns.Add("Permit_Holder", typeof(String));
+
+                        dsSaleDetail.Tables[0].Columns.Add("Stock", typeof(String));
+
+                        if (ViewState["Brands"] != null)
+                        {
+                            for (int i = 0; i < dsSaleDetail.Tables[0].Rows.Count; i++)
+                            {
+                                drCurrentRow = dtCurrentTable.NewRow();
+                                drCurrentRow["Brand"] = dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString();
+                                drCurrentRow["Size"] = dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString();
+                                drCurrentRow["sPegQty"] = dsSaleDetail.Tables[0].Rows[i]["SPeg_Qty"].ToString();
+                                drCurrentRow["sPegRate"] = dsSaleDetail.Tables[0].Rows[i]["SPeg_Rate"].ToString();
+                                drCurrentRow["lPegQty"] = dsSaleDetail.Tables[0].Rows[i]["LPeg_Qty"].ToString();
+                                drCurrentRow["lPegRate"] = dsSaleDetail.Tables[0].Rows[i]["LPeg_Rate"].ToString();
+                                drCurrentRow["Bottle_Qty"] = dsSaleDetail.Tables[0].Rows[i]["Bottle_Qty"].ToString();
+                                drCurrentRow["Bottle_Rate"] = dsSaleDetail.Tables[0].Rows[i]["Bottle_Rate"].ToString();
+                                drCurrentRow["Tax_Amount"] = dsSaleDetail.Tables[0].Rows[i]["Category_Tax_Amt"].ToString();
+                                drCurrentRow["Total_Amount"] = dsSaleDetail.Tables[0].Rows[i]["Total_Amt"].ToString();
+                                drCurrentRow["Permit_Holder"] = dsSaleDetail.Tables[0].Rows[i]["Permit_Desc"].ToString();
+
+                                
+
+                                DataSet dsGetStockDetails = new DataSet();
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID);
+                                if (dsGetStockDetails.Tables[0].Rows.Count > 0)
+                                {
+                                    string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
+                                    string getsPeg = dsGetStockDetails.Tables[0].Rows[0].ItemArray[1].ToString();
+                                    string getOpningID = dsGetStockDetails.Tables[0].Rows[0].ItemArray[2].ToString();
+                                    string displayStock = "Bottle :" + getBottle + " , Speg :" + getsPeg;
+                                    drCurrentRow["Stock"] = displayStock;
+                                }
+                                else
+                                {
+                                    drCurrentRow["Stock"] = "Bottle :" + 0 + " , Speg :" + 0;
+                                }
+
+                                dtCurrentTable.Rows.Add(drCurrentRow);
+                            }
+                            dtCurrentTable.AcceptChanges();
+                        }
+
+                        if (dtCurrentTable.Rows.Count > 0)
+                        {
+                            grdBrandLinkup.DataSource = dtCurrentTable.Copy();
+                            grdBrandLinkup.DataBind();
+                            DataTable dt = new DataTable();
+                            dt = dtCurrentTable.Copy();
+                            ViewState["Brands"] = dt;
+
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                string value = dt.Rows[i]["Permit_Holder"].ToString();
+                                DropDownList ddl2 = (DropDownList)grdBrandLinkup.Rows[i].Cells[1].FindControl("ddlPermit");
+                                FillDropDownListPermitHolder(ddl2);
+                                if (!string.IsNullOrEmpty(value))
+                                    ddl2.Items.FindByText(value).Selected = true;
+                                else
+                                    ddl2.Items.FindByValue("-1").Selected = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public void Delete_SaleMaster(int Sale_ID)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, string.Empty, string.Empty, 0, "D", Convert.ToInt32(LoggedInUserID), CompanyID);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        DataSet dsSD = new DataSet();
+                        dsSD = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, 0, string.Empty, string.Empty, string.Empty, 0, string.Empty, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Delete", Convert.ToInt32(LoggedInUserID), CompanyID);
+
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx"), false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
         private void Fetch_License()
         {
-            ds = ObjCocktailWorld.License(0,string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
+            ds = ObjCocktailWorld.License_CRUD(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
             ddlLicense.DataSource = ds.Tables[0];
             ddlLicense.DataTextField = "License_Name";
             ddlLicense.DataValueField = "License_ID";
             ddlLicense.DataBind();
-            ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
+            ddlLicense.Items.Insert(0, new ListItem("------Select License-----", "0"));
         }
 
         private DataSet GetStockDetails()
@@ -117,12 +263,25 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             Fetch_Brand_Size();
         }
 
+        protected void ddlSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            ds = GetStockDetails();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                string getBottle = ds.Tables[0].Rows[0].ItemArray[0].ToString();
+                string getsPeg = ds.Tables[0].Rows[0].ItemArray[1].ToString();
+                string displayStock = "Available Stock :- Bottle :" + getBottle + " & Speg :" + getsPeg;
+                lbl_stock.Text = displayStock;
+            }
+        }
+
         private void Fetch_CocktailName()
         {
             Session.Remove("hdnCocktailTax");
             Session["hdnCocktailTax"] = null;
 
-            ds = ObjCocktailWorld.CocktailMaster_CRUD(0,"", "", CompanyID, "", "Fetch");
+            ds = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "", "Fetch");
             ddlCocktail.DataSource = ds.Tables[0];
             ddlCocktail.DataTextField = "Cocktail_Desc";
             ddlCocktail.DataValueField = "Cocktail_ID";
@@ -167,7 +326,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         private void FillDropDownListPermitHolder(DropDownList ddl)
         {
-
             ArrayList arr = GetPermitHolderData();
             foreach (ListItem item in arr)
             {
@@ -177,7 +335,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         private void FillDropDownListPermitHolderCocktail(DropDownList dd2)
         {
-
             ArrayList arr = GetPermitHolderData();
             foreach (ListItem item in arr)
             {
@@ -192,21 +349,20 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 ViewState["Brands"] = null;
 
                 DataTable dt = new DataTable();
-                dt.Columns.AddRange(new DataColumn[]
+                dt.Columns.AddRange(new DataColumn[12]
                 {
-        new DataColumn("Brand", typeof(string)),
-        new DataColumn("Size", typeof(string)),
-        new DataColumn("Stock", typeof(string)),
-        new DataColumn("sPegQty", typeof(string)),
-        new DataColumn("sPegRate",typeof(string)),
-        new DataColumn("lPegQty", typeof(string)),
-        new DataColumn("lPegRate", typeof(string)),
-        new DataColumn("Bottle_Qty", typeof(string)),
-        new DataColumn("Bottle_Rate", typeof(string)),
-        new DataColumn("Total_Amount", typeof(string)),
-        new DataColumn("Tax_Amount", typeof(string)),
-        new DataColumn("Permit_Holder", typeof(string))
-
+                    new DataColumn("Brand", typeof(string)),
+                    new DataColumn("Size", typeof(string)),
+                    new DataColumn("Stock", typeof(string)),
+                    new DataColumn("sPegQty", typeof(string)),
+                    new DataColumn("sPegRate",typeof(string)),
+                    new DataColumn("lPegQty", typeof(string)),
+                    new DataColumn("lPegRate", typeof(string)),
+                    new DataColumn("Bottle_Qty", typeof(string)),
+                    new DataColumn("Bottle_Rate", typeof(string)),
+                    new DataColumn("Total_Amount", typeof(string)),
+                    new DataColumn("Tax_Amount", typeof(string)),
+                    new DataColumn("Permit_Holder", typeof(string))
                 });
 
                 DataRow drRow = dt.NewRow();
@@ -225,11 +381,10 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 dt.Rows.Add(drRow);
 
                 ViewState["Brands"] = dt;
-                grdBrandLinkup.DataSource = ViewState["Brands"];
-                grdBrandLinkup.DataBind();
+                BindBrandGrid();
 
-                DropDownList ddl1 = (DropDownList)grdBrandLinkup.Rows[0].Cells[1].FindControl("ddlPermit");
-                FillDropDownListPermitHolder(ddl1);
+                //DropDownList ddl1 = (DropDownList)grdBrandLinkup.Rows[0].Cells[1].FindControl("ddlPermit");
+                //FillDropDownListPermitHolder(ddl1);
             }
             catch (Exception ex)
             {
@@ -266,11 +421,10 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 dt.Rows.Add(drRow);
 
                 ViewState["Cocktails"] = dt;
-                grdCocktail.DataSource = ViewState["Cocktails"];
-                grdCocktail.DataBind();
+                BindCocktailGrid();
 
-                DropDownList ddl2 = (DropDownList)grdCocktail.Rows[0].Cells[1].FindControl("ddlPermit");
-                FillDropDownListPermitHolderCocktail(ddl2);
+                //DropDownList ddl2 = (DropDownList)grdCocktail.Rows[0].Cells[1].FindControl("ddlPermit");
+                //FillDropDownListPermitHolderCocktail(ddl2);
             }
             catch (Exception ex)
             {
@@ -515,14 +669,50 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void BindBrandGrid()
         {
-            grdBrandLinkup.DataSource = (DataTable)ViewState["Brands"];
+            grdBrandLinkup.DataSource = ViewState["Brands"] as DataTable;
             grdBrandLinkup.DataBind();
+
+            for (int i = 0; i < grdBrandLinkup.Rows.Count; i++)
+            {
+                DropDownList ddl1 = (DropDownList)grdBrandLinkup.Rows[i].Cells[1].FindControl("ddlPermit");
+                FillDropDownListPermitHolder(ddl1);
+            }
+
+            string value = string.Empty;
+            DataTable dt = ViewState["Brands"] as DataTable;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                value = dt.Rows[i]["Permit_Holder"].ToString();
+                DropDownList ddl2 = (DropDownList)grdBrandLinkup.Rows[i].Cells[1].FindControl("ddlPermit");
+                if (!string.IsNullOrEmpty(value))
+                    ddl2.Items.FindByText(value).Selected = true;
+                else
+                    ddl2.Items.FindByValue("-1").Selected = true;
+            }
         }
 
         protected void BindCocktailGrid()
         {
             grdCocktail.DataSource = (DataTable)ViewState["Cocktails"];
             grdCocktail.DataBind();
+
+            for (int i = 0; i < grdCocktail.Rows.Count; i++)
+            {
+                DropDownList ddl1 = (DropDownList)grdCocktail.Rows[i].Cells[1].FindControl("ddlPermit");
+                FillDropDownListPermitHolder(ddl1);
+            }
+
+            string value = string.Empty;
+            DataTable dt = ViewState["Cocktails"] as DataTable;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                value = dt.Rows[i]["Permit_Holder"].ToString();
+                DropDownList ddl2 = (DropDownList)grdCocktail.Rows[i].Cells[1].FindControl("ddlPermit");
+                if (!string.IsNullOrEmpty(value))
+                    ddl2.Items.FindByText(value).Selected = true;
+                else
+                    ddl2.Items.FindByValue("-1").Selected = true;
+            }
         }
 
         protected void BrandOnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -531,11 +721,12 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             {
                 if (e.Row.RowType == DataControlRowType.DataRow)
                 {
+                    DropDownList DropDownList1 = (DropDownList)e.Row.FindControl("ddlPermit");
                     foreach (LinkButton button in e.Row.Cells[0].Controls.OfType<LinkButton>())
                     {
                         if (button.CommandName == "Delete")
                         {
-                            button.Attributes["onclick"] = "if(!confirm('Are You Sure Want To Remove ?')){ return false; };";
+                            button.Attributes["onclick"] = "if(!confirm('Are You Sure Want To Remove This Transaction ?')){ return false; };";
                         }
                     }
                 }
@@ -551,26 +742,12 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             int index = Convert.ToInt32(e.RowIndex);
             DataTable dt = ViewState["Brands"] as DataTable;
-
-            //ObjCocktailWorld.SaleDetailsMaster_Crud(0, dt.Rows[index]["Brand"].ToString(), dt.Rows[index]["Size"].ToString(), "", 0, "",
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Bottle_Qty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Bottle_Qty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Bottle_Rate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Bottle_Rate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["sPegQty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["sPegQty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["sPegRate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["sPegRate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["lPegQty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["lPegQty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["lPegRate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["lPegRate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Total_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Total_Amount"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Tax_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Tax_Amount"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Permit_Holder"].ToString()) ? Convert.ToInt32(dt.Rows[index]["Permit_Holder"]) : 0, Convert.ToInt32(ddlLicense.SelectedValue), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
-
             dt.Rows[index].Delete();
             dt.AcceptChanges();
             ViewState["Brands"] = dt;
             BindBrandGrid();
-            if (index == 0)
-            {
+            if (index == 0 && dt.Rows.Count == 0)
                 SetBrandInitialRow();
-            }
         }
 
         protected void grdBrandLinkup_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -589,7 +766,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     {
                         if (button.CommandName == "Delete")
                         {
-                            button.Attributes["onclick"] = "if(!confirm('Are You Sure Want To Remove ?')){ return false; };";
+                            button.Attributes["onclick"] = "if(!confirm('Are You Sure Want To Remove This Transaction ?')){ return false; };";
                         }
                     }
                 }
@@ -604,23 +781,12 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             int index = Convert.ToInt32(e.RowIndex);
             DataTable dt = ViewState["Cocktails"] as DataTable;
-
-            //Delete From Gridview -- Isactive = 1
-            //ObjCocktailWorld.SaleDetailsMaster_Crud(0, "", "", dt.Rows[index]["Cocktail_Desc"].ToString(), 0, "",
-            //    !string.IsNullOrEmpty(dt.Rows[index]["Cat_Bottle_Qty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Cat_Bottle_Qty"]) : 0,
-            //    !string.IsNullOrEmpty(dt.Rows[index]["Cat_Bottle_Rate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Cat_Bottle_Rate"]) : 0, 0, 0, 0, 0,
-            //    !string.IsNullOrEmpty(dt.Rows[index]["Cat_Tax_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Cat_Tax_Amount"]) : 0,
-            //    !string.IsNullOrEmpty(dt.Rows[index]["Cat_Total_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Cat_Total_Amount"]) : 0,
-            //    !string.IsNullOrEmpty(dt.Rows[index]["Permit_Holder"].ToString()) ? Convert.ToInt32(dt.Rows[index]["Permit_Holder"]) : 0, ddlLicense.SelectedIndex, "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
-
             dt.Rows[index].Delete();
             dt.AcceptChanges();
             ViewState["Cocktails"] = dt;
             BindCocktailGrid();
-            if (index == 0)
-            {
+            if (index == 0 && dt.Rows.Count == 0)
                 SetCocktailInitialRow();
-            }
         }
 
         protected void grdCocktailLinkup_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -641,25 +807,12 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         public bool CheckBrandSaleDuplicateData()
         {
-            DataSet dsGetBrandSale = new DataSet();
-            dsGetBrandSale = ObjCocktailWorld.SaleMaster_Crud(txtBrandDate.Text, txtBill.Text, ddlLicense.SelectedIndex, "Select", Convert.ToInt32(LoggedInUserID), CompanyID);
-            if (dsGetBrandSale.Tables[0].Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
 
         public bool CheckCocktailSaleDuplicateData()
         {
-            DataSet dsGetCocktailSale = new DataSet();
-            dsGetCocktailSale = ObjCocktailWorld.SaleMaster_Crud(txtCocktailDate.Text, CocktailBill.Text, ddlLicense.SelectedIndex, "Select", Convert.ToInt32(LoggedInUserID), CompanyID);
-
-            if (dsGetCocktailSale.Tables[0].Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
 
         protected void btn_Add_Brand_Cocktail_Sale_Click(object sender, EventArgs e)
@@ -688,7 +841,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     bool brandDuplicate = CheckBrandSaleDuplicateData();
                     bool displayMessage = false;
 
-                    if (!brandDuplicate)
+                    if (brandDuplicate)
                     {
                         //Add Sale Data in Temporary Datatable
                         DataTable dtInsertSaleData = new DataTable();
@@ -887,17 +1040,17 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         {
                             //Insert Operation for Brand Sale
                             DataSet dsBrandSale = new DataSet();
-                            dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(txtBrandDate.Text, txtBill.Text, Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                            dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(0, txtBrandDate.Text, txtBill.Text, Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
 
                             for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
                             {
                                 DataSet dsUpdateOpeningData = new DataSet();
-                                dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertSaleData.Rows[i]["Opening_ID"]),
-                                    Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
+                                dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertSaleData.Rows[i]["Opening_ID"]), string.Empty, 0,
+                                   Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingSpeg"]), CompanyID, LoggedInUserID, "UpdateStock");
 
                                 if (dsUpdateOpeningData.Tables[0].Rows.Count > 0)
                                 {
-                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
+                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
                                         Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
                                         Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
                                         Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
@@ -939,7 +1092,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     //Check Cocktail Sale Duplicate Data
                     bool cocktailDuplicate = CheckCocktailSaleDuplicateData();
                     bool displayMessage = false;
-                    if (!cocktailDuplicate)
+                    if (cocktailDuplicate)
                     {
                         //Add Sale Data in Temporary Datatable
                         DataTable dtInsertSaleData = new DataTable();
@@ -1107,16 +1260,16 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         {
                             //Insert Operation for Cocktail Sale
                             DataSet dsCocktailSale = new DataSet();
-                            dsCocktailSale = ObjCocktailWorld.SaleMaster_Crud(txtCocktailDate.Text, CocktailBill.Text, ddlLicense.SelectedIndex, "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                            dsCocktailSale = ObjCocktailWorld.SaleMaster_Crud(0, txtCocktailDate.Text, CocktailBill.Text, ddlLicense.SelectedIndex, "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
                             for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
                             {
                                 DataSet dsUpdateOpeningData = new DataSet();
-                                dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertSaleData.Rows[i]["Opening_ID"]),
-                                    Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
+                                //dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertSaleData.Rows[i]["Opening_ID"]),
+                                //    Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
 
                                 if (dsUpdateOpeningData.Tables[0].Rows.Count > 0)
                                 {
-                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsCocktailSale.Tables[0].Rows[0]["Sale_ID"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
+                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsCocktailSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
                                         Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
                                         Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
                                         Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
@@ -1146,6 +1299,23 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             {
                 throw ex;
             }
+        }
+
+        protected void ddlPermit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList drp = (DropDownList)sender;
+            GridViewRow gv = (GridViewRow)drp.NamingContainer;
+            int index = gv.RowIndex;
+            DropDownList DropDownList1 = (DropDownList)grdBrandLinkup.Rows[index].FindControl("ddlPermit");
+            string value = DropDownList1.SelectedItem.Text;
+
+            DataTable dt = ViewState["Brands"] as DataTable;
+            foreach (DataRow dr in dt.Rows)
+            {
+                dr["Permit_Holder"] = value;
+            }
+            dt.AcceptChanges();
+            ViewState["Brands"] = dt;
         }
 
     }
