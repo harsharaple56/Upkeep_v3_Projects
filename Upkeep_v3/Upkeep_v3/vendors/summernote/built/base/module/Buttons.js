@@ -216,7 +216,7 @@ var Buttons = /** @class */ (function () {
                         contents: _this.ui.icon(_this.options.icons.font + ' note-recent-color'),
                         tooltip: _this.lang.color.recent,
                         click: function (e) {
-                            var $button = jquery_1["default"](e.currentTarget);
+                            var $button = (0, jquery_1["default"])(e.currentTarget);
                             _this.context.invoke('editor.color', {
                                 backColor: $button.attr('data-backColor'),
                                 foreColor: $button.attr('data-foreColor')
@@ -259,7 +259,7 @@ var Buttons = /** @class */ (function () {
                         ].join(''),
                         callback: function ($dropdown) {
                             $dropdown.find('.note-holder').each(function (idx, item) {
-                                var $holder = jquery_1["default"](item);
+                                var $holder = (0, jquery_1["default"])(item);
                                 $holder.append(_this.ui.palette({
                                     colors: _this.options.colors,
                                     colorsName: _this.options.colorsName,
@@ -270,7 +270,7 @@ var Buttons = /** @class */ (function () {
                             });
                         },
                         click: function (event) {
-                            var $button = jquery_1["default"](event.target);
+                            var $button = (0, jquery_1["default"])(event.target);
                             var eventName = $button.data('event');
                             var value = $button.data('value');
                             if (eventName && value) {
@@ -672,7 +672,7 @@ var Buttons = /** @class */ (function () {
             });
             var fontName_1 = lists_1["default"].find(fontNames, this.isFontInstalled.bind(this));
             $cont.find('.dropdown-fontname a').each(function (idx, item) {
-                var $item = jquery_1["default"](item);
+                var $item = (0, jquery_1["default"])(item);
                 // always compare string to avoid creating another func.
                 var isChecked = ($item.data('value') + '') === (fontName_1 + '');
                 $item.toggleClass('checked', isChecked);
@@ -682,7 +682,7 @@ var Buttons = /** @class */ (function () {
         if (styleInfo['font-size']) {
             var fontSize_1 = styleInfo['font-size'];
             $cont.find('.dropdown-fontsize a').each(function (idx, item) {
-                var $item = jquery_1["default"](item);
+                var $item = (0, jquery_1["default"])(item);
                 // always compare with string to avoid creating another func.
                 var isChecked = ($item.data('value') + '') === (fontSize_1 + '');
                 $item.toggleClass('checked', isChecked);
@@ -693,7 +693,7 @@ var Buttons = /** @class */ (function () {
             var lineHeight_1 = styleInfo['line-height'];
             $cont.find('.dropdown-line-height li a').each(function (idx, item) {
                 // always compare with string to avoid creating another func.
-                var isChecked = (jquery_1["default"](item).data('value') + '') === (lineHeight_1 + '');
+                var isChecked = ((0, jquery_1["default"])(item).data('value') + '') === (lineHeight_1 + '');
                 _this.className = isChecked ? 'checked' : '';
             });
         }
@@ -706,7 +706,7 @@ var Buttons = /** @class */ (function () {
     };
     Buttons.prototype.tableMoveHandler = function (event) {
         var PX_PER_EM = 18;
-        var $picker = jquery_1["default"](event.target.parentNode); // target is mousecatcher
+        var $picker = (0, jquery_1["default"])(event.target.parentNode); // target is mousecatcher
         var $dimensionDisplay = $picker.next();
         var $catcher = $picker.find('.note-dimension-picker-mousecatcher');
         var $highlighted = $picker.find('.note-dimension-picker-highlighted');
@@ -714,7 +714,7 @@ var Buttons = /** @class */ (function () {
         var posOffset;
         // HTML5 with jQuery - e.offsetX is undefined in Firefox
         if (event.offsetX === undefined) {
-            var posCatcher = jquery_1["default"](event.target).offset();
+            var posCatcher = (0, jquery_1["default"])(event.target).offset();
             posOffset = {
                 x: event.pageX - posCatcher.left,
                 y: event.pageY - posCatcher.top

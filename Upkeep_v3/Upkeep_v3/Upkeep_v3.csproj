@@ -1110,16 +1110,6 @@
     <Content Include="Cocktail_World\Transactions\Select_Transaction.aspx" />
     <Content Include="Cocktail_World\Transactions\Transfers.aspx" />
     <Content Include="Coming_Soon.aspx" />
-    <Content Include="Connected Services\ServiceReference1\Upkeep_v3.ServiceReference1.Insert_WhatSappLogResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Connected Services\ServiceReference1\Upkeep_V3_Services.disco" />
-    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
-    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
-    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="CSM\CSMConfig_Listing.aspx" />
     <Content Include="CSM\CSM_Configuration.aspx" />
     <Content Include="CSM\List_Service_Requests_Type.aspx" />
@@ -4174,7 +4164,6 @@
     <Content Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xss">
       <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
     </Content>
-    <None Include="Connected Services\ServiceReference1\Upkeep_V3_Services.wsdl" />
     <None Include="GatePass\Gatepass_Details_Print.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4204,15 +4193,15 @@
       <DependentUpon>Visitor_ID.xsd</DependentUpon>
     </Content>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.disco" />
+    <None Include="Web References\Upkeep_V3_Services\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Web References\CocktailWorld_Service\CocktailWorld_Service.wsdl" />
-    <Content Include="Web References\CocktailWorld_Service\Reference.map">
+    <None Include="Web References\CocktailWorld_Service\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web References\Upkeep_V3_Services\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.disco" />
     <Content Include="WebForm3.aspx" />
     <Content Include="WorkPermit\MyActionable_WorkPermit.aspx" />
@@ -4698,11 +4687,6 @@
     </Compile>
     <Compile Include="Coming_Soon.aspx.designer.cs">
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\eFacilito_Controller.cs" />
     <Compile Include="CSM\CSMConfig_Listing.aspx.cs">
@@ -6722,9 +6706,6 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Upkeep_v3_Upkeep_V3_Services_Upkeep_V3_Services</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
