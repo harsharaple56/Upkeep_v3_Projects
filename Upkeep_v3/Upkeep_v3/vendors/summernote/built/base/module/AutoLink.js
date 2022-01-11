@@ -34,7 +34,7 @@ var AutoLink = /** @class */ (function () {
         var match = keyword.match(linkPattern);
         if (match && (match[1] || match[2])) {
             var link = match[1] ? keyword : defaultScheme + keyword;
-            var node = (0, jquery_1["default"])('<a />').html(keyword).attr('href', link)[0];
+            var node = jquery_1["default"]('<a />').html(keyword).attr('href', link)[0];
             this.lastWordRange.insertNode(node);
             this.lastWordRange = null;
             this.context.invoke('editor.focus');

@@ -54,7 +54,7 @@ public class My_CocktailWorld
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID,  closingBottle,  closingSpeg ,Company_ID, LoggedInUser, Action,StrConn);
+            ds = ObjcocktailWorld_Master_BL.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, closingBottle, closingSpeg, Company_ID, LoggedInUser, Action, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -142,7 +142,7 @@ public class My_CocktailWorld
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.SaleDetailsMaster_Crud(Sale_ID,SaleDetail_ID, Brand_Desc, Size_Desc, Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount, Permit_Holder, License_ID, Action, LoggedInUser, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.SaleDetailsMaster_Crud(Sale_ID, SaleDetail_ID, Brand_Desc, Size_Desc, Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount, Permit_Holder, License_ID, Action, LoggedInUser, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -152,14 +152,14 @@ public class My_CocktailWorld
     }
 
 
-    public DataSet SaleMaster_Crud(int Sale_ID,string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID)
+    public DataSet SaleMaster_Crud(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.SaleMaster_Crud(Sale_ID,date, Bill_No, license, Action, LoggedInUser, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.SaleMaster_Crud(Sale_ID, date, Bill_No, license, Action, LoggedInUser, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -175,7 +175,7 @@ public class My_CocktailWorld
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.CategoryMaster_CRUD(Company_ID, Category_ID, Category_Desc, Category_Alias, LoggedInUserID, Action, StrConn);
+            ds = ObjcocktailWorld_Master_BL.Category_CRUD(Company_ID, Category_ID, Category_Desc, Category_Alias, LoggedInUserID, Action, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -342,7 +342,7 @@ public class My_CocktailWorld
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.CocktailBrandsMaster_CRUD(Cocktail_Brand_ID,Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action, StrConn);
+            ds = ObjcocktailWorld_Master_BL.CocktailBrandsMaster_CRUD(Cocktail_Brand_ID, Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -392,7 +392,7 @@ public class My_CocktailWorld
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.License_CRUD(LicenseID,LicenseName,LicenseNo,LoggedInUserID, Company_ID, Action, StrConn);
+            ds = ObjcocktailWorld_Master_BL.License_CRUD(LicenseID, LicenseName, LicenseNo, LoggedInUserID, Company_ID, Action, StrConn);
             return ds;
         }
         catch (Exception ex)

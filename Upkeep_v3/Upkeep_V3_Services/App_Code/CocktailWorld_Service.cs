@@ -147,11 +147,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet SaleMaster_Crud(int Sale_ID,string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID)
+    public DataSet SaleMaster_Crud(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.SaleMaster_Crud(Sale_ID,date, Bill_No, license, Action, LoggedInUser, Company_ID);
+            ds = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, date, Bill_No, license, Action, LoggedInUser, Company_ID);
 
         }
         catch (Exception ex)
@@ -242,7 +242,7 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjCocktailWorld.CocktailBrandsMaster_CRUD(Cocktail_Brand_ID,Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action);
+            ds = ObjCocktailWorld.CocktailBrandsMaster_CRUD(Cocktail_Brand_ID, Cocktail_ID, Brand_ID, Pegml, Size, Company_ID, LoggedInUserID, Action);
 
         }
         catch (Exception ex)
@@ -371,7 +371,7 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjCocktailWorld.License_CRUD(LicenseID,LicenseName,LicenseNo,LoggedInUserID, Company_ID, Action);
+            ds = ObjCocktailWorld.License_CRUD(LicenseID, LicenseName, LicenseNo, LoggedInUserID, Company_ID, Action);
 
         }
         catch (Exception ex)
@@ -380,7 +380,6 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         }
         return ds;
     }
-
 
     [WebMethod]
     public DataSet SupplierMaster_CRUD(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, string Contact, string City, string Email, string LoggedInUserID, int Company_ID, string Action)

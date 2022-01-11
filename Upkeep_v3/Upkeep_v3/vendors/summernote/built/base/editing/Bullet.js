@@ -35,7 +35,7 @@ var Bullet = /** @class */ (function () {
             }
             else {
                 jquery_1["default"].each(paras, function (idx, para) {
-                    (0, jquery_1["default"])(para).css('marginLeft', function (idx, val) {
+                    jquery_1["default"](para).css('marginLeft', function (idx, val) {
                         return (parseInt(val, 10) || 0) + 25;
                     });
                 });
@@ -58,7 +58,7 @@ var Bullet = /** @class */ (function () {
             }
             else {
                 jquery_1["default"].each(paras, function (idx, para) {
-                    (0, jquery_1["default"])(para).css('marginLeft', function (idx, val) {
+                    jquery_1["default"](para).css('marginLeft', function (idx, val) {
                         val = (parseInt(val, 10) || 0);
                         return val > 25 ? val - 25 : '';
                     });

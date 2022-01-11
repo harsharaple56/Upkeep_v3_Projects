@@ -500,7 +500,7 @@ namespace Upkeep_v3.CheckList
                 }
                 return FilePath;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //throw ex;
                 return "";

@@ -19,15 +19,22 @@ namespace Upkeep_v3.Ticketing
 
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
-        int CompanyID = 11;
+        int CompanyID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Fetch_LocationTree();
-            Fetch_CategorySubCategory(0);
-            hdnIs_Retailer.Value = "0";
-            dvEmployeeLocation.Attributes.Add("style", "display:block");
-            dvRetailerLocation.Attributes.Add("style", "display:none");
+            CompanyID = Convert.ToInt32(Request.QueryString["cid"]);
+
+            CompanyID = 11;
+
+            if (!IsPostBack)
+            {
+                Fetch_LocationTree();
+                Fetch_CategorySubCategory(0);
+                hdnIs_Retailer.Value = "0";
+                dvEmployeeLocation.Attributes.Add("style", "display:block");
+                dvRetailerLocation.Attributes.Add("style", "display:none");
+            }
         }
 
         protected void ddlSublocation_SelectedIndexChanged(object sender, EventArgs e)
@@ -322,7 +329,7 @@ namespace Upkeep_v3.Ticketing
                 #region Save Public Ticket
                 DataSet dsTicketSave = new DataSet();
                 string list_Images = String.Join(",", Lst_Images);
-                dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, 0, LocationID, CategoryID, SubCategoryID, UserDesc, list_Images, string.Empty, string.Empty, IsPublicTicket, UserName, UserMobile, UserEmail, "C");
+                dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, UserDesc, list_Images, string.Empty, string.Empty, IsPublicTicket, UserName, UserMobile, UserEmail, "C");
                 if (dsTicketSave.Tables.Count > 0)
                 {
                     if (dsTicketSave.Tables[0].Rows.Count > 0)

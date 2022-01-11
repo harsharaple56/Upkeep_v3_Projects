@@ -662,7 +662,6 @@ namespace Upkeep_v3.GatePass
                         LocImgBtnHelp.Attributes.Add("width", "32");
                         LocImgBtnHelp.Attributes.Add("height", "32");
                         //LocImgBtnHelp.Style.Add("vertical-align", "bottom");
-                        string call_type = "Approve";
                         //LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + ","" + call_type+"");");
                         LocImgBtnHelp.Attributes.Add("onclick", "PopUpGrid(" + LocTxtActionGroup.ClientID + ",'" + LocHdnAction.ClientID + "', 'close');");
                         // ---------------------------------------------------------

@@ -71,7 +71,7 @@ var Typing = /** @class */ (function () {
         }
         else {
             var next = rng.sc.childNodes[rng.so];
-            nextPara = (0, jquery_1["default"])(dom_1["default"].emptyPara)[0];
+            nextPara = jquery_1["default"](dom_1["default"].emptyPara)[0];
             if (next) {
                 rng.sc.insertBefore(nextPara, next);
             }
