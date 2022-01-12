@@ -1083,6 +1083,7 @@
     <Content Include="Cocktail_World\Reports\View_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\HtmlPage1.html" />
+    <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report1.aspx" />
     <Content Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx" />
@@ -4163,6 +4164,7 @@
     <Content Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xss">
       <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
     </Content>
+    <Content Include="Cocktail_World_Master.Master" />
     <None Include="GatePass\Gatepass_Details_Print.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4508,6 +4510,13 @@
     <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.designer.cs">
       <DependentUpon>Generate_Reports.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3.aspx.cs">
+      <DependentUpon>FLR3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3.aspx.designer.cs">
+      <DependentUpon>FLR3.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Report.aspx.cs">
       <DependentUpon>FLR3_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4687,6 +4696,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Transactions\Transfers.aspx.designer.cs">
       <DependentUpon>Transfers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World_Master.Master.cs">
+      <DependentUpon>Cocktail_World_Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World_Master.Master.designer.cs">
+      <DependentUpon>Cocktail_World_Master.Master</DependentUpon>
     </Compile>
     <Compile Include="Coming_Soon.aspx.cs">
       <DependentUpon>Coming_Soon.aspx</DependentUpon>
