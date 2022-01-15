@@ -29,6 +29,7 @@ namespace Upkeep_v3
             _sentry = SentrySdk.Init(o =>
             {
                 o.AddAspNet();
+                //o.Dsn = "https://0d1244e846ad4945bd42b2ac3398a996@o1114068.ingest.sentry.io/6145004";
                 o.Dsn = "https://0d1244e846ad4945bd42b2ac3398a996@o1114068.ingest.sentry.io/6145004";
                 // When configuring for the first time, to see what the SDK is doing:
                 o.Debug = true;
