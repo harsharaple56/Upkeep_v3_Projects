@@ -8,16 +8,37 @@ using System.Net.Mail;
 using System.Configuration;
 using System.Net;
 using context = System.Web.HttpContext;
+using Sentry;
+using Sentry.AspNet;
+using Sentry.EntityFramework; // if you also installed Sentry.EntityFramework
+using Sentry.Extensibility;
+
 
 namespace Upkeep_v3
 {
     public class Global : System.Web.HttpApplication
     {
+        private IDisposable _sentry;
 
         protected void Application_Start(object sender, EventArgs e)
         {
             //Session Count is intialized with 0.      
             Application["SessionCount"] = 0;
+
+            // Initialize Sentry to capture AppDomain unhandled exceptions and more.
+            _sentry = SentrySdk.Init(o =>
+            {
+                o.AddAspNet();
+                o.Dsn = "https://0d1244e846ad4945bd42b2ac3398a996@o1114068.ingest.sentry.io/6145004";
+                // When configuring for the first time, to see what the SDK is doing:
+                o.Debug = true;
+                // Set TracesSampleRate to 1.0 to capture 100%
+                // of transactions for performance monitoring.
+                // We recommend adjusting this value in production
+                o.TracesSampleRate = 1.0;
+                // if you also installed the Sentry.EntityFramework package
+                o.AddEntityFramework();
+            });
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -33,7 +54,7 @@ namespace Upkeep_v3
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            
+            Context.StartSentryTransaction();
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -43,6 +64,9 @@ namespace Upkeep_v3
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            var exception = Server.GetLastError();
+            SentrySdk.CaptureException(exception);
+
             string StackTrace, Errormsg, Extype, Page, LoggedInUserID, CompanyID;
 
             Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
@@ -119,9 +143,15 @@ namespace Upkeep_v3
             Application.UnLock();
         }
 
+        protected void Application_EndRequest()
+        {
+            Context.FinishSentryTransaction();
+        }
+
         protected void Application_End(object sender, EventArgs e)
         {
-
+            // Flushes out events before shutting down.
+            _sentry?.Dispose();
         }
     }
 }
