@@ -140,7 +140,6 @@ namespace Upkeep_v3
         public void Bind_Feedback_GraphData()
         {
             DataSet ds_Feedback = new DataSet();
-            string data = "";
             string Fromdate = string.Empty;
             string Todate = string.Empty;
 

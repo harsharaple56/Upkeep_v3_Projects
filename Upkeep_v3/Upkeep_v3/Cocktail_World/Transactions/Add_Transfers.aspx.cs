@@ -66,7 +66,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                         DataSet ds = new DataSet();
-                        ds = ObjCocktailWorld.License(Convert.ToInt32(txtLicen), string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
+                        ds = ObjCocktailWorld.License_CRUD(Convert.ToInt32(txtLicen), string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
                         ddlTransferLicense.DataSource = ds.Tables[0];
                         ddlTransferLicense.DataTextField = "License_Name";
                         ddlTransferLicense.DataValueField = "License_ID";
@@ -185,7 +185,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         private void Fetch_License()
         {
             DataSet ds = new DataSet();
-            ds = ObjCocktailWorld.License(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
+            ds = ObjCocktailWorld.License_CRUD(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
             ddlLicense.DataSource = ds.Tables[0];
             ddlLicense.DataTextField = "License_Name";
             ddlLicense.DataValueField = "License_ID";
@@ -201,7 +201,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         private void Fetch_TransferLicense()
         {
             DataSet ds = new DataSet();
-            ds = ObjCocktailWorld.License(Convert.ToInt32(ddlLicense.SelectedValue), string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
+            ds = ObjCocktailWorld.License_CRUD(Convert.ToInt32(ddlLicense.SelectedValue), string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
             ddlTransferLicense.DataSource = ds.Tables[0];
             ddlTransferLicense.DataTextField = "License_Name";
             ddlTransferLicense.DataValueField = "License_ID";
@@ -966,8 +966,8 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         for (int i = 0; i < dtInsertTransferData.Rows.Count; i++)
                         {
                             DataSet dsUpdateOpeningData = new DataSet();
-                            dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertTransferData.Rows[i]["Opening_ID"]),
-                                Convert.ToDecimal(dtInsertTransferData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertTransferData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
+                            //dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertTransferData.Rows[i]["Opening_ID"]),
+                            //    Convert.ToDecimal(dtInsertTransferData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertTransferData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
 
                             if (dsUpdateOpeningData.Tables[0].Rows.Count > 0)
                             {

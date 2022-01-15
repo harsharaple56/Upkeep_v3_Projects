@@ -7,198 +7,200 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Cocktail_World.Transactions {
-    
-    
-    public partial class Add_Purchases {
-        
+namespace Upkeep_v3.Cocktail_World.Setup
+{
+
+
+    public partial class Assign_Brand_Size
+    {
+
         /// <summary>
-        /// ddlLicense control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLicense;
-        
+        protected global::System.Web.UI.WebControls.LinkButton btnSave;
+
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// hdn_IsPostBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
-        
+        protected global::System.Web.UI.WebControls.HiddenField hdn_IsPostBack;
+
         /// <summary>
-        /// linkAddData control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkAddData;
-        
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+
         /// <summary>
-        /// txtPurchaseDate control.
+        /// rfvDept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPurchaseDate;
-        
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDept;
+
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+
         /// <summary>
-        /// ddlSupplier control.
+        /// btn_edit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
-        
+        protected global::System.Web.UI.WebControls.LinkButton btn_edit;
+
         /// <summary>
-        /// RequiredFieldValidator9 control.
+        /// btn_delete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
-        
+        protected global::System.Web.UI.WebControls.LinkButton btn_delete;
+
         /// <summary>
-        /// txttpnumber control.
+        /// btnAddcategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttpnumber;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnAddcategory;
+
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// mpeCategoryMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-        
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeCategoryMaster;
+
         /// <summary>
-        /// txtdiscount control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdiscount;
-        
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
         /// <summary>
-        /// txtinvoicenumber control.
+        /// grdCatagLinkUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtinvoicenumber;
-        
+        protected global::System.Web.UI.WebControls.GridView grdCatagLinkUp;
+
         /// <summary>
-        /// txttotalcharges control.
+        /// lblwarn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttotalcharges;
-        
+        protected global::System.Web.UI.WebControls.Label lblwarn;
+
         /// <summary>
-        /// ddlBrand control.
+        /// txtDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBrand;
-        
+        protected global::System.Web.UI.WebControls.TextBox txtDetails;
+
         /// <summary>
-        /// RequiredFieldValidator7 control.
+        /// pnlCategoryMaster control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
-        
+        protected global::System.Web.UI.WebControls.Panel pnlCategoryMaster;
+
         /// <summary>
-        /// Updatepanel1 control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel Updatepanel1;
-        
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+
         /// <summary>
-        /// ddlSize control.
+        /// btnCloseHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSize;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnCloseHeader;
+
         /// <summary>
-        /// RequiredFieldValidator8 control.
+        /// txtCategoryDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
-        
+        protected global::System.Web.UI.WebControls.TextBox txtCategoryDesc;
+
         /// <summary>
-        /// btn_AddPurchase control.
+        /// rfvCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_AddPurchase;
-        
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategory;
+
         /// <summary>
-        /// Updatepanel2 control.
+        /// lblCategoryErrorMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel Updatepanel2;
-        
+        protected global::System.Web.UI.WebControls.Label lblCategoryErrorMsg;
+
         /// <summary>
-        /// grdPurchase control.
+        /// btnCloseCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdPurchase;
-        
+        protected global::System.Web.UI.WebControls.Button btnCloseCategory;
+
         /// <summary>
-        /// hfTab control.
+        /// btnCategorySave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfTab;
+        protected global::System.Web.UI.WebControls.Button btnCategorySave;
     }
 }

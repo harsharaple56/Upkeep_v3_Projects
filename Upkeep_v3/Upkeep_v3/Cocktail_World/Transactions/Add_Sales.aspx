@@ -254,36 +254,31 @@
                 <div class="m-portlet__head">
                     <div class="col-xl-3 m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Add New Sales Transaction
-                            </h3>
+                            <h3 class="m-portlet__head-text">Add New Sales Transaction</h3>
                         </div>
                     </div>
 
-                    <div class="col-xl-9 m-portlet__head-tools">
+                    <%--<div class="m-portlet m-portlet--tabs" style="width: 300px;">
+                        <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
+                            ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
+                    </div>--%>
 
-                        <div class="col-lg-7 m--margin-bottom-10-tablet-and-mobile">
-                            <div class="m-form__control">
-                                <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
-                                    ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
-                            </div>
-                        </div>
-
-                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="col-lg-2 btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
+                    <div class="m-portlet__head-tools">
+                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>
                                 <i class="la la-arrow-left"></i>
                                 <span>Back</span>
                             </span>
                         </a>
-                        <asp:LinkButton ID="linkAddData" ValidationGroup="validateLicense" CausesValidation="True" runat="server" OnClick="btn_Add_Brand_Cocktail_Sale_Click" class="col-lg-3 btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                        <asp:LinkButton ID="linkAddData" ValidationGroup="validateLicense" CausesValidation="True" runat="server" OnClick="btn_Add_Brand_Cocktail_Sale_Click" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                             <span>
                                 <i class="fa fa-plus"></i>
                                 <span>Save Transaction</span>
                             </span>
                         </asp:LinkButton>
                     </div>
-
                 </div>
 
                 <div class="m-portlet m-portlet--tabs">
@@ -302,6 +297,12 @@
                                 </a></li>
                             </ul>
                         </div>
+                        <div class="m-portlet m-portlet--tabs" style="width: 300px;">
+                            <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
+                                ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
+                        </div>
                     </div>
 
                     <div class="m-portlet__body">
@@ -315,7 +316,7 @@
                                         <label class="font-weight-bold">Bill No.</label>
                                         <div class="m-form__control">
                                             <asp:TextBox ID="txtBill" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBill" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBill" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Bill No"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -332,7 +333,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtBrandDate" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtBrandDate" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -341,9 +342,13 @@
                                     <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Brand</label>
                                         <div class="m-form__control">
-                                            <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                            </asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
+                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Brand"></asp:RequiredFieldValidator>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                         <input id="sessionInput" type="hidden" value='<%= Session["hdnTax"] %>' />
                                     </div>
@@ -353,14 +358,16 @@
                                         <label class="font-weight-bold">Select Size</label>
 
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Always">
+                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:DropDownList ID="ddlSize" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    <asp:DropDownList OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" ID="ddlSize" runat="server" CssClass="form-control"
+                                                        AutoPostBack="true" ClientIDMode="Static">
                                                     </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="ddlBrand" />
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlSize" EventName="SelectedIndexChanged" />
                                                 </Triggers>
                                             </asp:UpdatePanel>
                                         </div>
@@ -368,7 +375,12 @@
 
 
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                        <label class="font-weight-bold">Add Brand</label>
+                                        <asp:UpdatePanel ID="Updatepanel5" runat="server" UpdateMode="Always">
+                                            <ContentTemplate>
+                                            <u><asp:Label CssClass="font-weight-bold" ID="lbl_stock" runat="server"></asp:Label></u>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                        &nbsp;
                                         <div class="m-form__control">
                                             <asp:LinkButton ID="btn_AddBrand" CausesValidation="true" OnClick="btn_AddBrand_Click" ValidationGroup="Brandvalidate" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" runat="server">
                                                     <span>
@@ -469,21 +481,13 @@
                                                             </asp:TemplateField>
 
 
-
                                                             <asp:TemplateField HeaderText="Permit Holder">
-
                                                                 <ItemTemplate>
-
                                                                     <asp:DropDownList ID="ddlPermit" runat="server" CssClass="form-control" AppendDataBoundItems="true">
-
                                                                         <asp:ListItem Value="-1">--Select--</asp:ListItem>
-
                                                                     </asp:DropDownList>
-
                                                                 </ItemTemplate>
-
                                                             </asp:TemplateField>
-
 
                                                         </Columns>
                                                         <EmptyDataTemplate>
@@ -492,9 +496,7 @@
                                                         <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
                                                             HorizontalAlign="Center" />
 
-
                                                         <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
-
                                                         <PagerStyle HorizontalAlign="Center"></PagerStyle>
                                                     </asp:GridView>
                                                 </td>
@@ -504,6 +506,7 @@
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="btn_AddBrand" EventName="Click" />
+                                        <asp:AsyncPostBackTrigger ControlID="grdBrandLinkup" />
                                     </Triggers>
                                 </asp:UpdatePanel>
                             </div>
@@ -516,7 +519,7 @@
                                         <div class="m-form__control">
 
                                             <asp:TextBox ID="CocktailBill" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="CocktailBill" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No."></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="CocktailBill" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Bill No."></asp:RequiredFieldValidator>
 
                                         </div>
                                     </div>
@@ -533,7 +536,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCocktailDate" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCocktailDate" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -543,7 +546,7 @@
                                         <div class="m-form__control">
                                             <asp:DropDownList ID="ddlCocktail" runat="server" CssClass="form-control" ClientIDMode="Static">
                                             </asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlCocktail" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please select Cocktail"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator InitialValue="0"  ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlCocktail" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please select Cocktail"></asp:RequiredFieldValidator>
 
                                         </div>
                                         <input id="sessionCocktail" type="hidden" value='<%= Session["hdnCocktailTax"] %>' />
@@ -599,14 +602,14 @@
 
                                                             <asp:TemplateField HeaderText="Total Amount" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ReadOnly="true" ID="cocktailtotalamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Total_Amount"))%>'></asp:TextBox>
+                                                                    <asp:TextBox  ID="cocktailtotalamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Total_Amount"))%>'></asp:TextBox>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Tax Amount" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ReadOnly="true" ID="cocktailamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Tax_Amount"))%>'></asp:TextBox>
+                                                                    <asp:TextBox  ID="cocktailamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Tax_Amount"))%>'></asp:TextBox>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
@@ -639,6 +642,7 @@
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="btnAddCocktail" EventName="Click" />
+                                        <asp:AsyncPostBackTrigger ControlID="grdCocktail"  />
                                     </Triggers>
                                 </asp:UpdatePanel>
 

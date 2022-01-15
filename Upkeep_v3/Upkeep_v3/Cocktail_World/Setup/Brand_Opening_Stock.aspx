@@ -7,65 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
-    <style type="text/css">
-        .modalBackground {
-            background-color: grey;
-            filter: alpha(opacity=90);
-            opacity: 0.8;
-        }
-
-        .modalPopup {
-            /*background-color: #fff;
-            border: 3px solid #ccc;*/
-            padding: 10px;
-            width: 300px;
-        }
-    </style>
-
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //$('#btnedit').click(function () {
-            $("#btnedit").click(function () {
-                //alert('edit');
-                $('#Add_Category').modal('show');
-
-            });
-
-            <%--$("#btnSave").click(function () {
-                debugger;
-                var grid = document.getElementById("<%= grdCatagLinkUp.ClientID%>");
-
-                for (var i = 0; i < grid.rows.length - 1; i++) {
-
-                    //var chkSelct = $('input[type="checkbox"][id*=chkSelct]').checked;
-                    //alert(chkSelct);
-                    var checkBoxes = grid.getElementsByTagName("INPUT");
-                    //if(chkSelct)
-                    //Loop through the CheckBoxes.
-                    for (var i = 0; i < checkBoxes.length; i++) {
-                        if (checkBoxes[i].checked) {
-                            var txtalias = $("input[id*=txtalias]")
-                            if (txtalias[i].value != '') {
-                                alert(txtalias[i].value);
-                            }
-                        }
-                    }
-                }
-            });--%>
-
-        });
-
-        function openModal() {
-            //alert('Hii');
-            $('#Add_Category').modal('show');
-        }
-
-
-
-
-    </script>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('#m_table_1').DataTable({
@@ -96,10 +37,18 @@
                         <div class="m-portlet__head-tools">
                             <div class="m-portlet__head-tools">
                                 <ul class="m-portlet__nav">
-                                    
                                     <li class="m-portlet__nav-item">
-                                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Add_Brand_Opening_Stock.aspx") %>" 
-                                            class="btn btn-success m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" class="btn m-btn--pill    btn-metal m-btn m-btn--custom">
+                                            <span>
+                                                <i class="la la-arrow-left"></i>
+                                                <span>Back</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-portlet__nav-item">
+
+                                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Add_Brand_Opening_Stock.aspx") %>"
+                                            class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                                             <span>
                                                 <i class="flaticon-add"></i>
                                                 <span>Add Brand Opening</span>
@@ -112,10 +61,10 @@
                                 <ul class="m-portlet__nav">
                                     <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
 
-                                        <a href="#" class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
+                                        <a href="#" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
                                             <span>
-                                                <i class="fa fa-database" aria-hidden="true"></i>
-                                                <span>Export Data</span>
+                                                <i class="fa flaticon-grid-menu"></i>
+                                                <span> Import & Export Data</span>
                                             </span>
 
                                         </a>
@@ -126,52 +75,46 @@
                                                     <div class="m-dropdown__content">
                                                         <ul class="m-nav">
                                                             <li class="m-nav__section m-nav__section--first">
-                                                                <span class="m-nav__section-text">Export Data Format</span>
+                                                                <span class="m-nav__section-text"><i class="fa fa-database"></i>Export Data</span>
                                                             </li>
                                                             <hr />
 
-                                                           <li class="m-nav__item">
-                                                                <a class="m-nav__link" id="export_excel" runat="server" onserverclick="btnExport_Click">
+                                                            <li class="m-nav__item">
+                                                                <a class="m-nav__link" id="A1" runat="server" onserverclick="btnExport_Click">
                                                                     <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
                                                                     <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
                                                                 </a>
                                                             </li>
 
                                                             <li class="m-nav__item">
-                                                                <a class="m-nav__link" id="export_pdf" runat="server" onserverclick="btnPdf_Click">
+                                                                <a class="m-nav__link" id="A2" runat="server" onserverclick="btnPdf_Click">
                                                                     <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
                                                                     <span class="m-nav__link-text">Pdf  <b>( .pdf )</b></span>
                                                                 </a>
                                                             </li>
 
                                                         </ul>
+                                                        <br />
+                                                        <ul class="m-nav">
+                                                            <li class="m-nav__section m-nav__section--first">
+                                                                <span class="m-nav__section-text"><i class="fa fa-file-import"></i>Import Data</span>
+                                                            </li>
+                                                            <hr />
+                                                            <li class="m-nav__item">
+                                                                <a class="m-nav__link" id="A11" runat="server">
+                                                                    <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
+                                                                    <span class="m-nav__link-text">Import <b>( .xls )</b></span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
+
                                 </ul>
 
-                                <ul class="m-portlet__nav">
-
-                                    <li class="m-portlet__nav-item">
-                                        <a href="#" class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
-                                            <span>
-                                                <i class="fa fa-file-import"></i>
-                                                <span>Import Data</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="m-portlet__nav-item">
-                                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Setup.aspx") %>" 
-                                            class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
-                                            <span>
-                                                <i class="la la-arrow-left"></i>
-                                                <span>Back</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
 
                             </div>
 
@@ -197,7 +140,7 @@
                                 </tr>
                             </thead>
 
-                           <tbody>
+                            <tbody>
                                 <%=BindBrandOpening()%>
                             </tbody>
                         </table>

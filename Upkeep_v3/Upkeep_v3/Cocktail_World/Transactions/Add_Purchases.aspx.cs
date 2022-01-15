@@ -42,7 +42,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         private void Fetch_License()
         {
-            ds = ObjCocktailWorld.License(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
+            ds = ObjCocktailWorld.License_CRUD(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
             ddlLicense.DataSource = ds.Tables[0];
             ddlLicense.DataTextField = "License_Name";
             ddlLicense.DataValueField = "License_ID";
@@ -608,8 +608,8 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             for (int i = 0; i < dtInsertPurchaseData.Rows.Count; i++)
                             {
                                 DataSet dsUpdateOpeningData = new DataSet();
-                                dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertPurchaseData.Rows[i]["Opening_ID"]),
-                                    Convert.ToDecimal(dtInsertPurchaseData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertPurchaseData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
+                                //dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertPurchaseData.Rows[i]["Opening_ID"]),
+                                //    Convert.ToDecimal(dtInsertPurchaseData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertPurchaseData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
 
                                 if (dsUpdateOpeningData.Tables[0].Rows.Count > 0)
                                 {

@@ -36,12 +36,14 @@
       <s:element name="BrandOpeningMaster_CRUD">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Opening_ID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="Closing_Bottle" type="s:decimal" />
-            <s:element minOccurs="1" maxOccurs="1" name="Closing_Speg" type="s:decimal" />
-            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="LoggedInUser" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandOpening_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryDetails" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="closingBottle" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="closingSpeg" type="s:decimal" />
             <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -200,6 +202,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="Sale_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SaleDetail_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="Brand_Desc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Size_Desc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Cocktail_Desc" type="s:string" />
@@ -238,6 +241,7 @@
       <s:element name="SaleMaster_Crud">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Sale_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Bill_No" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="license" type="s:int" />
@@ -385,6 +389,7 @@
       <s:element name="CocktailBrandsMaster_CRUD">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Cocktail_Brand_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Cocktail_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Brand_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Pegml" type="s:int" />
@@ -596,7 +601,7 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="License">
+      <s:element name="License_CRUD">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
@@ -608,10 +613,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="LicenseResponse">
+      <s:element name="License_CRUDResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="LicenseResult">
+            <s:element minOccurs="0" maxOccurs="1" name="License_CRUDResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -804,11 +809,11 @@
   <wsdl:message name="Save_BrandOpeningSoapOut">
     <wsdl:part name="parameters" element="tns:Save_BrandOpeningResponse" />
   </wsdl:message>
-  <wsdl:message name="LicenseSoapIn">
-    <wsdl:part name="parameters" element="tns:License" />
+  <wsdl:message name="License_CRUDSoapIn">
+    <wsdl:part name="parameters" element="tns:License_CRUD" />
   </wsdl:message>
-  <wsdl:message name="LicenseSoapOut">
-    <wsdl:part name="parameters" element="tns:LicenseResponse" />
+  <wsdl:message name="License_CRUDSoapOut">
+    <wsdl:part name="parameters" element="tns:License_CRUDResponse" />
   </wsdl:message>
   <wsdl:message name="SupplierMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:SupplierMaster_CRUD" />
@@ -911,9 +916,9 @@
       <wsdl:input message="tns:Save_BrandOpeningSoapIn" />
       <wsdl:output message="tns:Save_BrandOpeningSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="License">
-      <wsdl:input message="tns:LicenseSoapIn" />
-      <wsdl:output message="tns:LicenseSoapOut" />
+    <wsdl:operation name="License_CRUD">
+      <wsdl:input message="tns:License_CRUDSoapIn" />
+      <wsdl:output message="tns:License_CRUDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="SupplierMaster_CRUD">
       <wsdl:input message="tns:SupplierMaster_CRUDSoapIn" />
@@ -1124,8 +1129,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="License">
-      <soap:operation soapAction="http://tempuri.org/License" style="document" />
+    <wsdl:operation name="License_CRUD">
+      <soap:operation soapAction="http://tempuri.org/License_CRUD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1352,8 +1357,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="License">
-      <soap12:operation soapAction="http://tempuri.org/License" style="document" />
+    <wsdl:operation name="License_CRUD">
+      <soap12:operation soapAction="http://tempuri.org/License_CRUD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

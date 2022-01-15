@@ -22,11 +22,10 @@ namespace Upkeep_v3.Cocktail_World.Setup
     public partial class Brand_Sub_Categories : System.Web.UI.Page
     {
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
-
-
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -46,20 +45,15 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     DeleteSubCategory(DelSubCategory_ID);
                 }
-
             }
         }
 
-
         public void DeleteSubCategory(int SubCategory_ID)
-
         {
             try
             {
                 DataSet ds = new DataSet();
-
-                ds = ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, 0, "", LoggedInUserID, CompanyID, "D");
-
+                ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, 0, "", LoggedInUserID, CompanyID, "D");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -67,45 +61,26 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Sub_Categories.aspx"), false);
                     }
                 }
-                else
-                {
-                    //invalid login
-                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
         }
 
         public void BindSubCategory(int SubCategory_ID)
         {
             try
             {
-                ds = ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, 0, "", LoggedInUserID, CompanyID, "R");
-
-
-
+                ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, 0, "", LoggedInUserID, CompanyID, "R");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        Session["SubCategory_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategory_ID"]);
                         txtSubCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_Desc"]);
                         ddlCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
-                       
                         mpeSubCategory.Show();
                     }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
                 }
             }
             catch (Exception ex)
@@ -114,43 +89,31 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-        protected void btnAddSubCategory_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnCloseSubCategory_Click(object sender, EventArgs e)
         {
-            Session["SubCategory_ID"] = "";
-            txtSubCategoryDesc.Text = "";
-          //  ddlCategory.SelectedValue = "";
-
-            mpeSubCategory.Hide();
-
-            //mpeZone.Hide();
-            //bindgrid();
-            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Sub_Categories.aspx"), false);
-
+            Closecontrol();
         }
+
+        public void Closecontrol()
+        {
+            txtSubCategoryDesc.Text = "";
+            mpeSubCategory.Hide();
+            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Sub_Categories.aspx"), false);
+        }
+
 
         protected void btnSubCategorySave_Click(object sender, EventArgs e)
         {
-
-
             int SubCategory_ID = 0;
             int Category_ID = 0;
-
-
             string SubCategory_Desc = string.Empty;
-           
-
             try
             {
-
-                if (Convert.ToString(Session["SubCategory_ID"]) != "")
+                if (Convert.ToString(Request.QueryString["SubCategory_ID"]) != "")
                 {
-                    SubCategory_ID = Convert.ToInt32(Session["SubCategory_ID"]);
+                    SubCategory_ID = Convert.ToInt32(Request.QueryString["SubCategory_ID"]);
                 }
+
                 string Action = "";
 
                 if (SubCategory_ID > 0)
@@ -165,41 +128,29 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
                 SubCategory_Desc = txtSubCategoryDesc.Text.Trim();
 
-
-                ds = ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, Category_ID, SubCategory_Desc, LoggedInUserID,CompanyID, Action);
-
-
-
+                ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, Category_ID, SubCategory_Desc, LoggedInUserID, CompanyID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
-                        if (Status == 0)
-                        {
-
-                        }
-                        else if (Status == 1)
+                        if (Status == 1)
                         {
                             Session["SubCategory_ID"] = "";
                             txtSubCategoryDesc.Text = "";
-                            //ddlCategory.SelectedValue = "";
-                            
                             mpeSubCategory.Hide();
-
-                            //mpeZone.Hide();
-                            //bindgrid();
                             Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Sub_Categories.aspx"), false);
-                        }
-                        else if (Status == 3)
-                        {
-                            lblSubCategoryErrorMsg.Text = "SubCategory already exists";
                         }
                         else if (Status == 2)
                         {
                             lblSubCategoryErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
                         }
+                        else if (Status == 3)
+                        {
+                            lblSubCategoryErrorMsg.Text = "SubCategory already exists";
+                        }
+
                     }
                 }
 
@@ -208,15 +159,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             {
                 throw ex;
             }
-
-
-
-
         }
-
-
-
-
 
         public void bindcategory()
         {
@@ -225,8 +168,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int Category_ID = 0;
                 DataSet ds = new DataSet();
 
-                ds = ds = ObjCocktailWorld.CategoryMaster_CRUD(24, Category_ID, "", "", LoggedInUserID, "select");
-
+                ds = ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Category_ID, "", "", LoggedInUserID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -247,16 +189,13 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         }
 
-
-
-
         public string bindSubCategorygrid()
         {
             int SubCategory_ID = 0;
             string data = "";
             try
             {
-                ds = ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, 0, "", LoggedInUserID, CompanyID, "R");
+                ds = ObjCocktailWorld.SubCategoryMaster_CRUD(SubCategory_ID, 0, "", LoggedInUserID, CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -281,14 +220,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                         }
                     }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
                 }
             }
             catch (Exception ex)

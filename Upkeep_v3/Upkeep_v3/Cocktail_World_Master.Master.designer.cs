@@ -7,119 +7,144 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Cocktail_World.Setup
-{
-
-
-    public partial class Brand_Sizes
-    {
-
+namespace Upkeep_v3 {
+    
+    
+    public partial class Cocktail_World_Master {
+        
         /// <summary>
-        /// btnAddcategory control.
+        /// head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddcategory;
-
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        
         /// <summary>
-        /// mpeCategoryMaster control.
+        /// Image1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpeCategoryMaster;
-
+        protected global::System.Web.UI.WebControls.Image Image1;
+        
         /// <summary>
-        /// pnlCategoryMaster control.
+        /// Img_CompanyLogo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCategoryMaster;
-
+        protected global::System.Web.UI.WebControls.Image Img_CompanyLogo;
+        
         /// <summary>
-        /// UpdatePanel2 control.
+        /// div_list_Quick_Links control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Links;
+        
         /// <summary>
-        /// lnkbtnClose control.
+        /// div_list_Quick_Links_MyChecklist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnClose;
-
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Links_MyChecklist;
+        
         /// <summary>
-        /// txtSizedes control.
+        /// div_list_Quick_Links_VistRequest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSizedes;
-
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Links_VistRequest;
+        
         /// <summary>
-        /// rfvCategory control.
+        /// div_list_Quick_Links_CSM_Request control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategory;
-
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Links_CSM_Request;
+        
         /// <summary>
-        /// txtSizeAlias control.
+        /// div_list_Quick_Reports control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSizeAlias;
-
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_list_Quick_Reports;
+        
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// imgProfilePic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
+        protected global::System.Web.UI.WebControls.Image imgProfilePic;
+        
         /// <summary>
-        /// lblCategoryErrorMsg control.
+        /// imgProfilePic1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategoryErrorMsg;
-
+        protected global::System.Web.UI.WebControls.Image imgProfilePic1;
+        
         /// <summary>
-        /// btnCloseCategory control.
+        /// lblProfileName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCloseCategory;
-
+        protected global::System.Web.UI.WebControls.Label lblProfileName;
+        
         /// <summary>
-        /// btnCategorySave control.
+        /// lblUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCategorySave;
+        protected global::System.Web.UI.WebControls.Label lblUsername;
+        
+        /// <summary>
+        /// btnLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnLogout;
+        
+        /// <summary>
+        /// rptVerMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptVerMenu;
+        
+        /// <summary>
+        /// ContentPlaceHolder1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     }
 }

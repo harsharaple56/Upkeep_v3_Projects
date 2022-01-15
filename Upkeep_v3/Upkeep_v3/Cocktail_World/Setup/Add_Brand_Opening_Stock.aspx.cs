@@ -25,6 +25,16 @@ namespace Upkeep_v3.Cocktail_World.Setup
             if (!IsPostBack)
             {
                 Fetch_Category_Brand();
+                int BrandOpening_ID = Convert.ToInt32(Request.QueryString["BrandOpening_ID"]);
+                if (BrandOpening_ID > 0)
+                {
+                    UpdateBrandOpening(BrandOpening_ID);
+                }
+                int DelBrandOpening_ID = Convert.ToInt32(Request.QueryString["DelBrandOpening_ID"]);
+                if (DelBrandOpening_ID > 0)
+                {
+                    DeleteBrandOpening(DelBrandOpening_ID);
+                }
             }
         }
 
@@ -40,9 +50,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FetchBrandSizeLinkUp();
+            FetchBrandSizeLinkUp(0, 0);
         }
-
 
         public void Fetch_Category_Brand()
         {
@@ -57,7 +66,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             try
             {
-
                 dsCategory = ObjCocktailWorld.Fetch_Category_Brand(CompanyID, CategoryID);
 
                 if (CategoryID == 0)
@@ -84,18 +92,18 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-        public void FetchBrandSizeLinkUp()
+        public void FetchBrandSizeLinkUp(int Category_ID, int Brand_ID)
         {
             try
             {
                 grdCatagLinkUp.Visible = true;
-                int Category_ID;
-                int Brand_ID;
                 DataSet ds = new DataSet();
-                Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
-                Brand_ID = Convert.ToInt32(ddlBrand.SelectedValue);
+                if (Category_ID == 0)
+                    Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
+                if (Brand_ID == 0)
+                    Brand_ID = Convert.ToInt32(ddlBrand.SelectedValue);
 
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID,0,"","",CompanyID);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, 0, "", "", CompanyID);
 
                 for (int i = ds.Tables[0].Rows.Count - 1; i >= 0; i--)
                 {
@@ -127,9 +135,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void grdCatagLinkUp_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grdCatagLinkUp.PageIndex = e.NewPageIndex;
-            FetchBrandSizeLinkUp();
+            FetchBrandSizeLinkUp(0, 0);
         }
-
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -139,8 +146,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             int Cat_Size_ID = 0; // Cat_Size_ID
             int BrandID = 0;
-            int Opening_ID = 0;
-            string Operation = string.Empty;
+            int BrandOpening_ID = 0;
+            string Action = string.Empty;
             try
             {
                 for (int i = 0; i < count; i++)
@@ -172,27 +179,89 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     Cat_Size_ID = Convert.ToInt32(((HiddenField)rows[i].FindControl("hdnSize_ID")).Value);
                     BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
                     DataSet dt = new DataSet();
-                    dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID,0, BrandID,"","", CompanyID);
+                    dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, 0, BrandID, "", "", CompanyID);
                     if (dt.Tables[0].Rows.Count == 0)
                     {
-                        Operation = "Insert";
-                        Opening_ID = 0;
+                        Action = "I";
+                        BrandOpening_ID = 0;
                     }
                     else
                     {
-                        Operation = "Update";
-                        Opening_ID = Convert.ToInt32(dt.Tables[0].Rows[0]["Opening_ID"]);
+                        Action = "U";
+                        BrandOpening_ID = Convert.ToInt32(dt.Tables[0].Rows[0]["Opening_ID"]);
                     }
 
                     if (!string.IsNullOrEmpty(txtspegqty) || !string.IsNullOrEmpty(txtbottleqty))
-                        ObjCocktailWorld.Save_BrandOpening(Opening_ID, CategoryDetails, BrandID, CompanyID, LoggedInUserID, Operation);
+                        ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID,0,0, CompanyID, LoggedInUserID, Action);
                 }
-                FetchBrandSizeLinkUp();
+                Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Opening_Stock.aspx"), false);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public void UpdateBrandOpening(int BrandOpening_ID)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0,0,0, CompanyID, LoggedInUserID, "R");
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
+                        FetchBrands(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]), Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]));
+                        FetchBrandSizeLinkUp(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]), Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void FetchBrands(int categoryid,int brandid)
+        {
+            DataSet dsCategory = new DataSet();
+            dsCategory = ObjCocktailWorld.Fetch_Category_Brand(CompanyID, categoryid);
+            if (dsCategory.Tables[0].Rows.Count > 0)
+            {
+                ddlBrand.DataSource = dsCategory.Tables[0];
+                ddlBrand.DataTextField = "Brand_Desc";
+                ddlBrand.DataValueField = "Brand_ID";
+                ddlBrand.DataBind();
+                ddlBrand.SelectedValue = Convert.ToString(brandid);
+            }
+        }
+
+        public void DeleteBrandOpening(int BrandOpening_ID)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0,0,0, CompanyID, LoggedInUserID, "D");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Opening_Stock.aspx"), false);
+                    }
+                }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
         }
     }
 }

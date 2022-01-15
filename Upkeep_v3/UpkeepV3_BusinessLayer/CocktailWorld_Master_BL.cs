@@ -14,7 +14,7 @@ namespace UpkeepV3_BusinessLayer
 
         DataSet ds = new DataSet();
 
-        public DataSet SaleDetailsMaster_Crud(int Sale_ID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID, string StrConn)
+        public DataSet SaleDetailsMaster_Crud(int Sale_ID, int SaleDetail_ID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID, string StrConn)
         {
             try
             {
@@ -25,6 +25,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_SaleDetails", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Sale_ID", Sale_ID);
+                cmd.Parameters.AddWithValue("@SaleDetail_ID", SaleDetail_ID);
                 cmd.Parameters.AddWithValue("@Brand_Desc", Brand_Desc);
                 cmd.Parameters.AddWithValue("@Size_Desc", Size_Desc);
                 cmd.Parameters.AddWithValue("@Cocktail_Desc", Cocktail_Desc);
@@ -55,7 +56,8 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet BrandOpeningMaster_CRUD(int Opening_ID, decimal Closing_Bottle, decimal Closing_Speg, string Action, int LoggedInUser, int Company_ID, string StrConn)
+
+        public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int Company_ID, string LoggedInUser, string Action, string StrConn)
         {
             try
             {
@@ -65,9 +67,11 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_BrandOpening", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Opening_ID", Opening_ID);
-                cmd.Parameters.AddWithValue("@Closing_Bottle", Closing_Bottle);
-                cmd.Parameters.AddWithValue("@Closing_Speg", Closing_Speg);
+                cmd.Parameters.AddWithValue("@BrandOpening_ID", BrandOpening_ID);
+                cmd.Parameters.AddWithValue("@CategoryDetails", CategoryDetails);
+                cmd.Parameters.AddWithValue("@closingBottle", closingBottle);
+                cmd.Parameters.AddWithValue("@closingSpeg", closingSpeg);
+                cmd.Parameters.AddWithValue("@BrandID", BrandID);
                 cmd.Parameters.AddWithValue("@LoggedInUser", LoggedInUser);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@Action", Action);
@@ -81,7 +85,8 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet SaleMaster_Crud(string Date, string Bill_No, int License, string Action, int LoggedInUser, int Company_ID, string StrConn)
+
+        public DataSet SaleMaster_Crud(int Sale_ID, string Date, string Bill_No, int License, string Action, int LoggedInUser, int Company_ID, string StrConn)
         {
             try
             {
@@ -97,6 +102,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUser", LoggedInUser);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@SaleID", Sale_ID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -107,6 +113,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
+
 
         public DataSet FetchTaxDetails(int Brand_ID, string StrConn)
         {
@@ -561,7 +568,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet License(int LicenseID,string LicenseName,string LicenseNo, string LoggedInUserID,int Company_ID, string Action, string StrConn)
+        public DataSet License_CRUD(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {
             try
             {
@@ -588,6 +595,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
+
 
 
         public DataSet SupplierMaster_CRUD(int Supplier_ID,  string SupplierName, string Code, int pincode, string Address, string Contact,string City ,string Email , string LoggedInUserID, int Company_ID, string Action, string StrConn)
@@ -652,7 +660,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet CocktailBrandsMaster_CRUD(int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CocktailBrandsMaster_CRUD(int Cocktail_Brand_ID, int Cocktail_ID, int Brand_ID, int Pegml, int Size, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -662,6 +670,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_CocktailBrandMaster", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@Cocktail_Brand_ID", Cocktail_Brand_ID);
                 cmd.Parameters.AddWithValue("@Cocktail_ID", Cocktail_ID);
                 cmd.Parameters.AddWithValue("@Brand_ID", Brand_ID);
                 cmd.Parameters.AddWithValue("@Pegml", Pegml);

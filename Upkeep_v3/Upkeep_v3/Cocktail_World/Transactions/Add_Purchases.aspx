@@ -9,7 +9,6 @@
         .auto-style1 {
             height: 21px;
         }
-
         .input-group-text {
             padding: 0rem;
         }
@@ -17,7 +16,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-             toastr.options = {
+            toastr.options = {
                 "closeButton": true,
                 "debug": false,
                 "newestOnTop": false,
@@ -179,31 +178,29 @@
                             </h3>
                         </div>
                     </div>
-
-                    <div class="col-xl-9 m-portlet__head-tools">
-
-                        <div class="col-lg-7 m--margin-bottom-10-tablet-and-mobile">
-                            <div class="m-form__control">
-                                <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
-                                    ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
-                            </div>
+                    <div class="col-lg-5 m--margin-bottom-10-tablet-and-mobile">
+                        <div class="m-form__control">
+                            <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
+                                ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
                         </div>
-
-                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx") %>" class="col-lg-2 btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>
                                 <i class="la la-arrow-left"></i>
                                 <span>Back</span>
                             </span>
                         </a>
-                        <asp:LinkButton ID="linkAddData" ValidationGroup="validateLicense" CausesValidation="True" runat="server" OnClick="btn_Add_Purchase_Click" class="col-lg-3 btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                        <asp:LinkButton ID="linkAddData" ValidationGroup="validateLicense" CausesValidation="True" runat="server" OnClick="btn_Add_Purchase_Click" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                             <span>
-                                <i class="fa fa-save"></i>
+                                <i class="fa fa-plus"></i>
                                 <span>Save Transaction</span>
                             </span>
                         </asp:LinkButton>
                     </div>
+
 
                 </div>
 
@@ -245,7 +242,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPurchaseDate" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPurchaseDate" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -253,9 +250,8 @@
                                         <label class="font-weight-bold">Select Supplier</label>
 
                                         <div class="m-form__control">
-                                            <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                            </asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlSupplier" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
+                                            <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control" ClientIDMode="Static"></asp:DropDownList>
+                                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlSupplier" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Supplier"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -263,7 +259,7 @@
                                         <label class="font-weight-bold">Enter TP Number</label>
                                         <div class="m-form__control">
                                             <asp:TextBox ID="txttpnumber" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txttpnumber" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txttpnumber" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter TP Number"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -271,7 +267,6 @@
                                         <label class="font-weight-bold">Discount %</label>
                                         <div class="m-form__control">
                                             <asp:TextBox ID="txtdiscount" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtdiscount" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -279,7 +274,6 @@
                                         <label class="font-weight-bold">Invoice Number</label>
                                         <div class="m-form__control">
                                             <asp:TextBox ID="txtinvoicenumber" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtinvoicenumber" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -287,7 +281,6 @@
                                         <label class="font-weight-bold">Total Charges</label>
                                         <div class="m-form__control">
                                             <asp:TextBox ID="txttotalcharges" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txttotalcharges" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -299,7 +292,7 @@
                                         <div class="m-form__control">
                                             <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
                                             </asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
                                         </div>
                                         <input id="sessionInput" type="hidden" value='<%= Session["hdnTax"] %>' />
                                     </div>
@@ -312,7 +305,7 @@
                                                 <ContentTemplate>
                                                     <asp:DropDownList ID="ddlSize" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="ddlBrand" />
@@ -339,7 +332,7 @@
                                 <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
 
-                                        <table id="purchaseTbl" width="100%" cellpadding="2" cellspacing="2">
+                                        <table id="purchaseTbl" >
                                             <tr>
                                                 <td colspan="2" class="ClsControlTd">
                                                     <asp:GridView ID="grdPurchase" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
@@ -464,6 +457,7 @@
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="btn_AddPurchase" EventName="Click" />
+                                        <asp:AsyncPostBackTrigger ControlID="grdPurchase" />
                                     </Triggers>
                                 </asp:UpdatePanel>
                             </div>

@@ -22,22 +22,18 @@ namespace Upkeep_v3.Cocktail_World.Setup
     public partial class Brand_Sizes : System.Web.UI.Page
     {
 
-
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
-
-
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
             {
                 bindgrid();
-
                 int Size_ID = Convert.ToInt32(Request.QueryString["Size_ID"]);
                 if (Size_ID > 0)
                 {
@@ -48,17 +44,14 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     DeleteSize(DelSize_ID);
                 }
-
             }
-
-
         }
 
         public void DeleteSize(int Size_ID)
         {
             try
             {
-                ds = ds = ObjCocktailWorld.SizeMaster_CRUD(Size_ID, "", 0, LoggedInUserID, CompanyID, "D");
+                ds = ObjCocktailWorld.SizeMaster_CRUD(Size_ID, "", 0, LoggedInUserID, CompanyID, "D");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -77,7 +70,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             try
             {
-                ds = ds = ObjCocktailWorld.SizeMaster_CRUD(Size_ID, "", 0, LoggedInUserID, CompanyID, "R");
+                ds = ObjCocktailWorld.SizeMaster_CRUD(Size_ID, "", 0, LoggedInUserID, CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -88,14 +81,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         txtSizeAlias.Text = Convert.ToString(ds.Tables[0].Rows[0]["Size_Alias"]);
                         mpeCategoryMaster.Show();
                     }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
                 }
             }
             catch (Exception ex)
@@ -107,18 +92,16 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void btnCategorySave_Click(object sender, EventArgs e)
         {
             int Size_ID = 0;
-
             string Size_Desc = string.Empty;
-            // string Size_Alias = string.Empty;
-
             int Size_Alias = 0;
 
             try
             {
-                if (Convert.ToString(Session["Size_ID"]) != "")
+                if (Convert.ToString(Request.QueryString["Size_ID"]) != "")
                 {
-                    Size_ID = Convert.ToInt32(Session["Size_ID"]);
+                    Size_ID = Convert.ToInt32(Request.QueryString["Size_ID"]);
                 }
+
                 string Action = "";
 
                 if (Size_ID > 0)
@@ -130,41 +113,32 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     Action = "C";
                 }
 
-                // DepartmentID = Convert.ToInt32(ddlDept.SelectedValue);
                 Size_Desc = txtSizedes.Text.Trim();
-
                 Size_Alias = Convert.ToInt32(txtSizeAlias.Text.Trim());
 
-                ds = ds = ObjCocktailWorld.SizeMaster_CRUD(Size_ID, Size_Desc, Size_Alias, LoggedInUserID, CompanyID, Action);
+                ds = ObjCocktailWorld.SizeMaster_CRUD(Size_ID, Size_Desc, Size_Alias, LoggedInUserID, CompanyID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
-                        if (Status == 0)
+                        if (Status == 1)
                         {
-
-                        }
-                        else if (Status == 1)
-                        {
-                            Session["Category_ID"] = "";
                             txtSizeAlias.Text = "";
                             txtSizedes.Text = "";
                             mpeCategoryMaster.Hide();
-
-                            //mpeZone.Hide();
-                            //bindgrid();
                             Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Sizes.aspx"), false);
-                        }
-                        else if (Status == 3)
-                        {
-                            lblCategoryErrorMsg.Text = "Size already exists";
                         }
                         else if (Status == 2)
                         {
                             lblCategoryErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
                         }
+                        else if (Status == 3)
+                        {
+                            lblCategoryErrorMsg.Text = "Size already exists";
+                        }
+                        
                     }
                 }
 
@@ -204,14 +178,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             data += "</tr>";
                         }
                     }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-
                 }
             }
             catch (Exception ex)
@@ -223,24 +189,16 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         protected void btnCloseCategory_Click(object sender, EventArgs e)
         {
+            Closecontrol();
+        }
 
+        public void Closecontrol()
+        {
             txtSizedes.Text = "";
             txtSizeAlias.Text = "";
             lblCategoryErrorMsg.Text = "";
             mpeCategoryMaster.Hide();
-            Session["Size_ID"] = "";
             Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Sizes.aspx"), false);
-
-        }
-
-        protected void btnCloseHeader_ServerClick(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnAddcategory_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

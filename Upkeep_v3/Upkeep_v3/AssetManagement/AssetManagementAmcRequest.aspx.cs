@@ -646,7 +646,7 @@ namespace Upkeep_v3.AssetManagement
                 }
                 return FilePath;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //throw ex;
                 return "";
