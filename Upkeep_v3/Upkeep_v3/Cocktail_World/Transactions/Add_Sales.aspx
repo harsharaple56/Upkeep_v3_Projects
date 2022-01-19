@@ -13,6 +13,12 @@
         .form-control {
             padding: 0.5rem;
         }
+
+        .underline {
+            border-bottom-color: #5867dd;
+            border-bottom-width: 5px;
+            height: 45px;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -297,8 +303,8 @@
                                 </a></li>
                             </ul>
                         </div>
-                        <div class="m-portlet m-portlet--tabs" style="width: 300px;">
-                            <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
+                        <div class="m-portlet m-portlet--tabs" style="width: 300px;margin-top: 10px;">
+                            <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
                                 ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
@@ -377,7 +383,8 @@
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                         <asp:UpdatePanel ID="Updatepanel5" runat="server" UpdateMode="Always">
                                             <ContentTemplate>
-                                            <u><asp:Label CssClass="font-weight-bold" ID="lbl_stock" runat="server"></asp:Label></u>
+                                                <u>
+                                                    <asp:Label CssClass="font-weight-bold" ID="lbl_stock" runat="server"></asp:Label></u>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                         &nbsp;
@@ -546,7 +553,7 @@
                                         <div class="m-form__control">
                                             <asp:DropDownList ID="ddlCocktail" runat="server" CssClass="form-control" ClientIDMode="Static">
                                             </asp:DropDownList>
-                                            <asp:RequiredFieldValidator InitialValue="0"  ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlCocktail" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please select Cocktail"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlCocktail" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please select Cocktail"></asp:RequiredFieldValidator>
 
                                         </div>
                                         <input id="sessionCocktail" type="hidden" value='<%= Session["hdnCocktailTax"] %>' />
@@ -602,14 +609,14 @@
 
                                                             <asp:TemplateField HeaderText="Total Amount" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox  ID="cocktailtotalamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Total_Amount"))%>'></asp:TextBox>
+                                                                    <asp:TextBox ID="cocktailtotalamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Total_Amount"))%>'></asp:TextBox>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Tax Amount" ItemStyle-HorizontalAlign="Center">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox  ID="cocktailamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Tax_Amount"))%>'></asp:TextBox>
+                                                                    <asp:TextBox ID="cocktailamount" Width="100px" CssClass="form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Cat_Tax_Amount"))%>'></asp:TextBox>
                                                                 </ItemTemplate>
 
                                                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
@@ -642,7 +649,7 @@
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="btnAddCocktail" EventName="Click" />
-                                        <asp:AsyncPostBackTrigger ControlID="grdCocktail"  />
+                                        <asp:AsyncPostBackTrigger ControlID="grdCocktail" />
                                     </Triggers>
                                 </asp:UpdatePanel>
 

@@ -27,7 +27,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.PurchaseMaster_CRUD(0,"", "","", 0,0,0, CompanyID,LoggedInUserID, "Select");
+                ds = ObjCocktailWorld.PurchaseMaster_CRUD(0,0,"", "","", 0,0,0, CompanyID,LoggedInUserID, "Select");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -53,8 +53,8 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             data += "<td>" + CreateBy + "</td>";
                             data += "<td>" + CreatedDate.ToString("dd-MMM-yyyy") + "</td>";
                             data += "<td>" +
-                                "<a href='Add_Purchase.aspx?Purchase_ID=" + Purchase_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  " +
-                                "<a href='Add_Purchase.aspx?DelPurchase_ID=" + Purchase_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> " +
+                                "<a href='Add_Purchases.aspx?Purchase_ID=" + Purchase_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  " +
+                                "<a href='Add_Purchases.aspx?DelPurchase_ID=" + Purchase_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> " +
                                 "</td>";
                             data += "</tr>";
 

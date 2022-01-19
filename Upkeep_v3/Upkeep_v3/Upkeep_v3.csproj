@@ -4131,7 +4131,6 @@
     <Content Include="obj\Debug\Upkeep_v3.csproj.CopyComplete" />
     <Content Include="obj\Debug\Upkeep_v3.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\Upkeep_v3.csprojAssemblyReference.cache" />
-    <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
@@ -6666,6 +6665,9 @@
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3PrePrintedReport.rdlc" />
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard.rdlc" />
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Report1.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
     <EmbeddedResource Include="VMS\Visitor_ID.rdlc">

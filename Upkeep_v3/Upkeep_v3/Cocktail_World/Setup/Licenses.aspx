@@ -3,6 +3,19 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <style type="text/css">
+        .modalBackground {
+            background-color: grey;
+            filter: alpha(opacity=90);
+            opacity: 0.8;
+        }
+
+        .modalPopup {
+            padding: 10px;
+            width: 300px;
+        }
+        
+    </style>
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -54,7 +67,7 @@
                                     <span>Add License</span>
                                 </span>
                             </asp:LinkButton>
-                            <cc1:ModalPopupExtender ID="mpeLicenseMaster" runat="server" PopupControlID="pnlLicenseMaster" TargetControlID="btnAddLicense" /> 
+                            <cc1:ModalPopupExtender ID="mpeLicenseMaster" runat="server" PopupControlID="pnlLicenseMaster" TargetControlID="btnAddLicense" BackgroundCssClass="modalBackground"/> 
 
                         </div>
                     </div>

@@ -65,12 +65,12 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet PurchaseMaster_CRUD(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges,
+    public DataSet PurchaseMaster_CRUD(int Purchase_ID, int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges,
             decimal Discount_Percentage, int License_ID, int Company_ID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjCocktailWorld.PurchaseMaster_CRUD(Supplier_ID, TP_No, Invoice_No, Purchase_Date, Other_Charges,
+            ds = ObjCocktailWorld.PurchaseMaster_CRUD(Purchase_ID,Supplier_ID, TP_No, Invoice_No, Purchase_Date, Other_Charges,
              Discount_Percentage, License_ID, Company_ID, LoggedInUserID, Action);
 
         }

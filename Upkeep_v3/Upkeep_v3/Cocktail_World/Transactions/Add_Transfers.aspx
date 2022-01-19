@@ -13,6 +13,12 @@
         .input-group-text {
             padding: 0rem;
         }
+
+        .underline {
+            border-bottom-color: #5867dd;
+            border-bottom-width: 5px;
+            height: 45px;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -147,32 +153,20 @@
                             </h3>
                         </div>
                     </div>
-
-                    <div class="col-xl-9 m-portlet__head-tools">
-
-                        <div class="col-lg-7 m--margin-bottom-10-tablet-and-mobile">
-                            <div class="m-form__control">
-                                <asp:DropDownList AutoPostBack="true" ID="ddlLicense" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
-                                    ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
-                            </div>
-                        </div>
-
-                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Transfers.aspx") %>" class="col-lg-2 btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
+                    <div class="m-portlet__head-tools">
+                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Transfers.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>
                                 <i class="la la-arrow-left"></i>
                                 <span>Back</span>
                             </span>
                         </a>
-                        <asp:LinkButton ID="linkAddData" ValidationGroup="validateLicense" CausesValidation="True" runat="server" OnClick="btn_Add_Transfer_Click" class="col-lg-3 btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                        <asp:LinkButton ID="LinkButton1" ValidationGroup="validateLicense" CausesValidation="True" runat="server" OnClick="btn_Add_Transfer_Click" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                             <span>
-                                <i class="fa fa-save"></i>
+                                <i class="fa fa-plus"></i>
                                 <span>Save Transaction</span>
                             </span>
                         </asp:LinkButton>
                     </div>
-
                 </div>
 
                 <div class="m-portlet m-portlet--tabs">
@@ -192,6 +186,12 @@
                                 </li>
                                 <li class="nav-item m-tabs__item"></li>
                             </ul>
+                        </div>
+                        <div class="m-portlet m-portlet--tabs" style="width: 300px; margin-top: 10px;">
+                            <asp:DropDownList AutoPostBack="true" ID="ddlLicense" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
+                                ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -213,7 +213,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTransferDate" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtTransferDate" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -224,7 +224,7 @@
                                                 <ContentTemplate>
                                                     <asp:DropDownList ID="ddlTransferLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlTransferLicense" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlTransferLicense" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="ddlLicense" />
@@ -237,7 +237,7 @@
                                         <label class="font-weight-bold">Enter TP Number</label>
                                         <div class="m-form__control">
                                             <asp:TextBox ID="txttpnumber" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txttpnumber" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter TP No"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txttpnumber" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter TP No"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -247,7 +247,7 @@
                                         <label class="font-weight-bold">Invoice Number</label>
                                         <div class="m-form__control">
                                             <asp:TextBox ID="txtinvoicenumber" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtinvoicenumber" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Invoice No"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtinvoicenumber" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Invoice No"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -259,9 +259,13 @@
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Brand</label>
                                         <div class="m-form__control">
-                                            <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                            </asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
+                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Always">
+                                                <ContentTemplate>
+                                                    <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator InitialValue="0"  ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                         <input id="sessionInput" type="hidden" value='<%= Session["hdnTax"] %>' />
                                     </div>
@@ -272,12 +276,13 @@
                                         <div class="m-form__control">
                                             <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
-                                                    <asp:DropDownList ID="ddlSize" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    <asp:DropDownList ID="ddlSize" OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator InitialValue="0"  ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="ddlBrand" />
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlSize" EventName="SelectedIndexChanged" />
                                                 </Triggers>
                                             </asp:UpdatePanel>
                                         </div>
@@ -285,7 +290,13 @@
 
 
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                        <label class="font-weight-bold">Add Transfer</label>
+                                        <asp:UpdatePanel ID="Updatepanel5" runat="server" UpdateMode="Always">
+                                            <ContentTemplate>
+                                                <u>
+                                                    <asp:Label CssClass="font-weight-bold" ID="lbl_stock" runat="server"></asp:Label></u>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                        &nbsp;
                                         <div class="m-form__control">
                                             <asp:LinkButton ID="btn_AddTransfer" CausesValidation="true" OnClick="btn_AddTransferRow_Click" ValidationGroup="Brandvalidate" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" runat="server">
                                                     <span>

@@ -225,6 +225,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         {
             string email_response = string.Empty;
 
+            string strCompany_Name = string.Empty;
             string strRaisedBy_Name = string.Empty;
             string strAssigned_Department = string.Empty;
             string strTicket_ID = string.Empty;
@@ -234,6 +235,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             string strTicket_SubCategory = string.Empty;
             string strTicket_Level = string.Empty;
             string strUser_Department = string.Empty;
+            string strTicket_Status = string.Empty;
+            string strAction_Status = string.Empty;
+            string strEscalated_Users = string.Empty;
+            string strTicket_Remarks = string.Empty;
 
             //dynamic_values = "Ajay Prajapati,Engineering,Tkt1001,10/08/2021 05:00 PM,loc > loc 1,Housekeeping,Cleaning,1,DepartmentName";
 
@@ -253,6 +258,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 strTicket_SubCategory = Convert.ToString(mergeinfo_array[6]);
                 strTicket_Level = Convert.ToString(mergeinfo_array[7]);
                 strUser_Department = Convert.ToString(mergeinfo_array[8]);
+                strCompany_Name = Convert.ToString(mergeinfo_array[9]);
+                strTicket_Status = Convert.ToString(mergeinfo_array[10]);
+                strAction_Status = Convert.ToString(mergeinfo_array[11]);
+                strEscalated_Users = Convert.ToString(mergeinfo_array[12]);
+                strTicket_Remarks = Convert.ToString(mergeinfo_array[13]);
                 //}
 
                 string merge_info = string.Empty;
@@ -302,6 +312,11 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         Ticket_SubCategory = strTicket_SubCategory,
                         Ticket_Level = strTicket_Level,
                         User_Department = strUser_Department,
+                        Company_Name = strCompany_Name,
+                        Ticket_Status = strTicket_Status,
+                        Action_Status = strAction_Status,
+                        Escalated_Users = strEscalated_Users,
+                        Ticket_Remarks = strTicket_Remarks,
                     },
                     reply_to = dataReply,
                     client_reference = "",

@@ -47,7 +47,7 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int Company_ID, string LoggedInUser, string Action)
+    public DataSet BrandOpeningMaster_CRUD( int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int Company_ID, string LoggedInUser, string Action)
     {
         try
         {
@@ -63,7 +63,7 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet PurchaseMaster_CRUD(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges,
+    public DataSet PurchaseMaster_CRUD(int Purchase_ID, int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges,
             decimal Discount_Percentage, int License_ID, int Company_ID, string LoggedInUserID, string Action)
     {
         try
@@ -71,7 +71,7 @@ public class My_CocktailWorld
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.PurchaseMaster_CRUD(Supplier_ID, TP_No, Invoice_No, Purchase_Date, Other_Charges,
+            ds = ObjcocktailWorld_Master_BL.PurchaseMaster_CRUD(Purchase_ID,Supplier_ID, TP_No, Invoice_No, Purchase_Date, Other_Charges,
              Discount_Percentage, License_ID, Company_ID, LoggedInUserID, Action, StrConn);
             return ds;
         }

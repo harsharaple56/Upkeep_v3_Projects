@@ -13,6 +13,12 @@
         .input-group-text {
             padding: 0rem;
         }
+
+        .underline {
+            border-bottom-color: #5867dd;
+            border-bottom-width: 5px;
+            height: 45px;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -179,14 +185,14 @@
                             </h3>
                         </div>
                     </div>
-                    <div class="col-lg-5 m--margin-bottom-10-tablet-and-mobile">
+                    <%--<div class="col-lg-5 m--margin-bottom-10-tablet-and-mobile">
                         <div class="m-form__control">
                             <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
                                 ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
                         </div>
-                    </div>
+                    </div>--%>
                     <div class="m-portlet__head-tools">
                         <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>
@@ -222,6 +228,11 @@
                                 </li>
                                 <li class="nav-item m-tabs__item"></li>
                             </ul>
+                        </div>
+                        <div class="m-portlet m-portlet--tabs" style="width: 300px; margin-top: 10px;">
+                            <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
                         </div>
                     </div>
 
@@ -291,9 +302,13 @@
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Brand</label>
                                         <div class="m-form__control">
-                                            <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                            </asp:DropDownList>
-                                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
+                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                         <input id="sessionInput" type="hidden" value='<%= Session["hdnTax"] %>' />
                                     </div>
@@ -302,14 +317,15 @@
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Size</label>
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Always">
+                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
-                                                    <asp:DropDownList ID="ddlSize" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    <asp:DropDownList OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" ID="ddlSize" runat="server" CssClass="form-control" AutoPostBack="true" ClientIDMode="Static">
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="ddlBrand" />
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlSize" EventName="SelectedIndexChanged" />
                                                 </Triggers>
                                             </asp:UpdatePanel>
                                         </div>
@@ -317,7 +333,13 @@
 
 
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                        <label class="font-weight-bold">Add Purchase</label>
+                                        <asp:UpdatePanel ID="Updatepanel5" runat="server" UpdateMode="Always">
+                                            <ContentTemplate>
+                                                <u>
+                                                    <asp:Label CssClass="font-weight-bold" ID="lbl_stock" runat="server"></asp:Label></u>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                        &nbsp;
                                         <div class="m-form__control">
                                             <asp:LinkButton ID="btn_AddPurchase" CausesValidation="true" OnClick="btn_AddPurchase_Click" ValidationGroup="Brandvalidate" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" runat="server">
                                                     <span>

@@ -6,7 +6,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+     <style type="text/css">
+        .modalBackground {
+            background-color: grey;
+            filter: alpha(opacity=90);
+            opacity: 0.8;
+        }
 
+        .modalPopup {
+            padding: 10px;
+            width: 300px;
+        }
+        
+    </style>
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
@@ -56,7 +68,7 @@
                                     <span>Add Size</span>
                                 </span>
                             </asp:LinkButton>
-                            <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"/>
+                            <cc1:ModalPopupExtender BackgroundCssClass="modalBackground" ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"/>
 
                         </div>
                     </div>

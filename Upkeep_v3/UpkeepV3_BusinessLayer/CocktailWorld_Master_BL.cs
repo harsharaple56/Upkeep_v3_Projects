@@ -316,7 +316,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet PurchaseMaster_CRUD(int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges, 
+        public DataSet PurchaseMaster_CRUD(int Purchase_ID,int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges, 
             decimal Discount_Percentage, int License_ID,int Company_ID ,string LoggedInUserID, string Action, string StrConn)
         {
             try
@@ -326,6 +326,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Purchase", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Purchase_ID", Purchase_ID);
                 cmd.Parameters.AddWithValue("@Supplier_ID", Supplier_ID);
                 cmd.Parameters.AddWithValue("@TP_No", TP_No);
                 cmd.Parameters.AddWithValue("@Invoice_No", Invoice_No);
