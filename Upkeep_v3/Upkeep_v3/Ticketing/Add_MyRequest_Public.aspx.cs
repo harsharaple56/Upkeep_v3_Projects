@@ -19,7 +19,7 @@ namespace Upkeep_v3.Ticketing
 
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
-        int CompanyID = 11;
+        int CompanyID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +28,24 @@ namespace Upkeep_v3.Ticketing
             hdnIs_Retailer.Value = "0";
             dvEmployeeLocation.Attributes.Add("style", "display:block");
             dvRetailerLocation.Attributes.Add("style", "display:none");
+            string Decrypt_CompanyID = DecryptString(Request.QueryString["cid"].ToString());
+            CompanyID = Convert.ToInt32(Decrypt_CompanyID);
+        }
+
+        public string DecryptString(string encrString)
+        {
+            byte[] b;
+            string decrypted;
+            try
+            {
+                b = Convert.FromBase64String(encrString);
+                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(b);
+            }
+            catch (FormatException fe)
+            {
+                decrypted = "";
+            }
+            return decrypted;
         }
 
         protected void ddlSublocation_SelectedIndexChanged(object sender, EventArgs e)
