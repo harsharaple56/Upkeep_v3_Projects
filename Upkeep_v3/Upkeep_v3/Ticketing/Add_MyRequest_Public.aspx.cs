@@ -340,7 +340,7 @@ namespace Upkeep_v3.Ticketing
                 #region Save Public Ticket
                 DataSet dsTicketSave = new DataSet();
                 string list_Images = String.Join(",", Lst_Images);
-                dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, 0, LocationID, CategoryID, SubCategoryID, UserDesc, list_Images, string.Empty, string.Empty, IsPublicTicket, UserName, UserMobile, UserEmail, "C");
+                dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, UserDesc, list_Images, string.Empty, string.Empty, IsPublicTicket, UserName, UserMobile, UserEmail, "C");
                 if (dsTicketSave.Tables.Count > 0)
                 {
                     if (dsTicketSave.Tables[0].Rows.Count > 0)

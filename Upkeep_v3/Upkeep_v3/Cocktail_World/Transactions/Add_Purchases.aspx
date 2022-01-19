@@ -9,7 +9,6 @@
         .auto-style1 {
             height: 21px;
         }
-
         .input-group-text {
             padding: 0rem;
         }
@@ -355,7 +354,7 @@
                                 <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
 
-                                        <table id="purchaseTbl" width="100%" cellpadding="2" cellspacing="2">
+                                        <table id="purchaseTbl" >
                                             <tr>
                                                 <td colspan="2" class="ClsControlTd">
                                                     <asp:GridView ID="grdPurchase" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"

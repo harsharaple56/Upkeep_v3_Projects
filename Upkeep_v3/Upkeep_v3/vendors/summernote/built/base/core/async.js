@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-exports.createImage = exports.readFileAsDataURL = void 0;
 var jquery_1 = require("jquery");
 /**
  * @method readFileAsDataURL
@@ -34,7 +33,7 @@ exports.readFileAsDataURL = readFileAsDataURL;
  */
 function createImage(url) {
     return jquery_1["default"].Deferred(function (deferred) {
-        var $img = (0, jquery_1["default"])('<img>');
+        var $img = jquery_1["default"]('<img>');
         $img.one('load', function () {
             $img.off('error abort');
             deferred.resolve($img);

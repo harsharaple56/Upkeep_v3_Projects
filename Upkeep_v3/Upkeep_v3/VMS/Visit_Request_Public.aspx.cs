@@ -430,19 +430,20 @@ namespace Upkeep_v3.VMS
 
 
 
-                if (blEmailComp == "True")
+                if (blEmailComp == "0")
                 {
                     //divEmailComp.Visible = true;
                     //spnEmailComp.Visible = true;
-                    rfvEmail.Enabled = true;
+                    //rfvEmail.Enabled = true;
+                    rfvEmail.Enabled = false;
                 }
 
-                if (blContactComp == "True")
+                if (blContactComp == "0")
                 {
-
-                    rfvphone.Enabled = true;
+                    //rfvphone.Enabled = true;
+                    rfvphone.Enabled = false;
                 }
-                if (blMeetingComp == "True")
+                if (blMeetingComp == "1")
                 {
                     // rfvMeeting.Enabled = true;
                     div_MeetingWith.Visible = true;

@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UpkeepMaster.master.cs" Inherits="Upkeep_v3.UpkeepMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Cocktail_World_Master.master.cs" Inherits="Upkeep_v3.Cocktail_World_Master" %>
+
 
 <%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>--%>
 
@@ -846,15 +847,13 @@
                     <!-- END: Subheader -->
 
 
+
+
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
 
 
                 </div>
-
-
-
-
 
 
                 <%--<asp:LinkButton ID="lnkFake" runat="server" />
@@ -1247,3 +1246,4 @@
 
 </body>
 </html>
+

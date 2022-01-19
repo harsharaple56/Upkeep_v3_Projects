@@ -55,7 +55,7 @@ namespace Upkeep_v3.General_Masters
 
 
 
-       
+
 
 
 
@@ -132,7 +132,7 @@ namespace Upkeep_v3.General_Masters
         protected void btnSiteSave_ServerClick(object sender, EventArgs e)
         {
 
-            
+
 
         }
 
@@ -180,9 +180,8 @@ namespace Upkeep_v3.General_Masters
             int State = 0;
             int city = 0;
             string Address = string.Empty;
-            int cocktail = 0;
             string LicenseNumber = string.Empty;
-
+            int cocktail  = 0 ;
 
 
             Site_Code = txtSitecode.Text.Trim();
@@ -223,11 +222,11 @@ namespace Upkeep_v3.General_Masters
                     }
                     else if (Status == 3)
                     {
-                         lblErrorMsg.Text = "";
+                        lblErrorMsg.Text = "";
                     }
                     else if (Status == 2)
                     {
-                         lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
                     }
                 }
             }
@@ -256,7 +255,7 @@ namespace Upkeep_v3.General_Masters
                             int SiteID = Convert.ToInt32(ds.Tables[0].Rows[i]["Site_ID"]);
                             string Site_Code = Convert.ToString(ds.Tables[0].Rows[i]["Site_Code"]);
                             string Site_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Site_Desc"]);
-                           
+
 
                             data += "<tr><td>" + Site_Code + "</td><td>" + Site_Desc + "</td><td><a href='Site_Mst.aspx?Site_ID=" + SiteID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Site_Mst.aspx?DelSite_ID=" + SiteID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
@@ -302,7 +301,7 @@ namespace Upkeep_v3.General_Masters
             {
 
                 DataSet ds = new DataSet();
-                ds = ObjUpkeepCC.Fetch_states(0); 
+                ds = ObjUpkeepCC.Fetch_states(0);
 
                 if (ds.Tables.Count > 0)
                 {
