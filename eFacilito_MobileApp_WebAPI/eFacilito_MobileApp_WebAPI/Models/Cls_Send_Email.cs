@@ -60,6 +60,7 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
     public class MergeInfo
     {
+        public string Company_Name { get; set; }
         public string RaisedBy_Name { get; set; }
         public string Assigned_Department { get; set; }
         public string Ticket_ID { get; set; }
@@ -69,6 +70,10 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Ticket_SubCategory { get; set; }
         public string Ticket_Level { get; set; }
         public string User_Department { get; set; }
+        public string Ticket_Status { get; set; }
+        public string Action_Status { get; set; }
+        public string Escalated_Users { get; set; }
+        public string Ticket_Remarks { get; set; }
 
     }
     #endregion

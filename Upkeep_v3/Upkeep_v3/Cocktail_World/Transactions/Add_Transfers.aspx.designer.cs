@@ -13,6 +13,15 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
     public partial class Add_Transfers {
         
         /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        
+        /// <summary>
         /// ddlLicense control.
         /// </summary>
         /// <remarks>
@@ -29,15 +38,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
-        
-        /// <summary>
-        /// linkAddData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkAddData;
         
         /// <summary>
         /// txtTransferDate control.
@@ -121,6 +121,15 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
+        /// Updatepanel4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Updatepanel4;
+        
+        /// <summary>
         /// ddlBrand control.
         /// </summary>
         /// <remarks>
@@ -164,6 +173,24 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
+        
+        /// <summary>
+        /// Updatepanel5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Updatepanel5;
+        
+        /// <summary>
+        /// lbl_stock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_stock;
         
         /// <summary>
         /// btn_AddTransfer control.

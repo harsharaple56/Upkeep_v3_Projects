@@ -12,7 +12,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
     public partial class Add_Transfers : System.Web.UI.Page
     {
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
-
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
 
@@ -66,7 +65,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                         DataSet ds = new DataSet();
-                        ds = ObjCocktailWorld.License_CRUD(Convert.ToInt32(txtLicen), string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
+                        ds = ObjCocktailWorld.License_CRUD(Convert.ToInt32(txtLicen), string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
                         ddlTransferLicense.DataSource = ds.Tables[0];
                         ddlTransferLicense.DataTextField = "License_Name";
                         ddlTransferLicense.DataValueField = "License_ID";
@@ -997,5 +996,21 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             }
         }
 
+        protected void ddlSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            ds = GetStockDetails();
+            if (ds == null)
+            {
+                lbl_stock.Text = string.Empty;
+            }
+            else if (ds.Tables[0].Rows.Count > 0)
+            {
+                string getBottle = ds.Tables[0].Rows[0].ItemArray[0].ToString();
+                string getsPeg = ds.Tables[0].Rows[0].ItemArray[1].ToString();
+                string displayStock = "Available Stock :- Bottle :" + getBottle + " & Speg :" + getsPeg;
+                lbl_stock.Text = displayStock;
+            }
+        }
     }
 }

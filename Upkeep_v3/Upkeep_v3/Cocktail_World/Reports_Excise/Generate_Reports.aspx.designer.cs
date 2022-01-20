@@ -31,13 +31,13 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Maharashtra_Excise;
         
         /// <summary>
-        /// m_form_type control.
+        /// ddlLicense control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList m_form_type;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLicense;
         
         /// <summary>
         /// UpdatePanel1 control.

@@ -4,7 +4,100 @@
     <title>System Settings</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
 
+        $(document).ready(
+            function () {
+                $(document).on("click", ".btnModalLink", function () {
+                    var newUrl = $("[id*=hdnLink]").val();
+                    $(".modal-body #hLink").html(newUrl);
+                    $(".modal-body #hLink").attr("href", newUrl)
+                    $("#ContentPlaceHolder1_plBarCode img").hide();
+                    $("#" + newUrl.substr(newUrl.length - 5)).show();
+                });
+            });
+    </script>
+    <script>
+        //Copy Element Function
+
+        function copyText() {
+            var range, selection, worked;
+            var element = document.getElementById("hLink");
+
+            if (document.body.createTextRange) {
+                range = document.body.createTextRange();
+                range.moveToElementText(element);
+                range.select();
+            } else if (window.getSelection) {
+                selection = window.getSelection();
+                range = document.createRange();
+                range.selectNodeContents(element);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+
+            try {
+                document.execCommand('copy');
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-center",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "3000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+
+                toastr.success("Successfully Copied..!");
+            }
+            catch (err) {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "3000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+
+                toastr.error("Enable To Copy..!");
+            }
+
+        }
+
+    </script>
+
+    <script>
+
+        function PrintDiv() {
+            var divContents = document.getElementById("printdivcontent").innerHTML;
+            var printWindow = window.open('', '', 'height=400,width=400');
+            printWindow.document.write('<html><head><title>Print DIV Content</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+    </script>
     <div class="m-content">
 
         <div class="row">
@@ -117,6 +210,8 @@
                                                     <br />
 
 
+
+
                                                 </div>
                                             </div>
 
@@ -143,8 +238,11 @@
                                                 </div>
 
                                             </div>
-
-
+                                            <div class="m-form__group form-group row">
+                                                Generate Ticket from QR Code 
+                                                &nbsp; &nbsp;
+                                                      <a href='#' class='btn btn-focus m-btn m-btn--icon btn-sm m-btn--icon-only btnModalLink' data-container='body' data-toggle='modal' data-target='#modalLink' data-placement='top' data-url='" + URL + "' title='Link'><i class='la la-qrcode' style='font-size: 2.1rem;'></i></a>
+                                            </div>
 
 
                                         </form>
@@ -183,22 +281,22 @@
                                 <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                                     <div class="m-demo__preview">
 
-                                        
 
-                                            <div class="m-form__group form-group">
 
-                                                <div class="m-checkbox-list">
+                                        <div class="m-form__group form-group">
 
-                                                   <input type="checkbox" id="chk_QR_Compulspory" runat="server" class="customcontrolinput" clientidmode="Static" />
+                                            <div class="m-checkbox-list">
 
-                                        QR Scan Compulsory to attend Scheduled Checklists
+                                                <input type="checkbox" id="chk_QR_Compulspory" runat="server" class="customcontrolinput" clientidmode="Static" />
+
+                                                QR Scan Compulsory to attend Scheduled Checklists
                                                                          
 																		   
 
-                                                </div>
                                             </div>
+                                        </div>
 
-                                       
+
 
                                     </div>
                                 </div>
@@ -415,8 +513,37 @@
 
 
 
+    <div class="modal fade" id="modalLink" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="width: fit-content;">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <figure class="figure" id="printdivcontent">
+                        <div id="Div1" runat="server" class="text-center">
+                            <asp:PlaceHolder ID="plBarCode" runat="server" />
+                        </div>
+
+                        <h6 class="text-center text-primary" id="hLink"></h6>
+                        <asp:HiddenField ID="hdnLink" runat="server" />
+                    </figure>
+
+                    <h5 class="text-center text-primary">
+                        <button onclick="PrintDiv();" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m-btn--align-center">
+                            <span>
+                                <i class="la la-qrcode "></i>
+                                <i class="la la-download "></i>
+                                <span>Download QR Code</span>
+                            </span>
+                        </button>
+                        <a href="#" onclick='copyText()' class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only" data-toggle="m-popover" title="" data-content="Click to Copy Link to QR Code">
+                            <i class="fa fa-copy"></i>
+                        </a>
+                    </h5>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 
-                    </div>
-    
 </asp:Content>

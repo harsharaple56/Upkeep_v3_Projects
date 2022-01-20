@@ -8,7 +8,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <style type="text/css">
+        .modalBackground {
+            background-color: grey;
+            filter: alpha(opacity=90);
+            opacity: 0.8;
+        }
 
+        .modalPopup {
+            padding: 10px;
+            width: 300px;
+        }
+        
+    </style>
     <script language="C#" runat="server">
 
         protected void LinkButton_Click(Object sender, EventArgs e)
@@ -58,7 +70,7 @@
                                     <span>Add Sub Category</span>
                                 </span>
                             </asp:LinkButton>
-                            <cc1:ModalPopupExtender ID="mpeSubCategory" runat="server" PopupControlID="pnlSubCategory" TargetControlID="btnAddSubCategory" />
+                            <cc1:ModalPopupExtender BackgroundCssClass="modalBackground" ID="mpeSubCategory" runat="server" PopupControlID="pnlSubCategory" TargetControlID="btnAddSubCategory" />
                         </div>
                     </div>
                     <div class="m-portlet__body">

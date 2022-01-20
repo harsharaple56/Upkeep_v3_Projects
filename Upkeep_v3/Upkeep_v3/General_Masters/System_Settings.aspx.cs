@@ -11,6 +11,9 @@ using System.Data.Common;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
+using QRCoder;
+using System.Drawing;
+using System.IO;
 
 namespace Upkeep_v3.General_Masters
 {
@@ -31,11 +34,7 @@ namespace Upkeep_v3.General_Masters
 
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
-
-           
-
             SettingID = Convert.ToInt32(Session["Setting_ID"]);
-
 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
@@ -47,7 +46,9 @@ namespace Upkeep_v3.General_Masters
                 DisplayData(CompanyID, LoggedInUserID);
             }
 
-
+            string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
+            string GenerateQR = ServerURL + "Ticketing/Add_MyRequest_Public.aspx?cid=" + EnryptString(Convert.ToString(CompanyID));
+            GenerateQRImage(GenerateQR);
 
         }
 
@@ -272,6 +273,33 @@ namespace Upkeep_v3.General_Masters
                 throw ex;
             }
         }
-        
+
+        public string EnryptString(string strEncrypted)
+        {
+            byte[] b = System.Text.ASCIIEncoding.ASCII.GetBytes(strEncrypted);
+            string encrypted = Convert.ToBase64String(b);
+            return encrypted;
+        }
+
+        public void GenerateQRImage(string URL)
+        {
+            string code = URL;
+            hdnLink.Value = URL;
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+            System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
+            imgBarCode.Height = 300;
+            imgBarCode.Width = 300;
+            using (Bitmap bitMap = qrCode.GetGraphic(20))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] byteImage = ms.ToArray();
+                    imgBarCode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                }
+                plBarCode.Controls.Add(imgBarCode);
+            }
+        }
     }
 }
