@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Cocktail_World.Setup
-{
-
-
-    public partial class Brand_Sub_Categories
-    {
-
+namespace Upkeep_v3.Cocktail_World.Setup {
+    
+    
+    public partial class Brand_Sub_Categories {
+        
         /// <summary>
         /// btnAddSubCategory control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddSubCategory;
-
+        
         /// <summary>
         /// mpeSubCategory control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpeSubCategory;
-
+        
         /// <summary>
         /// pnlSubCategory control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSubCategory;
-
+        
         /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
@@ -49,16 +47,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-
-        /// <summary>
-        /// lnkbtnClose control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnClose;
-
+        
         /// <summary>
         /// ddlCategory control.
         /// </summary>
@@ -67,7 +56,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
-
+        
         /// <summary>
         /// rfvCat control.
         /// </summary>
@@ -76,7 +65,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCat;
-
+        
         /// <summary>
         /// txtSubCategoryDesc control.
         /// </summary>
@@ -85,7 +74,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSubCategoryDesc;
-
+        
         /// <summary>
         /// rvfSubCategory control.
         /// </summary>
@@ -94,7 +83,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rvfSubCategory;
-
+        
         /// <summary>
         /// lblSubCategoryErrorMsg control.
         /// </summary>
@@ -103,7 +92,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSubCategoryErrorMsg;
-
+        
         /// <summary>
         /// btnCloseSubCategory control.
         /// </summary>
@@ -112,7 +101,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCloseSubCategory;
-
+        
         /// <summary>
         /// btnSubCategorySave control.
         /// </summary>

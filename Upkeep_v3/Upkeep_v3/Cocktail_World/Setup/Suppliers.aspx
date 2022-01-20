@@ -67,7 +67,7 @@
                                     <span>Add Supplier</span>
                                 </span>
                             </asp:LinkButton>
-                            <cc1:ModalPopupExtender BackgroundCssClass="modalBackground" ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory" />
+                            <cc1:ModalPopupExtender CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground" ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory" />
                         </div>
                     </div>
                     <div class="m-portlet__body">
@@ -104,9 +104,15 @@
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                             <ContentTemplate>
 
-                                <div class="modal-header">
+                                <%--<div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Supplier Master</h5>
                                     <asp:LinkButton ID="lnkbtnClose" OnClick="LinkButton_Click" runat="server"><i style="color:red" class="la la-close"></i></asp:LinkButton>
+                                </div>--%>
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Supplier Master</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
                                 <div class="modal-body">
 

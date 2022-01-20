@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <style type="text/css">
+    <style type="text/css">
         .modalBackground {
             background-color: grey;
             filter: alpha(opacity=90);
@@ -16,7 +16,6 @@
             padding: 10px;
             width: 300px;
         }
-        
     </style>
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
@@ -72,7 +71,7 @@
                                     <span>Add Brand</span>
                                 </span>
                             </asp:LinkButton>
-                            <cc1:ModalPopupExtender BackgroundCssClass="modalBackground" ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"/>
+                            <cc1:ModalPopupExtender CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground" ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory" />
 
                         </div>
                     </div>
@@ -111,9 +110,15 @@
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                             <ContentTemplate>
 
+                                <%--<div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Brand Master</h5>
+                                    <asp:LinkButton ID="lnkbtnClose" OnClick="LinkButton_Click" runat="server"><i style="color:red" class="la la-close"></i></asp:LinkButton>
+                                </div>--%>
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Brand Master</h5>
-                                      <asp:LinkButton ID="lnkbtnClose" OnClick="LinkButton_Click" runat="server"><i style="color:red" class="la la-close"></i></asp:LinkButton>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
                                 <div class="modal-body">
 
