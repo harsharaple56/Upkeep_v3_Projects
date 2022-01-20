@@ -4185,7 +4185,6 @@
     <Content Include="obj\Debug\Upkeep_v3.csproj.CopyComplete" />
     <Content Include="obj\Debug\Upkeep_v3.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\Upkeep_v3.csprojAssemblyReference.cache" />
-    <Content Include="obj\Debug\Tsc622da9e7.out" />
     <Content Include="General_Masters\Template\RetailerData.xlsx" />
     <Content Include="General_Masters\Template\eFacilito_User_Data_Import.xlsx" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
@@ -4288,6 +4287,17 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Web References\Upkeep_V3_Services\Upkeep_V3_Services.wsdl" />
+    <Content Include="WorkPermit\Workpermit_Details_Print.xsc">
+      <DependentUpon>Workpermit_Details_Print.xsd</DependentUpon>
+    </Content>
+    <None Include="WorkPermit\Workpermit_Details_Print.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Workpermit_Details_Print.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="WorkPermit\Workpermit_Details_Print.xss">
+      <DependentUpon>Workpermit_Details_Print.xsd</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analytics\Ticketing.aspx.cs">
@@ -5802,6 +5812,11 @@
     <Compile Include="WorkPermit\WorkPermit_Configuration.aspx.designer.cs">
       <DependentUpon>WorkPermit_Configuration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WorkPermit\Workpermit_Details_Print.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Workpermit_Details_Print.xsd</DependentUpon>
+    </Compile>
     <Compile Include="WorkPermit\WorkPermit_Request.aspx.cs">
       <DependentUpon>WorkPermit_Request.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6752,11 +6767,15 @@
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3PrePrintedReport.rdlc" />
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard.rdlc" />
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Report1.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
     <EmbeddedResource Include="VMS\Visitor_ID.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="WorkPermit\Workpermit_Details_Print.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">

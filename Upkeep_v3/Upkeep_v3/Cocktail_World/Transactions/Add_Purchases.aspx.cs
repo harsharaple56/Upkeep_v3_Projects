@@ -27,6 +27,148 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 Fetch_Supplier();
                 Fetch_Brand_Size();
                 SetPurchaseInitialRow();
+
+                #region Edit and Delete Sale
+                int Purchase_ID = Convert.ToInt32(Request.QueryString["Purchase_ID"]);
+                int DelPurchase_ID = Convert.ToInt32(Request.QueryString["DelPurchase_ID"]);
+                if (Purchase_ID > 0)
+                {
+                    Bind_PurchaseMaster(Purchase_ID);
+                }
+                if (DelPurchase_ID > 0)
+                {
+                    Delete_PurchaseMaster(DelPurchase_ID);
+                }
+                #endregion
+            }
+        }
+
+        public void Bind_PurchaseMaster(int Purchase_ID)
+        {
+            try
+            {
+                DataSet dsPurchase = new DataSet();
+                dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(Purchase_ID,0, string.Empty, string.Empty, string.Empty, 0,0,0,CompanyID,LoggedInUserID, "R");
+
+                DataSet dsPurchaseDetail = new DataSet();
+                dsPurchaseDetail = ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Purchase_ID, 0, string.Empty, string.Empty, 0, 0, 0, 0, 0, 0, 0, string.Empty, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "R");
+
+                if (dsPurchase.Tables.Count > 0)
+                {
+                    if (dsPurchase.Tables[0].Rows.Count > 0)
+                    {
+                        DateTime purchaseDate = Convert.ToDateTime(dsPurchase.Tables[0].Rows[0]["Purchase_Date"]);
+                        txtPurchaseDate.Text = purchaseDate.ToString("dd-MMMM-yyyy");
+                        txttpnumber.Text = Convert.ToString(dsPurchase.Tables[0].Rows[0]["TP_No"]);
+                        txtinvoicenumber.Text = Convert.ToString(dsPurchase.Tables[0].Rows[0]["Invoice_No"]);
+                        txtdiscount.Text = Convert.ToString(dsPurchase.Tables[0].Rows[0]["Discount_Percentage"]);
+                        txttotalcharges.Text = Convert.ToString(dsPurchase.Tables[0].Rows[0]["Other_Charges"]);
+                        string txtLicen = Convert.ToString(dsPurchase.Tables[0].Rows[0]["License_Name"]);
+                        string txtSupplier = Convert.ToString(dsPurchase.Tables[0].Rows[0]["Supplier_Name"]);
+
+                        Fetch_License();
+                        ddlLicense.ClearSelection(); //making sure the previous selection has been cleared
+                        ddlLicense.Items.FindByText(txtLicen).Selected = true;
+
+                        Fetch_Supplier();
+                        ddlSupplier.ClearSelection(); //making sure the previous selection has been cleared
+                        ddlSupplier.Items.FindByText(txtSupplier).Selected = true;
+
+                        DataRow drCurrentRow = null;
+                        DataTable dtCurrentTable = new DataTable();
+
+                        dtCurrentTable.Columns.Add("Brand", typeof(String));
+                        dtCurrentTable.Columns.Add("Size", typeof(String));
+                        dtCurrentTable.Columns.Add("sPegQty", typeof(String));
+                        dtCurrentTable.Columns.Add("sPegRate", typeof(String));
+                        dtCurrentTable.Columns.Add("MfgDate", typeof(String));
+                        dtCurrentTable.Columns.Add("BatchNo", typeof(String));
+                        dtCurrentTable.Columns.Add("Boxes", typeof(String));
+                        dtCurrentTable.Columns.Add("Bottle_Qty", typeof(String));
+                        dtCurrentTable.Columns.Add("Bottle_Rate", typeof(String));
+                        dtCurrentTable.Columns.Add("Total_Amount", typeof(String));
+                        dtCurrentTable.Columns.Add("Tax_Amount", typeof(String));
+                        dtCurrentTable.Columns.Add("Stock", typeof(String));
+
+                        dsPurchaseDetail.Tables[0].Columns.Add("Stock", typeof(String));
+
+                        if (ViewState["Purchase"] != null)
+                        {
+                            for (int i = 0; i < dsPurchaseDetail.Tables[0].Rows.Count; i++)
+                            {
+                                drCurrentRow = dtCurrentTable.NewRow();
+                                drCurrentRow["Brand"] = dsPurchaseDetail.Tables[0].Rows[i]["Brand_Desc"].ToString();
+                                drCurrentRow["Size"] = dsPurchaseDetail.Tables[0].Rows[i]["Size_Desc"].ToString();
+                                drCurrentRow["sPegQty"] = dsPurchaseDetail.Tables[0].Rows[i]["SPeg_Qty"].ToString();
+                                drCurrentRow["sPegRate"] = dsPurchaseDetail.Tables[0].Rows[i]["SPeg_Rate"].ToString();
+                                drCurrentRow["MfgDate"] = dsPurchaseDetail.Tables[0].Rows[i]["Mfg"].ToString();
+                                drCurrentRow["BatchNo"] = dsPurchaseDetail.Tables[0].Rows[i]["Batch_No"].ToString();
+                                drCurrentRow["Boxes"] = dsPurchaseDetail.Tables[0].Rows[i]["No_Of_Boxes"].ToString();
+                                drCurrentRow["Bottle_Qty"] = dsPurchaseDetail.Tables[0].Rows[i]["Bottle_Qty"].ToString();
+                                drCurrentRow["Bottle_Rate"] = dsPurchaseDetail.Tables[0].Rows[i]["Bottle_Rate"].ToString();
+                                drCurrentRow["Total_Amount"] = dsPurchaseDetail.Tables[0].Rows[i]["Total_Amt"].ToString();
+                                drCurrentRow["Tax_Amount"] = dsPurchaseDetail.Tables[0].Rows[i]["Tax_Amt"].ToString();
+
+
+                                DataSet dsGetStockDetails = new DataSet();
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsPurchaseDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsPurchaseDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID);
+                                if (dsGetStockDetails.Tables[0].Rows.Count > 0)
+                                {
+                                    string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
+                                    string getsPeg = dsGetStockDetails.Tables[0].Rows[0].ItemArray[1].ToString();
+                                    string getOpningID = dsGetStockDetails.Tables[0].Rows[0].ItemArray[2].ToString();
+                                    string displayStock = "Bottle :" + getBottle + " , Speg :" + getsPeg;
+                                    drCurrentRow["Stock"] = displayStock;
+                                }
+                                else
+                                {
+                                    drCurrentRow["Stock"] = "Bottle :" + 0 + " , Speg :" + 0;
+                                }
+
+                                dtCurrentTable.Rows.Add(drCurrentRow);
+                            }
+                            dtCurrentTable.AcceptChanges();
+                        }
+
+                        if (dtCurrentTable.Rows.Count > 0)
+                        {
+                            grdPurchase.DataSource = dtCurrentTable.Copy();
+                            grdPurchase.DataBind();
+                            DataTable dt = new DataTable();
+                            dt = dtCurrentTable.Copy();
+                            ViewState["Purchase"] = dt;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public void Delete_PurchaseMaster(int Purchase_ID)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = ObjCocktailWorld.PurchaseMaster_CRUD(Purchase_ID,0, string.Empty, string.Empty, string.Empty, 0,0,0,CompanyID, LoggedInUserID,"D");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        DataSet dsSD = new DataSet();
+                        dsSD = ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Purchase_ID, 0,string.Empty, string.Empty,  0,0,0,0,0,0,0, string.Empty, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID,"D");
+
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx"), false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -372,7 +514,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         public bool Check_Purchase_DuplicateData()
         {
             DataSet dsGetPurchase = new DataSet();
-            dsGetPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, ddlLicense.SelectedIndex, CompanyID, LoggedInUserID, "Duplicate");
+            dsGetPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0,Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, ddlLicense.SelectedIndex, CompanyID, LoggedInUserID, "Duplicate");
             if (dsGetPurchase.Tables[0].Rows.Count > 0)
             {
                 return true;
@@ -603,7 +745,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         {
                             //Insert Operation for Purchase Data
                             DataSet dsPurchase = new DataSet();
-                            dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0,Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "Insert");
+                            dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0,Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0,Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "Insert");
 
                             for (int i = 0; i < dtInsertPurchaseData.Rows.Count; i++)
                             {
@@ -654,5 +796,21 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             }
         }
 
+        protected void ddlSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            ds = GetStockDetails();
+            if (ds == null)
+            {
+                lbl_stock.Text = string.Empty;
+            }
+            else if (ds.Tables[0].Rows.Count > 0)
+            {
+                string getBottle = ds.Tables[0].Rows[0].ItemArray[0].ToString();
+                string getsPeg = ds.Tables[0].Rows[0].ItemArray[1].ToString();
+                string displayStock = "Available Stock :- Bottle :" + getBottle + " & Speg :" + getsPeg;
+                lbl_stock.Text = displayStock;
+            }
+        }
     }
 }

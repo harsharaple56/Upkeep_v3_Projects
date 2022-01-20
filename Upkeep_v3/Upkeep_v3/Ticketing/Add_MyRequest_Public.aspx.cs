@@ -23,18 +23,29 @@ namespace Upkeep_v3.Ticketing
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CompanyID = Convert.ToInt32(Request.QueryString["cid"]);
+            Fetch_LocationTree();
+            Fetch_CategorySubCategory(0);
+            hdnIs_Retailer.Value = "0";
+            dvEmployeeLocation.Attributes.Add("style", "display:block");
+            dvRetailerLocation.Attributes.Add("style", "display:none");
+            string Decrypt_CompanyID = DecryptString(Request.QueryString["cid"].ToString());
+            CompanyID = Convert.ToInt32(Decrypt_CompanyID);
+        }
 
-            //CompanyID = 11;
-
-            if (!IsPostBack)
+        public string DecryptString(string encrString)
+        {
+            byte[] b;
+            string decrypted;
+            try
             {
-                Fetch_LocationTree();
-                Fetch_CategorySubCategory(0);
-                hdnIs_Retailer.Value = "0";
-                dvEmployeeLocation.Attributes.Add("style", "display:block");
-                dvRetailerLocation.Attributes.Add("style", "display:none");
+                b = Convert.FromBase64String(encrString);
+                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(b);
             }
+            catch (FormatException fe)
+            {
+                decrypted = "";
+            }
+            return decrypted;
         }
 
         protected void ddlSublocation_SelectedIndexChanged(object sender, EventArgs e)

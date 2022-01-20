@@ -28,19 +28,7 @@
         }*/
     </style>
 
-    <%--<script type="text/javascript">
-        $(document).ready(function () {
-            alert('hi');
-            $('#grdInfodetails').DataTable({
-                
-                responsive: true,
-                pagingType: 'full_numbers',
-                'fnDrawCallback': function () {
-                    init_plugins();
-                }
-            });
-        });
-    </script>--%>
+   
     <script type="text/javascript">
         $(document).ready(function () {
             $('#tbl_GP_Header').DataTable({
@@ -358,18 +346,16 @@
                 else {
                     window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + ",";
                 }
-                alert(strInfo)
             }
 
             if ($("[id*=chk_returnable_gatepass]").prop('checked') == true) {
-                debugger
                 window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value = "";
                 var VarLocTab1 = window.document.getElementById("<%=TblLevels_Returnable.ClientID%>");
                 for (var i = 1; i <= VarLocTab1.rows.length - 1; i++) {
                     var VarLocRowObj1 = VarLocTab1.rows[i].id;
                     var lvl = window.document.getElementById(VarLocRowObj1).children[0].innerHTML;
                     if ((window.document.getElementById(VarLocRowObj1).children[1].children[2].value) == "") {
-                        alert('Action Details Should not be blank _retarbel');
+                        alert('Action Details Should not be blank');
                         return false;
                     }
                     else {
@@ -437,7 +423,6 @@
                     var nxtlvl = window.document.getElementById(VarLocRowObj).children[10].innerHTML;
                     var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendSMS + "#" + SendNotification + "#" + MobileAccess + "#" + WebAccess + "#" + ApprovalRights + "#" + HoldRights + "#" + RejectRights + "#" + nxtlvl;
 
-                    //alert(strInfo);
 
                     if (window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value == "") {
                         window.document.getElementById("<%= txtHdn_Returnable.ClientID%>").value += strInfo + ",";
@@ -449,7 +434,6 @@
 
             }
 
-            // alert(strInfo);
             return true;
         }
 

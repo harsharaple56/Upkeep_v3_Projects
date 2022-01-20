@@ -267,7 +267,11 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             DataSet ds = new DataSet();
             ds = GetStockDetails();
-            if (ds.Tables[0].Rows.Count > 0)
+            if (ds == null)
+            {
+                lbl_stock.Text = string.Empty;
+            }
+            else if (ds.Tables[0].Rows.Count > 0)
             {
                 string getBottle = ds.Tables[0].Rows[0].ItemArray[0].ToString();
                 string getsPeg = ds.Tables[0].Rows[0].ItemArray[1].ToString();

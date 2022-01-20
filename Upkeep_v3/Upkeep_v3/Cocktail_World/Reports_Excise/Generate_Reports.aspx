@@ -6,6 +6,13 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .underline {
+            border-bottom-color: #5867dd;
+            border-bottom-width: 5px;
+            height: 45px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -23,30 +30,10 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-8 m-portlet__head-tools">
-
-                        <div class="col-lg-9 m--margin-bottom-10-tablet-and-mobile">
-
-                            <div class="m-form__control">
-
-                                <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                    <asp:ListItem Value="All" Text="Select License / Outlet"></asp:ListItem>
-                                    <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                    <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
-                                    <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
-                                    <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                    <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                    <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
+                    <div class="m-portlet__head-tools">
+                        <div class="m-form__control" style="width: 300px;">
+                            <asp:DropDownList AutoPostBack="true" ID="ddlLicense" runat="server" CssClass="underline form-control m-input m-input--air" ClientIDMode="Static"></asp:DropDownList>
                         </div>
-
-                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="col-lg-2 btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
-                            <span>
-                                <i class="la la-arrow-left"></i>
-                                <span>Back</span>
-                            </span>
-                        </a>
                     </div>
 
                 </div>
@@ -129,11 +116,8 @@
                                             <div class="row m--margin-bottom-20 m--align-center">
                                                 <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
 
-
-                                                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" ShowBackButton="True" ProcessingMode="Remote" ShowPromptAreaButton="False">
-                                                    </rsweb:ReportViewer>
-
-
+                                                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="1200"></rsweb:ReportViewer>
+                                                   
                                                 </div>
                                             </div>
 
@@ -177,7 +161,7 @@
 
 
                                 <div class="m-form m-form--fit m--margin-bottom-20">
-                                
+
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                         <ContentTemplate>
 

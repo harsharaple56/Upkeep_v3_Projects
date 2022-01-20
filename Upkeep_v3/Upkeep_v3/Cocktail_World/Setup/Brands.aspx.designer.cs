@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Cocktail_World.Setup
-{
-
-
-    public partial class Brands
-    {
-
+namespace Upkeep_v3.Cocktail_World.Setup {
+    
+    
+    public partial class Brands {
+        
         /// <summary>
         /// btnAddcategory control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnAddcategory;
-
+        
         /// <summary>
         /// mpeCategoryMaster control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpeCategoryMaster;
-
+        
         /// <summary>
         /// pnlCategoryMaster control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlCategoryMaster;
-
+        
         /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
@@ -49,16 +47,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-
-        /// <summary>
-        /// lnkbtnClose control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnClose;
-
+        
         /// <summary>
         /// ddlcategory control.
         /// </summary>
@@ -67,7 +56,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlcategory;
-
+        
         /// <summary>
         /// rfvDept control.
         /// </summary>
@@ -76,7 +65,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDept;
-
+        
         /// <summary>
         /// ddlSubCategory control.
         /// </summary>
@@ -85,7 +74,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSubCategory;
-
+        
         /// <summary>
         /// RequiredFieldValidator4 control.
         /// </summary>
@@ -94,7 +83,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-
+        
         /// <summary>
         /// txtBrandDesc control.
         /// </summary>
@@ -103,7 +92,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBrandDesc;
-
+        
         /// <summary>
         /// rfvCategory control.
         /// </summary>
@@ -112,7 +101,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategory;
-
+        
         /// <summary>
         /// txtBrandShortDesc control.
         /// </summary>
@@ -121,7 +110,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtBrandShortDesc;
-
+        
         /// <summary>
         /// rfvCategory1 control.
         /// </summary>
@@ -130,7 +119,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCategory1;
-
+        
         /// <summary>
         /// txtShortname control.
         /// </summary>
@@ -139,7 +128,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtShortname;
-
+        
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -148,7 +137,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
+        
         /// <summary>
         /// txtPurchRatepeg control.
         /// </summary>
@@ -157,7 +146,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPurchRatepeg;
-
+        
         /// <summary>
         /// RequiredFieldValidator2 control.
         /// </summary>
@@ -166,7 +155,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-
+        
         /// <summary>
         /// txtSellingRatePeg control.
         /// </summary>
@@ -175,7 +164,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSellingRatePeg;
-
+        
         /// <summary>
         /// RequiredFieldValidator3 control.
         /// </summary>
@@ -184,7 +173,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
-
+        
         /// <summary>
         /// txtSellingRateBotle control.
         /// </summary>
@@ -193,7 +182,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSellingRateBotle;
-
+        
         /// <summary>
         /// RequiredFieldValidator5 control.
         /// </summary>
@@ -202,7 +191,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
-
+        
         /// <summary>
         /// chkBrndDisable control.
         /// </summary>
@@ -211,7 +200,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkBrndDisable;
-
+        
         /// <summary>
         /// lblCategoryErrorMsg control.
         /// </summary>
@@ -220,7 +209,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCategoryErrorMsg;
-
+        
         /// <summary>
         /// btnCloseCategory control.
         /// </summary>
@@ -229,7 +218,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCloseCategory;
-
+        
         /// <summary>
         /// btnCategorySave control.
         /// </summary>

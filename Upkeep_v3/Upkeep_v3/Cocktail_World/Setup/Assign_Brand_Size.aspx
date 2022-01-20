@@ -6,7 +6,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <style type="text/css">
+        .modalBackground {
+            background-color: grey;
+            filter: alpha(opacity=90);
+            opacity: 0.8;
+        }
 
+        .modalPopup {
+            padding: 10px;
+            width: 300px;
+        }
+        
+    </style>
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -111,8 +123,8 @@
                                         </span>
                                     </button>
 
-                                    <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
-                                        CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
+                                    <cc1:ModalPopupExtender  ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
+                                         BackgroundCssClass="modalBackground">
                                     </cc1:ModalPopupExtender>
                                 </div>
 
