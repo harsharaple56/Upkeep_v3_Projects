@@ -9,12 +9,11 @@ using System.Web.UI.WebControls;
 
 namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
 {
-    public partial class FLR3 : System.Web.UI.Page
+    public partial class Chatai : System.Web.UI.Page
     {
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);

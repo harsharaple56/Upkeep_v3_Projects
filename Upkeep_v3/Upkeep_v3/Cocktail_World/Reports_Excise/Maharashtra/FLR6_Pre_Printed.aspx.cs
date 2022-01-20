@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
 {
-    public partial class FLR3 : System.Web.UI.Page
+    public partial class FLR6_Pre_Printed : System.Web.UI.Page
     {
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
         string LoggedInUserID = string.Empty;
