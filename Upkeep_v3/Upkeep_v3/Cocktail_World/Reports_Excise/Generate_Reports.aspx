@@ -463,6 +463,323 @@
             </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-xl-4">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                    </span>
+                                    <h3 class="m-portlet__head-text">FLR-III
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Generate</span>
+                                            <i class="fab fa-whmcs"></i>
+                                            
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-portlet__body-progress">Loading</div>
+                            Description and Usage about Report 
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                    </span>
+                                    <h3 class="m-portlet__head-text">FLR-III (Pre-Printed)
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Generate</span>
+                                            <i class="fab fa-whmcs"></i>
+                                            
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-portlet__body-progress">Loading</div>
+                            Description and Usage about Report 
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                    </span>
+                                    <h3 class="m-portlet__head-text">FLR-III A
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Generate</span>
+                                            <i class="fab fa-whmcs"></i>
+                                            
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-portlet__body-progress">Loading</div>
+                            Description and Usage about Report 
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                    </span>
+                                    <h3 class="m-portlet__head-text">FLR-IV
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Generate</span>
+                                            <i class="fab fa-whmcs"></i>
+                                            
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-portlet__body-progress">Loading</div>
+                            Description and Usage about Report 
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                    </span>
+                                    <h3 class="m-portlet__head-text">FLR-VI
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Generate</span>
+                                            <i class="fab fa-whmcs"></i>
+                                            
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-portlet__body-progress">Loading</div>
+                            Description and Usage about Report 
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                    </span>
+                                    <h3 class="m-portlet__head-text">FLR-VI (Pre-Printed)
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Generate</span>
+                                            <i class="fab fa-whmcs"></i>
+                                            
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-portlet__body-progress">Loading</div>
+                            Description and Usage about Report 
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                    </span>
+                                    <h3 class="m-portlet__head-text">FLR-VI A
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Generate</span>
+                                            <i class="fab fa-whmcs"></i>
+                                            
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-portlet__body-progress">Loading</div>
+                            Description and Usage about Report 
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+                <div class="col-xl-4">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                    </span>
+                                    <h3 class="m-portlet__head-text">Chatai
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                                <div class="btn-group">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                        <span>
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <span>Generate</span>
+                                            <i class="fab fa-whmcs"></i>
+                                            
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-portlet__body-progress">Loading</div>
+                            Description and Usage about Report 
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+
+               
+            </div>
+
         </div>
 
     </div>
