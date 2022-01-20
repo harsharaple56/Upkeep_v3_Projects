@@ -137,7 +137,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet Category_CRUD(int Company_ID, int Category_ID, string Category_Desc, string Category_Alias, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CategoryMaster_CRUD(int Company_ID, int Category_ID, string Category_Desc, string Category_Alias, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -145,13 +145,13 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlConnection con = new SqlConnection(StrConn);
 
-                SqlCommand cmd = new SqlCommand("Anjali_CW_Mst_Category", con);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Category", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Company_ID",Company_ID);
                 cmd.Parameters.AddWithValue("@Category_Id", Category_ID);
                 cmd.Parameters.AddWithValue("@Category_Desc", Category_Desc);
                 cmd.Parameters.AddWithValue("@Category_Alias", Category_Alias);
-                cmd.Parameters.AddWithValue("@loginId", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
