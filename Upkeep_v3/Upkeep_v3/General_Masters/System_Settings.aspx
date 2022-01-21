@@ -523,7 +523,7 @@
                             <asp:PlaceHolder ID="plBarCode" runat="server" />
                         </div>
 
-                        <h6 class="text-center text-primary" id="hLink"></h6>
+                        <h6 class="text-center text-primary" style="word-break:break-all;" id="hLink"></h6>
                         <asp:HiddenField ID="hdnLink" runat="server" />
                     </figure>
 

@@ -443,7 +443,7 @@ namespace Upkeep_v3.VMS
                     //rfvphone.Enabled = true;
                     rfvphone.Enabled = false;
                 }
-                if (blMeetingComp == "1")
+                if (blMeetingComp == "True")
                 {
                     // rfvMeeting.Enabled = true;
                     div_MeetingWith.Visible = true;

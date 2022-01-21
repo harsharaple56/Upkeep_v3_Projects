@@ -10,7 +10,7 @@
 namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra {
     
     
-    public partial class FLR3 {
+    public partial class FLR3_A {
         
         /// <summary>
         /// ScriptManager1 control.

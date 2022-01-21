@@ -19,7 +19,7 @@ namespace Upkeep_v3.Ticketing
 
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
-        int CompanyID = 0;
+        public static int CompanyID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
