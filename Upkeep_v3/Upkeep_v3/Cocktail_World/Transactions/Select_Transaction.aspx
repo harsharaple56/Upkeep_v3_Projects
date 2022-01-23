@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-xl-6">
                     <!--begin::Portlet-->
-                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-brand">
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -32,7 +32,7 @@
                             <div class="m-portlet__head-tools">
 
                                 <div class="btn-group">
-                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-success m-btn m-btn--icon m-btn--pill m-btn--air">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air">
                                         <span>
                                             <i class="fa fa-angle-double-right"></i>
                                             <span>Click Here</span>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-xl-6">
                     <!--begin::Portlet-->
-                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-brand">
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -66,7 +66,7 @@
                             <div class="m-portlet__head-tools">
 
                                 <div class="btn-group">
-                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Auto_Billing.aspx") %>" class="btn btn-success m-btn m-btn--icon m-btn--pill m-btn--air">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Auto_Billing.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air">
                                         <span>
                                             <i class="fa fa-angle-double-right"></i>
                                             <span>Click Here</span>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="col-xl-6">
                     <!--begin::Portlet-->
-                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-brand">
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -100,7 +100,7 @@
                             <div class="m-portlet__head-tools">
 
                                 <div class="btn-group">
-                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx") %>" class="btn btn-success m-btn m-btn--icon m-btn--pill m-btn--air">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air">
                                         <span>
                                             <i class="fa fa-angle-double-right"></i>
                                             <span>Click Here</span>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="col-xl-6">
                     <!--begin::Portlet-->
-                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-brand">
+                    <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
                         <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
@@ -134,7 +134,7 @@
                             <div class="m-portlet__head-tools">
 
                                 <div class="btn-group">
-                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Transfers.aspx") %>" class="btn btn-success m-btn m-btn--icon m-btn--pill m-btn--air">
+                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Transfers.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air">
                                         <span>
                                             <i class="fa fa-angle-double-right"></i>
                                             <span>Click Here</span>
