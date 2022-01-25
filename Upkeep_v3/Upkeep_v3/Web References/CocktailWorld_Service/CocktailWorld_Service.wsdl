@@ -266,6 +266,33 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="BillBook_Crud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Bill_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Bill_Start_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Bill_End_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="License_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUser" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BillBook_CrudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BillBook_CrudResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="CategoryMaster_CRUD">
         <s:complexType>
           <s:sequence>
@@ -732,6 +759,12 @@
   <wsdl:message name="SaleMaster_CrudSoapOut">
     <wsdl:part name="parameters" element="tns:SaleMaster_CrudResponse" />
   </wsdl:message>
+  <wsdl:message name="BillBook_CrudSoapIn">
+    <wsdl:part name="parameters" element="tns:BillBook_Crud" />
+  </wsdl:message>
+  <wsdl:message name="BillBook_CrudSoapOut">
+    <wsdl:part name="parameters" element="tns:BillBook_CrudResponse" />
+  </wsdl:message>
   <wsdl:message name="CategoryMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:CategoryMaster_CRUD" />
   </wsdl:message>
@@ -864,6 +897,10 @@
     <wsdl:operation name="SaleMaster_Crud">
       <wsdl:input message="tns:SaleMaster_CrudSoapIn" />
       <wsdl:output message="tns:SaleMaster_CrudSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BillBook_Crud">
+      <wsdl:input message="tns:BillBook_CrudSoapIn" />
+      <wsdl:output message="tns:BillBook_CrudSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CategoryMaster_CRUD">
       <wsdl:input message="tns:CategoryMaster_CRUDSoapIn" />
@@ -1006,6 +1043,15 @@
     </wsdl:operation>
     <wsdl:operation name="SaleMaster_Crud">
       <soap:operation soapAction="http://tempuri.org/SaleMaster_Crud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillBook_Crud">
+      <soap:operation soapAction="http://tempuri.org/BillBook_Crud" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1234,6 +1280,15 @@
     </wsdl:operation>
     <wsdl:operation name="SaleMaster_Crud">
       <soap12:operation soapAction="http://tempuri.org/SaleMaster_Crud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillBook_Crud">
+      <soap12:operation soapAction="http://tempuri.org/BillBook_Crud" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

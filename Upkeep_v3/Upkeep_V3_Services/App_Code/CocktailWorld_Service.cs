@@ -162,6 +162,20 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet BillBook_Crud(int Bill_ID, string Bill_Start_No, string Bill_End_No, string License_No, string Action, string LoggedInUser, int Company_ID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.BillBook_Crud( Bill_ID,  Bill_Start_No,  Bill_End_No,  License_No,  Action,  LoggedInUser,  Company_ID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
     public DataSet CategoryMaster_CRUD(int Company_ID, int Category_ID, string Category_Desc, string Category_Alias, string LoggedInUserID, string Action)
     {
         try

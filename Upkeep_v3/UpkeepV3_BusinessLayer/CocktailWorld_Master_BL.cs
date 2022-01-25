@@ -137,6 +137,34 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
+        public DataSet BillBook_Crud(int Bill_ID, string Bill_Start_No, string Bill_End_No, string License_No, string Action, string LoggedInUser, int Company_ID, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_BillBook", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Bill_ID", Bill_ID);
+                cmd.Parameters.AddWithValue("@Bill_Start_No", Bill_Start_No);
+                cmd.Parameters.AddWithValue("@Bill_End_No", Bill_End_No);
+                cmd.Parameters.AddWithValue("@License_No", License_No);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@LoggedInUser", LoggedInUser);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public DataSet CategoryMaster_CRUD(int Company_ID, int Category_ID, string Category_Desc, string Category_Alias, string LoggedInUserID, string Action, string StrConn)
         {
             try
