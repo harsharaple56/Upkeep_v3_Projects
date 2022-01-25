@@ -2005,6 +2005,21 @@ public class My_Upkeep
         }
     }
 
+    public DataSet Fetch_WorkPermitRequestData_PDF(int WP_ConfigID, string Transaction_ID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_WorkPermitRequestData_PDF(WP_ConfigID, Transaction_ID, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
     //Added by RC Update WP Config
     public DataSet Update_WorkPermitConfiguration(int WP_Config_ID, string strConfigTitle, int CompanyID, string strInitiator, bool LinkDepartment, string strTransactionPrefix, string strXmlWorkPermit_Header, string strXmlWorkPermit_TermCondition, string strXmlApprovalMatrix, bool chkShowApprovalMatrix_Initiator, bool chkShowApprovalMatrix_Approver, string WPNotify_Emails, string LoggedInUserID)
@@ -3400,6 +3415,21 @@ public class My_Upkeep
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             ds = ObjUpkeepCC_BL.CRU_System_Setting(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, CompanyID, LoggedInUserID, Action, StrConn);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    public DataSet Insert_System_Setting_Ticket_QR(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            ds = ObjUpkeepCC_BL.Insert_System_Setting_Ticket_QR(CompanyID, StrConn);
         }
         catch (Exception ex)
         {

@@ -254,6 +254,11 @@
 
                                 <div class="m-portlet__head-tools">
 
+                                    <div id="dv_print" runat="server">
+                                    <asp:Button ID="Btn_WP_Print_PDF_Employee" runat="server" Text="Print PDF"  class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" />
+                                    <asp:Button ID="Btn_WP_Print_PDF_Retailer" runat="server" Text="Print PDF"  class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10" />
+                                    </div>
+
                                     <a href="<%= Page.ResolveClientUrl("~/WorkPermit/MyWorkPermit.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                                         <span>
                                             <i class="la la-arrow-left"></i>

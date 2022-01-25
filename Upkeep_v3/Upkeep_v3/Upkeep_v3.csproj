@@ -6814,7 +6814,6 @@
     <EmbeddedResource Include="VMS\Visitor_ID.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="WorkPermit\Workpermit_Details_Print.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">

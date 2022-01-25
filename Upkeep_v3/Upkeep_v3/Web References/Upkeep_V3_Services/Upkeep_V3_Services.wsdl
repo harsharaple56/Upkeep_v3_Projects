@@ -3,6 +3,28 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Bind_CSMRequestDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_CSMRequestDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_CSMRequestDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_AnswerForAll">
         <s:complexType>
           <s:sequence>
@@ -1204,6 +1226,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="CRU_System_SettingResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_System_Setting_Ticket_QR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_System_Setting_Ticket_QRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_System_Setting_Ticket_QRResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3073,6 +3116,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_WorkPermitRequestData_PDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WP_ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Transaction_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_WorkPermitRequestData_PDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_WorkPermitRequestData_PDFResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Fetch_Chk_Answer">
         <s:complexType />
       </s:element>
@@ -3731,28 +3797,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_CSMRequestListResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Bind_CSMRequestDetails">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="RequestID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Bind_CSMRequestDetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Bind_CSMRequestDetailsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5824,6 +5868,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Bind_CSMRequestDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_CSMRequestDetails" />
+  </wsdl:message>
+  <wsdl:message name="Bind_CSMRequestDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_CSMRequestDetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_AnswerForAllSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_AnswerForAll" />
   </wsdl:message>
@@ -6129,6 +6179,12 @@
   </wsdl:message>
   <wsdl:message name="CRU_System_SettingSoapOut">
     <wsdl:part name="parameters" element="tns:CRU_System_SettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_System_Setting_Ticket_QRSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_System_Setting_Ticket_QR" />
+  </wsdl:message>
+  <wsdl:message name="Insert_System_Setting_Ticket_QRSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_System_Setting_Ticket_QRResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Custom_FieldsSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Custom_Fields" />
@@ -6592,6 +6648,12 @@
   <wsdl:message name="Delete_WPConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Delete_WPConfigurationResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_WorkPermitRequestData_PDFSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestData_PDF" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_WorkPermitRequestData_PDFSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_WorkPermitRequestData_PDFResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Chk_AnswerSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Chk_Answer" />
   </wsdl:message>
@@ -6753,12 +6815,6 @@
   </wsdl:message>
   <wsdl:message name="Fetch_CSMRequestListSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_CSMRequestListResponse" />
-  </wsdl:message>
-  <wsdl:message name="Bind_CSMRequestDetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:Bind_CSMRequestDetails" />
-  </wsdl:message>
-  <wsdl:message name="Bind_CSMRequestDetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:Bind_CSMRequestDetailsResponse" />
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
@@ -7265,6 +7321,10 @@
     <wsdl:part name="parameters" element="tns:Fetch_MIS_ReportResponse" />
   </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Bind_CSMRequestDetails">
+      <wsdl:input message="tns:Bind_CSMRequestDetailsSoapIn" />
+      <wsdl:output message="tns:Bind_CSMRequestDetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_AnswerForAll">
       <wsdl:input message="tns:Fetch_AnswerForAllSoapIn" />
       <wsdl:output message="tns:Fetch_AnswerForAllSoapOut" />
@@ -7468,6 +7528,10 @@
     <wsdl:operation name="CRU_System_Setting">
       <wsdl:input message="tns:CRU_System_SettingSoapIn" />
       <wsdl:output message="tns:CRU_System_SettingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_System_Setting_Ticket_QR">
+      <wsdl:input message="tns:Insert_System_Setting_Ticket_QRSoapIn" />
+      <wsdl:output message="tns:Insert_System_Setting_Ticket_QRSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Custom_Fields">
       <wsdl:input message="tns:Fetch_Custom_FieldsSoapIn" />
@@ -7778,6 +7842,10 @@
       <wsdl:input message="tns:Delete_WPConfigurationSoapIn" />
       <wsdl:output message="tns:Delete_WPConfigurationSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermitRequestData_PDF">
+      <wsdl:input message="tns:Fetch_WorkPermitRequestData_PDFSoapIn" />
+      <wsdl:output message="tns:Fetch_WorkPermitRequestData_PDFSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Chk_Answer">
       <wsdl:input message="tns:Fetch_Chk_AnswerSoapIn" />
       <wsdl:output message="tns:Fetch_Chk_AnswerSoapOut" />
@@ -7885,10 +7953,6 @@
     <wsdl:operation name="Fetch_CSMRequestList">
       <wsdl:input message="tns:Fetch_CSMRequestListSoapIn" />
       <wsdl:output message="tns:Fetch_CSMRequestListSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Bind_CSMRequestDetails">
-      <wsdl:input message="tns:Bind_CSMRequestDetailsSoapIn" />
-      <wsdl:output message="tns:Bind_CSMRequestDetailsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -8229,6 +8293,15 @@
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Bind_CSMRequestDetails">
+      <soap:operation soapAction="http://tempuri.org/Bind_CSMRequestDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_AnswerForAll">
       <soap:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
       <wsdl:input>
@@ -8681,6 +8754,15 @@
     </wsdl:operation>
     <wsdl:operation name="CRU_System_Setting">
       <soap:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_System_Setting_Ticket_QR">
+      <soap:operation soapAction="http://tempuri.org/Insert_System_Setting_Ticket_QR" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9381,6 +9463,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermitRequestData_PDF">
+      <soap:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestData_PDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Chk_Answer">
       <soap:operation soapAction="http://tempuri.org/Fetch_Chk_Answer" style="document" />
       <wsdl:input>
@@ -9617,15 +9708,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_CSMRequestList">
       <soap:operation soapAction="http://tempuri.org/Fetch_CSMRequestList" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Bind_CSMRequestDetails">
-      <soap:operation soapAction="http://tempuri.org/Bind_CSMRequestDetails" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -10392,6 +10474,15 @@
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Bind_CSMRequestDetails">
+      <soap12:operation soapAction="http://tempuri.org/Bind_CSMRequestDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_AnswerForAll">
       <soap12:operation soapAction="http://tempuri.org/Fetch_AnswerForAll" style="document" />
       <wsdl:input>
@@ -10844,6 +10935,15 @@
     </wsdl:operation>
     <wsdl:operation name="CRU_System_Setting">
       <soap12:operation soapAction="http://tempuri.org/CRU_System_Setting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_System_Setting_Ticket_QR">
+      <soap12:operation soapAction="http://tempuri.org/Insert_System_Setting_Ticket_QR" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11544,6 +11644,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_WorkPermitRequestData_PDF">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_WorkPermitRequestData_PDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Chk_Answer">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Chk_Answer" style="document" />
       <wsdl:input>
@@ -11780,15 +11889,6 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_CSMRequestList">
       <soap12:operation soapAction="http://tempuri.org/Fetch_CSMRequestList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Bind_CSMRequestDetails">
-      <soap12:operation soapAction="http://tempuri.org/Bind_CSMRequestDetails" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

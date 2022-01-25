@@ -2672,6 +2672,27 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_WorkPermitRequestData_PDF(int WP_ConfigID, string Transaction_ID, string LoggedInUserID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_FETCH_SAVED_WP_REQUEST_DATA_PDF", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@WP_ConfigID", WP_ConfigID);
+                cmd.Parameters.AddWithValue("@Transaction_ID", Transaction_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet Update_WorkPermitRequest(int TransactionID, string LoggedInUserID, string ActionStatus, string Remarks, string StrConn)
         {
             DataSet ds = new DataSet();
@@ -4865,6 +4886,30 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
+
+        public DataSet Insert_System_Setting_Ticket_QR(int CompanyID, string StrConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Sys_Setting_Generate_Ticket_QR", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
 
         public DataSet Fetch_Custom_Fields(int CompanyID, string StrConn)
         {

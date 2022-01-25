@@ -133,7 +133,7 @@
                 </div>
                 <div class="m--align-center" style="padding: 15px;">
                     <h4 class="m--font-primary font-weight-bold">
-                        <asp:Label ID="lbl_Form_Name" runat="server">Hello Ticket Form..!</asp:Label>
+                        <asp:Label ID="lbl_Form_Name" runat="server">Ticket Request Form..!</asp:Label>
                     </h4>
                 </div>
 
@@ -141,7 +141,7 @@
 
                     <div class="m-form__section m-form__section--first">
                         <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
-                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Visitor Information</h3>
+                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Customer Information</h3>
                         </div>
 
                         <div class="form-group m-form__group row">
