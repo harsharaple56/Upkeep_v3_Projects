@@ -24,6 +24,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             dv_Size.Visible = false;
             if (!IsPostBack)
             {
+                Fetch_License();
                 Fetch_Category_Brand();
                 int BrandOpening_ID = Convert.ToInt32(Request.QueryString["BrandOpening_ID"]);
                 if (BrandOpening_ID > 0)
@@ -53,6 +54,17 @@ namespace Upkeep_v3.Cocktail_World.Setup
             FetchBrandSizeLinkUp(0, 0);
         }
 
+        private void Fetch_License()
+        {
+            DataSet ds = new DataSet();
+            ds = ObjCocktailWorld.License_CRUD(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
+            ddlLicense.DataSource = ds.Tables[0];
+            ddlLicense.DataTextField = "License_Name";
+            ddlLicense.DataValueField = "License_ID";
+            ddlLicense.DataBind();
+            ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
+        }
+
         public void Fetch_Category_Brand()
         {
             grdCatagLinkUp.Visible = false;
@@ -74,7 +86,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     ddlCategory.DataTextField = "Category_Desc";
                     ddlCategory.DataValueField = "Category_ID";
                     ddlCategory.DataBind();
-                    ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                    ddlCategory.Items.Insert(0, new ListItem("--Select Category--", "0"));
                 }
                 else if (CategoryID > 0)
                 {
@@ -82,7 +94,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     ddlBrand.DataTextField = "Brand_Desc";
                     ddlBrand.DataValueField = "Brand_ID";
                     ddlBrand.DataBind();
-                    ddlBrand.Items.Insert(0, new ListItem("--Select--", "0"));
+                    ddlBrand.Items.Insert(0, new ListItem("--Select Brand--", "0"));
                 }
 
             }
@@ -192,7 +204,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     }
 
                     if (!string.IsNullOrEmpty(txtspegqty) || !string.IsNullOrEmpty(txtbottleqty))
-                        ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID,0,0, CompanyID, LoggedInUserID, Action);
+                        ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, 0, 0, CompanyID, LoggedInUserID, Action);
                 }
                 Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Opening_Stock.aspx"), false);
             }
@@ -207,7 +219,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0,0,0, CompanyID, LoggedInUserID, "R");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "R");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -224,7 +236,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-        public void FetchBrands(int categoryid,int brandid)
+        public void FetchBrands(int categoryid, int brandid)
         {
             DataSet dsCategory = new DataSet();
             dsCategory = ObjCocktailWorld.Fetch_Category_Brand(CompanyID, categoryid);
@@ -243,7 +255,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0,0,0, CompanyID, LoggedInUserID, "D");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -263,5 +275,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
 
         }
+       
     }
 }

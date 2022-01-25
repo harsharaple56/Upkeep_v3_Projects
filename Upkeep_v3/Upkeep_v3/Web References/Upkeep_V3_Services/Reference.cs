@@ -30,6 +30,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Bind_CSMRequestDetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_AnswerForAllOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_User_UserGroupListGPWPOperationCompleted;
@@ -131,6 +133,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_MyChecklist_NEWOperationCompleted;
         
         private System.Threading.SendOrPostCallback CRU_System_SettingOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Insert_System_Setting_Ticket_QROperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Custom_FieldsOperationCompleted;
         
@@ -286,6 +290,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Delete_WPConfigurationOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_WorkPermitRequestData_PDFOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_Chk_AnswerOperationCompleted;
         
         private System.Threading.SendOrPostCallback Update_ChecklistConfigurationOperationCompleted;
@@ -339,8 +345,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Insert_CSMRequestOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_CSMRequestListOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Bind_CSMRequestDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
@@ -549,6 +553,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        public event Bind_CSMRequestDetailsCompletedEventHandler Bind_CSMRequestDetailsCompleted;
+        
+        /// <remarks/>
         public event Fetch_AnswerForAllCompletedEventHandler Fetch_AnswerForAllCompleted;
         
         /// <remarks/>
@@ -700,6 +707,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event CRU_System_SettingCompletedEventHandler CRU_System_SettingCompleted;
+        
+        /// <remarks/>
+        public event Insert_System_Setting_Ticket_QRCompletedEventHandler Insert_System_Setting_Ticket_QRCompleted;
         
         /// <remarks/>
         public event Fetch_Custom_FieldsCompletedEventHandler Fetch_Custom_FieldsCompleted;
@@ -933,6 +943,9 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Delete_WPConfigurationCompletedEventHandler Delete_WPConfigurationCompleted;
         
         /// <remarks/>
+        public event Fetch_WorkPermitRequestData_PDFCompletedEventHandler Fetch_WorkPermitRequestData_PDFCompleted;
+        
+        /// <remarks/>
         public event Fetch_Chk_AnswerCompletedEventHandler Fetch_Chk_AnswerCompleted;
         
         /// <remarks/>
@@ -1012,9 +1025,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_CSMRequestListCompletedEventHandler Fetch_CSMRequestListCompleted;
-        
-        /// <remarks/>
-        public event Bind_CSMRequestDetailsCompletedEventHandler Bind_CSMRequestDetailsCompleted;
         
         /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
@@ -1267,6 +1277,37 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_MIS_ReportCompletedEventHandler Fetch_MIS_ReportCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_CSMRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_CSMRequestDetails(int RequestID, string LoggedInUserID) {
+            object[] results = this.Invoke("Bind_CSMRequestDetails", new object[] {
+                        RequestID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Bind_CSMRequestDetailsAsync(int RequestID, string LoggedInUserID) {
+            this.Bind_CSMRequestDetailsAsync(RequestID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_CSMRequestDetailsAsync(int RequestID, string LoggedInUserID, object userState) {
+            if ((this.Bind_CSMRequestDetailsOperationCompleted == null)) {
+                this.Bind_CSMRequestDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_CSMRequestDetailsOperationCompleted);
+            }
+            this.InvokeAsync("Bind_CSMRequestDetails", new object[] {
+                        RequestID,
+                        LoggedInUserID}, this.Bind_CSMRequestDetailsOperationCompleted, userState);
+        }
+        
+        private void OnBind_CSMRequestDetailsOperationCompleted(object arg) {
+            if ((this.Bind_CSMRequestDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_CSMRequestDetailsCompleted(this, new Bind_CSMRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_AnswerForAll", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3030,6 +3071,35 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.CRU_System_SettingCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.CRU_System_SettingCompleted(this, new CRU_System_SettingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_System_Setting_Ticket_QR", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Insert_System_Setting_Ticket_QR(int CompanyID) {
+            object[] results = this.Invoke("Insert_System_Setting_Ticket_QR", new object[] {
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Insert_System_Setting_Ticket_QRAsync(int CompanyID) {
+            this.Insert_System_Setting_Ticket_QRAsync(CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Insert_System_Setting_Ticket_QRAsync(int CompanyID, object userState) {
+            if ((this.Insert_System_Setting_Ticket_QROperationCompleted == null)) {
+                this.Insert_System_Setting_Ticket_QROperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_System_Setting_Ticket_QROperationCompleted);
+            }
+            this.InvokeAsync("Insert_System_Setting_Ticket_QR", new object[] {
+                        CompanyID}, this.Insert_System_Setting_Ticket_QROperationCompleted, userState);
+        }
+        
+        private void OnInsert_System_Setting_Ticket_QROperationCompleted(object arg) {
+            if ((this.Insert_System_Setting_Ticket_QRCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Insert_System_Setting_Ticket_QRCompleted(this, new Insert_System_Setting_Ticket_QRCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5931,6 +6001,39 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_WorkPermitRequestData_PDF", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_WorkPermitRequestData_PDF(int WP_ConfigID, string Transaction_ID, string LoggedInUserID) {
+            object[] results = this.Invoke("Fetch_WorkPermitRequestData_PDF", new object[] {
+                        WP_ConfigID,
+                        Transaction_ID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_WorkPermitRequestData_PDFAsync(int WP_ConfigID, string Transaction_ID, string LoggedInUserID) {
+            this.Fetch_WorkPermitRequestData_PDFAsync(WP_ConfigID, Transaction_ID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_WorkPermitRequestData_PDFAsync(int WP_ConfigID, string Transaction_ID, string LoggedInUserID, object userState) {
+            if ((this.Fetch_WorkPermitRequestData_PDFOperationCompleted == null)) {
+                this.Fetch_WorkPermitRequestData_PDFOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_WorkPermitRequestData_PDFOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_WorkPermitRequestData_PDF", new object[] {
+                        WP_ConfigID,
+                        Transaction_ID,
+                        LoggedInUserID}, this.Fetch_WorkPermitRequestData_PDFOperationCompleted, userState);
+        }
+        
+        private void OnFetch_WorkPermitRequestData_PDFOperationCompleted(object arg) {
+            if ((this.Fetch_WorkPermitRequestData_PDFCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_WorkPermitRequestData_PDFCompleted(this, new Fetch_WorkPermitRequestData_PDFCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Chk_Answer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Fetch_Chk_Answer() {
             object[] results = this.Invoke("Fetch_Chk_Answer", new object[0]);
@@ -7049,37 +7152,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_CSMRequestListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_CSMRequestListCompleted(this, new Fetch_CSMRequestListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_CSMRequestDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Bind_CSMRequestDetails(int RequestID, string LoggedInUserID) {
-            object[] results = this.Invoke("Bind_CSMRequestDetails", new object[] {
-                        RequestID,
-                        LoggedInUserID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Bind_CSMRequestDetailsAsync(int RequestID, string LoggedInUserID) {
-            this.Bind_CSMRequestDetailsAsync(RequestID, LoggedInUserID, null);
-        }
-        
-        /// <remarks/>
-        public void Bind_CSMRequestDetailsAsync(int RequestID, string LoggedInUserID, object userState) {
-            if ((this.Bind_CSMRequestDetailsOperationCompleted == null)) {
-                this.Bind_CSMRequestDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_CSMRequestDetailsOperationCompleted);
-            }
-            this.InvokeAsync("Bind_CSMRequestDetails", new object[] {
-                        RequestID,
-                        LoggedInUserID}, this.Bind_CSMRequestDetailsOperationCompleted, userState);
-        }
-        
-        private void OnBind_CSMRequestDetailsOperationCompleted(object arg) {
-            if ((this.Bind_CSMRequestDetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Bind_CSMRequestDetailsCompleted(this, new Bind_CSMRequestDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -10334,6 +10406,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Bind_CSMRequestDetailsCompletedEventHandler(object sender, Bind_CSMRequestDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_CSMRequestDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_CSMRequestDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void Fetch_AnswerForAllCompletedEventHandler(object sender, Fetch_AnswerForAllCompletedEventArgs e);
     
     /// <remarks/>
@@ -11645,6 +11743,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal CRU_System_SettingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Insert_System_Setting_Ticket_QRCompletedEventHandler(object sender, Insert_System_Setting_Ticket_QRCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Insert_System_Setting_Ticket_QRCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Insert_System_Setting_Ticket_QRCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -13662,6 +13786,32 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_WorkPermitRequestData_PDFCompletedEventHandler(object sender, Fetch_WorkPermitRequestData_PDFCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_WorkPermitRequestData_PDFCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_WorkPermitRequestData_PDFCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void Fetch_Chk_AnswerCompletedEventHandler(object sender, Fetch_Chk_AnswerCompletedEventArgs e);
     
     /// <remarks/>
@@ -14349,32 +14499,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_CSMRequestListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Bind_CSMRequestDetailsCompletedEventHandler(object sender, Bind_CSMRequestDetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Bind_CSMRequestDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Bind_CSMRequestDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -13,6 +13,15 @@ namespace Upkeep_v3.Cocktail_World.Reports {
     public partial class Brand_Summary_Report {
         
         /// <summary>
+        /// ddlLicense control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLicense;
+        
+        /// <summary>
         /// m_form_status control.
         /// </summary>
         /// <remarks>
@@ -83,14 +92,5 @@ namespace Upkeep_v3.Cocktail_World.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnActionStatus;
-        
-        /// <summary>
-        /// btnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnSearch;
     }
 }

@@ -46,9 +46,9 @@ namespace Upkeep_v3.General_Masters
                 DisplayData(CompanyID, LoggedInUserID);
             }
 
-            string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
-            string GenerateQR = ServerURL + "Ticketing/Add_MyRequest_Public.aspx?cid=" + EnryptString(Convert.ToString(CompanyID));
-            GenerateQRImage(GenerateQR);
+            //string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
+            //string GenerateQR = ServerURL + "Ticketing/Add_MyRequest_Public.aspx?cid=" + EnryptString(Convert.ToString(CompanyID));
+            //GenerateQRImage(GenerateQR);
 
         }
 
@@ -58,17 +58,12 @@ namespace Upkeep_v3.General_Masters
             DataSet dsSetting = new DataSet();
             try
             {
-                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0,0, CompanyID, LoggedInUserID, "R");
-
+                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0, 0, CompanyID, LoggedInUserID, "R");
 
                 if (dsSetting.Tables.Count > 0)
                 {
-
-
                     if (dsSetting.Tables[0].Rows.Count > 0)
-
                     {
-
                         int intSettingID = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Setting_ID"]);
                         Session["Setting_ID"] = Convert.ToString(dsSetting.Tables[0].Rows[0]["Setting_ID"]);
                         //  int intSettingID = Convert.ToInt32(Session["Setting_ID"])
@@ -127,6 +122,24 @@ namespace Upkeep_v3.General_Masters
 
                     }
                 }
+                if (dsSetting.Tables.Count > 1)
+                {
+                    if (dsSetting.Tables[1].Rows.Count > 0)
+                    {
+                        string short_url = Convert.ToString(dsSetting.Tables[1].Rows[0]["ShortUrl"]);
+
+                        string ServerURL = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.AbsolutePath, "") + System.Configuration.ConfigurationManager.AppSettings["VDName"] + "/";
+                        string GenerateQR = ServerURL + short_url;
+                        GenerateQRImage(GenerateQR);
+
+                        btn_Generate_TicketQR.Attributes.Add("style", "display:none;");
+                    }
+                    else
+                    {
+                        btn_show_QR.Attributes.Add("style", "display:none;");
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -301,5 +314,31 @@ namespace Upkeep_v3.General_Masters
                 plBarCode.Controls.Add(imgBarCode);
             }
         }
+
+        protected void btn_Generate_TicketQR_Click(object sender, EventArgs e)
+        {
+            DataSet ds_TicketQR = new DataSet();
+            try
+            {
+                ds_TicketQR = ObjUpkeep.Insert_System_Setting_Ticket_QR(CompanyID);
+
+                if (ds_TicketQR.Tables.Count > 0)
+                {
+                    if (ds_TicketQR.Tables[0].Rows.Count > 0)
+                    {
+                        int Status = Convert.ToInt32(ds_TicketQR.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            DisplayData(CompanyID, LoggedInUserID);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

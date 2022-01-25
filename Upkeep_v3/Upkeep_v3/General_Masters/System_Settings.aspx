@@ -239,11 +239,14 @@
 
                                             </div>
                                             <div class="m-form__group form-group row">
-                                                Generate Ticket from QR Code 
-                                                &nbsp; &nbsp;
-                                                      <a href='#' class='btn btn-focus m-btn m-btn--icon btn-sm m-btn--icon-only btnModalLink' data-container='body' data-toggle='modal' data-target='#modalLink' data-placement='top' data-url='" + URL + "' title='Link'><i class='la la-qrcode' style='font-size: 2.1rem;'></i></a>
+                                                <div class="col-lg-7">
+                                                    Generate Ticket from QR Code 
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <asp:Button ID="btn_Generate_TicketQR" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btn_Generate_TicketQR_Click" Text="Generate QR"  />
+                                                    <a href='#' id="btn_show_QR" runat="server" class='btn btn-focus m-btn m-btn--icon btn-sm m-btn--icon-only btnModalLink' data-container='body' data-toggle='modal' data-target='#modalLink' data-placement='top' data-url='" + URL + "' title='Click here to view QR code'><i class='la la-qrcode' style='font-size: 2.1rem;'></i></a>
+                                                </div>
                                             </div>
-
 
                                         </form>
 
@@ -523,7 +526,7 @@
                             <asp:PlaceHolder ID="plBarCode" runat="server" />
                         </div>
 
-                        <h6 class="text-center text-primary" style="word-break:break-all;" id="hLink"></h6>
+                        <h6 class="text-center text-primary" style="word-break: break-all;" id="hLink"></h6>
                         <asp:HiddenField ID="hdnLink" runat="server" />
                     </figure>
 

@@ -85,6 +85,33 @@ namespace Upkeep_v3.WorkPermit {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
         
         /// <summary>
+        /// dv_print control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_print;
+        
+        /// <summary>
+        /// Btn_WP_Print_PDF_Employee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_WP_Print_PDF_Employee;
+        
+        /// <summary>
+        /// Btn_WP_Print_PDF_Retailer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_WP_Print_PDF_Retailer;
+        
+        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>
