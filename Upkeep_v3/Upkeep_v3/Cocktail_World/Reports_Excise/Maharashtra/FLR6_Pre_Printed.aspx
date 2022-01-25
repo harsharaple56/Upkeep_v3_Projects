@@ -80,7 +80,7 @@
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">FLR-III Excise Report		
+                        <h3 class="m-portlet__head-text">FLR-VI(6) Pre-Printed Excise Report		
                         </h3>
                     </div>
                 </div>
@@ -102,62 +102,46 @@
             <div class="m-portlet__body">
                 <!--begin: Search Form -->
 
-                <div class="m-form m-form--fit m--margin-bottom-20">
-                    <div class="row m--align-center">
+               <div class="form-group row">
+                    <label class="col-md-1 col-form-label font-weight-bold" style="margin-top: 10px;">License  :</label>
+                    <div class="col-md-3 col-form-label">
+                        <asp:DropDownList AutoPostBack="true" ID="ddlLicense" runat="server" CssClass="form-control m-input m-input--air" ClientIDMode="Static"></asp:DropDownList>
+                    </div>
 
-                        <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                            <label class="font-weight-bold">Select License :</label>
-                            <asp:DropDownList AutoPostBack="true" ID="ddlLicense" runat="server" CssClass="form-control m-input m-input--air" ClientIDMode="Static"></asp:DropDownList>
-                        </div>
-
-                        <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                            <label class="font-weight-bold">Filter Date Range:</label>
-
-                            <div class="m-form__control">
-                                <span class="m-subheader__daterange btn btn-sm btn-outline-brand" style="padding: 0.15rem 0.8rem; width:-webkit-fill-available;" id="daterangepicker">
-                                    <span class="m-subheader__daterange-label" style="font-size: 12px;">
-                                        <span class="m-subheader__daterange-title"></span>
-                                        <span class="m-subheader__daterange-date"></span>
-                                        <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
-                                        <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
-                                        <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                                        <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
-                                        <asp:HiddenField ID="hdnTicketStatus" ClientIDMode="Static" runat="server" />
-                                        <asp:HiddenField ID="hdnActionStatus" ClientIDMode="Static" runat="server" />
-                                    </span>
-                                    <button type="button" class="btn btn-brand btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-brand">
-                                        <i class="la la-angle-down"></i>
-                                    </button>
+                    <label class="col-md-2 col-form-label font-weight-bold" style="margin-top: 10px;">Filter Date Range  :</label>
+                    <div class="col-md-3 col-form-label">
+                        <div class="m-form__control">
+                            <span class="m-subheader__daterange btn btn-sm btn-outline-brand" style="padding: 0.15rem 0.8rem; width: -webkit-fill-available;" id="daterangepicker">
+                                <span class="m-subheader__daterange-label" style="font-size: 12px;">
+                                    <span class="m-subheader__daterange-title"></span>
+                                    <span class="m-subheader__daterange-date"></span>
+                                    <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                                    <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                                    <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                                    <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                                    <asp:HiddenField ID="hdnTicketStatus" ClientIDMode="Static" runat="server" />
+                                    <asp:HiddenField ID="hdnActionStatus" ClientIDMode="Static" runat="server" />
                                 </span>
-                            </div>
-                        </div>
-
-
-                        <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                        </div>
-
-                        <div class="col-lg-1 m--margin-bottom-10-tablet-and-mobile">
-                        </div>
-
-                        <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
-                            <div class="m-form__control">
-
-                                <label class="font-weight-bold"></label>
-                                <div class="btn-group">
-                                    <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
-                                        <span>
-                                            <i class="fa fa-angle-double-right"></i>
-                                            <span>Generate</span>
-                                            <i class="fab fa-whmcs"></i>
-
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
+                                <button type="button" class="btn btn-brand btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-brand">
+                                    <i class="la la-angle-down"></i>
+                                </button>
+                            </span>
                         </div>
                     </div>
 
+                    <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"></label>
+                    <div class="col-md-2 col-form-label">
+                        <div class="btn-group">
+                            <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                                <span>
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <span>Generate</span>
+                                    <i class="fab fa-whmcs"></i>
 
+                                </span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
 

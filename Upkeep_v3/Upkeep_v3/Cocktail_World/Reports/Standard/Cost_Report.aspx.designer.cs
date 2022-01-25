@@ -7,28 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Upkeep_v3.Cocktail_World.Setup {
+namespace Upkeep_v3.Cocktail_World.Reports {
     
     
-    public partial class Add_Brand_Opening_Stock {
-        
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSave;
-        
-        /// <summary>
-        /// UpdatePanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+    public partial class Cost_Report {
         
         /// <summary>
         /// ddlLicense control.
@@ -40,75 +22,75 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         protected global::System.Web.UI.WebControls.DropDownList ddlLicense;
         
         /// <summary>
-        /// rfvddlLicense control.
+        /// m_form_status control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlLicense;
+        protected global::System.Web.UI.WebControls.DropDownList m_form_status;
         
         /// <summary>
-        /// ddlCategory control.
+        /// m_form_type control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        protected global::System.Web.UI.WebControls.DropDownList m_form_type;
         
         /// <summary>
-        /// rfvddlCategory control.
+        /// start_date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlCategory;
+        protected global::System.Web.UI.WebControls.HiddenField start_date;
         
         /// <summary>
-        /// ddlBrand control.
+        /// end_date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBrand;
+        protected global::System.Web.UI.WebControls.HiddenField end_date;
         
         /// <summary>
-        /// rfvddlBrand control.
+        /// hdn_IsPostBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlBrand;
+        protected global::System.Web.UI.WebControls.HiddenField hdn_IsPostBack;
         
         /// <summary>
-        /// dv_Size control.
+        /// date_range_title control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_Size;
+        protected global::System.Web.UI.WebControls.HiddenField date_range_title;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// hdnTicketStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.HiddenField hdnTicketStatus;
         
         /// <summary>
-        /// grdCatagLinkUp control.
+        /// hdnActionStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdCatagLinkUp;
+        protected global::System.Web.UI.WebControls.HiddenField hdnActionStatus;
     }
 }
