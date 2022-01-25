@@ -240,9 +240,6 @@
                                             </div>
 
                                             </div>
-											<div class="tab-pane" id="m_tabs_6_2" role="tabpanel">
-												These reports are Under Development. They will be available soon.
-											</div>
 											<div class="tab-pane" id="m_tabs_6_3" role="tabpanel">
 												Get a Customized Report built for Your Company. Click on Contact Support and raise a request.
 
