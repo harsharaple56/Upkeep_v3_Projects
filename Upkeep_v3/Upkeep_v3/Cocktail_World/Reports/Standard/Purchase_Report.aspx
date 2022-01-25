@@ -111,7 +111,7 @@
                                                     <li class="m-nav__section m-nav__section--first">
                                                         <span class="m-nav__section-text">Export Data Format</span>
                                                     </li>
-
+                                                      <hr />
 
                                                     <li class="m-nav__item">
                                                         <a id="export_excel" class="m-nav__link" href="javascript:__doPostBack('export_excel','')">

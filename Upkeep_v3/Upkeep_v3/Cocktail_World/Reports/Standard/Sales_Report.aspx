@@ -112,7 +112,7 @@
                                                         <span class="m-nav__section-text">Export Data Format</span>
                                                     </li>
 
-
+                                                      <hr />
                                                     <li class="m-nav__item">
                                                         <a id="export_excel" class="m-nav__link" href="javascript:__doPostBack('export_excel','')">
                                                             <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
