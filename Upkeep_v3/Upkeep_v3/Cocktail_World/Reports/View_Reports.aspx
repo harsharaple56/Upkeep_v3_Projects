@@ -237,12 +237,219 @@
 
                                                     </div>
 
+                                                    <div class="col-xl-3">
+                                                        <!--begin::Portlet-->
+                                                        <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                                                            <div class="m-portlet__head">
+                                                                <div class="m-portlet__head-caption">
+                                                                    <div class="m-portlet__head-title">
+                                                                        <span class="m-portlet__head-icon">
+                                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                                                        </span>
+                                                                        <h3 class="m-portlet__head-text">Cocktail Sale Report
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__body">
+                                                                <div class="m-portlet__body-progress">Loading</div>
+                                                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Cocktail_Sale_Report.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
+                                                                            <span>
+                                                                                <i class="fa fa-angle-double-right"></i>
+                                                                                <span>View Report</span>
+                                            
+                                                                            </span>
+                                                                        </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <!--begin::Portlet-->
+                                                        <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                                                            <div class="m-portlet__head">
+                                                                <div class="m-portlet__head-caption">
+                                                                    <div class="m-portlet__head-title">
+                                                                        <span class="m-portlet__head-icon">
+                                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                                                        </span>
+                                                                        <h3 class="m-portlet__head-text">Cost Valuation Report
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__body">
+                                                                <div class="m-portlet__body-progress">Loading</div>
+                                                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Cost_Valuation_Report.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
+                                                                            <span>
+                                                                                <i class="fa fa-angle-double-right"></i>
+                                                                                <span>View Report</span>
+                                            
+                                                                            </span>
+                                                                        </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <!--begin::Portlet-->
+                                                        <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                                                            <div class="m-portlet__head">
+                                                                <div class="m-portlet__head-caption">
+                                                                    <div class="m-portlet__head-title">
+                                                                        <span class="m-portlet__head-icon">
+                                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                                                        </span>
+                                                                        <h3 class="m-portlet__head-text">Slow Moving Qty Report
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__body">
+                                                                <div class="m-portlet__body-progress">Loading</div>
+                                                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Slow_Moving_Qty_Report.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
+                                                                            <span>
+                                                                                <i class="fa fa-angle-double-right"></i>
+                                                                                <span>View Report</span>
+                                            
+                                                                            </span>
+                                                                        </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <!--begin::Portlet-->
+                                                        <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                                                            <div class="m-portlet__head">
+                                                                <div class="m-portlet__head-caption">
+                                                                    <div class="m-portlet__head-title">
+                                                                        <span class="m-portlet__head-icon">
+                                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                                                        </span>
+                                                                        <h3 class="m-portlet__head-text">Optimum Quantity Report
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__body">
+                                                                <div class="m-portlet__body-progress">Loading</div>
+                                                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Optimum_Quantity_Report.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
+                                                                            <span>
+                                                                                <i class="fa fa-angle-double-right"></i>
+                                                                                <span>View Report</span>
+                                            
+                                                                            </span>
+                                                                        </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <!--begin::Portlet-->
+                                                        <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                                                            <div class="m-portlet__head">
+                                                                <div class="m-portlet__head-caption">
+                                                                    <div class="m-portlet__head-title">
+                                                                        <span class="m-portlet__head-icon">
+                                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                                                        </span>
+                                                                        <h3 class="m-portlet__head-text">Non-Moving Qty Report
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__body">
+                                                                <div class="m-portlet__body-progress">Loading</div>
+                                                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Non_Moving_Quantity_Report.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
+                                                                            <span>
+                                                                                <i class="fa fa-angle-double-right"></i>
+                                                                                <span>View Report</span>
+                                            
+                                                                            </span>
+                                                                        </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <!--begin::Portlet-->
+                                                        <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                                                            <div class="m-portlet__head">
+                                                                <div class="m-portlet__head-caption">
+                                                                    <div class="m-portlet__head-title">
+                                                                        <span class="m-portlet__head-icon">
+                                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                                                        </span>
+                                                                        <h3 class="m-portlet__head-text">Base Quantity Report
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__body">
+                                                                <div class="m-portlet__body-progress">Loading</div>
+                                                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Base_Quantity_Report.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
+                                                                            <span>
+                                                                                <i class="fa fa-angle-double-right"></i>
+                                                                                <span>View Report</span>
+                                            
+                                                                            </span>
+                                                                        </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-xl-3">
+                                                        <!--begin::Portlet-->
+                                                        <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                                                            <div class="m-portlet__head">
+                                                                <div class="m-portlet__head-caption">
+                                                                    <div class="m-portlet__head-title">
+                                                                        <span class="m-portlet__head-icon">
+                                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                                                        </span>
+                                                                        <h3 class="m-portlet__head-text">Abstract Report
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__body">
+                                                                <div class="m-portlet__body-progress">Loading</div>
+                                                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Abstract_Report.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
+                                                                            <span>
+                                                                                <i class="fa fa-angle-double-right"></i>
+                                                                                <span>View Report</span>
+                                            
+                                                                            </span>
+                                                                        </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
                                             </div>
 
                                             </div>
-											<div class="tab-pane" id="m_tabs_6_2" role="tabpanel">
-												These reports are Under Development. They will be available soon.
-											</div>
 											<div class="tab-pane" id="m_tabs_6_3" role="tabpanel">
 												Get a Customized Report built for Your Company. Click on Contact Support and raise a request.
 

@@ -23,13 +23,17 @@ namespace Upkeep_v3.Ticketing
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //string Decrypt_CompanyID = DecryptString(Request.QueryString["cid"].ToString());
+            //CompanyID = Convert.ToInt32(Decrypt_CompanyID);
+
+            CompanyID= Convert.ToInt32(Request.QueryString["cid"]);
+
             Fetch_LocationTree();
             Fetch_CategorySubCategory(0);
             hdnIs_Retailer.Value = "0";
             dvEmployeeLocation.Attributes.Add("style", "display:block");
             dvRetailerLocation.Attributes.Add("style", "display:none");
-            string Decrypt_CompanyID = DecryptString(Request.QueryString["cid"].ToString());
-            CompanyID = Convert.ToInt32(Decrypt_CompanyID);
+           
         }
 
         public string DecryptString(string encrString)

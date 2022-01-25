@@ -1134,14 +1134,22 @@
     <Content Include="CheckList\My_Checklists.aspx" />
     <Content Include="CheckList\Schedule_Checklist.aspx" />
     <Content Include="CheckList\Schedule_Checklist_Listing.aspx" />
+    <Content Include="Cocktail_World\Reports\Standard\Abstract_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Standard\Base_Quantity_Report.aspx" />
     <Content Include="Cocktail_World\Reports\Standard\Brand_Summary_Report.aspx" />
     <Content Include="Cocktail_World\Reports\Standard\Bulk_Litre_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Standard\Cocktail_Sale_Report.aspx" />
     <Content Include="Cocktail_World\Reports\Standard\Cost_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Standard\Cost_Valuation_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Standard\Non_Moving_Quantity_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Standard\Optimum_Quantity_Report.aspx" />
     <Content Include="Cocktail_World\Reports\Standard\Purchase_Report.aspx" />
     <Content Include="Cocktail_World\Reports\Standard\Sales_Report.aspx" />
+    <Content Include="Cocktail_World\Reports\Standard\Slow_Moving_Qty_Report.aspx" />
     <Content Include="Cocktail_World\Reports\Standard\Transfers_Report.aspx" />
     <Content Include="Cocktail_World\Reports\View_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
+    <Content Include="Cocktail_World\Reports_Excise\Maharashtra\Cash_Memo.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\Chatai.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_A.aspx" />
@@ -4536,6 +4544,20 @@
     <Compile Include="CheckList\Schedule_Checklist_Listing.aspx.designer.cs">
       <DependentUpon>Schedule_Checklist_Listing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Abstract_Report.aspx.cs">
+      <DependentUpon>Abstract_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Abstract_Report.aspx.designer.cs">
+      <DependentUpon>Abstract_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Base_Quantity_Report.aspx.cs">
+      <DependentUpon>Base_Quantity_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Base_Quantity_Report.aspx.designer.cs">
+      <DependentUpon>Base_Quantity_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Reports\Standard\Brand_Summary_Report.aspx.cs">
       <DependentUpon>Brand_Summary_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4550,12 +4572,40 @@
     <Compile Include="Cocktail_World\Reports\Standard\Bulk_Litre_Report.aspx.designer.cs">
       <DependentUpon>Bulk_Litre_Report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Cocktail_Sale_Report.aspx.cs">
+      <DependentUpon>Cocktail_Sale_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Cocktail_Sale_Report.aspx.designer.cs">
+      <DependentUpon>Cocktail_Sale_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Reports\Standard\Cost_Report.aspx.cs">
       <DependentUpon>Cost_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Cocktail_World\Reports\Standard\Cost_Report.aspx.designer.cs">
       <DependentUpon>Cost_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Cost_Valuation_Report.aspx.cs">
+      <DependentUpon>Cost_Valuation_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Cost_Valuation_Report.aspx.designer.cs">
+      <DependentUpon>Cost_Valuation_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Non_Moving_Quantity_Report.aspx.cs">
+      <DependentUpon>Non_Moving_Quantity_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Non_Moving_Quantity_Report.aspx.designer.cs">
+      <DependentUpon>Non_Moving_Quantity_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Optimum_Quantity_Report.aspx.cs">
+      <DependentUpon>Optimum_Quantity_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Optimum_Quantity_Report.aspx.designer.cs">
+      <DependentUpon>Optimum_Quantity_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Reports\Standard\Purchase_Report.aspx.cs">
       <DependentUpon>Purchase_Report.aspx</DependentUpon>
@@ -4570,6 +4620,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Reports\Standard\Sales_Report.aspx.designer.cs">
       <DependentUpon>Sales_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Slow_Moving_Qty_Report.aspx.cs">
+      <DependentUpon>Slow_Moving_Qty_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports\Standard\Slow_Moving_Qty_Report.aspx.designer.cs">
+      <DependentUpon>Slow_Moving_Qty_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Reports\Standard\Transfers_Report.aspx.cs">
       <DependentUpon>Transfers_Report.aspx</DependentUpon>
@@ -4591,6 +4648,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx.designer.cs">
       <DependentUpon>Generate_Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Cash_Memo.aspx.cs">
+      <DependentUpon>Cash_Memo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Cash_Memo.aspx.designer.cs">
+      <DependentUpon>Cash_Memo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Chatai.aspx.cs">
       <DependentUpon>Chatai.aspx</DependentUpon>
@@ -6778,7 +6842,6 @@
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
     <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />
-    <Folder Include="Cocktail_World\Reports\Controls\" />
     <Folder Include="Cocktail_World\Reports\Custom_Reports\" />
     <Folder Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC Files\" />
     <Folder Include="Feedback_Form_banners\" />
@@ -6833,7 +6896,6 @@
     <EmbeddedResource Include="VMS\Visitor_ID.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="WorkPermit\Workpermit_Details_Print.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:60461/CocktailWorld_Service.asmx">

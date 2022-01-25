@@ -2458,6 +2458,23 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Fetch_WorkPermitRequestData_PDF(int WP_ConfigID, string Transaction_ID, string LoggedInUserID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Fetch_WorkPermitRequestData_PDF(WP_ConfigID, Transaction_ID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
     #endregion
 
     #region Checklist
@@ -3732,6 +3749,22 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Insert_System_Setting_Ticket_QR(int CompanyID)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Insert_System_Setting_Ticket_QR(CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
     [WebMethod]
     public DataSet Fetch_Custom_Fields(int CompanyID)

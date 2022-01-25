@@ -47,13 +47,21 @@ namespace Upkeep_v3.Error_Pages
                     if (FormType == 'V')
                     {
                         VisitFormURL = "~/VMS/Visit_Request_Public.aspx?ConfigID=";
+                        VisitFormURL = VisitFormURL + dsURL.Tables[0].Rows[0]["ConfigID"].ToString();
                     }
                     else if (FormType == 'F')
                     {
                         //VisitFormURL = "~/Feedback/Feedback_Request.aspx?EventID=";
                         VisitFormURL = "~/Feedback/Customer_Feedback.aspx?EventID=";
+                        VisitFormURL = VisitFormURL + dsURL.Tables[0].Rows[0]["ConfigID"].ToString();
                     }
-                    VisitFormURL = VisitFormURL + dsURL.Tables[0].Rows[0]["ConfigID"].ToString();
+                    else if (FormType == 'T')
+                    {
+                        int company_id = Convert.ToInt32(dsURL.Tables[0].Rows[0]["CompanyID"]);
+                        //VisitFormURL = "~/Feedback/Feedback_Request.aspx?EventID=";
+                        VisitFormURL = "~/Ticketing/Add_MyRequest_Public.aspx?cid="+ company_id;
+                    }
+                    //VisitFormURL = VisitFormURL + dsURL.Tables[0].Rows[0]["ConfigID"].ToString();
 
                     Session["Visitor"] = "Visitor";
                     //Session["Visitor"]
