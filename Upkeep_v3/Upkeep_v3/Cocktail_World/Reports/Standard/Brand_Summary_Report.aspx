@@ -149,7 +149,7 @@
                         <div class="row m--margin-bottom-20 m--align-center">
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Search Data:</label>
-                                <input type="text" class="underline form-control m-input" placeholder="Search..." id="generalSearch" />
+                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
                             </div>
 
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
@@ -165,7 +165,7 @@
                                 <label class="font-weight-bold">Filter by Category:</label>
 
                                 <div class="m-form__control">
-                                    <asp:DropDownList ID="m_form_status" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                                    <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
                                         <asp:ListItem Value="All" Text="All"></asp:ListItem>
                                         <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
                                         <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
@@ -184,7 +184,7 @@
 
                                 <div class="m-form__control">
 
-                                    <asp:DropDownList ID="m_form_type" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                                    <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
                                         <asp:ListItem Value="All" Text="All"></asp:ListItem>
                                         <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
                                         <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
