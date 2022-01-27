@@ -5,7 +5,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+     <style type="text/css">
+        .underline {
+            border-bottom-color: #5867dd;
+            border-bottom-width: 3px;
+        }
+    </style>
 
     <script>
         $(document).ready(function () {
@@ -152,7 +157,7 @@
                                 <label class="font-weight-bold">Filter by License:</label>
 
                                 <div class="m-form__control">
-                                    <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                    <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
                                     </asp:DropDownList>
                                 </div>
                             </div>
