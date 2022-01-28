@@ -67,15 +67,6 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.Label lblRequestDate;
         
         /// <summary>
-        /// lblTicketRaisedBy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTicketRaisedBy;
-        
-        /// <summary>
         /// lblLocation control.
         /// </summary>
         /// <remarks>
@@ -155,6 +146,33 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTicketdesc;
+        
+        /// <summary>
+        /// lblTicketRaisedBy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTicketRaisedBy;
+        
+        /// <summary>
+        /// lblTicketRaisedBy_MobileNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTicketRaisedBy_MobileNo;
+        
+        /// <summary>
+        /// lblTicketRaisedBy_EmailID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTicketRaisedBy_EmailID;
         
         /// <summary>
         /// lblAssignedDept control.
