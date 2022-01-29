@@ -86,7 +86,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet SaleMaster_Crud(int Sale_ID, string Date, string Bill_No, int License, string Action, int LoggedInUser, int Company_ID, string StrConn)
+        public DataSet SaleMaster_Crud(int Sale_ID, string Date, string Bill_No, int License, string Action, int LoggedInUser, int Company_ID,bool Is_Auto_Bill, string StrConn)
         {
             try
             {
@@ -103,6 +103,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@Action", Action);
                 cmd.Parameters.AddWithValue("@SaleID", Sale_ID);
+                cmd.Parameters.AddWithValue("@Is_Auto_Bill", Is_Auto_Bill);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

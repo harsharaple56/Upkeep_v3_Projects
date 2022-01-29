@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -50,7 +49,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             try
             {
                 DataSet dsSale = new DataSet();
-                dsSale = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, string.Empty, string.Empty, 0, "Fetch", Convert.ToInt32(LoggedInUserID), CompanyID);
+                dsSale = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, string.Empty, string.Empty, 0, "Fetch", Convert.ToInt32(LoggedInUserID), CompanyID, false);
 
                 DataSet dsSaleDetail = new DataSet();
                 dsSaleDetail = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, 0, string.Empty, string.Empty, string.Empty, 0, string.Empty, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Fetch", Convert.ToInt32(LoggedInUserID), CompanyID);
@@ -103,7 +102,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 drCurrentRow["Total_Amount"] = dsSaleDetail.Tables[0].Rows[i]["Total_Amt"].ToString();
                                 drCurrentRow["Permit_Holder"] = dsSaleDetail.Tables[0].Rows[i]["Permit_Desc"].ToString();
 
-                                
+
 
                                 DataSet dsGetStockDetails = new DataSet();
                                 dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID);
@@ -159,7 +158,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, string.Empty, string.Empty, 0, "D", Convert.ToInt32(LoggedInUserID), CompanyID);
+                ds = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, string.Empty, string.Empty, 0, "D", Convert.ToInt32(LoggedInUserID), CompanyID, false);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -590,7 +589,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             TextBox txt2 = grdCocktail.Rows[rowIndex].FindControl("cocktailrate") as TextBox;
                             TextBox txt3 = grdCocktail.Rows[rowIndex].FindControl("cocktailtotalamount") as TextBox;
                             TextBox txt4 = grdCocktail.Rows[rowIndex].FindControl("cocktailamount") as TextBox;
-                            DropDownList ddl2 = grdCocktail.Rows[rowIndex].FindControl("ddlPermit") as DropDownList;
+                            DropDownList ddl2 = grdCocktail.Rows[rowIndex].FindControl("DropDownList1") as DropDownList;
 
                             drCurrentRow = dtCurrentTable.NewRow();
                             drCurrentRow["Cocktail_Desc"] = ddlCocktail.SelectedItem.Text;
@@ -648,7 +647,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             TextBox txt2 = grdCocktail.Rows[rowIndex].FindControl("cocktailrate") as TextBox;
                             TextBox txt3 = grdCocktail.Rows[rowIndex].FindControl("cocktailtotalamount") as TextBox;
                             TextBox txt4 = grdCocktail.Rows[rowIndex].FindControl("cocktailamount") as TextBox;
-                            DropDownList ddl2 = grdCocktail.Rows[rowIndex].FindControl("ddlPermit") as DropDownList;
+                            DropDownList ddl2 = grdCocktail.Rows[rowIndex].FindControl("DropDownList1") as DropDownList;
 
                             FillDropDownListPermitHolderCocktail(ddl2);
                             if (i < dtCurrentTable.Rows.Count - 1)
@@ -702,7 +701,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             for (int i = 0; i < grdCocktail.Rows.Count; i++)
             {
-                DropDownList ddl1 = (DropDownList)grdCocktail.Rows[i].Cells[1].FindControl("ddlPermit");
+                DropDownList ddl1 = (DropDownList)grdCocktail.Rows[i].Cells[1].FindControl("DropDownList1");
                 FillDropDownListPermitHolder(ddl1);
             }
 
@@ -711,7 +710,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 value = dt.Rows[i]["Permit_Holder"].ToString();
-                DropDownList ddl2 = (DropDownList)grdCocktail.Rows[i].Cells[1].FindControl("ddlPermit");
+                DropDownList ddl2 = (DropDownList)grdCocktail.Rows[i].Cells[1].FindControl("DropDownList1");
                 if (!string.IsNullOrEmpty(value))
                     ddl2.Items.FindByText(value).Selected = true;
                 else
@@ -885,7 +884,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             decimal LPeg_Rate = 0;
                             decimal TaxAmount = 0;
                             decimal Amount = 0;
-                            int Permit_Holder = 0;
+                            string Permit_Holder = string.Empty;
                             for (int i = 0; i < grdBrandLinkup.Columns.Count; i++)
                             {
                                 string header = grdBrandLinkup.Columns[i].HeaderText;
@@ -964,7 +963,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 }
 
                                 if (!string.IsNullOrEmpty(row.FindControl("ddlPermit").ToString()) && header == "Permit Holder")
-                                    Permit_Holder = (row.FindControl("ddlPermit") as DropDownList).SelectedIndex;
+                                    Permit_Holder = (row.FindControl("ddlPermit") as DropDownList).SelectedValue;
 
                                 if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
                                     Amount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty) + (LPeg_Qty * LPeg_Rate);
@@ -1044,27 +1043,20 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         {
                             //Insert Operation for Brand Sale
                             DataSet dsBrandSale = new DataSet();
-                            dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(0, txtBrandDate.Text, txtBill.Text, Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                            dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(0, txtBrandDate.Text, txtBill.Text, Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID, false);
 
                             for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
                             {
-                                DataSet dsUpdateOpeningData = new DataSet();
-                                dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertSaleData.Rows[i]["Opening_ID"]), string.Empty, 0,
-                                   Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingSpeg"]), CompanyID, LoggedInUserID, "UpdateStock");
-
-                                if (dsUpdateOpeningData.Tables[0].Rows.Count > 0)
-                                {
-                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
-                                        Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
-                                        Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
-                                        Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
-                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["SPeg_Qty"]),
-                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
-                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
-                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]), Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]),
-                                        Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
-                                    displayMessage = true;
-                                }
+                                ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
+                                    Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
+                                    Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
+                                    Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["SPeg_Qty"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]), Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]),
+                                    Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                                displayMessage = true;
                             }
                         }
 
@@ -1137,7 +1129,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             decimal LPeg_Rate = 0;
                             decimal TaxAmount = 0;
                             decimal Amount = 0;
-                            int Permit_Holder = 0;
+                            string Permit_Holder = string.Empty;
                             for (int i = 0; i < grdCocktail.Columns.Count; i++)
                             {
                                 string header = grdCocktail.Columns[i].HeaderText;
@@ -1178,8 +1170,8 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                         Bottle_Rate = 0;
                                 }
 
-                                if (!string.IsNullOrEmpty(row.FindControl("ddlPermit").ToString()) && header == "Permit Holder")
-                                    Permit_Holder = (row.FindControl("ddlPermit") as DropDownList).SelectedIndex;
+                                if (!string.IsNullOrEmpty(row.FindControl("DropDownList1").ToString()) && header == "Permit Holder")
+                                    Permit_Holder = (row.FindControl("DropDownList1") as DropDownList).SelectedValue;
 
                                 if (!string.IsNullOrEmpty(row.FindControl("cocktailtotalamount").ToString()) && header == "Total Amount")
                                     Amount = (Bottle_Rate * Bottle_Qty);
@@ -1260,30 +1252,24 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             }
                         }
 
-                        if (grdBrandLinkup.Rows.Count > 0 && dtInsertSaleData.Rows.Count > 0 && dtInsertSaleDetailsData.Rows.Count > 0 && (grdBrandLinkup.Rows.Count <= dtInsertSaleData.Rows.Count))
+                        if (grdCocktail.Rows.Count > 0 && dtInsertSaleData.Rows.Count > 0 && dtInsertSaleDetailsData.Rows.Count > 0 && (grdCocktail.Rows.Count <= dtInsertSaleData.Rows.Count))
                         {
                             //Insert Operation for Cocktail Sale
                             DataSet dsCocktailSale = new DataSet();
-                            dsCocktailSale = ObjCocktailWorld.SaleMaster_Crud(0, txtCocktailDate.Text, CocktailBill.Text, ddlLicense.SelectedIndex, "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                            dsCocktailSale = ObjCocktailWorld.SaleMaster_Crud(0, txtCocktailDate.Text, CocktailBill.Text, Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID, false);
+                            
                             for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
                             {
-                                DataSet dsUpdateOpeningData = new DataSet();
-                                //dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertSaleData.Rows[i]["Opening_ID"]),
-                                //    Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertSaleData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
-
-                                if (dsUpdateOpeningData.Tables[0].Rows.Count > 0)
-                                {
-                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsCocktailSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
-                                        Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
-                                        Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
-                                        Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
-                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["SPeg_Qty"]),
-                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
-                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
-                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]), Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]),
-                                        ddlLicense.SelectedIndex, "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
-                                    displayMessage = true;
-                                }
+                                ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsCocktailSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
+                                    Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
+                                    Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
+                                    Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["SPeg_Qty"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]), Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]),
+                                    ddlLicense.SelectedIndex, "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                                displayMessage = true;
                             }
                         }
                         if (displayMessage)

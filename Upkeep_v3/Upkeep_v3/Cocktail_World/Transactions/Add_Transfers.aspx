@@ -247,7 +247,6 @@
                                         <label class="font-weight-bold">Invoice Number</label>
                                         <div class="m-form__control">
                                             <asp:TextBox ID="txtinvoicenumber" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtinvoicenumber" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Invoice No"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 

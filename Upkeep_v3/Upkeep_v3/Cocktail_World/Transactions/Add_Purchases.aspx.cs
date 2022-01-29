@@ -48,7 +48,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             try
             {
                 DataSet dsPurchase = new DataSet();
-                dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(Purchase_ID,0, string.Empty, string.Empty, string.Empty, 0,0,0,CompanyID,LoggedInUserID, "R");
+                dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(Purchase_ID, 0, string.Empty, string.Empty, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "R");
 
                 DataSet dsPurchaseDetail = new DataSet();
                 dsPurchaseDetail = ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Purchase_ID, 0, string.Empty, string.Empty, 0, 0, 0, 0, 0, 0, 0, string.Empty, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "R");
@@ -153,14 +153,14 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.PurchaseMaster_CRUD(Purchase_ID,0, string.Empty, string.Empty, string.Empty, 0,0,0,CompanyID, LoggedInUserID,"D");
+                ds = ObjCocktailWorld.PurchaseMaster_CRUD(Purchase_ID, 0, string.Empty, string.Empty, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         DataSet dsSD = new DataSet();
-                        dsSD = ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Purchase_ID, 0,string.Empty, string.Empty,  0,0,0,0,0,0,0, string.Empty, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID,"D");
+                        dsSD = ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Purchase_ID, 0, string.Empty, string.Empty, 0, 0, 0, 0, 0, 0, 0, string.Empty, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "D");
 
                         Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx"), false);
                     }
@@ -514,7 +514,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         public bool Check_Purchase_DuplicateData()
         {
             DataSet dsGetPurchase = new DataSet();
-            dsGetPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0,Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, ddlLicense.SelectedIndex, CompanyID, LoggedInUserID, "Duplicate");
+            dsGetPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0, Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, ddlLicense.SelectedIndex, CompanyID, LoggedInUserID, "Duplicate");
             if (dsGetPurchase.Tables[0].Rows.Count > 0)
             {
                 return true;
@@ -745,40 +745,33 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         {
                             //Insert Operation for Purchase Data
                             DataSet dsPurchase = new DataSet();
-                            dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0,Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0,Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "Insert");
+                            dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0, Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "Insert");
 
                             for (int i = 0; i < dtInsertPurchaseData.Rows.Count; i++)
                             {
-                                DataSet dsUpdateOpeningData = new DataSet();
-                                //dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertPurchaseData.Rows[i]["Opening_ID"]),
-                                //    Convert.ToDecimal(dtInsertPurchaseData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertPurchaseData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
-
-                                if (dsUpdateOpeningData.Tables[0].Rows.Count > 0)
-                                {
-                                    ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Convert.ToInt32(dsPurchase.Tables[0].Rows[0]["Purchase_ID"]),
-                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Opening_ID"]),
-                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Brand_Name"]),
-                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Size_Desc"]),
-                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Qty"]),
-                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Rate"]),
-                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["SPeg_Qty"]),
-                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Speg_Rate"]),
-                                        0,
-                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Boxes"]),
-                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["BatchNo"]),
-                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]),
-                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Tax_Type"]),
-                                         Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["TaxAmount"]),
-                                          Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Amount"]),
-                                          Convert.ToInt32(ddlLicense.SelectedValue)
-                                        , CompanyID, LoggedInUserID, "Insert");
-                                    displayMessage = true;
-                                }
+                                ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Convert.ToInt32(dsPurchase.Tables[0].Rows[0]["Purchase_ID"]),
+                                    Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Opening_ID"]),
+                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Brand_Name"]),
+                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Size_Desc"]),
+                                    Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Qty"]),
+                                    Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Rate"]),
+                                    Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["SPeg_Qty"]),
+                                    Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Speg_Rate"]),
+                                    0,
+                                    Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Boxes"]),
+                                    Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["BatchNo"]),
+                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]),
+                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Tax_Type"]),
+                                     Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["TaxAmount"]),
+                                      Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Amount"]),
+                                      Convert.ToInt32(ddlLicense.SelectedValue)
+                                    , CompanyID, LoggedInUserID, "Insert");
+                                displayMessage = true;
                             }
                         }
 
                         if (displayMessage)
-                            Response.Redirect("~/Cocktail_World/Transactions/Purchases.aspx"); 
+                            Response.Redirect("~/Cocktail_World/Transactions/Purchases.aspx");
                     }
                     else
                     {

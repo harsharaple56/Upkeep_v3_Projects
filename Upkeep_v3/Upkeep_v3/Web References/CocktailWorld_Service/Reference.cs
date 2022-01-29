@@ -761,7 +761,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SaleMaster_Crud", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet SaleMaster_Crud(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID) {
+        public System.Data.DataSet SaleMaster_Crud(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID, bool Is_Auto_Bill) {
             object[] results = this.Invoke("SaleMaster_Crud", new object[] {
                         Sale_ID,
                         date,
@@ -769,17 +769,18 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         license,
                         Action,
                         LoggedInUser,
-                        Company_ID});
+                        Company_ID,
+                        Is_Auto_Bill});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void SaleMaster_CrudAsync(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID) {
-            this.SaleMaster_CrudAsync(Sale_ID, date, Bill_No, license, Action, LoggedInUser, Company_ID, null);
+        public void SaleMaster_CrudAsync(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID, bool Is_Auto_Bill) {
+            this.SaleMaster_CrudAsync(Sale_ID, date, Bill_No, license, Action, LoggedInUser, Company_ID, Is_Auto_Bill, null);
         }
         
         /// <remarks/>
-        public void SaleMaster_CrudAsync(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID, object userState) {
+        public void SaleMaster_CrudAsync(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID, bool Is_Auto_Bill, object userState) {
             if ((this.SaleMaster_CrudOperationCompleted == null)) {
                 this.SaleMaster_CrudOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSaleMaster_CrudOperationCompleted);
             }
@@ -790,7 +791,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         license,
                         Action,
                         LoggedInUser,
-                        Company_ID}, this.SaleMaster_CrudOperationCompleted, userState);
+                        Company_ID,
+                        Is_Auto_Bill}, this.SaleMaster_CrudOperationCompleted, userState);
         }
         
         private void OnSaleMaster_CrudOperationCompleted(object arg) {

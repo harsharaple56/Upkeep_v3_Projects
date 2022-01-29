@@ -184,14 +184,7 @@
                             </h3>
                         </div>
                     </div>
-                    <%--<div class="col-lg-5 m--margin-bottom-10-tablet-and-mobile">
-                        <div class="m-form__control">
-                            <asp:DropDownList ID="ddlLicense" runat="server" CssClass="form-control" ClientIDMode="Static">
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
-                                ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
-                        </div>
-                    </div>--%>
+                   
                     <div class="m-portlet__head-tools">
                         <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>

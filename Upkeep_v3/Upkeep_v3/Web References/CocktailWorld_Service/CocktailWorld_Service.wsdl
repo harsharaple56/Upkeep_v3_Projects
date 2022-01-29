@@ -249,6 +249,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="LoggedInUser" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Is_Auto_Bill" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
