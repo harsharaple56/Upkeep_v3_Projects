@@ -50,6 +50,8 @@ namespace Upkeep_v3.Ticketing
                         lblTicketNo.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Tkt_Code"]);
                         lblRequestDate.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Ticket_Date"]);
                         lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Ticket_RaisedBy"]);
+                        lblTicketRaisedBy_MobileNo.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_MobileNo"]);
+                        lblTicketRaisedBy_EmailID.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_EmailID"]);
                         lblLocation.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Loc_Desc"]);
                         lblCategory.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Category_Desc"]);
                         lblSubCategory.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["SubCategory_Desc"]);
