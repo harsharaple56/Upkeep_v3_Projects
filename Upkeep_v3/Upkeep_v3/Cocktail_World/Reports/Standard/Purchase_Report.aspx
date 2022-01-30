@@ -239,15 +239,18 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>
                             <tr>
-                                <th><b>Brand</b></th>
-                                <th>Category</th>
-                                <th>Sub-Category</th>
+                                <th>Purchase Detail ID</th>
+                                <th>Purchase ID</th>
+                                <th>TP No</th>
+                                <th>Invoice No</th>
+                                <th>Purchase Date</th>
+                                <th>License Name</th>
+                                <th>Brand</th>
                                 <th>Size</th>
-                                <th>Opening</th>
-                                <th>Purchase</th>
-                                <th>Total</th>
-                                <th><b>Sale</b></th>
-                                <th><b>Closing</b></th>
+                                <th>SPeg Rate</th>
+                                <th>Bottle Qty</th>
+                                <th>Bottle Rate</th>
+                                <th>Free Qty</th>
 
                             </tr>
                         </thead>

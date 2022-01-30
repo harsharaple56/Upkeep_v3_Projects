@@ -38,11 +38,7 @@
 													</a>
 												</li>
                                                 
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_2" role="tab" aria-selected="false">
-														<i class="socicon-buffer"></i> Controls Reports
-													</a>
-												</li>
+												
 												<li class="nav-item m-tabs__item">
 													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_3" role="tab">
 														<i class="la la-cog"></i>Custom Reports
@@ -436,6 +432,36 @@
                                                             <div class="m-portlet__body">
                                                                 <div class="m-portlet__body-progress">Loading</div>
                                                                 <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Abstract_Report.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
+                                                                            <span>
+                                                                                <i class="fa fa-angle-double-right"></i>
+                                                                                <span>View Report</span>
+                                            
+                                                                            </span>
+                                                                        </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div> 
+                                                    
+                                                    <div class="col-xl-3">
+                                                        <!--begin::Portlet-->
+                                                        <div class="m-portlet m-portlet--skin-dark m-portlet--bordered-semi m--bg-primary">
+                                                            <div class="m-portlet__head">
+                                                                <div class="m-portlet__head-caption">
+                                                                    <div class="m-portlet__head-title">
+                                                                        <span class="m-portlet__head-icon">
+                                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+                                       
+                                                                        </span>
+                                                                        <h3 class="m-portlet__head-text">Chatai Report
+                                                                        </h3>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="m-portlet__body">
+                                                                <div class="m-portlet__body-progress">Loading</div>
+                                                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/Standard/Chatai.aspx") %>" class="btn btn-warning m-btn m-btn--icon m-btn--pill m-btn--air" data-container="body" data-toggle="m-tooltip" data-skin="dark" data-placement="right" title="" data-original-title="Report Description and Details">
                                                                             <span>
                                                                                 <i class="fa fa-angle-double-right"></i>
                                                                                 <span>View Report</span>

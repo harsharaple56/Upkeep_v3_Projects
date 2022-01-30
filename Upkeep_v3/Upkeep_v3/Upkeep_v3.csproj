@@ -1150,7 +1150,7 @@
     <Content Include="Cocktail_World\Reports\View_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\Cash_Memo.aspx" />
-    <Content Include="Cocktail_World\Reports_Excise\Maharashtra\Chatai.aspx" />
+    <Content Include="Cocktail_World\Reports\Standard\Chatai.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_A.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Pre_Printed.aspx" />
@@ -4645,11 +4645,11 @@
     <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Cash_Memo.aspx.designer.cs">
       <DependentUpon>Cash_Memo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Chatai.aspx.cs">
+    <Compile Include="Cocktail_World\Reports\Standard\Chatai.aspx.cs">
       <DependentUpon>Chatai.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Chatai.aspx.designer.cs">
+    <Compile Include="Cocktail_World\Reports\Standard\Chatai.aspx.designer.cs">
       <DependentUpon>Chatai.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3.aspx.cs">
@@ -6868,14 +6868,14 @@
   <ItemGroup>
     <EmbeddedResource Include="CheckList\Checklist_Points_Report.rdlc" />
     <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Cash_Memo.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR3_A.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR3_Pre_Printed.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR3.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR4.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR6_A.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR6_Pre_Printed.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR6.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC_Files\Cash_Memo.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC_Files\FLR3_A.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC_Files\FLR3_Pre_Printed.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC_Files\FLR3.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC_Files\FLR4.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC_Files\FLR6_A.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC_Files\FLR6_Pre_Printed.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC_Files\FLR6.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
     <EmbeddedResource Include="VMS\Visitor_ID.rdlc">
