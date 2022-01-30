@@ -220,13 +220,13 @@
                                         </div>
 
                                         <div class=" row" style="padding-left: 2%;">
-                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Raised By :</label>
+                                            <%--<label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Raised By :</label>
                                             <div class="col-xl-3 col-lg-3 col-form-label">
                                                 <asp:Label ID="lblTicketRaisedBy" runat="server" Text="" class="form-control-label"></asp:Label>
-                                            </div>
+                                            </div>--%>
 
                                             <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Location :</label>
-                                            <div class="col-xl-5 col-lg-5 col-form-label">
+                                            <div class="col-xl-9 col-lg-9 col-form-label">
                                                 <asp:Label ID="lblLocation" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
@@ -293,6 +293,32 @@
 
                                             <%--  <label class="col-xl-3 col-lg-3 col-form-label"> Ticket Images :</label>   --%>
                                         </div>
+
+                                        <br />
+
+                                        <div class="form-group row" style="background-color: #00c5dc;">
+                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Raiser Details</label>
+                                        </div>
+                                        <div class=" row" style="padding-left: 2%;">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Raised By :</label>
+                                            <div class="col-xl-7 col-lg-7 col-form-label">
+                                                <asp:Label ID="lblTicketRaisedBy" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="padding-left: 2%;">
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Mobile No :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblTicketRaisedBy_MobileNo" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Email ID :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:Label ID="lblTicketRaisedBy_EmailID" runat="server" Text="" class="form-control-label"></asp:Label>
+                                            </div>
+                                        </div>
+
+
+
                                         <br />
 
                                         <div class="form-group row" style="background-color: #00c5dc;">

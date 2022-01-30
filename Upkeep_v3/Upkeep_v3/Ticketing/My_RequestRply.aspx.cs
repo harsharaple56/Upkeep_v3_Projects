@@ -92,6 +92,8 @@ namespace Upkeep_v3.Ticketing
                         lblRequestDate.Text = dsTicket.Tables[0].Rows[0].Field<string>("Ticket_Date");
                         lblTicketdesc.Text = dsTicket.Tables[0].Rows[0].Field<string>("Tkt_Message");
                         lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy"]);
+                        lblTicketRaisedBy_MobileNo.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_MobileNo"]);
+                        lblTicketRaisedBy_EmailID.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_EmailID"]);
 
                         lblRaisedImageCount.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]);
                         if (Convert.ToInt32(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]) == 0)
@@ -258,6 +260,8 @@ namespace Upkeep_v3.Ticketing
                         lblRequestDate.Text = dsTicket.Tables[0].Rows[0].Field<string>("Ticket_Date");
                         lblTicketdesc.Text = dsTicket.Tables[0].Rows[0].Field<string>("Tkt_Message");
                         lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy"]);
+                        lblTicketRaisedBy_MobileNo.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_MobileNo"]);
+                        lblTicketRaisedBy_EmailID.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_EmailID"]);
 
                         lblRaisedImageCount.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]);
                         if (Convert.ToInt32(dsTicket.Tables[0].Rows[0]["TicketRaised_Image_Count"]) == 0)

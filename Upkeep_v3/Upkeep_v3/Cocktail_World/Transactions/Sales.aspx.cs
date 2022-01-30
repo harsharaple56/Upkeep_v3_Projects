@@ -26,7 +26,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.SaleMaster_Crud(0,"", "", 0, "FetchAll", Convert.ToInt32(LoggedInUserID), CompanyID);
+                ds = ObjCocktailWorld.SaleMaster_Crud(0,"", "", 0, "FetchAll", Convert.ToInt32(LoggedInUserID), CompanyID,false);
 
                 if (ds.Tables.Count > 0)
                 {

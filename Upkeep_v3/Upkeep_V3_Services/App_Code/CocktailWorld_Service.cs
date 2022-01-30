@@ -147,11 +147,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet SaleMaster_Crud(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID)
+    public DataSet SaleMaster_Crud(int Sale_ID, string date, string Bill_No, int license, string Action, int LoggedInUser, int Company_ID,  bool Is_Auto_Bill)
     {
         try
         {
-            ds = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, date, Bill_No, license, Action, LoggedInUser, Company_ID);
+            ds = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, date, Bill_No, license, Action, LoggedInUser, Company_ID, Is_Auto_Bill);
 
         }
         catch (Exception ex)

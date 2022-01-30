@@ -65,7 +65,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                         DataSet ds = new DataSet();
-                        ds = ObjCocktailWorld.License_CRUD(Convert.ToInt32(txtLicen), string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
+                        ds = ObjCocktailWorld.License_CRUD(Convert.ToInt32(txtLicen), string.Empty, string.Empty, LoggedInUserID, CompanyID, "Fetch");
                         ddlTransferLicense.DataSource = ds.Tables[0];
                         ddlTransferLicense.DataTextField = "License_Name";
                         ddlTransferLicense.DataValueField = "License_ID";
@@ -758,7 +758,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtTransferDate.Text) && ddlTransferLicense.SelectedIndex != 0 && !string.IsNullOrEmpty(txttpnumber.Text) && !string.IsNullOrEmpty(txtinvoicenumber.Text) && grdTransfer.Rows.Count > 0)
+                if (!string.IsNullOrEmpty(txtTransferDate.Text) && ddlTransferLicense.SelectedIndex != 0 && !string.IsNullOrEmpty(txttpnumber.Text) && grdTransfer.Rows.Count > 0)
                 {
                     bool displayMessage = false;
 
@@ -964,25 +964,18 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                         for (int i = 0; i < dtInsertTransferData.Rows.Count; i++)
                         {
-                            DataSet dsUpdateOpeningData = new DataSet();
-                            //dsUpdateOpeningData = ObjCocktailWorld.BrandOpeningMaster_CRUD(Convert.ToInt32(dtInsertTransferData.Rows[i]["Opening_ID"]),
-                            //    Convert.ToDecimal(dtInsertTransferData.Rows[i]["getClosingBottle"]), Convert.ToDecimal(dtInsertTransferData.Rows[i]["getClosingSpeg"]), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
-
-                            if (dsUpdateOpeningData.Tables[0].Rows.Count > 0)
-                            {
-                                ObjCocktailWorld.TransferDetailsMaster_CRUD(
-                                    Convert.ToInt32(dsTransfer.Tables[0].Rows[0]["Transfer_ID"]), string.Empty, txttpnumber.Text,
-                                    Convert.ToInt32(dtInsertTransferData.Rows[i]["Opening_ID"]),
-                                    Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]),
-                                     Convert.ToString(dtInsertTransferDetailsData.Rows[i]["Boxes"]),
-                                    Convert.ToString(dtInsertTransferDetailsData.Rows[i]["BatchNo"]),
-                                     Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["SPeg_Qty"]),
-                                    Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Speg_Rate"]),
-                                    Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Bottle_Qty"]),
-                                    Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Bottle_Rate"]),
-                                    Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, string.Empty, string.Empty, "Insert");
-                                displayMessage = true;
-                            }
+                            ObjCocktailWorld.TransferDetailsMaster_CRUD(
+                                Convert.ToInt32(dsTransfer.Tables[0].Rows[0]["Transfer_ID"]), string.Empty, txttpnumber.Text,
+                                Convert.ToInt32(dtInsertTransferData.Rows[i]["Opening_ID"]),
+                                Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]),
+                                 Convert.ToString(dtInsertTransferDetailsData.Rows[i]["Boxes"]),
+                                Convert.ToString(dtInsertTransferDetailsData.Rows[i]["BatchNo"]),
+                                 Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["SPeg_Qty"]),
+                                Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Speg_Rate"]),
+                                Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Bottle_Qty"]),
+                                Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Bottle_Rate"]),
+                                Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, string.Empty, string.Empty, "Insert");
+                            displayMessage = true;
                         }
                     }
 

@@ -265,7 +265,7 @@
                     </div>
 
                     <div class="m-portlet__head-tools">
-                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
+                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Auto_Billing.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>
                                 <i class="la la-arrow-left"></i>
                                 <span>Back</span>
@@ -287,12 +287,12 @@
                             <ul class="nav nav-tabs m-tabs-line m-tabs-line--primary m-tabs-line--2x m--align-center" role="tablist">
                                 <li class="nav-item m-tabs__item">
                                     <a href="#tab1" class="nav-link m-tabs__link" aria-controls="tab1" role="tab" data-toggle="tab">
-                                        <i class="fa fa-wine-bottle" style="font-size: 2rem;"></i>Add Brand Sales
+                                        <i class="fa fa-wine-bottle" style="font-size: 2rem;"></i>Add Brand Auto Billing
                                     </a>
                                 </li>
-                                <li class="nav-item m-tabs__item"><a href="#tab2" class="nav-link m-tabs__link" aria-controls="tab2" role="tab" data-toggle="tab"><i class="fa fa-cocktail" style="font-size: 2rem;"></i>Add Cocktail Sales
+                                <li class="nav-item m-tabs__item"><a href="#tab2" class="nav-link m-tabs__link" aria-controls="tab2" role="tab" data-toggle="tab"><i class="fa fa-cocktail" style="font-size: 2rem;"></i>Add Cocktail Auto Billing
                                 </a></li>
-                                <li class="nav-item m-tabs__item"><a href="#tab3" class="nav-link m-tabs__link" aria-controls="tab3" role="tab" data-toggle="tab"><i class="fa fa-file-import" style="font-size: 2rem;"></i>Import Sale Data
+                                <li class="nav-item m-tabs__item"><a href="#tab3" class="nav-link m-tabs__link" aria-controls="tab3" role="tab" data-toggle="tab"><i class="fa fa-file-import" style="font-size: 2rem;"></i>Import Auto Billing Data
                                 </a></li>
                             </ul>
                         </div>
@@ -311,6 +311,8 @@
                             <div class="tab-pane" id="tab1" role="tabpanel">
                                 <div class="row m--margin-bottom-20 m--align-center">
 
+                                    
+
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Sale Date</label>
 
@@ -324,13 +326,19 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtBrandDate" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtBrandDate" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
+                                    <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
+                                        <label class="font-weight-bold">Amount</label>
+                                        <div class="m-form__control">
+                                            <asp:TextBox ID="txtBillAmount" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtBillAmount" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Bill Amount"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
 
-
-                                    <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                    <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Brand</label>
                                         <div class="m-form__control">
                                             <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Conditional">
@@ -345,7 +353,7 @@
                                     </div>
 
 
-                                    <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
+                                    <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Size</label>
 
                                         <div class="m-form__control">
@@ -502,7 +510,7 @@
                                         <div class="m-form__control">
 
                                             <asp:TextBox ID="CocktailBill" autocomplete="off" CssClass="form-control" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="CocktailBill" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Bill No."></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="CocktailBill" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please enter Bill No."></asp:RequiredFieldValidator>
 
                                         </div>
                                     </div>
@@ -519,7 +527,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCocktailDate" Visible="true" ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCocktailDate" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please enter Date"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
