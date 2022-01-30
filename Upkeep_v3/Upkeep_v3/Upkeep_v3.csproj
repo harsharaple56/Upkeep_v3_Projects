@@ -6885,9 +6885,21 @@
   <ItemGroup>
     <EmbeddedResource Include="CheckList\Checklist_Points_Report.rdlc" />
     <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Abstract.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\CashMemo.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3AReport.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3LegalReport.rdlc" />
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3PrePrintedReport.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3PrePrintedReport_2.rdlc" />
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard.rdlc" />
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr4Rdlc.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr6ARdlc.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr6PrePrintedRdlc.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr6Rdlc.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr6Report.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Rdlc_CostValuation.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Report.rdlc" />
     <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Report1.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
