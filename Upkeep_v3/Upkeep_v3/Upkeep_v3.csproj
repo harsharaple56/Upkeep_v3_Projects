@@ -4225,17 +4225,6 @@
     <Content Include="GatePass\Gatepass_Details_Print.xsc">
       <DependentUpon>Gatepass_Details_Print.xsd</DependentUpon>
     </Content>
-    <Content Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xsc">
-      <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
-    </Content>
-    <None Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Flr3reportDataset.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.xss">
-      <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
-    </Content>
     <Content Include="Cocktail_World_Master.Master" />
     <None Include="GatePass\Gatepass_Details_Print.xsd">
       <SubType>Designer</SubType>
@@ -4711,11 +4700,6 @@
     </Compile>
     <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR6_Pre_Printed.aspx.designer.cs">
       <DependentUpon>FLR6_Pre_Printed.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3reportDataset.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Flr3reportDataset.xsd</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Setup\Add_Brand_Opening_Stock.aspx.cs">
       <DependentUpon>Add_Brand_Opening_Stock.aspx</DependentUpon>
@@ -6843,7 +6827,6 @@
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
     <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />
     <Folder Include="Cocktail_World\Reports\Custom_Reports\" />
-    <Folder Include="Cocktail_World\Reports_Excise\Maharashtra\RDLC Files\" />
     <Folder Include="Feedback_Form_banners\" />
     <Folder Include="GatePass\GPDocuments\" />
     <Folder Include="General_Masters\LocationQRCodes\" />
@@ -6885,24 +6868,14 @@
   <ItemGroup>
     <EmbeddedResource Include="CheckList\Checklist_Points_Report.rdlc" />
     <EmbeddedResource Include="CheckList\Checklist_Report.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Abstract.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\CashMemo.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3AReport.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3LegalReport.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3PrePrintedReport.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3PrePrintedReport_2.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr3ReportWizard1.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr4Rdlc.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr6ARdlc.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr6PrePrintedRdlc.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr6Rdlc.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Flr6Report.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Rdlc_CostValuation.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Report.rdlc" />
-    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Report1.rdlc">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\Cash_Memo.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR3_A.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR3_Pre_Printed.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR3.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR4.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR6_A.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR6_Pre_Printed.rdlc" />
+    <EmbeddedResource Include="Cocktail_World\Reports_Excise\RDLC_Files\FLR6.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print_Retailers.rdlc" />
     <EmbeddedResource Include="GatePass\Gatepass_Details_Print.rdlc" />
     <EmbeddedResource Include="VMS\Visitor_ID.rdlc">

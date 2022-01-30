@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-   
+
     <script>
         $(document).ready(function () {
 
@@ -156,7 +156,7 @@
                         <div class="row m--margin-bottom-20 m--align-center">
                             <div class="col-lg-12 m--margin-bottom-10-tablet-and-mobile">
 
-                                <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" Width="1400px">
+                                <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" Width="1400px" SizeToReportContent="True">
                                 </rsweb:ReportViewer>
 
                             </div>

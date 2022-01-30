@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/BlankMaster.Master" AutoEventWireup="true" CodeBehind="FLR3_A.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra.FLR3_A" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FLR3_A.aspx.cs"  MasterPageFile="~/BlankMaster.Master" Inherits="Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra.FLR3_A" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-   
+
     <script>
         $(document).ready(function () {
 
@@ -80,7 +80,7 @@
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">FLR-III(3) A Excise Report		
+                        <h3 class="m-portlet__head-text">FLR-III(3) Excise Report		
                         </h3>
                     </div>
                 </div>
@@ -101,8 +101,7 @@
             </div>
             <div class="m-portlet__body">
                 <!--begin: Search Form -->
-
-              <div class="form-group row">
+                <div class="form-group row">
                     <label class="col-md-1 col-form-label font-weight-bold" style="margin-top: 10px;">License  :</label>
                     <div class="col-md-3 col-form-label">
                         <asp:DropDownList AutoPostBack="true" ID="ddlLicense" runat="server" CssClass="form-control m-input m-input--air" ClientIDMode="Static"></asp:DropDownList>
@@ -145,6 +144,7 @@
                 </div>
 
 
+
                 <div class="progress m-progress--sm">
                     <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -173,5 +173,4 @@
 
     </div>
 </asp:Content>
-
 

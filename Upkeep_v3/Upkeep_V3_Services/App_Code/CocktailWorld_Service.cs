@@ -34,6 +34,94 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return "Hello World";
     }
 
+    #region RDLC Reports
+
+    [WebMethod]
+    public DataSet Fetch_Flr6Data()
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Flr6Data();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_FLR3LegalReport()
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_FLR3LegalReport();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_CashMemo()
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_CashMemo();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_FetchCostValuation()
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_FetchCostValuation();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Flr4Data()
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Flr4Data();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_FetchFlr6Data()
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_FetchFlr6Data();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    #endregion
+
     [WebMethod]
     public DataSet FetchTaxDetails(int Brand_ID)
     {

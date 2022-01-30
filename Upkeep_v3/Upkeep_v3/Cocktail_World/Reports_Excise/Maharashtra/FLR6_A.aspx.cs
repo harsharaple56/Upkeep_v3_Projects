@@ -24,22 +24,20 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
                 Fetch_License();
                 hdn_IsPostBack.Value = "no";
                 DataSet dsReport = new DataSet();
-                dsReport = ObjCocktailWorld.Fetch_Test_Dataset_RDLC();
-                //ReportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dsReport.Tables[0]));
-                //ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/RDLC_Files/Report1.rdlc");
-
-                //ReportViewer1.LocalReport.EnableHyperlinks = true;
+                dsReport = ObjCocktailWorld.Fetch_Flr6Data();
 
                 ReportViewer1.ProcessingMode = ProcessingMode.Local;
-                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/RDLC_Files/Flr3ReportWizard.rdlc");
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/RDLC_Files/FLR6_A.rdlc");
 
-                ReportDataSource datasource0 = new ReportDataSource("Flr3DatasetReportWizard", dsReport.Tables[0]);
-                ReportDataSource datasource1 = new ReportDataSource("DataSet1", dsReport.Tables[1]);
+                ReportDataSource datasource0 = new ReportDataSource("DataSet1", dsReport.Tables[0]);
+                ReportDataSource datasource1 = new ReportDataSource("Flr6BriefDataset", dsReport.Tables[1]);
+                ReportDataSource datasource2 = new ReportDataSource("Flr6TotalDataset", dsReport.Tables[2]);
 
                 ReportViewer1.LocalReport.DataSources.Clear();
                 ReportViewer1.LocalReport.EnableHyperlinks = true;
                 ReportViewer1.LocalReport.DataSources.Add(datasource0);
                 ReportViewer1.LocalReport.DataSources.Add(datasource1);
+                ReportViewer1.LocalReport.DataSources.Add(datasource2);
                 ReportViewer1.LocalReport.Refresh();
             }
         }

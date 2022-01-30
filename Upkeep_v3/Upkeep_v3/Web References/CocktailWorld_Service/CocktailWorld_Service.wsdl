@@ -12,6 +12,108 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Flr6Data">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_Flr6DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Flr6DataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_FLR3LegalReport">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_FLR3LegalReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_FLR3LegalReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CashMemo">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_CashMemoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CashMemoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_FetchCostValuation">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_FetchCostValuationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_FetchCostValuationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Flr4Data">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_Flr4DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Flr4DataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_FetchFlr6Data">
+        <s:complexType />
+      </s:element>
+      <s:element name="Fetch_FetchFlr6DataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_FetchFlr6DataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FetchTaxDetails">
         <s:complexType>
           <s:sequence>
@@ -712,6 +814,42 @@
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Flr6DataSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Flr6Data" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Flr6DataSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Flr6DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_FLR3LegalReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_FLR3LegalReport" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_FLR3LegalReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_FLR3LegalReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CashMemoSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CashMemo" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CashMemoSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CashMemoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_FetchCostValuationSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_FetchCostValuation" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_FetchCostValuationSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_FetchCostValuationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Flr4DataSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Flr4Data" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Flr4DataSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Flr4DataResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_FetchFlr6DataSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_FetchFlr6Data" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_FetchFlr6DataSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_FetchFlr6DataResponse" />
+  </wsdl:message>
   <wsdl:message name="FetchTaxDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:FetchTaxDetails" />
   </wsdl:message>
@@ -867,6 +1005,30 @@
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Flr6Data">
+      <wsdl:input message="tns:Fetch_Flr6DataSoapIn" />
+      <wsdl:output message="tns:Fetch_Flr6DataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FLR3LegalReport">
+      <wsdl:input message="tns:Fetch_FLR3LegalReportSoapIn" />
+      <wsdl:output message="tns:Fetch_FLR3LegalReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CashMemo">
+      <wsdl:input message="tns:Fetch_CashMemoSoapIn" />
+      <wsdl:output message="tns:Fetch_CashMemoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FetchCostValuation">
+      <wsdl:input message="tns:Fetch_FetchCostValuationSoapIn" />
+      <wsdl:output message="tns:Fetch_FetchCostValuationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Flr4Data">
+      <wsdl:input message="tns:Fetch_Flr4DataSoapIn" />
+      <wsdl:output message="tns:Fetch_Flr4DataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FetchFlr6Data">
+      <wsdl:input message="tns:Fetch_FetchFlr6DataSoapIn" />
+      <wsdl:output message="tns:Fetch_FetchFlr6DataSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="FetchTaxDetails">
       <wsdl:input message="tns:FetchTaxDetailsSoapIn" />
       <wsdl:output message="tns:FetchTaxDetailsSoapOut" />
@@ -972,6 +1134,60 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Flr6Data">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Flr6Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FLR3LegalReport">
+      <soap:operation soapAction="http://tempuri.org/Fetch_FLR3LegalReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CashMemo">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CashMemo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FetchCostValuation">
+      <soap:operation soapAction="http://tempuri.org/Fetch_FetchCostValuation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Flr4Data">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Flr4Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FetchFlr6Data">
+      <soap:operation soapAction="http://tempuri.org/Fetch_FetchFlr6Data" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1209,6 +1425,60 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Flr6Data">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Flr6Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FLR3LegalReport">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_FLR3LegalReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CashMemo">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CashMemo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FetchCostValuation">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_FetchCostValuation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Flr4Data">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Flr4Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_FetchFlr6Data">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_FetchFlr6Data" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -14,6 +14,117 @@ namespace UpkeepV3_BusinessLayer
 
         DataSet ds = new DataSet();
 
+        #region RDLC Reports
+        public DataSet Fetch_CashMemo(string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Cashmemo", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_Flr4Data(string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Flr4", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_FetchFlr6Data(string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Flr6", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_Flr6Data(string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("SPR_Fetch_FLR6", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_FLR3LegalReport(string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Flr3ReportLegal", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_FetchCostValuation(string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Flr3ReportLegal", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
+
         public DataSet SaleDetailsMaster_Crud(int Sale_ID, int SaleDetail_ID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID, string StrConn)
         {
             try
@@ -86,7 +197,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet SaleMaster_Crud(int Sale_ID, string Date, string Bill_No, int License, string Action, int LoggedInUser, int Company_ID,bool Is_Auto_Bill, string StrConn)
+        public DataSet SaleMaster_Crud(int Sale_ID, string Date, string Bill_No, int License, string Action, int LoggedInUser, int Company_ID, bool Is_Auto_Bill, string StrConn)
         {
             try
             {
@@ -176,7 +287,7 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Category", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Company_ID",Company_ID);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@Category_Id", Category_ID);
                 cmd.Parameters.AddWithValue("@Category_Desc", Category_Desc);
                 cmd.Parameters.AddWithValue("@Category_Alias", Category_Alias);
@@ -241,7 +352,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet FetchBrand_SizeLinkup(int Category_ID,int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, string StrConn)
+        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, string StrConn)
         {
             try
             {
@@ -288,7 +399,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet BrandMaster_CRUD(int Company_ID,int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc,string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action,string StrConn)
+        public DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -321,8 +432,8 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet PurchaseMaster_CRUD(int Purchase_ID,int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges, 
-            decimal Discount_Percentage, int License_ID,int Company_ID ,string LoggedInUserID, string Action, string StrConn)
+        public DataSet PurchaseMaster_CRUD(int Purchase_ID, int Supplier_ID, string TP_No, string Invoice_No, string Purchase_Date, decimal Other_Charges,
+            decimal Discount_Percentage, int License_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -353,7 +464,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet TransferMaster_CRUD(int Transfer_ID,string TransferDate, string TP_No, string Invoice_No, string FL_IV, string Is_Show_Excise,
+        public DataSet TransferMaster_CRUD(int Transfer_ID, string TransferDate, string TP_No, string Invoice_No, string FL_IV, string Is_Show_Excise,
             int Trasnfer_To_LicenseID, int License_ID, string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {
             try
@@ -385,9 +496,9 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet PurchaseDetailsMaster_CRUD(int Purchase_ID, int Brand_Opening_ID,string Brand_Desc,string Size_Desc,decimal Bottle_Qty, decimal Bottle_Rate
-            ,decimal Speg_Qty, decimal Speg_Rate, int Free_Qty, int No_Of_Boxes, int Batch_No,string Mfg,string Tax_Type,decimal Tax_Amt,decimal Total_Amt
-            ,int License_ID,int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet PurchaseDetailsMaster_CRUD(int Purchase_ID, int Brand_Opening_ID, string Brand_Desc, string Size_Desc, decimal Bottle_Qty, decimal Bottle_Rate
+            , decimal Speg_Qty, decimal Speg_Rate, int Free_Qty, int No_Of_Boxes, int Batch_No, string Mfg, string Tax_Type, decimal Tax_Amt, decimal Total_Amt
+            , int License_ID, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -426,7 +537,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         public DataSet TransferDetailsMaster_CRUD(int Transfer_ID, string Transfer_Against, string TP_No, int Brand_Opening_ID, string MfgDate, string Boxes, string BatchNo, decimal Speg_Qty, decimal Speg_Rate
-        , decimal Bottle_Qty, decimal Bottle_Rate, int License_ID, int Company_ID, string LoggedInUserID, string Created_By,string Created_Date, string Action , string StrConn)
+        , decimal Bottle_Qty, decimal Bottle_Rate, int License_ID, int Company_ID, string LoggedInUserID, string Created_By, string Created_Date, string Action, string StrConn)
         {
             try
             {
@@ -488,7 +599,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet SubCategory_CRUD(int SubCategory_ID, int Category_ID, string SubCategory_Desc, string LoggedInUserID,int Company_ID, string Action, string StrConn)
+        public DataSet SubCategory_CRUD(int SubCategory_ID, int Category_ID, string SubCategory_Desc, string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {
             try
             {
@@ -569,7 +680,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID,string Operation, string StrConn)
+        public DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation, string StrConn)
         {
             try
             {
@@ -628,7 +739,7 @@ namespace UpkeepV3_BusinessLayer
 
 
 
-        public DataSet SupplierMaster_CRUD(int Supplier_ID,  string SupplierName, string Code, int pincode, string Address, string Contact,string City ,string Email , string LoggedInUserID, int Company_ID, string Action, string StrConn)
+        public DataSet SupplierMaster_CRUD(int Supplier_ID, string SupplierName, string Code, int pincode, string Address, string Contact, string City, string Email, string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {
             try
             {
@@ -662,7 +773,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet CocktailMaster_CRUD(int Cocktail_ID,string Cocktail_Name, string Rate, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CocktailMaster_CRUD(int Cocktail_ID, string Cocktail_Name, string Rate, int Company_ID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
