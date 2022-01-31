@@ -112,7 +112,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
             {
                 int Category_ID = 0;
                 string Cate_Desc = txtCategoryDesc.Text;
+                string Cate_Alias = txtCategoryAlias.Text;
                 string Action = string.Empty;
+
                 if (getUpdate)
                 {
                     ListItemCollection liCol = ddlCategory.Items;
@@ -131,7 +133,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     Action = "insert";
                 }
-                ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Category_ID, Cate_Desc, "", LoggedInUserID, Action);
+                ObjCocktailWorld.CategoryMaster_CRUD(CompanyID, Category_ID, Cate_Desc, Cate_Alias, LoggedInUserID, Action);
                 mpeCategoryMaster.Hide();
                 Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Categories.aspx"), false);
             }
@@ -149,15 +151,25 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 int Category_ID = 0;
                 DataSet ds = new DataSet();
                 Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
-                ds = ObjCocktailWorld.FetchCategorySizeLinkup(Category_ID);
-                if (ds.Tables[0].Rows.Count > 0)
+                if (Category_ID != 0)
                 {
-                    if (ddlCategory.SelectedIndex > 0)
+                    ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, CompanyID);
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        grdCatagLinkUp.DataSource = ds.Tables[0];
+                        if (ddlCategory.SelectedIndex > 0)
+                        {
+                            grdCatagLinkUp.DataSource = ds.Tables[0];
+                            grdCatagLinkUp.DataBind();
+                            btn_edit.Visible = true;
+                            btn_delete.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        grdCatagLinkUp.DataSource = null;
                         grdCatagLinkUp.DataBind();
-                        btn_edit.Visible = true;
-                        btn_delete.Visible = true;
+                        btn_edit.Visible = false;
+                        btn_delete.Visible = false;
                     }
                 }
                 else

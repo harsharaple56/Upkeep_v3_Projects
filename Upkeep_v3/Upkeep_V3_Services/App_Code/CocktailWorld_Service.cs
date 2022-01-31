@@ -328,11 +328,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet FetchCategorySizeLinkup(int Category_ID)
+    public DataSet Fetch_CategorySizeLinkup(int Category_ID,int Company_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.FetchCategorySizeLinkup(Category_ID);
+            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, Company_ID);
 
         }
         catch (Exception ex)

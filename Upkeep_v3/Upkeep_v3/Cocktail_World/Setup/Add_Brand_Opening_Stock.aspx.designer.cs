@@ -31,24 +31,6 @@ namespace Upkeep_v3.Cocktail_World.Setup {
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// ddlLicense control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLicense;
-        
-        /// <summary>
-        /// rfvddlLicense control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvddlLicense;
-        
-        /// <summary>
         /// ddlCategory control.
         /// </summary>
         /// <remarks>

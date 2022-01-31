@@ -317,14 +317,14 @@ public class My_CocktailWorld
     }
 
 
-    public DataSet FetchCategorySizeLinkup(int Category_ID)
+    public DataSet Fetch_CategorySizeLinkup(int Category_ID,int Company_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.FetchCategory_SizeLinkup(Category_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_CategorySizeLinkup(Category_ID, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)

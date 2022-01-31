@@ -230,6 +230,13 @@
                                         <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtCategoryDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Category Name"></asp:RequiredFieldValidator>
                                     </div>
 
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category Alias :</label>
+                                        <asp:TextBox ID="txtCategoryAlias" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvCategory1" runat="server" ControlToValidate="txtCategoryAlias" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Category Alias"></asp:RequiredFieldValidator>
+
+                                    </div>
+
                                     <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                                 </div>
 

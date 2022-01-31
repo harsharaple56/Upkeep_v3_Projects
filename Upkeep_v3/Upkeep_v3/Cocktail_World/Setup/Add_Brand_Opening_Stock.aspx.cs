@@ -24,7 +24,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
             dv_Size.Visible = false;
             if (!IsPostBack)
             {
-                Fetch_License();
                 Fetch_Category_Brand();
                 int BrandOpening_ID = Convert.ToInt32(Request.QueryString["BrandOpening_ID"]);
                 if (BrandOpening_ID > 0)
@@ -52,17 +51,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
             FetchBrandSizeLinkUp(0, 0);
-        }
-
-        private void Fetch_License()
-        {
-            DataSet ds = new DataSet();
-            ds = ObjCocktailWorld.License_CRUD(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
-            ddlLicense.DataSource = ds.Tables[0];
-            ddlLicense.DataTextField = "License_Name";
-            ddlLicense.DataValueField = "License_ID";
-            ddlLicense.DataBind();
-            ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
         }
 
         public void Fetch_Category_Brand()
@@ -116,14 +104,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     Brand_ID = Convert.ToInt32(ddlBrand.SelectedValue);
 
                 ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, 0, "", "", CompanyID);
-
-                for (int i = ds.Tables[0].Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow dr = ds.Tables[0].Rows[i];
-                    if (Convert.ToInt32(dr["Selected"]) == 0)
-                        dr.Delete();
-                }
-                ds.AcceptChanges();
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {

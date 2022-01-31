@@ -70,7 +70,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Fetch_Brand_OpeningOperationCompleted;
         
-        private System.Threading.SendOrPostCallback FetchCategorySizeLinkupOperationCompleted;
+        private System.Threading.SendOrPostCallback Fetch_CategorySizeLinkupOperationCompleted;
         
         private System.Threading.SendOrPostCallback CocktailMaster_CRUDOperationCompleted;
         
@@ -195,7 +195,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public event Fetch_Brand_OpeningCompletedEventHandler Fetch_Brand_OpeningCompleted;
         
         /// <remarks/>
-        public event FetchCategorySizeLinkupCompletedEventHandler FetchCategorySizeLinkupCompleted;
+        public event Fetch_CategorySizeLinkupCompletedEventHandler Fetch_CategorySizeLinkupCompleted;
         
         /// <remarks/>
         public event CocktailMaster_CRUDCompletedEventHandler CocktailMaster_CRUDCompleted;
@@ -1187,31 +1187,33 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchCategorySizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet FetchCategorySizeLinkup(int Category_ID) {
-            object[] results = this.Invoke("FetchCategorySizeLinkup", new object[] {
-                        Category_ID});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CategorySizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_CategorySizeLinkup(int Category_ID, int Company_ID) {
+            object[] results = this.Invoke("Fetch_CategorySizeLinkup", new object[] {
+                        Category_ID,
+                        Company_ID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void FetchCategorySizeLinkupAsync(int Category_ID) {
-            this.FetchCategorySizeLinkupAsync(Category_ID, null);
+        public void Fetch_CategorySizeLinkupAsync(int Category_ID, int Company_ID) {
+            this.Fetch_CategorySizeLinkupAsync(Category_ID, Company_ID, null);
         }
         
         /// <remarks/>
-        public void FetchCategorySizeLinkupAsync(int Category_ID, object userState) {
-            if ((this.FetchCategorySizeLinkupOperationCompleted == null)) {
-                this.FetchCategorySizeLinkupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchCategorySizeLinkupOperationCompleted);
+        public void Fetch_CategorySizeLinkupAsync(int Category_ID, int Company_ID, object userState) {
+            if ((this.Fetch_CategorySizeLinkupOperationCompleted == null)) {
+                this.Fetch_CategorySizeLinkupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CategorySizeLinkupOperationCompleted);
             }
-            this.InvokeAsync("FetchCategorySizeLinkup", new object[] {
-                        Category_ID}, this.FetchCategorySizeLinkupOperationCompleted, userState);
+            this.InvokeAsync("Fetch_CategorySizeLinkup", new object[] {
+                        Category_ID,
+                        Company_ID}, this.Fetch_CategorySizeLinkupOperationCompleted, userState);
         }
         
-        private void OnFetchCategorySizeLinkupOperationCompleted(object arg) {
-            if ((this.FetchCategorySizeLinkupCompleted != null)) {
+        private void OnFetch_CategorySizeLinkupOperationCompleted(object arg) {
+            if ((this.Fetch_CategorySizeLinkupCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.FetchCategorySizeLinkupCompleted(this, new FetchCategorySizeLinkupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_CategorySizeLinkupCompleted(this, new Fetch_CategorySizeLinkupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2236,17 +2238,17 @@ namespace Upkeep_v3.CocktailWorld_Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void FetchCategorySizeLinkupCompletedEventHandler(object sender, FetchCategorySizeLinkupCompletedEventArgs e);
+    public delegate void Fetch_CategorySizeLinkupCompletedEventHandler(object sender, Fetch_CategorySizeLinkupCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class FetchCategorySizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_CategorySizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal FetchCategorySizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_CategorySizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

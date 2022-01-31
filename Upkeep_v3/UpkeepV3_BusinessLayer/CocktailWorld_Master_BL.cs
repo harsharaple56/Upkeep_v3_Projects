@@ -406,7 +406,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet FetchCategory_SizeLinkup(int Category_ID, string StrConn)
+        public DataSet Fetch_CategorySizeLinkup(int Category_ID,int Company_ID, string StrConn)
         {
             try
             {
@@ -416,7 +416,8 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_CategorySizeLinkUP", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Category_Id", Category_ID);
+                cmd.Parameters.AddWithValue("@Category_ID", Category_ID);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

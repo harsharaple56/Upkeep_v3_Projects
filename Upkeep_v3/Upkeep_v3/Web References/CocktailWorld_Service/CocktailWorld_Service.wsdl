@@ -495,17 +495,18 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="FetchCategorySizeLinkup">
+      <s:element name="Fetch_CategorySizeLinkup">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="Category_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="FetchCategorySizeLinkupResponse">
+      <s:element name="Fetch_CategorySizeLinkupResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="FetchCategorySizeLinkupResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CategorySizeLinkupResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -953,11 +954,11 @@
   <wsdl:message name="Fetch_Brand_OpeningSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Brand_OpeningResponse" />
   </wsdl:message>
-  <wsdl:message name="FetchCategorySizeLinkupSoapIn">
-    <wsdl:part name="parameters" element="tns:FetchCategorySizeLinkup" />
+  <wsdl:message name="Fetch_CategorySizeLinkupSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CategorySizeLinkup" />
   </wsdl:message>
-  <wsdl:message name="FetchCategorySizeLinkupSoapOut">
-    <wsdl:part name="parameters" element="tns:FetchCategorySizeLinkupResponse" />
+  <wsdl:message name="Fetch_CategorySizeLinkupSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CategorySizeLinkupResponse" />
   </wsdl:message>
   <wsdl:message name="CocktailMaster_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:CocktailMaster_CRUD" />
@@ -1112,9 +1113,9 @@
       <wsdl:input message="tns:Fetch_Brand_OpeningSoapIn" />
       <wsdl:output message="tns:Fetch_Brand_OpeningSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="FetchCategorySizeLinkup">
-      <wsdl:input message="tns:FetchCategorySizeLinkupSoapIn" />
-      <wsdl:output message="tns:FetchCategorySizeLinkupSoapOut" />
+    <wsdl:operation name="Fetch_CategorySizeLinkup">
+      <wsdl:input message="tns:Fetch_CategorySizeLinkupSoapIn" />
+      <wsdl:output message="tns:Fetch_CategorySizeLinkupSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CocktailMaster_CRUD">
       <wsdl:input message="tns:CocktailMaster_CRUDSoapIn" />
@@ -1347,8 +1348,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FetchCategorySizeLinkup">
-      <soap:operation soapAction="http://tempuri.org/FetchCategorySizeLinkup" style="document" />
+    <wsdl:operation name="Fetch_CategorySizeLinkup">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CategorySizeLinkup" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1647,8 +1648,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FetchCategorySizeLinkup">
-      <soap12:operation soapAction="http://tempuri.org/FetchCategorySizeLinkup" style="document" />
+    <wsdl:operation name="Fetch_CategorySizeLinkup">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CategorySizeLinkup" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

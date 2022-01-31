@@ -135,7 +135,7 @@
                                                                     </asp:TemplateField>
                                                                     <asp:BoundField DataField="CategorySizeLinkID" HeaderText="categorysizelinkid" SortExpression="CategorySizeLinkID"
                                                                         Visible="false" />
-                                                                    <asp:BoundField DataField="Cat_Size_ID" HeaderText="Cat_Size_ID" SortExpression="Cat_Size_ID" />
+                                                                    <asp:BoundField DataField="SizeDesc" HeaderText="Size" SortExpression="SizeDesc" />
                                                                     <asp:TemplateField HeaderText="Bottle Qty" ItemStyle-HorizontalAlign="Center">
                                                                         <ItemTemplate>
                                                                             <asp:HiddenField ID="hdnSize_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Cat_Size_ID"))%>' />
