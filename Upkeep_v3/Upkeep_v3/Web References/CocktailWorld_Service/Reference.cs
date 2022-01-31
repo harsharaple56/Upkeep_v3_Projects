@@ -44,6 +44,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Fetch_FetchFlr6DataOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_Sales_ReportOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FetchTaxDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback BrandOpeningMaster_CRUDOperationCompleted;
@@ -152,6 +154,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Fetch_FetchFlr6DataCompletedEventHandler Fetch_FetchFlr6DataCompleted;
+        
+        /// <remarks/>
+        public event Fetch_Sales_ReportCompletedEventHandler Fetch_Sales_ReportCompleted;
         
         /// <remarks/>
         public event FetchTaxDetailsCompletedEventHandler FetchTaxDetailsCompleted;
@@ -414,6 +419,43 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Fetch_FetchFlr6DataCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_FetchFlr6DataCompleted(this, new Fetch_FetchFlr6DataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Sales_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Sales_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+            object[] results = this.Invoke("Fetch_Sales_Report", new object[] {
+                        License,
+                        From_Date,
+                        To_Date,
+                        Brand,
+                        Category});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Sales_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
+            this.Fetch_Sales_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Sales_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+            if ((this.Fetch_Sales_ReportOperationCompleted == null)) {
+                this.Fetch_Sales_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Sales_ReportOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Sales_Report", new object[] {
+                        License,
+                        From_Date,
+                        To_Date,
+                        Brand,
+                        Category}, this.Fetch_Sales_ReportOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Sales_ReportOperationCompleted(object arg) {
+            if ((this.Fetch_Sales_ReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Sales_ReportCompleted(this, new Fetch_Sales_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1841,6 +1883,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Fetch_FetchFlr6DataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Fetch_Sales_ReportCompletedEventHandler(object sender, Fetch_Sales_ReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Sales_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Sales_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

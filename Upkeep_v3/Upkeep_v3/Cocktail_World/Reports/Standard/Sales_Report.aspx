@@ -4,13 +4,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <style type="text/css">
+    <style type="text/css">
         .underline {
             border-bottom-color: #5867dd;
             border-bottom-width: 3px;
         }
     </style>
-
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
 
@@ -83,7 +93,7 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Brand Summary Report</h3>
+                            <h3 class="m-portlet__head-text">Sales Report</h3>
                         </div>
                     </div>
 
@@ -117,7 +127,7 @@
                                                         <span class="m-nav__section-text">Export Data Format</span>
                                                     </li>
 
-                                                      <hr />
+                                                    <hr />
                                                     <li class="m-nav__item">
                                                         <a id="export_excel" class="m-nav__link" href="javascript:__doPostBack('export_excel','')">
                                                             <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
@@ -165,12 +175,7 @@
                                 <label class="font-weight-bold">Filter by Category:</label>
 
                                 <div class="m-form__control">
-                                    <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
-                                        <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                   <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control" ClientIDMode="Static">
                                     </asp:DropDownList>
                                 </div>
 
@@ -178,20 +183,13 @@
 
                             </div>
                         </div>
-                         <div class="row m--margin-bottom-20 m--align-center">
+                        <div class="row m--margin-bottom-20 m--align-center">
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Filter Brand:</label>
 
                                 <div class="m-form__control">
 
-                                    <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                        <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
-                                        <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
-                                        <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
+                                    <asp:DropDownList ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -220,7 +218,7 @@
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Search Filters:</label>
                                 <div class="m-form__control">
-                                    <button type="button" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
+                                    <button id="btnSearch" runat="server" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
                                         <span>
                                             <i class="la la-search"></i>
                                             <span>Search</span>
@@ -232,7 +230,7 @@
                         </div>
                     </form>
 
-
+                    <hr />
 
 
                     <!--begin: Datatable -->
@@ -255,6 +253,7 @@
                         </thead>
 
                         <tbody>
+                            <%=Bind_Report()%>
                         </tbody>
                     </table>
 

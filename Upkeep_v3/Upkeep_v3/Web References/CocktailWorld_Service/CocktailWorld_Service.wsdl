@@ -114,6 +114,31 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_Sales_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Sales_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Sales_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FetchTaxDetails">
         <s:complexType>
           <s:sequence>
@@ -850,6 +875,12 @@
   <wsdl:message name="Fetch_FetchFlr6DataSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_FetchFlr6DataResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Sales_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Sales_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Sales_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Sales_ReportResponse" />
+  </wsdl:message>
   <wsdl:message name="FetchTaxDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:FetchTaxDetails" />
   </wsdl:message>
@@ -1029,6 +1060,10 @@
       <wsdl:input message="tns:Fetch_FetchFlr6DataSoapIn" />
       <wsdl:output message="tns:Fetch_FetchFlr6DataSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Sales_Report">
+      <wsdl:input message="tns:Fetch_Sales_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_Sales_ReportSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="FetchTaxDetails">
       <wsdl:input message="tns:FetchTaxDetailsSoapIn" />
       <wsdl:output message="tns:FetchTaxDetailsSoapOut" />
@@ -1188,6 +1223,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_FetchFlr6Data">
       <soap:operation soapAction="http://tempuri.org/Fetch_FetchFlr6Data" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Sales_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Sales_Report" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1479,6 +1523,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_FetchFlr6Data">
       <soap12:operation soapAction="http://tempuri.org/Fetch_FetchFlr6Data" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Sales_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Sales_Report" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

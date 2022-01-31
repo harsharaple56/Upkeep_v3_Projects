@@ -1150,7 +1150,7 @@
     <Content Include="Cocktail_World\Reports\View_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Generate_Reports.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\Cash_Memo.aspx" />
-    <Content Include="Cocktail_World\Reports\Standard\Chatai.aspx" />
+    <Content Include="Cocktail_World\Reports_Excise\Maharashtra\Chatai.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_A.aspx" />
     <Content Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3_Pre_Printed.aspx" />
@@ -4645,11 +4645,11 @@
     <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Cash_Memo.aspx.designer.cs">
       <DependentUpon>Cash_Memo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cocktail_World\Reports\Standard\Chatai.aspx.cs">
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Chatai.aspx.cs">
       <DependentUpon>Chatai.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cocktail_World\Reports\Standard\Chatai.aspx.designer.cs">
+    <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\Chatai.aspx.designer.cs">
       <DependentUpon>Chatai.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Reports_Excise\Maharashtra\FLR3.aspx.cs">

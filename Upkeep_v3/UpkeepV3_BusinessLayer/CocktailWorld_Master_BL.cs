@@ -125,6 +125,34 @@ namespace UpkeepV3_BusinessLayer
 
         #endregion
 
+        #region Reports
+
+        public DataSet Fetch_Sales_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_SaleReport", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+
+
         public DataSet SaleDetailsMaster_Crud(int Sale_ID, int SaleDetail_ID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID, string StrConn)
         {
             try

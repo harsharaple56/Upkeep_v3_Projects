@@ -129,6 +129,23 @@ public class My_CocktailWorld
 
     #endregion
 
+    #region Reports
+    public DataSet Fetch_Sales_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Fetch_Sales_Report(License, From_Date, To_Date, Brand, Category, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    #endregion
+
+
     public DataSet FetchTaxDetails(int Brand_ID)
     {
         try

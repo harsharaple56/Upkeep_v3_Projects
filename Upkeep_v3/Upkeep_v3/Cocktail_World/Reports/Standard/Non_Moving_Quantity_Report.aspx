@@ -83,7 +83,7 @@
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Brand Summary Report</h3>
+                            <h3 class="m-portlet__head-text">Non Moving Quantity Report</h3>
                         </div>
                     </div>
 
