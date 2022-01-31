@@ -90,7 +90,7 @@
 
 
 
-                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/View_Reports.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
+                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports_Excise/Generate_Reports.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>
                                 <i class="la la-arrow-left"></i>
                                 <span>Back</span>
