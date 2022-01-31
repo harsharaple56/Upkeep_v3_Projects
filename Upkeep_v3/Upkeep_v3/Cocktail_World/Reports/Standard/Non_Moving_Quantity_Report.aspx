@@ -239,16 +239,15 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>
                             <tr>
-                                <th><b>Brand</b></th>
                                 <th>Category</th>
                                 <th>Sub-Category</th>
+                                <th>Brand</th>
                                 <th>Size</th>
                                 <th>Opening</th>
                                 <th>Purchase</th>
                                 <th>Total</th>
-                                <th><b>Sale</b></th>
-                                <th><b>Closing</b></th>
-
+                                <th>Sale</th>
+                                <th>SalePercentage</th>
                             </tr>
                         </thead>
 

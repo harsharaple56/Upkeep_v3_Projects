@@ -28,7 +28,7 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
                 dsReport = ObjCocktailWorld.Fetch_Flr4Data();
 
                 ReportViewer1.ProcessingMode = ProcessingMode.Local;
-                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/RDLC_Files/FLR4.rdlc");
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/Maharashtra/RDLC_Files/FLR4.rdlc");
 
                 ReportDataSource datasource1 = new ReportDataSource("DataSet1", dsReport.Tables[0]);
 

@@ -1,6 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Cost_Valuation_Report.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Reports.Standard.Cost_Valuation_Report" %>
-
-
+﻿<%@ Page Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Chatai.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra.Chatai" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -240,26 +238,15 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
                         <thead>
                             <tr>
-                                <th>Brand</th>
-                                <th>Size</th>
-                                <th>Category</th>
-                                <th>Opening Stock</th>
-                                <th>Opening Unit Cost</th>
-                                <th>Opening Cost Value</th>
-                                <th>Purchase</th>
-                                <th>Purchase Cost</th>
-                                <th>Sale</th>
-                                <th>Sale Revenue</th>
-                                <th>Sale Cost</th>
-                                <th>Sale Profit</th>
-                                <th>Closing Stock</th>
-                                <th>Closing Cost Value</th>
+                               <%-- <th><b>Brand</b></th>--%>
                             </tr>
                         </thead>
 
                         <tbody>
                         </tbody>
                     </table>
+
+                   <h1> Need to refer CW FIFO</h1>
 
                     <!--end: Datatable -->
 
@@ -271,5 +258,3 @@
     </div>
 
 </asp:Content>
-
-
