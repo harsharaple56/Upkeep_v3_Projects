@@ -21,9 +21,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
-            dv_Size.Visible = false;
             if (!IsPostBack)
             {
+                Bind_License();
                 Fetch_Category_Brand();
                 int BrandOpening_ID = Convert.ToInt32(Request.QueryString["BrandOpening_ID"]);
                 if (BrandOpening_ID > 0)
@@ -100,17 +100,23 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 DataSet ds = new DataSet();
                 if (Category_ID == 0)
                     Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
-                if (Brand_ID == 0)
+                if (Brand_ID == 0 && !string.IsNullOrEmpty(ddlBrand.SelectedValue.ToString()))
                     Brand_ID = Convert.ToInt32(ddlBrand.SelectedValue);
-
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, 0, "", "", CompanyID);
-
-                if (ds.Tables[0].Rows.Count > 0)
+                if (Category_ID != 0 && Brand_ID != 0)
                 {
-                    grdCatagLinkUp.DataSource = ds.Tables[0];
-                    grdCatagLinkUp.DataBind();
-                    dv_Size.Visible = true;
+                    ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, 0, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
 
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdCatagLinkUp.DataSource = ds.Tables[0];
+                        grdCatagLinkUp.DataBind();
+
+                    }
+                    else
+                    {
+                        grdCatagLinkUp.DataSource = null;
+                        grdCatagLinkUp.DataBind();
+                    }
                 }
                 else
                 {
@@ -255,6 +261,36 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
 
         }
-       
+
+        public void Bind_License()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = ObjCocktailWorld.License_CRUD(0, "", "", LoggedInUserID, CompanyID, "R");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlLicense.DataSource = ds.Tables[0];
+                        ddlLicense.DataTextField = "License_Name";
+                        ddlLicense.DataValueField = "License_ID";
+                        ddlLicense.DataBind();
+                        ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FetchBrandSizeLinkUp(0, 0);
+        }
     }
 }

@@ -25,7 +25,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
             {
-                BindCategory();
+                Bind_License();
+                Bind_Category();
                 btn_edit.Visible = false;
                 btn_delete.Visible = false;
             }
@@ -45,6 +46,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         txtCategoryDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Desc"]);
+                        txtCategoryAlias.Text = Convert.ToString(ds.Tables[0].Rows[0]["Category_Alias"]);
                         mpeCategoryMaster.Show();
                     }
                 }
@@ -65,7 +67,33 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-        public void BindCategory()
+        public void Bind_License()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = ObjCocktailWorld.License_CRUD(0, "", "", LoggedInUserID, CompanyID, "R");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlLicense.DataSource = ds.Tables[0];
+                        ddlLicense.DataTextField = "License_Name";
+                        ddlLicense.DataValueField = "License_ID";
+                        ddlLicense.DataBind();
+                        ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public void Bind_Category()
         {
             try
             {
@@ -80,7 +108,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         ddlCategory.DataTextField = "Category_Desc";
                         ddlCategory.DataValueField = "Category_ID";
                         ddlCategory.DataBind();
-                        ddlCategory.Items.Insert(0, new ListItem("--Select--", "0"));
+                        ddlCategory.Items.Insert(0, new ListItem("--Select Category--", "0"));
                     }
                 }
             }
@@ -149,11 +177,13 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 int Category_ID = 0;
+                int License_ID = 0;
                 DataSet ds = new DataSet();
                 Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
-                if (Category_ID != 0)
+                License_ID = Convert.ToInt32(ddlLicense.SelectedValue);
+                if (License_ID != 0 && Category_ID != 0)
                 {
-                    ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, CompanyID);
+                    ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, License_ID, CompanyID);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         if (ddlCategory.SelectedIndex > 0)
@@ -232,8 +262,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 CategoryDetails = strXmlCategory.ToString();
 
                 CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
-                //LicenseID = Convert.ToInt32(ddllicense.SelectedValue);
-                LicenseID = 3;
+                LicenseID = Convert.ToInt32(ddlLicense.SelectedValue);
 
                 DataSet dsCatSave = new DataSet();
 
@@ -296,7 +325,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void grdCatagLinkUp_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grdCatagLinkUp.PageIndex = e.NewPageIndex;
-            BindCategory();
+            Bind_Category();
+        }
+
+        protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FetchCategorySizeLinkUp();
         }
     }
 }

@@ -317,14 +317,14 @@ public class My_CocktailWorld
     }
 
 
-    public DataSet Fetch_CategorySizeLinkup(int Category_ID,int Company_ID)
+    public DataSet Fetch_CategorySizeLinkup(int Category_ID, int License_ID, int Company_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.Fetch_CategorySizeLinkup(Category_ID, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_CategorySizeLinkup(Category_ID, License_ID, Company_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -334,14 +334,14 @@ public class My_CocktailWorld
 
     }
 
-    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID)
+    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.FetchBrand_SizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.FetchBrand_SizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, License_ID, StrConn);
             return ds;
         }
         catch (Exception ex)

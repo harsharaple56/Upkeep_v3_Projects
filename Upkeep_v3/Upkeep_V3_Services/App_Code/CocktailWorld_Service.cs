@@ -328,11 +328,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_CategorySizeLinkup(int Category_ID,int Company_ID)
+    public DataSet Fetch_CategorySizeLinkup(int Category_ID, int License_ID, int Company_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, Company_ID);
+            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, License_ID, Company_ID);
 
         }
         catch (Exception ex)
@@ -373,11 +373,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID)
+    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID);
+            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID,License_ID);
 
         }
         catch (Exception ex)

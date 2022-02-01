@@ -111,7 +111,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                                                  (Convert.ToDecimal(dsTransferDetails.Tables[0].Rows[i]["sPegQty"]) *
                                                                  Convert.ToDecimal(dsTransferDetails.Tables[0].Rows[i]["sPegRate"]));
                                 DataSet dsGetStockDetails = new DataSet();
-                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsTransferDetails.Tables[0].Rows[i]["Brand"].ToString(), dsTransferDetails.Tables[0].Rows[i]["Size"].ToString(), CompanyID);
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsTransferDetails.Tables[0].Rows[i]["Brand"].ToString(), dsTransferDetails.Tables[0].Rows[i]["Size"].ToString(), CompanyID,0);
                                 if (dsGetStockDetails.Tables[0].Rows.Count > 0)
                                 {
                                     string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
@@ -222,7 +222,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             else
                 Size_ID = 0;
             if (Size_ID > 0)
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
             else
                 ds = null;
             return ds;
@@ -242,7 +242,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
 
                 if (BrandID == 0)
                 {
@@ -903,7 +903,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             decimal getClosingSpeg = 0;
 
                             DataSet dsFetchBrand = new DataSet();
-                            dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID);
+                            dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID,0);
                             if (dsFetchBrand.Tables[0].Rows.Count > 0)
                             {
                                 getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[0]);

@@ -1188,25 +1188,27 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CategorySizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_CategorySizeLinkup(int Category_ID, int Company_ID) {
+        public System.Data.DataSet Fetch_CategorySizeLinkup(int Category_ID, int License_ID, int Company_ID) {
             object[] results = this.Invoke("Fetch_CategorySizeLinkup", new object[] {
                         Category_ID,
+                        License_ID,
                         Company_ID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_CategorySizeLinkupAsync(int Category_ID, int Company_ID) {
-            this.Fetch_CategorySizeLinkupAsync(Category_ID, Company_ID, null);
+        public void Fetch_CategorySizeLinkupAsync(int Category_ID, int License_ID, int Company_ID) {
+            this.Fetch_CategorySizeLinkupAsync(Category_ID, License_ID, Company_ID, null);
         }
         
         /// <remarks/>
-        public void Fetch_CategorySizeLinkupAsync(int Category_ID, int Company_ID, object userState) {
+        public void Fetch_CategorySizeLinkupAsync(int Category_ID, int License_ID, int Company_ID, object userState) {
             if ((this.Fetch_CategorySizeLinkupOperationCompleted == null)) {
                 this.Fetch_CategorySizeLinkupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CategorySizeLinkupOperationCompleted);
             }
             this.InvokeAsync("Fetch_CategorySizeLinkup", new object[] {
                         Category_ID,
+                        License_ID,
                         Company_ID}, this.Fetch_CategorySizeLinkupOperationCompleted, userState);
         }
         
@@ -1301,24 +1303,25 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchBrandSizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID) {
+        public System.Data.DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID) {
             object[] results = this.Invoke("FetchBrandSizeLinkup", new object[] {
                         Category_ID,
                         Brand_ID,
                         Size_ID,
                         Brand_Desc,
                         Size_Desc,
-                        Company_ID});
+                        Company_ID,
+                        License_ID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID) {
-            this.FetchBrandSizeLinkupAsync(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, null);
+        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID) {
+            this.FetchBrandSizeLinkupAsync(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, License_ID, null);
         }
         
         /// <remarks/>
-        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, object userState) {
+        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, object userState) {
             if ((this.FetchBrandSizeLinkupOperationCompleted == null)) {
                 this.FetchBrandSizeLinkupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchBrandSizeLinkupOperationCompleted);
             }
@@ -1328,7 +1331,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         Size_ID,
                         Brand_Desc,
                         Size_Desc,
-                        Company_ID}, this.FetchBrandSizeLinkupOperationCompleted, userState);
+                        Company_ID,
+                        License_ID}, this.FetchBrandSizeLinkupOperationCompleted, userState);
         }
         
         private void OnFetchBrandSizeLinkupOperationCompleted(object arg) {
