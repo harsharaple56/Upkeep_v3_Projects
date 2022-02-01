@@ -122,7 +122,7 @@
 
                                     <div class="form-group m-form__group row">
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">License No :</label>
-                                        <asp:TextBox ID="txtLicenseNo" autocomplete="off" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                        <asp:TextBox ID="txtLicenseNo" autocomplete="off" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="rfvLicenseNo" runat="server" ControlToValidate="txtLicenseNo" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter license no"></asp:RequiredFieldValidator>
                                     </div>
                                     <asp:Label ID="lblError" ForeColor="Red" runat="server" CssClass="form-control-label"></asp:Label>
