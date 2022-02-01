@@ -21,7 +21,7 @@ namespace UpkeepV3_BusinessLayer
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_Fetch_Cashmemo", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_CashMemo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -39,7 +39,7 @@ namespace UpkeepV3_BusinessLayer
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_Fetch_Flr4", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR4", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -57,7 +57,7 @@ namespace UpkeepV3_BusinessLayer
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_Fetch_Flr6", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR6", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -75,7 +75,7 @@ namespace UpkeepV3_BusinessLayer
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("SPR_Fetch_FLR6", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR6", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -93,8 +93,37 @@ namespace UpkeepV3_BusinessLayer
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_Fetch_Flr3ReportLegal", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR3", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+       
+
+        #endregion
+
+        #region Reports
+
+        public DataSet Fetch_Sales_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_Sale", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -111,35 +140,8 @@ namespace UpkeepV3_BusinessLayer
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_Fetch_Flr3ReportLegal", con);
+                SqlCommand cmd = new SqlCommand("Spr_Report_CostValuation", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        #endregion
-
-        #region Reports
-
-        public DataSet Fetch_Sales_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
-        {
-            try
-            {
-                string strOutput = string.Empty;
-                SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_Fetch_SaleReport", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@License", License);
-                cmd.Parameters.AddWithValue("@From_Date", From_Date);
-                cmd.Parameters.AddWithValue("@To_Date", To_Date);
-                cmd.Parameters.AddWithValue("@Brand", Brand);
-                cmd.Parameters.AddWithValue("@Category", Category);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
