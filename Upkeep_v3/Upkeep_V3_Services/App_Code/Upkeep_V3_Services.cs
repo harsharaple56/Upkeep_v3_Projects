@@ -833,21 +833,32 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     public DataSet LoginUser(string UserId, string strPassword, string UserType, int CompanyID)
     {
         DataSet ds = new DataSet();
-
         try
         {
-
             ds = ObjUpkeep.LoginUser(UserId, strPassword, UserType, CompanyID);
-
         }
         catch (Exception ex)
         {
             throw ex;
-
         }
-
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Save_Web_Login_Activity(string Log_Type,int UserID, string User_Type, string IP_Address, string Browser_Name, string OS_Name)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = ObjUpkeep.Save_Web_Login_Activity(Log_Type, UserID, User_Type, IP_Address, Browser_Name, OS_Name);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
     [WebMethod]
     public DataSet PriorityMaster_CRUD(int Priority_ID, string Priority_Desc, int CompanyID, string LoggedInUserID, string Action)

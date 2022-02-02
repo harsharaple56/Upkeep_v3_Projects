@@ -162,8 +162,46 @@ namespace Upkeep_v3
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {
-            Session.RemoveAll();
-            Response.Redirect("~/Login.aspx");
+            DataSet dslogs = new DataSet();
+            try
+            {
+                int UserID = 0;
+                string User_Type = string.Empty;
+                string Log_Type = string.Empty;
+                string IP_Address = string.Empty;
+                string Browser_Name = string.Empty;
+                string OS_Name = string.Empty;
+
+
+                if (Convert.ToString(Session["UserID"]) != "")
+                {
+                    UserID= Convert.ToInt32(Session["UserID"]);
+                }
+
+                User_Type=Convert.ToString(Session["UserType"]);
+
+                Log_Type = "Logout";
+                IP_Address = Request.ServerVariables["REMOTE_ADDR"].ToString();
+                
+                System.Web.HttpBrowserCapabilities browser = HttpContext.Current.Request.Browser;
+                Browser_Name = Convert.ToString(browser.Browser);
+
+                System.OperatingSystem osInfo = System.Environment.OSVersion;
+                OS_Name = browser.Platform; //osInfo.Platform.ToString();
+
+                //string operatingSystem = getOperatinSystemDetails(Request.UserAgent);
+
+                dslogs = ObjUpkeep.Save_Web_Login_Activity(Log_Type, UserID, User_Type, IP_Address, Browser_Name, OS_Name);
+
+               
+                Session.RemoveAll();
+                Response.Redirect("~/Login.aspx");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
         }
 
         protected void lnkProfile_Click(object sender, EventArgs e)

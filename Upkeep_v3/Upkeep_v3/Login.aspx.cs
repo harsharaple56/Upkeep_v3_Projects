@@ -35,6 +35,8 @@ namespace Upkeep_v3
                 throw ex;
             }
 
+            Session["IPAddress"] = Request.ServerVariables["REMOTE_ADDR"].ToString();
+
         }
 
         public class Company
@@ -109,6 +111,9 @@ namespace Upkeep_v3
                                             page.Session["Role_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Role_Name"]);
                                             page.Session["User_Dept_ID"] = Convert.ToInt32(ds.Tables[0].Rows[0]["Department_ID"]);
                                             page.Session["Company_Logo"] = Convert.ToString(ds.Tables[0].Rows[0]["Company_Logo"]);
+                                            page.Session["UserID"] = Convert.ToString(ds.Tables[0].Rows[0]["User_ID"]);
+
+                                            Save_Web_Login_Activity(Convert.ToInt32(ds.Tables[0].Rows[0]["User_ID"]), "E");
 
                                             dlst.Add("1", "Dashboard_Employee.aspx");
 
@@ -120,6 +125,10 @@ namespace Upkeep_v3
                                             page.Session["StoreManager_Name"] = Convert.ToString(ds.Tables[0].Rows[0]["Name"]);
                                             page.Session["StoreName"] = Convert.ToString(ds.Tables[0].Rows[0]["Store_Name"]);
                                             page.Session["StoreNo"] = Convert.ToString(ds.Tables[0].Rows[0]["Store_No"]);
+                                            page.Session["Retailer_ID"] = Convert.ToString(ds.Tables[0].Rows[0]["Retailer_ID"]);
+                                            page.Session["UserID"] = Convert.ToString(ds.Tables[0].Rows[0]["Retailer_ID"]);
+
+                                            Save_Web_Login_Activity(Convert.ToInt32(ds.Tables[0].Rows[0]["Retailer_ID"]), "R");
 
                                             dlst.Add("2", "Dashboard_Retailer.aspx");
                                         }
@@ -473,5 +482,71 @@ namespace Upkeep_v3
             }
             return dlst;
         }
+
+        public static string Save_Web_Login_Activity(int UserID, string User_Type)
+        {
+            DataSet dslogs = new DataSet();
+            Login obj = new Login();
+            try
+            {
+                string Log_Type = string.Empty;
+                string IP_Address = string.Empty;
+                string Browser_Name = string.Empty;
+                string OS_Name = string.Empty;
+
+                Log_Type = "Login";
+                //IP_Address = obj.Request.ServerVariables["REMOTE_ADDR"].ToString();
+                IP_Address = Convert.ToString(obj.Session["IPAddress"]);
+
+                System.Web.HttpBrowserCapabilities browser = HttpContext.Current.Request.Browser;
+                Browser_Name = Convert.ToString(browser.Browser);
+
+                System.OperatingSystem osInfo = System.Environment.OSVersion;
+                OS_Name = browser.Platform; //osInfo.Platform.ToString();
+
+                //string operatingSystem = getOperatinSystemDetails(Request.UserAgent);
+
+                dslogs = obj.ObjUpkeepCC.Save_Web_Login_Activity(Log_Type, UserID, User_Type, IP_Address, Browser_Name, OS_Name);
+
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static string getOperatinSystemDetails(string browserDetails)
+        {
+            try
+            {
+                switch (browserDetails.Substring(browserDetails.LastIndexOf("Windows NT") + 11, 3).Trim())
+                {
+                    case "6.2":
+                        return "Windows 8";
+                    case "6.1":
+                        return "Windows 7";
+                    case "6.0":
+                        return "Windows Vista";
+                    case "5.2":
+                        return "Windows XP 64-Bit Edition";
+                    case "5.1":
+                        return "Windows XP";
+                    case "5.0":
+                        return "Windows 2000";
+                    default:
+                        return browserDetails.Substring(browserDetails.LastIndexOf("Windows NT"), 14);
+                }
+            }
+            catch
+            {
+                if (browserDetails.Length > 149)
+                    return browserDetails.Substring(0, 149);
+                else
+                    return browserDetails;
+            }
+        }
+
+
     }
 }
