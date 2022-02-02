@@ -95,14 +95,14 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet Fetch_FetchCostValuation()
+    public DataSet Fetch_FetchCostValuation_Report()
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
 
-            ds = ObjcocktailWorld_Master_BL.Fetch_FetchCostValuation(StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_FetchCostValuation_Report(StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -143,6 +143,66 @@ public class My_CocktailWorld
             throw ex;
         }
     }
+
+    public DataSet Fetch_Purchase_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Fetch_Purchase_Report(License, From_Date, To_Date, Brand, Category, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_Transfer_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Fetch_Transfer_Report(License, From_Date, To_Date, Brand, Category, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_Cost_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Fetch_Cost_Report(License, From_Date, To_Date, Brand, Category, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_SlowMovingQty_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Fetch_SlowMovingQty_Report(License, From_Date, To_Date, Brand, Category, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    
+
+
     #endregion
 
 

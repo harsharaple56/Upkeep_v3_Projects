@@ -63,13 +63,13 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_FetchCostValuation">
+      <s:element name="Fetch_FetchCostValuation_Report">
         <s:complexType />
       </s:element>
-      <s:element name="Fetch_FetchCostValuationResponse">
+      <s:element name="Fetch_FetchCostValuation_ReportResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_FetchCostValuationResult">
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_FetchCostValuation_ReportResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -129,6 +129,106 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Sales_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Purchase_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Purchase_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Purchase_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Transfer_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Transfer_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Transfer_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Cost_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Cost_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Cost_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_SlowMovingQty_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_SlowMovingQty_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_SlowMovingQty_ReportResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -860,11 +960,11 @@
   <wsdl:message name="Fetch_CashMemoSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_CashMemoResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_FetchCostValuationSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_FetchCostValuation" />
+  <wsdl:message name="Fetch_FetchCostValuation_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_FetchCostValuation_Report" />
   </wsdl:message>
-  <wsdl:message name="Fetch_FetchCostValuationSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_FetchCostValuationResponse" />
+  <wsdl:message name="Fetch_FetchCostValuation_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_FetchCostValuation_ReportResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Flr4DataSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Flr4Data" />
@@ -883,6 +983,30 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Sales_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Sales_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Purchase_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Purchase_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Purchase_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Purchase_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Transfer_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Transfer_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Transfer_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Transfer_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Cost_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Cost_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Cost_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Cost_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_SlowMovingQty_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_SlowMovingQty_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_SlowMovingQty_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_SlowMovingQty_ReportResponse" />
   </wsdl:message>
   <wsdl:message name="FetchTaxDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:FetchTaxDetails" />
@@ -1051,9 +1175,9 @@
       <wsdl:input message="tns:Fetch_CashMemoSoapIn" />
       <wsdl:output message="tns:Fetch_CashMemoSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchCostValuation">
-      <wsdl:input message="tns:Fetch_FetchCostValuationSoapIn" />
-      <wsdl:output message="tns:Fetch_FetchCostValuationSoapOut" />
+    <wsdl:operation name="Fetch_FetchCostValuation_Report">
+      <wsdl:input message="tns:Fetch_FetchCostValuation_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_FetchCostValuation_ReportSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Flr4Data">
       <wsdl:input message="tns:Fetch_Flr4DataSoapIn" />
@@ -1066,6 +1190,22 @@
     <wsdl:operation name="Fetch_Sales_Report">
       <wsdl:input message="tns:Fetch_Sales_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_Sales_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Purchase_Report">
+      <wsdl:input message="tns:Fetch_Purchase_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_Purchase_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Transfer_Report">
+      <wsdl:input message="tns:Fetch_Transfer_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_Transfer_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Cost_Report">
+      <wsdl:input message="tns:Fetch_Cost_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_Cost_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_SlowMovingQty_Report">
+      <wsdl:input message="tns:Fetch_SlowMovingQty_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_SlowMovingQty_ReportSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FetchTaxDetails">
       <wsdl:input message="tns:FetchTaxDetailsSoapIn" />
@@ -1206,8 +1346,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchCostValuation">
-      <soap:operation soapAction="http://tempuri.org/Fetch_FetchCostValuation" style="document" />
+    <wsdl:operation name="Fetch_FetchCostValuation_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_FetchCostValuation_Report" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1235,6 +1375,42 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Sales_Report">
       <soap:operation soapAction="http://tempuri.org/Fetch_Sales_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Purchase_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Purchase_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Transfer_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Transfer_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Cost_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Cost_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_SlowMovingQty_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_SlowMovingQty_Report" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1506,8 +1682,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchCostValuation">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_FetchCostValuation" style="document" />
+    <wsdl:operation name="Fetch_FetchCostValuation_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_FetchCostValuation_Report" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1535,6 +1711,42 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Sales_Report">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Sales_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Purchase_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Purchase_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Transfer_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Transfer_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Cost_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Cost_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_SlowMovingQty_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_SlowMovingQty_Report" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

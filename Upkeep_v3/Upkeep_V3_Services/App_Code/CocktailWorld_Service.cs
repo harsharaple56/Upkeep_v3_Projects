@@ -79,11 +79,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_FetchCostValuation()
+    public DataSet Fetch_FetchCostValuation_Report()
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_FetchCostValuation();
+            ds = ObjCocktailWorld.Fetch_FetchCostValuation_Report();
         }
         catch (Exception ex)
         {
@@ -130,7 +130,6 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         try
         {
             ds = ObjCocktailWorld.Fetch_Sales_Report(License, From_Date, To_Date, Brand, Category);
-
         }
         catch (Exception ex)
         {
@@ -138,6 +137,64 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         }
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Fetch_Purchase_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Purchase_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Transfer_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Transfer_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Cost_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Cost_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_SlowMovingQty_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_SlowMovingQty_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    
     #endregion
 
     [WebMethod]
