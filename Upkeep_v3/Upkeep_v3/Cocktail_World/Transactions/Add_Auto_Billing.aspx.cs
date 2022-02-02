@@ -815,7 +815,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             decimal LPeg_Rate = 0;
                             decimal TaxAmount = 0;
                             decimal Amount = 0;
-                            string Permit_Holder = string.Empty;
                             for (int i = 0; i < grdBrandLinkup.Columns.Count; i++)
                             {
                                 string header = grdBrandLinkup.Columns[i].HeaderText;
@@ -990,7 +989,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                             Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Bottle_Rate"]), Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["SPeg_Qty"]),
                                             Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Speg_Rate"]), Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["LPeg_Qty"]),
                                             Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["LPeg_Rate"]), Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["TaxAmount"]),
-                                            Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Amount"]), 1012,
+                                            Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Amount"]), GetRandomPermitHolder(),
                                             Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
                                             displayMessage = true;
                                         }
@@ -1290,8 +1289,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             return ds;
         }
 
-
-
         protected void Insert_Cocktail_Sale_Grid()
         {
             try
@@ -1341,7 +1338,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             decimal LPeg_Rate = 0;
                             decimal TaxAmount = 0;
                             decimal Amount = 0;
-                            int Permit_Holder = 0;
                             for (int i = 0; i < grdCocktail.Columns.Count; i++)
                             {
                                 string header = grdCocktail.Columns[i].HeaderText;
@@ -1474,7 +1470,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["SPeg_Qty"]),
                                     Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
                                     Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
-                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]), Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]), GetRandomPermitHolder(),
                                     ddlLicense.SelectedIndex, "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
                                 displayMessage = true;
                             }
@@ -1498,5 +1494,16 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             }
         }
 
+        private int GetRandomPermitHolder()
+        {
+            int id = 0;
+            DataSet ds = new DataSet();
+            ds = ObjCocktailWorld.PermitMaster_CRUD(0,string.Empty,LoggedInUserID,CompanyID,"Random");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                id = Convert.ToInt32(ds.Tables[0].Rows[0]["Permit_ID"]);
+            }
+            return id;
+        }
     }
 }

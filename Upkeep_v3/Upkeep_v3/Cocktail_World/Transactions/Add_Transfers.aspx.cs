@@ -491,16 +491,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             int index = Convert.ToInt32(e.RowIndex);
             DataTable dt = ViewState["Transfer"] as DataTable;
 
-            //ObjCocktailWorld.SaleDetailsMaster_Crud(0, dt.Rows[index]["Brand"].ToString(), dt.Rows[index]["Size"].ToString(), "", 0, "",
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Bottle_Qty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Bottle_Qty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Bottle_Rate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Bottle_Rate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["sPegQty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["sPegQty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["sPegRate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["sPegRate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["lPegQty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["lPegQty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["lPegRate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["lPegRate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Total_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Total_Amount"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Tax_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Tax_Amount"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Permit_Holder"].ToString()) ? Convert.ToInt32(dt.Rows[index]["Permit_Holder"]) : 0, Convert.ToInt32(ddlLicense.SelectedValue), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
+           
 
             dt.Rows[index].Delete();
             dt.AcceptChanges();
@@ -526,7 +517,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         public bool Check_Transfer_DuplicateData()
         {
             DataSet dsGetTransfer = new DataSet();
-            //  dsGetPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, ddlLicense.SelectedIndex, CompanyID, LoggedInUserID, "Duplicate");
+            
             if (dsGetTransfer.Tables[0].Rows.Count > 0)
             {
                 return true;
@@ -921,10 +912,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     drInsertTransferData["getClosingSpeg"] = getClosingSpeg;
                                     dtInsertTransferData.Rows.Add(drInsertTransferData);
 
-                                    //Add Sale Details Data in Row 
-                                    DateTime myTime = DateTime.MinValue;
-                                    DateTime dtMFgDate = !string.IsNullOrEmpty(MfgDate.ToString()) ? Convert.ToDateTime(MfgDate) : DateTime.MinValue;
-                                    DateTime dtConvertMfgDate = Convert.ToDateTime(dtMFgDate.ToString("dd/MMM/yyyy", CultureInfo.InvariantCulture));
+                                    //Add Transfer Details Data in Row 
                                     DataRow drInsertTransferDetailsData = dtInsertTransferDetailsData.NewRow();
                                     drInsertTransferDetailsData["Brand_Name"] = Brand_Name;
                                     drInsertTransferDetailsData["Size_Desc"] = Size_Desc;
@@ -936,7 +924,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     drInsertTransferDetailsData["Speg_Rate"] = Speg_Rate;
                                     drInsertTransferDetailsData["Boxes"] = Boxes;
                                     drInsertTransferDetailsData["BatchNo"] = BatchNo;
-                                    drInsertTransferDetailsData["MfgDate"] = dtConvertMfgDate;
+                                    drInsertTransferDetailsData["MfgDate"] = MfgDate;
                                     drInsertTransferDetailsData["TotalAmount"] = TotalAmount;
                                     dtInsertTransferDetailsData.Rows.Add(drInsertTransferDetailsData);
                                 }
@@ -967,7 +955,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             ObjCocktailWorld.TransferDetailsMaster_CRUD(
                                 Convert.ToInt32(dsTransfer.Tables[0].Rows[0]["Transfer_ID"]), string.Empty, txttpnumber.Text,
                                 Convert.ToInt32(dtInsertTransferData.Rows[i]["Opening_ID"]),
-                                Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]),
+                                Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]) != string.Empty ? Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]) : DateTime.Now.ToString("dd/MMMM/yyyy"),
                                  Convert.ToString(dtInsertTransferDetailsData.Rows[i]["Boxes"]),
                                 Convert.ToString(dtInsertTransferDetailsData.Rows[i]["BatchNo"]),
                                  Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["SPeg_Qty"]),

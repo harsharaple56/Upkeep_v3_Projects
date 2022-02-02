@@ -386,8 +386,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 ViewState["Brands"] = dt;
                 BindBrandGrid();
 
-                //DropDownList ddl1 = (DropDownList)grdBrandLinkup.Rows[0].Cells[1].FindControl("ddlPermit");
-                //FillDropDownListPermitHolder(ddl1);
             }
             catch (Exception ex)
             {
@@ -426,8 +424,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 ViewState["Cocktails"] = dt;
                 BindCocktailGrid();
 
-                //DropDownList ddl2 = (DropDownList)grdCocktail.Rows[0].Cells[1].FindControl("ddlPermit");
-                //FillDropDownListPermitHolderCocktail(ddl2);
             }
             catch (Exception ex)
             {
@@ -1021,7 +1017,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                         drInsertSaleDetailsData["LPeg_Rate"] = LPeg_Rate;
                                         drInsertSaleDetailsData["TaxAmount"] = TaxAmount;
                                         drInsertSaleDetailsData["Amount"] = Amount;
-                                        drInsertSaleDetailsData["Permit_Holder"] = Permit_Holder;
+                                        drInsertSaleDetailsData["Permit_Holder"] = Permit_Holder ;
                                         dtInsertSaleDetailsData.Rows.Add(drInsertSaleDetailsData);
                                     }
                                     else
@@ -1054,7 +1050,8 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["SPeg_Qty"]),
                                     Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
                                     Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
-                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]), Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]),
+                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]),
+                                     Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]) != -1 ? Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]) : GetRandomPermitHolder(),
                                     Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
                                 displayMessage = true;
                             }
@@ -1308,5 +1305,16 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             ViewState["Brands"] = dt;
         }
 
+        private int GetRandomPermitHolder()
+        {
+            int id = 0;
+            DataSet ds = new DataSet();
+            ds = ObjCocktailWorld.PermitMaster_CRUD(0, string.Empty, LoggedInUserID, CompanyID, "Random");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                id = Convert.ToInt32(ds.Tables[0].Rows[0]["Permit_ID"]);
+            }
+            return id;
+        }
     }
 }

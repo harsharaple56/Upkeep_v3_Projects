@@ -478,18 +478,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             int index = Convert.ToInt32(e.RowIndex);
             DataTable dt = ViewState["Purchase"] as DataTable;
-
-            //ObjCocktailWorld.SaleDetailsMaster_Crud(0, dt.Rows[index]["Brand"].ToString(), dt.Rows[index]["Size"].ToString(), "", 0, "",
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Bottle_Qty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Bottle_Qty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Bottle_Rate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Bottle_Rate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["sPegQty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["sPegQty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["sPegRate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["sPegRate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["lPegQty"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["lPegQty"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["lPegRate"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["lPegRate"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Total_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Total_Amount"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Tax_Amount"].ToString()) ? Convert.ToDecimal(dt.Rows[index]["Tax_Amount"]) : 0,
-            //  !string.IsNullOrEmpty(dt.Rows[index]["Permit_Holder"].ToString()) ? Convert.ToInt32(dt.Rows[index]["Permit_Holder"]) : 0, Convert.ToInt32(ddlLicense.SelectedValue), "Update", Convert.ToInt32(LoggedInUserID), CompanyID);
-
             dt.Rows[index].Delete();
             dt.AcceptChanges();
             ViewState["Purchase"] = dt;
@@ -760,7 +748,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     0,
                                     Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Boxes"]),
                                     Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["BatchNo"]),
-                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]),
+                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]) != string.Empty ? Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]) : DateTime.Now.ToString("dd/MMMM/yyyy"),
                                     Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Tax_Type"]),
                                      Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["TaxAmount"]),
                                       Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Amount"]),
