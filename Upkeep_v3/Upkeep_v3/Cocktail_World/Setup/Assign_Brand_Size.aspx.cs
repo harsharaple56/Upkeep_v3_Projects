@@ -194,21 +194,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             btn_delete.Visible = true;
                         }
                     }
-                    else
-                    {
-                        grdCatagLinkUp.DataSource = null;
-                        grdCatagLinkUp.DataBind();
-                        btn_edit.Visible = false;
-                        btn_delete.Visible = false;
-                    }
                 }
-                else
-                {
-                    grdCatagLinkUp.DataSource = null;
-                    grdCatagLinkUp.DataBind();
-                    btn_edit.Visible = false;
-                    btn_delete.Visible = false;
-                }
+
             }
             catch (Exception ex)
             {
@@ -268,27 +255,22 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                 dsCatSave = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID, CompanyID, LoggedInUserID);
 
-                if (Ds.Tables.Count > 0)
+                if (dsCatSave.Tables.Count > 0)
                 {
-                    if (Ds.Tables[0].Rows.Count > 0)
+                    if (dsCatSave.Tables[1].Rows.Count > 0)
                     {
-                        int Status = Convert.ToInt32(Ds.Tables[0].Rows[0]["Status"]);
-                        if (Status == 0)
+                        int Status = Convert.ToInt32(dsCatSave.Tables[1].Rows[0]["Status"]);
+                        if (Status == 1)
                         {
-
-                        }
-                        else if (Status == 1)
-                        {
-
-                            //  Response.Redirect(Page.ResolveClientUrl(""), false);
+                            Page.ClientScript.RegisterHiddenField("Success", "Success");
                         }
                         else if (Status == 3)
                         {
-                            //lblErrorMsg.Text = "";
+                            //Page.ClientScript.RegisterHiddenField("Duplicate", "Duplicate");
                         }
                         else if (Status == 2)
                         {
-                            // lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                            //Page.ClientScript.RegisterHiddenField("Technical", "Due to some technical issue your request can not be process. Kindly try after some time");
                         }
                     }
                 }

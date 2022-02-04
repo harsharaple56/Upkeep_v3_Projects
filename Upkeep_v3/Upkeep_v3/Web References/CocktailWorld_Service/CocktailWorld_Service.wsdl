@@ -239,6 +239,206 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Fetch_NonMovingQty_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_NonMovingQty_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_NonMovingQty_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CocktailSale_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CocktailSale_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CocktailSale_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_BulkLitre_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_BulkLitre_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_BulkLitre_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_BaseQuantity_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_BaseQuantity_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_BaseQuantity_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Abstract_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Abstract_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Abstract_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_BrandSummary_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_BrandSummary_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_BrandSummary_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Chatai_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Chatai_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Chatai_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_OptimumQuantity_Report">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_OptimumQuantity_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_OptimumQuantity_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FetchTaxDetails">
         <s:complexType>
           <s:sequence>
@@ -268,6 +468,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="closingBottle" type="s:decimal" />
             <s:element minOccurs="1" maxOccurs="1" name="closingSpeg" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUser" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
@@ -578,6 +779,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="Brand_Desc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Cocktail_Desc" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="License_ID" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -788,9 +990,13 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="Permit_ID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Permit_Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Permit_Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Permit_Holder" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Permit_Number" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expire_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Life_Time" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -1008,6 +1214,54 @@
   <wsdl:message name="Fetch_SlowMovingQty_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_SlowMovingQty_ReportResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_NonMovingQty_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_NonMovingQty_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_NonMovingQty_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_NonMovingQty_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CocktailSale_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CocktailSale_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_CocktailSale_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CocktailSale_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_BulkLitre_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_BulkLitre_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_BulkLitre_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_BulkLitre_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_BaseQuantity_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_BaseQuantity_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_BaseQuantity_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_BaseQuantity_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Abstract_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Abstract_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Abstract_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Abstract_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_BrandSummary_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_BrandSummary_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_BrandSummary_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_BrandSummary_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Chatai_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Chatai_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Chatai_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Chatai_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_OptimumQuantity_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_OptimumQuantity_Report" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_OptimumQuantity_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_OptimumQuantity_ReportResponse" />
+  </wsdl:message>
   <wsdl:message name="FetchTaxDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:FetchTaxDetails" />
   </wsdl:message>
@@ -1206,6 +1460,38 @@
     <wsdl:operation name="Fetch_SlowMovingQty_Report">
       <wsdl:input message="tns:Fetch_SlowMovingQty_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_SlowMovingQty_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_NonMovingQty_Report">
+      <wsdl:input message="tns:Fetch_NonMovingQty_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_NonMovingQty_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CocktailSale_Report">
+      <wsdl:input message="tns:Fetch_CocktailSale_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_CocktailSale_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BulkLitre_Report">
+      <wsdl:input message="tns:Fetch_BulkLitre_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_BulkLitre_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BaseQuantity_Report">
+      <wsdl:input message="tns:Fetch_BaseQuantity_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_BaseQuantity_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Abstract_Report">
+      <wsdl:input message="tns:Fetch_Abstract_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_Abstract_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BrandSummary_Report">
+      <wsdl:input message="tns:Fetch_BrandSummary_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_BrandSummary_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Chatai_Report">
+      <wsdl:input message="tns:Fetch_Chatai_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_Chatai_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_OptimumQuantity_Report">
+      <wsdl:input message="tns:Fetch_OptimumQuantity_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_OptimumQuantity_ReportSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FetchTaxDetails">
       <wsdl:input message="tns:FetchTaxDetailsSoapIn" />
@@ -1411,6 +1697,78 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_SlowMovingQty_Report">
       <soap:operation soapAction="http://tempuri.org/Fetch_SlowMovingQty_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_NonMovingQty_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_NonMovingQty_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CocktailSale_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CocktailSale_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BulkLitre_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_BulkLitre_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BaseQuantity_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_BaseQuantity_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Abstract_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Abstract_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BrandSummary_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_BrandSummary_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Chatai_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Chatai_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_OptimumQuantity_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_OptimumQuantity_Report" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1747,6 +2105,78 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_SlowMovingQty_Report">
       <soap12:operation soapAction="http://tempuri.org/Fetch_SlowMovingQty_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_NonMovingQty_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_NonMovingQty_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_CocktailSale_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CocktailSale_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BulkLitre_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_BulkLitre_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BaseQuantity_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_BaseQuantity_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Abstract_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Abstract_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_BrandSummary_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_BrandSummary_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_Chatai_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Chatai_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_OptimumQuantity_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_OptimumQuantity_Report" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

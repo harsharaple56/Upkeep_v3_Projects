@@ -579,7 +579,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 {
                                     Brand_Name = cellText;
                                     DataSet dsGetBrandId = new DataSet();
-                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, "", CompanyID);
+                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, "", CompanyID,string.Empty);
                                     if (dsGetBrandId.Tables[0].Rows.Count > 0)
                                     {
                                         Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);

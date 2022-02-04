@@ -124,7 +124,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-       
+
 
         #endregion
 
@@ -245,6 +245,191 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+
+        public DataSet Fetch_NonMovingQty_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_NonMovingQty", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_CocktailSale_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_CocktailSale", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_BulkLitre_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_BulkLitre", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public DataSet Fetch_BaseQuantity_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_BaseQuantity", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_Abstract_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_Abstract", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_BrandSummary_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_BrandSummary", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_Chatai_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_Chatai", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_OptimumQuantity_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_OptimumQuantity", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@Brand", Brand);
+                cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
 
@@ -292,7 +477,7 @@ namespace UpkeepV3_BusinessLayer
 
 
 
-        public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int Company_ID, string LoggedInUser, string Action, string StrConn)
+        public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg,int License_ID, int Company_ID, string LoggedInUser, string Action, string StrConn)
         {
             try
             {
@@ -307,6 +492,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@closingBottle", closingBottle);
                 cmd.Parameters.AddWithValue("@closingSpeg", closingSpeg);
                 cmd.Parameters.AddWithValue("@BrandID", BrandID);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
                 cmd.Parameters.AddWithValue("@LoggedInUser", LoggedInUser);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@Action", Action);
@@ -450,7 +636,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Cocktail_Desc, int CompanyID, String StrConn) //Added CompanyId by sujata
+        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Cocktail_Desc, int CompanyID,string License_ID, String StrConn) //Added CompanyId by sujata
         {
             try
             {
@@ -463,6 +649,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Brand_Desc", Brand_Desc);
                 cmd.Parameters.AddWithValue("@Cocktail_Desc", Cocktail_Desc);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -476,7 +663,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID,int License_ID, string StrConn)
+        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, string StrConn)
         {
             try
             {
@@ -503,7 +690,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet Fetch_CategorySizeLinkup(int Category_ID,int License_ID,int Company_ID, string StrConn)
+        public DataSet Fetch_CategorySizeLinkup(int Category_ID, int License_ID, int Company_ID, string StrConn)
         {
             try
             {
@@ -754,7 +941,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet PermitMaster_CRUD(int Permit_ID, string Permit_Desc, string LoggedInUserID, int Company_ID, string Action, string StrConn)
+        public DataSet PermitMaster_CRUD(int Permit_ID,string Permit_Type,string Permit_Holder,string Permit_Number, string Expire_Date,bool Life_Time,string LoggedInUserID,int CompanyID,string Action, string StrConn)
         {
             try
             {
@@ -765,9 +952,13 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_Permit", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Permit_ID", Permit_ID);
-                cmd.Parameters.AddWithValue("@Permit_Desc", Permit_Desc);
+                cmd.Parameters.AddWithValue("@Permit_Type", Permit_Type);
+                cmd.Parameters.AddWithValue("@Permit_Holder", Permit_Holder);
+                cmd.Parameters.AddWithValue("@Permit_Number", Permit_Number);
+                cmd.Parameters.AddWithValue("@Expire_Date", Expire_Date);
+                cmd.Parameters.AddWithValue("@Life_Time", Life_Time);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                cmd.Parameters.AddWithValue("@CompanyID", Company_ID);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@Action", Action);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

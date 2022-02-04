@@ -127,6 +127,7 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                             <thead>
                                 <tr>
+                                    <th>License Name</th>
                                     <th>Category</th>
                                     <th>Brand Name</th>
                                     <th>Size</th>

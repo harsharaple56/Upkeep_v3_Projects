@@ -194,7 +194,118 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
-    
+    [WebMethod]
+    public DataSet Fetch_NonMovingQty_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_NonMovingQty_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_CocktailSale_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_CocktailSale_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_BulkLitre_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_BulkLitre_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_BaseQuantity_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_BaseQuantity_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Abstract_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Abstract_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_BrandSummary_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_BrandSummary_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_Chatai_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_Chatai_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_OptimumQuantity_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_OptimumQuantity_Report(License, From_Date, To_Date, Brand, Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
     #endregion
 
     [WebMethod]
@@ -213,11 +324,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int Company_ID, string LoggedInUser, string Action)
+    public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int License_ID, int Company_ID, string LoggedInUser, string Action)
     {
         try
         {
-            ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, closingBottle, closingSpeg, Company_ID, LoggedInUser, Action);
+            ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, closingBottle, closingSpeg,License_ID, Company_ID, LoggedInUser, Action);
 
         }
         catch (Exception ex)
@@ -369,11 +480,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Cocktail_Desc, int CompanyID)   //Added CompanyId by sujata
+    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Cocktail_Desc, int CompanyID,string License_ID)   //Added CompanyId by sujata
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, Opening_ID, BrandID, Brand_Desc, Cocktail_Desc, CompanyID);
+            ds = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, Opening_ID, BrandID, Brand_Desc, Cocktail_Desc, CompanyID,License_ID);
         }
         catch (Exception ex)
         {
@@ -434,7 +545,7 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID,License_ID);
+            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, License_ID);
 
         }
         catch (Exception ex)
@@ -497,11 +608,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet PermitMaster_CRUD(int Permit_ID, string Permit_Desc, string LoggedInUserID, int Company_ID, string Action)
+    public DataSet PermitMaster_CRUD(int Permit_ID, string Permit_Type, string Permit_Holder, string Permit_Number, string Expire_Date, bool Life_Time, string LoggedInUserID, int CompanyID, string Action)
     {
         try
         {
-            ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, Permit_Desc, LoggedInUserID, Company_ID, Action);
+            ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, Permit_Type, Permit_Holder, Permit_Number, Expire_Date, Life_Time, LoggedInUserID, CompanyID, Action);
 
         }
         catch (Exception ex)

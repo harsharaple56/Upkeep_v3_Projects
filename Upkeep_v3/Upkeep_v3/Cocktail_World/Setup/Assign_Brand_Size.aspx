@@ -29,6 +29,15 @@
                     init_plugins();
                 }
             });
+
+            var getSuccess = $("input[name=Success]").val();
+            if (getSuccess != undefined) {
+                Swal.fire(
+                    'Saved..!',
+                    'Your data has been saved.',
+                    'success'
+                )
+            }
         });
     </script>
 
@@ -148,6 +157,7 @@
                                             <asp:GridView ID="grdCatagLinkUp" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true" OnRowDataBound="grdCatagLinkUp_RowDataBound"
                                                 PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
                                                 PagerStyle-HorizontalAlign="Center" OnPageIndexChanging="grdCatagLinkUp_PageIndexChanging">
+                                                   <alternatingrowstyle backcolor="#E7F3FF"></alternatingrowstyle>
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
                                                         <ItemTemplate>
@@ -191,8 +201,14 @@
                                                 <EmptyDataTemplate>
                                                     No Records Found !!!
                                                 </EmptyDataTemplate>
-                                                <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
-                                                    HorizontalAlign="Center" />
+                                                 <emptydatarowstyle height="50%" bordercolor="Black" borderstyle="Solid" borderwidth="2px"
+                                                                            horizontalalign="Center" />
+
+                                                                        <headerstyle backcolor="#2E5E79" forecolor="White"></headerstyle>
+
+                                                                        <pagersettings firstpagetext="First" lastpagetext="Last" mode="NumericFirstLast" />
+
+                                                                        <pagerstyle horizontalalign="Center"></pagerstyle>
                                             </asp:GridView>
                                         </td>
                                     </tr>

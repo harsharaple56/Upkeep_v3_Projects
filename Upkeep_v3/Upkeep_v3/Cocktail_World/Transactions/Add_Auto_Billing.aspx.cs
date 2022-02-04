@@ -290,7 +290,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             if (ddlCocktail.SelectedIndex > 0)
             {
                 DataSet dsGetBrandId = new DataSet();
-                dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", ddlCocktail.SelectedValue, CompanyID);
+                dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", ddlCocktail.SelectedValue, CompanyID, string.Empty);
                 if (dsGetBrandId.Tables[0].Rows.Count > 0)
                 {
                     DataSet dsGetTax = new DataSet();
@@ -315,7 +315,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             ArrayList arr = new ArrayList();
             DataSet dsPermit = new DataSet();
             int CompanyID = Convert.ToInt32(Session["CompanyID"]);
-            dsPermit = ObjCocktailWorld.PermitMaster_CRUD(0, "", LoggedInUserID, CompanyID, "SELECT");
+            dsPermit = ObjCocktailWorld.PermitMaster_CRUD(0, string.Empty, string.Empty, string.Empty, string.Empty, false, LoggedInUserID, CompanyID, "SELECT");
 
             foreach (DataRow dataRow in dsPermit.Tables[0].Rows)
                 arr.Add(new ListItem(Convert.ToString(dataRow.ItemArray[1]), Convert.ToString(dataRow.ItemArray[0])));
@@ -823,7 +823,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 {
                                     Brand_Name = cellText;
                                     DataSet dsGetBrandId = new DataSet();
-                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, "", CompanyID);
+                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, "", CompanyID, string.Empty);
                                     if (dsGetBrandId.Tables[0].Rows.Count > 0)
                                     {
                                         Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
@@ -1346,7 +1346,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 {
                                     Cocktail_Desc = cellText;
                                     DataSet dsGetBrandId = new DataSet();
-                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", Cocktail_Desc, CompanyID);
+                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", Cocktail_Desc, CompanyID,string.Empty);
                                     if (dsGetBrandId.Tables[0].Rows.Count > 0)
                                     {
                                         Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
@@ -1402,7 +1402,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                                 DataSet dsFetchBrand = new DataSet();
-                                dsFetchBrand = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", Cocktail_Desc, CompanyID);
+                                dsFetchBrand = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", Cocktail_Desc, CompanyID, string.Empty);
                                 if (dsFetchBrand.Tables[0].Rows.Count > 0)
                                 {
                                     for (int i = 0; i < dsFetchBrand.Tables[0].Rows.Count; i++)
@@ -1498,7 +1498,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             int id = 0;
             DataSet ds = new DataSet();
-            ds = ObjCocktailWorld.PermitMaster_CRUD(0,string.Empty,LoggedInUserID,CompanyID,"Random");
+            ds = ObjCocktailWorld.PermitMaster_CRUD(0, string.Empty, string.Empty, string.Empty, string.Empty, false, LoggedInUserID,CompanyID,"Random");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 id = Convert.ToInt32(ds.Tables[0].Rows[0]["Permit_ID"]);

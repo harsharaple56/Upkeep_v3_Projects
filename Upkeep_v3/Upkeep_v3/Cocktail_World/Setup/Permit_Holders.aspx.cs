@@ -38,7 +38,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             try
             {
-                ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, string.Empty, LoggedInUserID, CompanyID, "D");
+                ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, string.Empty, string.Empty, string.Empty, string.Empty, false, LoggedInUserID, CompanyID, "D");
                 Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Permit_Holders.aspx"), false);
             }
             catch (Exception ex)
@@ -51,9 +51,10 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             Closecontrol();
         }
+
         public void Closecontrol()
         {
-            txtPermit.Text = "";
+            //txtPermit.Text = "";
             mpeCategoryMaster.Hide();
             Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Permit_Holders.aspx"), false);
         }
@@ -61,7 +62,23 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void btnPermitSave_Click(object sender, EventArgs e)
         {
             int Permit_ID = 0;
-            string Permit_Desc = string.Empty;
+            string Permit_Holder = txtPermitHolder.Text;
+            string Permit_Number = txtPermitNumber.Text;
+            string Permit_Type = ddlPermitType.SelectedItem.ToString();
+            string Expire_Date = string.Empty;
+            DateTime date = Convert.ToDateTime(txtExpireDate.Text);
+            Expire_Date = date.ToString("dd-MMMM-yyyy");
+
+            bool Life_Time = false;
+            if (chkLifeTime.Checked == true)
+            {
+                Life_Time = true;
+            }
+            else
+            {
+                Life_Time = false;
+            }
+
             try
             {
                 if (Convert.ToInt32(Request.QueryString["Permit_ID"]) > 0)
@@ -79,9 +96,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     Action = "C";
                 }
 
-                Permit_Desc = txtPermit.Text.Trim();
-
-                ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, Permit_Desc, LoggedInUserID, CompanyID, Action);
+                ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, Permit_Type, Permit_Holder, Permit_Number, Expire_Date, Life_Time, LoggedInUserID, CompanyID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -90,7 +105,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
                         if (Status == 1)
                         {
-                            txtPermit.Text = "";
+                            txtExpireDate.Text = "";
+                            txtPermitHolder.Text = "";
+                            txtPermitNumber.Text = "";
                             mpeCategoryMaster.Hide();
                             Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Permit_Holders.aspx"), false);
                         }
@@ -116,13 +133,30 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             try
             {
-                ds = ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, "", LoggedInUserID, CompanyID, "R");
+                ds = ObjCocktailWorld.PermitMaster_CRUD(Permit_ID, string.Empty, string.Empty, string.Empty, string.Empty, false, LoggedInUserID, CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        txtPermit.Text = Convert.ToString(ds.Tables[0].Rows[0]["Permit_Desc"]);
+                        DateTime ExpiryDate = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExpireDate"]);
+                        txtExpireDate.Text = ExpiryDate.ToString("dd-MMMM-yyyy");
+                        txtPermitHolder.Text = Convert.ToString(ds.Tables[0].Rows[0]["Permit_Holder_Name"]);
+                        txtPermitNumber.Text = Convert.ToString(ds.Tables[0].Rows[0]["Permit_Number"]);
+
+                        string txtPermitType = Convert.ToString(ds.Tables[0].Rows[0]["Permit_Type"]);
+                        ddlPermitType.ClearSelection();
+                        ddlPermitType.Items.FindByText(txtPermitType).Selected = true;
+
+                        string Is_LifeTime = Convert.ToString(ds.Tables[0].Rows[0]["Is_LifeTime"]);
+                        if (Is_LifeTime == "True")
+                        {
+                            chkLifeTime.Checked = true;
+                        }
+                        else
+                        {
+                            chkLifeTime.Checked = false;
+                        }
                         mpeCategoryMaster.Show();
                     }
                 }
@@ -139,7 +173,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ds = ObjCocktailWorld.PermitMaster_CRUD(0, "", LoggedInUserID, CompanyID, "R");
+                ds = ObjCocktailWorld.PermitMaster_CRUD(0, string.Empty, string.Empty, string.Empty, string.Empty, false, LoggedInUserID, CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -150,8 +184,20 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         for (int i = 0; i < count; i++)
                         {
                             int Permit_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Permit_ID"]);
-                            string Permit_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Desc"]);
-                            data += "<tr><td>" + Permit_ID + "</td><td>" + Permit_Desc + "</td><td><a href='Permit_holders.aspx?Permit_ID=" + Permit_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Permit_holders.aspx?DelPermit_ID=" + Permit_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            string Permit_Holder = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Holder_Name"]);
+                            string Permit_Type = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Type"]);
+                            string Permit_Number = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Number"]);
+                            string date = string.Empty;
+                            DateTime ExpiryDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["ExpireDate"]);
+                            date = ExpiryDate.ToString("dd-MMMM-yyyy");
+                            string Is_LifeTime = Convert.ToString(ds.Tables[0].Rows[i]["Is_LifeTime"]);
+
+                            data += "<tr><td>" + Permit_Type + "</td>" +
+                                    "<td>" + Permit_Holder + "</td>" +
+                                    "<td>" + Permit_Number + "</td>" +
+                                    "<td>" + date + "</td>" +
+                                    "<td>" + Is_LifeTime + "</td>" +
+                                    "<td><a href='Permit_holders.aspx?Permit_ID=" + Permit_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Permit_holders.aspx?DelPermit_ID=" + Permit_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
                         }
                     }
                 }
