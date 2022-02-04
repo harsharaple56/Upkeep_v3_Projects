@@ -15,6 +15,7 @@
             width: 300px;
         }
     </style>
+
     <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
@@ -28,7 +29,17 @@
                     init_plugins();
                 }
             });
+
+            $('.datetimepicker').datepicker({
+                todayHighlight: true,
+                orientation: 'auto bottom',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true
+            });
         });
+
     </script>
 
     <script language="C#" runat="server">
@@ -73,11 +84,13 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                             <thead>
                                 <tr>
-                                    <th>Permit ID</th>
-                                    <th>Permit Desc</th>
+                                    <th>Permit Type</th>
+                                    <th>Permit Holder</th>
+                                    <th>Permit Number</th>
+                                    <th>Expiry Date</th>
+                                    <th>Life Time</th>
                                     <th>Action</th>
                                 </tr>
-
                             </thead>
                             <tbody>
                                 <%=bindgrid()%>
@@ -97,10 +110,6 @@
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                             <ContentTemplate>
 
-                                <%--<div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Permit Master</h5>
-                                    <asp:LinkButton ID="lnkbtnClose" OnClick="LinkButton_Click" runat="server"><i style="color:red" class="la la-close"></i></asp:LinkButton>
-                                </div>--%>
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Permit Master</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
@@ -108,24 +117,69 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Permit Type :</label>
+
+                                        <asp:DropDownList ID="ddlPermitType" class="form-control" Style="width: 60%" runat="server">
+                                            <asp:ListItem Value="0"> --- Select Permit Type --- </asp:ListItem>
+                                            <asp:ListItem Value="1"> PERMITHOLDER </asp:ListItem>
+                                        </asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlPermitType" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Permit Type"></asp:RequiredFieldValidator>
+
+                                    </div>
 
                                     <div class="form-group m-form__group row">
-                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Permit name :</label>
-                                        <asp:TextBox ID="txtPermit" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtPermit" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Description"></asp:RequiredFieldValidator>
+                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Permit Number :</label>
+                                        <asp:TextBox ID="txtPermitNumber" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPermitNumber" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Permit Number"></asp:RequiredFieldValidator>
+                                    </div>
+
+
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Permit Holder Name :</label>
+                                        <asp:TextBox ID="txtPermitHolder" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtPermitHolder" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Permit Holder"></asp:RequiredFieldValidator>
 
                                     </div>
 
 
-                                    <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Expire Date :</label>
+                                        <div class="m-form__control">
+                                            <div class="input-group date">
+                                                
+                                                        <asp:TextBox autocomplete="off" runat="server" type="text" class="form-control m-input datetimepicker" ID="txtExpireDate">
+                                                        </asp:TextBox>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="la la-calendar" style="font-size: 2rem;"></i>
+                                                            </span>
+                                                        </div>
+                                                        </div>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtExpireDate" Visible="true" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Expire Date"></asp:RequiredFieldValidator>
+                                                   
+                                </div>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <asp:Button ID="btnClosePermit" Text="Close" runat="server" class="btn btn-danger" OnClick="btnClosePermit_Click" />
-                                    <asp:Button ID="btnPermitSave" runat="server" class="btn btn-primary" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnPermitSave_Click" Text="Save" />
+                                        <div class="col-12">
+                                            <div class="form-group m-form__group row">
+                                                <div class="col-lg-10">
+                                                    <asp:CheckBox ID="chkLifeTime" CssClass="m-checkbox--success" runat="server" />
+                                                    <label for="message-text" style="text-align: center;">Life Time</label>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
+
+                                        <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <asp:Button ID="btnClosePermit" Text="Close" runat="server" class="btn btn-danger" OnClick="btnClosePermit_Click" />
+                                        <asp:Button ID="btnPermitSave" runat="server" class="btn btn-primary" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnPermitSave_Click" Text="Save" />
+
+                                    </div>
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="btnPermitSave" EventName="Click" />

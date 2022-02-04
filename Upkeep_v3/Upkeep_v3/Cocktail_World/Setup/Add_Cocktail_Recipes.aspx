@@ -12,7 +12,7 @@
 
         $(document).ready(function () {
 
-           
+
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -194,15 +194,14 @@
                                             <table class="table table-striped-table-bordered table-hover">
                                                 <tr>
                                                     <td colspan="2" class="ClsControlTd">
-                                                        <asp:GridView ID="grdAddData" runat="server" Width="100%" AllowPaging="true"
-                                                            PageSize="10" AllowSorting="true" AutoGenerateColumns="false" HeaderStyle-BackColor="#2E5E79"
-                                                            HeaderStyle-ForeColor="white" CellPadding="5" AlternatingRowStyle-BackColor="#E7F3FF"
-                                                            PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
-                                                            PagerSettings-Position="Bottom" ClientIDMode="Static" CssClass="ct-grid" OnRowDeleting="OnRowDeleting"
+                                                        <asp:GridView ID="grdAddData" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true"
+                                                                    PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                                                    PagerStyle-HorizontalAlign="Center" OnRowDeleting="OnRowDeleting"
                                                             OnRowDataBound="OnRowDataBound" OnPageIndexChanging="grdAddData_PageIndexChanging">
                                                             <AlternatingRowStyle BackColor="#E7F3FF"></AlternatingRowStyle>
                                                             <Columns>
-                                                                <asp:CommandField ShowDeleteButton="True" DeleteText="Remove" ControlStyle-CssClass="btn btn-danger" ButtonType="Button" ItemStyle-Width="120" />
+                                                                 <asp:CommandField ItemStyle-HorizontalAlign="Left" ShowDeleteButton="True" HeaderText="Delete" DeleteText="" ControlStyle-CssClass="flaticon-delete-1" ButtonType="Link" ItemStyle-Width="10" />
+
                                                                 <asp:BoundField DataField="Name" HeaderText="Brand Name" ItemStyle-Width="120" />
                                                                 <asp:BoundField DataField="Size" HeaderText="Size" ItemStyle-Width="120" />
                                                                 <asp:BoundField DataField="Pegml" HeaderText="ML / Peg" ItemStyle-Width="120" />

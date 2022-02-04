@@ -110,10 +110,6 @@
                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                             <ContentTemplate>
 
-                                <%--<div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Brand Master</h5>
-                                    <asp:LinkButton ID="lnkbtnClose" OnClick="LinkButton_Click" runat="server"><i style="color:red" class="la la-close"></i></asp:LinkButton>
-                                </div>--%>
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Brand Master</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
@@ -128,13 +124,12 @@
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category :</label>
                                                 <asp:DropDownList ID="ddlcategory" class="form-control" Style="width: 60%" AutoPostBack="true" OnSelectedIndexChanged="ddlcategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="rfvDept" runat="server" ControlToValidate="ddlcategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator InitialValue="0" ID="rfvDept" runat="server" ControlToValidate="ddlcategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please select Category"></asp:RequiredFieldValidator>
                                             </div>
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Sub Category:</label>
                                                 <asp:DropDownList ID="ddlSubCategory" class="form-control" Style="width: 60%" runat="server"></asp:DropDownList>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlSubCategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
                                             </div>
 
                                             <div class="form-group m-form__group row">
@@ -157,28 +152,20 @@
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Strength :</label>
                                                 <asp:TextBox ID="txtShortname" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtShortname" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Strength"></asp:RequiredFieldValidator>
-
                                             </div>
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Purchase Rate ( Peg - INR ) :</label>
                                                 <asp:TextBox ID="txtPurchRatepeg" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPurchRatepeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Purchase Rate"></asp:RequiredFieldValidator>
-
                                             </div>
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Selling Rate in Peg:</label>
                                                 <asp:TextBox ID="txtSellingRatePeg" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSellingRatePeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Selling Rate in Peg"></asp:RequiredFieldValidator>
-
                                             </div>
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Selling Rate in Bottle:</label>
                                                 <asp:TextBox ID="txtSellingRateBotle" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtSellingRateBotle" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Selling Rate in Bottle"></asp:RequiredFieldValidator>
-
                                             </div>
 
                                         </div>
