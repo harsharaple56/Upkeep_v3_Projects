@@ -1222,6 +1222,37 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+
+        public DataSet Save_Web_Login_Activity(string Log_Type, int UserID, string User_Type, string IP_Address, string Browser_Name, string OS_Name, string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Save_Web_Login_Activity", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Log_Type", Log_Type);
+                cmd.Parameters.AddWithValue("@UserID", UserID);
+                cmd.Parameters.AddWithValue("@User_Type", User_Type);
+                cmd.Parameters.AddWithValue("@IP_Address", IP_Address);
+                cmd.Parameters.AddWithValue("@Browser_Name", Browser_Name);
+                cmd.Parameters.AddWithValue("@OS_Name", OS_Name);
+
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet SubLocationMaster_CRUD(int SubLocID, string LocName, string Zone, string SubLocCode, string SubLocDesc, string LoggedInUserID, string Action, string StrConn)
         {
             try
