@@ -11151,7 +11151,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         [Route("api/UpKeep/Post_Support_Request_Image")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<HttpResponseMessage> Post_Support_Request_Image(int TicketID)
+        public async Task<HttpResponseMessage> Post_Support_Request_Image(int RequestID)
         {
             ClsCommunication ObjLocComm = new ClsCommunication();
             DataSet DsDataSet = new DataSet();
@@ -11197,19 +11197,19 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                         else
                         {
                             //string fileUploadPath = ImagePhysicalPath + CurrentDate;
-                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/Support_Portal/Images/" + Convert.ToString(TicketID));
+                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/Support_Portal/Images/" + Convert.ToString(RequestID));
 
                             if (!Directory.Exists(fileUploadPath))
                             {
                                 Directory.CreateDirectory(fileUploadPath);
                             }
 
-                            var ImageName = TicketID + "_" + ticketImgCount;
+                            var ImageName = RequestID + "_" + ticketImgCount;
 
                             var fileName = ImageName + extension;
 
-                            string SaveLocation = HttpContext.Current.Server.MapPath("~/Support_Portal/Images/" + Convert.ToString(TicketID)) + "/" + fileName;
-                            string FileLocation = imgPath + "Support_Portal/Images/" + Convert.ToString(TicketID) + "/" + fileName;
+                            string SaveLocation = HttpContext.Current.Server.MapPath("~/Support_Portal/Images/" + Convert.ToString(RequestID)) + "/" + fileName;
+                            string FileLocation = imgPath + "Support_Portal/Images/" + Convert.ToString(RequestID) + "/" + fileName;
 
                             //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
 
@@ -11223,7 +11223,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
                             SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
-                            ObjLocSqlParameter[0] = new SqlParameter("@TicketID", TicketID);
+                            ObjLocSqlParameter[0] = new SqlParameter("@TicketID", RequestID);
                             ObjLocSqlParameter[1] = new SqlParameter("@ImagePath", FileLocation);
 
                             DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Support_Save_Request_ImagePath_API", ObjLocSqlParameter);
@@ -11308,6 +11308,64 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
 
+
+        [Route("api/UpKeep/Fetch_Support_Request_Details")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Support_Request_Details(int RequestID)
+        {
+            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                ObjLocSqlParameter[0] = new SqlParameter("@RequestID", RequestID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Support_Fetch_Request_Details_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
 
     }
 }
