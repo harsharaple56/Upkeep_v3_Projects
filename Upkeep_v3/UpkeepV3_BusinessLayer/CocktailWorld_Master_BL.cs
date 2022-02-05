@@ -713,7 +713,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string LoggedInUserID, string Action, string StrConn)
+        public DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled,string Size,int Cocktail_ID ,string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -735,6 +735,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Is_Disabled", Is_Disabled);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@Size", Size);
+                cmd.Parameters.AddWithValue("@Cocktail_ID", Cocktail_ID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -1091,7 +1093,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet CocktailMaster_CRUD(int Cocktail_ID, string Cocktail_Name, string Rate, int Company_ID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CocktailMaster_CRUD(int Cocktail_ID, string Cocktail_Name, string Rate, int Company_ID, string LoggedInUserID,int License_ID, string Action, string StrConn)
         {
             try
             {
@@ -1107,6 +1109,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

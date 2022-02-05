@@ -66,18 +66,21 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string Permit_Number = txtPermitNumber.Text;
             string Permit_Type = ddlPermitType.SelectedItem.ToString();
             string Expire_Date = string.Empty;
-            DateTime date = Convert.ToDateTime(txtExpireDate.Text);
-            Expire_Date = date.ToString("dd-MMMM-yyyy");
+           
 
             bool Life_Time = false;
             if (chkLifeTime.Checked == true)
             {
                 Life_Time = true;
+                Expire_Date = string.Empty;
             }
             else
             {
                 Life_Time = false;
+                DateTime date = Convert.ToDateTime(txtExpireDate.Text);
+                Expire_Date = date.ToString("dd-MMMM-yyyy");
             }
+
 
             try
             {
@@ -114,6 +117,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         else if (Status == 3)
                         {
                             lblCategoryErrorMsg.Text = "Permit already exists";
+                            if (Life_Time)
+                                RequiredFieldValidator4.Enabled = false;
                         }
                         else if (Status == 2)
                         {
@@ -139,8 +144,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        DateTime ExpiryDate = Convert.ToDateTime(ds.Tables[0].Rows[0]["ExpireDate"]);
-                        txtExpireDate.Text = ExpiryDate.ToString("dd-MMMM-yyyy");
+                        txtExpireDate.Text = Convert.ToString(ds.Tables[0].Rows[0]["ExpireDate"]);
                         txtPermitHolder.Text = Convert.ToString(ds.Tables[0].Rows[0]["Permit_Holder_Name"]);
                         txtPermitNumber.Text = Convert.ToString(ds.Tables[0].Rows[0]["Permit_Number"]);
 
@@ -187,9 +191,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             string Permit_Holder = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Holder_Name"]);
                             string Permit_Type = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Type"]);
                             string Permit_Number = Convert.ToString(ds.Tables[0].Rows[i]["Permit_Number"]);
-                            string date = string.Empty;
-                            DateTime ExpiryDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["ExpireDate"]);
-                            date = ExpiryDate.ToString("dd-MMMM-yyyy");
+                            string date = Convert.ToString(ds.Tables[0].Rows[i]["ExpireDate"]);
                             string Is_LifeTime = Convert.ToString(ds.Tables[0].Rows[i]["Is_LifeTime"]);
 
                             data += "<tr><td>" + Permit_Type + "</td>" +

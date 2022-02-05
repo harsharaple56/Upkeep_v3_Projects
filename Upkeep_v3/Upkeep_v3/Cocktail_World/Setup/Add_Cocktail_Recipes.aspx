@@ -127,7 +127,19 @@
                             <div class="m-portlet__body">
                                 <div class="col-xl-12">
                                     <div class="form-group m-form__group row">
-                                        <div class="col-lg-7">
+                                        <div class="col-lg-4">
+                                            <asp:UpdatePanel ID="UpdatePanel5" runat="server">
+                                                <ContentTemplate>
+                                                    <label><span style="color: red;">*</span>  License :</label>
+                                                    <asp:DropDownList ID="ddlLicense" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" AutoPostBack="true" class="form-control m-input" runat="server"></asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlLicense" ValidationGroup="ValidateSave"
+                                                        ErrorMessage="Please select License" InitialValue="0" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
+
+
+                                        <div class="col-lg-4">
                                             <label><span style="color: red;">*</span> Cocktail Name :</label>
                                             <asp:HiddenField ID="hdnCocktailName" runat="server" />
                                             <input class="form-control" list="lst_cocktail" name="myBrowser" id="lst_ckname" runat="server" />
@@ -136,10 +148,9 @@
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="lst_ckname" Visible="true" ValidationGroup="ValidateSave" ForeColor="Red" ErrorMessage="Please Enter/Select cocktail name"></asp:RequiredFieldValidator>
                                         </div>
 
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <label>Rate :</label>
                                             <asp:TextBox ID="txtRate" runat="server" class="form-control"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtRate" Visible="true" ValidationGroup="ValidateSave" ForeColor="Red" ErrorMessage="Please enter rate"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -195,12 +206,12 @@
                                                 <tr>
                                                     <td colspan="2" class="ClsControlTd">
                                                         <asp:GridView ID="grdAddData" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true"
-                                                                    PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
-                                                                    PagerStyle-HorizontalAlign="Center" OnRowDeleting="OnRowDeleting"
+                                                            PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                                            PagerStyle-HorizontalAlign="Center" OnRowDeleting="OnRowDeleting"
                                                             OnRowDataBound="OnRowDataBound" OnPageIndexChanging="grdAddData_PageIndexChanging">
                                                             <AlternatingRowStyle BackColor="#E7F3FF"></AlternatingRowStyle>
                                                             <Columns>
-                                                                 <asp:CommandField ItemStyle-HorizontalAlign="Left" ShowDeleteButton="True" HeaderText="Delete" DeleteText="" ControlStyle-CssClass="flaticon-delete-1" ButtonType="Link" ItemStyle-Width="10" />
+                                                                <asp:CommandField ItemStyle-HorizontalAlign="Left" ShowDeleteButton="True" HeaderText="Delete" DeleteText="" ControlStyle-CssClass="flaticon-delete-1" ButtonType="Link" ItemStyle-Width="10" />
 
                                                                 <asp:BoundField DataField="Name" HeaderText="Brand Name" ItemStyle-Width="120" />
                                                                 <asp:BoundField DataField="Size" HeaderText="Size" ItemStyle-Width="120" />

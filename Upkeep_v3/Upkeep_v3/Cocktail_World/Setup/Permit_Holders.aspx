@@ -38,8 +38,41 @@
                 format: 'dd-MM-yyyy',
                 showMeridian: true
             });
+
+            $("[id*=chkLifeTime]").change(function () {
+                var status = this.checked;
+                var valName = document.getElementById("<%=RequiredFieldValidator4.ClientID%>");
+                if (status) {
+                    $("[id*=txtExpireDate]").prop("disabled", true);
+                    ValidatorEnable(valName, false);
+                }
+                else {
+                    $("[id*=txtExpireDate]").prop("disabled", false);
+                    ValidatorEnable(valName, true);
+                }
+
+            })
         });
 
+        function pageLoad() {
+            var status = $("[id*=chkLifeTime]")[0].checked;
+            var valName = document.getElementById("<%=RequiredFieldValidator4.ClientID%>");
+            if (status) {
+                $("[id*=txtExpireDate]").prop("disabled", true);
+            }
+            else {
+                $("[id*=txtExpireDate]").prop("disabled", false);
+            }
+
+             $('.datetimepicker').datepicker({
+                todayHighlight: true,
+                orientation: 'auto bottom',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true
+            });
+        };
     </script>
 
     <script language="C#" runat="server">
@@ -147,39 +180,39 @@
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Expire Date :</label>
                                         <div class="m-form__control">
                                             <div class="input-group date">
-                                                
-                                                        <asp:TextBox autocomplete="off" runat="server" type="text" class="form-control m-input datetimepicker" ID="txtExpireDate">
-                                                        </asp:TextBox>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text">
-                                                                <i class="la la-calendar" style="font-size: 2rem;"></i>
-                                                            </span>
-                                                        </div>
-                                                        </div>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtExpireDate" Visible="true" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Expire Date"></asp:RequiredFieldValidator>
-                                                   
-                                </div>
-                                </div>
 
-                                        <div class="col-12">
-                                            <div class="form-group m-form__group row">
-                                                <div class="col-lg-10">
-                                                    <asp:CheckBox ID="chkLifeTime" CssClass="m-checkbox--success" runat="server" />
-                                                    <label for="message-text" style="text-align: center;">Life Time</label>
+                                                <asp:TextBox autocomplete="off" runat="server" type="text" class="form-control m-input datetimepicker" ID="txtExpireDate">
+                                                </asp:TextBox>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="la la-calendar" style="font-size: 2rem;"></i>
+                                                    </span>
                                                 </div>
                                             </div>
+
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtExpireDate" Visible="true" Style="margin-right: 30%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Expire Date"></asp:RequiredFieldValidator>
                                         </div>
-
-
-                                        <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
-
                                     </div>
 
-                                    <div class="modal-footer">
-                                        <asp:Button ID="btnClosePermit" Text="Close" runat="server" class="btn btn-danger" OnClick="btnClosePermit_Click" />
-                                        <asp:Button ID="btnPermitSave" runat="server" class="btn btn-primary" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnPermitSave_Click" Text="Save" />
-
+                                    <div class="col-12">
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-10">
+                                                <asp:CheckBox ID="chkLifeTime" CssClass="m-checkbox--success" runat="server" />
+                                                <label for="message-text" style="text-align: center;">Life Time</label>
+                                            </div>
+                                        </div>
                                     </div>
+
+
+                                    <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <asp:Button ID="btnClosePermit" Text="Close" runat="server" class="btn btn-danger" OnClick="btnClosePermit_Click" />
+                                    <asp:Button ID="btnPermitSave" runat="server" class="btn btn-primary" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnPermitSave_Click" Text="Save" />
+
+                                </div>
                             </ContentTemplate>
                             <Triggers>
                                 <asp:AsyncPostBackTrigger ControlID="btnPermitSave" EventName="Click" />

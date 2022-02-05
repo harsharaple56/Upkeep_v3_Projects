@@ -24,7 +24,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             if (!IsPostBack)
             {
                 Fetch_License();
-                Fetch_Brand_Size();
                 SetBrandInitialRow();
                 Fetch_CocktailName();
                 SetCocktailInitialRow();
@@ -220,7 +219,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
 
                 if (BrandID == 0)
                 {
@@ -284,7 +283,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             Session.Remove("hdnCocktailTax");
             Session["hdnCocktailTax"] = null;
 
-            ds = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "", "Fetch");
+            ds = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "",0, "Fetch");
             ddlCocktail.DataSource = ds.Tables[0];
             ddlCocktail.DataTextField = "Cocktail_Desc";
             ddlCocktail.DataValueField = "Cocktail_ID";
@@ -1315,6 +1314,11 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 id = Convert.ToInt32(ds.Tables[0].Rows[0]["Permit_ID"]);
             }
             return id;
+        }
+
+        protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Fetch_Brand_Size();
         }
     }
 }

@@ -34,7 +34,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             if (!IsPostBack)
             {
                 Fetch_License();
-                Fetch_Brand_Size();
                 SetBrandInitialRow();
                 Fetch_CocktailName();
                 SetCocktailInitialRow();
@@ -112,7 +111,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                                 DataSet dsGetStockDetails = new DataSet();
-                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID,0);
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID, 0);
                                 if (dsGetStockDetails.Tables[0].Rows.Count > 0)
                                 {
                                     string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
@@ -163,7 +162,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         DataSet dsSD = new DataSet();
                         dsSD = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, 0, string.Empty, string.Empty, string.Empty, 0, string.Empty, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Delete", Convert.ToInt32(LoggedInUserID), CompanyID);
 
-                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx"), false);
+                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Transactions/Auto_Billing.aspx"), false);
                     }
                 }
             }
@@ -197,7 +196,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             else
                 Size_ID = 0;
             if (Size_ID > 0)
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, 0);
             else
                 ds = null;
             return ds;
@@ -216,7 +215,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
 
                 if (BrandID == 0)
                 {
@@ -280,7 +279,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             Session.Remove("hdnCocktailTax");
             Session["hdnCocktailTax"] = null;
 
-            ds = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "", "Fetch");
+            ds = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "", 0, "Fetch");
             ddlCocktail.DataSource = ds.Tables[0];
             ddlCocktail.DataTextField = "Cocktail_Desc";
             ddlCocktail.DataValueField = "Cocktail_ID";
@@ -896,7 +895,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     Amount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty) + (LPeg_Qty * LPeg_Rate);
 
                                 if (!string.IsNullOrEmpty(row.FindControl("txtamount").ToString()) && header == "Tax Amount")
-                                    TaxAmount = Amount * Convert.ToInt32(Session["hdnTax"]) / 100;
+                                    TaxAmount = Amount;
                             }
 
                             //Get Calculation from Current Stock
@@ -915,7 +914,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 decimal getClosingSpeg = 0;
 
                                 DataSet dsFetchBrand = new DataSet();
-                                dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID,0);
+                                dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID, 0);
                                 if (dsFetchBrand.Tables[0].Rows.Count > 0)
                                 {
                                     getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[0]);
@@ -982,7 +981,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     {
                                         if (getAutoBillData.Tables[1].Rows[i]["Sale_ID"].ToString() == getAutoBillData.Tables[2].Rows[x]["Sale_ID"].ToString())
                                         {
-                                            ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[i]["Sale_ID"]), 0, Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Brand_Name"]),
+                                            ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Brand_Name"]),
                                             Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Size_Desc"]), Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Cocktail_Desc"]),
                                             Convert.ToInt32(getAutoBillData.Tables[2].Rows[x]["Opening_ID"]),
                                             Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Tax_Type"]), Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Bottle_Qty"]),
@@ -1024,14 +1023,13 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         private DataSet GetAutoBillingBrandCount(DataTable dt, string splitnumber)
         {
-            decimal SumofSpeg = 0;
-            decimal SumofLpeg = 0;
-            decimal SumofBottle = 0;
-            decimal vSumofSpeg = 0;
-            decimal vSumofLpeg = 0;
-            decimal vSumofBottle = 0;
-
             DataSet ds = new DataSet();
+            DataTable brand = BindBrandGridView();
+            DataTable dtxml = new DataTable();
+            int vRange = Convert.ToInt32(splitnumber);
+            int Sale_ID = 1;
+            int vBillNo = 0;
+            DataSet dsBillMaster = ObjCocktailWorld.BillBook_Crud(0, string.Empty, string.Empty, ddlLicense.SelectedValue, "Fetch", LoggedInUserID, CompanyID);
 
             DataTable resultCount = ds.Tables.Add("billCount");
             resultCount.Columns.Add("Bill_Count");
@@ -1040,251 +1038,468 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             dtInsertSaleData.Columns.Add("Sale_ID");
             dtInsertSaleData.Columns.Add("Bill_No");
 
-            DataTable dtInsertSaleDetailsData = ds.Tables.Add("Bill_Details");
-            dtInsertSaleDetailsData.Columns.Add("Sale_ID");
-            dtInsertSaleDetailsData.Columns.Add("Brand_Name");
-            dtInsertSaleDetailsData.Columns.Add("Size_Desc");
-            dtInsertSaleDetailsData.Columns.Add("Cocktail_Desc");
-            dtInsertSaleDetailsData.Columns.Add("Opening_ID");
-            dtInsertSaleDetailsData.Columns.Add("Tax_Type");
-            dtInsertSaleDetailsData.Columns.Add("Bottle_Qty");
-            dtInsertSaleDetailsData.Columns.Add("Bottle_Rate");
-            dtInsertSaleDetailsData.Columns.Add("SPeg_Qty");
-            dtInsertSaleDetailsData.Columns.Add("Speg_Rate");
-            dtInsertSaleDetailsData.Columns.Add("LPeg_Qty");
-            dtInsertSaleDetailsData.Columns.Add("LPeg_Rate");
-            dtInsertSaleDetailsData.Columns.Add("TaxAmount");
-            dtInsertSaleDetailsData.Columns.Add("Amount");
-
-
-            int Sale_ID = 1;
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            #region Generate Bottle Bills
+            for (var index = 0; index <= dt.Rows.Count - 1; index++)
             {
-                decimal sRate = 0;
-                decimal sQty = 0;
-                decimal lRate = 0;
-                decimal lQty = 0;
-                decimal bQty = 0;
-                decimal bRate = 0;
+                if (Convert.ToInt32(dt.Rows[index]["Bottle_Qty"]) == 0)
+                    continue;
+                double vSum = Convert.ToDouble(dt.Rows[index]["Bottle_Rate"]);
+                dtxml = BindXMLBrandGridView();
+                dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"],
+                   dt.Rows[index]["Bottle_Qty"],vSum,0,0,0,0, 0, dt.Rows[index]["Amount"]);
 
-                sRate = Convert.ToDecimal(dt.Rows[i]["Speg_Rate"]);
-                sQty = Convert.ToDecimal(dt.Rows[i]["SPeg_Qty"]);
-                lRate = Convert.ToDecimal(dt.Rows[i]["LPeg_Rate"]);
-                lQty = Convert.ToDecimal(dt.Rows[i]["LPeg_Qty"]);
-                bQty = Convert.ToDecimal(dt.Rows[i]["Bottle_Qty"]);
-                bRate = Convert.ToDecimal(dt.Rows[i]["Bottle_Rate"]);
+                if (Convert.ToInt32(dt.Rows[index]["Bottle_Qty"]) == 1)
+                {
+                    DataRow drInsertSaleDetailsData1 = brand.NewRow();
+                    drInsertSaleDetailsData1["Sale_ID"] = Sale_ID;
+                    drInsertSaleDetailsData1["Brand_Name"] = dt.Rows[0]["Brand_Name"];
+                    drInsertSaleDetailsData1["Size_Desc"] = dt.Rows[0]["Size_Desc"];
+                    drInsertSaleDetailsData1["Cocktail_Desc"] = dt.Rows[0]["Cocktail_Desc"];
+                    drInsertSaleDetailsData1["Opening_ID"] = dt.Rows[0]["Opening_ID"];
+                    drInsertSaleDetailsData1["Tax_Type"] = dt.Rows[0]["Tax_Type"];
+                    drInsertSaleDetailsData1["Bottle_Qty"] = dtxml.Rows.Count;
+                    drInsertSaleDetailsData1["Bottle_Rate"] = dt.Rows[0]["Bottle_Rate"];
+                    drInsertSaleDetailsData1["SPeg_Qty"] = 0;
+                    drInsertSaleDetailsData1["Speg_Rate"] = 0;
+                    drInsertSaleDetailsData1["LPeg_Qty"] = 0;
+                    drInsertSaleDetailsData1["LPeg_Rate"] = 0;
+                    drInsertSaleDetailsData1["TaxAmount"] = 0;
+                    drInsertSaleDetailsData1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dt.Rows[0]["Bottle_Rate"]);
+                    brand.Rows.Add(drInsertSaleDetailsData1);
+                    
 
-                SumofSpeg += (sRate * sQty) / Convert.ToInt32(splitnumber);
-                SumofLpeg += (lRate * lQty) / Convert.ToInt32(splitnumber);
-                SumofBottle += (bQty * bRate) / Convert.ToInt32(splitnumber);
+                    #region Bill ID Generate
+                    int random_No = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
 
-                if (Math.Round(SumofBottle) < SumofBottle)
-                    SumofBottle = Math.Round(SumofBottle) + 1;
+                    DataRow drInsertSaleData = dtInsertSaleData.NewRow();
+                    drInsertSaleData["Sale_ID"] = Sale_ID;
+                    drInsertSaleData["Bill_No"] = random_No;
+                    dtInsertSaleData.Rows.Add(drInsertSaleData);
+                    #endregion
 
-                if (Math.Round(SumofSpeg) < SumofSpeg)
-                    SumofSpeg = Math.Round(SumofSpeg) + 1;
+                    vBillNo += 1;
+                    Sale_ID += 1;
+                    continue;
+                }
 
-                if (Math.Round(SumofLpeg) < SumofLpeg)
-                    SumofLpeg = Math.Round(SumofLpeg) + 1;
+                for (var inCtr = 2; inCtr <= Convert.ToInt32(dt.Rows[index]["Bottle_Qty"]); inCtr++)
+                {
+                    vSum += Convert.ToDouble(dt.Rows[index]["Bottle_Rate"]);
+                    if (vSum > vRange)
+                    {
+                        DataRow drInsertSaleDetailsData1 = brand.NewRow();
+                        drInsertSaleDetailsData1["Sale_ID"] = Sale_ID;
+                        drInsertSaleDetailsData1["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                        drInsertSaleDetailsData1["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                        drInsertSaleDetailsData1["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                        drInsertSaleDetailsData1["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                        drInsertSaleDetailsData1["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                        drInsertSaleDetailsData1["Bottle_Qty"] = dtxml.Rows.Count;
+                        drInsertSaleDetailsData1["Bottle_Rate"] = dtxml.Rows[0]["Bottle_Rate"];
+                        drInsertSaleDetailsData1["SPeg_Qty"] = 0;
+                        drInsertSaleDetailsData1["Speg_Rate"] = 0;
+                        drInsertSaleDetailsData1["LPeg_Qty"] = 0;
+                        drInsertSaleDetailsData1["LPeg_Rate"] = 0;
+                        drInsertSaleDetailsData1["TaxAmount"] = 0;
+                        drInsertSaleDetailsData1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["Bottle_Rate"]);
+                        brand.Rows.Add(drInsertSaleDetailsData1);
 
-                vSumofSpeg = (sRate * sQty) / Convert.ToInt32(splitnumber);
-                vSumofLpeg = (lRate * lQty) / Convert.ToInt32(splitnumber);
-                vSumofBottle = (bQty * bRate) / Convert.ToInt32(splitnumber);
 
-                if (Math.Round(vSumofBottle) < vSumofBottle)
-                    vSumofBottle = Math.Round(vSumofBottle) + 1;
+                        
+                        #region Bill ID Generate
+                        int random_No1 = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
 
-                if (Math.Round(vSumofSpeg) < vSumofSpeg)
-                    vSumofSpeg = Math.Round(vSumofSpeg) + 1;
+                        DataRow drInsertSaleData1 = dtInsertSaleData.NewRow();
+                        drInsertSaleData1["Sale_ID"] = Sale_ID;
+                        drInsertSaleData1["Bill_No"] = random_No1;
+                        dtInsertSaleData.Rows.Add(drInsertSaleData1);
 
-                if (Math.Round(vSumofLpeg) < vSumofLpeg)
-                    vSumofLpeg = Math.Round(vSumofLpeg) + 1;
+                        #endregion
+
+                        vBillNo += 1;
+                        Sale_ID += 1;
+
+                        DataRow drInsert = brand.NewRow();
+                        vSum = Convert.ToDouble(dt.Rows[index]["Bottle_Rate"]);
+
+                        dtxml = BindXMLBrandGridView();
+
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"],
+                           dt.Rows[index]["Bottle_Qty"], dt.Rows[index]["Bottle_Rate"], 0, 0, 0, 0, 0, dt.Rows[index]["Amount"]);
+
+                        if (inCtr == Convert.ToInt32(dt.Rows[index]["Bottle_Qty"]))
+                        {
+                            DataRow drInsert1 = brand.NewRow();
+                            drInsert1["Sale_ID"] = Sale_ID;
+                            drInsert1["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                            drInsert1["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                            drInsert1["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                            drInsert1["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                            drInsert1["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                            drInsert1["Bottle_Qty"] = dtxml.Rows.Count;
+                            drInsert1["Bottle_Rate"] = dtxml.Rows[0]["Bottle_Rate"];
+                            drInsert1["SPeg_Qty"] = 0;
+                            drInsert1["Speg_Rate"] = 0;
+                            drInsert1["LPeg_Qty"] = 0;
+                            drInsert1["LPeg_Rate"] = 0;
+                            drInsert1["TaxAmount"] = 0;
+                            drInsert1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["Bottle_Rate"]);
+                            brand.Rows.Add(drInsert1);
+                        }
+                    }
+                    else
+                    {
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"],
+                           dt.Rows[index]["Bottle_Qty"], dt.Rows[index]["Bottle_Rate"], 0, 0, 0, 0, 0, dt.Rows[index]["Amount"]);
+
+
+                        if (inCtr == Convert.ToInt32(dt.Rows[index]["Bottle_Qty"]))
+                        {
+                            DataRow drInsert11 = brand.NewRow();
+                            drInsert11["Sale_ID"] = Sale_ID;
+                            drInsert11["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                            drInsert11["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                            drInsert11["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                            drInsert11["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                            drInsert11["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                            drInsert11["Bottle_Qty"] = dtxml.Rows.Count;
+                            drInsert11["Bottle_Rate"] = dtxml.Rows[0]["Bottle_Rate"];
+                            drInsert11["SPeg_Qty"] = 0;
+                            drInsert11["Speg_Rate"] = 0;
+                            drInsert11["LPeg_Qty"] = 0;
+                            drInsert11["LPeg_Rate"] = 0;
+                            drInsert11["TaxAmount"] = 0;
+                            drInsert11["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["Bottle_Rate"]);
+                            brand.Rows.Add(drInsert11);
+                        }
+                    }
+                }
+               
+                #region Bill ID Generate
+                int random_No2 = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
+
+                DataRow drInsertSaleData2 = dtInsertSaleData.NewRow();
+                drInsertSaleData2["Sale_ID"] = Sale_ID;
+                drInsertSaleData2["Bill_No"] = random_No2;
+                dtInsertSaleData.Rows.Add(drInsertSaleData2);
+                #endregion
+
+                vBillNo += 1;
+                Sale_ID += 1;
+            }
+            #endregion
+
+            #region Generate Speg Bills
+            for (var index = 0; index <= dt.Rows.Count - 1; index++)
+            {
+                if (Convert.ToInt32(dt.Rows[index]["SPeg_Qty"]) == 0)
+                    continue;
+                double vSum = Convert.ToDouble(dt.Rows[index]["Speg_Rate"]);
+                dtxml = BindXMLBrandGridView();
+                dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,
+                   dt.Rows[index]["SPeg_Qty"], vSum, 0, 0, 0, dt.Rows[index]["Amount"]);
+               
+
+                if (Convert.ToInt32(dt.Rows[index]["SPeg_Qty"]) == 1)
+                {
+                    DataRow drInsertSaleDetailsData1 = brand.NewRow();
+                    drInsertSaleDetailsData1["Sale_ID"] = Sale_ID;
+                    drInsertSaleDetailsData1["Brand_Name"] = dt.Rows[0]["Brand_Name"];
+                    drInsertSaleDetailsData1["Size_Desc"] = dt.Rows[0]["Size_Desc"];
+                    drInsertSaleDetailsData1["Cocktail_Desc"] = dt.Rows[0]["Cocktail_Desc"];
+                    drInsertSaleDetailsData1["Opening_ID"] = dt.Rows[0]["Opening_ID"];
+                    drInsertSaleDetailsData1["Tax_Type"] = dt.Rows[0]["Tax_Type"];
+                    drInsertSaleDetailsData1["Bottle_Qty"] = 0;
+                    drInsertSaleDetailsData1["Bottle_Rate"] = 0;
+                    drInsertSaleDetailsData1["SPeg_Qty"] = dtxml.Rows.Count;
+                    drInsertSaleDetailsData1["Speg_Rate"] = dt.Rows[0]["Speg_Rate"];
+                    drInsertSaleDetailsData1["LPeg_Qty"] = 0;
+                    drInsertSaleDetailsData1["LPeg_Rate"] = 0;
+                    drInsertSaleDetailsData1["TaxAmount"] = 0;
+                    drInsertSaleDetailsData1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dt.Rows[0]["Speg_Rate"]);
+                    brand.Rows.Add(drInsertSaleDetailsData1);
+
+
+                    #region Bill ID Generate
+                    int random_No = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
+
+                    DataRow drInsertSaleData = dtInsertSaleData.NewRow();
+                    drInsertSaleData["Sale_ID"] = Sale_ID;
+                    drInsertSaleData["Bill_No"] = random_No;
+                    dtInsertSaleData.Rows.Add(drInsertSaleData);
+                    #endregion
+
+                    vBillNo += 1;
+                    Sale_ID += 1;
+                    continue;
+                }
+
+                for (var inCtr = 2; inCtr <= Convert.ToInt32(dt.Rows[index]["SPeg_Qty"]); inCtr++)
+                {
+                    vSum += Convert.ToDouble(dt.Rows[index]["Speg_Rate"]);
+                    if (vSum > vRange)
+                    {
+                        DataRow drInsertSaleDetailsData1 = brand.NewRow();
+                        drInsertSaleDetailsData1["Sale_ID"] = Sale_ID;
+                        drInsertSaleDetailsData1["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                        drInsertSaleDetailsData1["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                        drInsertSaleDetailsData1["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                        drInsertSaleDetailsData1["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                        drInsertSaleDetailsData1["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                        drInsertSaleDetailsData1["Bottle_Qty"] = 0;
+                        drInsertSaleDetailsData1["Bottle_Rate"] = 0;
+                        drInsertSaleDetailsData1["SPeg_Qty"] = dtxml.Rows.Count;
+                        drInsertSaleDetailsData1["Speg_Rate"] = dtxml.Rows[0]["Speg_Rate"];
+                        drInsertSaleDetailsData1["LPeg_Qty"] = 0;
+                        drInsertSaleDetailsData1["LPeg_Rate"] = 0;
+                        drInsertSaleDetailsData1["TaxAmount"] = 0;
+                        drInsertSaleDetailsData1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["Speg_Rate"]);
+                        brand.Rows.Add(drInsertSaleDetailsData1);
+
+
+
+                        #region Bill ID Generate
+                        int random_No1 = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
+
+                        DataRow drInsertSaleData1 = dtInsertSaleData.NewRow();
+                        drInsertSaleData1["Sale_ID"] = Sale_ID;
+                        drInsertSaleData1["Bill_No"] = random_No1;
+                        dtInsertSaleData.Rows.Add(drInsertSaleData1);
+
+                        #endregion
+
+                        vBillNo += 1;
+                        Sale_ID += 1;
+
+                        DataRow drInsert = brand.NewRow();
+                        vSum = Convert.ToDouble(dt.Rows[index]["Speg_Rate"]);
+
+                        dtxml = BindXMLBrandGridView();
+
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,
+                           dt.Rows[index]["SPeg_Qty"], dt.Rows[index]["Speg_Rate"], 0, 0, 0, dt.Rows[index]["Amount"]);
+
+                        if (inCtr == Convert.ToInt32(dt.Rows[index]["SPeg_Qty"]))
+                        {
+                            DataRow drInsert1 = brand.NewRow();
+                            drInsert1["Sale_ID"] = Sale_ID;
+                            drInsert1["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                            drInsert1["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                            drInsert1["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                            drInsert1["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                            drInsert1["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                            drInsert1["Bottle_Qty"] = 0;
+                            drInsert1["Bottle_Rate"] = 0;
+                            drInsert1["SPeg_Qty"] = dtxml.Rows.Count;
+                            drInsert1["Speg_Rate"] = dtxml.Rows[0]["Speg_Rate"];
+                            drInsert1["LPeg_Qty"] = 0;
+                            drInsert1["LPeg_Rate"] = 0;
+                            drInsert1["TaxAmount"] = 0;
+                            drInsert1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["Speg_Rate"]);
+                            brand.Rows.Add(drInsert1);
+                        }
+                    }
+                    else
+                    {
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"],0,0,
+                           dt.Rows[index]["SPeg_Qty"], dt.Rows[index]["Speg_Rate"], 0, 0, 0, dt.Rows[index]["Amount"]);
+
+
+                        if (inCtr == Convert.ToInt32(dt.Rows[index]["SPeg_Qty"]))
+                        {
+                            DataRow drInsert11 = brand.NewRow();
+                            drInsert11["Sale_ID"] = Sale_ID;
+                            drInsert11["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                            drInsert11["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                            drInsert11["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                            drInsert11["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                            drInsert11["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                            drInsert11["Bottle_Qty"] = 0;
+                            drInsert11["Bottle_Rate"] = 0;
+                            drInsert11["SPeg_Qty"] = dtxml.Rows.Count;
+                            drInsert11["Speg_Rate"] = dtxml.Rows[0]["Speg_Rate"];
+                            drInsert11["LPeg_Qty"] = 0;
+                            drInsert11["LPeg_Rate"] = 0;
+                            drInsert11["TaxAmount"] = 0;
+                            drInsert11["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["Speg_Rate"]);
+                            brand.Rows.Add(drInsert11);
+                        }
+                    }
+                }
 
                 #region Bill ID Generate
-                DataSet dsBillMaster = ObjCocktailWorld.BillBook_Crud(0, string.Empty, string.Empty, ddlLicense.SelectedValue, "Fetch", LoggedInUserID, CompanyID);
-                int random_No = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
+                int random_No2 = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
 
-                DataRow drInsertSaleData = dtInsertSaleData.NewRow();
-                drInsertSaleData["Sale_ID"] = Sale_ID;
-                drInsertSaleData["Bill_No"] = random_No;
-                dtInsertSaleData.Rows.Add(drInsertSaleData);
-
+                DataRow drInsertSaleData2 = dtInsertSaleData.NewRow();
+                drInsertSaleData2["Sale_ID"] = Sale_ID;
+                drInsertSaleData2["Bill_No"] = random_No2;
+                dtInsertSaleData.Rows.Add(drInsertSaleData2);
                 #endregion
 
-
-                #region For Speg
-                if (sQty > 0)
-                {
-                    decimal x_sqty = sQty / vSumofSpeg;
-                    decimal y_sqty = Math.Round(x_sqty);
-                    decimal c_sqty = 0;
-
-                    for (int x = 0; x < vSumofSpeg; x++)
-                    {
-                        c_sqty = sQty - y_sqty;
-                        DataRow drInsertSaleDetailsData = dtInsertSaleDetailsData.NewRow();
-
-                        if (y_sqty > 1)
-                        {
-                            drInsertSaleDetailsData["Sale_ID"] = Sale_ID;
-                            drInsertSaleDetailsData["Brand_Name"] = dt.Rows[i]["Brand_Name"];
-                            drInsertSaleDetailsData["Size_Desc"] = dt.Rows[i]["Size_Desc"];
-                            drInsertSaleDetailsData["Cocktail_Desc"] = dt.Rows[i]["Cocktail_Desc"];
-                            drInsertSaleDetailsData["Opening_ID"] = dt.Rows[i]["Opening_ID"];
-                            drInsertSaleDetailsData["Tax_Type"] = dt.Rows[i]["Tax_Type"];
-                            drInsertSaleDetailsData["Bottle_Qty"] = 0;
-                            drInsertSaleDetailsData["Bottle_Rate"] = 0;
-                            drInsertSaleDetailsData["SPeg_Qty"] = c_sqty;
-                            drInsertSaleDetailsData["Speg_Rate"] = sRate;
-                            drInsertSaleDetailsData["LPeg_Qty"] = 0;
-                            drInsertSaleDetailsData["LPeg_Rate"] = 0;
-                            drInsertSaleDetailsData["TaxAmount"] = 0;
-                            drInsertSaleDetailsData["Amount"] = c_sqty * sRate;
-                            dtInsertSaleDetailsData.Rows.Add(drInsertSaleDetailsData);
-                            y_sqty = c_sqty;
-                        }
-
-                        if (y_sqty == 1)
-                        {
-                            drInsertSaleDetailsData["Sale_ID"] = Sale_ID;
-                            drInsertSaleDetailsData["Brand_Name"] = dt.Rows[i]["Brand_Name"];
-                            drInsertSaleDetailsData["Size_Desc"] = dt.Rows[i]["Size_Desc"];
-                            drInsertSaleDetailsData["Cocktail_Desc"] = dt.Rows[i]["Cocktail_Desc"];
-                            drInsertSaleDetailsData["Opening_ID"] = dt.Rows[i]["Opening_ID"];
-                            drInsertSaleDetailsData["Tax_Type"] = dt.Rows[i]["Tax_Type"];
-                            drInsertSaleDetailsData["Bottle_Qty"] = 0;
-                            drInsertSaleDetailsData["Bottle_Rate"] = 0;
-                            drInsertSaleDetailsData["SPeg_Qty"] = y_sqty;
-                            drInsertSaleDetailsData["Speg_Rate"] = sRate;
-                            drInsertSaleDetailsData["LPeg_Qty"] = 0;
-                            drInsertSaleDetailsData["LPeg_Rate"] = 0;
-                            drInsertSaleDetailsData["TaxAmount"] = 0;
-                            drInsertSaleDetailsData["Amount"] = y_sqty * sRate;
-                            dtInsertSaleDetailsData.Rows.Add(drInsertSaleDetailsData);
-                        }
-                    }
-                }
-                #endregion
-
-                #region For Lpeg
-                if (lQty > 0)
-                {
-                    decimal x_lqty = sQty / vSumofSpeg;
-                    decimal y_lqty = Math.Round(x_lqty);
-                    decimal c_lqty = 0;
-
-                    for (int x = 0; x < vSumofLpeg; x++)
-                    {
-                        c_lqty = lQty - y_lqty;
-                        DataRow drInsertSaleDetailsData = dtInsertSaleDetailsData.NewRow();
-
-                        if (y_lqty > 1)
-                        {
-                            drInsertSaleDetailsData["Sale_ID"] = Sale_ID;
-                            drInsertSaleDetailsData["Brand_Name"] = dt.Rows[i]["Brand_Name"];
-                            drInsertSaleDetailsData["Size_Desc"] = dt.Rows[i]["Size_Desc"];
-                            drInsertSaleDetailsData["Cocktail_Desc"] = dt.Rows[i]["Cocktail_Desc"];
-                            drInsertSaleDetailsData["Opening_ID"] = dt.Rows[i]["Opening_ID"];
-                            drInsertSaleDetailsData["Tax_Type"] = dt.Rows[i]["Tax_Type"];
-                            drInsertSaleDetailsData["Bottle_Qty"] = 0;
-                            drInsertSaleDetailsData["Bottle_Rate"] = 0;
-                            drInsertSaleDetailsData["SPeg_Qty"] = c_lqty;
-                            drInsertSaleDetailsData["Speg_Rate"] = lRate;
-                            drInsertSaleDetailsData["LPeg_Qty"] = 0;
-                            drInsertSaleDetailsData["LPeg_Rate"] = 0;
-                            drInsertSaleDetailsData["TaxAmount"] = 0;
-                            drInsertSaleDetailsData["Amount"] = c_lqty * lRate;
-                            dtInsertSaleDetailsData.Rows.Add(drInsertSaleDetailsData);
-                            y_lqty = c_lqty;
-                        }
-
-                        if (y_lqty == 1)
-                        {
-                            drInsertSaleDetailsData["Sale_ID"] = Sale_ID;
-                            drInsertSaleDetailsData["Brand_Name"] = dt.Rows[i]["Brand_Name"];
-                            drInsertSaleDetailsData["Size_Desc"] = dt.Rows[i]["Size_Desc"];
-                            drInsertSaleDetailsData["Cocktail_Desc"] = dt.Rows[i]["Cocktail_Desc"];
-                            drInsertSaleDetailsData["Opening_ID"] = dt.Rows[i]["Opening_ID"];
-                            drInsertSaleDetailsData["Tax_Type"] = dt.Rows[i]["Tax_Type"];
-                            drInsertSaleDetailsData["Bottle_Qty"] = 0;
-                            drInsertSaleDetailsData["Bottle_Rate"] = 0;
-                            drInsertSaleDetailsData["SPeg_Qty"] = y_lqty;
-                            drInsertSaleDetailsData["Speg_Rate"] = lRate;
-                            drInsertSaleDetailsData["LPeg_Qty"] = 0;
-                            drInsertSaleDetailsData["LPeg_Rate"] = 0;
-                            drInsertSaleDetailsData["TaxAmount"] = 0;
-                            drInsertSaleDetailsData["Amount"] = y_lqty * lRate;
-                            dtInsertSaleDetailsData.Rows.Add(drInsertSaleDetailsData);
-                        }
-                    }
-                }
-                #endregion
-
-                #region For Bottle
-
-                if (bQty > 0)
-                {
-                    decimal x_bqty = bQty / vSumofBottle;
-                    decimal y_bqty = Math.Round(x_bqty);
-                    decimal c_bqty = 0;
-
-                    for (int x = 0; x < vSumofBottle; x++)
-                    {
-                        c_bqty = bQty - y_bqty;
-                        DataRow drInsertSaleDetailsData = dtInsertSaleDetailsData.NewRow();
-
-                        if (y_bqty > 1)
-                        {
-                            drInsertSaleDetailsData["Sale_ID"] = Sale_ID;
-                            drInsertSaleDetailsData["Brand_Name"] = dt.Rows[i]["Brand_Name"];
-                            drInsertSaleDetailsData["Size_Desc"] = dt.Rows[i]["Size_Desc"];
-                            drInsertSaleDetailsData["Cocktail_Desc"] = dt.Rows[i]["Cocktail_Desc"];
-                            drInsertSaleDetailsData["Opening_ID"] = dt.Rows[i]["Opening_ID"];
-                            drInsertSaleDetailsData["Tax_Type"] = dt.Rows[i]["Tax_Type"];
-                            drInsertSaleDetailsData["Bottle_Qty"] = 0;
-                            drInsertSaleDetailsData["Bottle_Rate"] = 0;
-                            drInsertSaleDetailsData["SPeg_Qty"] = c_bqty;
-                            drInsertSaleDetailsData["Speg_Rate"] = bRate;
-                            drInsertSaleDetailsData["LPeg_Qty"] = 0;
-                            drInsertSaleDetailsData["LPeg_Rate"] = 0;
-                            drInsertSaleDetailsData["TaxAmount"] = 0;
-                            drInsertSaleDetailsData["Amount"] = c_bqty * bRate;
-                            dtInsertSaleDetailsData.Rows.Add(drInsertSaleDetailsData);
-                            y_bqty = c_bqty;
-                        }
-
-                        if (y_bqty == 1)
-                        {
-                            drInsertSaleDetailsData["Sale_ID"] = Sale_ID;
-                            drInsertSaleDetailsData["Brand_Name"] = dt.Rows[i]["Brand_Name"];
-                            drInsertSaleDetailsData["Size_Desc"] = dt.Rows[i]["Size_Desc"];
-                            drInsertSaleDetailsData["Cocktail_Desc"] = dt.Rows[i]["Cocktail_Desc"];
-                            drInsertSaleDetailsData["Opening_ID"] = dt.Rows[i]["Opening_ID"];
-                            drInsertSaleDetailsData["Tax_Type"] = dt.Rows[i]["Tax_Type"];
-                            drInsertSaleDetailsData["Bottle_Qty"] = 0;
-                            drInsertSaleDetailsData["Bottle_Rate"] = 0;
-                            drInsertSaleDetailsData["SPeg_Qty"] = y_bqty;
-                            drInsertSaleDetailsData["Speg_Rate"] = bRate;
-                            drInsertSaleDetailsData["LPeg_Qty"] = 0;
-                            drInsertSaleDetailsData["LPeg_Rate"] = 0;
-                            drInsertSaleDetailsData["TaxAmount"] = 0;
-                            drInsertSaleDetailsData["Amount"] = y_bqty * bRate;
-                            dtInsertSaleDetailsData.Rows.Add(drInsertSaleDetailsData);
-                        }
-                    }
-                }
-
-                #endregion
-
-
-                Sale_ID = Sale_ID + 1;
-
+                vBillNo += 1;
+                Sale_ID += 1;
             }
+            #endregion
 
+            #region Generate Lpeg Bills
+            for (var index = 0; index <= dt.Rows.Count - 1; index++)
+            {
+                if (Convert.ToInt32(dt.Rows[index]["LPeg_Qty"]) == 0)
+                    continue;
+                double vSum = Convert.ToDouble(dt.Rows[index]["LPeg_Rate"]);
+                dtxml = BindXMLBrandGridView();
+                dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,0,0,
+                   dt.Rows[index]["LPeg_Qty"], vSum, 0, dt.Rows[index]["Amount"]);
+
+
+                if (Convert.ToInt32(dt.Rows[index]["LPeg_Qty"]) == 1)
+                {
+                    DataRow drInsertSaleDetailsData1 = brand.NewRow();
+                    drInsertSaleDetailsData1["Sale_ID"] = Sale_ID;
+                    drInsertSaleDetailsData1["Brand_Name"] = dt.Rows[0]["Brand_Name"];
+                    drInsertSaleDetailsData1["Size_Desc"] = dt.Rows[0]["Size_Desc"];
+                    drInsertSaleDetailsData1["Cocktail_Desc"] = dt.Rows[0]["Cocktail_Desc"];
+                    drInsertSaleDetailsData1["Opening_ID"] = dt.Rows[0]["Opening_ID"];
+                    drInsertSaleDetailsData1["Tax_Type"] = dt.Rows[0]["Tax_Type"];
+                    drInsertSaleDetailsData1["Bottle_Qty"] = 0;
+                    drInsertSaleDetailsData1["Bottle_Rate"] = 0;
+                    drInsertSaleDetailsData1["SPeg_Qty"] = 0;
+                    drInsertSaleDetailsData1["Speg_Rate"] = 0;
+                    drInsertSaleDetailsData1["LPeg_Qty"] = dtxml.Rows.Count;
+                    drInsertSaleDetailsData1["LPeg_Rate"] = dt.Rows[0]["LPeg_Rate"];
+                    drInsertSaleDetailsData1["TaxAmount"] = 0;
+                    drInsertSaleDetailsData1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dt.Rows[0]["LPeg_Rate"]);
+                    brand.Rows.Add(drInsertSaleDetailsData1);
+
+
+                    #region Bill ID Generate
+                    int random_No = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
+
+                    DataRow drInsertSaleData = dtInsertSaleData.NewRow();
+                    drInsertSaleData["Sale_ID"] = Sale_ID;
+                    drInsertSaleData["Bill_No"] = random_No;
+                    dtInsertSaleData.Rows.Add(drInsertSaleData);
+                    #endregion
+
+                    vBillNo += 1;
+                    Sale_ID += 1;
+                    continue;
+                }
+
+                for (var inCtr = 2; inCtr <= Convert.ToInt32(dt.Rows[index]["LPeg_Qty"]); inCtr++)
+                {
+                    vSum += Convert.ToDouble(dt.Rows[index]["LPeg_Rate"]);
+                    if (vSum > vRange)
+                    {
+                        DataRow drInsertSaleDetailsData1 = brand.NewRow();
+                        drInsertSaleDetailsData1["Sale_ID"] = Sale_ID;
+                        drInsertSaleDetailsData1["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                        drInsertSaleDetailsData1["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                        drInsertSaleDetailsData1["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                        drInsertSaleDetailsData1["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                        drInsertSaleDetailsData1["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                        drInsertSaleDetailsData1["Bottle_Qty"] = 0;
+                        drInsertSaleDetailsData1["Bottle_Rate"] = 0;
+                        drInsertSaleDetailsData1["SPeg_Qty"] = 0;
+                        drInsertSaleDetailsData1["Speg_Rate"] = 0;
+                        drInsertSaleDetailsData1["LPeg_Qty"] = dtxml.Rows.Count;
+                        drInsertSaleDetailsData1["LPeg_Rate"] = dtxml.Rows[0]["LPeg_Rate"];
+                        drInsertSaleDetailsData1["TaxAmount"] = 0;
+                        drInsertSaleDetailsData1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["LPeg_Rate"]);
+                        brand.Rows.Add(drInsertSaleDetailsData1);
+
+
+
+                        #region Bill ID Generate
+                        int random_No1 = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
+
+                        DataRow drInsertSaleData1 = dtInsertSaleData.NewRow();
+                        drInsertSaleData1["Sale_ID"] = Sale_ID;
+                        drInsertSaleData1["Bill_No"] = random_No1;
+                        dtInsertSaleData.Rows.Add(drInsertSaleData1);
+
+                        #endregion
+
+                        vBillNo += 1;
+                        Sale_ID += 1;
+
+                        DataRow drInsert = brand.NewRow();
+                        vSum = Convert.ToDouble(dt.Rows[index]["LPeg_Rate"]);
+
+                        dtxml = BindXMLBrandGridView();
+
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,0,0,
+                           dt.Rows[index]["LPeg_Qty"], dt.Rows[index]["LPeg_Rate"], 0, dt.Rows[index]["Amount"]);
+
+                        if (inCtr == Convert.ToInt32(dt.Rows[index]["LPeg_Qty"]))
+                        {
+                            DataRow drInsert1 = brand.NewRow();
+                            drInsert1["Sale_ID"] = Sale_ID;
+                            drInsert1["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                            drInsert1["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                            drInsert1["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                            drInsert1["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                            drInsert1["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                            drInsert1["Bottle_Qty"] = 0;
+                            drInsert1["Bottle_Rate"] = 0;
+                            drInsert1["SPeg_Qty"] = 0;
+                            drInsert1["Speg_Rate"] = 0;
+                            drInsert1["LPeg_Qty"] = dtxml.Rows.Count;
+                            drInsert1["LPeg_Rate"] = dtxml.Rows[0]["LPeg_Rate"];
+                            drInsert1["TaxAmount"] = 0;
+                            drInsert1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["LPeg_Rate"]);
+                            brand.Rows.Add(drInsert1);
+                        }
+                    }
+                    else
+                    {
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,0,0,
+                           dt.Rows[index]["LPeg_Qty"], dt.Rows[index]["LPeg_Rate"], 0, dt.Rows[index]["Amount"]);
+
+
+                        if (inCtr == Convert.ToInt32(dt.Rows[index]["LPeg_Qty"]))
+                        {
+                            DataRow drInsert11 = brand.NewRow();
+                            drInsert11["Sale_ID"] = Sale_ID;
+                            drInsert11["Brand_Name"] = dtxml.Rows[0]["Brand_Name"];
+                            drInsert11["Size_Desc"] = dtxml.Rows[0]["Size_Desc"];
+                            drInsert11["Cocktail_Desc"] = dtxml.Rows[0]["Cocktail_Desc"];
+                            drInsert11["Opening_ID"] = dtxml.Rows[0]["Opening_ID"];
+                            drInsert11["Tax_Type"] = dtxml.Rows[0]["Tax_Type"];
+                            drInsert11["Bottle_Qty"] = 0;
+                            drInsert11["Bottle_Rate"] = 0;
+                            drInsert11["SPeg_Qty"] = 0;
+                            drInsert11["Speg_Rate"] = 0;
+                            drInsert11["LPeg_Qty"] = dtxml.Rows.Count;
+                            drInsert11["LPeg_Rate"] = dtxml.Rows[0]["LPeg_Rate"];
+                            drInsert11["TaxAmount"] = 0;
+                            drInsert11["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dtxml.Rows[0]["LPeg_Rate"]);
+                            brand.Rows.Add(drInsert11);
+                        }
+                    }
+                }
+
+                #region Bill ID Generate
+                int random_No2 = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
+
+                DataRow drInsertSaleData2 = dtInsertSaleData.NewRow();
+                drInsertSaleData2["Sale_ID"] = Sale_ID;
+                drInsertSaleData2["Bill_No"] = random_No2;
+                dtInsertSaleData.Rows.Add(drInsertSaleData2);
+                #endregion
+
+                vBillNo += 1;
+                Sale_ID += 1;
+            }
+            #endregion
+
+            #region Get Bill Count
             DataRow drbillCount = resultCount.NewRow();
-            drbillCount["Bill_Count"] = Convert.ToInt32(SumofBottle + SumofSpeg + SumofLpeg);
+            drbillCount["Bill_Count"] = Convert.ToInt32(vBillNo);
             resultCount.Rows.Add(drbillCount);
+            #endregion
+
+            ds.Tables.Add(brand.Copy());
 
             return ds;
         }
@@ -1346,7 +1561,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 {
                                     Cocktail_Desc = cellText;
                                     DataSet dsGetBrandId = new DataSet();
-                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", Cocktail_Desc, CompanyID,string.Empty);
+                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", Cocktail_Desc, CompanyID, string.Empty);
                                     if (dsGetBrandId.Tables[0].Rows.Count > 0)
                                     {
                                         Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
@@ -1498,12 +1713,59 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             int id = 0;
             DataSet ds = new DataSet();
-            ds = ObjCocktailWorld.PermitMaster_CRUD(0, string.Empty, string.Empty, string.Empty, string.Empty, false, LoggedInUserID,CompanyID,"Random");
+            ds = ObjCocktailWorld.PermitMaster_CRUD(0, string.Empty, string.Empty, string.Empty, string.Empty, false, LoggedInUserID, CompanyID, "Random");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 id = Convert.ToInt32(ds.Tables[0].Rows[0]["Permit_ID"]);
             }
             return id;
         }
+
+        protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Fetch_Brand_Size();
+        }
+
+        private DataTable BindBrandGridView()
+        {
+            DataTable dtInsertSaleDetailsData = new DataTable();
+            dtInsertSaleDetailsData.Columns.Add("Sale_ID");
+            dtInsertSaleDetailsData.Columns.Add("Brand_Name");
+            dtInsertSaleDetailsData.Columns.Add("Size_Desc");
+            dtInsertSaleDetailsData.Columns.Add("Cocktail_Desc");
+            dtInsertSaleDetailsData.Columns.Add("Opening_ID");
+            dtInsertSaleDetailsData.Columns.Add("Tax_Type");
+            dtInsertSaleDetailsData.Columns.Add("Bottle_Qty");
+            dtInsertSaleDetailsData.Columns.Add("Bottle_Rate");
+            dtInsertSaleDetailsData.Columns.Add("SPeg_Qty");
+            dtInsertSaleDetailsData.Columns.Add("Speg_Rate");
+            dtInsertSaleDetailsData.Columns.Add("LPeg_Qty");
+            dtInsertSaleDetailsData.Columns.Add("LPeg_Rate");
+            dtInsertSaleDetailsData.Columns.Add("TaxAmount");
+            dtInsertSaleDetailsData.Columns.Add("Amount");
+            return dtInsertSaleDetailsData;
+        }
+
+        private DataTable BindXMLBrandGridView()
+        {
+            DataTable dtInsertSaleDetailsData = new DataTable();
+            dtInsertSaleDetailsData.Columns.Add("Sale_ID");
+            dtInsertSaleDetailsData.Columns.Add("Brand_Name");
+            dtInsertSaleDetailsData.Columns.Add("Size_Desc");
+            dtInsertSaleDetailsData.Columns.Add("Cocktail_Desc");
+            dtInsertSaleDetailsData.Columns.Add("Opening_ID");
+            dtInsertSaleDetailsData.Columns.Add("Tax_Type");
+            dtInsertSaleDetailsData.Columns.Add("Bottle_Qty");
+            dtInsertSaleDetailsData.Columns.Add("Bottle_Rate");
+            dtInsertSaleDetailsData.Columns.Add("SPeg_Qty");
+            dtInsertSaleDetailsData.Columns.Add("Speg_Rate");
+            dtInsertSaleDetailsData.Columns.Add("LPeg_Qty");
+            dtInsertSaleDetailsData.Columns.Add("LPeg_Rate");
+            dtInsertSaleDetailsData.Columns.Add("TaxAmount");
+            dtInsertSaleDetailsData.Columns.Add("Amount");
+            return dtInsertSaleDetailsData;
+        }
+
+
     }
 }

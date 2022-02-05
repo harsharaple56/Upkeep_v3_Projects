@@ -828,6 +828,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="Rate" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -915,6 +916,8 @@
             <s:element minOccurs="1" maxOccurs="1" name="Selling_Rate_Peg" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Selling_Rate_Bottle" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Is_Disabled" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Size" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Cocktail_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
           </s:sequence>

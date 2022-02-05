@@ -12,8 +12,11 @@
      <script type="text/javascript">
         $(document).ready(function () {
             $('#m_table_1').DataTable({
+                responsive: true,
                 pagingType: 'full_numbers',
-                scrollX: true,
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
             });
         });
     </script>
