@@ -22,6 +22,16 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Role_Name { get; set; }
     }
 
+    public class ClsLogin_Activity
+    {
+        public string Log_Type { get; set; }
+        public int UserID { get; set; }
+        public string User_Type { get; set; }
+        public string IP_Address { get; set; }
+        public string Browser_Name { get; set; }
+        public string OS_Name { get; set; }
+
+    }
 
     public class ClsGroupMaster
     {
@@ -1352,5 +1362,15 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string AcceptMessage { get; set; }
     }
 
+
+    public class ClsSupport_Request
+    {
+        public int Company_ID { get; set; }
+        public string Request_Type { get; set; }
+        public string Module_ID { get; set; }
+        public string Description { get; set; }
+        public string LoggedInUserID { get; set; }
+
+    }
 
 }
