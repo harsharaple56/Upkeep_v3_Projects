@@ -214,16 +214,16 @@ namespace Upkeep_v3.Ticketing
 
                         dtCTTReport.Columns.Remove("Ticket_ID");
                         dtCTTReport.Columns["Tkt_Code"].ColumnName = "Ticket No";
-                        dtCTTReport.Columns["RequestStatus"].ColumnName = "Request Status";
-                        dtCTTReport.Columns["ActionStatus"].ColumnName = "Action Status";
-                        dtCTTReport.Columns["Ticket_Date_Time"].ColumnName = "Ticket Date Time";
-                        dtCTTReport.Columns["Loc_Desc"].ColumnName = "Location";
-                        dtCTTReport.Columns["Category_Desc"].ColumnName = "Category";
-                        dtCTTReport.Columns["SubCategory_Desc"].ColumnName = "SubCategory";
-                        dtCTTReport.Columns["Dept_Desc"].ColumnName = "Department";
-                        dtCTTReport.Columns["Ticket_RaisedBy"].ColumnName = "Ticket RaisedBy";
-                        dtCTTReport.Columns["Ticket_Closing_Date_Time"].ColumnName = "Ticket Closing Date Time";
-                        dtCTTReport.Columns["Down_Time"].ColumnName = "Down Time";
+                        //dtCTTReport.Columns["RequestStatus"].ColumnName = "Request Status";
+                        //dtCTTReport.Columns["ActionStatus"].ColumnName = "Action Status";
+                        //dtCTTReport.Columns["Ticket_Date_Time"].ColumnName = "Ticket Date Time";
+                        //dtCTTReport.Columns["Loc_Desc"].ColumnName = "Location";
+                        //dtCTTReport.Columns["Category_Desc"].ColumnName = "Category";
+                        //dtCTTReport.Columns["SubCategory_Desc"].ColumnName = "SubCategory";
+                        //dtCTTReport.Columns["Dept_Desc"].ColumnName = "Department";
+                        //dtCTTReport.Columns["Ticket_RaisedBy"].ColumnName = "Ticket RaisedBy";
+                        //dtCTTReport.Columns["Ticket_Closing_Date_Time"].ColumnName = "Ticket Closing Date Time";
+                        //dtCTTReport.Columns["Down_Time"].ColumnName = "Down Time";
                         dtCTTReport.AcceptChanges();
 
                         dgGrid.DataSource = dtCTTReport;

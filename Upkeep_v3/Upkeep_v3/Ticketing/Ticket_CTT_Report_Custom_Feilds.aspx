@@ -161,7 +161,7 @@
                             <div class="m-portlet__head-wrapper">
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">Ticket CTT Report
+                                        <h3 class="m-portlet__head-text">Ticket CTT Report Custom
                                         </h3>
                                     </div>
                                 </div>
