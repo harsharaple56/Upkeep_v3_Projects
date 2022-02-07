@@ -1630,6 +1630,31 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_Custom_CTT_Report(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Ticket_Custom_CTT_Report", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TicketStatus", TicketStatus);
+                cmd.Parameters.AddWithValue("@ActionStatus", ActionStatus);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID, string StrConn)
         {
             try

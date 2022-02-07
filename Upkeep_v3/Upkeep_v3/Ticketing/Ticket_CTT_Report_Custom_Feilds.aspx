@@ -343,7 +343,7 @@
                                 <div class="" id="m_table_1" style="overflow-x: auto;">
                                     <asp:GridView ID="gvCTT_Report" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
                                         OnRowDataBound="gvCTT_Report_RowDataBound" OnRowCommand="gvCTT_Report_RowCommand" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
-                                        AutoGenerateColumns="false" EmptyDataText="No records found." >
+                                        AutoGenerateColumns="true" EmptyDataText="No records found." >
                                         <Columns>
                                             <asp:TemplateField HeaderText="Ticket No" ItemStyle-Width="80px" HeaderStyle-Width="80px">
                                                 <ItemTemplate>
@@ -351,7 +351,7 @@
                                                     <asp:LinkButton ID="lnkTicketID" runat="server" CommandName="ViewTicket" CommandArgument="<%# Container.DataItemIndex %>" Text='<%#Eval("Tkt_Code") %>'></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="Loc_Desc" HeaderText="Location" ItemStyle-Width="250" HeaderStyle-Width="100" />
+                                            <%--<asp:BoundField DataField="Loc_Desc" HeaderText="Location" ItemStyle-Width="250" HeaderStyle-Width="100" />
                                             <asp:BoundField DataField="Dept_Desc" HeaderText="Department" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="Category_Desc" HeaderText="Category" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="SubCategory_Desc" HeaderText="Sub Category" ItemStyle-Width="150" />
@@ -360,7 +360,7 @@
                                             <asp:BoundField DataField="Ticket_Closing_Date_Time" HeaderText="Ticket Closing Date & Time" ItemStyle-Width="150" />
                                             <asp:BoundField DataField="RequestStatus" HeaderText="Request Status" ItemStyle-Width="100" />
                                             <asp:BoundField DataField="ActionStatus" HeaderText="Action Status" ItemStyle-Width="100" />
-                                            <asp:BoundField DataField="Down_Time" HeaderText="Down Time" ItemStyle-Width="150" />
+                                            <asp:BoundField DataField="Down_Time" HeaderText="Down Time" ItemStyle-Width="150" />--%>
                                         </Columns>
                                         <EmptyDataTemplate>
                                             <div align="center">No records found.</div>

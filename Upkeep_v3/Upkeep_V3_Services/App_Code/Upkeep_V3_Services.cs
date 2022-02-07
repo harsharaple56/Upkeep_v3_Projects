@@ -1209,6 +1209,21 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public DataSet Fetch_Custom_CTT_Report(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Custom_CTT_Report(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
+    [WebMethod]
     public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID)
     {
         try
