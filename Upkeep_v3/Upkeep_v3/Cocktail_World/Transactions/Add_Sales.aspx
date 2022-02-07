@@ -304,7 +304,7 @@
                             </ul>
                         </div>
                         <div class="m-portlet m-portlet--tabs" style="width: 300px; margin-top: 10px;">
-                            <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                            <asp:DropDownList ID="ddlLicense" AutoPostBack="true" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" runat="server" CssClass="underline form-control" ClientIDMode="Static">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
                                 ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
@@ -354,6 +354,9 @@
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Brand"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlLicense" EventName="SelectedIndexChanged" />
+                                                </Triggers>
                                             </asp:UpdatePanel>
                                         </div>
                                         <input id="sessionInput" type="hidden" value='<%= Session["hdnTax"] %>' />

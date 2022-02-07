@@ -22,7 +22,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             if (!IsPostBack)
             {
                 Fetch_License();
-                Fetch_Brand_Size();
                 SetTransferInitialRow();
 
                 #region Edit and Delete Transfer
@@ -195,6 +194,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
         {
             Fetch_TransferLicense();
+            Fetch_Brand_Size();
         }
 
         private void Fetch_TransferLicense()
@@ -242,7 +242,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
 
                 if (BrandID == 0)
                 {

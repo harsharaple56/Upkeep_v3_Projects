@@ -32,7 +32,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.CocktailMaster_CRUD(0, string.Empty, string.Empty, CompanyID, LoggedInUserID, "F");
+                ds = ObjCocktailWorld.CocktailMaster_CRUD(0, string.Empty, string.Empty, CompanyID, LoggedInUserID,0, "F");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -42,6 +42,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                         for (int i = 0; i < count; i++)
                         {
+                            string License_Name = Convert.ToString(ds.Tables[0].Rows[i]["License_Name"]);
                             int Cocktail_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Cocktail_ID"]);
                             int Cocktail_Brand_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Cocktail_Brand_ID"]);
                             string Cocktail_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Cocktail_Desc"]);
@@ -51,6 +52,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             string Peg_ML_Qty = Convert.ToString(ds.Tables[0].Rows[i]["Peg_ML_Qty"]);
 
                             data += "<tr>";
+                            data += "<td>" + License_Name + "</td>";
                             data += "<td>" + Cocktail_Desc + "</td>";
                             data += "<td>" + Cocktail_Rate + "</td>";
                             data += "<td>" + Brand_Desc + "</td>";
@@ -88,7 +90,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             try
             {
-                dsExport = ObjCocktailWorld.CocktailMaster_CRUD(0, string.Empty, string.Empty, CompanyID, LoggedInUserID, "F");
+                dsExport = ObjCocktailWorld.CocktailMaster_CRUD(0, string.Empty, string.Empty, CompanyID, LoggedInUserID,0, "F");
 
                 DataTable dtCocktailMasterReport = new DataTable();
 
@@ -165,7 +167,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet dsReport = new DataSet();
-                dsReport = ObjCocktailWorld.CocktailMaster_CRUD(0, string.Empty, string.Empty, CompanyID, LoggedInUserID, "F");
+                dsReport = ObjCocktailWorld.CocktailMaster_CRUD(0, string.Empty, string.Empty, CompanyID, LoggedInUserID,0, "F");
 
                 System.Data.DataTable dtReport = new System.Data.DataTable();
                 dtReport = dsReport.Tables[0];

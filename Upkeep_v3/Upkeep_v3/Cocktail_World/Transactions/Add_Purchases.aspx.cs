@@ -25,7 +25,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             {
                 Fetch_License();
                 Fetch_Supplier();
-                Fetch_Brand_Size();
                 SetPurchaseInitialRow();
 
                 #region Edit and Delete Sale
@@ -225,7 +224,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
 
                 if (BrandID == 0)
                 {
@@ -792,6 +791,11 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 string displayStock = "Available Stock :- Bottle :" + getBottle + " & Speg :" + getsPeg;
                 lbl_stock.Text = displayStock;
             }
+        }
+
+        protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Fetch_Brand_Size();
         }
     }
 }
