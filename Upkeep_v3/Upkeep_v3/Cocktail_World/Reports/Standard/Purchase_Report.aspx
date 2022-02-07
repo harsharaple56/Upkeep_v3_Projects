@@ -10,7 +10,17 @@
             border-bottom-width: 3px;
         }
     </style>
-
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
 
@@ -165,7 +175,7 @@
                                 <label class="font-weight-bold">Filter by Category:</label>
 
                                 <div class="m-form__control">
-                                    <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control" ClientIDMode="Static">
                                         <asp:ListItem Value="All" Text="All"></asp:ListItem>
                                         <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
                                         <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
@@ -184,7 +194,7 @@
 
                                 <div class="m-form__control">
 
-                                    <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                    <asp:DropDownList ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
                                         <asp:ListItem Value="All" Text="All"></asp:ListItem>
                                         <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
                                         <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
@@ -220,7 +230,7 @@
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Search Filters:</label>
                                 <div class="m-form__control">
-                                    <button type="button" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
+                                    <button id="btnSearch" runat="server" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
                                         <span>
                                             <i class="la la-search"></i>
                                             <span>Search</span>
@@ -255,7 +265,8 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                         <tbody>
+                            <%=Bind_Report()%>
                         </tbody>
                     </table>
 

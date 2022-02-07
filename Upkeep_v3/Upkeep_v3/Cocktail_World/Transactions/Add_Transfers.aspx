@@ -264,6 +264,9 @@
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator InitialValue="0"  ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlLicense" EventName="SelectedIndexChanged" />
+                                                </Triggers>
                                             </asp:UpdatePanel>
                                         </div>
                                         <input id="sessionInput" type="hidden" value='<%= Session["hdnTax"] %>' />

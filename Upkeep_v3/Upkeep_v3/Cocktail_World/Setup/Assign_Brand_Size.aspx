@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <style type="text/css">
+    <style type="text/css">
         .modalBackground {
             background-color: grey;
             filter: alpha(opacity=90);
@@ -17,7 +17,6 @@
             padding: 10px;
             width: 300px;
         }
-        
     </style>
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
 
@@ -30,6 +29,15 @@
                     init_plugins();
                 }
             });
+
+            var getSuccess = $("input[name=Success]").val();
+            if (getSuccess != undefined) {
+                Swal.fire(
+                    'Saved..!',
+                    'Your data has been saved.',
+                    'success'
+                )
+            }
         });
     </script>
 
@@ -89,47 +97,55 @@
 
                     <div class="m-portlet__body">
 
-                        <div class="m--form-group row m--align-center">
-                            <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Select Category</label>
+                        <div class="form-group m-form__group row">
+
+                            <label for="example-search-input" class="col-1 col-form-label">License :</label>
+                            <div class="col-3">
+                                <asp:DropDownList ID="ddlLicense" class="form-control" Style="width: 100%" AutoPostBack="true" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                <asp:RequiredFieldValidator InitialValue="0" ID="rfvLicense" runat="server" ControlToValidate="ddlLicense" Visible="true" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select License"></asp:RequiredFieldValidator>
                             </div>
 
-                            <div class="col-lg-5 m--margin-bottom-10-tablet-and-mobile">
 
-                                <div class="m-form__control">
-                                    <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                                    <asp:DropDownList ID="ddlCategory" class="form-control" Style="width: 100%" AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator ID="rfvDept" runat="server" ControlToValidate="ddlCategory" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
-                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                            <label for="example-search-input" class="col-1 col-form-label">Category :</label>
+                            <div class="col-3">
+                                <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                     <ContentTemplate>
-                                        <asp:LinkButton ToolTip="Edit Category" Style="width: 55px; height: 35px;" class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only'
-                                            ID="btn_edit" runat="server" OnClick="btn_Edit_Click"><i id='I1' class='la la-edit'></i></asp:LinkButton>
-                                        <asp:LinkButton ToolTip="Delete Category" Style="width: 55px; height: 35px;" class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' ID="btn_delete" runat="server" OnClick="btn_Delete_Click"><i id='I2' class='la la-trash'></i></asp:LinkButton>
+                                        <asp:DropDownList ID="ddlCategory" class="form-control" Style="width: 100%" AutoPostBack="true" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator InitialValue="0" ID="rfvDept" runat="server" ControlToValidate="ddlCategory" Visible="true" ValidationGroup="validationDept" ForeColor="Red" ErrorMessage="Please select Department"></asp:RequiredFieldValidator>
                                     </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlLicense" EventName="SelectedIndexChanged" />
+                                    </Triggers>
                                 </asp:UpdatePanel>
                             </div>
 
 
-                            <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
-                                <div class="m-form__control">
-                                    <button type="button" id="btnAddcategory" runat="server" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                        <span>
-                                            <i class="fa fa-plus"></i>
-                                            <span>Add New Category</span>
-                                        </span>
-                                    </button>
+                            <div class="col-1">
+                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                    <ContentTemplate>
+                                        <asp:LinkButton ToolTip="Edit Category" Style="width: 30px; height: 32px;" class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only'
+                                            ID="btn_edit" runat="server" OnClick="btn_Edit_Click"><i id='I1' class='la la-edit'></i></asp:LinkButton>
+                                        <asp:LinkButton ToolTip="Delete Category" Style="width: 30px; height: 32px;" class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' ID="btn_delete" runat="server" OnClick="btn_Delete_Click"><i id='I2' class='la la-trash'></i></asp:LinkButton>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
 
-                                    <cc1:ModalPopupExtender  ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
-                                         BackgroundCssClass="modalBackground">
-                                    </cc1:ModalPopupExtender>
-                                </div>
+                            <div class="col-1">
+                                <button type="button" id="btnAddcategory" runat="server" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                    <span>
+                                        <i class="fa fa-plus"></i>
+                                        <span>Add New Category</span>
+                                    </span>
+                                </button>
 
+                                <cc1:ModalPopupExtender ID="mpeCategoryMaster" runat="server" PopupControlID="pnlCategoryMaster" TargetControlID="btnAddCategory"
+                                    BackgroundCssClass="modalBackground">
+                                </cc1:ModalPopupExtender>
                             </div>
                         </div>
+
+
+
 
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
@@ -141,6 +157,7 @@
                                             <asp:GridView ID="grdCatagLinkUp" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true" OnRowDataBound="grdCatagLinkUp_RowDataBound"
                                                 PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
                                                 PagerStyle-HorizontalAlign="Center" OnPageIndexChanging="grdCatagLinkUp_PageIndexChanging">
+                                                   <alternatingrowstyle backcolor="#E7F3FF"></alternatingrowstyle>
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
                                                         <ItemTemplate>
@@ -184,8 +201,14 @@
                                                 <EmptyDataTemplate>
                                                     No Records Found !!!
                                                 </EmptyDataTemplate>
-                                                <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
-                                                    HorizontalAlign="Center" />
+                                                 <emptydatarowstyle height="50%" bordercolor="Black" borderstyle="Solid" borderwidth="2px"
+                                                                            horizontalalign="Center" />
+
+                                                                        <headerstyle backcolor="#2E5E79" forecolor="White"></headerstyle>
+
+                                                                        <pagersettings firstpagetext="First" lastpagetext="Last" mode="NumericFirstLast" />
+
+                                                                        <pagerstyle horizontalalign="Center"></pagerstyle>
                                             </asp:GridView>
                                         </td>
                                     </tr>
@@ -228,6 +251,13 @@
                                         <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category Name :</label>
                                         <asp:TextBox ID="txtCategoryDesc" runat="server" class="form-control" Style="width: 60%;"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="rfvCategory" runat="server" ControlToValidate="txtCategoryDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Category Name"></asp:RequiredFieldValidator>
+                                    </div>
+
+                                    <div class="form-group m-form__group row">
+                                        <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Category Alias :</label>
+                                        <asp:TextBox ID="txtCategoryAlias" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rfvCategory1" runat="server" ControlToValidate="txtCategoryAlias" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Category Alias"></asp:RequiredFieldValidator>
+
                                     </div>
 
                                     <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>

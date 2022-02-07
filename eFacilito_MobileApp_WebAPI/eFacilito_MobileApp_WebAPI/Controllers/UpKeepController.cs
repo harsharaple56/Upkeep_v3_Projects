@@ -1849,8 +1849,43 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
 
+        [Route("api/UpKeep/Save_Login_Activity")]
+        [HttpPost]
+        public HttpResponseMessage Save_Login_Activity([FromBody] ClsLogin_Activity objLog)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string TicketPrefix = string.Empty;
+            string StrLocConnection = null;
+            string TicketID = string.Empty;
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
 
-        
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[6];
+                ObjLocSqlParameter[0] = new SqlParameter("@Log_Type", objLog.Log_Type);
+                ObjLocSqlParameter[1] = new SqlParameter("@UserID", objLog.UserID);
+                ObjLocSqlParameter[2] = new SqlParameter("@User_Type", objLog.User_Type);
+                ObjLocSqlParameter[3] = new SqlParameter("@IP_Address", objLog.IP_Address);
+                ObjLocSqlParameter[4] = new SqlParameter("@Browser_Name", objLog.Browser_Name);
+                ObjLocSqlParameter[5] = new SqlParameter("@OS_Name", objLog.OS_Name);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Save_Web_Login_Activity", ObjLocSqlParameter);
+
+
+                return Request.CreateResponse(HttpStatusCode.OK, "success");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
+
+
 
 
         /// <summary>
@@ -7273,7 +7308,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             {
                                 TicketNo = Convert.ToString(DsDataSet.Tables[0].Rows[0]["TicketNo"]);
                                 TransactionID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TransactionID"]);
-                               
+
                                 NotificationHeader = "Gate pass ID " + TicketNo + ".";
                                 NotificationMsg = "A gate pass approved at Level " + objInsert.GP_CurrentLevel + " is now pending in your Account. Tap to take Action.";
 
@@ -9702,7 +9737,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                 {
                     Response_No_For_Folder = random.Next(0, 999999999).ToString("D9");
                 }
-               
+
                 StringBuilder strXml = new StringBuilder();
 
                 string StrLocConnection = null;
@@ -9804,7 +9839,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                                                 int MaxContentLengthVideo = 3;
 
-                                                IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" ,".jpeg"};
+                                                IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png", ".jpeg" };
                                                 IList<string> AllowedFileExtensionsVideo = new List<string> { ".3gp", ".mp4", ".MPEG-4", ".MKV" };
 
                                                 var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
@@ -9845,7 +9880,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                                     }
                                                     var ImageName = objs.QuestionID.ToString() + "_" + objsValue.AnswerID.ToString() + "_" + file;
                                                     var fileName = ImageName + extension;
-                                                    string SaveLocation = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate + "/"+ Response_No_For_Folder) +"/" + fileName;
+                                                    string SaveLocation = HttpContext.Current.Server.MapPath("~/ChecklistImages/" + CurrentDate + "/" + Response_No_For_Folder) + "/" + fileName;
                                                     string FileLocation = imgPath + "ChecklistImages/" + CurrentDate + "/" + Response_No_For_Folder + "/" + fileName;
                                                     //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
                                                     postedFile.SaveAs(SaveLocation);
@@ -11070,6 +11105,327 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
         #endregion
+
+
+
+        [Route("api/UpKeep/Save_Support_Request")]
+        [HttpPost]
+        public HttpResponseMessage Save_Support_Request([FromBody] ClsSupport_Request objReq)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string StrLocConnection = null;
+            int TicketID = 0;
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[5];
+                ObjLocSqlParameter[0] = new SqlParameter("@Company_ID", objReq.Company_ID);
+                ObjLocSqlParameter[1] = new SqlParameter("@Request_Type", objReq.Request_Type);
+                ObjLocSqlParameter[2] = new SqlParameter("@Module_ID", objReq.Module_ID);
+                ObjLocSqlParameter[3] = new SqlParameter("@Description", objReq.Description);
+                ObjLocSqlParameter[4] = new SqlParameter("@LoggedInUserID", objReq.LoggedInUserID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_SUPPORT_Save_Requests_API", ObjLocSqlParameter);
+
+                if (DsDataSet.Tables.Count > 0)
+                {
+                    if (DsDataSet.Tables[0].Rows.Count > 0)
+                    {
+                        TicketID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TicketID"]);
+                    }
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, TicketID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DsDataSet = null;
+            }
+        }
+
+        [Route("api/UpKeep/Post_Support_Request_Image")]
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<HttpResponseMessage> Post_Support_Request_Image(int RequestID)
+        {
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            string StrLocConnection = null;
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+
+                var httpRequest = HttpContext.Current.Request;
+                string CurrentDate = Convert.ToString(DateTime.Now.ToString("dd-MM-yyyy"));
+                string imgPath = Convert.ToString(ConfigurationManager.AppSettings["ImageUploadURL"]);
+                int ticketImgCount = 0;
+                foreach (string file in httpRequest.Files)
+                {
+                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                    var postedFile = httpRequest.Files[file];
+                    if (postedFile != null && postedFile.ContentLength > 0)
+                    {
+
+                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+
+                        IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                        var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                        var extension = ext.ToLower();
+
+                        if (!AllowedFileExtensions.Contains(extension))
+                        {
+
+                            var message = string.Format("Please Upload image of type .jpg,.gif,.png.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else if (postedFile.ContentLength > MaxContentLength)
+                        {
+
+                            var message = string.Format("Please Upload a file upto 1 mb.");
+
+                            dict.Add("error", message);
+                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        }
+                        else
+                        {
+                            //string fileUploadPath = ImagePhysicalPath + CurrentDate;
+                            string fileUploadPath = HttpContext.Current.Server.MapPath("~/Support_Portal/Images/" + Convert.ToString(RequestID));
+
+                            if (!Directory.Exists(fileUploadPath))
+                            {
+                                Directory.CreateDirectory(fileUploadPath);
+                            }
+
+                            var ImageName = RequestID + "_" + ticketImgCount;
+
+                            var fileName = ImageName + extension;
+
+                            string SaveLocation = HttpContext.Current.Server.MapPath("~/Support_Portal/Images/" + Convert.ToString(RequestID)) + "/" + fileName;
+                            string FileLocation = imgPath + "Support_Portal/Images/" + Convert.ToString(RequestID) + "/" + fileName;
+
+                            //var filePath = HttpContext.Current.Server.MapPath("~/FeedbackImages/" + postedFile.FileName + extension);
+
+
+                            postedFile.SaveAs(SaveLocation);
+
+                            ticketImgCount = ticketImgCount + 1;
+
+                            //string ImageURL= imgPath + "/" + ImageName + extension;
+
+                            StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                            SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                            ObjLocSqlParameter[0] = new SqlParameter("@TicketID", RequestID);
+                            ObjLocSqlParameter[1] = new SqlParameter("@ImagePath", FileLocation);
+
+                            DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Support_Save_Request_ImagePath_API", ObjLocSqlParameter);
+
+                            return Request.CreateResponse(HttpStatusCode.OK,"success");
+
+                        }
+                    }
+
+                    var message1 = string.Format("Image Updated Successfully.");
+                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                }
+                var res = string.Format("Please Upload a image.");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+            catch (Exception ex)
+            {
+                var res = string.Format("some Message");
+                dict.Add("error", res);
+                return Request.CreateResponse(HttpStatusCode.NotFound, dict);
+            }
+        }
+
+
+        [Route("api/UpKeep/Fetch_Support_Request_List")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Support_Request_List(string EmpCd, string RollCD)
+        {
+            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                ObjLocSqlParameter[0] = new SqlParameter("@EmpCd", EmpCd);
+                ObjLocSqlParameter[1] = new SqlParameter("@RollCD", RollCD);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Support_Fetch_Tickets_List_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+
+        [Route("api/UpKeep/Fetch_Support_Request_Details")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Support_Request_Details(int RequestID)
+        {
+            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                ObjLocSqlParameter[0] = new SqlParameter("@RequestID", RequestID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Support_Fetch_Request_Details_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
+
+        [Route("api/UpKeep/Fetch_Support_Request_Modul_List")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_Support_Request_Modul_List(string Module_IDs)
+        {
+            ClsWorkPermitMain ObjWorkPermit = new ClsWorkPermitMain();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[1];
+                ObjLocSqlParameter[0] = new SqlParameter("@Module_ID_String", Module_IDs);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_License_Module_list", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            return Request.CreateResponse(HttpStatusCode.OK, DsDataSet.Tables[0]);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
+
 
     }
 }

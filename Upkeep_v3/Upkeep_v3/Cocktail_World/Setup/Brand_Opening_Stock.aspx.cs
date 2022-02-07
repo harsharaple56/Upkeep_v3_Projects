@@ -32,7 +32,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0 ,CompanyID, LoggedInUserID, "F");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0 ,0 ,CompanyID, LoggedInUserID, "F");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -43,6 +43,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         for (int i = 0; i < count; i++)
                         {
                             int Opening_ID = Convert.ToInt32(ds.Tables[0].Rows[i]["Opening_ID"]);
+                            string License_Name = Convert.ToString(ds.Tables[0].Rows[i]["License_Name"]);
                             string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
                             string Brand_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Brand_Desc"]);
                             string Size_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Size_Desc"]);
@@ -54,6 +55,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             string Optimum_Level = Convert.ToString(ds.Tables[0].Rows[i]["Optimum_Level"]);
 
                             data += "<tr>";
+                            data += "<td>" + License_Name + "</td>";
                             data += "<td>" + Category_Desc + "</td>";
                             data += "<td>" + Brand_Desc + "</td>";
                             data += "<td>" + Size_Desc + "</td>";
@@ -95,7 +97,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             try
             {
-                dsExport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0, CompanyID, LoggedInUserID, "F");
+                dsExport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0,0, CompanyID, LoggedInUserID, "F");
 
                 DataTable dtCocktailMasterReport = new DataTable();
 
@@ -175,7 +177,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet dsReport = new DataSet();
-                dsReport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0, CompanyID, LoggedInUserID, "F");
+                dsReport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0,0, CompanyID, LoggedInUserID, "F");
 
                 System.Data.DataTable dtReport = new System.Data.DataTable();
                 dtReport = dsReport.Tables[0];

@@ -40,12 +40,13 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             try
             {
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "","", 0, 0, 0, 0, 0, LoggedInUserID, "R");
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", "", 0, 0, 0, 0, 0,string.Empty,0, LoggedInUserID, "R");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         ddlcategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
+                        BindSubCategory(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]));
                         ddlSubCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["SubCategory_ID"]);
                         txtBrandDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["Brand_Desc"]);
                         txtBrandShortDesc.Text = Convert.ToString(ds.Tables[0].Rows[0]["ShortName"]);
@@ -91,13 +92,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         }
 
-        protected void ddlcategory_SelectedIndexChanged(object sender, EventArgs e)
+        public void BindSubCategory(int Category_Id)
         {
             try
             {
-                int Category_Id = Convert.ToInt32(ddlcategory.SelectedValue);
                 DataSet ds = new DataSet();
-                ds = ds = ObjCocktailWorld.SubCategoryMaster_CRUD(0, Category_Id, "", LoggedInUserID, CompanyID, "R");
+                ds = ObjCocktailWorld.SubCategoryMaster_CRUD(0, Category_Id, "", LoggedInUserID, CompanyID, "R");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -107,7 +107,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         ddlSubCategory.DataValueField = "SubCategory_ID";
                         ddlSubCategory.DataBind();
                         ddlSubCategory.Items.Insert(0, new ListItem("--Select--", "0"));
-
                     }
                 }
             }
@@ -115,6 +114,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
             {
                 throw ex;
             }
+        }
+
+        protected void ddlcategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int Category_Id = Convert.ToInt32(ddlcategory.SelectedValue);
+            BindSubCategory(Category_Id);
         }
 
         protected void btnCloseCategory_Click(object sender, EventArgs e)
@@ -165,12 +170,29 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                 CategoryID = Convert.ToInt32(ddlcategory.SelectedValue);
                 SubCategoryID = Convert.ToInt32(ddlSubCategory.SelectedValue);
-                PurchaseRatePeg = Convert.ToInt32(txtPurchRatepeg.Text.Trim());
-                SellRatePeg = Convert.ToInt32(txtSellingRatePeg.Text.Trim());
-                SellRateBottle = Convert.ToInt32(txtSellingRateBotle.Text.Trim());
+
+                if (!string.IsNullOrEmpty(txtPurchRatepeg.Text.Trim()))
+                    PurchaseRatePeg = Convert.ToInt32(txtPurchRatepeg.Text.Trim());
+                else
+                    PurchaseRatePeg = 0;
+
+                if (!string.IsNullOrEmpty(txtSellingRatePeg.Text.Trim()))
+                    SellRatePeg = Convert.ToInt32(txtSellingRatePeg.Text.Trim());
+                else
+                    SellRatePeg = 0;
+
+                if (!string.IsNullOrEmpty(txtSellingRateBotle.Text.Trim()))
+                    SellRateBottle = Convert.ToInt32(txtSellingRateBotle.Text.Trim());
+                else
+                    SellRateBottle = 0;
+
+                if (!string.IsNullOrEmpty(txtShortname.Text.Trim()))
+                    Strenght = Convert.ToInt32(txtShortname.Text.Trim());
+                else
+                    Strenght = 0;
+
                 brandDesc = txtBrandDesc.Text.Trim();
                 shortDesc = txtBrandShortDesc.Text.Trim();
-                Strenght = Convert.ToInt32(txtShortname.Text.Trim());
 
                 if (chkBrndDisable.Checked == true)
                 {
@@ -181,7 +203,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                     Disable = 0;
                 }
 
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc,shortDesc, Strenght, PurchaseRatePeg, SellRatePeg, SellRateBottle, Disable, LoggedInUserID, Action);
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, CategoryID, SubCategoryID, brandDesc, shortDesc, Strenght, PurchaseRatePeg, SellRatePeg, SellRateBottle, Disable, string.Empty,0, LoggedInUserID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -216,7 +238,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             string data = "";
             try
             {
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, "","", 0, 0, 0, 0, 0, LoggedInUserID, "R");
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, "", "", 0, 0, 0, 0, 0, string.Empty,0, LoggedInUserID, "R");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -257,7 +279,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "","", 0, 0, 0, 0, 0, LoggedInUserID, "D");
+                ds = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, Brand_ID, 0, 0, "", "", 0, 0, 0, 0, 0, string.Empty,0, LoggedInUserID, "D");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -271,6 +293,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 throw ex;
             }
         }
-       
+
     }
 }

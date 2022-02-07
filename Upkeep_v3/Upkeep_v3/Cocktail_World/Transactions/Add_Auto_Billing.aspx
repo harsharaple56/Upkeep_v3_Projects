@@ -112,7 +112,7 @@
                 var taxAmount = rowTotal * val2 / 100;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
-                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
+                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
             });
             $("[id*=txtspegrate]").keyup(function () {
                 //calculate total for current row
@@ -133,7 +133,7 @@
                 var taxAmount = rowTotal * val1 / 100;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
-                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
+                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
             });
             $("[id*=txtlpegqty]").keyup(function () {
                 //calculate total for current row
@@ -154,7 +154,7 @@
                 var taxAmount = rowTotal * val2 / 100;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
-                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
+                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
             });
             $("[id*=txtlpegrate]").keyup(function () {
                 //calculate total for current row
@@ -175,7 +175,7 @@
                 var taxAmount = rowTotal * val2 / 100;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
-                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
+                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
             });
             $("[id*=txtbottleqty]").keyup(function () {
                 //calculate total for current row
@@ -196,7 +196,7 @@
                 var taxAmount = rowTotal * val2 / 100;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
-                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
+                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
             });
             $("[id*=txtbottlerate]").keyup(function () {
                 //calculate total for current row
@@ -216,7 +216,7 @@
 
                 var taxAmount = rowTotal * val2 / 100;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
-                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal + taxAmount);
+                $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
             });
 
             $("[id*=cocktailqty]").keyup(function () {
@@ -230,7 +230,7 @@
 
                 var taxAmount = rowTotal * val3 / 100;
                 $(this).closest('tr').find('[id*=cocktailamount]').val(taxAmount);
-                $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal + taxAmount);
+                $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal);
             });
 
             $("[id*=cocktailrate]").keyup(function () {
@@ -244,7 +244,7 @@
 
                 var taxAmount = rowTotal * val3 / 100;
                 $(this).closest('tr').find('[id*=cocktailamount]').val(taxAmount);
-                $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal + taxAmount);
+                $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal);
             });
 
         }
@@ -297,7 +297,7 @@
                             </ul>
                         </div>
                         <div class="m-portlet m-portlet--tabs" style="width: 300px;margin-top: 10px;">
-                            <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                            <asp:DropDownList ID="ddlLicense" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" CssClass="underline form-control" ClientIDMode="Static">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
                                 ValidationGroup="validateLicense" ForeColor="Red" ErrorMessage="Please enter License"></asp:RequiredFieldValidator>
@@ -347,6 +347,9 @@
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Brand"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlLicense" EventName="SelectedIndexChanged" />
+                                                </Triggers>
                                             </asp:UpdatePanel>
                                         </div>
                                         <input id="sessionInput" type="hidden" value='<%= Session["hdnTax"] %>' />

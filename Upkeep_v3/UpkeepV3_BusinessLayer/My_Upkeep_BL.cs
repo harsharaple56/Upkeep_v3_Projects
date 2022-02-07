@@ -1222,6 +1222,37 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+
+        public DataSet Save_Web_Login_Activity(string Log_Type, int UserID, string User_Type, string IP_Address, string Browser_Name, string OS_Name, string strConn)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection con = new SqlConnection(strConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_Save_Web_Login_Activity", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Log_Type", Log_Type);
+                cmd.Parameters.AddWithValue("@UserID", UserID);
+                cmd.Parameters.AddWithValue("@User_Type", User_Type);
+                cmd.Parameters.AddWithValue("@IP_Address", IP_Address);
+                cmd.Parameters.AddWithValue("@Browser_Name", Browser_Name);
+                cmd.Parameters.AddWithValue("@OS_Name", OS_Name);
+
+                con.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet SubLocationMaster_CRUD(int SubLocID, string LocName, string Zone, string SubLocCode, string SubLocDesc, string LoggedInUserID, string Action, string StrConn)
         {
             try
@@ -1598,6 +1629,31 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+        public DataSet Fetch_Custom_CTT_Report(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Ticket_Custom_CTT_Report", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TicketStatus", TicketStatus);
+                cmd.Parameters.AddWithValue("@ActionStatus", ActionStatus);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID, string StrConn)
         {

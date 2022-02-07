@@ -70,7 +70,7 @@ namespace Upkeep_v3.Ticketing
                 TicketStatus = Convert.ToString(hdnTicketStatus.Value);
                 ActionStatus = Convert.ToString(hdnActionStatus.Value);
 
-                dsCTT = ObjUpkeep.Fetch_CTT_Report(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID);
+                dsCTT = ObjUpkeep.Fetch_Custom_CTT_Report(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID);
 
                 if (dsCTT.Tables.Count > 0)
                 {
@@ -100,18 +100,27 @@ namespace Upkeep_v3.Ticketing
 
         protected void gvCTT_Report_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
             //check if the row is the header row
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 //add the thead and tbody section programatically
                 e.Row.TableSection = TableRowSection.TableHeader;
+
+                e.Row.Cells[1].Visible = false;
+                e.Row.Cells[2].Visible = false;
+                e.Row.Cells[13].Visible = false;
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                e.Row.Cells[1].Visible = false;
+                e.Row.Cells[2].Visible = false;
+                e.Row.Cells[13].Visible = false;
+
                 //Get the cell content
                 //Change the cell index as per your gridview
-                string ReqStatus = e.Row.Cells[8].Text;
-                string ActionStatus = e.Row.Cells[9].Text;
+                string ReqStatus = e.Row.Cells[3].Text;
+                string ActionStatus = e.Row.Cells[4].Text;
                 string ReqStatusClass = string.Empty;
                 string ActionStatusClass = string.Empty;
 
@@ -153,8 +162,8 @@ namespace Upkeep_v3.Ticketing
                         break;
                 }
 
-                e.Row.Cells[8].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ReqStatusClass + " m-badge--wide'>" + ReqStatus + "</span></span>";
-                e.Row.Cells[9].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ActionStatusClass + " m-badge--dot'></span>&nbsp;" +
+                e.Row.Cells[3].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ReqStatusClass + " m-badge--wide'>" + ReqStatus + "</span></span>";
+                e.Row.Cells[4].Text = "<span style='width: 113px;'><span class='m-badge m-badge--" + ActionStatusClass + " m-badge--dot'></span>&nbsp;" +
                     "<span class='m--font-bold m--font-" + ActionStatusClass + "'>" + ActionStatus + "</span></span>";
 
             }
@@ -193,7 +202,7 @@ namespace Upkeep_v3.Ticketing
 
                 TicketStatus = Convert.ToString(hdnTicketStatus.Value);
                 ActionStatus = Convert.ToString(hdnActionStatus.Value);
-                dsExport = ObjUpkeep.Fetch_CTT_Report(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID);
+                dsExport = ObjUpkeep.Fetch_Custom_CTT_Report(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID);
 
                 System.Data.DataTable dtCTTReport = new System.Data.DataTable();
 
@@ -205,16 +214,16 @@ namespace Upkeep_v3.Ticketing
 
                         dtCTTReport.Columns.Remove("Ticket_ID");
                         dtCTTReport.Columns["Tkt_Code"].ColumnName = "Ticket No";
-                        dtCTTReport.Columns["RequestStatus"].ColumnName = "Request Status";
-                        dtCTTReport.Columns["ActionStatus"].ColumnName = "Action Status";
-                        dtCTTReport.Columns["Ticket_Date_Time"].ColumnName = "Ticket Date Time";
-                        dtCTTReport.Columns["Loc_Desc"].ColumnName = "Location";
-                        dtCTTReport.Columns["Category_Desc"].ColumnName = "Category";
-                        dtCTTReport.Columns["SubCategory_Desc"].ColumnName = "SubCategory";
-                        dtCTTReport.Columns["Dept_Desc"].ColumnName = "Department";
-                        dtCTTReport.Columns["Ticket_RaisedBy"].ColumnName = "Ticket RaisedBy";
-                        dtCTTReport.Columns["Ticket_Closing_Date_Time"].ColumnName = "Ticket Closing Date Time";
-                        dtCTTReport.Columns["Down_Time"].ColumnName = "Down Time";
+                        //dtCTTReport.Columns["RequestStatus"].ColumnName = "Request Status";
+                        //dtCTTReport.Columns["ActionStatus"].ColumnName = "Action Status";
+                        //dtCTTReport.Columns["Ticket_Date_Time"].ColumnName = "Ticket Date Time";
+                        //dtCTTReport.Columns["Loc_Desc"].ColumnName = "Location";
+                        //dtCTTReport.Columns["Category_Desc"].ColumnName = "Category";
+                        //dtCTTReport.Columns["SubCategory_Desc"].ColumnName = "SubCategory";
+                        //dtCTTReport.Columns["Dept_Desc"].ColumnName = "Department";
+                        //dtCTTReport.Columns["Ticket_RaisedBy"].ColumnName = "Ticket RaisedBy";
+                        //dtCTTReport.Columns["Ticket_Closing_Date_Time"].ColumnName = "Ticket Closing Date Time";
+                        //dtCTTReport.Columns["Down_Time"].ColumnName = "Down Time";
                         dtCTTReport.AcceptChanges();
 
                         dgGrid.DataSource = dtCTTReport;

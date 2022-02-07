@@ -21,10 +21,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
-            dv_Size.Visible = false;
             if (!IsPostBack)
             {
-                Fetch_License();
+                Bind_License();
                 Fetch_Category_Brand();
                 int BrandOpening_ID = Convert.ToInt32(Request.QueryString["BrandOpening_ID"]);
                 if (BrandOpening_ID > 0)
@@ -52,17 +51,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
             FetchBrandSizeLinkUp(0, 0);
-        }
-
-        private void Fetch_License()
-        {
-            DataSet ds = new DataSet();
-            ds = ObjCocktailWorld.License_CRUD(0, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
-            ddlLicense.DataSource = ds.Tables[0];
-            ddlLicense.DataTextField = "License_Name";
-            ddlLicense.DataValueField = "License_ID";
-            ddlLicense.DataBind();
-            ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
         }
 
         public void Fetch_Category_Brand()
@@ -108,35 +96,22 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             try
             {
-                grdCatagLinkUp.Visible = true;
                 DataSet ds = new DataSet();
                 if (Category_ID == 0)
                     Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
-                if (Brand_ID == 0)
+                if (Brand_ID == 0 && !string.IsNullOrEmpty(ddlBrand.SelectedValue.ToString()))
                     Brand_ID = Convert.ToInt32(ddlBrand.SelectedValue);
-
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, 0, "", "", CompanyID);
-
-                for (int i = ds.Tables[0].Rows.Count - 1; i >= 0; i--)
+                if (Category_ID != 0 && Brand_ID != 0)
                 {
-                    DataRow dr = ds.Tables[0].Rows[i];
-                    if (Convert.ToInt32(dr["Selected"]) == 0)
-                        dr.Delete();
+                    ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, 0, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        grdCatagLinkUp.Visible = true;
+                        grdCatagLinkUp.DataSource = ds.Tables[0];
+                        grdCatagLinkUp.DataBind();
+                    }
                 }
-                ds.AcceptChanges();
 
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    grdCatagLinkUp.DataSource = ds.Tables[0];
-                    grdCatagLinkUp.DataBind();
-                    dv_Size.Visible = true;
-
-                }
-                else
-                {
-                    grdCatagLinkUp.DataSource = null;
-                    grdCatagLinkUp.DataBind();
-                }
             }
             catch (Exception ex)
             {
@@ -158,6 +133,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             int Cat_Size_ID = 0; // Cat_Size_ID
             int BrandID = 0;
+            int License_ID = Convert.ToInt32(ddlLicense.SelectedValue);
             int BrandOpening_ID = 0;
             string Action = string.Empty;
             try
@@ -166,15 +142,30 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     StringBuilder strXmlCategory = new StringBuilder();
                     bool isChecked = ((CheckBox)rows[i].FindControl("chkSelct")).Checked;
-                    string hdnSize_ID = ((HiddenField)rows[i].FindControl("hdnSize_ID")).Value;
-                    string txtspegqty = ((TextBox)rows[i].FindControl("txtspegqty")).Text;
-                    string txtbottleqty = ((TextBox)rows[i].FindControl("txtbottleqty")).Text;
-                    string txtbottlerate = ((TextBox)rows[i].FindControl("txtbottlerate")).Text;
-                    string txtbaseqty = ((TextBox)rows[i].FindControl("txtbaseqty")).Text;
-                    string txtreorderlevel = ((TextBox)rows[i].FindControl("txtreorderlevel")).Text;
-                    string txtoptimumlevel = ((TextBox)rows[i].FindControl("txtoptimumlevel")).Text;
                     if (isChecked)
                     {
+                        string hdnSize_ID = ((HiddenField)rows[i].FindControl("hdnSize_ID")).Value;
+                        string txtspegqty = ((TextBox)rows[i].FindControl("txtspegqty")).Text;
+                        string txtbottleqty = ((TextBox)rows[i].FindControl("txtbottleqty")).Text;
+                        string txtbottlerate = ((TextBox)rows[i].FindControl("txtbottlerate")).Text;
+                        string txtbaseqty = ((TextBox)rows[i].FindControl("txtbaseqty")).Text;
+                        string txtreorderlevel = ((TextBox)rows[i].FindControl("txtreorderlevel")).Text;
+                        string txtoptimumlevel = ((TextBox)rows[i].FindControl("txtoptimumlevel")).Text;
+
+                        if (string.IsNullOrEmpty(txtspegqty))
+                            txtspegqty = "0";
+                        if (string.IsNullOrEmpty(txtbottleqty))
+                            txtbottleqty = "0";
+                        if (string.IsNullOrEmpty(txtbottlerate))
+                            txtbottlerate = "0";
+                        if (string.IsNullOrEmpty(txtbaseqty))
+                            txtbaseqty = "0";
+                        if (string.IsNullOrEmpty(txtreorderlevel))
+                            txtreorderlevel = "0";
+                        if (string.IsNullOrEmpty(txtoptimumlevel))
+                            txtoptimumlevel = "0";
+
+
                         strXmlCategory.Append(@"<?xml version=""1.0"" ?>");
                         strXmlCategory.Append(@"<Category>");
                         strXmlCategory.Append(@"<Size_ID>" + hdnSize_ID + "</Size_ID>");
@@ -185,26 +176,26 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         strXmlCategory.Append(@"<Reorder>" + txtreorderlevel + "</Reorder>");
                         strXmlCategory.Append(@"<Optimum>" + txtoptimumlevel + "</Optimum>");
                         strXmlCategory.Append(@"</Category>");
-                    }
 
-                    CategoryDetails = strXmlCategory.ToString();
-                    Cat_Size_ID = Convert.ToInt32(((HiddenField)rows[i].FindControl("hdnSize_ID")).Value);
-                    BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
-                    DataSet dt = new DataSet();
-                    dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, 0, BrandID, "", "", CompanyID);
-                    if (dt.Tables[0].Rows.Count == 0)
-                    {
-                        Action = "I";
-                        BrandOpening_ID = 0;
-                    }
-                    else
-                    {
-                        Action = "U";
-                        BrandOpening_ID = Convert.ToInt32(dt.Tables[0].Rows[0]["Opening_ID"]);
-                    }
+                        CategoryDetails = strXmlCategory.ToString();
+                        Cat_Size_ID = Convert.ToInt32(((HiddenField)rows[i].FindControl("hdnSize_ID")).Value);
+                        BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
+                        DataSet dt = new DataSet();
+                        dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, 0, BrandID, "", "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
+                        if (dt.Tables[0].Rows.Count == 0)
+                        {
+                            Action = "I";
+                            BrandOpening_ID = 0;
+                        }
+                        else
+                        {
+                            Action = "U";
+                            BrandOpening_ID = Convert.ToInt32(dt.Tables[0].Rows[0]["Opening_ID"]);
+                        }
 
-                    if (!string.IsNullOrEmpty(txtspegqty) || !string.IsNullOrEmpty(txtbottleqty))
-                        ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, 0, 0, CompanyID, LoggedInUserID, Action);
+                        if (!string.IsNullOrEmpty(txtspegqty) || !string.IsNullOrEmpty(txtbottleqty))
+                            ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, 0, 0, License_ID, CompanyID, LoggedInUserID, Action);
+                    }
                 }
                 Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Opening_Stock.aspx"), false);
             }
@@ -219,12 +210,13 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "R");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0,Convert.ToInt32(ddlLicense.SelectedValue) , CompanyID, LoggedInUserID, "R");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         ddlCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
+                        ddlLicense.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["License_ID"]);
                         FetchBrands(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]), Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]));
                         FetchBrandSizeLinkUp(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]), Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]));
                     }
@@ -255,7 +247,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0, CompanyID, LoggedInUserID, "D");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0, Convert.ToInt32(ddlLicense.SelectedValue) , CompanyID, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -275,6 +267,36 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
 
         }
-       
+
+        public void Bind_License()
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = ObjCocktailWorld.License_CRUD(0, "", "", LoggedInUserID, CompanyID, "R");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlLicense.DataSource = ds.Tables[0];
+                        ddlLicense.DataTextField = "License_Name";
+                        ddlLicense.DataValueField = "License_ID";
+                        ddlLicense.DataBind();
+                        ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FetchBrandSizeLinkUp(0, 0);
+        }
     }
 }
