@@ -56,7 +56,7 @@
                 toastr.error(getNegative);
             }
             if (getLicense != undefined) {
-                toastr.error("Please Select License.");
+                toastr.error("Please Select Brand.");
             }
             if (getDuplicate != undefined) {
                 toastr.error("This data already in database.");

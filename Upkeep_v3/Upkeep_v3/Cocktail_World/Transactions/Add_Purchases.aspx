@@ -9,8 +9,9 @@
         .auto-style1 {
             height: 21px;
         }
-        .input-group-text {
-            padding: 0rem;
+
+        .form-control {
+            padding: 0.5rem;
         }
 
         .underline {
@@ -40,11 +41,15 @@
                 "hideMethod": "fadeOut"
             };
 
+            var hasvalue = $("input[name=hasvalue]").val();
             var getOpening_ID = $("input[name=Opening_ID]").val();
             var getBS_QTY = $("input[name=BS_QTY]").val();
             var getNegative = $("input[name=Negative]").val();
             var getLicense = $("input[name=License]").val();
             var getDuplicate = $("input[name=Duplicate]").val();
+            if (hasvalue != undefined) {
+                toastr.error("Please add atleast one row.");
+            }
             if (getOpening_ID != undefined) {
                 toastr.error("Brand Opening ID not available.");
             }
@@ -55,7 +60,7 @@
                 toastr.error(getNegative);
             }
             if (getLicense != undefined) {
-                toastr.error("Please Select License.");
+                toastr.error("Please Select Brand.");
             }
             if (getDuplicate != undefined) {
                 toastr.error("This data already in database.");
@@ -184,7 +189,7 @@
                             </h3>
                         </div>
                     </div>
-                   
+
                     <div class="m-portlet__head-tools">
                         <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Purchases.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
                             <span>
@@ -349,8 +354,7 @@
 
                                 <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-
-                                        <table id="purchaseTbl" >
+                                        <table id="purchaseTbl" width="100%" cellpadding="2" cellspacing="2">
                                             <tr>
                                                 <td colspan="2" class="ClsControlTd">
                                                     <asp:GridView ID="grdPurchase" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
@@ -511,17 +515,17 @@
                                 </div>
 
                             </div>
+                            <asp:HiddenField ID="hfTab" runat="server" />
 
                         </div>
 
-                        <asp:HiddenField ID="hfTab" runat="server" />
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
+
+
 
 
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/default/custom/crud/forms/widgets/bootstrap-datepicker.js") %>" type="text/javascript"></script>

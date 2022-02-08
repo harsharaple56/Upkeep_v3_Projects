@@ -800,6 +800,7 @@
       <s:element name="Fetch_CategorySizeLinkup">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Size_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Category_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />

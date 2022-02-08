@@ -75,6 +75,8 @@
             return true;
         }
     </script>
+
+  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
@@ -150,7 +152,7 @@
 
                                         <div class="col-lg-4">
                                             <label>Rate :</label>
-                                            <asp:TextBox ID="txtRate" runat="server" class="form-control"></asp:TextBox>
+                                            <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtRate" runat="server" class="form-control"></asp:TextBox>
                                         </div>
                                     </div>
 
@@ -184,7 +186,7 @@
                                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                                 <ContentTemplate>
                                                     <label><span style="color: red;">*</span> Peg / ML:</label>
-                                                    <asp:TextBox ID="txtpegml" runat="server" class="form-control"></asp:TextBox>
+                                                    <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtpegml" runat="server" class="form-control"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtpegml" Visible="true" ValidationGroup="ValidateUser" ForeColor="Red" ErrorMessage="Please enter Peg/ML"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>

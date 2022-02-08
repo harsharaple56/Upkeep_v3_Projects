@@ -35,7 +35,25 @@
                     $("#btnSubCategoryChange").click();
                 }
             });
-        })
+
+            var selected = $("input[name=selected]").val();
+            if (selected != undefined) {
+                Swal.fire(
+                    'Warning..!',
+                    'Please select atleast one row.',
+                    'info'
+                )
+            }
+
+            var matched = $("input[name=matched]").val();
+            if (matched != undefined) {
+                Swal.fire(
+                    'Warning..!',
+                    'There are no changes to save.',
+                    'info'
+                )
+            }
+        });
     </script>
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
@@ -138,86 +156,86 @@
                                     <div class="col-xl-12">
                                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                             <ContentTemplate>
-                                                    <table class="table table-striped-table-bordered table-hover">
-                                                        <tr>
-                                                            <td colspan="2" class="ClsControlTd">
-                                                                <asp:GridView ID="grdCatagLinkUp" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true"
-                                                                    PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
-                                                                    PagerStyle-HorizontalAlign="Center" OnPageIndexChanging="grdCatagLinkUp_PageIndexChanging">
+                                                <table class="table table-striped-table-bordered table-hover">
+                                                    <tr>
+                                                        <td colspan="2" class="ClsControlTd">
+                                                            <asp:GridView ID="grdCatagLinkUp" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true"
+                                                                PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                                                PagerStyle-HorizontalAlign="Center" OnPageIndexChanging="grdCatagLinkUp_PageIndexChanging">
 
-                                                                        <alternatingrowstyle backcolor="#E7F3FF"></alternatingrowstyle>
-                                                                        <columns>
-                                                                        <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
-                                                                            <ItemTemplate>
-                                                                                <asp:CheckBox ID="chkSelct" runat="server" Checked='<%# Convert.ToBoolean(Eval("Selected"))%>' />
-                                                                            </ItemTemplate>
+                                                                <AlternatingRowStyle BackColor="#E7F3FF"></AlternatingRowStyle>
+                                                                <Columns>
+                                                                    <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
+                                                                        <ItemTemplate>
+                                                                            <asp:CheckBox ID="chkSelct" runat="server" Checked='<%# Convert.ToBoolean(Eval("Selected"))%>' />
+                                                                        </ItemTemplate>
 
-                                                                            <ItemStyle Width="5px"></ItemStyle>
-                                                                        </asp:TemplateField>
-                                                                        <asp:BoundField DataField="CategorySizeLinkID" HeaderText="categorysizelinkid" SortExpression="CategorySizeLinkID"
-                                                                            Visible="false" />
-                                                                        <asp:BoundField DataField="SizeDesc" HeaderText="Size" SortExpression="SizeDesc" />
-                                                                        <asp:TemplateField HeaderText="Bottle Qty" ItemStyle-HorizontalAlign="Center">
-                                                                            <ItemTemplate>
-                                                                                <asp:HiddenField ID="hdnSize_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Cat_Size_ID"))%>' />
-                                                                                <asp:TextBox ID="txtbottleqty" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Bottle_Qty"))%>'></asp:TextBox>
-                                                                            </ItemTemplate>
+                                                                        <ItemStyle Width="5px"></ItemStyle>
+                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField DataField="CategorySizeLinkID" HeaderText="categorysizelinkid" SortExpression="CategorySizeLinkID"
+                                                                        Visible="false" />
+                                                                    <asp:BoundField DataField="SizeDesc" HeaderText="Size" SortExpression="SizeDesc" />
+                                                                    <asp:TemplateField HeaderText="Bottle Qty" ItemStyle-HorizontalAlign="Center">
+                                                                        <ItemTemplate>
+                                                                            <asp:HiddenField ID="hdnSize_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Cat_Size_ID"))%>' />
+                                                                            <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtbottleqty" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Bottle_Qty"))%>'></asp:TextBox>
+                                                                        </ItemTemplate>
 
-                                                                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                                        </asp:TemplateField>
-                                                                        <asp:TemplateField HeaderText="SPeg Qty" ItemStyle-HorizontalAlign="Center">
-                                                                            <ItemTemplate>
-                                                                                <asp:TextBox ID="txtspegqty" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Speg_Qty"))%>'></asp:TextBox>
-                                                                            </ItemTemplate>
+                                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="SPeg Qty" ItemStyle-HorizontalAlign="Center">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtspegqty" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Speg_Qty"))%>'></asp:TextBox>
+                                                                        </ItemTemplate>
 
-                                                                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                                        </asp:TemplateField>
-                                                                        <asp:TemplateField HeaderText="Bottle Rate" ItemStyle-HorizontalAlign="Center">
-                                                                            <ItemTemplate>
-                                                                                <asp:TextBox ID="txtbottlerate" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Bottle_Rate"))%>'></asp:TextBox>
-                                                                            </ItemTemplate>
+                                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Bottle Rate" ItemStyle-HorizontalAlign="Center">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtbottlerate" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Bottle_Rate"))%>'></asp:TextBox>
+                                                                        </ItemTemplate>
 
-                                                                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                                        </asp:TemplateField>
+                                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                                    </asp:TemplateField>
 
-                                                                        <asp:TemplateField HeaderText="Base Qty" ItemStyle-HorizontalAlign="Center">
-                                                                            <ItemTemplate>
-                                                                                <asp:TextBox ID="txtbaseqty" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Base_Qty"))%>'></asp:TextBox>
-                                                                            </ItemTemplate>
+                                                                    <asp:TemplateField HeaderText="Base Qty" ItemStyle-HorizontalAlign="Center">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtbaseqty" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Base_Qty"))%>'></asp:TextBox>
+                                                                        </ItemTemplate>
 
-                                                                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                                        </asp:TemplateField>
+                                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                                    </asp:TemplateField>
 
-                                                                        <asp:TemplateField HeaderText="Re-Order Level" ItemStyle-HorizontalAlign="Center">
-                                                                            <ItemTemplate>
-                                                                                <asp:TextBox ID="txtreorderlevel" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Re_Order_Level"))%>'></asp:TextBox>
-                                                                            </ItemTemplate>
+                                                                    <asp:TemplateField HeaderText="Re-Order Level" ItemStyle-HorizontalAlign="Center">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtreorderlevel" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Re_Order_Level"))%>'></asp:TextBox>
+                                                                        </ItemTemplate>
 
-                                                                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                                        </asp:TemplateField>
-                                                                        <asp:TemplateField HeaderText="Optimum Level" ItemStyle-HorizontalAlign="Center">
-                                                                            <ItemTemplate>
-                                                                                <asp:TextBox ID="txtoptimumlevel" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Optimum_Level"))%>'></asp:TextBox>
-                                                                            </ItemTemplate>
+                                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Optimum Level" ItemStyle-HorizontalAlign="Center">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" ID="txtoptimumlevel" Width="100px" CssClass="numeric form-control" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Optimum_Level"))%>'></asp:TextBox>
+                                                                        </ItemTemplate>
 
-                                                                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                                                        </asp:TemplateField>
-                                                                    </columns>
-                                                                        <emptydatatemplate>
-                                                                        No Records Found !!!
-                                                                    </emptydatatemplate>
-                                                                        <emptydatarowstyle height="50%" bordercolor="Black" borderstyle="Solid" borderwidth="2px"
-                                                                            horizontalalign="Center" />
+                                                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                                <EmptyDataTemplate>
+                                                                    No Records Found !!!
+                                                                </EmptyDataTemplate>
+                                                                <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
+                                                                    HorizontalAlign="Center" />
 
-                                                                        <headerstyle backcolor="#2E5E79" forecolor="White"></headerstyle>
+                                                                <HeaderStyle BackColor="#2E5E79" ForeColor="White"></HeaderStyle>
 
-                                                                        <pagersettings firstpagetext="First" lastpagetext="Last" mode="NumericFirstLast" />
+                                                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
 
-                                                                        <pagerstyle horizontalalign="Center"></pagerstyle>
-                                                                    </asp:GridView>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                                <PagerStyle HorizontalAlign="Center"></PagerStyle>
+                                                            </asp:GridView>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </ContentTemplate>
                                             <Triggers>
                                                 <asp:AsyncPostBackTrigger ControlID="ddlBrand" />

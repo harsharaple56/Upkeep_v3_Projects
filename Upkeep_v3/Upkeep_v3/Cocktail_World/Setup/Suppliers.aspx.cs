@@ -39,7 +39,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet dsDelSupplier = new DataSet();
-                dsDelSupplier = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID,string.Empty, string.Empty, 0, string.Empty, string.Empty, string.Empty, string.Empty,LoggedInUserID,CompanyID,"D");
+                dsDelSupplier = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID, string.Empty, string.Empty, 0, string.Empty, string.Empty, string.Empty, string.Empty, LoggedInUserID, CompanyID, "D");
                 if (dsDelSupplier.Tables[0].Rows.Count > 0)
                 {
                     Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Suppliers.aspx"), false);
@@ -54,7 +54,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         {
             try
             {
-                ds = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID,string.Empty, string.Empty,0, string.Empty, string.Empty, string.Empty, string.Empty,LoggedInUserID,CompanyID, "R");
+                ds = ObjCocktailWorld.SupplierMaster_CRUD(Supplier_ID, string.Empty, string.Empty, 0, string.Empty, string.Empty, string.Empty, string.Empty, LoggedInUserID, CompanyID, "R");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -129,7 +129,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 Code = txtCode.Text.Trim();
                 Contact = txtContct.Text.Trim();
                 City = txtcity.Text.Trim();
-                Pincode = Convert.ToInt32(txtPincode.Text.Trim());
+                if (!string.IsNullOrEmpty(txtPincode.Text.Trim()))
+                    Pincode = Convert.ToInt32(txtPincode.Text.Trim());
                 Address = txtAddress.Text.Trim();
                 Email = txtEmail.Text.Trim();
 

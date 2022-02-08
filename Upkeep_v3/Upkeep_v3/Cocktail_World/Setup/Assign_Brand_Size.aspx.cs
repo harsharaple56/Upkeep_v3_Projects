@@ -183,7 +183,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 License_ID = Convert.ToInt32(ddlLicense.SelectedValue);
                 if (License_ID != 0 && Category_ID != 0)
                 {
-                    ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, License_ID, CompanyID);
+                    ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(0, Category_ID, License_ID, CompanyID);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         if (ddlCategory.SelectedIndex > 0)
@@ -211,68 +211,115 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             int CategoryID = 0;
             int LicenseID = 0;
+            bool a = false;
+            bool b = false;
+
+            CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
+            LicenseID = Convert.ToInt32(ddlLicense.SelectedValue);
 
             try
             {
-                StringBuilder strXmlCategory = new StringBuilder();
-                strXmlCategory.Append(@"<?xml version=""1.0"" ?>");
-                strXmlCategory.Append(@"<CategoryRoot>");
-
+                bool allChecked = false;
                 for (int i = 0; i < count; i++)
                 {
 
                     bool isChecked = ((CheckBox)rows[i].FindControl("chkSelct")).Checked;
                     if (isChecked)
                     {
-                        string hdnSize_ID = ((HiddenField)rows[i].FindControl("hdnSize_ID")).Value;
-                        string txtalias = ((TextBox)rows[i].FindControl("txtalias")).Text;
-
-                        DropDownList ddlStockIn = (DropDownList)rows[i].FindControl("ddlStockIn");
-                        string StockIn = ddlStockIn.SelectedItem.Value;
-
-                        string txtnoofspeg = ((TextBox)rows[i].FindControl("txtnoofspeg")).Text;
-                        string txtpegsize = ((TextBox)rows[i].FindControl("txtpegsize")).Text;
-
-                        strXmlCategory.Append(@"<Category>");
-                        strXmlCategory.Append(@"<Size_ID>" + hdnSize_ID + "</Size_ID>");
-                        strXmlCategory.Append(@"<Alias>" + txtalias + "</Alias>");
-                        strXmlCategory.Append(@"<PegSizeML>" + txtpegsize + "</PegSizeML>");
-                        strXmlCategory.Append(@"<StockIn>" + StockIn + "</StockIn>");
-                        strXmlCategory.Append(@"<Size_Qty>" + txtnoofspeg + "</Size_Qty>");
-
-                        strXmlCategory.Append(@"</Category>");
+                        allChecked = true;
+                        break;
                     }
                 }
 
-                strXmlCategory.Append(@"</CategoryRoot>");
-
-                CategoryDetails = strXmlCategory.ToString();
-
-                CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
-                LicenseID = Convert.ToInt32(ddlLicense.SelectedValue);
-
-                DataSet dsCatSave = new DataSet();
-
-                dsCatSave = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID, CompanyID, LoggedInUserID);
-
-                if (dsCatSave.Tables.Count > 0)
+                if (allChecked)
                 {
-                    if (dsCatSave.Tables[1].Rows.Count > 0)
+                    StringBuilder strXmlCategory = new StringBuilder();
+                    strXmlCategory.Append(@"<?xml version=""1.0"" ?>");
+                    strXmlCategory.Append(@"<CategoryRoot>");
+
+                    for (int i = 0; i < count; i++)
                     {
-                        int Status = Convert.ToInt32(dsCatSave.Tables[1].Rows[0]["Status"]);
-                        if (Status == 1)
+
+                        bool isChecked = ((CheckBox)rows[i].FindControl("chkSelct")).Checked;
+                        if (isChecked)
                         {
-                            Page.ClientScript.RegisterHiddenField("Success", "Success");
-                        }
-                        else if (Status == 3)
-                        {
-                            //Page.ClientScript.RegisterHiddenField("Duplicate", "Duplicate");
-                        }
-                        else if (Status == 2)
-                        {
-                            //Page.ClientScript.RegisterHiddenField("Technical", "Due to some technical issue your request can not be process. Kindly try after some time");
+                            string hdnSize_ID = ((HiddenField)rows[i].FindControl("hdnSize_ID")).Value;
+                            string txtalias = ((TextBox)rows[i].FindControl("txtalias")).Text;
+
+                            DropDownList ddlStockIn = (DropDownList)rows[i].FindControl("ddlStockIn");
+                            string StockIn = ddlStockIn.SelectedItem.Value;
+
+                            string txtnoofspeg = ((TextBox)rows[i].FindControl("txtnoofspeg")).Text;
+                            string txtpegsize = ((TextBox)rows[i].FindControl("txtpegsize")).Text;
+
+                            strXmlCategory.Append(@"<Category>");
+                            strXmlCategory.Append(@"<Size_ID>" + hdnSize_ID + "</Size_ID>");
+                            strXmlCategory.Append(@"<Alias>" + txtalias + "</Alias>");
+                            strXmlCategory.Append(@"<PegSizeML>" + txtpegsize + "</PegSizeML>");
+                            strXmlCategory.Append(@"<StockIn>" + StockIn + "</StockIn>");
+                            strXmlCategory.Append(@"<Size_Qty>" + txtnoofspeg + "</Size_Qty>");
+
+                            strXmlCategory.Append(@"</Category>");
+
+
+
+                            #region Fetch Old Data
+                            DataSet dataSet = new DataSet();
+                            dataSet = ObjCocktailWorld.Fetch_CategorySizeLinkup(Convert.ToInt32(hdnSize_ID), CategoryID, LicenseID, CompanyID);
+                            if (dataSet.Tables[0].Rows.Count > 0)
+                            {
+                                if (dataSet.Tables[0].Rows[0]["NoOfSpeg"].ToString() == txtnoofspeg && dataSet.Tables[0].Rows[0]["PegSize"].ToString() == txtpegsize
+                                    && dataSet.Tables[0].Rows[0]["Stock_In"].ToString() == StockIn && dataSet.Tables[0].Rows[0]["Alias"].ToString() == txtalias)
+                                {
+                                    b = true;
+                                }
+                                else
+                                {
+                                    a = true;
+                                }
+                            }
+                            #endregion
                         }
                     }
+
+
+                    strXmlCategory.Append(@"</CategoryRoot>");
+                    CategoryDetails = strXmlCategory.ToString();
+
+
+                    if (a)
+                    {
+                        DataSet dsCatSave = new DataSet();
+                        dsCatSave = ObjCocktailWorld.Save_CategorySizeLinkup(CategoryID, CategoryDetails, LicenseID, CompanyID, LoggedInUserID);
+                        if (dsCatSave.Tables.Count > 0)
+                        {
+                            if (dsCatSave.Tables[1].Rows.Count > 0)
+                            {
+                                int Status = Convert.ToInt32(dsCatSave.Tables[1].Rows[0]["Status"]);
+                                if (Status == 1)
+                                {
+                                    Page.ClientScript.RegisterHiddenField("Success", "Success");
+                                }
+                                else if (Status == 3)
+                                {
+                                    //Page.ClientScript.RegisterHiddenField("Duplicate", "Duplicate");
+                                }
+                                else if (Status == 2)
+                                {
+                                    //Page.ClientScript.RegisterHiddenField("Technical", "Due to some technical issue your request can not be process. Kindly try after some time");
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterHiddenField("matched", "matched");
+                    }
+
+                }
+                else
+                {
+                    Page.ClientScript.RegisterHiddenField("selected", "selected");
                 }
 
             }

@@ -496,11 +496,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_CategorySizeLinkup(int Category_ID, int License_ID, int Company_ID)
+    public DataSet Fetch_CategorySizeLinkup(int Size_ID , int Category_ID, int License_ID, int Company_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, License_ID, Company_ID);
+            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Size_ID,Category_ID, License_ID, Company_ID);
 
         }
         catch (Exception ex)

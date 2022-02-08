@@ -136,68 +136,114 @@ namespace Upkeep_v3.Cocktail_World.Setup
             int License_ID = Convert.ToInt32(ddlLicense.SelectedValue);
             int BrandOpening_ID = 0;
             string Action = string.Empty;
+
             try
             {
+
+                bool allChecked = false;
                 for (int i = 0; i < count; i++)
                 {
-                    StringBuilder strXmlCategory = new StringBuilder();
+
                     bool isChecked = ((CheckBox)rows[i].FindControl("chkSelct")).Checked;
                     if (isChecked)
                     {
-                        string hdnSize_ID = ((HiddenField)rows[i].FindControl("hdnSize_ID")).Value;
-                        string txtspegqty = ((TextBox)rows[i].FindControl("txtspegqty")).Text;
-                        string txtbottleqty = ((TextBox)rows[i].FindControl("txtbottleqty")).Text;
-                        string txtbottlerate = ((TextBox)rows[i].FindControl("txtbottlerate")).Text;
-                        string txtbaseqty = ((TextBox)rows[i].FindControl("txtbaseqty")).Text;
-                        string txtreorderlevel = ((TextBox)rows[i].FindControl("txtreorderlevel")).Text;
-                        string txtoptimumlevel = ((TextBox)rows[i].FindControl("txtoptimumlevel")).Text;
-
-                        if (string.IsNullOrEmpty(txtspegqty))
-                            txtspegqty = "0";
-                        if (string.IsNullOrEmpty(txtbottleqty))
-                            txtbottleqty = "0";
-                        if (string.IsNullOrEmpty(txtbottlerate))
-                            txtbottlerate = "0";
-                        if (string.IsNullOrEmpty(txtbaseqty))
-                            txtbaseqty = "0";
-                        if (string.IsNullOrEmpty(txtreorderlevel))
-                            txtreorderlevel = "0";
-                        if (string.IsNullOrEmpty(txtoptimumlevel))
-                            txtoptimumlevel = "0";
-
-
-                        strXmlCategory.Append(@"<?xml version=""1.0"" ?>");
-                        strXmlCategory.Append(@"<Category>");
-                        strXmlCategory.Append(@"<Size_ID>" + hdnSize_ID + "</Size_ID>");
-                        strXmlCategory.Append(@"<SPeg_Qty>" + txtspegqty + "</SPeg_Qty>");
-                        strXmlCategory.Append(@"<Bottle_Qty>" + txtbottleqty + "</Bottle_Qty>");
-                        strXmlCategory.Append(@"<BottleRate>" + txtbottlerate + "</BottleRate>");
-                        strXmlCategory.Append(@"<BaseQty>" + txtbaseqty + "</BaseQty>");
-                        strXmlCategory.Append(@"<Reorder>" + txtreorderlevel + "</Reorder>");
-                        strXmlCategory.Append(@"<Optimum>" + txtoptimumlevel + "</Optimum>");
-                        strXmlCategory.Append(@"</Category>");
-
-                        CategoryDetails = strXmlCategory.ToString();
-                        Cat_Size_ID = Convert.ToInt32(((HiddenField)rows[i].FindControl("hdnSize_ID")).Value);
-                        BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
-                        DataSet dt = new DataSet();
-                        dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, 0, BrandID, "", "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
-                        if (dt.Tables[0].Rows.Count == 0)
-                        {
-                            Action = "I";
-                            BrandOpening_ID = 0;
-                        }
-                        else
-                        {
-                            Action = "U";
-                            BrandOpening_ID = Convert.ToInt32(dt.Tables[0].Rows[0]["Opening_ID"]);
-                        }
-
-                        if (!string.IsNullOrEmpty(txtspegqty) || !string.IsNullOrEmpty(txtbottleqty))
-                            ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, 0, 0, License_ID, CompanyID, LoggedInUserID, Action);
+                        allChecked = true;
+                        break;
                     }
                 }
-                Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Opening_Stock.aspx"), false);
+
+                bool is_Match = false;
+
+                if (allChecked)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        StringBuilder strXmlCategory = new StringBuilder();
+                        bool isChecked = ((CheckBox)rows[i].FindControl("chkSelct")).Checked;
+                        if (isChecked)
+                        {
+                            string hdnSize_ID = ((HiddenField)rows[i].FindControl("hdnSize_ID")).Value;
+                            string txtspegqty = ((TextBox)rows[i].FindControl("txtspegqty")).Text;
+                            string txtbottleqty = ((TextBox)rows[i].FindControl("txtbottleqty")).Text;
+                            string txtbottlerate = ((TextBox)rows[i].FindControl("txtbottlerate")).Text;
+                            string txtbaseqty = ((TextBox)rows[i].FindControl("txtbaseqty")).Text;
+                            string txtreorderlevel = ((TextBox)rows[i].FindControl("txtreorderlevel")).Text;
+                            string txtoptimumlevel = ((TextBox)rows[i].FindControl("txtoptimumlevel")).Text;
+
+                            if (string.IsNullOrEmpty(txtspegqty))
+                                txtspegqty = "0";
+                            if (string.IsNullOrEmpty(txtbottleqty))
+                                txtbottleqty = "0";
+                            if (string.IsNullOrEmpty(txtbottlerate))
+                                txtbottlerate = "0";
+                            if (string.IsNullOrEmpty(txtbaseqty))
+                                txtbaseqty = "0";
+                            if (string.IsNullOrEmpty(txtreorderlevel))
+                                txtreorderlevel = "0";
+                            if (string.IsNullOrEmpty(txtoptimumlevel))
+                                txtoptimumlevel = "0";
+
+
+                            strXmlCategory.Append(@"<?xml version=""1.0"" ?>");
+                            strXmlCategory.Append(@"<Category>");
+                            strXmlCategory.Append(@"<Size_ID>" + hdnSize_ID + "</Size_ID>");
+                            strXmlCategory.Append(@"<SPeg_Qty>" + txtspegqty + "</SPeg_Qty>");
+                            strXmlCategory.Append(@"<Bottle_Qty>" + txtbottleqty + "</Bottle_Qty>");
+                            strXmlCategory.Append(@"<BottleRate>" + txtbottlerate + "</BottleRate>");
+                            strXmlCategory.Append(@"<BaseQty>" + txtbaseqty + "</BaseQty>");
+                            strXmlCategory.Append(@"<Reorder>" + txtreorderlevel + "</Reorder>");
+                            strXmlCategory.Append(@"<Optimum>" + txtoptimumlevel + "</Optimum>");
+                            strXmlCategory.Append(@"</Category>");
+
+                            CategoryDetails = strXmlCategory.ToString();
+                            Cat_Size_ID = Convert.ToInt32(((HiddenField)rows[i].FindControl("hdnSize_ID")).Value);
+                            BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
+                            DataSet dt = new DataSet();
+                            dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, 0, BrandID, "", "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
+                            if (dt.Tables[0].Rows.Count == 0)
+                            {
+                                Action = "I";
+                                BrandOpening_ID = 0;
+                                is_Match = false;
+                            }
+                            else
+                            {
+
+                                #region Fetch Old Data
+                                if (dt.Tables[0].Rows.Count > 0)
+                                {
+                                    if (Convert.ToBoolean(dt.Tables[0].Rows[0]["Selected"]) == isChecked && dt.Tables[0].Rows[0]["Bottle_Qty"].ToString() == txtbottleqty && dt.Tables[0].Rows[0]["SPeg_Qty"].ToString() == txtspegqty
+                                        && dt.Tables[0].Rows[0]["Bottle_Rate"].ToString() == txtbottlerate && dt.Tables[0].Rows[0]["Base_Qty"].ToString() == txtbaseqty
+                                        && dt.Tables[0].Rows[0]["Optimum_Level"].ToString() == txtoptimumlevel && dt.Tables[0].Rows[0]["Re_Order_Level"].ToString() == txtreorderlevel)
+                                    {
+                                        is_Match = true;
+                                    }
+                                }
+                                #endregion
+
+
+                                Action = "U";
+                                BrandOpening_ID = Convert.ToInt32(dt.Tables[0].Rows[0]["Opening_ID"]);
+
+                            }
+
+                            if (!is_Match)
+                            {
+                                ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, CategoryDetails, BrandID, 0, 0, License_ID, CompanyID, LoggedInUserID, Action);
+                                Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brand_Opening_Stock.aspx"), false);
+                            }
+
+                        }
+                    }
+                    if (is_Match)
+                    {
+                        Page.ClientScript.RegisterHiddenField("matched", "matched");
+                    }
+                }
+                else
+                {
+                    Page.ClientScript.RegisterHiddenField("selected", "selected");
+                }
             }
             catch (Exception ex)
             {
@@ -210,7 +256,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0,Convert.ToInt32(ddlLicense.SelectedValue) , CompanyID, LoggedInUserID, "R");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0, Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "R");
                 if (ds.Tables.Count > 0)
                 {
                     if (ds.Tables[0].Rows.Count > 0)
@@ -247,7 +293,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0, Convert.ToInt32(ddlLicense.SelectedValue) , CompanyID, LoggedInUserID, "D");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(BrandOpening_ID, string.Empty, 0, 0, 0, Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "D");
 
                 if (ds.Tables.Count > 0)
                 {
