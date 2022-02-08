@@ -969,7 +969,9 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                             DataSet getAutoBillData = GetAutoBillingBrandCount(dtInsertSaleDetailsData, txtBillAmount.Text.Trim());
 
+
                             var selectedOption = MessageBox.Show(getAutoBillData.Tables[0].Rows[0]["Bill_Count"] + " Bills will be created.", "Are you sure want create bill ?", MessageBoxButton.YesNo);
+
                             if (selectedOption.ToString() == "Yes")
                             {
                                 for (int i = 0; i < getAutoBillData.Tables[1].Rows.Count; i++)
@@ -1046,7 +1048,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 double vSum = Convert.ToDouble(dt.Rows[index]["Bottle_Rate"]);
                 dtxml = BindXMLBrandGridView();
                 dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"],
-                   dt.Rows[index]["Bottle_Qty"],vSum,0,0,0,0, 0, dt.Rows[index]["Amount"]);
+                   dt.Rows[index]["Bottle_Qty"], vSum, 0, 0, 0, 0, 0, dt.Rows[index]["Amount"]);
 
                 if (Convert.ToInt32(dt.Rows[index]["Bottle_Qty"]) == 1)
                 {
@@ -1066,7 +1068,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     drInsertSaleDetailsData1["TaxAmount"] = 0;
                     drInsertSaleDetailsData1["Amount"] = dtxml.Rows.Count * Convert.ToInt32(dt.Rows[0]["Bottle_Rate"]);
                     brand.Rows.Add(drInsertSaleDetailsData1);
-                    
+
 
                     #region Bill ID Generate
                     int random_No = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
@@ -1105,7 +1107,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         brand.Rows.Add(drInsertSaleDetailsData1);
 
 
-                        
+
                         #region Bill ID Generate
                         int random_No1 = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
 
@@ -1174,7 +1176,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         }
                     }
                 }
-               
+
                 #region Bill ID Generate
                 int random_No2 = RandomNumber(Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_Start_No"]), Convert.ToInt32(dsBillMaster.Tables[0].Rows[0]["Bill_End_No"]));
 
@@ -1198,7 +1200,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 dtxml = BindXMLBrandGridView();
                 dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,
                    dt.Rows[index]["SPeg_Qty"], vSum, 0, 0, 0, dt.Rows[index]["Amount"]);
-               
+
 
                 if (Convert.ToInt32(dt.Rows[index]["SPeg_Qty"]) == 1)
                 {
@@ -1301,7 +1303,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     }
                     else
                     {
-                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"],0,0,
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,
                            dt.Rows[index]["SPeg_Qty"], dt.Rows[index]["Speg_Rate"], 0, 0, 0, dt.Rows[index]["Amount"]);
 
 
@@ -1348,7 +1350,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     continue;
                 double vSum = Convert.ToDouble(dt.Rows[index]["LPeg_Rate"]);
                 dtxml = BindXMLBrandGridView();
-                dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,0,0,
+                dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0, 0, 0,
                    dt.Rows[index]["LPeg_Qty"], vSum, 0, dt.Rows[index]["Amount"]);
 
 
@@ -1428,7 +1430,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                         dtxml = BindXMLBrandGridView();
 
-                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,0,0,
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0, 0, 0,
                            dt.Rows[index]["LPeg_Qty"], dt.Rows[index]["LPeg_Rate"], 0, dt.Rows[index]["Amount"]);
 
                         if (inCtr == Convert.ToInt32(dt.Rows[index]["LPeg_Qty"]))
@@ -1453,7 +1455,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     }
                     else
                     {
-                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0,0,0,
+                        dtxml.Rows.Add(Sale_ID, dt.Rows[index]["Brand_Name"], dt.Rows[index]["Size_Desc"], dt.Rows[index]["Cocktail_Desc"], dt.Rows[index]["Opening_ID"], dt.Rows[index]["Tax_Type"], 0, 0, 0, 0,
                            dt.Rows[index]["LPeg_Qty"], dt.Rows[index]["LPeg_Rate"], 0, dt.Rows[index]["Amount"]);
 
 

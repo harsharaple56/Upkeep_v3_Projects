@@ -38,6 +38,24 @@
                     'success'
                 )
             }
+
+            var selected = $("input[name=selected]").val();
+            if (selected != undefined) {
+                Swal.fire(
+                    'Warning..!',
+                    'Please select atleast one row.',
+                    'info'
+                )
+            }
+
+            var matched = $("input[name=matched]").val();
+            if (matched != undefined) {
+                Swal.fire(
+                    'Warning..!',
+                    'There are no changes to save.',
+                    'info'
+                )
+            }
         });
     </script>
 
@@ -157,7 +175,7 @@
                                             <asp:GridView ID="grdCatagLinkUp" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable" AllowPaging="true" OnRowDataBound="grdCatagLinkUp_RowDataBound"
                                                 PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
                                                 PagerStyle-HorizontalAlign="Center" OnPageIndexChanging="grdCatagLinkUp_PageIndexChanging">
-                                                   <alternatingrowstyle backcolor="#E7F3FF"></alternatingrowstyle>
+                                                <AlternatingRowStyle BackColor="#E7F3FF"></AlternatingRowStyle>
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Select" ItemStyle-Width="5">
                                                         <ItemTemplate>
@@ -201,14 +219,14 @@
                                                 <EmptyDataTemplate>
                                                     No Records Found !!!
                                                 </EmptyDataTemplate>
-                                                 <emptydatarowstyle height="50%" bordercolor="Black" borderstyle="Solid" borderwidth="2px"
-                                                                            horizontalalign="Center" />
+                                                <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
+                                                    HorizontalAlign="Center" />
 
-                                                                        <headerstyle backcolor="#2E5E79" forecolor="White"></headerstyle>
+                                                <HeaderStyle BackColor="#2E5E79" ForeColor="White"></HeaderStyle>
 
-                                                                        <pagersettings firstpagetext="First" lastpagetext="Last" mode="NumericFirstLast" />
+                                                <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
 
-                                                                        <pagerstyle horizontalalign="Center"></pagerstyle>
+                                                <PagerStyle HorizontalAlign="Center"></PagerStyle>
                                             </asp:GridView>
                                         </td>
                                     </tr>

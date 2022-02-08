@@ -21,6 +21,18 @@
         }
     </style>
     <script type="text/javascript">
+        function confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you want to delete data?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+        }
+    </script>
+    <script type="text/javascript">
         $(document).ready(function () {
 
             toastr.options = {
@@ -56,7 +68,7 @@
                 toastr.error(getNegative);
             }
             if (getLicense != undefined) {
-                toastr.error("Please Select License.");
+                toastr.error("Please Select Brand.");
             }
             if (getDuplicate != undefined) {
                 toastr.error("This data already in database.");
@@ -109,7 +121,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -130,7 +142,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val1 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -151,7 +163,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -172,7 +184,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -193,7 +205,8 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
+                //var taxAmount = rowTotal * val2 / 100;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -214,7 +227,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
             });
@@ -228,7 +241,7 @@
 
                 var rowTotal = (parseFloat(!isNaN(val1) ? val1 : 0) * parseFloat(!isNaN(val2) ? val2 : 0));
 
-                var taxAmount = rowTotal * val3 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=cocktailamount]').val(taxAmount);
                 $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal);
             });
@@ -242,7 +255,7 @@
 
                 var rowTotal = (parseFloat(!isNaN(val1) ? val1 : 0) * parseFloat(!isNaN(val2) ? val2 : 0));
 
-                var taxAmount = rowTotal * val3 / 100;
+                var taxAmount =0;
                 $(this).closest('tr').find('[id*=cocktailamount]').val(taxAmount);
                 $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal);
             });
@@ -296,7 +309,7 @@
                                 </a></li>
                             </ul>
                         </div>
-                        <div class="m-portlet m-portlet--tabs" style="width: 300px;margin-top: 10px;">
+                        <div class="m-portlet m-portlet--tabs" style="width: 300px; margin-top: 10px;">
                             <asp:DropDownList ID="ddlLicense" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" CssClass="underline form-control" ClientIDMode="Static">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
@@ -311,7 +324,7 @@
                             <div class="tab-pane" id="tab1" role="tabpanel">
                                 <div class="row m--margin-bottom-20 m--align-center">
 
-                                    
+
 
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Sale Date</label>
