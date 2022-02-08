@@ -456,8 +456,10 @@ namespace Upkeep_v3.Ticketing
                             string FieldID = Convert.ToString((item.FindControl("hdnFieldID") as HiddenField).Value);
                             string CustomFieldsValue = Convert.ToString((item.FindControl("txtCustomFieldsValue") as TextBox).Text);
 
+                            strXmlCustomFields.Append(@"<CustomField_Value>");
                             strXmlCustomFields.Append(@"<FieldID>" + FieldID + "</FieldID>");
                             strXmlCustomFields.Append(@"<CustomFieldsValue>" + CustomFieldsValue + "</CustomFieldsValue>");
+                            strXmlCustomFields.Append(@"</CustomField_Value>");
                         }
                         strXmlCustomFields.Append(@"</CustomFields>");
                     }
