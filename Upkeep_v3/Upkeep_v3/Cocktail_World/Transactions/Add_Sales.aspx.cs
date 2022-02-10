@@ -25,7 +25,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             {
                 Fetch_License();
                 SetBrandInitialRow();
-                Fetch_CocktailName();
                 SetCocktailInitialRow();
 
                 #region Edit and Delete Sale
@@ -280,37 +279,13 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         private void Fetch_CocktailName()
         {
-            Session.Remove("hdnCocktailTax");
-            Session["hdnCocktailTax"] = null;
-
-            ds = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "",0, "Fetch");
-            ddlCocktail.DataSource = ds.Tables[0];
+            DataSet dataset = new DataSet();
+            dataset = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "", Convert.ToInt32(ddlLicense.SelectedValue), "Fetch");
+            ddlCocktail.DataSource = dataset.Tables[0];
             ddlCocktail.DataTextField = "Cocktail_Desc";
             ddlCocktail.DataValueField = "Cocktail_ID";
             ddlCocktail.DataBind();
-            ddlCocktail.Items.Insert(0, new ListItem("--Select Cocktail--", "0"));
-
-            if (ddlCocktail.SelectedIndex > 0)
-            {
-                DataSet dsGetBrandId = new DataSet();
-                dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", ddlCocktail.SelectedValue, CompanyID, string.Empty);
-                if (dsGetBrandId.Tables[0].Rows.Count > 0)
-                {
-                    DataSet dsGetTax = new DataSet();
-                    dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
-                    if (dsGetTax.Tables[0].Rows.Count > 0)
-                    {
-                        string Tax_Percentage = dsGetTax.Tables[0].Rows[0].ItemArray[2].ToString();
-                        Session["hdnCocktailTax"] = Tax_Percentage;
-                    }
-                    else
-                        Session["hdnCocktailTax"] = "0";
-                }
-                else
-                {
-                    Session["hdnCocktailTax"] = "0";
-                }
-            }
+            ddlCocktail.Items.Insert(0, new ListItem("------ Select Cocktail ------", "0"));
         }
 
         private ArrayList GetPermitHolderData()
@@ -1319,6 +1294,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
         {
             Fetch_Brand_Size();
+            Fetch_CocktailName();
         }
     }
 }

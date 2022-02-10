@@ -63,6 +63,7 @@
             $("[id*=dvCompanyCode]").show();
 
             $("[id*=btnLogin]").click(function () {
+                $("#load").show();
                 var txtUsername = $("[id*=txtUsername]").val();
                 var txtPassword = $("[id*=txtPassword]").val();
                 var LoggingAs = $("input[name='LoggingAs']:checked").val();
@@ -110,11 +111,9 @@
                         datatype: 'json',
                         success: function (response) {
                             if (response.d[1]) {
-                                $("#load").show();
                                 window.location.replace(response.d[1]);
                             }
                             else if (response.d[2]) {
-                                $("#load").show();
                                 window.location.replace(response.d[2]);
                             }
                             else if (response.d[3]) {

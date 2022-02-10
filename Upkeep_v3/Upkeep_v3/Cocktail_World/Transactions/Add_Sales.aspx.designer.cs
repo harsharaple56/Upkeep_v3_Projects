@@ -211,6 +211,15 @@ namespace Upkeep_v3.Cocktail_World.Transactions {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
         
         /// <summary>
+        /// Updatepanel6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Updatepanel6;
+        
+        /// <summary>
         /// ddlCocktail control.
         /// </summary>
         /// <remarks>
