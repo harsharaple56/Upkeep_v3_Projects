@@ -279,7 +279,7 @@
                                 <span>Save Transaction</span>
                             </span>
                         </asp:LinkButton>
-                       
+
                     </div>
                 </div>
 
@@ -554,9 +554,13 @@
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Cocktail</label>
                                         <div class="m-form__control">
-                                            <asp:DropDownList ID="ddlCocktail" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                            </asp:DropDownList>
-                                            <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlCocktail" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please select Cocktail"></asp:RequiredFieldValidator>
+                                            <asp:UpdatePanel ID="Updatepanel6" runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <asp:DropDownList  AutoPostBack="true" ID="ddlCocktail" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlCocktail" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please select Cocktail"></asp:RequiredFieldValidator>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
 
                                         </div>
                                         <input id="sessionCocktail" type="hidden" value='<%= Session["hdnCocktailTax"] %>' />
