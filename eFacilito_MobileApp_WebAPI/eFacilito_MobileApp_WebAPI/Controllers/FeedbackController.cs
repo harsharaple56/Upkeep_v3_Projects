@@ -89,11 +89,83 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetEventList_V2(string eventType, int CompanyID)
+        {
+            List<ClsEvent_V2> ObjEventList = new List<ClsEvent_V2>();
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsEventDataSet = new DataSet();
+
+            string StrLocConnection = null;
+
+            try
+            {
+
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[2];
+                ObjLocSqlParameter[0] = new SqlParameter("@eventType", eventType);
+                ObjLocSqlParameter[1] = new SqlParameter("@CompanyID", CompanyID);
+
+                DsEventDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Feedback_Proc_Get_EventList", ObjLocSqlParameter);
+
+                if (DsEventDataSet != null)
+                {
+                    if (DsEventDataSet.Tables.Count > 0)
+                    {
+                        if (DsEventDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            ObjEventList = (from p in DsEventDataSet.Tables[0].AsEnumerable()
+                                            select new ClsEvent_V2
+                                            {
+                                                Event_ID = Convert.ToString(p.Field<int>("Event_ID")),
+                                                Event_Name = p.Field<string>("Event_Name"),
+                                                Start_Date = p.Field<string>("Start_Date"),
+                                                Expiry_Date = p.Field<string>("Expiry_Date"),
+                                                Is_Fname_Mandatory = Convert.ToInt32(p.Field<Boolean>("Is_Fname_Mandatory")),
+                                                Is_Lname_Mandatory = Convert.ToInt32(p.Field<Boolean>("Is_Lname_Mandatory")),
+                                                Is_Contact_Manadatoy = Convert.ToInt32(p.Field<Boolean>("Is_Contact_Manadatoy")),
+                                                Is_Email_Manadatoy = Convert.ToInt32(p.Field<Boolean>("Is_Email_Manadatoy")),
+                                                Is_Gender_Manadatoy = Convert.ToInt32(p.Field<Boolean>("Is_Gender_Manadatoy"))
+
+                                            }).ToList();
+                            //return ObjEventList;
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjEventList);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                            //return ObjRetailer;
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        //return ObjEventList;
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    //return ObjEventList;
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsEventDataSet = null;
+                ObjEventList = null;
+            }
+
+        }
+
 
         [HttpGet]
-
-
-
 
         public HttpResponseMessage Fetch_RetailerList(int CompanyID)
         {
@@ -162,11 +234,6 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
             }
 
         }
-
-
-
-
-
 
 
         public HttpResponseMessage Fetch_RetailerDetails(string storeName, int CompanyID)
