@@ -22,6 +22,8 @@
                 }
             });
 
+
+
             $("#txtSubCategory").on('input', function () {
                 var val = this.value;
 
