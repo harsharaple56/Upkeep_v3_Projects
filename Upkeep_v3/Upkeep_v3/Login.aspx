@@ -73,6 +73,7 @@
                     if (txtUsername != '') {
                         checkvalid = true;
                     } else {
+                         $("#load").hide();
                         checkvalid = false;
                         $("#lblUserName").show();
                         $("#lblUserName").text("Please enter Username");
@@ -82,6 +83,7 @@
                     if (txtPassword != '') {
                         checkvalid = true;
                     } else {
+                         $("#load").hide();
                         checkvalid = false;
                         $("#lblPassword").show();
                         $("#lblPassword").text("Please enter Password");
@@ -89,6 +91,7 @@
                     }
                 }
                 else {
+                    $("#load").hide();
                     $("#lblUserName").show();
                     $("#lblUserName").text("Please enter Username");
                     $("#lblPassword").show();
@@ -117,6 +120,7 @@
                                 window.location.replace(response.d[2]);
                             }
                             else if (response.d[3]) {
+                                $("#load").hide();
                                 $("#lblError").show();
                                 $("#lblError").text(response.d[3]);
                                 $("[id*=txtUsername]").text('');
