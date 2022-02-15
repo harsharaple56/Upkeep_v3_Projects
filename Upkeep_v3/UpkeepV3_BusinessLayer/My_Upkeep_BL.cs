@@ -1509,7 +1509,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
         public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images,
-            string CustomFields_XML, string LoggedInUserID,bool IsPublicTicket,string UserName,string UserMobile,string UserEmail, string strAction, string StrConn)
+            string CustomFields_XML, string LoggedInUserID,bool IsPublicTicket,string UserName,string UserMobile,string UserEmail,string From_Date,string To_Date, string strAction, string StrConn)
         {
             try
             {
@@ -1530,6 +1530,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@PublicUserName", UserName);
                 cmd.Parameters.AddWithValue("@PublicUserMobile", UserMobile);
                 cmd.Parameters.AddWithValue("@PublicUserEmail", UserEmail);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 cmd.Parameters.AddWithValue("@Action", strAction);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -4912,7 +4914,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action, string StrConn)
+        public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory,int intphotoRaisingCheck_QR,int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action, string StrConn)
         {
             DataSet ds = new DataSet();
             try
@@ -4928,6 +4930,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Tkt_Is_Remark_Close", Tkt_Is_Remark_Close);
                 cmd.Parameters.AddWithValue("@Tkt_Is_Expiry", Tkt_Is_Expiry);
                 cmd.Parameters.AddWithValue("@Chk_Is_QR_Compulsory", Chk_Is_QR_Compulsory);
+                cmd.Parameters.AddWithValue("@Tkt_Is_Img_Open_QR", intphotoRaisingCheck_QR);
+                cmd.Parameters.AddWithValue("@Tkt_Is_Remark_Open_QR", intRemarksCompRaising_QR);
                 cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@Action", Action);

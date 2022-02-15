@@ -1373,4 +1373,9 @@ namespace eFacilito_MobileApp_WebAPI.Models
 
     }
 
+    public class ClsSupport_Request_Response
+    {
+        public int ResponseID { get; set; }
+    }
+
 }

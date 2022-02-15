@@ -62,8 +62,8 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Insert_Ticket_Details((Request.QueryString["TicketID"]), CompanyID, 0, 0, 0, "", "","", LoggedInUserID, false, string.Empty, string.Empty, string.Empty, "R");
-
+                //dsTicket = ObjUpkeep.Insert_Ticket_Details((Request.QueryString["TicketID"]), CompanyID, 0, 0, 0, "", "","", LoggedInUserID, false, string.Empty, string.Empty, string.Empty,"","", "R");
+                dsTicket = ObjUpkeep.Bind_Ticket_Details(TicketID, CompanyID);
                 // int TicketID = 0;
                 string TicketNumber = string.Empty;
                 string Zone = string.Empty;
@@ -91,7 +91,7 @@ namespace Upkeep_v3.Ticketing
                         lblSubCategory.Text = dsTicket.Tables[0].Rows[0].Field<string>("SubCategory_Desc");
                         lblRequestDate.Text = dsTicket.Tables[0].Rows[0].Field<string>("Ticket_Date");
                         lblTicketdesc.Text = dsTicket.Tables[0].Rows[0].Field<string>("Tkt_Message");
-                        lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy"]);
+                        lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Ticket_RaisedBy"]);
                         lblTicketRaisedBy_MobileNo.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_MobileNo"]);
                         lblTicketRaisedBy_EmailID.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_EmailID"]);
 
@@ -188,21 +188,18 @@ namespace Upkeep_v3.Ticketing
                             lblActionStatus.Attributes.Add("class", "m-badge m-badge--secondary m-badge--wide");
                         }
 
+                        Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[0].Rows[0]["CurrentLevel"]);
+                        lblCurrentLevel.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["CurrentLevel"]);
 
                         //}
                     }
 
-                    if (dsTicket.Tables[1].Rows.Count > 0)
+                  
+                    if (dsTicket.Tables.Count > 1)
                     {
-                        Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
-                        lblCurrentLevel.Text = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
-                    }
-
-                    if (dsTicket.Tables.Count > 2)
-                    {
-                        if (dsTicket.Tables[2].Rows.Count > 0)
+                        if (dsTicket.Tables[1].Rows.Count > 0)
                         {
-                            gvActionHistory.DataSource = dsTicket.Tables[2];
+                            gvActionHistory.DataSource = dsTicket.Tables[1];
                             gvActionHistory.DataBind();
                         }
                         else
@@ -884,7 +881,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsSetting = new DataSet();
             try
             {
-                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0,0, CompanyID, LoggedInUserID, "R");
+                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0,0,0,0, CompanyID, LoggedInUserID, "R");
                 if (dsSetting.Tables.Count > 0)
                 {
                     if (dsSetting.Tables[0].Rows.Count > 0)

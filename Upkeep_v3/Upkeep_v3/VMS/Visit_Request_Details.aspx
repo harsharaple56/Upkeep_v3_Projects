@@ -106,6 +106,9 @@ border: 3px solid #ccc;*/
             font-size: 1rem;
         }
 
+        .radio_button label {
+        margin-left:10px;
+        }
 
         /* ----------- Non-Retina Screens ----------- */
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
@@ -1007,7 +1010,9 @@ border: 3px solid #ccc;*/
                                                 </div>
 
                                                 <div id="divRadioButton" class="m-radio-inline" style="display: none" runat="server">
-                                                    <asp:RadioButtonList CssClass="rbl" runat="server" ID="divRadioButtonrdbYes" RepeatLayout="Flow" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static"></asp:RadioButtonList>
+                                                    <%--<asp:RadioButtonList CssClass="rbl" runat="server" ID="divRadioButtonrdbYes" RepeatLayout="Flow" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static"></asp:RadioButtonList>--%>
+                                                    <asp:RadioButtonList class="m-radio-inline radio_button" runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
+                                                    </asp:RadioButtonList>
                                                     <hr />
                                                 </div>
 

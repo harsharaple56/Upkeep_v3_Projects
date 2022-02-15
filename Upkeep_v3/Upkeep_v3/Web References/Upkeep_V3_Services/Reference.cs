@@ -3113,7 +3113,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CRU_System_Setting", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action) {
+        public System.Data.DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int intphotoRaisingCheck_QR, int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("CRU_System_Setting", new object[] {
                         Setting_ID,
                         Tkt_Is_Img_Open,
@@ -3122,6 +3122,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Tkt_Is_Remark_Close,
                         Tkt_Is_Expiry,
                         Chk_Is_QR_Compulsory,
+                        intphotoRaisingCheck_QR,
+                        intRemarksCompRaising_QR,
                         CompanyID,
                         LoggedInUserID,
                         Action});
@@ -3129,12 +3131,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action) {
-            this.CRU_System_SettingAsync(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, CompanyID, LoggedInUserID, Action, null);
+        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int intphotoRaisingCheck_QR, int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action) {
+            this.CRU_System_SettingAsync(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, intphotoRaisingCheck_QR, intRemarksCompRaising_QR, CompanyID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action, object userState) {
+        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int intphotoRaisingCheck_QR, int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action, object userState) {
             if ((this.CRU_System_SettingOperationCompleted == null)) {
                 this.CRU_System_SettingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCRU_System_SettingOperationCompleted);
             }
@@ -3146,6 +3148,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Tkt_Is_Remark_Close,
                         Tkt_Is_Expiry,
                         Chk_Is_QR_Compulsory,
+                        intphotoRaisingCheck_QR,
+                        intRemarksCompRaising_QR,
                         CompanyID,
                         LoggedInUserID,
                         Action}, this.CRU_System_SettingOperationCompleted, userState);
@@ -9656,7 +9660,23 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Ticket_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction) {
+        public System.Data.DataSet Insert_Ticket_Details(
+                    string TicketCode, 
+                    int CompanyID, 
+                    int LocationID, 
+                    int CategoryID, 
+                    int SubCategoryID, 
+                    string TicketMessage, 
+                    string list_Images, 
+                    string CustomFields_XML, 
+                    string LoggedInUserID, 
+                    bool IsPublicTicket, 
+                    string UserName, 
+                    string UserMobile, 
+                    string UserEmail, 
+                    string From_Date, 
+                    string To_Date, 
+                    string strAction) {
             object[] results = this.Invoke("Insert_Ticket_Details", new object[] {
                         TicketCode,
                         CompanyID,
@@ -9671,17 +9691,52 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         UserName,
                         UserMobile,
                         UserEmail,
+                        From_Date,
+                        To_Date,
                         strAction});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction) {
-            this.Insert_Ticket_DetailsAsync(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, IsPublicTicket, UserName, UserMobile, UserEmail, strAction, null);
+        public void Insert_Ticket_DetailsAsync(
+                    string TicketCode, 
+                    int CompanyID, 
+                    int LocationID, 
+                    int CategoryID, 
+                    int SubCategoryID, 
+                    string TicketMessage, 
+                    string list_Images, 
+                    string CustomFields_XML, 
+                    string LoggedInUserID, 
+                    bool IsPublicTicket, 
+                    string UserName, 
+                    string UserMobile, 
+                    string UserEmail, 
+                    string From_Date, 
+                    string To_Date, 
+                    string strAction) {
+            this.Insert_Ticket_DetailsAsync(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, IsPublicTicket, UserName, UserMobile, UserEmail, From_Date, To_Date, strAction, null);
         }
         
         /// <remarks/>
-        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction, object userState) {
+        public void Insert_Ticket_DetailsAsync(
+                    string TicketCode, 
+                    int CompanyID, 
+                    int LocationID, 
+                    int CategoryID, 
+                    int SubCategoryID, 
+                    string TicketMessage, 
+                    string list_Images, 
+                    string CustomFields_XML, 
+                    string LoggedInUserID, 
+                    bool IsPublicTicket, 
+                    string UserName, 
+                    string UserMobile, 
+                    string UserEmail, 
+                    string From_Date, 
+                    string To_Date, 
+                    string strAction, 
+                    object userState) {
             if ((this.Insert_Ticket_DetailsOperationCompleted == null)) {
                 this.Insert_Ticket_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Ticket_DetailsOperationCompleted);
             }
@@ -9699,6 +9754,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         UserName,
                         UserMobile,
                         UserEmail,
+                        From_Date,
+                        To_Date,
                         strAction}, this.Insert_Ticket_DetailsOperationCompleted, userState);
         }
         
