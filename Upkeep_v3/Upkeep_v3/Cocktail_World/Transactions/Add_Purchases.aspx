@@ -299,7 +299,7 @@
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Brand</label>
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
@@ -317,7 +317,7 @@
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Size</label>
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:DropDownList OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" ID="ddlSize" runat="server" CssClass="form-control" AutoPostBack="true" ClientIDMode="Static">
                                                     </asp:DropDownList>
@@ -352,7 +352,7 @@
                                     </div>
                                 </div>
 
-                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
+                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Always">
                                     <ContentTemplate>
                                         <table id="purchaseTbl" width="100%" cellpadding="2" cellspacing="2">
                                             <tr>

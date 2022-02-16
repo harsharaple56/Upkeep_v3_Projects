@@ -311,7 +311,7 @@
                                     </div>
                                 </div>
 
-                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
+                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Always">
                                     <ContentTemplate>
 
                                         <table id="transferTbl" width="100%" cellpadding="2" cellspacing="2">

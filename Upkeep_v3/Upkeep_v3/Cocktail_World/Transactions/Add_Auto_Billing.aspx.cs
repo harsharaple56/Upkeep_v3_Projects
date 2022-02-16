@@ -202,11 +202,17 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             return ds;
         }
 
-        private void Fetch_Brand_Size()
+        private void Fetch_Brand_Size(bool chk)
         {
             int BrandID, Size_ID = 0;
             Session.Remove("hdnTax");
             Session["hdnTax"] = null;
+
+            if (chk)
+            {
+                ddlBrand.SelectedIndex = -1;
+                ddlSize.SelectedIndex = -1;
+            }
 
             if (!string.IsNullOrEmpty(ddlBrand.SelectedValue))
                 BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
@@ -254,7 +260,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Fetch_Brand_Size();
+            Fetch_Brand_Size(false);
         }
 
         protected void ddlSize_SelectedIndexChanged(object sender, EventArgs e)
@@ -497,6 +503,9 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                 //Set Previous Data on Postbacks
                 SetPreviousBrandData();
+                ddlBrand.ClearSelection();
+                ddlSize.ClearSelection();
+                lbl_stock.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -1725,7 +1734,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Fetch_Brand_Size();
+            Fetch_Brand_Size(true);
         }
 
         private DataTable BindBrandGridView()

@@ -103,7 +103,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                                 DataSet dsGetStockDetails = new DataSet();
-                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID,0);
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID, 0);
                                 if (dsGetStockDetails.Tables[0].Rows.Count > 0)
                                 {
                                     string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
@@ -199,19 +199,26 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             else
                 Size_ID = 0;
             if (Size_ID > 0)
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, 0);
             else
                 ds = null;
             return ds;
         }
 
-        private void Fetch_Brand_Size()
+        private void Fetch_Brand_Size(bool chk)
         {
-            int BrandID, Size_ID = 0;
+            int BrandID = 0;
+            int Size_ID = 0;
             Session.Remove("hdnTax");
             Session["hdnTax"] = null;
 
-            if (!string.IsNullOrEmpty(ddlBrand.SelectedValue))
+            if (chk)
+            {
+                ddlBrand.SelectedIndex = -1;
+                ddlSize.SelectedIndex = -1;
+            }
+
+            if (ddlBrand.SelectedIndex > 0)
                 BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
             else
                 BrandID = 0;
@@ -257,7 +264,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Fetch_Brand_Size();
+            Fetch_Brand_Size(false);
         }
 
         protected void ddlSize_SelectedIndexChanged(object sender, EventArgs e)
@@ -279,13 +286,13 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         private void Fetch_CocktailName()
         {
-            DataSet dataset = new DataSet();
-            dataset = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "", Convert.ToInt32(ddlLicense.SelectedValue), "Fetch");
-            ddlCocktail.DataSource = dataset.Tables[0];
-            ddlCocktail.DataTextField = "Cocktail_Desc";
-            ddlCocktail.DataValueField = "Cocktail_ID";
-            ddlCocktail.DataBind();
-            ddlCocktail.Items.Insert(0, new ListItem("------ Select Cocktail ------", "0"));
+            //DataSet dataset = new DataSet();
+            //dataset = ObjCocktailWorld.CocktailMaster_CRUD(0, "", "", CompanyID, "", Convert.ToInt32(ddlLicense.SelectedValue), "Fetch");
+            //ddlCocktail.DataSource = dataset.Tables[0];
+            //ddlCocktail.DataTextField = "Cocktail_Desc";
+            //ddlCocktail.DataValueField = "Cocktail_ID";
+            //ddlCocktail.DataBind();
+            //ddlCocktail.Items.Insert(0, new ListItem("------ Select Cocktail ------", "0"));
         }
 
         private ArrayList GetPermitHolderData()
@@ -484,6 +491,9 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                 //Set Previous Data on Postbacks
                 SetPreviousBrandData();
+                ddlBrand.ClearSelection();
+                ddlSize.ClearSelection();
+                lbl_stock.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -958,7 +968,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 decimal getClosingSpeg = 0;
 
                                 DataSet dsFetchBrand = new DataSet();
-                                dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID,0);
+                                dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID, 0);
                                 if (dsFetchBrand.Tables[0].Rows.Count > 0)
                                 {
                                     getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[0]);
@@ -991,7 +1001,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                         drInsertSaleDetailsData["LPeg_Rate"] = LPeg_Rate;
                                         drInsertSaleDetailsData["TaxAmount"] = TaxAmount;
                                         drInsertSaleDetailsData["Amount"] = Amount;
-                                        drInsertSaleDetailsData["Permit_Holder"] = Permit_Holder ;
+                                        drInsertSaleDetailsData["Permit_Holder"] = Permit_Holder;
                                         dtInsertSaleDetailsData.Rows.Add(drInsertSaleDetailsData);
                                     }
                                     else
@@ -1228,7 +1238,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             //Insert Operation for Cocktail Sale
                             DataSet dsCocktailSale = new DataSet();
                             dsCocktailSale = ObjCocktailWorld.SaleMaster_Crud(0, txtCocktailDate.Text, CocktailBill.Text, Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID, false);
-                            
+
                             for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
                             {
                                 ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsCocktailSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
@@ -1283,7 +1293,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             int id = 0;
             DataSet ds = new DataSet();
-            ds = ObjCocktailWorld.PermitMaster_CRUD(0, string.Empty, string.Empty, string.Empty, string.Empty,false, LoggedInUserID, CompanyID, "Random");
+            ds = ObjCocktailWorld.PermitMaster_CRUD(0, string.Empty, string.Empty, string.Empty, string.Empty, false, LoggedInUserID, CompanyID, "Random");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 id = Convert.ToInt32(ds.Tables[0].Rows[0]["Permit_ID"]);
@@ -1293,7 +1303,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Fetch_Brand_Size();
+            Fetch_Brand_Size(true);
             Fetch_CocktailName();
         }
     }

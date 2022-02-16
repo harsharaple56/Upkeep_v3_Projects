@@ -93,7 +93,7 @@ namespace UpkeepV3_BusinessLayer
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR3", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR3_A", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

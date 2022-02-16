@@ -348,7 +348,7 @@
                                     <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Brand</label>
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
@@ -367,7 +367,7 @@
                                         <label class="font-weight-bold">Select Size</label>
 
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:DropDownList OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" ID="ddlSize" runat="server" CssClass="form-control"
                                                         AutoPostBack="true" ClientIDMode="Static">
@@ -392,19 +392,21 @@
                                         </asp:UpdatePanel>
                                         &nbsp;
                                         <div class="m-form__control">
+
                                             <asp:LinkButton ID="btn_AddBrand" CausesValidation="true" OnClick="btn_AddBrand_Click" ValidationGroup="Brandvalidate" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" runat="server">
                                                     <span>
                                                         <i class="fa fa-plus"></i>
                                                         <span>Add Selected Brand</span>
                                                     </span>
                                             </asp:LinkButton>
+
                                         </div>
 
                                     </div>
 
 
                                 </div>
-                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
+                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Always">
                                     <ContentTemplate>
 
                                         <table id="brandTbl" width="100%" cellpadding="2" cellspacing="2">
@@ -554,9 +556,9 @@
                                     <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Cocktail</label>
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel6" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="Updatepanel6" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
-                                                    <asp:DropDownList  AutoPostBack="true" ID="ddlCocktail" runat="server" CssClass="form-control" ClientIDMode="Static">
+                                                    <asp:DropDownList AutoPostBack="true" ID="ddlCocktail" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
                                                     <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlCocktail" Visible="true" ValidationGroup="cocktailvalidate" ForeColor="Red" ErrorMessage="Please select Cocktail"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>

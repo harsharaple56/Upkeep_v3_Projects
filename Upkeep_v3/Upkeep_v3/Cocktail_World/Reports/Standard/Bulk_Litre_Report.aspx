@@ -11,7 +11,17 @@
             border-bottom-width: 3px;
         }
     </style>
-
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
 
@@ -249,6 +259,7 @@
                         </thead>
 
                         <tbody>
+                             <%=Bind_Report()%>
                         </tbody>
                     </table>
 
