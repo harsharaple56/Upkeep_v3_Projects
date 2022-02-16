@@ -248,7 +248,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsSetting = new DataSet();
             try
             {
-                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0, 0, CompanyID, LoggedInUserID, "R");
+                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0, 0,0,0, CompanyID, LoggedInUserID, "R");
                 if (dsSetting.Tables.Count > 0)
                 {
                     if (dsSetting.Tables[0].Rows.Count > 0)
@@ -466,7 +466,7 @@ namespace Upkeep_v3.Ticketing
 
                     CustomFields_XML = strXmlCustomFields.ToString();
 
-                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, false, string.Empty, string.Empty, string.Empty, "C");
+                    dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, false, string.Empty, string.Empty, string.Empty,"","", "C");
                     //mpeTicketSaveSuccess.Show();
 
                     //Send Mails

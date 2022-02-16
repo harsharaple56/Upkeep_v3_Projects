@@ -302,7 +302,7 @@
                                 <label class="custom-file-label" for="customFile">
                                     Choose file
                                 </label>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="FileUpload_TicketImage" Visible="true" Display="Dynamic"
+                                <asp:RequiredFieldValidator ID="rfvFileupload" runat="server" ControlToValidate="FileUpload_TicketImage" Visible="true" Display="Dynamic"
                                     ValidationGroup="validateTicket" ForeColor="Red" ErrorMessage="Please upload image."></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ForeColor="Red" ID="RegularExpressionValidator4" runat="server"
                                     ControlToValidate="FileUpload_TicketImage" ValidationGroup="validateTicket"

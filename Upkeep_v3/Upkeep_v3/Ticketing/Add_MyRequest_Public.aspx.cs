@@ -27,13 +27,47 @@ namespace Upkeep_v3.Ticketing
             //CompanyID = Convert.ToInt32(Decrypt_CompanyID);
 
             CompanyID= Convert.ToInt32(Request.QueryString["cid"]);
+            if (!IsPostBack)
+            {
+                Fetch_LocationTree();
+                Fetch_CategorySubCategory(0);
+                Fetch_System_settings();
+                hdnIs_Retailer.Value = "0";
+                dvEmployeeLocation.Attributes.Add("style", "display:block");
+                dvRetailerLocation.Attributes.Add("style", "display:none");
+            }
+        }
 
-            Fetch_LocationTree();
-            Fetch_CategorySubCategory(0);
-            hdnIs_Retailer.Value = "0";
-            dvEmployeeLocation.Attributes.Add("style", "display:block");
-            dvRetailerLocation.Attributes.Add("style", "display:none");
-           
+        public void Fetch_System_settings()
+        {
+            DataSet dsSetting = new DataSet();
+            try
+            {
+                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0, 0, 0, 0, CompanyID, LoggedInUserID, "R");
+                if (dsSetting.Tables.Count > 0)
+                {
+                    if (dsSetting.Tables[0].Rows.Count > 0)
+                    {
+                        int Tkt_Is_Img_Open_QR = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Img_Open_QR_Public"]);
+                        if (Tkt_Is_Img_Open_QR == 0)
+                        {
+                            rfvFileupload.Enabled = false;
+                        }
+                       
+                        int Tkt_Is_Remark_Open_QR = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Remark_Open_QR_Public"]);
+                        if (Tkt_Is_Remark_Open_QR == 0)
+                        {
+                            rfvTicketDesc.Enabled = false;
+                        }
+
+                       
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public string DecryptString(string encrString)
@@ -344,7 +378,7 @@ namespace Upkeep_v3.Ticketing
                 #region Save Public Ticket
                 DataSet dsTicketSave = new DataSet();
                 string list_Images = String.Join(",", Lst_Images);
-                dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, UserDesc, list_Images, string.Empty, string.Empty, IsPublicTicket, UserName, UserMobile, UserEmail, "C");
+                dsTicketSave = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, UserDesc, list_Images, string.Empty, string.Empty, IsPublicTicket, UserName, UserMobile, UserEmail,"","", "C");
                 if (dsTicketSave.Tables.Count > 0)
                 {
                     if (dsTicketSave.Tables[0].Rows.Count > 0)

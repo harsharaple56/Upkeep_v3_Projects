@@ -94,6 +94,24 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btn_show_QR;
         
         /// <summary>
+        /// chk_Image_Public_QR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chk_Image_Public_QR;
+        
+        /// <summary>
+        /// chk_Remarks_Public_QR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chk_Remarks_Public_QR;
+        
+        /// <summary>
         /// chk_QR_Compulspory control.
         /// </summary>
         /// <remarks>

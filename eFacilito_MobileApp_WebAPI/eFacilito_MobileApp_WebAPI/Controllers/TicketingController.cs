@@ -762,7 +762,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                             TextMessage = "Dear " + TicketRaisedBy_Name + ",";
                                             TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
                                             TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
-                                            string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                            if (APIKey != "")
+                                            {
+                                                string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                            }
                                         }
                                     }
                                 }

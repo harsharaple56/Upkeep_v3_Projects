@@ -11113,9 +11113,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         public HttpResponseMessage Save_Support_Request([FromBody] ClsSupport_Request objReq)
         {
             ClsCommunication ObjLocComm = new ClsCommunication();
+            List<ClsSupport_Request_Response> ObjResponse = new List<ClsSupport_Request_Response>();
             DataSet DsDataSet = new DataSet();
             string StrLocConnection = null;
-            int TicketID = 0;
+            //int TicketID = 0;
             try
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
@@ -11129,14 +11130,46 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_SUPPORT_Save_Requests_API", ObjLocSqlParameter);
 
-                if (DsDataSet.Tables.Count > 0)
+                if (DsDataSet != null)
                 {
-                    if (DsDataSet.Tables[0].Rows.Count > 0)
+                    if (DsDataSet.Tables.Count > 0)
                     {
-                        TicketID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TicketID"]);
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            ObjResponse = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                            select new ClsSupport_Request_Response
+                                            {
+                                                ResponseID = Convert.ToInt32(p.Field<int>("TicketID"))
+                                            }).ToList();
+                           
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjResponse[0]);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                           
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        
                     }
                 }
-                return Request.CreateResponse(HttpStatusCode.OK, TicketID);
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                   
+                }
+                throw new Exception("Error while processing request.");
+                //if (DsDataSet.Tables.Count > 0)
+                //{
+                //    if (DsDataSet.Tables[0].Rows.Count > 0)
+                //    {
+                //        TicketID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TicketID"]);
+                //    }
+                //}
+                //return Request.CreateResponse(HttpStatusCode.OK, TicketID);
             }
             catch (Exception ex)
             {

@@ -248,6 +248,12 @@
                                                 </div>
                                             </div>
 
+                                            <input type="checkbox" id="chk_Image_Public_QR" runat="server" class="customcontrolinput" clientidmode="Static" />
+                                                    Photo Upload Compulsory while raising ticket from public QR
+
+                                            <br /><br />
+                                                    <input type="checkbox" id="chk_Remarks_Public_QR" runat="server" class="customcontrolinput" clientidmode="Static" />
+                                                    Remarks Compulsory while raising ticket from public QR
                                         </form>
 
                                         <!--end::Form-->
