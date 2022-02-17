@@ -521,11 +521,11 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void btn_Add_Purchase_Click(object sender, EventArgs e)
         {
-            if (ddlSupplier.SelectedIndex > 0 && ddlBrand.SelectedIndex > 0 && ddlSize.SelectedIndex > 0)
+            if (ddlSupplier.SelectedIndex > 0)
             {
                 Insert_Purchase_Data();
             }
-            else if (ddlSupplier.SelectedIndex == 0 && ddlBrand.SelectedIndex == 0 && ddlSize.SelectedIndex == 0)
+            else if (ddlSupplier.SelectedIndex == 0)
             {
                 //Excel
             }
