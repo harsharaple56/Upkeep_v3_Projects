@@ -566,7 +566,7 @@ namespace Upkeep_v3.Ticketing
 
         protected void btnTicketSuccessOk_Click(object sender, EventArgs e)
         {
-            Response.Redirect(Page.ResolveClientUrl("~/Ticketing/Add_MyRequest_Public.aspx"), false);
+            Response.Redirect(Page.ResolveClientUrl("~/Ticketing/Add_MyRequest_Public.aspx?cid="+ CompanyID), false);
         }
     }
 }
