@@ -13,10 +13,55 @@ namespace Upkeep_v3.Cocktail_World.Transactions
     public partial class Add_Auto_Billing : System.Web.UI.Page
     {
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
-
+        public static CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld1 = new CocktailWorld_Service.CocktailWorld_Service();
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+
+
+        [System.Web.Services.WebMethod]
+        public static void GetCount(string item)
+        {
+            DataSet BillDetails = HttpContext.Current.Session["BillDetails"] as DataSet;
+            string BrandDate = HttpContext.Current.Session["BrandDate"] as string;
+            string License = HttpContext.Current.Session["License"] as string;
+            string Company = HttpContext.Current.Session["CompanyID"] as string;
+            string User = HttpContext.Current.Session["User"] as string;
+
+            for (int i = 0; i < BillDetails.Tables[1].Rows.Count; i++)
+            {
+                DataSet dsBrandSale = new DataSet();
+                dsBrandSale = ObjCocktailWorld1.SaleMaster_Crud(0, BrandDate, BillDetails.Tables[1].Rows[i]["Bill_No"].ToString(), Convert.ToInt32(License), "Insert", Convert.ToInt32(User), Convert.ToInt32(Company), true);
+
+                for (int x = 0; x < BillDetails.Tables[2].Rows.Count; x++)
+                {
+                    if (BillDetails.Tables[1].Rows[i]["Sale_ID"].ToString() == BillDetails.Tables[2].Rows[x]["Sale_ID"].ToString())
+                    {
+                        ObjCocktailWorld1.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(BillDetails.Tables[2].Rows[x]["Brand_Name"]),
+                        Convert.ToString(BillDetails.Tables[2].Rows[x]["Size_Desc"]), Convert.ToString(BillDetails.Tables[2].Rows[x]["Cocktail_Desc"]),
+                        Convert.ToInt32(BillDetails.Tables[2].Rows[x]["Opening_ID"]),
+                        Convert.ToString(BillDetails.Tables[2].Rows[x]["Tax_Type"]), Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["Bottle_Qty"]),
+                        Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["Bottle_Rate"]), Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["SPeg_Qty"]),
+                        Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["Speg_Rate"]), Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["LPeg_Qty"]),
+                        Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["LPeg_Rate"]), Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["TaxAmount"]),
+                        Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["Amount"]), GetRandomPermitHolder1(User,Company),
+                        Convert.ToInt32(License), "Insert", Convert.ToInt32(User), Convert.ToInt32(Company));
+                    }
+                }
+            }
+        }
+
+        public static int GetRandomPermitHolder1(string User,string Company)
+        {
+            int id = 0;
+            DataSet ds = new DataSet();
+            ds = ObjCocktailWorld1.PermitMaster_CRUD(0, string.Empty, string.Empty, string.Empty, string.Empty, false, User, Convert.ToInt32(Company), "Random");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                id = Convert.ToInt32(ds.Tables[0].Rows[0]["Permit_ID"]);
+            }
+            return id;
+        }
 
         // Instantiate random number generator.  
         private readonly Random _random = new Random();
@@ -760,11 +805,11 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void btn_Add_Brand_Cocktail_Sale_Click(object sender, EventArgs e)
         {
-            if (ddlCocktail.SelectedIndex == 0)
+            if (ddlSize.SelectedIndex == 0)
             {
                 Insert_Brand_Size_Sale_Grid();
             }
-            else if (ddlBrand.SelectedIndex == 0 && (ddlSize.SelectedIndex == -1 || ddlSize.SelectedIndex == 0))
+            else if (ddlSize.SelectedIndex == -1)
             {
                 Insert_Cocktail_Sale_Grid();
             }
@@ -975,42 +1020,12 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                         if (grdBrandLinkup.Rows.Count > 0 && dtInsertSaleData.Rows.Count > 0 && dtInsertSaleDetailsData.Rows.Count > 0 && (grdBrandLinkup.Rows.Count == dtInsertSaleData.Rows.Count))
                         {
-
                             DataSet getAutoBillData = GetAutoBillingBrandCount(dtInsertSaleDetailsData, txtBillAmount.Text.Trim());
-
-
-                            var selectedOption = MessageBox.Show(getAutoBillData.Tables[0].Rows[0]["Bill_Count"] + " Bills will be created.", "Are you sure want create bill ?", MessageBoxButton.YesNo);
-
-                            if (selectedOption.ToString() == "Yes")
-                            {
-                                for (int i = 0; i < getAutoBillData.Tables[1].Rows.Count; i++)
-                                {
-                                    DataSet dsBrandSale = new DataSet();
-                                    dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(0, txtBrandDate.Text, getAutoBillData.Tables[1].Rows[i]["Bill_No"].ToString(), Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID, true);
-
-                                    for (int x = 0; x < getAutoBillData.Tables[2].Rows.Count; x++)
-                                    {
-                                        if (getAutoBillData.Tables[1].Rows[i]["Sale_ID"].ToString() == getAutoBillData.Tables[2].Rows[x]["Sale_ID"].ToString())
-                                        {
-                                            ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Brand_Name"]),
-                                            Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Size_Desc"]), Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Cocktail_Desc"]),
-                                            Convert.ToInt32(getAutoBillData.Tables[2].Rows[x]["Opening_ID"]),
-                                            Convert.ToString(getAutoBillData.Tables[2].Rows[x]["Tax_Type"]), Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Bottle_Qty"]),
-                                            Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Bottle_Rate"]), Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["SPeg_Qty"]),
-                                            Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Speg_Rate"]), Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["LPeg_Qty"]),
-                                            Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["LPeg_Rate"]), Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["TaxAmount"]),
-                                            Convert.ToDecimal(getAutoBillData.Tables[2].Rows[x]["Amount"]), GetRandomPermitHolder(),
-                                            Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
-                                            displayMessage = true;
-                                        }
-                                    }
-
-                                }
-                            }
-                            else if (selectedOption.ToString() == "No")
-                            {
-                                //
-                            }
+                            Session.Add("BillDetails", getAutoBillData);
+                            Session.Add("BrandDate", txtBrandDate.Text);
+                            Session.Add("License", ddlLicense.SelectedValue);
+                            Session.Add("User", LoggedInUserID);
+                            Page.ClientScript.RegisterHiddenField("BillDataDetails", getAutoBillData.Tables[0].Rows[0]["Bill_Count"].ToString());
                         }
 
                         if (displayMessage)
@@ -1032,7 +1047,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             }
         }
 
-        private DataSet GetAutoBillingBrandCount(DataTable dt, string splitnumber)
+        public DataSet GetAutoBillingBrandCount(DataTable dt, string splitnumber)
         {
             DataSet ds = new DataSet();
             DataTable brand = BindBrandGridView();

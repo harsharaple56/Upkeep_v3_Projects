@@ -772,7 +772,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             }
 
                             if (displayMessage)
-                                Response.Redirect("~/Cocktail_World/Transactions/Purchases.aspx");
+                                Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
                         }
                         else
                         {

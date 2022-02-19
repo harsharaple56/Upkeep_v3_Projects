@@ -800,11 +800,11 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void btn_Add_Brand_Cocktail_Sale_Click(object sender, EventArgs e)
         {
-            if (ddlCocktail.SelectedIndex == 0)
+            if (ddlSize.SelectedIndex == 0)
             {
                 Insert_Brand_Size_Sale_Grid();
             }
-            else if (ddlBrand.SelectedIndex == 0 && (ddlSize.SelectedIndex == -1 || ddlSize.SelectedIndex == 0))
+            else if (ddlSize.SelectedIndex == -1)
             {
                 Insert_Cocktail_Sale_Grid();
             }
@@ -1042,7 +1042,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         }
 
                         if (displayMessage)
-                            Response.Redirect("~/Cocktail_World/Transactions/Sales.aspx");
+                            Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
                     }
                     else
                     {

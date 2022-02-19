@@ -23,6 +23,17 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            var Redirect = $("input[name=Redirect]").val();
+            if (Redirect != undefined) {
+                swal({
+                    title: "Success..!",
+                    text: "Your sale trasaction successfully added!",
+                    type: "success"
+                }).then(function () {
+                    window.location = "Sales.aspx";
+                });
+            }
+
             toastr.options = {
                 "closeButton": true,
                 "debug": false,

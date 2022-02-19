@@ -31,12 +31,31 @@
                 confirm_value.value = "No";
             }
         }
+
+        function GetBillsCount() {
+            var dataString = {
+                'item': '',
+            };
+            var param = JSON.stringify(dataString);
+
+            $.ajax({
+                type: "POST",
+                url: "Add_Auto_Billing.aspx/GetCount",
+                data: param,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                },
+                failure: function (response) {
+                    toastr.error("Your transaction Not Added..!");
+                }
+            });
+        }
     </script>
 
 
     <script type="text/javascript">
         $(document).ready(function () {
-
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -54,6 +73,52 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             };
+
+            var BillDataDetails = $("input[name=BillDataDetails]").val();
+            if (BillDataDetails != undefined) {
+                swal({
+                    title: "Are you sure?",
+                    text: BillDataDetails + " Bills will be created..!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: "No",
+                })
+                    .then((isConfirm) => {
+                        if (isConfirm.value) {
+                            var dataString = {
+                                'item': '',
+                            };
+                            var param = JSON.stringify(dataString);
+                            $.ajax({
+                                type: "POST",
+                                url: "Add_Auto_Billing.aspx/GetCount",
+                                data: param,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    swal({
+                                        title: "Success..!",
+                                        text: "Your AutoBilling trasaction successfully added!",
+                                        type: "success"
+                                    }).then(function () {
+                                        window.location = "Auto_Billing.aspx";
+                                    });
+                                },
+                                failure: function (response) {
+                                    toastr.error("Your transaction Not Added..!");
+                                }
+                            });
+                        }
+
+                        if (isConfirm.dismiss) {
+                            swal("Cancelled", "Your data are safe :)", "error");
+                        }
+                        return false;
+                    });
+            }
+
 
             var getOpening_ID = $("input[name=Opening_ID]").val();
             var getBS_QTY = $("input[name=BS_QTY]").val();
@@ -257,7 +322,7 @@
 
                 var rowTotal = (parseFloat(!isNaN(val1) ? val1 : 0) * parseFloat(!isNaN(val2) ? val2 : 0));
 
-                var taxAmount =0;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=cocktailamount]').val(taxAmount);
                 $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal);
             });
@@ -329,7 +394,7 @@
 
 
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                        <label class="font-weight-bold">Select Sale Date</label>
+                                        <label class="font-weight-bold">Select Date</label>
 
                                         <div class="m-form__control">
                                             <div class="input-group date">
