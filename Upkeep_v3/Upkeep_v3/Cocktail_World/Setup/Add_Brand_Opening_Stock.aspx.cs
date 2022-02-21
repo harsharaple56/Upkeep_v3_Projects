@@ -199,7 +199,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             Cat_Size_ID = Convert.ToInt32(((HiddenField)rows[i].FindControl("hdnSize_ID")).Value);
                             BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
                             DataSet dt = new DataSet();
-                            dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, 0, BrandID, "", "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
+                            dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, 0, BrandID, "", "","", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
                             if (dt.Tables[0].Rows.Count == 0)
                             {
                                 Action = "I";

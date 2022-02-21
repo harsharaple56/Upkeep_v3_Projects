@@ -486,12 +486,12 @@ public class My_CocktailWorld
 
     }
 
-    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int Brand_ID, string Brand_Desc, string Cocktail_Desc, int Company_ID,string License_ID)
+    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int Brand_ID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Company_ID,string License_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
-            ds = ObjcocktailWorld_Master_BL.Fetch_Brand_Opening(Cat_Size_ID, Opening_ID, Brand_ID, Brand_Desc, Cocktail_Desc, Company_ID,License_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_Brand_Opening(Cat_Size_ID, Opening_ID, Brand_ID, Brand_Desc, Size_Desc, Cocktail_Desc, Company_ID,License_ID, StrConn);
             return ds;
         }
         catch (Exception ex)

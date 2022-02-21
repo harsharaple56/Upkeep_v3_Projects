@@ -44,14 +44,14 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["Bottle_Rate"]), Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["SPeg_Qty"]),
                         Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["Speg_Rate"]), Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["LPeg_Qty"]),
                         Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["LPeg_Rate"]), Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["TaxAmount"]),
-                        Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["Amount"]), GetRandomPermitHolder1(User,Company),
+                        Convert.ToDecimal(BillDetails.Tables[2].Rows[x]["Amount"]), GetRandomPermitHolder1(User, Company),
                         Convert.ToInt32(License), "Insert", Convert.ToInt32(User), Convert.ToInt32(Company));
                     }
                 }
             }
         }
 
-        public static int GetRandomPermitHolder1(string User,string Company)
+        public static int GetRandomPermitHolder1(string User, string Company)
         {
             int id = 0;
             DataSet ds = new DataSet();
@@ -340,7 +340,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             if (ddlCocktail.SelectedIndex > 0)
             {
                 DataSet dsGetBrandId = new DataSet();
-                dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", ddlCocktail.SelectedValue, CompanyID, string.Empty);
+                dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", "", ddlCocktail.SelectedValue, CompanyID, string.Empty);
                 if (dsGetBrandId.Tables[0].Rows.Count > 0)
                 {
                     DataSet dsGetTax = new DataSet();
@@ -875,21 +875,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 if (row.FindControl("Brand") == null && header == "Brand")
                                 {
                                     Brand_Name = cellText;
-                                    DataSet dsGetBrandId = new DataSet();
-                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, "", CompanyID, string.Empty);
-                                    if (dsGetBrandId.Tables[0].Rows.Count > 0)
-                                    {
-                                        Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
-                                        DataSet dsGetTax = new DataSet();
-                                        dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
-                                        if (dsGetTax.Tables[0].Rows.Count > 0)
-                                            Tax_Type = dsGetTax.Tables[0].Rows[0].ItemArray[1].ToString();
-                                    }
-                                    else
-                                    {
-                                        Opening_ID = 0;
-                                        Tax_Type = "";
-                                    }
                                 }
 
                                 if (row.FindControl("Size") == null && header == "Size")
@@ -950,6 +935,25 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                                 if (!string.IsNullOrEmpty(row.FindControl("txtamount").ToString()) && header == "Tax Amount")
                                     TaxAmount = Amount;
+
+                                if (!string.IsNullOrEmpty(Brand_Name) && !string.IsNullOrEmpty(Size_Desc))
+                                {
+                                    DataSet dsGetBrandId = new DataSet();
+                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, Size_Desc, "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
+                                    if (dsGetBrandId.Tables[0].Rows.Count > 0)
+                                    {
+                                        Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
+                                        DataSet dsGetTax = new DataSet();
+                                        dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
+                                        if (dsGetTax.Tables[0].Rows.Count > 0)
+                                            Tax_Type = dsGetTax.Tables[0].Rows[0].ItemArray[1].ToString();
+                                    }
+                                    else
+                                    {
+                                        Opening_ID = 0;
+                                        Tax_Type = "";
+                                    }
+                                }
                             }
 
                             //Get Calculation from Current Stock
@@ -1587,7 +1591,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 {
                                     Cocktail_Desc = cellText;
                                     DataSet dsGetBrandId = new DataSet();
-                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", Cocktail_Desc, CompanyID, string.Empty);
+                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", "", Cocktail_Desc, CompanyID, string.Empty);
                                     if (dsGetBrandId.Tables[0].Rows.Count > 0)
                                     {
                                         Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
@@ -1643,7 +1647,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                                 DataSet dsFetchBrand = new DataSet();
-                                dsFetchBrand = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", Cocktail_Desc, CompanyID, string.Empty);
+                                dsFetchBrand = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, "", "", Cocktail_Desc, CompanyID, string.Empty);
                                 if (dsFetchBrand.Tables[0].Rows.Count > 0)
                                 {
                                     for (int i = 0; i < dsFetchBrand.Tables[0].Rows.Count; i++)

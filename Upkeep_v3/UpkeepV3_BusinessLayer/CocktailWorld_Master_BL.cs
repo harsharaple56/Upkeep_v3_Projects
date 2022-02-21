@@ -636,7 +636,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Cocktail_Desc, int CompanyID,string License_ID, String StrConn) //Added CompanyId by sujata
+        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int CompanyID,string License_ID, String StrConn) //Added CompanyId by sujata
         {
             try
             {
@@ -647,6 +647,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@BrandID", BrandID);
                 cmd.Parameters.AddWithValue("@Opening_ID", Opening_ID);
                 cmd.Parameters.AddWithValue("@Brand_Desc", Brand_Desc);
+                cmd.Parameters.AddWithValue("@Size_Desc", Size_Desc);
                 cmd.Parameters.AddWithValue("@Cocktail_Desc", Cocktail_Desc);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@License_ID", License_ID);
