@@ -1179,6 +1179,40 @@ public class My_Upkeep
     }
 
 
+    public DataSet Fetch_Force_Close_Ticket_List(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            //string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_Force_Close_Ticket_List(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        //return ds;
+    }
+
+    public DataSet Save_Force_Close_Ticket(int TicketID, string Force_close_remarks, string LoggedInUserID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            //string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Save_Force_Close_Ticket(TicketID, Force_close_remarks, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        //return ds;
+    }
+
+
+
     public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID)
     {
         try

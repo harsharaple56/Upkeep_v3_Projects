@@ -1222,6 +1222,35 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Fetch_Force_Close_Ticket_List(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Force_Close_Ticket_List(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Save_Force_Close_Ticket(int TicketID, string Force_close_remarks,string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Save_Force_Close_Ticket(TicketID, Force_close_remarks, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+
 
     [WebMethod]
     public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID)
