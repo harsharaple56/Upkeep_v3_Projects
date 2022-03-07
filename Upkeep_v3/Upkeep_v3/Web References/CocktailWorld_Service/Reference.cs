@@ -112,8 +112,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Save_CategorySizeLinkupOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Save_BrandOpeningOperationCompleted;
-        
         private System.Threading.SendOrPostCallback License_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback SupplierMaster_CRUDOperationCompleted;
@@ -280,9 +278,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Save_CategorySizeLinkupCompletedEventHandler Save_CategorySizeLinkupCompleted;
-        
-        /// <remarks/>
-        public event Save_BrandOpeningCompletedEventHandler Save_BrandOpeningCompleted;
         
         /// <remarks/>
         public event License_CRUDCompletedEventHandler License_CRUDCompleted;
@@ -1817,7 +1812,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FetchBrandSizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID) {
+        public System.Data.DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, string Action, System.DateTime date) {
             object[] results = this.Invoke("FetchBrandSizeLinkup", new object[] {
                         Category_ID,
                         Brand_ID,
@@ -1825,17 +1820,19 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         Brand_Desc,
                         Size_Desc,
                         Company_ID,
-                        License_ID});
+                        License_ID,
+                        Action,
+                        date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID) {
-            this.FetchBrandSizeLinkupAsync(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, License_ID, null);
+        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, string Action, System.DateTime date) {
+            this.FetchBrandSizeLinkupAsync(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, License_ID, Action, date, null);
         }
         
         /// <remarks/>
-        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, object userState) {
+        public void FetchBrandSizeLinkupAsync(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, string Action, System.DateTime date, object userState) {
             if ((this.FetchBrandSizeLinkupOperationCompleted == null)) {
                 this.FetchBrandSizeLinkupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetchBrandSizeLinkupOperationCompleted);
             }
@@ -1846,7 +1843,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         Brand_Desc,
                         Size_Desc,
                         Company_ID,
-                        License_ID}, this.FetchBrandSizeLinkupOperationCompleted, userState);
+                        License_ID,
+                        Action,
+                        date}, this.FetchBrandSizeLinkupOperationCompleted, userState);
         }
         
         private void OnFetchBrandSizeLinkupOperationCompleted(object arg) {
@@ -2086,45 +2085,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Save_CategorySizeLinkupCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Save_CategorySizeLinkupCompleted(this, new Save_CategorySizeLinkupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Save_BrandOpening", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation) {
-            object[] results = this.Invoke("Save_BrandOpening", new object[] {
-                        Opening_ID,
-                        CategoryDetails,
-                        BrandID,
-                        CompanyID,
-                        LoggedInUserID,
-                        Operation});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Save_BrandOpeningAsync(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation) {
-            this.Save_BrandOpeningAsync(Opening_ID, CategoryDetails, BrandID, CompanyID, LoggedInUserID, Operation, null);
-        }
-        
-        /// <remarks/>
-        public void Save_BrandOpeningAsync(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation, object userState) {
-            if ((this.Save_BrandOpeningOperationCompleted == null)) {
-                this.Save_BrandOpeningOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSave_BrandOpeningOperationCompleted);
-            }
-            this.InvokeAsync("Save_BrandOpening", new object[] {
-                        Opening_ID,
-                        CategoryDetails,
-                        BrandID,
-                        CompanyID,
-                        LoggedInUserID,
-                        Operation}, this.Save_BrandOpeningOperationCompleted, userState);
-        }
-        
-        private void OnSave_BrandOpeningOperationCompleted(object arg) {
-            if ((this.Save_BrandOpeningCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Save_BrandOpeningCompleted(this, new Save_BrandOpeningCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3315,32 +3275,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Save_CategorySizeLinkupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void Save_BrandOpeningCompletedEventHandler(object sender, Save_BrandOpeningCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Save_BrandOpeningCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Save_BrandOpeningCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

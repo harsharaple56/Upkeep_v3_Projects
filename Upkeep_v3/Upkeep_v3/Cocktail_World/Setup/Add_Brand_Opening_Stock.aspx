@@ -55,6 +55,17 @@
                     'info'
                 )
             }
+
+            var Redirect = $("input[name=Redirect]").val();
+            if (Redirect != undefined) {
+                swal({
+                    title: "Success..!",
+                    text: "Your trasaction successfully saved!",
+                    type: "success"
+                }).then(function () {
+                    window.location = "Brand_Opening_Stock.aspx";
+                });
+            }
         });
     </script>
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -176,7 +187,7 @@
                                                                     </asp:TemplateField>
                                                                     <asp:BoundField DataField="CategorySizeLinkID" HeaderText="categorysizelinkid" SortExpression="CategorySizeLinkID"
                                                                         Visible="false" />
-                                                                    <asp:BoundField DataField="SizeDesc" HeaderText="Size" SortExpression="SizeDesc" />
+                                                                    <asp:BoundField DataField="Alias" HeaderText="Alias" SortExpression="Alias" />
                                                                     <asp:TemplateField HeaderText="Bottle Qty" ItemStyle-HorizontalAlign="Center">
                                                                         <ItemTemplate>
                                                                             <asp:HiddenField ID="hdnSize_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Cat_Size_ID"))%>' />

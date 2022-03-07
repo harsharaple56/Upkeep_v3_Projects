@@ -19,6 +19,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtBrandDate.Text = DateTime.Now.ToString("dd-MMMM-yyyy");
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
@@ -103,7 +104,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                                 DataSet dsGetStockDetails = new DataSet();
-                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID, 0);
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID, 0,string.Empty, DateTime.Now);
                                 if (dsGetStockDetails.Tables[0].Rows.Count > 0)
                                 {
                                     string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
@@ -199,7 +200,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             else
                 Size_ID = 0;
             if (Size_ID > 0)
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, 0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue),"Sale",Convert.ToDateTime(txtBrandDate.Text));
             else
                 ds = null;
             return ds;
@@ -225,7 +226,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue),string.Empty, DateTime.Now);
 
                 if (BrandID == 0)
                 {
@@ -277,9 +278,8 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             }
             else if (ds.Tables[0].Rows.Count > 0)
             {
-                string getBottle = ds.Tables[0].Rows[0].ItemArray[0].ToString();
-                string getsPeg = ds.Tables[0].Rows[0].ItemArray[1].ToString();
-                string displayStock = "Available Stock :- Bottle :" + getBottle + " & Speg :" + getsPeg;
+                string stock = ds.Tables[0].Rows[0].ItemArray[1].ToString();
+                string displayStock = "Available Stock :- "+ stock;
                 lbl_stock.Text = displayStock;
             }
         }
@@ -445,11 +445,8 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             ds = GetStockDetails();
                             if (ds.Tables[0].Rows.Count > 0)
                             {
-                                string getBottle = ds.Tables[0].Rows[0].ItemArray[0].ToString();
-                                string getsPeg = ds.Tables[0].Rows[0].ItemArray[1].ToString();
-                                string getOpningID = ds.Tables[0].Rows[0].ItemArray[2].ToString();
-                                string displayStock = "Bottle :" + getBottle + " , Speg :" + getsPeg;
-                                drCurrentRow["Stock"] = displayStock;
+                                string stock = ds.Tables[0].Rows[0].ItemArray[1].ToString();
+                                drCurrentRow["Stock"] = stock;
                             }
                             else
                             {
@@ -964,8 +961,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             }
                             else
                             {
-
-
                                 //Calculation Of Opening stock and Closing stock
                                 decimal getCurrentBottle = 0;
                                 decimal getCurrentsPeg = 0;
@@ -974,11 +969,12 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 decimal getClosingSpeg = 0;
 
                                 DataSet dsFetchBrand = new DataSet();
-                                dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID, 0);
+                                dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID, Convert.ToInt32(ddlLicense.SelectedValue), "Sale", Convert.ToDateTime(txtBrandDate.Text));
+
                                 if (dsFetchBrand.Tables[0].Rows.Count > 0)
                                 {
-                                    getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[0]);
-                                    getCurrentsPeg = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[1]);
+                                    getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[2]);
+                                    getCurrentsPeg = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[3]);
 
                                     getClosingBottle = getCurrentBottle - Bottle_Qty;
                                     getClosingSpeg = getCurrentsPeg - SPeg_Qty;
