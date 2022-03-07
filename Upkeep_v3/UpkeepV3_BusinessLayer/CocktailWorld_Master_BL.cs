@@ -664,7 +664,8 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, string StrConn)
+        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID,string Action
+            ,DateTime date, string StrConn)
         {
             try
             {
@@ -681,6 +682,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Size_Desc", Size_Desc);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@DateTime", date);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -1001,35 +1004,6 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-
-        public DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation, string StrConn)
-        {
-            try
-            {
-                string strOutput = string.Empty;
-
-                SqlConnection con = new SqlConnection(StrConn);
-
-                SqlCommand cmd = new SqlCommand("Spr_Save_Brand_Opening", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Opening_ID", Opening_ID);
-                cmd.Parameters.AddWithValue("@CategoryDetails", CategoryDetails);
-                cmd.Parameters.AddWithValue("@Brand_ID", BrandID);
-                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
-                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                cmd.Parameters.AddWithValue("@Operation", Operation);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
 
         public DataSet License_CRUD(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {

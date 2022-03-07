@@ -887,6 +887,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="Size_Desc" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1035,32 +1037,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Save_CategorySizeLinkupResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Save_BrandOpening">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Opening_ID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="CategoryDetails" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Operation" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Save_BrandOpeningResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Save_BrandOpeningResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1393,12 +1369,6 @@
   <wsdl:message name="Save_CategorySizeLinkupSoapOut">
     <wsdl:part name="parameters" element="tns:Save_CategorySizeLinkupResponse" />
   </wsdl:message>
-  <wsdl:message name="Save_BrandOpeningSoapIn">
-    <wsdl:part name="parameters" element="tns:Save_BrandOpening" />
-  </wsdl:message>
-  <wsdl:message name="Save_BrandOpeningSoapOut">
-    <wsdl:part name="parameters" element="tns:Save_BrandOpeningResponse" />
-  </wsdl:message>
   <wsdl:message name="License_CRUDSoapIn">
     <wsdl:part name="parameters" element="tns:License_CRUD" />
   </wsdl:message>
@@ -1581,10 +1551,6 @@
     <wsdl:operation name="Save_CategorySizeLinkup">
       <wsdl:input message="tns:Save_CategorySizeLinkupSoapIn" />
       <wsdl:output message="tns:Save_CategorySizeLinkupSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Save_BrandOpening">
-      <wsdl:input message="tns:Save_BrandOpeningSoapIn" />
-      <wsdl:output message="tns:Save_BrandOpeningSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="License_CRUD">
       <wsdl:input message="tns:License_CRUDSoapIn" />
@@ -1963,15 +1929,6 @@
     </wsdl:operation>
     <wsdl:operation name="Save_CategorySizeLinkup">
       <soap:operation soapAction="http://tempuri.org/Save_CategorySizeLinkup" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Save_BrandOpening">
-      <soap:operation soapAction="http://tempuri.org/Save_BrandOpening" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2371,15 +2328,6 @@
     </wsdl:operation>
     <wsdl:operation name="Save_CategorySizeLinkup">
       <soap12:operation soapAction="http://tempuri.org/Save_CategorySizeLinkup" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Save_BrandOpening">
-      <soap12:operation soapAction="http://tempuri.org/Save_BrandOpening" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
