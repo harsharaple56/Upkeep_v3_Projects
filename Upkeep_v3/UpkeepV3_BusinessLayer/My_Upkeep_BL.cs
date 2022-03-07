@@ -1656,6 +1656,52 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Fetch_Force_Close_Ticket_List(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_Force_Close_Ticket_List", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TicketStatus", TicketStatus);
+                cmd.Parameters.AddWithValue("@ActionStatus", ActionStatus);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Save_Force_Close_Ticket(int TicketID, string Force_close_remarks, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Ticket_Save_Force_Close", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TicketID", TicketID);
+                cmd.Parameters.AddWithValue("@Force_Closed_Remarks", Force_close_remarks);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
 
         public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID, string StrConn)
         {
