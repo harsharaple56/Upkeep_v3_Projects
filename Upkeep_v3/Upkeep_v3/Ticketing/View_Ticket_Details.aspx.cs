@@ -78,6 +78,20 @@ namespace Upkeep_v3.Ticketing
                         BindWorkflow(CategoryID, SubCategoryID);
                         lblDowntime.Text = Convert.ToString(Session["Downtime"]);
 
+                        //force close
+                        int Is_Force_Close = 0;
+                        Is_Force_Close = Convert.ToInt32(dsTicket.Tables[0].Rows[0]["Is_Force_Close"]);
+                        if (Is_Force_Close > 0)
+                        {
+                            lbl_force_close_by.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Close_By_user"]);
+                            lbl_force_close_date.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Closed_Date"]);
+                            lbl_force_close_remarks.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Closed_Remarks"]);
+                        }
+                        else
+                        {
+                            dv_force_close.Attributes.Add("style", "display:none;");
+                        }
+
                     }
 
                     if (dsTicket.Tables.Count > 1)

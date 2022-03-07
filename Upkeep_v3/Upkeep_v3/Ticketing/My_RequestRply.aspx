@@ -460,6 +460,34 @@
                                             </div>
                                         </div>
 
+
+                                        <div id="dv_force_close" runat="server">
+                                            <div class="form-group row" style="background-color: #00c5dc;">
+                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Force Close Details</label>
+                                            </div>
+                                            <div class=" row" style="padding-left: 2%;">
+                                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Force Close By :</label>
+                                                <div class="col-xl-3 col-lg-3 col-form-label">
+                                                    <asp:Label ID="lbl_force_close_by" runat="server" Text="" class="form-control-label"></asp:Label>
+                                                </div>
+
+                                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Force Close Date :</label>
+                                                <div class="col-xl-3 col-lg-3 col-form-label">
+                                                    <asp:Label ID="lbl_force_close_date" runat="server" Text="" class="form-control-label"></asp:Label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="padding-left: 2%;">
+                                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Force Close Remarks :</label>
+                                                <div class="col-xl-9 col-lg-9 col-form-label">
+                                                    <asp:Label ID="lbl_force_close_remarks" runat="server" Text="" class="form-control-label"></asp:Label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <br />
+
                                         <div class="form-group m-form__group row" id="dvAccept" runat="server">
                                             <div class="col-xl-3 col-lg-3"></div>
                                             <div class="btn-group col-xl-3 col-lg-3">

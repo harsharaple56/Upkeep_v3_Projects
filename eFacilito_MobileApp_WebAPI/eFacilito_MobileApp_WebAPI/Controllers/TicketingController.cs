@@ -964,7 +964,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                             DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
 
-                            return Request.CreateResponse(HttpStatusCode.OK);
+                            return Request.CreateResponse(HttpStatusCode.OK,"success");
 
                         }
                     }

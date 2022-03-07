@@ -391,6 +391,42 @@ namespace Upkeep_v3.Ticketing {
         protected global::AjaxControlToolkit.ModalPopupExtender mpeTicketSaveSuccess;
         
         /// <summary>
+        /// dv_force_close control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_force_close;
+        
+        /// <summary>
+        /// lbl_force_close_by control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_force_close_by;
+        
+        /// <summary>
+        /// lbl_force_close_date control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_force_close_date;
+        
+        /// <summary>
+        /// lbl_force_close_remarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_force_close_remarks;
+        
+        /// <summary>
         /// dvAccept control.
         /// </summary>
         /// <remarks>
