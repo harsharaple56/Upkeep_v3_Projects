@@ -8779,6 +8779,74 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
 
+        [Route("api/UpKeep/Fetch_CheckList_Scheduled_Locations")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CheckList_Scheduled_Locations(int CompanyID, int DeptID, int Chk_Config_ID) 
+        {
+            List<clsChecklist_Config_Location> Checklist_Locations = new List<clsChecklist_Config_Location>();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@Config_ID", Chk_Config_ID);
+                ObjLocSqlParameter[2] = new SqlParameter("@Dept_ID", DeptID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Checklist_Locations_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Checklist_Locations = (from x in DsDataSet.Tables[0].AsEnumerable()
+                                                select new clsChecklist_Config_Location
+                                                {
+                                                    Loc_ID = Convert.ToInt32(x.Field<Int32>("Loc_ID")),
+                                                    Loc_Desc = Convert.ToString(Convert.ToString(x.Field<string>("Loc_Desc")).Replace("\t", "")),
+
+                                                }).ToList();
+
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Checklist_Locations);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
 
         //[Route("api/UpKeep/Fetch_CheckList_Config_List")]
         //[HttpGet]
