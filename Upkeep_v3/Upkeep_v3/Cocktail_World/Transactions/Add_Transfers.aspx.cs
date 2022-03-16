@@ -17,6 +17,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtTransferDate.Text = DateTime.Now.ToString("dd-MMMM-yyyy");
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
@@ -110,7 +111,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                                                  (Convert.ToDecimal(dsTransferDetails.Tables[0].Rows[i]["sPegQty"]) *
                                                                  Convert.ToDecimal(dsTransferDetails.Tables[0].Rows[i]["sPegRate"]));
                                 DataSet dsGetStockDetails = new DataSet();
-                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsTransferDetails.Tables[0].Rows[i]["Brand"].ToString(), dsTransferDetails.Tables[0].Rows[i]["Size"].ToString(), CompanyID,0);
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsTransferDetails.Tables[0].Rows[i]["Brand"].ToString(), dsTransferDetails.Tables[0].Rows[i]["Size"].ToString(), CompanyID, 0,string.Empty, DateTime.Now);
                                 if (dsGetStockDetails.Tables[0].Rows.Count > 0)
                                 {
                                     string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
@@ -194,7 +195,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
         {
             Fetch_TransferLicense();
-            Fetch_Brand_Size();
+            Fetch_Brand_Size(true);
         }
 
         private void Fetch_TransferLicense()
@@ -222,18 +223,24 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             else
                 Size_ID = 0;
             if (Size_ID > 0)
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, 0,"Sale", DateTime.Now);
             else
                 ds = null;
             return ds;
         }
 
-        private void Fetch_Brand_Size()
+        private void Fetch_Brand_Size(bool chk)
         {
             DataSet ds = new DataSet();
             int BrandID, Size_ID = 0;
             Session.Remove("hdnTax");
             Session["hdnTax"] = null;
+
+            if (chk)
+            {
+                ddlBrand.SelectedIndex = -1;
+                ddlSize.SelectedIndex = -1;
+            }
 
             if (!string.IsNullOrEmpty(ddlBrand.SelectedValue))
                 BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
@@ -242,7 +249,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue),string.Empty, DateTime.Now);
 
                 if (BrandID == 0)
                 {
@@ -281,7 +288,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Fetch_Brand_Size();
+            Fetch_Brand_Size(false);
         }
 
         private void SetTransferInitialRow()
@@ -410,6 +417,9 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                 //Set Previous Data on Postbacks
                 SetTransferPreviousRow();
+                ddlBrand.ClearSelection();
+                ddlSize.ClearSelection();
+                lbl_stock.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -491,7 +501,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             int index = Convert.ToInt32(e.RowIndex);
             DataTable dt = ViewState["Transfer"] as DataTable;
 
-           
+
 
             dt.Rows[index].Delete();
             dt.AcceptChanges();
@@ -517,7 +527,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         public bool Check_Transfer_DuplicateData()
         {
             DataSet dsGetTransfer = new DataSet();
-            
+
             if (dsGetTransfer.Tables[0].Rows.Count > 0)
             {
                 return true;
@@ -592,21 +602,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     if (row.FindControl("Brand") == null && header == "Brand")
                                     {
                                         Brand_Name = cellText;
-                                        DataSet dsGetBrandId = new DataSet();
-                                        dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, "", CompanyID, string.Empty);
-                                        if (dsGetBrandId.Tables[0].Rows.Count > 0)
-                                        {
-                                            Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
-                                            DataSet dsGetTax = new DataSet();
-                                            dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
-                                            if (dsGetTax.Tables[0].Rows.Count > 0)
-                                                Tax_Type = dsGetTax.Tables[0].Rows[0].ItemArray[1].ToString();
-                                        }
-                                        else
-                                        {
-                                            Opening_ID = 0;
-                                            Tax_Type = "";
-                                        }
                                     }
 
                                     if (row.FindControl("Size") == null && header == "Size")
@@ -672,6 +667,25 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                                     if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
                                         TotalAmount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty);
+
+                                    if (!string.IsNullOrEmpty(Brand_Name) && !string.IsNullOrEmpty(Size_Desc))
+                                    {
+                                        DataSet dsGetBrandId = new DataSet();
+                                        dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, Size_Desc, "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
+                                        if (dsGetBrandId.Tables[0].Rows.Count > 0)
+                                        {
+                                            Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
+                                            DataSet dsGetTax = new DataSet();
+                                            dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
+                                            if (dsGetTax.Tables[0].Rows.Count > 0)
+                                                Tax_Type = dsGetTax.Tables[0].Rows[0].ItemArray[1].ToString();
+                                        }
+                                        else
+                                        {
+                                            Opening_ID = 0;
+                                            Tax_Type = "";
+                                        }
+                                    }
 
                                 }
 
@@ -795,21 +809,6 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             if (row.FindControl("Brand") == null && header == "Brand")
                             {
                                 Brand_Name = cellText;
-                                DataSet dsGetBrandId = new DataSet();
-                                dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, "", CompanyID, string.Empty);
-                                if (dsGetBrandId.Tables[0].Rows.Count > 0)
-                                {
-                                    Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
-                                    DataSet dsGetTax = new DataSet();
-                                    dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
-                                    if (dsGetTax.Tables[0].Rows.Count > 0)
-                                        Tax_Type = dsGetTax.Tables[0].Rows[0].ItemArray[1].ToString();
-                                }
-                                else
-                                {
-                                    Opening_ID = 0;
-                                    Tax_Type = "";
-                                }
                             }
 
                             if (row.FindControl("Size") == null && header == "Size")
@@ -876,6 +875,25 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
                                 TotalAmount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty);
 
+                            if (!string.IsNullOrEmpty(Brand_Name) && !string.IsNullOrEmpty(Size_Desc))
+                            {
+                                DataSet dsGetBrandId = new DataSet();
+                                dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, Size_Desc, "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
+                                if (dsGetBrandId.Tables[0].Rows.Count > 0)
+                                {
+                                    Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
+                                    DataSet dsGetTax = new DataSet();
+                                    dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
+                                    if (dsGetTax.Tables[0].Rows.Count > 0)
+                                        Tax_Type = dsGetTax.Tables[0].Rows[0].ItemArray[1].ToString();
+                                }
+                                else
+                                {
+                                    Opening_ID = 0;
+                                    Tax_Type = "";
+                                }
+                            }
+
                         }
 
                         //Get Calculation from Current Stock
@@ -894,7 +912,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             decimal getClosingSpeg = 0;
 
                             DataSet dsFetchBrand = new DataSet();
-                            dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID,0);
+                            dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID, 0,string.Empty, DateTime.Now);
                             if (dsFetchBrand.Tables[0].Rows.Count > 0)
                             {
                                 getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[0]);
@@ -968,7 +986,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     }
 
                     if (displayMessage)
-                        Response.Redirect("~/Cocktail_World/Transactions/Transfers.aspx");
+                        Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
                 }
             }
             catch (Exception ex)

@@ -30,6 +30,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     [System.Web.Services.WebServiceBindingAttribute(Name="Upkeep_V3_ServicesSoap", Namespace="http://tempuri.org/")]
     public partial class Upkeep_V3_Services : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback Bind_CSMConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Delete_CSMConfigurationOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Insert_CSMRequestOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_CSMRequestListOperationCompleted;
@@ -179,6 +183,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block6OperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Analyze_Tkt_Block7OperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Get_CustomerDetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Get_EventQuestionsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Event_QuestionIUOperationCompleted;
         
@@ -346,10 +354,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_CSMConfigurationOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Bind_CSMConfigurationOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Delete_CSMConfigurationOperationCompleted;
-        
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetLastVMSRequestIDOperationCompleted;
@@ -492,6 +496,10 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         private System.Threading.SendOrPostCallback Fetch_Custom_CTT_ReportOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Fetch_Force_Close_Ticket_ListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Save_Force_Close_TicketOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Fetch_Highest_Downtime_TicketOperationCompleted;
         
         private System.Threading.SendOrPostCallback Bind_Ticket_DetailsOperationCompleted;
@@ -513,10 +521,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private System.Threading.SendOrPostCallback bindEventDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback Insert_FeedbackFormOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Get_CustomerDetailsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback Get_EventQuestionsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -555,6 +559,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event Bind_CSMConfigurationCompletedEventHandler Bind_CSMConfigurationCompleted;
+        
+        /// <remarks/>
+        public event Delete_CSMConfigurationCompletedEventHandler Delete_CSMConfigurationCompleted;
         
         /// <remarks/>
         public event Insert_CSMRequestCompletedEventHandler Insert_CSMRequestCompleted;
@@ -780,6 +790,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         public event Fetch_Analyze_Tkt_Block7CompletedEventHandler Fetch_Analyze_Tkt_Block7Completed;
+        
+        /// <remarks/>
+        public event Get_CustomerDetailsCompletedEventHandler Get_CustomerDetailsCompleted;
+        
+        /// <remarks/>
+        public event Get_EventQuestionsCompletedEventHandler Get_EventQuestionsCompleted;
         
         /// <remarks/>
         public event Event_QuestionIUCompletedEventHandler Event_QuestionIUCompleted;
@@ -1031,12 +1047,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_CSMConfigurationCompletedEventHandler Fetch_CSMConfigurationCompleted;
         
         /// <remarks/>
-        public event Bind_CSMConfigurationCompletedEventHandler Bind_CSMConfigurationCompleted;
-        
-        /// <remarks/>
-        public event Delete_CSMConfigurationCompletedEventHandler Delete_CSMConfigurationCompleted;
-        
-        /// <remarks/>
         public event HelloWorldCompletedEventHandler HelloWorldCompleted;
         
         /// <remarks/>
@@ -1250,6 +1260,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Fetch_Custom_CTT_ReportCompletedEventHandler Fetch_Custom_CTT_ReportCompleted;
         
         /// <remarks/>
+        public event Fetch_Force_Close_Ticket_ListCompletedEventHandler Fetch_Force_Close_Ticket_ListCompleted;
+        
+        /// <remarks/>
+        public event Save_Force_Close_TicketCompletedEventHandler Save_Force_Close_TicketCompleted;
+        
+        /// <remarks/>
         public event Fetch_Highest_Downtime_TicketCompletedEventHandler Fetch_Highest_Downtime_TicketCompleted;
         
         /// <remarks/>
@@ -1283,10 +1299,64 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         public event Insert_FeedbackFormCompletedEventHandler Insert_FeedbackFormCompleted;
         
         /// <remarks/>
-        public event Get_CustomerDetailsCompletedEventHandler Get_CustomerDetailsCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Bind_CSMConfiguration(int ConfigID) {
+            object[] results = this.Invoke("Bind_CSMConfiguration", new object[] {
+                        ConfigID});
+            return ((System.Data.DataSet)(results[0]));
+        }
         
         /// <remarks/>
-        public event Get_EventQuestionsCompletedEventHandler Get_EventQuestionsCompleted;
+        public void Bind_CSMConfigurationAsync(int ConfigID) {
+            this.Bind_CSMConfigurationAsync(ConfigID, null);
+        }
+        
+        /// <remarks/>
+        public void Bind_CSMConfigurationAsync(int ConfigID, object userState) {
+            if ((this.Bind_CSMConfigurationOperationCompleted == null)) {
+                this.Bind_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_CSMConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Bind_CSMConfiguration", new object[] {
+                        ConfigID}, this.Bind_CSMConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnBind_CSMConfigurationOperationCompleted(object arg) {
+            if ((this.Bind_CSMConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Bind_CSMConfigurationCompleted(this, new Bind_CSMConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Delete_CSMConfiguration(int ConfigID, string LoggedInUserID) {
+            object[] results = this.Invoke("Delete_CSMConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Delete_CSMConfigurationAsync(int ConfigID, string LoggedInUserID) {
+            this.Delete_CSMConfigurationAsync(ConfigID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Delete_CSMConfigurationAsync(int ConfigID, string LoggedInUserID, object userState) {
+            if ((this.Delete_CSMConfigurationOperationCompleted == null)) {
+                this.Delete_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_CSMConfigurationOperationCompleted);
+            }
+            this.InvokeAsync("Delete_CSMConfiguration", new object[] {
+                        ConfigID,
+                        LoggedInUserID}, this.Delete_CSMConfigurationOperationCompleted, userState);
+        }
+        
+        private void OnDelete_CSMConfigurationOperationCompleted(object arg) {
+            if ((this.Delete_CSMConfigurationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Delete_CSMConfigurationCompleted(this, new Delete_CSMConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_CSMRequest", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -3113,7 +3183,7 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CRU_System_Setting", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action) {
+        public System.Data.DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int intphotoRaisingCheck_QR, int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("CRU_System_Setting", new object[] {
                         Setting_ID,
                         Tkt_Is_Img_Open,
@@ -3122,6 +3192,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Tkt_Is_Remark_Close,
                         Tkt_Is_Expiry,
                         Chk_Is_QR_Compulsory,
+                        intphotoRaisingCheck_QR,
+                        intRemarksCompRaising_QR,
                         CompanyID,
                         LoggedInUserID,
                         Action});
@@ -3129,12 +3201,12 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action) {
-            this.CRU_System_SettingAsync(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, CompanyID, LoggedInUserID, Action, null);
+        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int intphotoRaisingCheck_QR, int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action) {
+            this.CRU_System_SettingAsync(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, intphotoRaisingCheck_QR, intRemarksCompRaising_QR, CompanyID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action, object userState) {
+        public void CRU_System_SettingAsync(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int intphotoRaisingCheck_QR, int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action, object userState) {
             if ((this.CRU_System_SettingOperationCompleted == null)) {
                 this.CRU_System_SettingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCRU_System_SettingOperationCompleted);
             }
@@ -3146,6 +3218,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         Tkt_Is_Remark_Close,
                         Tkt_Is_Expiry,
                         Chk_Is_QR_Compulsory,
+                        intphotoRaisingCheck_QR,
+                        intRemarksCompRaising_QR,
                         CompanyID,
                         LoggedInUserID,
                         Action}, this.CRU_System_SettingOperationCompleted, userState);
@@ -3880,6 +3954,64 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Analyze_Tkt_Block7Completed != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Analyze_Tkt_Block7Completed(this, new Fetch_Analyze_Tkt_Block7CompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Get_CustomerDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Get_CustomerDetails(int Company_ID) {
+            object[] results = this.Invoke("Get_CustomerDetails", new object[] {
+                        Company_ID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Get_CustomerDetailsAsync(int Company_ID) {
+            this.Get_CustomerDetailsAsync(Company_ID, null);
+        }
+        
+        /// <remarks/>
+        public void Get_CustomerDetailsAsync(int Company_ID, object userState) {
+            if ((this.Get_CustomerDetailsOperationCompleted == null)) {
+                this.Get_CustomerDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGet_CustomerDetailsOperationCompleted);
+            }
+            this.InvokeAsync("Get_CustomerDetails", new object[] {
+                        Company_ID}, this.Get_CustomerDetailsOperationCompleted, userState);
+        }
+        
+        private void OnGet_CustomerDetailsOperationCompleted(object arg) {
+            if ((this.Get_CustomerDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Get_CustomerDetailsCompleted(this, new Get_CustomerDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Get_EventQuestions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Get_EventQuestions(int EventID) {
+            object[] results = this.Invoke("Get_EventQuestions", new object[] {
+                        EventID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Get_EventQuestionsAsync(int EventID) {
+            this.Get_EventQuestionsAsync(EventID, null);
+        }
+        
+        /// <remarks/>
+        public void Get_EventQuestionsAsync(int EventID, object userState) {
+            if ((this.Get_EventQuestionsOperationCompleted == null)) {
+                this.Get_EventQuestionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGet_EventQuestionsOperationCompleted);
+            }
+            this.InvokeAsync("Get_EventQuestions", new object[] {
+                        EventID}, this.Get_EventQuestionsOperationCompleted, userState);
+        }
+        
+        private void OnGet_EventQuestionsOperationCompleted(object arg) {
+            if ((this.Get_EventQuestionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Get_EventQuestionsCompleted(this, new Get_EventQuestionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -7188,66 +7320,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Bind_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Bind_CSMConfiguration(int ConfigID) {
-            object[] results = this.Invoke("Bind_CSMConfiguration", new object[] {
-                        ConfigID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Bind_CSMConfigurationAsync(int ConfigID) {
-            this.Bind_CSMConfigurationAsync(ConfigID, null);
-        }
-        
-        /// <remarks/>
-        public void Bind_CSMConfigurationAsync(int ConfigID, object userState) {
-            if ((this.Bind_CSMConfigurationOperationCompleted == null)) {
-                this.Bind_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBind_CSMConfigurationOperationCompleted);
-            }
-            this.InvokeAsync("Bind_CSMConfiguration", new object[] {
-                        ConfigID}, this.Bind_CSMConfigurationOperationCompleted, userState);
-        }
-        
-        private void OnBind_CSMConfigurationOperationCompleted(object arg) {
-            if ((this.Bind_CSMConfigurationCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Bind_CSMConfigurationCompleted(this, new Bind_CSMConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Delete_CSMConfiguration", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Delete_CSMConfiguration(int ConfigID, string LoggedInUserID) {
-            object[] results = this.Invoke("Delete_CSMConfiguration", new object[] {
-                        ConfigID,
-                        LoggedInUserID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Delete_CSMConfigurationAsync(int ConfigID, string LoggedInUserID) {
-            this.Delete_CSMConfigurationAsync(ConfigID, LoggedInUserID, null);
-        }
-        
-        /// <remarks/>
-        public void Delete_CSMConfigurationAsync(int ConfigID, string LoggedInUserID, object userState) {
-            if ((this.Delete_CSMConfigurationOperationCompleted == null)) {
-                this.Delete_CSMConfigurationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDelete_CSMConfigurationOperationCompleted);
-            }
-            this.InvokeAsync("Delete_CSMConfiguration", new object[] {
-                        ConfigID,
-                        LoggedInUserID}, this.Delete_CSMConfigurationOperationCompleted, userState);
-        }
-        
-        private void OnDelete_CSMConfigurationOperationCompleted(object arg) {
-            if ((this.Delete_CSMConfigurationCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Delete_CSMConfigurationCompleted(this, new Delete_CSMConfigurationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string HelloWorld() {
             object[] results = this.Invoke("HelloWorld", new object[0]);
@@ -9656,7 +9728,23 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Insert_Ticket_Details", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction) {
+        public System.Data.DataSet Insert_Ticket_Details(
+                    string TicketCode, 
+                    int CompanyID, 
+                    int LocationID, 
+                    int CategoryID, 
+                    int SubCategoryID, 
+                    string TicketMessage, 
+                    string list_Images, 
+                    string CustomFields_XML, 
+                    string LoggedInUserID, 
+                    bool IsPublicTicket, 
+                    string UserName, 
+                    string UserMobile, 
+                    string UserEmail, 
+                    string From_Date, 
+                    string To_Date, 
+                    string strAction) {
             object[] results = this.Invoke("Insert_Ticket_Details", new object[] {
                         TicketCode,
                         CompanyID,
@@ -9671,17 +9759,52 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         UserName,
                         UserMobile,
                         UserEmail,
+                        From_Date,
+                        To_Date,
                         strAction});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction) {
-            this.Insert_Ticket_DetailsAsync(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, IsPublicTicket, UserName, UserMobile, UserEmail, strAction, null);
+        public void Insert_Ticket_DetailsAsync(
+                    string TicketCode, 
+                    int CompanyID, 
+                    int LocationID, 
+                    int CategoryID, 
+                    int SubCategoryID, 
+                    string TicketMessage, 
+                    string list_Images, 
+                    string CustomFields_XML, 
+                    string LoggedInUserID, 
+                    bool IsPublicTicket, 
+                    string UserName, 
+                    string UserMobile, 
+                    string UserEmail, 
+                    string From_Date, 
+                    string To_Date, 
+                    string strAction) {
+            this.Insert_Ticket_DetailsAsync(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID, IsPublicTicket, UserName, UserMobile, UserEmail, From_Date, To_Date, strAction, null);
         }
         
         /// <remarks/>
-        public void Insert_Ticket_DetailsAsync(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images, string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction, object userState) {
+        public void Insert_Ticket_DetailsAsync(
+                    string TicketCode, 
+                    int CompanyID, 
+                    int LocationID, 
+                    int CategoryID, 
+                    int SubCategoryID, 
+                    string TicketMessage, 
+                    string list_Images, 
+                    string CustomFields_XML, 
+                    string LoggedInUserID, 
+                    bool IsPublicTicket, 
+                    string UserName, 
+                    string UserMobile, 
+                    string UserEmail, 
+                    string From_Date, 
+                    string To_Date, 
+                    string strAction, 
+                    object userState) {
             if ((this.Insert_Ticket_DetailsOperationCompleted == null)) {
                 this.Insert_Ticket_DetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsert_Ticket_DetailsOperationCompleted);
             }
@@ -9699,6 +9822,8 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                         UserName,
                         UserMobile,
                         UserEmail,
+                        From_Date,
+                        To_Date,
                         strAction}, this.Insert_Ticket_DetailsOperationCompleted, userState);
         }
         
@@ -9881,6 +10006,76 @@ namespace Upkeep_v3.Upkeep_V3_Services {
             if ((this.Fetch_Custom_CTT_ReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Custom_CTT_ReportCompleted(this, new Fetch_Custom_CTT_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Force_Close_Ticket_List", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_Force_Close_Ticket_List(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID) {
+            object[] results = this.Invoke("Fetch_Force_Close_Ticket_List", new object[] {
+                        TicketStatus,
+                        ActionStatus,
+                        From_Date,
+                        To_Date,
+                        CompanyID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_Force_Close_Ticket_ListAsync(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID) {
+            this.Fetch_Force_Close_Ticket_ListAsync(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_Force_Close_Ticket_ListAsync(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID, object userState) {
+            if ((this.Fetch_Force_Close_Ticket_ListOperationCompleted == null)) {
+                this.Fetch_Force_Close_Ticket_ListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Force_Close_Ticket_ListOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_Force_Close_Ticket_List", new object[] {
+                        TicketStatus,
+                        ActionStatus,
+                        From_Date,
+                        To_Date,
+                        CompanyID}, this.Fetch_Force_Close_Ticket_ListOperationCompleted, userState);
+        }
+        
+        private void OnFetch_Force_Close_Ticket_ListOperationCompleted(object arg) {
+            if ((this.Fetch_Force_Close_Ticket_ListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_Force_Close_Ticket_ListCompleted(this, new Fetch_Force_Close_Ticket_ListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Save_Force_Close_Ticket", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Save_Force_Close_Ticket(int TicketID, string Force_close_remarks, string LoggedInUserID) {
+            object[] results = this.Invoke("Save_Force_Close_Ticket", new object[] {
+                        TicketID,
+                        Force_close_remarks,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Save_Force_Close_TicketAsync(int TicketID, string Force_close_remarks, string LoggedInUserID) {
+            this.Save_Force_Close_TicketAsync(TicketID, Force_close_remarks, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Save_Force_Close_TicketAsync(int TicketID, string Force_close_remarks, string LoggedInUserID, object userState) {
+            if ((this.Save_Force_Close_TicketOperationCompleted == null)) {
+                this.Save_Force_Close_TicketOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSave_Force_Close_TicketOperationCompleted);
+            }
+            this.InvokeAsync("Save_Force_Close_Ticket", new object[] {
+                        TicketID,
+                        Force_close_remarks,
+                        LoggedInUserID}, this.Save_Force_Close_TicketOperationCompleted, userState);
+        }
+        
+        private void OnSave_Force_Close_TicketOperationCompleted(object arg) {
+            if ((this.Save_Force_Close_TicketCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Save_Force_Close_TicketCompleted(this, new Save_Force_Close_TicketCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -10414,64 +10609,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Get_CustomerDetails", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Get_CustomerDetails(int Company_ID) {
-            object[] results = this.Invoke("Get_CustomerDetails", new object[] {
-                        Company_ID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Get_CustomerDetailsAsync(int Company_ID) {
-            this.Get_CustomerDetailsAsync(Company_ID, null);
-        }
-        
-        /// <remarks/>
-        public void Get_CustomerDetailsAsync(int Company_ID, object userState) {
-            if ((this.Get_CustomerDetailsOperationCompleted == null)) {
-                this.Get_CustomerDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGet_CustomerDetailsOperationCompleted);
-            }
-            this.InvokeAsync("Get_CustomerDetails", new object[] {
-                        Company_ID}, this.Get_CustomerDetailsOperationCompleted, userState);
-        }
-        
-        private void OnGet_CustomerDetailsOperationCompleted(object arg) {
-            if ((this.Get_CustomerDetailsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Get_CustomerDetailsCompleted(this, new Get_CustomerDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Get_EventQuestions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Get_EventQuestions(int EventID) {
-            object[] results = this.Invoke("Get_EventQuestions", new object[] {
-                        EventID});
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Get_EventQuestionsAsync(int EventID) {
-            this.Get_EventQuestionsAsync(EventID, null);
-        }
-        
-        /// <remarks/>
-        public void Get_EventQuestionsAsync(int EventID, object userState) {
-            if ((this.Get_EventQuestionsOperationCompleted == null)) {
-                this.Get_EventQuestionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGet_EventQuestionsOperationCompleted);
-            }
-            this.InvokeAsync("Get_EventQuestions", new object[] {
-                        EventID}, this.Get_EventQuestionsOperationCompleted, userState);
-        }
-        
-        private void OnGet_EventQuestionsOperationCompleted(object arg) {
-            if ((this.Get_EventQuestionsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Get_EventQuestionsCompleted(this, new Get_EventQuestionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -10487,6 +10624,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Bind_CSMConfigurationCompletedEventHandler(object sender, Bind_CSMConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Bind_CSMConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Bind_CSMConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Delete_CSMConfigurationCompletedEventHandler(object sender, Delete_CSMConfigurationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Delete_CSMConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Delete_CSMConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
         }
     }
     
@@ -12427,6 +12616,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Fetch_Analyze_Tkt_Block7CompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Get_CustomerDetailsCompletedEventHandler(object sender, Get_CustomerDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Get_CustomerDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Get_CustomerDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Get_EventQuestionsCompletedEventHandler(object sender, Get_EventQuestionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Get_EventQuestionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Get_EventQuestionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -14600,58 +14841,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Bind_CSMConfigurationCompletedEventHandler(object sender, Bind_CSMConfigurationCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Bind_CSMConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Bind_CSMConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Delete_CSMConfigurationCompletedEventHandler(object sender, Delete_CSMConfigurationCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Delete_CSMConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Delete_CSMConfigurationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
@@ -16476,6 +16665,58 @@ namespace Upkeep_v3.Upkeep_V3_Services {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Fetch_Force_Close_Ticket_ListCompletedEventHandler(object sender, Fetch_Force_Close_Ticket_ListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_Force_Close_Ticket_ListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_Force_Close_Ticket_ListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void Save_Force_Close_TicketCompletedEventHandler(object sender, Save_Force_Close_TicketCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Save_Force_Close_TicketCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Save_Force_Close_TicketCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void Fetch_Highest_Downtime_TicketCompletedEventHandler(object sender, Fetch_Highest_Downtime_TicketCompletedEventArgs e);
     
     /// <remarks/>
@@ -16747,58 +16988,6 @@ namespace Upkeep_v3.Upkeep_V3_Services {
         private object[] results;
         
         internal Insert_FeedbackFormCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Get_CustomerDetailsCompletedEventHandler(object sender, Get_CustomerDetailsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Get_CustomerDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Get_CustomerDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Get_EventQuestionsCompletedEventHandler(object sender, Get_EventQuestionsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Get_EventQuestionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Get_EventQuestionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -141,7 +141,7 @@
 
                                             <div class="form-group m-form__group row">
                                                 <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand Short Description :</label>
-                                                <asp:TextBox ID="txtBrandShortDesc" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
+                                                <asp:TextBox MaxLength="13" ID="txtBrandShortDesc" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfvCategory1" runat="server" ControlToValidate="txtBrandShortDesc" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter Brand Short Description"></asp:RequiredFieldValidator>
 
                                             </div>

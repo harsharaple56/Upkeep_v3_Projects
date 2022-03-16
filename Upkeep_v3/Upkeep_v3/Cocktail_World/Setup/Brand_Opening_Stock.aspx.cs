@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace Upkeep_v3.Cocktail_World.Setup
 {
@@ -16,11 +17,14 @@ namespace Upkeep_v3.Cocktail_World.Setup
         DataSet ds = new DataSet();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+        XmlDocument xmlBrandDetails = new XmlDocument();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Session["LoggedInUserID"].ToString();
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
+            xmlBrandDetails.LoadXml("<CW><BrandOpening></BrandOpening></CW>");
+
             if (!IsPostBack)
             {
 
@@ -29,10 +33,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         public string BindBrandOpening()
         {
-            string data = "";
+            string data = "";          
+
             try
             {
-                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0 ,0 ,CompanyID, LoggedInUserID, "F");
+                ds = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, xmlBrandDetails.OuterXml.ToString(), 0, 0, 0, 0, CompanyID, LoggedInUserID, "F");
 
                 if (ds.Tables.Count > 0)
                 {
@@ -97,7 +102,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
             try
             {
-                dsExport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0,0, CompanyID, LoggedInUserID, "F");
+                dsExport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, xmlBrandDetails.OuterXml.ToString(), 0, 0, 0, 0, CompanyID, LoggedInUserID, "F");
 
                 DataTable dtCocktailMasterReport = new DataTable();
 
@@ -177,7 +182,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet dsReport = new DataSet();
-                dsReport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, string.Empty, 0,0,0,0, CompanyID, LoggedInUserID, "F");
+                dsReport = ObjCocktailWorld.BrandOpeningMaster_CRUD(0, xmlBrandDetails.OuterXml.ToString(), 0, 0, 0, 0, CompanyID, LoggedInUserID, "F");
 
                 System.Data.DataTable dtReport = new System.Data.DataTable();
                 dtReport = dsReport.Tables[0];

@@ -58,7 +58,7 @@ namespace Upkeep_v3.General_Masters
             DataSet dsSetting = new DataSet();
             try
             {
-                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0, 0, CompanyID, LoggedInUserID, "R");
+                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0, 0,0,0, CompanyID, LoggedInUserID, "R");
 
                 if (dsSetting.Tables.Count > 0)
                 {
@@ -74,6 +74,8 @@ namespace Upkeep_v3.General_Masters
                         int intTicketExpiry = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Expiry"]);
                         int intChkQRCompulsory = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Chk_Is_QR_Compulsory"]);
 
+                        int intphotoRaisingCheck_QR = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Img_Open_QR_Public"]);
+                        int intRemarksCompRaising_QR = Convert.ToInt32(dsSetting.Tables[0].Rows[0]["Tkt_Is_Remark_Open_QR_Public"]);
 
                         if (intphotoRaisingCheck == 1)
                         {
@@ -119,6 +121,21 @@ namespace Upkeep_v3.General_Masters
                         }
                         else
                             chk_QR_Compulspory.Checked = false;
+
+
+                        if (intphotoRaisingCheck_QR == 1)
+                        {
+                            chk_Image_Public_QR.Checked = true;
+                        }
+                        else
+                            chk_Image_Public_QR.Checked = false;
+
+                        if (intRemarksCompRaising_QR == 1)
+                        {
+                            chk_Remarks_Public_QR.Checked = true;
+                        }
+                        else
+                            chk_Remarks_Public_QR.Checked = false;
 
                     }
                 }
@@ -189,6 +206,9 @@ namespace Upkeep_v3.General_Masters
                 int intTicketExpiry = 0;
                 int intChkQRCompulsory = 0;
 
+                int intphotoRaisingCheck_QR = 0;
+                int intRemarksCompRaising_QR = 0;
+
                 if (photoRaisingCheck.Checked == true)
                 {
                     intphotoRaisingCheck = 1;
@@ -251,8 +271,25 @@ namespace Upkeep_v3.General_Masters
                 }
 
 
+                if (chk_Image_Public_QR.Checked == true)
+                {
+                    intphotoRaisingCheck_QR = 1;
+                }
+                else
+                {
+                    intphotoRaisingCheck_QR = 0;
+                }
+                if (chk_Remarks_Public_QR.Checked == true)
+                {
+                    intRemarksCompRaising_QR = 1;
+                }
+                else
+                {
+                    intRemarksCompRaising_QR = 0;
+                }
 
-                ds = ObjUpkeep.CRU_System_Setting(SettingID, intphotoRaisingCheck, intPhotoClosingCheck, intRemarksCompRaising, intRemarksCompclosing, intTicketExpiry, intChkQRCompulsory, CompanyID, LoggedInUserID, Action);
+
+                ds = ObjUpkeep.CRU_System_Setting(SettingID, intphotoRaisingCheck, intPhotoClosingCheck, intRemarksCompRaising, intRemarksCompclosing, intTicketExpiry, intChkQRCompulsory, intphotoRaisingCheck_QR, intRemarksCompRaising_QR, CompanyID, LoggedInUserID, Action);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -329,7 +366,8 @@ namespace Upkeep_v3.General_Masters
                         int Status = Convert.ToInt32(ds_TicketQR.Tables[0].Rows[0]["Status"]);
                         if (Status == 1)
                         {
-                            DisplayData(CompanyID, LoggedInUserID);
+                            //DisplayData(CompanyID, LoggedInUserID);
+                            Response.Redirect("~/General_Masters/System_Settings.aspx", false);
                         }
                     }
                 }

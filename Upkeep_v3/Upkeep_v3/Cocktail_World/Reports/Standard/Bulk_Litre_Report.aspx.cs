@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -34,6 +35,75 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
             ddlLicense.DataValueField = "License_ID";
             ddlLicense.DataBind();
             ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
+        }
+
+        public string Bind_Report()
+        {
+            string data = "";
+            DataSet ds = new DataSet();
+            string License = ddlLicense.SelectedValue;
+            string From_Date = string.Empty;
+            string To_Date = string.Empty;
+            string Bill_No = string.Empty;
+            string Brand = string.Empty;
+            string Category = string.Empty;
+
+            try
+            {
+
+                if (start_date.Value != "")
+                {
+                    From_Date = Convert.ToString(start_date.Value);
+                }
+                else
+                {
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(-6);
+                    From_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
+
+                if (end_date.Value != "")
+                {
+                    To_Date = Convert.ToString(end_date.Value);
+                }
+                else
+                {
+                    To_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
+
+
+                ds = ObjCocktailWorld.Fetch_BulkLitre_Report("1057", "2021-02-03 00:00:00", "2022-02-03 00:00:00", Brand, Category);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        int count = Convert.ToInt32(ds.Tables[0].Rows.Count);
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            string Category_Name = Convert.ToString(ds.Tables[0].Rows[i]["Category"]);
+                            string Opening = Convert.ToString(ds.Tables[0].Rows[i]["Opening"]);
+                            string Purchase = Convert.ToString(ds.Tables[0].Rows[i]["Purchase"]);
+                            string Sale = Convert.ToString(ds.Tables[0].Rows[i]["Sale"]);
+                            string Closing = Convert.ToString(ds.Tables[0].Rows[i]["Closing"]);
+
+                            data += "<tr>" +
+                                    "<td>" + Category_Name + "</td>" +
+                                    "<td>" + Opening + "</td>" +
+                                    "<td>" + Purchase + "</td>" +
+                                    "<td>" + Sale + "</td>" +
+                                    "<td>" + Closing + "</td>" +
+                                    "</tr>";
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
         }
     }
 }

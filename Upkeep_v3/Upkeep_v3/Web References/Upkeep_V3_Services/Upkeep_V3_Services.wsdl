@@ -3,6 +3,49 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Bind_CSMConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Bind_CSMConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bind_CSMConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_CSMConfiguration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete_CSMConfigurationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Delete_CSMConfigurationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Insert_CSMRequest">
         <s:complexType>
           <s:sequence>
@@ -1266,6 +1309,8 @@
             <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Remark_Close" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Tkt_Is_Expiry" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="Chk_Is_QR_Compulsory" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="intphotoRaisingCheck_QR" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="intRemarksCompRaising_QR" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
@@ -1775,6 +1820,48 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Analyze_Tkt_Block7Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_CustomerDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_CustomerDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_CustomerDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_EventQuestions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_EventQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_EventQuestionsResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -3818,49 +3905,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Bind_CSMConfiguration">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Bind_CSMConfigurationResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Bind_CSMConfigurationResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_CSMConfiguration">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ConfigID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Delete_CSMConfigurationResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Delete_CSMConfigurationResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="HelloWorld">
         <s:complexType />
       </s:element>
@@ -5440,6 +5484,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="UserMobile" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="UserEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="strAction" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -5568,6 +5614,54 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_Custom_CTT_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Force_Close_Ticket_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TicketStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ActionStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_Force_Close_Ticket_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_Force_Close_Ticket_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Save_Force_Close_Ticket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TicketID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Force_close_remarks" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Save_Force_Close_TicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Save_Force_Close_TicketResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -5870,48 +5964,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Get_CustomerDetails">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Get_CustomerDetailsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Get_CustomerDetailsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Get_EventQuestions">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Get_EventQuestionsResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Get_EventQuestionsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -5919,6 +5971,18 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="Bind_CSMConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Bind_CSMConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Bind_CSMConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Bind_CSMConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_CSMConfigurationSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_CSMConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="Delete_CSMConfigurationSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_CSMConfigurationResponse" />
+  </wsdl:message>
   <wsdl:message name="Insert_CSMRequestSoapIn">
     <wsdl:part name="parameters" element="tns:Insert_CSMRequest" />
   </wsdl:message>
@@ -6368,6 +6432,18 @@
   </wsdl:message>
   <wsdl:message name="Fetch_Analyze_Tkt_Block7SoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Analyze_Tkt_Block7Response" />
+  </wsdl:message>
+  <wsdl:message name="Get_CustomerDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_CustomerDetails" />
+  </wsdl:message>
+  <wsdl:message name="Get_CustomerDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_CustomerDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_EventQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_EventQuestions" />
+  </wsdl:message>
+  <wsdl:message name="Get_EventQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_EventQuestionsResponse" />
   </wsdl:message>
   <wsdl:message name="Event_QuestionIUSoapIn">
     <wsdl:part name="parameters" element="tns:Event_QuestionIU" />
@@ -6867,18 +6943,6 @@
   <wsdl:message name="Fetch_CSMConfigurationSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_CSMConfigurationResponse" />
   </wsdl:message>
-  <wsdl:message name="Bind_CSMConfigurationSoapIn">
-    <wsdl:part name="parameters" element="tns:Bind_CSMConfiguration" />
-  </wsdl:message>
-  <wsdl:message name="Bind_CSMConfigurationSoapOut">
-    <wsdl:part name="parameters" element="tns:Bind_CSMConfigurationResponse" />
-  </wsdl:message>
-  <wsdl:message name="Delete_CSMConfigurationSoapIn">
-    <wsdl:part name="parameters" element="tns:Delete_CSMConfiguration" />
-  </wsdl:message>
-  <wsdl:message name="Delete_CSMConfigurationSoapOut">
-    <wsdl:part name="parameters" element="tns:Delete_CSMConfigurationResponse" />
-  </wsdl:message>
   <wsdl:message name="HelloWorldSoapIn">
     <wsdl:part name="parameters" element="tns:HelloWorld" />
   </wsdl:message>
@@ -7305,6 +7369,18 @@
   <wsdl:message name="Fetch_Custom_CTT_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Custom_CTT_ReportResponse" />
   </wsdl:message>
+  <wsdl:message name="Fetch_Force_Close_Ticket_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_Force_Close_Ticket_List" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_Force_Close_Ticket_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_Force_Close_Ticket_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Save_Force_Close_TicketSoapIn">
+    <wsdl:part name="parameters" element="tns:Save_Force_Close_Ticket" />
+  </wsdl:message>
+  <wsdl:message name="Save_Force_Close_TicketSoapOut">
+    <wsdl:part name="parameters" element="tns:Save_Force_Close_TicketResponse" />
+  </wsdl:message>
   <wsdl:message name="Fetch_Highest_Downtime_TicketSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Highest_Downtime_Ticket" />
   </wsdl:message>
@@ -7371,19 +7447,15 @@
   <wsdl:message name="Insert_FeedbackFormSoapOut">
     <wsdl:part name="parameters" element="tns:Insert_FeedbackFormResponse" />
   </wsdl:message>
-  <wsdl:message name="Get_CustomerDetailsSoapIn">
-    <wsdl:part name="parameters" element="tns:Get_CustomerDetails" />
-  </wsdl:message>
-  <wsdl:message name="Get_CustomerDetailsSoapOut">
-    <wsdl:part name="parameters" element="tns:Get_CustomerDetailsResponse" />
-  </wsdl:message>
-  <wsdl:message name="Get_EventQuestionsSoapIn">
-    <wsdl:part name="parameters" element="tns:Get_EventQuestions" />
-  </wsdl:message>
-  <wsdl:message name="Get_EventQuestionsSoapOut">
-    <wsdl:part name="parameters" element="tns:Get_EventQuestionsResponse" />
-  </wsdl:message>
   <wsdl:portType name="Upkeep_V3_ServicesSoap">
+    <wsdl:operation name="Bind_CSMConfiguration">
+      <wsdl:input message="tns:Bind_CSMConfigurationSoapIn" />
+      <wsdl:output message="tns:Bind_CSMConfigurationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CSMConfiguration">
+      <wsdl:input message="tns:Delete_CSMConfigurationSoapIn" />
+      <wsdl:output message="tns:Delete_CSMConfigurationSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Insert_CSMRequest">
       <wsdl:input message="tns:Insert_CSMRequestSoapIn" />
       <wsdl:output message="tns:Insert_CSMRequestSoapOut" />
@@ -7683,6 +7755,14 @@
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <wsdl:input message="tns:Fetch_Analyze_Tkt_Block7SoapIn" />
       <wsdl:output message="tns:Fetch_Analyze_Tkt_Block7SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_CustomerDetails">
+      <wsdl:input message="tns:Get_CustomerDetailsSoapIn" />
+      <wsdl:output message="tns:Get_CustomerDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_EventQuestions">
+      <wsdl:input message="tns:Get_EventQuestionsSoapIn" />
+      <wsdl:output message="tns:Get_EventQuestionsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Event_QuestionIU">
       <wsdl:input message="tns:Event_QuestionIUSoapIn" />
@@ -8017,14 +8097,6 @@
       <wsdl:input message="tns:Fetch_CSMConfigurationSoapIn" />
       <wsdl:output message="tns:Fetch_CSMConfigurationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Bind_CSMConfiguration">
-      <wsdl:input message="tns:Bind_CSMConfigurationSoapIn" />
-      <wsdl:output message="tns:Bind_CSMConfigurationSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Delete_CSMConfiguration">
-      <wsdl:input message="tns:Delete_CSMConfigurationSoapIn" />
-      <wsdl:output message="tns:Delete_CSMConfigurationSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
@@ -8309,6 +8381,14 @@
       <wsdl:input message="tns:Fetch_Custom_CTT_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_Custom_CTT_ReportSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Force_Close_Ticket_List">
+      <wsdl:input message="tns:Fetch_Force_Close_Ticket_ListSoapIn" />
+      <wsdl:output message="tns:Fetch_Force_Close_Ticket_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Save_Force_Close_Ticket">
+      <wsdl:input message="tns:Save_Force_Close_TicketSoapIn" />
+      <wsdl:output message="tns:Save_Force_Close_TicketSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Highest_Downtime_Ticket">
       <wsdl:input message="tns:Fetch_Highest_Downtime_TicketSoapIn" />
       <wsdl:output message="tns:Fetch_Highest_Downtime_TicketSoapOut" />
@@ -8353,17 +8433,27 @@
       <wsdl:input message="tns:Insert_FeedbackFormSoapIn" />
       <wsdl:output message="tns:Insert_FeedbackFormSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Get_CustomerDetails">
-      <wsdl:input message="tns:Get_CustomerDetailsSoapIn" />
-      <wsdl:output message="tns:Get_CustomerDetailsSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="Get_EventQuestions">
-      <wsdl:input message="tns:Get_EventQuestionsSoapIn" />
-      <wsdl:output message="tns:Get_EventQuestionsSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Upkeep_V3_ServicesSoap" type="tns:Upkeep_V3_ServicesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Bind_CSMConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Bind_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CSMConfiguration">
+      <soap:operation soapAction="http://tempuri.org/Delete_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Insert_CSMRequest">
       <soap:operation soapAction="http://tempuri.org/Insert_CSMRequest" style="document" />
       <wsdl:input>
@@ -9032,6 +9122,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <soap:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block7" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_CustomerDetails">
+      <soap:operation soapAction="http://tempuri.org/Get_CustomerDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_EventQuestions">
+      <soap:operation soapAction="http://tempuri.org/Get_EventQuestions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9786,24 +9894,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Bind_CSMConfiguration">
-      <soap:operation soapAction="http://tempuri.org/Bind_CSMConfiguration" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_CSMConfiguration">
-      <soap:operation soapAction="http://tempuri.org/Delete_CSMConfiguration" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -10443,6 +10533,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Force_Close_Ticket_List">
+      <soap:operation soapAction="http://tempuri.org/Fetch_Force_Close_Ticket_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_Force_Close_Ticket">
+      <soap:operation soapAction="http://tempuri.org/Save_Force_Close_Ticket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Highest_Downtime_Ticket">
       <soap:operation soapAction="http://tempuri.org/Fetch_Highest_Downtime_Ticket" style="document" />
       <wsdl:input>
@@ -10542,27 +10650,27 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Get_CustomerDetails">
-      <soap:operation soapAction="http://tempuri.org/Get_CustomerDetails" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Get_EventQuestions">
-      <soap:operation soapAction="http://tempuri.org/Get_EventQuestions" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Upkeep_V3_ServicesSoap12" type="tns:Upkeep_V3_ServicesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Bind_CSMConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Bind_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_CSMConfiguration">
+      <soap12:operation soapAction="http://tempuri.org/Delete_CSMConfiguration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Insert_CSMRequest">
       <soap12:operation soapAction="http://tempuri.org/Insert_CSMRequest" style="document" />
       <wsdl:input>
@@ -11231,6 +11339,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_Analyze_Tkt_Block7">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Analyze_Tkt_Block7" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_CustomerDetails">
+      <soap12:operation soapAction="http://tempuri.org/Get_CustomerDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_EventQuestions">
+      <soap12:operation soapAction="http://tempuri.org/Get_EventQuestions" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -11985,24 +12111,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Bind_CSMConfiguration">
-      <soap12:operation soapAction="http://tempuri.org/Bind_CSMConfiguration" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Delete_CSMConfiguration">
-      <soap12:operation soapAction="http://tempuri.org/Delete_CSMConfiguration" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
       <wsdl:input>
@@ -12642,6 +12750,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Fetch_Force_Close_Ticket_List">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_Force_Close_Ticket_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_Force_Close_Ticket">
+      <soap12:operation soapAction="http://tempuri.org/Save_Force_Close_Ticket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Fetch_Highest_Downtime_Ticket">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Highest_Downtime_Ticket" style="document" />
       <wsdl:input>
@@ -12734,24 +12860,6 @@
     </wsdl:operation>
     <wsdl:operation name="Insert_FeedbackForm">
       <soap12:operation soapAction="http://tempuri.org/Insert_FeedbackForm" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Get_CustomerDetails">
-      <soap12:operation soapAction="http://tempuri.org/Get_CustomerDetails" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Get_EventQuestions">
-      <soap12:operation soapAction="http://tempuri.org/Get_EventQuestions" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

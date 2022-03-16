@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Globalization;
 
 namespace Upkeep_v3.Ticketing
 {
@@ -28,15 +29,45 @@ namespace Upkeep_v3.Ticketing
             {
                 Response.Redirect(Page.ResolveClientUrl("~/Login.aspx"), false);
             }
+
+            hdn_IsPostBack.Value = "yes";
+            if (!IsPostBack)
+            {
+                hdn_IsPostBack.Value = "no";
+                //bindgrid();
+            }
         }
 
         public string bindgrid()
         {
             string data = "";
             DataSet dsTicket = new DataSet();
+            string From_Date = string.Empty;
+            string To_Date = string.Empty;
             try
             {
-                dsTicket = ObjUpkeep.Insert_Ticket_Details("", CompanyID, 0, 0, 0, "", "","", LoggedInUserID,false,string.Empty, string.Empty, string.Empty ,"R");
+
+                if (start_date.Value != "")
+                {
+                    From_Date = Convert.ToString(start_date.Value);
+                }
+                else
+                {
+                    From_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+
+                }
+
+                if (end_date.Value != "")
+                {
+                    To_Date = Convert.ToString(end_date.Value);
+                }
+                else
+                {
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(6);
+                    To_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                }
+
+                dsTicket = ObjUpkeep.Insert_Ticket_Details("", CompanyID, 0, 0, 0, "", "","", LoggedInUserID,false,string.Empty, string.Empty, string.Empty , From_Date, To_Date, "R");
 
                 int TicketID = 0;
                 string TicketNumber = string.Empty;
@@ -95,6 +126,11 @@ namespace Upkeep_v3.Ticketing
             return data;
         }
 
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            bindgrid();
+        }
 
     }
 }

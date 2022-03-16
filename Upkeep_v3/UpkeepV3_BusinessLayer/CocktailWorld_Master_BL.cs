@@ -93,7 +93,7 @@ namespace UpkeepV3_BusinessLayer
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR3", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR3_A", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
@@ -636,7 +636,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Cocktail_Desc, int CompanyID,string License_ID, String StrConn) //Added CompanyId by sujata
+        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int CompanyID,string License_ID, String StrConn) //Added CompanyId by sujata
         {
             try
             {
@@ -647,6 +647,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@BrandID", BrandID);
                 cmd.Parameters.AddWithValue("@Opening_ID", Opening_ID);
                 cmd.Parameters.AddWithValue("@Brand_Desc", Brand_Desc);
+                cmd.Parameters.AddWithValue("@Size_Desc", Size_Desc);
                 cmd.Parameters.AddWithValue("@Cocktail_Desc", Cocktail_Desc);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@License_ID", License_ID);
@@ -663,7 +664,8 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, string StrConn)
+        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID,string Action
+            ,DateTime date, string StrConn)
         {
             try
             {
@@ -680,6 +682,8 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Size_Desc", Size_Desc);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                cmd.Parameters.AddWithValue("@DateTime", date);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -690,7 +694,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet Fetch_CategorySizeLinkup(int Category_ID, int License_ID, int Company_ID, string StrConn)
+        public DataSet Fetch_CategorySizeLinkup(int Size_ID,int Category_ID, int License_ID, int Company_ID, string StrConn)
         {
             try
             {
@@ -700,6 +704,7 @@ namespace UpkeepV3_BusinessLayer
 
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_CategorySizeLinkUP", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Size_ID", Size_ID);
                 cmd.Parameters.AddWithValue("@Category_ID", Category_ID);
                 cmd.Parameters.AddWithValue("@License_ID", License_ID);
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
@@ -999,35 +1004,6 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-
-        public DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation, string StrConn)
-        {
-            try
-            {
-                string strOutput = string.Empty;
-
-                SqlConnection con = new SqlConnection(StrConn);
-
-                SqlCommand cmd = new SqlCommand("Spr_Save_Brand_Opening", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Opening_ID", Opening_ID);
-                cmd.Parameters.AddWithValue("@CategoryDetails", CategoryDetails);
-                cmd.Parameters.AddWithValue("@Brand_ID", BrandID);
-                cmd.Parameters.AddWithValue("@Company_ID", CompanyID);
-                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
-                cmd.Parameters.AddWithValue("@Operation", Operation);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
 
         public DataSet License_CRUD(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action, string StrConn)
         {

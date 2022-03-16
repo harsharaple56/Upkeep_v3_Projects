@@ -762,7 +762,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                                             TextMessage = "Dear " + TicketRaisedBy_Name + ",";
                                             TextMessage += "%0a%0aAn Action has been taken on your ticket " + TicketNo + ".";
                                             TextMessage += "%0aTicket status has been changed to " + TicketAction + "";
-                                            string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                            if (APIKey != "")
+                                            {
+                                                string response_raisedBy = sms.Send_SMS(APIKey, SenderID, Send_SMS_URL, TicketRaisedBy_MobileNo, TextMessage);
+                                            }
                                         }
                                     }
                                 }
@@ -961,13 +964,15 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                             DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Insert_Ticket_ImagePath_API", ObjLocSqlParameter);
 
-                            return Request.CreateResponse(HttpStatusCode.OK);
+                            return Request.CreateResponse(HttpStatusCode.OK,"success");
 
                         }
                     }
-
-                    var message1 = string.Format("Image Updated Successfully.");
-                    return Request.CreateErrorResponse(HttpStatusCode.Created, message1); ;
+                    else
+                    {
+                        var message1 = string.Format("Please Upload a image");
+                        return Request.CreateErrorResponse(HttpStatusCode.Created, message1);
+                    }
                 }
                 var res = string.Format("Please Upload a image.");
                 dict.Add("error", res);

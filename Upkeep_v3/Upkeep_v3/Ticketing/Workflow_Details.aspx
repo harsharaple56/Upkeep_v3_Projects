@@ -271,7 +271,7 @@
 
         function FunSetXML() {
             //debugger;
-            alert('FunSetXML');
+            //alert('FunSetXML');
             window.document.getElementById("<%= txtHdn.ClientID%>").value = "";
             document.getElementById("<%=lblWorkflowDescError.ClientID%>").innerHTML = "";
             document.getElementById("<%=lblNoOfLevelError.ClientID%>").innerHTML = "";
@@ -303,6 +303,7 @@
             }
 
             //return false;
+            //alert(VarLocTab.rows.length);
 
             for (var i = 1; i <= VarLocTab.rows.length - 1; i++) {
                 var VarLocRowObj = VarLocTab.rows[i].id;
@@ -378,7 +379,7 @@
 
                 //var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendEmailText + "#" + time + "#" + nxtlvl + "#" + inf + "#" + SendEmailInformation + "#" + SendEmailTextInformation;
                 var strInfo = lvl + "#" + action + "#" + SendEmail + "#" + SendEmailText + "#" + SendNotification + "#" + time + "#" + nxtlvl;
-
+                //alert(strInfo);
                 if (window.document.getElementById("<%= txtHdn.ClientID%>").value == "") {
                     <%--window.document.getElementById("<%= txtHdn.ClientID%>").value += "=$=" + strInfo + "=$=";--%>
                     window.document.getElementById("<%= txtHdn.ClientID%>").value += strInfo + ",";
@@ -389,6 +390,7 @@
                 }
 
             }
+            //alert(window.document.getElementById("<%= txtHdn.ClientID%>").value);
             return true;
         }
 

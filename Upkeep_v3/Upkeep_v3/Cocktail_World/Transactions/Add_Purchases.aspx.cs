@@ -19,6 +19,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtPurchaseDate.Text = DateTime.Now.ToString("dd-MMMM-yyyy");
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
             if (!IsPostBack)
@@ -110,7 +111,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                                 DataSet dsGetStockDetails = new DataSet();
-                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsPurchaseDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsPurchaseDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID,0);
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsPurchaseDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsPurchaseDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID, 0, string.Empty, DateTime.Now);
                                 if (dsGetStockDetails.Tables[0].Rows.Count > 0)
                                 {
                                     string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
@@ -205,17 +206,24 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             else
                 Size_ID = 0;
             if (Size_ID > 0)
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID,0);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue), "Purchase", Convert.ToDateTime(txtPurchaseDate.Text));
             else
                 ds = null;
             return ds;
         }
 
-        private void Fetch_Brand_Size()
+        private void Fetch_Brand_Size(bool chk)
         {
             int BrandID, Size_ID = 0;
             Session.Remove("hdnTax");
             Session["hdnTax"] = null;
+
+
+            if (chk)
+            {
+                ddlBrand.SelectedIndex = -1;
+                ddlSize.SelectedIndex = -1;
+            }
 
             if (!string.IsNullOrEmpty(ddlBrand.SelectedValue))
                 BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
@@ -224,7 +232,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue));
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue), string.Empty, DateTime.Now);
 
                 if (BrandID == 0)
                 {
@@ -263,7 +271,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Fetch_Brand_Size();
+            Fetch_Brand_Size(false);
         }
 
         private void SetPurchaseInitialRow()
@@ -349,11 +357,8 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             ds = GetStockDetails();
                             if (ds.Tables[0].Rows.Count > 0)
                             {
-                                string getBottle = ds.Tables[0].Rows[0].ItemArray[0].ToString();
-                                string getsPeg = ds.Tables[0].Rows[0].ItemArray[1].ToString();
-                                string getOpningID = ds.Tables[0].Rows[0].ItemArray[2].ToString();
-                                string displayStock = "Bottle :" + getBottle + " , Speg :" + getsPeg;
-                                drCurrentRow["Stock"] = displayStock;
+                                string stock = ds.Tables[0].Rows[0].ItemArray[1].ToString();
+                                drCurrentRow["Stock"] = stock;
                             }
                             else
                             {
@@ -396,6 +401,9 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                 //Set Previous Data on Postbacks
                 SetPreviousPurchaseData();
+                ddlBrand.ClearSelection();
+                ddlSize.ClearSelection();
+                lbl_stock.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -511,11 +519,11 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
         protected void btn_Add_Purchase_Click(object sender, EventArgs e)
         {
-            if (ddlSupplier.SelectedIndex > 0 && ddlBrand.SelectedIndex > 0 && ddlSize.SelectedIndex > 0)
+            if (ddlSupplier.SelectedIndex > 0)
             {
                 Insert_Purchase_Data();
             }
-            else if (ddlSupplier.SelectedIndex == 0 && ddlBrand.SelectedIndex == 0 && ddlSize.SelectedIndex == 0)
+            else if (ddlSupplier.SelectedIndex == 0)
             {
                 //Excel
             }
@@ -525,249 +533,250 @@ namespace Upkeep_v3.Cocktail_World.Transactions
         {
             try
             {
-                if (ddlLicense.SelectedIndex != 0 && grdPurchase.Rows.Count > 0 && !string.IsNullOrEmpty(txtPurchaseDate.Text) && !string.IsNullOrEmpty(txttpnumber.Text) && ddlSupplier.SelectedIndex != 0)
+                bool hasvalue = false;
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Brand");
+                DataRow dr = dt.NewRow();
+
+                foreach (GridViewRow row in grdPurchase.Rows)
                 {
-                    //Check Brand Sale Duplicate Data
-                    bool purchaseDuplicate = Check_Purchase_DuplicateData();
-                    bool displayMessage = false;
+                    dr["Brand"] = row.Cells[1].Text.Replace("&nbsp;", "");
+                }
+                dt.Rows.Add(dr);
 
-                    if (!purchaseDuplicate)
+                if (dt.Rows.Count > 0)
+                {
+                    if (!string.IsNullOrEmpty(dt.Rows[0]["Brand"].ToString()))
+                        hasvalue = true;
+                }
+
+
+                if (hasvalue)
+                {
+                    if (ddlLicense.SelectedIndex != 0 && grdPurchase.Rows.Count > 0 && !string.IsNullOrEmpty(txtPurchaseDate.Text) && !string.IsNullOrEmpty(txttpnumber.Text) && ddlSupplier.SelectedIndex != 0)
                     {
-                        //Add Sale Data in Temporary Datatable
-                        DataTable dtInsertPurchaseData = new DataTable();
-                        dtInsertPurchaseData.Columns.Add("Opening_ID");
-                        dtInsertPurchaseData.Columns.Add("getClosingBottle");
-                        dtInsertPurchaseData.Columns.Add("getClosingSpeg");
+                        //Check Brand Sale Duplicate Data
+                        bool purchaseDuplicate = Check_Purchase_DuplicateData();
+                        bool displayMessage = false;
 
-                        //Add Sale Details Data in Temporary Datatable
-                        DataTable dtInsertPurchaseDetailsData = new DataTable();
-                        dtInsertPurchaseDetailsData.Columns.Add("Brand_Name");
-                        dtInsertPurchaseDetailsData.Columns.Add("Size_Desc");
-                        dtInsertPurchaseDetailsData.Columns.Add("Opening_ID");
-                        dtInsertPurchaseDetailsData.Columns.Add("Tax_Type");
-                        dtInsertPurchaseDetailsData.Columns.Add("Bottle_Qty");
-                        dtInsertPurchaseDetailsData.Columns.Add("Bottle_Rate");
-                        dtInsertPurchaseDetailsData.Columns.Add("SPeg_Qty");
-                        dtInsertPurchaseDetailsData.Columns.Add("Speg_Rate");
-                        dtInsertPurchaseDetailsData.Columns.Add("Boxes");
-                        dtInsertPurchaseDetailsData.Columns.Add("BatchNo");
-                        dtInsertPurchaseDetailsData.Columns.Add("MfgDate");
-                        dtInsertPurchaseDetailsData.Columns.Add("TaxAmount");
-                        dtInsertPurchaseDetailsData.Columns.Add("Amount");
-
-                        foreach (GridViewRow row in grdPurchase.Rows)
+                        if (!purchaseDuplicate)
                         {
-                            string Brand_Name = string.Empty;
-                            string Size_Desc = string.Empty;
-                            int Opening_ID = 0;
-                            string Tax_Type = string.Empty;
-                            decimal Bottle_Qty = 0;
-                            decimal Bottle_Rate = 0;
-                            decimal SPeg_Qty = 0;
-                            decimal Speg_Rate = 0;
-                            int Boxes = 0;
-                            int BatchNo = 0;
-                            string MfgDate = string.Empty;
-                            decimal TaxAmount = 0;
-                            decimal Amount = 0;
-                            for (int i = 0; i < grdPurchase.Columns.Count; i++)
+                            //Add Sale Data in Temporary Datatable
+                            DataTable dtInsertPurchaseData = new DataTable();
+                            dtInsertPurchaseData.Columns.Add("Opening_ID");
+                            dtInsertPurchaseData.Columns.Add("getClosingBottle");
+                            dtInsertPurchaseData.Columns.Add("getClosingSpeg");
+
+                            //Add Sale Details Data in Temporary Datatable
+                            DataTable dtInsertPurchaseDetailsData = new DataTable();
+                            dtInsertPurchaseDetailsData.Columns.Add("Brand_Name");
+                            dtInsertPurchaseDetailsData.Columns.Add("Size_Desc");
+                            dtInsertPurchaseDetailsData.Columns.Add("Opening_ID");
+                            dtInsertPurchaseDetailsData.Columns.Add("Tax_Type");
+                            dtInsertPurchaseDetailsData.Columns.Add("Bottle_Qty");
+                            dtInsertPurchaseDetailsData.Columns.Add("Bottle_Rate");
+                            dtInsertPurchaseDetailsData.Columns.Add("SPeg_Qty");
+                            dtInsertPurchaseDetailsData.Columns.Add("Speg_Rate");
+                            dtInsertPurchaseDetailsData.Columns.Add("Boxes");
+                            dtInsertPurchaseDetailsData.Columns.Add("BatchNo");
+                            dtInsertPurchaseDetailsData.Columns.Add("MfgDate");
+                            dtInsertPurchaseDetailsData.Columns.Add("TaxAmount");
+                            dtInsertPurchaseDetailsData.Columns.Add("Amount");
+
+                            foreach (GridViewRow row in grdPurchase.Rows)
                             {
-                                string header = grdPurchase.Columns[i].HeaderText;
-                                string cellText = row.Cells[i].Text;
-                                if (row.FindControl("Brand") == null && header == "Brand")
+                                string Brand_Name = string.Empty;
+                                string Size_Desc = string.Empty;
+                                int Opening_ID = 0;
+                                string Tax_Type = string.Empty;
+                                decimal Bottle_Qty = 0;
+                                decimal Bottle_Rate = 0;
+                                decimal SPeg_Qty = 0;
+                                decimal Speg_Rate = 0;
+                                int Boxes = 0;
+                                int BatchNo = 0;
+                                string MfgDate = string.Empty;
+                                decimal TaxAmount = 0;
+                                decimal Amount = 0;
+                                for (int i = 0; i < grdPurchase.Columns.Count; i++)
                                 {
-                                    Brand_Name = cellText;
-                                    DataSet dsGetBrandId = new DataSet();
-                                    dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, "", CompanyID,string.Empty);
-                                    if (dsGetBrandId.Tables[0].Rows.Count > 0)
+                                    string header = grdPurchase.Columns[i].HeaderText;
+                                    string cellText = row.Cells[i].Text;
+                                    if (row.FindControl("Brand") == null && header == "Brand")
                                     {
-                                        Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
-                                        DataSet dsGetTax = new DataSet();
-                                        dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
-                                        if (dsGetTax.Tables[0].Rows.Count > 0)
-                                            Tax_Type = dsGetTax.Tables[0].Rows[0].ItemArray[1].ToString();
+                                        Brand_Name = cellText;
                                     }
-                                    else
+
+                                    if (row.FindControl("Size") == null && header == "Size")
                                     {
-                                        Opening_ID = 0;
-                                        Tax_Type = "";
+                                        Size_Desc = cellText;
                                     }
-                                }
 
-                                if (row.FindControl("Size") == null && header == "Size")
-                                {
-                                    Size_Desc = cellText;
-                                }
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txtbottleqty").ToString()) && header == "Bottle Qty")
-                                {
-                                    if (!string.IsNullOrEmpty((row.FindControl("txtbottleqty") as TextBox).Text))
-                                        Bottle_Qty = Convert.ToDecimal((row.FindControl("txtbottleqty") as TextBox).Text);
-                                    else
-                                        Bottle_Qty = 0;
-                                }
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txtbottlerate").ToString()) && header == "Bottle Rate")
-                                {
-                                    if (!string.IsNullOrEmpty((row.FindControl("txtbottlerate") as TextBox).Text))
-                                        Bottle_Rate = Convert.ToDecimal((row.FindControl("txtbottlerate") as TextBox).Text);
-                                    else
-                                        Bottle_Rate = 0;
-                                }
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txtspegqty").ToString()) && header == "SPeg Qty")
-                                {
-                                    if (!string.IsNullOrEmpty((row.FindControl("txtspegqty") as TextBox).Text))
-                                        SPeg_Qty = Convert.ToDecimal((row.FindControl("txtspegqty") as TextBox).Text);
-                                    else
-                                        SPeg_Qty = 0;
-                                }
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txtspegrate").ToString()) && header == "SPeg Rate")
-                                {
-                                    if (!string.IsNullOrEmpty((row.FindControl("txtspegrate") as TextBox).Text))
-                                        Speg_Rate = Convert.ToDecimal((row.FindControl("txtspegrate") as TextBox).Text);
-                                    else
-                                        Speg_Rate = 0;
-                                }
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txtboxes").ToString()) && header == "Boxes")
-                                {
-                                    if (!string.IsNullOrEmpty((row.FindControl("txtboxes") as TextBox).Text))
-                                        Boxes = Convert.ToInt32((row.FindControl("txtboxes") as TextBox).Text);
-                                    else
-                                        Boxes = 0;
-                                }
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txtbatchno").ToString()) && header == "Batch No")
-                                {
-                                    if (!string.IsNullOrEmpty((row.FindControl("txtbatchno") as TextBox).Text))
-                                        BatchNo = Convert.ToInt32((row.FindControl("txtbatchno") as TextBox).Text);
-                                    else
-                                        BatchNo = 0;
-                                }
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txtmfgdate").ToString()) && header == "Mfg Date")
-                                {
-                                    if (!string.IsNullOrEmpty((row.FindControl("txtmfgdate") as TextBox).Text))
-                                        MfgDate = Convert.ToString((row.FindControl("txtmfgdate") as TextBox).Text);
-                                    else
-                                        MfgDate = string.Empty;
-                                }
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
-                                    Amount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty);
-
-                                if (!string.IsNullOrEmpty(row.FindControl("txtamount").ToString()) && header == "Tax Amount")
-                                    TaxAmount = Amount * Convert.ToInt32(Session["hdnTax"]) / 100;
-                            }
-
-                            //Get Calculation from Current Stock
-                            if (Opening_ID == 0)
-                            {
-                                Page.ClientScript.RegisterHiddenField("Opening_ID", "Opening_ID");
-                                break;
-                            }
-                            else
-                            {
-                                //Calculation Of Opening stock and Closing stock
-                                decimal getCurrentBottle = 0;
-                                decimal getCurrentsPeg = 0;
-
-                                decimal getClosingBottle = 0;
-                                decimal getClosingSpeg = 0;
-
-                                DataSet dsFetchBrand = new DataSet();
-                                dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID,0);
-                                if (dsFetchBrand.Tables[0].Rows.Count > 0)
-                                {
-                                    getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[0]);
-                                    getCurrentsPeg = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[1]);
-
-                                    getClosingBottle = getCurrentBottle - Bottle_Qty;
-                                    getClosingSpeg = getCurrentsPeg - SPeg_Qty;
-
-                                    if (getClosingSpeg >= 0 && getClosingBottle >= 0)
+                                    if (!string.IsNullOrEmpty(row.FindControl("txtbottleqty").ToString()) && header == "Bottle Qty")
                                     {
-                                        //Add Sale Data in Row 
-                                        DataRow drInsertPurchaseData = dtInsertPurchaseData.NewRow();
-                                        drInsertPurchaseData["Opening_ID"] = Opening_ID;
-                                        drInsertPurchaseData["getClosingBottle"] = getClosingBottle;
-                                        drInsertPurchaseData["getClosingSpeg"] = getClosingSpeg;
-                                        dtInsertPurchaseData.Rows.Add(drInsertPurchaseData);
+                                        if (!string.IsNullOrEmpty((row.FindControl("txtbottleqty") as TextBox).Text))
+                                            Bottle_Qty = Convert.ToDecimal((row.FindControl("txtbottleqty") as TextBox).Text);
+                                        else
+                                            Bottle_Qty = 0;
+                                    }
 
-                                        //Add Sale Details Data in Row 
-                                        DataRow drInsertPurchaseDetailsData = dtInsertPurchaseDetailsData.NewRow();
-                                        drInsertPurchaseDetailsData["Brand_Name"] = Brand_Name;
-                                        drInsertPurchaseDetailsData["Size_Desc"] = Size_Desc;
-                                        drInsertPurchaseDetailsData["Opening_ID"] = Opening_ID;
-                                        drInsertPurchaseDetailsData["Tax_Type"] = Tax_Type;
-                                        drInsertPurchaseDetailsData["Bottle_Qty"] = Bottle_Qty;
-                                        drInsertPurchaseDetailsData["Bottle_Rate"] = Bottle_Rate;
-                                        drInsertPurchaseDetailsData["SPeg_Qty"] = SPeg_Qty;
-                                        drInsertPurchaseDetailsData["Speg_Rate"] = Speg_Rate;
-                                        drInsertPurchaseDetailsData["Boxes"] = Boxes;
-                                        drInsertPurchaseDetailsData["BatchNo"] = BatchNo;
-                                        drInsertPurchaseDetailsData["MfgDate"] = MfgDate;
-                                        drInsertPurchaseDetailsData["TaxAmount"] = TaxAmount;
-                                        drInsertPurchaseDetailsData["Amount"] = Amount;
-                                        dtInsertPurchaseDetailsData.Rows.Add(drInsertPurchaseDetailsData);
-                                    }
-                                    else
+                                    if (!string.IsNullOrEmpty(row.FindControl("txtbottlerate").ToString()) && header == "Bottle Rate")
                                     {
-                                        string message = "Negative stock found in : Brand : " + Brand_Name + " And Size : " + Size_Desc + " With Bottle : " + getCurrentBottle + " and Speg : " + getCurrentsPeg;
-                                        Page.ClientScript.RegisterHiddenField("Negative", message);
-                                        displayMessage = false;
-                                        break;
+                                        if (!string.IsNullOrEmpty((row.FindControl("txtbottlerate") as TextBox).Text))
+                                            Bottle_Rate = Convert.ToDecimal((row.FindControl("txtbottlerate") as TextBox).Text);
+                                        else
+                                            Bottle_Rate = 0;
                                     }
+
+                                    if (!string.IsNullOrEmpty(row.FindControl("txtspegqty").ToString()) && header == "SPeg Qty")
+                                    {
+                                        if (!string.IsNullOrEmpty((row.FindControl("txtspegqty") as TextBox).Text))
+                                            SPeg_Qty = Convert.ToDecimal((row.FindControl("txtspegqty") as TextBox).Text);
+                                        else
+                                            SPeg_Qty = 0;
+                                    }
+
+                                    if (!string.IsNullOrEmpty(row.FindControl("txtspegrate").ToString()) && header == "SPeg Rate")
+                                    {
+                                        if (!string.IsNullOrEmpty((row.FindControl("txtspegrate") as TextBox).Text))
+                                            Speg_Rate = Convert.ToDecimal((row.FindControl("txtspegrate") as TextBox).Text);
+                                        else
+                                            Speg_Rate = 0;
+                                    }
+
+                                    if (!string.IsNullOrEmpty(row.FindControl("txtboxes").ToString()) && header == "Boxes")
+                                    {
+                                        if (!string.IsNullOrEmpty((row.FindControl("txtboxes") as TextBox).Text))
+                                            Boxes = Convert.ToInt32((row.FindControl("txtboxes") as TextBox).Text);
+                                        else
+                                            Boxes = 0;
+                                    }
+
+                                    if (!string.IsNullOrEmpty(row.FindControl("txtbatchno").ToString()) && header == "Batch No")
+                                    {
+                                        if (!string.IsNullOrEmpty((row.FindControl("txtbatchno") as TextBox).Text))
+                                            BatchNo = Convert.ToInt32((row.FindControl("txtbatchno") as TextBox).Text);
+                                        else
+                                            BatchNo = 0;
+                                    }
+
+                                    if (!string.IsNullOrEmpty(row.FindControl("txtmfgdate").ToString()) && header == "Mfg Date")
+                                    {
+                                        if (!string.IsNullOrEmpty((row.FindControl("txtmfgdate") as TextBox).Text))
+                                            MfgDate = Convert.ToString((row.FindControl("txtmfgdate") as TextBox).Text);
+                                        else
+                                            MfgDate = string.Empty;
+                                    }
+
+                                    if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
+                                        Amount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty);
+
+                                    if (!string.IsNullOrEmpty(row.FindControl("txtamount").ToString()) && header == "Tax Amount")
+                                        TaxAmount = Amount * Convert.ToInt32(Session["hdnTax"]) / 100;
+
+                                    if (!string.IsNullOrEmpty(Brand_Name) && !string.IsNullOrEmpty(Size_Desc))
+                                    {
+                                        DataSet dsGetBrandId = new DataSet();
+                                        dsGetBrandId = ObjCocktailWorld.Fetch_Brand_Opening(0, 0, 0, Brand_Name, Size_Desc, "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
+                                        if (dsGetBrandId.Tables[0].Rows.Count > 0)
+                                        {
+                                            Opening_ID = Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Opening_ID"]);
+                                            DataSet dsGetTax = new DataSet();
+                                            dsGetTax = ObjCocktailWorld.FetchTaxDetails(Convert.ToInt32(dsGetBrandId.Tables[0].Rows[0]["Brand_ID"]));
+                                            if (dsGetTax.Tables[0].Rows.Count > 0)
+                                                Tax_Type = dsGetTax.Tables[0].Rows[0].ItemArray[1].ToString();
+                                        }
+                                        else
+                                        {
+                                            Opening_ID = 0;
+                                            Tax_Type = "";
+                                        }
+                                    }
+                                }
+
+                                //Get Calculation from Current Stock
+                                if (Opening_ID == 0)
+                                {
+                                    Page.ClientScript.RegisterHiddenField("Opening_ID", "Opening_ID");
+                                    break;
                                 }
                                 else
                                 {
-                                    Page.ClientScript.RegisterHiddenField("BS_QTY", "BS_QTY");
+                                    //Calculation Of Opening stock and Closing stock
+                                    decimal getClosingBottle = 0;
+                                    decimal getClosingSpeg = 0;
+
+                                    //Add Purchase Data in Row 
+                                    DataRow drInsertPurchaseData = dtInsertPurchaseData.NewRow();
+                                    drInsertPurchaseData["Opening_ID"] = Opening_ID;
+                                    drInsertPurchaseData["getClosingBottle"] = getClosingBottle;
+                                    drInsertPurchaseData["getClosingSpeg"] = getClosingSpeg;
+                                    dtInsertPurchaseData.Rows.Add(drInsertPurchaseData);
+
+                                    //Add Purchase Details Data in Row 
+                                    DataRow drInsertPurchaseDetailsData = dtInsertPurchaseDetailsData.NewRow();
+                                    drInsertPurchaseDetailsData["Brand_Name"] = Brand_Name;
+                                    drInsertPurchaseDetailsData["Size_Desc"] = Size_Desc;
+                                    drInsertPurchaseDetailsData["Opening_ID"] = Opening_ID;
+                                    drInsertPurchaseDetailsData["Tax_Type"] = Tax_Type;
+                                    drInsertPurchaseDetailsData["Bottle_Qty"] = Bottle_Qty;
+                                    drInsertPurchaseDetailsData["Bottle_Rate"] = Bottle_Rate;
+                                    drInsertPurchaseDetailsData["SPeg_Qty"] = SPeg_Qty;
+                                    drInsertPurchaseDetailsData["Speg_Rate"] = Speg_Rate;
+                                    drInsertPurchaseDetailsData["Boxes"] = Boxes;
+                                    drInsertPurchaseDetailsData["BatchNo"] = BatchNo;
+                                    drInsertPurchaseDetailsData["MfgDate"] = MfgDate;
+                                    drInsertPurchaseDetailsData["TaxAmount"] = TaxAmount;
+                                    drInsertPurchaseDetailsData["Amount"] = Amount;
+                                    dtInsertPurchaseDetailsData.Rows.Add(drInsertPurchaseDetailsData);
                                 }
                             }
-                        }
 
-                        if (grdPurchase.Rows.Count > 0 && dtInsertPurchaseData.Rows.Count > 0 && dtInsertPurchaseDetailsData.Rows.Count > 0 && (grdPurchase.Rows.Count == dtInsertPurchaseData.Rows.Count))
-                        {
-                            //Insert Operation for Purchase Data
-                            DataSet dsPurchase = new DataSet();
-                            dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0, Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "Insert");
-
-                            for (int i = 0; i < dtInsertPurchaseData.Rows.Count; i++)
+                            if (grdPurchase.Rows.Count > 0 && dtInsertPurchaseData.Rows.Count > 0 && dtInsertPurchaseDetailsData.Rows.Count > 0 && (grdPurchase.Rows.Count == dtInsertPurchaseData.Rows.Count))
                             {
-                                ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Convert.ToInt32(dsPurchase.Tables[0].Rows[0]["Purchase_ID"]),
-                                    Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Opening_ID"]),
-                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Brand_Name"]),
-                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Size_Desc"]),
-                                    Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Qty"]),
-                                    Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Rate"]),
-                                    Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["SPeg_Qty"]),
-                                    Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Speg_Rate"]),
-                                    0,
-                                    Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Boxes"]),
-                                    Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["BatchNo"]),
-                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]) != string.Empty ? Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]) : DateTime.Now.ToString("dd/MMMM/yyyy"),
-                                    Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Tax_Type"]),
-                                     Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["TaxAmount"]),
-                                      Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Amount"]),
-                                      Convert.ToInt32(ddlLicense.SelectedValue)
-                                    , CompanyID, LoggedInUserID, "Insert");
-                                displayMessage = true;
-                            }
-                        }
+                                //Insert Operation for Purchase Data
+                                DataSet dsPurchase = new DataSet();
+                                dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0, Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "Insert");
 
-                        if (displayMessage)
-                            Response.Redirect("~/Cocktail_World/Transactions/Purchases.aspx");
+                                for (int i = 0; i < dtInsertPurchaseData.Rows.Count; i++)
+                                {
+                                    ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Convert.ToInt32(dsPurchase.Tables[0].Rows[0]["Purchase_ID"]),
+                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Opening_ID"]),
+                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Brand_Name"]),
+                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Size_Desc"]),
+                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Qty"]),
+                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Rate"]),
+                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["SPeg_Qty"]),
+                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Speg_Rate"]),
+                                        0,
+                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Boxes"]),
+                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["BatchNo"]),
+                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]),
+                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Tax_Type"]),
+                                         Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["TaxAmount"]),
+                                          Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Amount"]),
+                                          Convert.ToInt32(ddlLicense.SelectedValue)
+                                        , CompanyID, LoggedInUserID, "Insert");
+                                    displayMessage = true;
+                                }
+                            }
+
+                            if (displayMessage)
+                                Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterHiddenField("Duplicate", "Duplicate");
+                        }
                     }
                     else
                     {
-                        Page.ClientScript.RegisterHiddenField("Duplicate", "Duplicate");
+                        Page.ClientScript.RegisterHiddenField("License", "License");
                     }
                 }
                 else
                 {
-                    Page.ClientScript.RegisterHiddenField("License", "License");
+                    Page.ClientScript.RegisterHiddenField("hasvalue", "hasvalue");
                 }
             }
             catch (Exception ex)
@@ -786,16 +795,15 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             }
             else if (ds.Tables[0].Rows.Count > 0)
             {
-                string getBottle = ds.Tables[0].Rows[0].ItemArray[0].ToString();
-                string getsPeg = ds.Tables[0].Rows[0].ItemArray[1].ToString();
-                string displayStock = "Available Stock :- Bottle :" + getBottle + " & Speg :" + getsPeg;
+                string stock = ds.Tables[0].Rows[0].ItemArray[1].ToString();
+                string displayStock = "Available Stock :- " + stock;
                 lbl_stock.Text = displayStock;
             }
         }
 
         protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Fetch_Brand_Size();
+            Fetch_Brand_Size(true);
         }
     }
 }

@@ -8779,6 +8779,74 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         }
 
 
+        [Route("api/UpKeep/Fetch_CheckList_Scheduled_Locations")]
+        [HttpGet]
+        public HttpResponseMessage Fetch_CheckList_Scheduled_Locations(int CompanyID, int DeptID, int Chk_Config_ID) 
+        {
+            List<clsChecklist_Config_Location> Checklist_Locations = new List<clsChecklist_Config_Location>();
+
+            ClsCommunication ObjLocComm = new ClsCommunication();
+            DataSet DsDataSet = new DataSet();
+            DataTable dt = new DataTable();
+            string StrLocConnection = null;
+
+            try
+            {
+                StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
+
+                SqlParameter[] ObjLocSqlParameter = new SqlParameter[3];
+                ObjLocSqlParameter[0] = new SqlParameter("@CompanyID", CompanyID);
+                ObjLocSqlParameter[1] = new SqlParameter("@Config_ID", Chk_Config_ID);
+                ObjLocSqlParameter[2] = new SqlParameter("@Dept_ID", DeptID);
+
+                DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_Fetch_Checklist_Locations_API", ObjLocSqlParameter);
+
+                if (DsDataSet != null)
+                {
+                    if (DsDataSet.Tables.Count > 0)
+                    {
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            Checklist_Locations = (from x in DsDataSet.Tables[0].AsEnumerable()
+                                                select new clsChecklist_Config_Location
+                                                {
+                                                    Loc_ID = Convert.ToInt32(x.Field<Int32>("Loc_ID")),
+                                                    Loc_Desc = Convert.ToString(Convert.ToString(x.Field<string>("Loc_Desc")).Replace("\t", "")),
+
+                                                }).ToList();
+
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Checklist_Locations);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                    }
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+
+                }
+                throw new Exception("Error while processing request.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                DsDataSet = null;
+                //  ObjGatePass = null;
+            }
+
+        }
 
         //[Route("api/UpKeep/Fetch_CheckList_Config_List")]
         //[HttpGet]
@@ -11113,9 +11181,10 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
         public HttpResponseMessage Save_Support_Request([FromBody] ClsSupport_Request objReq)
         {
             ClsCommunication ObjLocComm = new ClsCommunication();
+            List<ClsSupport_Request_Response> ObjResponse = new List<ClsSupport_Request_Response>();
             DataSet DsDataSet = new DataSet();
             string StrLocConnection = null;
-            int TicketID = 0;
+            //int TicketID = 0;
             try
             {
                 StrLocConnection = Convert.ToString(ConfigurationManager.ConnectionStrings["StrSqlConnUpkeep"].ConnectionString);
@@ -11129,14 +11198,46 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
 
                 DsDataSet = ObjLocComm.FunPubGetDataSet(StrLocConnection, CommandType.StoredProcedure, "Spr_SUPPORT_Save_Requests_API", ObjLocSqlParameter);
 
-                if (DsDataSet.Tables.Count > 0)
+                if (DsDataSet != null)
                 {
-                    if (DsDataSet.Tables[0].Rows.Count > 0)
+                    if (DsDataSet.Tables.Count > 0)
                     {
-                        TicketID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TicketID"]);
+                        if (DsDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            ObjResponse = (from p in DsDataSet.Tables[0].AsEnumerable()
+                                            select new ClsSupport_Request_Response
+                                            {
+                                                ResponseID = Convert.ToInt32(p.Field<int>("TicketID"))
+                                            }).ToList();
+                           
+                            return Request.CreateResponse(HttpStatusCode.OK, ObjResponse[0]);
+                        }
+                        else
+                        {
+                            return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                           
+                        }
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                        
                     }
                 }
-                return Request.CreateResponse(HttpStatusCode.OK, TicketID);
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "No Records Found");
+                   
+                }
+                throw new Exception("Error while processing request.");
+                //if (DsDataSet.Tables.Count > 0)
+                //{
+                //    if (DsDataSet.Tables[0].Rows.Count > 0)
+                //    {
+                //        TicketID = Convert.ToInt32(DsDataSet.Tables[0].Rows[0]["TicketID"]);
+                //    }
+                //}
+                //return Request.CreateResponse(HttpStatusCode.OK, TicketID);
             }
             catch (Exception ex)
             {

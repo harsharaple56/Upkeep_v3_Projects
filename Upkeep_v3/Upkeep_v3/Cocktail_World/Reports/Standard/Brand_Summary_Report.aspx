@@ -10,7 +10,17 @@
             border-bottom-width: 3px;
         }
     </style>
-
+      <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
 
@@ -233,7 +243,7 @@
                     </form>
 
 
-
+                     <hr />
 
                     <!--begin: Datatable -->
                     <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
@@ -252,6 +262,7 @@
                         </thead>
 
                         <tbody>
+                             <%=Bind_Report()%>
                         </tbody>
                     </table>
 

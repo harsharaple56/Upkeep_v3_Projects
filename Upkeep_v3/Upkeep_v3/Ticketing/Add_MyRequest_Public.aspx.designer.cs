@@ -301,13 +301,13 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.FileUpload FileUpload_TicketImage;
         
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// rfvFileupload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFileupload;
         
         /// <summary>
         /// RegularExpressionValidator4 control.

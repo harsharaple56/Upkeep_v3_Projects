@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Upkeep_v3.Ticketing
 {
-    public partial class View_Ticket_Details : System.Web.UI.Page
+    public partial class Force_Close_Ticket_Details : System.Web.UI.Page
     {
         Upkeep_V3_Services.Upkeep_V3_Services ObjUpkeep = new Upkeep_V3_Services.Upkeep_V3_Services();
         string LoggedInUserID = string.Empty;
@@ -78,20 +78,6 @@ namespace Upkeep_v3.Ticketing
                         BindWorkflow(CategoryID, SubCategoryID);
                         lblDowntime.Text = Convert.ToString(Session["Downtime"]);
 
-                        //force close
-                        int Is_Force_Close = 0;
-                        Is_Force_Close = Convert.ToInt32(dsTicket.Tables[0].Rows[0]["Is_Force_Close"]);
-                        if (Is_Force_Close > 0)
-                        {
-                            lbl_force_close_by.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Close_By_user"]);
-                            lbl_force_close_date.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Closed_Date"]);
-                            lbl_force_close_remarks.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Closed_Remarks"]);
-                        }
-                        else
-                        {
-                            dv_force_close.Attributes.Add("style", "display:none;");
-                        }
-
                     }
 
                     if (dsTicket.Tables.Count > 1)
@@ -139,7 +125,7 @@ namespace Upkeep_v3.Ticketing
                     }
                 }
                 else
-                {                   
+                {
                     gvWorkflow.DataSource = null;
                     gvWorkflow.DataBind();
                 }
@@ -151,9 +137,31 @@ namespace Upkeep_v3.Ticketing
             }
         }
 
-        protected void btnViewWorkflow_Click(object sender, EventArgs e)
+        protected void btnForceClose_Click(object sender, EventArgs e)
         {
+            DataSet dsTicket = new DataSet();
+            string force_close_remarks = string.Empty;
+            try
+            {
+                force_close_remarks = Convert.ToString(txtForceCloseTicket_Remarks.Text.Trim());
+                dsTicket = ObjUpkeep.Save_Force_Close_Ticket(TicketID, force_close_remarks, LoggedInUserID);
 
+                if (dsTicket.Tables.Count > 0)
+                {
+                    if (dsTicket.Tables[0].Rows.Count > 0)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Ticketing/Force_Close_Tickets.aspx"), false);
+
+                    }
+
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

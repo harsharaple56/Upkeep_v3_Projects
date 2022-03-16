@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="My_RequestRply.aspx.cs" Inherits="Upkeep_v3.Ticketing.My_RequestRply" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UpkeepMaster.Master" AutoEventWireup="true" CodeBehind="Force_Close_Ticket_Details.aspx.cs" Inherits="Upkeep_v3.Ticketing.Force_Close_Ticket_Details" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -54,112 +54,12 @@
                 });
                 //$('.carousel').carousel();
             })
-
-            $('#btnClose').click(function () {
-                var ddlAction = $('#ddlAction').val();
-                //alert(ddlAction);
-                debugger;
-                var hdn_Mandatory_Img_Close = $('#hdn_Mandatory_Img_Close').val();
-                var hdn_Mandatory_Remark_Close = $('#hdn_Mandatory_Remark_Close').val();
-
-                var FileUpload_TicketImage = $("#FileUpload_TicketImage").val();
-                var txtCloseTicketDesc = $("#txtCloseTicketDesc").val();
-
-                var Is_ImageUpload_ValidFile = $("#Is_ImageUpload_ValidFile").val();
-                //alert(Is_ImageUpload_ValidFile);
-                if (Is_ImageUpload_ValidFile == 0) {
-                    $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
-                    return false;
-                }
-                else if (Is_ImageUpload_ValidFile == 1) {
-                    $('#ImageUpload_Msg').text("Failed!! Max allowed file size is 100 KB").show();
-                    return false;
-                }
-
-                //alert(FileUpload_TicketImage);
-                //alert(hdn_Mandatory_Remark_Close); 
-                $('#ImageUpload_Msg').text('').hide();
-                $('#Remarks_Msg').text('').hide();
-
-                if (ddlAction == "Closed") {
-                    if (hdn_Mandatory_Img_Close == "True") {
-                         //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = true;
-                        if (FileUpload_TicketImage == "") {
-                            $('#ImageUpload_Msg').text("Please upload image").show();
-                            return false;
-                        }
-                    }
-                    if (hdn_Mandatory_Remark_Close == "True") {
-                         //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = true;
-                        if (txtCloseTicketDesc == "") {
-                            $('#Remarks_Msg').text("Please enter remarks").show();
-                            return false;
-                        }
-                    }
-                }
-
-                else if (ddlAction == "Hold") {
-                     //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = true;
-                     //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = false;
-                    if (txtCloseTicketDesc == "") {
-                        $('#Remarks_Msg').text("Please enter remarks").show();
-                        return false;
-                    }
-                }
-                else {
-                     //document.getElementById("<%=rfvClosingRemarks.ClientID%>").enabled = false;
-                     //document.getElementById("<%=rfvFileupload.ClientID%>").enabled = false;
-                }
-            });
-
-            $("#ddlAction").change(function () {
-                //alert($('option:selected', this).text());
-                var ddlAction = $('option:selected', this).text();
-                if (ddlAction == "Close") {
-                    $('.dvImageUpload').show();
-                }
-                else {
-                    $('.dvImageUpload').hide();
-                    $("#Is_ImageUpload_ValidFile").val("3");
-                }
-            });
-
-
-
         });
     </script>
 
-     <script type="text/javascript">
-        $(function () {
-            $('#<%=FileUpload_TicketImage.ClientID %>').change(function () {
-                var fileExtension = ['jpeg', 'jpg', 'png'];
-                $('#ImageUpload_Msg').text('').hide();
-                if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-                    //alert("Only '.jpeg','.jpg', '.png', formats are allowed."); 
-                    $('#ImageUpload_Msg').text("Failed!! Please upload jpg, jpeg, png file only.").show();
-                    $(this).replaceWith($(this).val('').clone(true));
-                    $("#Is_ImageUpload_ValidFile").val("0");
 
-                }
-                else {
-                    $("#Is_ImageUpload_ValidFile").val("3");
-                }
-                //100000 Byte -- 100 KB
-                if ($(this).get(0).files[0].size > (100000)) {
-                    $('#ImageUpload_Msg').text("Failed!! Max allowed file size is 100 KB").show();
-                    $(this).replaceWith($(this).val('').clone(true));
-                    $("#Is_ImageUpload_ValidFile").val("1");
-                }
-                else {
-                    $("#Is_ImageUpload_ValidFile").val("3");
-                }
-            })
-
-        })
-    </script>
-    <div class="m-content">
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="">
+        <div class="m-content">
             <div class="row">
                 <div class="col-lg-12">
 
@@ -170,9 +70,6 @@
                             <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
 
                             <asp:HiddenField ID="hdnImage" runat="server" ClientIDMode="Static" />
-                            <asp:HiddenField ID="hdn_Mandatory_Img_Close" runat="server" ClientIDMode="Static" />
-                            <asp:HiddenField ID="hdn_Mandatory_Remark_Close" runat="server" ClientIDMode="Static" />
-
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-progress">
 
@@ -187,7 +84,7 @@
                                     </div>
 
                                     <div class="m-portlet__head-tools">
-                                        <a runat="server" onserverclick="btnBack_Click" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <a href="<%= Page.ResolveClientUrl("~/Ticketing/Force_Close_Tickets.aspx") %>" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                             <span>
                                                 <i class="la la-arrow-left"></i>
                                                 <span>Back</span>
@@ -220,13 +117,8 @@
                                         </div>
 
                                         <div class=" row" style="padding-left: 2%;">
-                                            <%--<label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Raised By :</label>
-                                            <div class="col-xl-3 col-lg-3 col-form-label">
-                                                <asp:Label ID="lblTicketRaisedBy" runat="server" Text="" class="form-control-label"></asp:Label>
-                                            </div>--%>
-
                                             <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Location :</label>
-                                            <div class="col-xl-9 col-lg-9 col-form-label">
+                                            <div class="col-xl-5 col-lg-5 col-form-label">
                                                 <asp:Label ID="lblLocation" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
                                         </div>
@@ -246,29 +138,20 @@
                                         </div>
 
                                         <div class=" row" style="padding-left: 2%;">
-                                            <%--<label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">View Workflow :</label>--%>
-                                            <div class="col-xl-5 col-lg-5 col-form-label" style="text-align: center;">
-                                                <%--<asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" />--%>
-                                                <asp:Button ID="imgbtnViewWorkflow" runat="server" Text="Click to View Workflow"  class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10"/>
+                                            <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">View Workflow :</label>
+                                            <div class="col-xl-3 col-lg-3 col-form-label">
+                                                <asp:ImageButton ID="imgbtnViewWorkflow" runat="server" ToolTip="Click here to view workflow" ImageUrl="../assets/app/media/img/icons/workflow.png" />
+                                                <asp:Button ID="btnTest" Style="display: none;" runat="server" />
                                                 <cc1:ModalPopupExtender ID="mpeWorkflow" runat="server" PopupControlID="pnlWorkflow" TargetControlID="imgbtnViewWorkflow"
                                                     CancelControlID="btnCloseHeader" BackgroundCssClass="modalBackground">
                                                 </cc1:ModalPopupExtender>
-
-                                               <%-- <a runat="server" onserverclick="btnBack_Click" class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                                                    <span>
-                                                        <img src="../assets/app/media/img/icons/workflow.png" />
-                                                        <span>View Workflow</span>
-                                                    </span>
-                                                </a>--%>
-
-
                                             </div>
 
                                             <label class="col-xl-3 col-lg-3 col-form-label font-weight-bold">Uploaded Image Count :</label>
                                             <div class="col-xl-2 col-lg-2 col-form-label">
                                                 <asp:Label ID="lblRaisedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                            <div class="col-xl-1 col-lg-1" id="dvRaiseImage" runat="server">
+                                            <div class="col-xl-1 col-lg-1">
                                                 <asp:Repeater ID="rptTicketImage" runat="server">
                                                     <ItemTemplate>
                                                         <table>
@@ -293,7 +176,6 @@
 
                                             <%--  <label class="col-xl-3 col-lg-3 col-form-label"> Ticket Images :</label>   --%>
                                         </div>
-
                                         <br />
 
                                         <div class="form-group row" style="background-color: #00c5dc;">
@@ -318,9 +200,7 @@
                                         </div>
 
 
-
                                         <br />
-
                                         <div class="form-group row" style="background-color: #00c5dc;">
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Assignment</label>
                                         </div>
@@ -357,7 +237,7 @@
                                             <div class="col-xl-1 col-lg-1 col-form-label">
                                                 <asp:Label ID="lblClosedImageCount" runat="server" Text="" class="form-control-label"></asp:Label>
                                             </div>
-                                            <div class="col-xl-2 col-lg-2" id="dvCloseImage" runat="server">
+                                            <div class="col-xl-2 col-lg-2">
                                                 <asp:Repeater ID="rptTicketClosingImage" runat="server">
                                                     <ItemTemplate>
                                                         <table>
@@ -381,6 +261,10 @@
                                         </div>
 
                                         <div class="form-group m-form__group row" style="padding-left: 2%;">
+                                            <%--   <asp:GridView ID="gvActionHistory" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
+                                                HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White" HorizontalAlign="Center" AutoGenerateColumns="true">
+
+                                            </asp:GridView>--%>
 
                                             <asp:GridView ID="gvActionHistory" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
                                                 HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
@@ -401,101 +285,28 @@
                                         <br />
 
 
-                                        <div id="dvTicketAction" runat="server">
-                                            <div class="form-group row" style="background-color: #00c5dc;">
-                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Action</label>
-                                            </div>
-
-                                            <div id="dvAction" runat="server">
-
-                                                <div class="form-group m-form__group row dvImageUpload" style="padding-left: 1%; display: none;" id="dvImageUpload" runat="server">
-                                                    <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Ticket Images :</label>
-                                                    <div class="col-xl-9 col-lg-9">
-                                                        <asp:FileUpload ID="FileUpload_TicketImage" runat="server" CssClass="btn btn-accent" AllowMultiple="true" ClientIDMode="Static" />
-                                                        <asp:RequiredFieldValidator ID="rfvFileupload" ValidationGroup="validate" runat="server" Display="Dynamic" ForeColor="Red" Enabled="false"
-                                                            ErrorMessage="Please upload image" ControlToValidate="FileUpload_TicketImage"></asp:RequiredFieldValidator>
-                                                        <span id="ImageUpload_Msg" style="color: red;"></span>
-                                                        <asp:HiddenField ID="Is_ImageUpload_ValidFile" runat="server" ClientIDMode="Static" Value="3" />
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="form-group m-form__group row" style="padding-left: 1%;" id="dvApprovalDetails" runat="server">
-                                                    <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold"><span style="color: red;">*</span> Action :</label>
-                                                    <div class="col-xl-3 col-lg-4">
-                                                        <asp:DropDownList ID="ddlAction" class="form-control m-input" runat="server" ClientIDMode="Static">
-                                                            <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                            <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                                            <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                                            <asp:ListItem Value="Closed" Text="Close"></asp:ListItem>
-                                                        </asp:DropDownList>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="validate" runat="server" Display="Dynamic" ForeColor="Red"
-                                                            ErrorMessage="Please select action" ControlToValidate="ddlAction" InitialValue="0"></asp:RequiredFieldValidator>
-                                                    </div>
-
-                                                    <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold">Remarks :</label>
-                                                    <div class="col-xl-5 col-lg-4">
-                                                        <asp:TextBox ID="txtCloseTicketDesc" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea" ClientIDMode="Static"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="rfvClosingRemarks" ValidationGroup="validate" runat="server" Display="Dynamic" ForeColor="Red" Enabled="false"
-                                                            ErrorMessage="Please enter remarks" ControlToValidate="txtCloseTicketDesc"></asp:RequiredFieldValidator>
-                                                        <span id="Remarks_Msg" style="color: red;"></span>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="form-group m-form__group row" id="dvClose" runat="server">
-                                                    <div class="col-xl-3 col-lg-3"></div>
-                                                    <div class="btn-group col-xl-3 col-lg-3">
-
-                                                        <%-- <asp:Button ID="btnAccept" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAccept_Click" Text="Accept" />
-                                                    &nbsp;&nbsp;&nbsp;--%>
-                                                        <asp:Button ID="btnClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnClose_Click" Text="Submit" ValidationGroup="validate" ClientIDMode="Static" />
-
-                                                        <asp:Button ID="btnTest" Style="display: none;" runat="server" />
-                                                        <cc1:ModalPopupExtender ID="mpeTicketSaveSuccess" runat="server" PopupControlID="pnlTicketSuccess" TargetControlID="btnTest"
-                                                            CancelControlID="btnCloseHeader2" BackgroundCssClass="modalBackground">
-                                                        </cc1:ModalPopupExtender>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="form-group row" style="background-color: #00c5dc;">
+                                            <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Force Close Action</label>
                                         </div>
 
-
-                                        <div id="dv_force_close" runat="server">
-                                            <div class="form-group row" style="background-color: #00c5dc;">
-                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Force Close Details</label>
-                                            </div>
-                                            <div class=" row" style="padding-left: 2%;">
-                                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Force Close By :</label>
-                                                <div class="col-xl-3 col-lg-3 col-form-label">
-                                                    <asp:Label ID="lbl_force_close_by" runat="server" Text="" class="form-control-label"></asp:Label>
-                                                </div>
-
-                                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Force Close Date :</label>
-                                                <div class="col-xl-3 col-lg-3 col-form-label">
-                                                    <asp:Label ID="lbl_force_close_date" runat="server" Text="" class="form-control-label"></asp:Label>
-                                                </div>
+                                        <div class="form-group m-form__group row" style="padding-left: 1%;" id="dvApprovalDetails" runat="server">
+                                            <label class="col-xl-2 col-lg-2 form-control-label font-weight-bold">Remarks :</label>
+                                            <div class="col-xl-8 col-lg-8">
+                                                <asp:TextBox ID="txtForceCloseTicket_Remarks" runat="server" TextMode="MultiLine" class="form-control m-input autosize_textarea TermCondition_textarea" ClientIDMode="Static"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="rfvClosingRemarks" ValidationGroup="forceclose" runat="server" Display="Dynamic" ForeColor="Red" 
+                                                    ErrorMessage="Please enter remarks" ControlToValidate="txtForceCloseTicket_Remarks"></asp:RequiredFieldValidator>
+                                                <span id="Remarks_Msg" style="color: red;"></span>
                                             </div>
 
-                                            <div class="row" style="padding-left: 2%;">
-                                                <label class="col-xl-2 col-lg-2 col-form-label font-weight-bold">Force Close Remarks :</label>
-                                                <div class="col-xl-9 col-lg-9 col-form-label">
-                                                    <asp:Label ID="lbl_force_close_remarks" runat="server" Text="" class="form-control-label"></asp:Label>
-                                                </div>
-
-                                            </div>
                                         </div>
 
-                                        <br />
-
-                                        <div class="form-group m-form__group row" id="dvAccept" runat="server">
+                                        <div class="form-group m-form__group row" id="dvClose" runat="server">
                                             <div class="col-xl-3 col-lg-3"></div>
                                             <div class="btn-group col-xl-3 col-lg-3">
-
-                                                <asp:Button ID="btnAccept" runat="server" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAccept_Click" Text="Accept" />
-
+                                                <asp:Button ID="btnForceClose" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" Text="Force Close" OnClick="btnForceClose_Click" ValidationGroup="forceclose" ClientIDMode="Static" />
                                             </div>
                                         </div>
+
 
                                         <div class="form-group m-form__group row" style="padding-left: 15%;">
                                             <asp:Label ID="lblTicketErrorMsg" Text="" runat="server" CssClass="col-xl-8 col-lg-3 col-form-label" ForeColor="Red" Style="font-size: large; font-weight: bold;"></asp:Label>
@@ -608,6 +419,5 @@
             </div>
         </div>
     </div>
-</div>
 
 </asp:Content>

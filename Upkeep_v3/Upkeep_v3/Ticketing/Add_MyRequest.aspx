@@ -404,9 +404,13 @@
                                             </div>
                                         </div>
 
+                                        <div class="m-form__heading" style="text-align: center; padding-top: 10px;">
+                                            <h3 class="m-form__heading-title" style="line-height: 2.0; background: aliceblue; font-size: 1.2rem;">Additional Fields Ticket</h3>
+                                        </div>
+
                                         <asp:Repeater ID="rptCustomFields" runat="server">
                                             <ItemTemplate>
-                                                <div class="form-group m-form__group row">
+                                                <div class="form-group m-form__group row mb-3">
                                                     <asp:HiddenField ID="hdnFieldID" ClientIDMode="Static" runat="server" Value='<%#Eval("Field_ID")%>' />
                                                     <asp:Label ID="lblCustomFieldDesc" runat="server" class="col-xl-3 col-lg-3 col-form-label" Text='<%#Eval("Tkt_AddOn_Field_Desc")%>' Style="font-weight: bolder;"></asp:Label>
                                                     <div class="col-xl-9 col-lg-9">

@@ -480,11 +480,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Cocktail_Desc, int CompanyID,string License_ID)   //Added CompanyId by sujata
+    public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int CompanyID,string License_ID)   //Added CompanyId by sujata
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, Opening_ID, BrandID, Brand_Desc, Cocktail_Desc, CompanyID,License_ID);
+            ds = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, Opening_ID, BrandID, Brand_Desc, Size_Desc, Cocktail_Desc, CompanyID,License_ID);
         }
         catch (Exception ex)
         {
@@ -496,11 +496,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_CategorySizeLinkup(int Category_ID, int License_ID, int Company_ID)
+    public DataSet Fetch_CategorySizeLinkup(int Size_ID , int Category_ID, int License_ID, int Company_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Category_ID, License_ID, Company_ID);
+            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Size_ID,Category_ID, License_ID, Company_ID);
 
         }
         catch (Exception ex)
@@ -541,11 +541,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID)
+    public DataSet FetchBrandSizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, string Action,DateTime date)
     {
         try
         {
-            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, License_ID);
+            ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, Size_ID, Brand_Desc, Size_Desc, Company_ID, License_ID,Action,date);
 
         }
         catch (Exception ex)
@@ -636,23 +636,6 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         }
         return ds;
     }
-
-    [WebMethod]
-    public DataSet Save_BrandOpening(int Opening_ID, string CategoryDetails, int BrandID, int CompanyID, string LoggedInUserID, string Operation)
-    {
-        try
-        {
-            ds = ObjCocktailWorld.Save_BrandOpening(Opening_ID, CategoryDetails, BrandID, CompanyID, LoggedInUserID, Operation);
-
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        return ds;
-    }
-
-
 
     [WebMethod]
     public DataSet License_CRUD(int LicenseID, string LicenseName, string LicenseNo, string LoggedInUserID, int Company_ID, string Action)

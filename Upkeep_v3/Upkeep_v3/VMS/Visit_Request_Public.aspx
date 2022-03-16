@@ -81,6 +81,10 @@ border: 3px solid #ccc;*/
             background-color: red;
             color: white;
         }
+
+        .radio_button label {
+            margin-left: 10px;
+        }
     </style>
 
 
@@ -848,7 +852,7 @@ border: 3px solid #ccc;*/
                         <div class="col-md-3 col-form-label">
                             <%--<asp:Label ID="lblRequestDate" runat="server" Text="" CssClass="form-control-label"></asp:Label>--%>
                             <asp:TextBox ID="txtEmail" TextMode="Email" runat="server" autocomplete="off" class="form-control m-input" placeholder="Enter Visitor Email ID"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic" 
+                            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" Visible="true" Display="Dynamic"
                                 ValidationGroup="validateVMS" ForeColor="Red" ErrorMessage="Please enter Email"></asp:RequiredFieldValidator>
 
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail"
@@ -951,7 +955,7 @@ border: 3px solid #ccc;*/
                                         <div id="divRadioButton" class="m-radio-inline" style="display: none; text-align: center;" runat="server">
                                             <div class="m-radio-inline" style="padding-left: 0px;">
                                                 <label class="m-radio" style="padding-left: 0px;">
-                                                    <asp:RadioButtonList class="m-radio-inline " runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
+                                                    <asp:RadioButtonList class="m-radio-inline radio_button" runat="server" ID="divRadioButtonrdbYes" RepeatColumns="3" RepeatDirection="Horizontal" ValidationGroup="Radio" ClientIDMode="Static" CellSpacing="10" CellPadding="10">
                                                     </asp:RadioButtonList>
                                                 </label>
                                             </div>

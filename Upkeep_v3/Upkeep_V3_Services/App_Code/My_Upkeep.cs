@@ -1081,14 +1081,14 @@ public class My_Upkeep
     }
 
     public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images,
-        string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction)
+        string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail,string From_Date,string To_Date, string strAction)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
             string strOutput = string.Empty;
             ds = ObjUpkeepCC_BL.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID,
-                IsPublicTicket, UserName, UserEmail, UserMobile, strAction, StrConn);
+                IsPublicTicket, UserName, UserEmail, UserMobile, From_Date, To_Date, strAction, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -1177,6 +1177,40 @@ public class My_Upkeep
         }
         //return ds;
     }
+
+
+    public DataSet Fetch_Force_Close_Ticket_List(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            //string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Fetch_Force_Close_Ticket_List(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        //return ds;
+    }
+
+    public DataSet Save_Force_Close_Ticket(int TicketID, string Force_close_remarks, string LoggedInUserID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
+            //string strOutput = string.Empty;
+            ds = ObjUpkeepCC_BL.Save_Force_Close_Ticket(TicketID, Force_close_remarks, LoggedInUserID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        //return ds;
+    }
+
 
 
     public DataSet Fetch_Highest_Downtime_Ticket(string From_Date, string To_Date, int CompanyID)
@@ -3443,13 +3477,13 @@ public class My_Upkeep
 
 
 
-    public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action)
+    public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory,int intphotoRaisingCheck_QR,int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action)
     {
         DataSet ds = new DataSet();
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Upkeep_ConString"].ConnectionString.ToString();
-            ds = ObjUpkeepCC_BL.CRU_System_Setting(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, CompanyID, LoggedInUserID, Action, StrConn);
+            ds = ObjUpkeepCC_BL.CRU_System_Setting(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, intphotoRaisingCheck_QR, intRemarksCompRaising_QR, CompanyID, LoggedInUserID, Action, StrConn);
         }
         catch (Exception ex)
         {

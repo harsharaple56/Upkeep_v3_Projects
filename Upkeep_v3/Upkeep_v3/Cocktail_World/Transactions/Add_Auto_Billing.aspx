@@ -21,8 +21,41 @@
         }
     </style>
     <script type="text/javascript">
-        $(document).ready(function () {
+        function confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you want to delete data?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+        }
 
+        function GetBillsCount() {
+            var dataString = {
+                'item': '',
+            };
+            var param = JSON.stringify(dataString);
+
+            $.ajax({
+                type: "POST",
+                url: "Add_Auto_Billing.aspx/GetCount",
+                data: param,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                },
+                failure: function (response) {
+                    toastr.error("Your transaction Not Added..!");
+                }
+            });
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -41,6 +74,52 @@
                 "hideMethod": "fadeOut"
             };
 
+            var BillDataDetails = $("input[name=BillDataDetails]").val();
+            if (BillDataDetails != undefined) {
+                swal({
+                    title: "Are you sure?",
+                    text: BillDataDetails + " Bills will be created..!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: "No",
+                })
+                    .then((isConfirm) => {
+                        if (isConfirm.value) {
+                            var dataString = {
+                                'item': '',
+                            };
+                            var param = JSON.stringify(dataString);
+                            $.ajax({
+                                type: "POST",
+                                url: "Add_Auto_Billing.aspx/GetCount",
+                                data: param,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    swal({
+                                        title: "Success..!",
+                                        text: "Your AutoBilling trasaction successfully added!",
+                                        type: "success"
+                                    }).then(function () {
+                                        window.location = "Auto_Billing.aspx";
+                                    });
+                                },
+                                failure: function (response) {
+                                    toastr.error("Your transaction Not Added..!");
+                                }
+                            });
+                        }
+
+                        if (isConfirm.dismiss) {
+                            swal("Cancelled", "Your data are safe :)", "error");
+                        }
+                        return false;
+                    });
+            }
+
+
             var getOpening_ID = $("input[name=Opening_ID]").val();
             var getBS_QTY = $("input[name=BS_QTY]").val();
             var getNegative = $("input[name=Negative]").val();
@@ -56,7 +135,7 @@
                 toastr.error(getNegative);
             }
             if (getLicense != undefined) {
-                toastr.error("Please Select License.");
+                toastr.error("Please Select Brand.");
             }
             if (getDuplicate != undefined) {
                 toastr.error("This data already in database.");
@@ -109,7 +188,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -130,7 +209,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val1 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -151,7 +230,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -172,7 +251,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -193,7 +272,8 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
+                //var taxAmount = rowTotal * val2 / 100;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
 
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
@@ -214,7 +294,7 @@
                     (parseFloat(!isNaN(val4) ? val4 : 0) * parseFloat(!isNaN(val5) ? val5 : 0)) +
                     (parseFloat(!isNaN(val6) ? val6 : 0) * parseFloat(!isNaN(val7) ? val7 : 0));
 
-                var taxAmount = rowTotal * val2 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=txtamount]').val(taxAmount);
                 $(this).closest('tr').find('[id*=txttotalamount]').val(rowTotal);
             });
@@ -228,7 +308,7 @@
 
                 var rowTotal = (parseFloat(!isNaN(val1) ? val1 : 0) * parseFloat(!isNaN(val2) ? val2 : 0));
 
-                var taxAmount = rowTotal * val3 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=cocktailamount]').val(taxAmount);
                 $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal);
             });
@@ -242,7 +322,7 @@
 
                 var rowTotal = (parseFloat(!isNaN(val1) ? val1 : 0) * parseFloat(!isNaN(val2) ? val2 : 0));
 
-                var taxAmount = rowTotal * val3 / 100;
+                var taxAmount = 0;
                 $(this).closest('tr').find('[id*=cocktailamount]').val(taxAmount);
                 $(this).closest('tr').find('[id*=cocktailtotalamount]').val(rowTotal);
             });
@@ -296,7 +376,7 @@
                                 </a></li>
                             </ul>
                         </div>
-                        <div class="m-portlet m-portlet--tabs" style="width: 300px;margin-top: 10px;">
+                        <div class="m-portlet m-portlet--tabs" style="width: 300px; margin-top: 10px;">
                             <asp:DropDownList ID="ddlLicense" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" CssClass="underline form-control" ClientIDMode="Static">
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlLicense" Visible="true"
@@ -311,10 +391,10 @@
                             <div class="tab-pane" id="tab1" role="tabpanel">
                                 <div class="row m--margin-bottom-20 m--align-center">
 
-                                    
+
 
                                     <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                        <label class="font-weight-bold">Select Sale Date</label>
+                                        <label class="font-weight-bold">Select Date</label>
 
                                         <div class="m-form__control">
                                             <div class="input-group date">
@@ -341,7 +421,7 @@
                                     <div class="col-lg-2 m--margin-bottom-10-tablet-and-mobile">
                                         <label class="font-weight-bold">Select Brand</label>
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="Updatepanel4" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
@@ -360,7 +440,7 @@
                                         <label class="font-weight-bold">Select Size</label>
 
                                         <div class="m-form__control">
-                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Conditional">
+                                            <asp:UpdatePanel ID="Updatepanel1" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:DropDownList OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" ID="ddlSize" runat="server" CssClass="form-control"
                                                         AutoPostBack="true" ClientIDMode="Static">
@@ -397,7 +477,7 @@
 
 
                                 </div>
-                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
+                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Always">
                                     <ContentTemplate>
 
                                         <table id="brandTbl" width="100%" cellpadding="2" cellspacing="2">

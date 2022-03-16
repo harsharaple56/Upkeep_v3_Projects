@@ -1137,12 +1137,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
     [WebMethod]
     public DataSet Insert_Ticket_Details(string TicketCode, int CompanyID, int LocationID, int CategoryID, int SubCategoryID, string TicketMessage, string list_Images,
-        string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail, string strAction)
+        string CustomFields_XML, string LoggedInUserID, bool IsPublicTicket, string UserName, string UserMobile, string UserEmail,string From_Date,string To_Date, string strAction)
     {
         try
         {
             ds = ObjUpkeep.Insert_Ticket_Details(TicketCode, CompanyID, LocationID, CategoryID, SubCategoryID, TicketMessage, list_Images, CustomFields_XML, LoggedInUserID,
-                IsPublicTicket, UserName, UserEmail, UserMobile, strAction);
+                IsPublicTicket, UserName, UserEmail, UserMobile, From_Date, To_Date, strAction);
         }
         catch (Exception ex)
         {
@@ -1221,6 +1221,35 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
         }
         return ds;
     }
+
+    [WebMethod]
+    public DataSet Fetch_Force_Close_Ticket_List(string TicketStatus, string ActionStatus, string From_Date, string To_Date, int CompanyID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Fetch_Force_Close_Ticket_List(TicketStatus, ActionStatus, From_Date, To_Date, CompanyID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Save_Force_Close_Ticket(int TicketID, string Force_close_remarks,string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjUpkeep.Save_Force_Close_Ticket(TicketID, Force_close_remarks, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
 
 
     [WebMethod]
@@ -3762,12 +3791,12 @@ public class Upkeep_V3_Services : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory, int CompanyID, string LoggedInUserID, string Action)
+    public DataSet CRU_System_Setting(int Setting_ID, int Tkt_Is_Img_Open, int Tkt_Is_Img_Close, int Tkt_Is_Remark_Open, int Tkt_Is_Remark_Close, int Tkt_Is_Expiry, int Chk_Is_QR_Compulsory,int intphotoRaisingCheck_QR,int intRemarksCompRaising_QR, int CompanyID, string LoggedInUserID, string Action)
     {
         DataSet ds = new DataSet();
         try
         {
-            ds = ObjUpkeep.CRU_System_Setting(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, CompanyID, LoggedInUserID, Action);
+            ds = ObjUpkeep.CRU_System_Setting(Setting_ID, Tkt_Is_Img_Open, Tkt_Is_Img_Close, Tkt_Is_Remark_Open, Tkt_Is_Remark_Close, Tkt_Is_Expiry, Chk_Is_QR_Compulsory, intphotoRaisingCheck_QR, intRemarksCompRaising_QR, CompanyID, LoggedInUserID, Action);
         }
         catch (Exception ex)
         {

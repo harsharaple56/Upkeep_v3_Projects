@@ -10,7 +10,7 @@
 namespace Upkeep_v3.Ticketing {
     
     
-    public partial class My_RequestRply {
+    public partial class Force_Close_Ticket_Details {
         
         /// <summary>
         /// frmticket1 control.
@@ -29,24 +29,6 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnImage;
-        
-        /// <summary>
-        /// hdn_Mandatory_Img_Close control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_Mandatory_Img_Close;
-        
-        /// <summary>
-        /// hdn_Mandatory_Remark_Close control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn_Mandatory_Remark_Close;
         
         /// <summary>
         /// lblTicketNo control.
@@ -100,7 +82,16 @@ namespace Upkeep_v3.Ticketing {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button imgbtnViewWorkflow;
+        protected global::System.Web.UI.WebControls.ImageButton imgbtnViewWorkflow;
+        
+        /// <summary>
+        /// btnTest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTest;
         
         /// <summary>
         /// mpeWorkflow control.
@@ -119,15 +110,6 @@ namespace Upkeep_v3.Ticketing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRaisedImageCount;
-        
-        /// <summary>
-        /// dvRaiseImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvRaiseImage;
         
         /// <summary>
         /// rptTicketImage control.
@@ -229,15 +211,6 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.Label lblClosedImageCount;
         
         /// <summary>
-        /// dvCloseImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCloseImage;
-        
-        /// <summary>
         /// rptTicketClosingImage control.
         /// </summary>
         /// <remarks>
@@ -256,60 +229,6 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.GridView gvActionHistory;
         
         /// <summary>
-        /// dvTicketAction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTicketAction;
-        
-        /// <summary>
-        /// dvAction control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvAction;
-        
-        /// <summary>
-        /// dvImageUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvImageUpload;
-        
-        /// <summary>
-        /// FileUpload_TicketImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload_TicketImage;
-        
-        /// <summary>
-        /// rfvFileupload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFileupload;
-        
-        /// <summary>
-        /// Is_ImageUpload_ValidFile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Is_ImageUpload_ValidFile;
-        
-        /// <summary>
         /// dvApprovalDetails control.
         /// </summary>
         /// <remarks>
@@ -319,31 +238,13 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvApprovalDetails;
         
         /// <summary>
-        /// ddlAction control.
+        /// txtForceCloseTicket_Remarks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAction;
-        
-        /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
-        /// <summary>
-        /// txtCloseTicketDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCloseTicketDesc;
+        protected global::System.Web.UI.WebControls.TextBox txtForceCloseTicket_Remarks;
         
         /// <summary>
         /// rfvClosingRemarks control.
@@ -364,85 +265,13 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvClose;
         
         /// <summary>
-        /// btnClose control.
+        /// btnForceClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
-        
-        /// <summary>
-        /// btnTest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTest;
-        
-        /// <summary>
-        /// mpeTicketSaveSuccess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpeTicketSaveSuccess;
-        
-        /// <summary>
-        /// dv_force_close control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_force_close;
-        
-        /// <summary>
-        /// lbl_force_close_by control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_force_close_by;
-        
-        /// <summary>
-        /// lbl_force_close_date control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_force_close_date;
-        
-        /// <summary>
-        /// lbl_force_close_remarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_force_close_remarks;
-        
-        /// <summary>
-        /// dvAccept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvAccept;
-        
-        /// <summary>
-        /// btnAccept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAccept;
+        protected global::System.Web.UI.WebControls.Button btnForceClose;
         
         /// <summary>
         /// lblTicketErrorMsg control.

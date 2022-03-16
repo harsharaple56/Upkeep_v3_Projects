@@ -20,6 +20,19 @@ namespace eFacilito_MobileApp_WebAPI.Models
         public string Expiry_Date { get; set; }
     }
 
+    public class ClsEvent_V2
+    {
+        public string Event_ID { get; set; }
+        public string Event_Name { get; set; }
+        public string Start_Date { get; set; }
+        public string Expiry_Date { get; set; }
+        public int Is_Fname_Mandatory { get; set; }
+        public int Is_Lname_Mandatory { get; set; }
+        public int Is_Contact_Manadatoy { get; set; }
+        public int Is_Email_Manadatoy { get; set; }
+        public int Is_Gender_Manadatoy { get; set; }
+    }
+
     public class ClsRetailer
     {
         public string Retailer_ID { get; set; }

@@ -62,8 +62,8 @@ namespace Upkeep_v3.Ticketing
             DataSet dsTicket = new DataSet();
             try
             {
-                dsTicket = ObjUpkeep.Insert_Ticket_Details((Request.QueryString["TicketID"]), CompanyID, 0, 0, 0, "", "","", LoggedInUserID, false, string.Empty, string.Empty, string.Empty, "R");
-
+                //dsTicket = ObjUpkeep.Insert_Ticket_Details((Request.QueryString["TicketID"]), CompanyID, 0, 0, 0, "", "","", LoggedInUserID, false, string.Empty, string.Empty, string.Empty,"","", "R");
+                dsTicket = ObjUpkeep.Bind_Ticket_Details(TicketID, CompanyID);
                 // int TicketID = 0;
                 string TicketNumber = string.Empty;
                 string Zone = string.Empty;
@@ -91,7 +91,7 @@ namespace Upkeep_v3.Ticketing
                         lblSubCategory.Text = dsTicket.Tables[0].Rows[0].Field<string>("SubCategory_Desc");
                         lblRequestDate.Text = dsTicket.Tables[0].Rows[0].Field<string>("Ticket_Date");
                         lblTicketdesc.Text = dsTicket.Tables[0].Rows[0].Field<string>("Tkt_Message");
-                        lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy"]);
+                        lblTicketRaisedBy.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Ticket_RaisedBy"]);
                         lblTicketRaisedBy_MobileNo.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_MobileNo"]);
                         lblTicketRaisedBy_EmailID.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["RaisedBy_EmailID"]);
 
@@ -188,21 +188,30 @@ namespace Upkeep_v3.Ticketing
                             lblActionStatus.Attributes.Add("class", "m-badge m-badge--secondary m-badge--wide");
                         }
 
+                        Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[0].Rows[0]["CurrentLevel"]);
+                        lblCurrentLevel.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["CurrentLevel"]);
 
-                        //}
-                    }
-
-                    if (dsTicket.Tables[1].Rows.Count > 0)
-                    {
-                        Session["CurrentLevel"] = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
-                        lblCurrentLevel.Text = Convert.ToString(dsTicket.Tables[1].Rows[0]["CurrentLevel"]);
-                    }
-
-                    if (dsTicket.Tables.Count > 2)
-                    {
-                        if (dsTicket.Tables[2].Rows.Count > 0)
+                        //force close
+                        int Is_Force_Close = 0;
+                        Is_Force_Close = Convert.ToInt32(dsTicket.Tables[0].Rows[0]["Is_Force_Close"]);
+                        if (Is_Force_Close > 0)
                         {
-                            gvActionHistory.DataSource = dsTicket.Tables[2];
+                            lbl_force_close_by.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Close_By_user"]);
+                            lbl_force_close_date.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Closed_Date"]);
+                            lbl_force_close_remarks.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Closed_Remarks"]);
+                        }
+                        else
+                        {
+                            dv_force_close.Attributes.Add("style", "display:none;");
+                        }
+                    }
+
+                  
+                    if (dsTicket.Tables.Count > 1)
+                    {
+                        if (dsTicket.Tables[1].Rows.Count > 0)
+                        {
+                            gvActionHistory.DataSource = dsTicket.Tables[1];
                             gvActionHistory.DataBind();
                         }
                         else
@@ -358,7 +367,19 @@ namespace Upkeep_v3.Ticketing
                             lblActionStatus.Attributes.Add("class", "m-badge m-badge--secondary m-badge--wide");
                         }
 
-                        //}
+                        //force close
+                        int Is_Force_Close = 0;
+                        Is_Force_Close = Convert.ToInt32(dsTicket.Tables[0].Rows[0]["Is_Force_Close"]);
+                        if (Is_Force_Close > 0)
+                        {
+                            lbl_force_close_by.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Close_By_user"]);
+                            lbl_force_close_date.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Closed_Date"]);
+                            lbl_force_close_remarks.Text = Convert.ToString(dsTicket.Tables[0].Rows[0]["Force_Closed_Remarks"]);
+                        }
+                        else
+                        {
+                            dv_force_close.Attributes.Add("style", "display:none;");
+                        }
                     }
 
                     if (dsTicket.Tables[1].Rows.Count > 0)
@@ -739,6 +760,11 @@ namespace Upkeep_v3.Ticketing
 
                                 Response.Redirect(Page.ResolveClientUrl("~/Ticketing/MyActionable.aspx"), false);
                             }
+                            else if (Status == 2)
+                            {
+                                string error_msg= Convert.ToString(dsCloseTicket.Tables[0].Rows[0]["ErrorMsg"]);
+                                lblTicketErrorMsg.Text = error_msg;
+                            }
                             else
                             {
                                 lblTicketErrorMsg.Text = "Something went wrong, please try again";
@@ -884,7 +910,7 @@ namespace Upkeep_v3.Ticketing
             DataSet dsSetting = new DataSet();
             try
             {
-                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0,0, CompanyID, LoggedInUserID, "R");
+                dsSetting = ObjUpkeep.CRU_System_Setting(0, 0, 0, 0, 0, 0,0,0,0, CompanyID, LoggedInUserID, "R");
                 if (dsSetting.Tables.Count > 0)
                 {
                     if (dsSetting.Tables[0].Rows.Count > 0)

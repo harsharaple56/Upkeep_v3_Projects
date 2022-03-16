@@ -23,6 +23,17 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            var Redirect = $("input[name=Redirect]").val();
+            if (Redirect != undefined) {
+                swal({
+                    title: "Success..!",
+                    text: "Your transfer successfully added!",
+                    type: "success"
+                }).then(function () {
+                    window.location = "Transfers.aspx";
+                });
+            }
+
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -262,7 +273,7 @@
                                                 <ContentTemplate>
                                                     <asp:DropDownList AutoPostBack="true" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" ID="ddlBrand" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator InitialValue="0"  ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlBrand" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please enter Brand"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="ddlLicense" EventName="SelectedIndexChanged" />
@@ -280,7 +291,7 @@
                                                 <ContentTemplate>
                                                     <asp:DropDownList ID="ddlSize" OnSelectedIndexChanged="ddlSize_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="form-control" ClientIDMode="Static">
                                                     </asp:DropDownList>
-                                                    <asp:RequiredFieldValidator InitialValue="0"  ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator InitialValue="0" ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlSize" Visible="true" ValidationGroup="Brandvalidate" ForeColor="Red" ErrorMessage="Please select Size"></asp:RequiredFieldValidator>
                                                 </ContentTemplate>
                                                 <Triggers>
                                                     <asp:AsyncPostBackTrigger ControlID="ddlBrand" />
@@ -311,7 +322,7 @@
                                     </div>
                                 </div>
 
-                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Conditional">
+                                <asp:UpdatePanel ID="Updatepanel2" runat="server" UpdateMode="Always">
                                     <ContentTemplate>
 
                                         <table id="transferTbl" width="100%" cellpadding="2" cellspacing="2">
