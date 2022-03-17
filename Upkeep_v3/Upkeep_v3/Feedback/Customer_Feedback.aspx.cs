@@ -239,11 +239,21 @@ namespace Upkeep_v3.Feedback
                 string strEmailID = EmailID.Text;
                 string strGender = string.Empty;
                 if (rdbGender.SelectedItem.Value == "Male")
-                { strGender = "Male"; }
+                {
+                    strGender = "Male";
+                }
                 else if (rdbGender.SelectedItem.Value == "Female")
-                { strGender = "Female"; }
+                {
+                    strGender = "Female";
+                }
                 else if (rdbGender.SelectedItem.Value == "Other")
-                { strGender = "Other"; }
+                {
+                    strGender = "Other";
+                }
+                else
+                {
+                    strGender = "NA";
+                }
 
 
                 lblFeedbackError.Text = "";
