@@ -484,10 +484,8 @@
                                             <tr>
                                                 <td colspan="2" class="ClsControlTd">
                                                     <asp:GridView ID="grdBrandLinkup" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
-                                                        AllowPaging="true"
-                                                        PageSize="10" AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
-                                                        PagerStyle-HorizontalAlign="Center" PagerStyle-Mode="NumericPages" PagerSettings-Mode="Numeric"
-                                                        PagerSettings-Position="Bottom" ClientIDMode="Static" OnRowDeleting="BrandOnRowDeleting"
+                                                         AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                                        ClientIDMode="Static" OnRowDeleting="BrandOnRowDeleting"
                                                         OnRowDataBound="BrandOnRowDataBound" OnPageIndexChanging="grdBrandLinkup_PageIndexChanging">
                                                         <HeaderStyle HorizontalAlign="Center" />
                                                         <Columns>

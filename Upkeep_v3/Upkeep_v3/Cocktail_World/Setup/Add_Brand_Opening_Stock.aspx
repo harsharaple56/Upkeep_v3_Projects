@@ -58,13 +58,18 @@
 
             var Redirect = $("input[name=Redirect]").val();
             if (Redirect != undefined) {
-                swal({
-                    title: "Success..!",
-                    text: "Your trasaction successfully saved!",
-                    type: "success"
-                }).then(function () {
-                    window.location = "Brand_Opening_Stock.aspx";
-                });
+                //swal({
+                //    title: "Success..!",
+                //    text: "Your trasaction successfully saved!",
+                //    type: "success"
+                //}).then(function () {
+                //    window.location = "Brand_Opening_Stock.aspx";
+                //});
+                Swal.fire(
+                    'Success..!',
+                    'Your trasaction successfully saved!',
+                    'success'
+                )
             }
         });
     </script>
