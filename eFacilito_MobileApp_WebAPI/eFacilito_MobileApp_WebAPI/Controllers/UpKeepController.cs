@@ -11273,7 +11273,7 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                     if (postedFile != null && postedFile.ContentLength > 0)
                     {
 
-                        int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
+                        //int MaxContentLength = 1024 * 1024 * 1; //Size = 1 MB  
 
                         IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
                         var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
@@ -11287,14 +11287,14 @@ namespace eFacilito_MobileApp_WebAPI.Controllers
                             dict.Add("error", message);
                             return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
                         }
-                        else if (postedFile.ContentLength > MaxContentLength)
-                        {
+                        //else if (postedFile.ContentLength > MaxContentLength)
+                        //{
 
-                            var message = string.Format("Please Upload a file upto 1 mb.");
+                        //    var message = string.Format("Please Upload a file upto 1 mb.");
 
-                            dict.Add("error", message);
-                            return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
-                        }
+                        //    dict.Add("error", message);
+                        //    return Request.CreateResponse(HttpStatusCode.BadRequest, dict);
+                        //}
                         else
                         {
                             //string fileUploadPath = ImagePhysicalPath + CurrentDate;
