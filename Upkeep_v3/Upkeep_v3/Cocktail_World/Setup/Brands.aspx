@@ -37,6 +37,15 @@
                     init_plugins();
                 }
             });
+
+            var selected = $("input[name=selected]").val();
+            if (selected != undefined) {
+                Swal.fire(
+                    'Warning..!',
+                    'You can not delete this brand, Trasactions are available for this brand',
+                    'info'
+                )
+            }
         });
 
         function RestrictSpaceSpecial(e) {

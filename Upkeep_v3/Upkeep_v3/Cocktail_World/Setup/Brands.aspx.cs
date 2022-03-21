@@ -293,7 +293,15 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brands.aspx"), false);
+                        int Status = Convert.ToInt32(ds.Tables[0].Rows[0]["Status"]);
+                        if (Status == 1)
+                        {
+                            Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Setup/Brands.aspx"), false);
+                        }
+                        else if (Status == 4)
+                        {
+                            Page.ClientScript.RegisterHiddenField("selected", "selected");
+                        }
                     }
                 }
             }
