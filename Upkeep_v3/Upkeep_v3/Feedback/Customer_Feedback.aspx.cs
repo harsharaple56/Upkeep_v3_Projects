@@ -238,17 +238,22 @@ namespace Upkeep_v3.Feedback
                 string strPhone = Phoneno.Text;
                 string strEmailID = EmailID.Text;
                 string strGender = string.Empty;
-                if (rdbGender.SelectedItem.Value == "Male")
+
+                if (rdbGender.SelectedItem != null)
                 {
-                    strGender = "Male";
-                }
-                else if (rdbGender.SelectedItem.Value == "Female")
-                {
-                    strGender = "Female";
-                }
-                else if (rdbGender.SelectedItem.Value == "Other")
-                {
-                    strGender = "Other";
+                    if (rdbGender.SelectedItem.Value == "Male")
+                    {
+                        strGender = "Male";
+                    }
+                    else if (rdbGender.SelectedItem.Value == "Female")
+                    {
+                        strGender = "Female";
+                    }
+                    else if (rdbGender.SelectedItem.Value == "Other")
+                    {
+                        strGender = "Other";
+                    }
+                    
                 }
                 else
                 {
