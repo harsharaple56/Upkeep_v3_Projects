@@ -558,6 +558,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         //Check Brand Sale Duplicate Data
                         bool purchaseDuplicate = Check_Purchase_DuplicateData();
                         bool displayMessage = false;
+                        bool checkamount = false;
 
                         if (!purchaseDuplicate)
                         {
@@ -669,7 +670,14 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     }
 
                                     if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
+                                    {
                                         Amount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty);
+                                        if (Amount == 0)
+                                        {
+                                            checkamount = true;
+                                            break;
+                                        }
+                                    }
 
                                     if (!string.IsNullOrEmpty(row.FindControl("txtamount").ToString()) && header == "Tax Amount")
                                         TaxAmount = Amount * Convert.ToInt32(Session["hdnTax"]) / 100;
@@ -732,37 +740,44 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 }
                             }
 
-                            if (grdPurchase.Rows.Count > 0 && dtInsertPurchaseData.Rows.Count > 0 && dtInsertPurchaseDetailsData.Rows.Count > 0 && (grdPurchase.Rows.Count == dtInsertPurchaseData.Rows.Count))
+                            if (!checkamount)
                             {
-                                //Insert Operation for Purchase Data
-                                DataSet dsPurchase = new DataSet();
-                                dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0, Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "Insert");
-
-                                for (int i = 0; i < dtInsertPurchaseData.Rows.Count; i++)
+                                if (grdPurchase.Rows.Count > 0 && dtInsertPurchaseData.Rows.Count > 0 && dtInsertPurchaseDetailsData.Rows.Count > 0 && (grdPurchase.Rows.Count == dtInsertPurchaseData.Rows.Count))
                                 {
-                                    ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Convert.ToInt32(dsPurchase.Tables[0].Rows[0]["Purchase_ID"]),
-                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Opening_ID"]),
-                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Brand_Name"]),
-                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Size_Desc"]),
-                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Qty"]),
-                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Rate"]),
-                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["SPeg_Qty"]),
-                                        Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Speg_Rate"]),
-                                        0,
-                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Boxes"]),
-                                        Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["BatchNo"]),
-                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]),
-                                        Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Tax_Type"]),
-                                         Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["TaxAmount"]),
-                                          Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Amount"]),
-                                          Convert.ToInt32(ddlLicense.SelectedValue)
-                                        , CompanyID, LoggedInUserID, "Insert");
-                                    displayMessage = true;
-                                }
-                            }
+                                    //Insert Operation for Purchase Data
+                                    DataSet dsPurchase = new DataSet();
+                                    dsPurchase = ObjCocktailWorld.PurchaseMaster_CRUD(0, Convert.ToInt32(ddlSupplier.SelectedValue), txttpnumber.Text, txtinvoicenumber.Text, txtPurchaseDate.Text, !string.IsNullOrEmpty(txttotalcharges.Text) ? Convert.ToDecimal(txttotalcharges.Text) : 0, !string.IsNullOrEmpty(txtdiscount.Text) ? Convert.ToDecimal(txtdiscount.Text) : 0, Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, "Insert");
 
-                            if (displayMessage)
-                                Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
+                                    for (int i = 0; i < dtInsertPurchaseData.Rows.Count; i++)
+                                    {
+                                        ObjCocktailWorld.PurchaseDetailsMaster_CRUD(Convert.ToInt32(dsPurchase.Tables[0].Rows[0]["Purchase_ID"]),
+                                            Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Opening_ID"]),
+                                            Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Brand_Name"]),
+                                            Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Size_Desc"]),
+                                            Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Qty"]),
+                                            Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Bottle_Rate"]),
+                                            Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["SPeg_Qty"]),
+                                            Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Speg_Rate"]),
+                                            0,
+                                            Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["Boxes"]),
+                                            Convert.ToInt32(dtInsertPurchaseDetailsData.Rows[i]["BatchNo"]),
+                                            Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["MfgDate"]),
+                                            Convert.ToString(dtInsertPurchaseDetailsData.Rows[i]["Tax_Type"]),
+                                             Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["TaxAmount"]),
+                                              Convert.ToDecimal(dtInsertPurchaseDetailsData.Rows[i]["Amount"]),
+                                              Convert.ToInt32(ddlLicense.SelectedValue)
+                                            , CompanyID, LoggedInUserID, "Insert");
+                                        displayMessage = true;
+                                    }
+                                }
+
+                                if (displayMessage)
+                                    Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
+                            }
+                            else
+                            {
+                                Page.ClientScript.RegisterHiddenField("CheckAmount", "CheckAmount");
+                            }
                         }
                         else
                         {

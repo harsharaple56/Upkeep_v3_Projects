@@ -820,6 +820,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     //Check Brand Sale Duplicate Data
                     bool brandDuplicate = CheckBrandSaleDuplicateData();
                     bool displayMessage = false;
+                    bool checkamount = false;
 
                     if (brandDuplicate)
                     {
@@ -928,7 +929,14 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                     Permit_Holder = (row.FindControl("ddlPermit") as DropDownList).SelectedValue;
 
                                 if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
+                                {
                                     Amount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty) + (LPeg_Qty * LPeg_Rate);
+                                    if (Amount == 0)
+                                    {
+                                        checkamount = true;
+                                        break;
+                                    }
+                                }
 
                                 if (!string.IsNullOrEmpty(row.FindControl("txtamount").ToString()) && header == "Tax Amount")
                                     TaxAmount = Amount * Convert.ToInt32(Session["hdnTax"]) / 100;
@@ -1021,30 +1029,36 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             }
                         }
 
-                        if (grdBrandLinkup.Rows.Count > 0 && dtInsertSaleData.Rows.Count > 0 && dtInsertSaleDetailsData.Rows.Count > 0 && (grdBrandLinkup.Rows.Count == dtInsertSaleData.Rows.Count))
+                        if (!checkamount)
                         {
-                            //Insert Operation for Brand Sale
-                            DataSet dsBrandSale = new DataSet();
-                            dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(0, txtBrandDate.Text, txtBill.Text, Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID, false);
-
-                            for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
+                            if (grdBrandLinkup.Rows.Count > 0 && dtInsertSaleData.Rows.Count > 0 && dtInsertSaleDetailsData.Rows.Count > 0 && (grdBrandLinkup.Rows.Count == dtInsertSaleData.Rows.Count))
                             {
-                                ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
-                                    Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
-                                    Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
-                                    Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
-                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["SPeg_Qty"]),
-                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
-                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
-                                    Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]),
-                                     Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]) != -1 ? Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]) : GetRandomPermitHolder(),
-                                    Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
-                                displayMessage = true;
-                            }
-                        }
+                                //Insert Operation for Brand Sale
+                                DataSet dsBrandSale = new DataSet();
+                                dsBrandSale = ObjCocktailWorld.SaleMaster_Crud(0, txtBrandDate.Text, txtBill.Text, Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID, false);
 
-                        if (displayMessage)
-                            Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
+                                for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
+                                {
+                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
+                                        Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
+                                        Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
+                                        Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
+                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["SPeg_Qty"]),
+                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Speg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Qty"]),
+                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["LPeg_Rate"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["TaxAmount"]),
+                                        Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Amount"]),
+                                         Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]) != -1 ? Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Permit_Holder"]) : GetRandomPermitHolder(),
+                                        Convert.ToInt32(ddlLicense.SelectedValue), "Insert", Convert.ToInt32(LoggedInUserID), CompanyID);
+                                    displayMessage = true;
+                                }
+                            }
+
+                            if (displayMessage)
+                                Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
+                        }
+                        else {
+                            Page.ClientScript.RegisterHiddenField("CheckAmount", "CheckAmount");
+                        }
                     }
                     else
                     {

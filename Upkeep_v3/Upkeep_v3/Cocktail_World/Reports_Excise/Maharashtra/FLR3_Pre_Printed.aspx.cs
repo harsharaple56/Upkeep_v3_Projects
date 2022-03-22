@@ -25,7 +25,7 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
                 Fetch_License();
                 hdn_IsPostBack.Value = "no";
                 DataSet dsReport = new DataSet();
-                dsReport = ObjCocktailWorld.Fetch_FLR3LegalReport();
+                //dsReport = ObjCocktailWorld.Fetch_FLR3LegalReport();
 
                 ReportViewer1.ProcessingMode = ProcessingMode.Local;
                 ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/Maharashtra/RDLC_Files/FLR3_Pre_Printed.rdlc");

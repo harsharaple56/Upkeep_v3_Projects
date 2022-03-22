@@ -157,7 +157,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
 
                                 DataSet dsGetStockDetails = new DataSet();
-                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID, 0,string.Empty, DateTime.Now);
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsSaleDetail.Tables[0].Rows[i]["Brand_Desc"].ToString(), dsSaleDetail.Tables[0].Rows[i]["Size_Desc"].ToString(), CompanyID, 0, string.Empty, DateTime.Now);
                                 if (dsGetStockDetails.Tables[0].Rows.Count > 0)
                                 {
                                     string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
@@ -267,7 +267,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue),string.Empty, DateTime.Now);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue), string.Empty, DateTime.Now);
 
                 if (BrandID == 0)
                 {
@@ -825,6 +825,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     //Check Brand Sale Duplicate Data
                     bool brandDuplicate = CheckBrandSaleDuplicateData();
                     bool displayMessage = false;
+                    bool checkamount = false;
 
                     if (brandDuplicate)
                     {
@@ -928,7 +929,14 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 }
 
                                 if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
+                                {
                                     Amount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty) + (LPeg_Qty * LPeg_Rate);
+                                    if (Amount == 0)
+                                    {
+                                        checkamount = true;
+                                        break;
+                                    }
+                                }
 
                                 if (!string.IsNullOrEmpty(row.FindControl("txtamount").ToString()) && header == "Tax Amount")
                                     TaxAmount = Amount;
@@ -1020,18 +1028,25 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             }
                         }
 
-                        if (grdBrandLinkup.Rows.Count > 0 && dtInsertSaleData.Rows.Count > 0 && dtInsertSaleDetailsData.Rows.Count > 0 && (grdBrandLinkup.Rows.Count == dtInsertSaleData.Rows.Count))
+                        if (!checkamount)
                         {
-                            DataSet getAutoBillData = GetAutoBillingBrandCount(dtInsertSaleDetailsData, txtBillAmount.Text.Trim());
-                            Session.Add("BillDetails", getAutoBillData);
-                            Session.Add("BrandDate", txtBrandDate.Text);
-                            Session.Add("License", ddlLicense.SelectedValue);
-                            Session.Add("User", LoggedInUserID);
-                            Page.ClientScript.RegisterHiddenField("BillDataDetails", getAutoBillData.Tables[0].Rows[0]["Bill_Count"].ToString());
-                        }
+                            if (grdBrandLinkup.Rows.Count > 0 && dtInsertSaleData.Rows.Count > 0 && dtInsertSaleDetailsData.Rows.Count > 0 && (grdBrandLinkup.Rows.Count == dtInsertSaleData.Rows.Count))
+                            {
+                                DataSet getAutoBillData = GetAutoBillingBrandCount(dtInsertSaleDetailsData, txtBillAmount.Text.Trim());
+                                Session.Add("BillDetails", getAutoBillData);
+                                Session.Add("BrandDate", txtBrandDate.Text);
+                                Session.Add("License", ddlLicense.SelectedValue);
+                                Session.Add("User", LoggedInUserID);
+                                Page.ClientScript.RegisterHiddenField("BillDataDetails", getAutoBillData.Tables[0].Rows[0]["Bill_Count"].ToString());
+                            }
 
-                        if (displayMessage)
-                            Response.Redirect("~/Cocktail_World/Transactions/Auto_Billing.aspx");
+                            if (displayMessage)
+                                Response.Redirect("~/Cocktail_World/Transactions/Auto_Billing.aspx");
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterHiddenField("CheckAmount", "CheckAmount");
+                        }
                     }
                     else
                     {

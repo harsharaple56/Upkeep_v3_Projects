@@ -24,7 +24,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="CocktailWorld_ServiceSoap", Namespace="http://tempuri.org/")]
@@ -344,22 +344,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_FLR3LegalReport", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_FLR3LegalReport() {
-            object[] results = this.Invoke("Fetch_FLR3LegalReport", new object[0]);
+        public System.Data.DataSet Fetch_FLR3LegalReport(int Company_ID, string Date, string License_ID) {
+            object[] results = this.Invoke("Fetch_FLR3LegalReport", new object[] {
+                        Company_ID,
+                        Date,
+                        License_ID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_FLR3LegalReportAsync() {
-            this.Fetch_FLR3LegalReportAsync(null);
+        public void Fetch_FLR3LegalReportAsync(int Company_ID, string Date, string License_ID) {
+            this.Fetch_FLR3LegalReportAsync(Company_ID, Date, License_ID, null);
         }
         
         /// <remarks/>
-        public void Fetch_FLR3LegalReportAsync(object userState) {
+        public void Fetch_FLR3LegalReportAsync(int Company_ID, string Date, string License_ID, object userState) {
             if ((this.Fetch_FLR3LegalReportOperationCompleted == null)) {
                 this.Fetch_FLR3LegalReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_FLR3LegalReportOperationCompleted);
             }
-            this.InvokeAsync("Fetch_FLR3LegalReport", new object[0], this.Fetch_FLR3LegalReportOperationCompleted, userState);
+            this.InvokeAsync("Fetch_FLR3LegalReport", new object[] {
+                        Company_ID,
+                        Date,
+                        License_ID}, this.Fetch_FLR3LegalReportOperationCompleted, userState);
         }
         
         private void OnFetch_FLR3LegalReportOperationCompleted(object arg) {
@@ -2223,11 +2229,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2249,11 +2255,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Flr6DataCompletedEventHandler(object sender, Fetch_Flr6DataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Flr6DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2275,11 +2281,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_FLR3LegalReportCompletedEventHandler(object sender, Fetch_FLR3LegalReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_FLR3LegalReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2301,11 +2307,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_CashMemoCompletedEventHandler(object sender, Fetch_CashMemoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_CashMemoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2327,11 +2333,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_FetchCostValuation_ReportCompletedEventHandler(object sender, Fetch_FetchCostValuation_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_FetchCostValuation_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2353,11 +2359,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Flr4DataCompletedEventHandler(object sender, Fetch_Flr4DataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Flr4DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2379,11 +2385,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_FetchFlr6DataCompletedEventHandler(object sender, Fetch_FetchFlr6DataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_FetchFlr6DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2405,11 +2411,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Sales_ReportCompletedEventHandler(object sender, Fetch_Sales_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Sales_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2431,11 +2437,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Purchase_ReportCompletedEventHandler(object sender, Fetch_Purchase_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Purchase_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2457,11 +2463,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Transfer_ReportCompletedEventHandler(object sender, Fetch_Transfer_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Transfer_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2483,11 +2489,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Cost_ReportCompletedEventHandler(object sender, Fetch_Cost_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Cost_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2509,11 +2515,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_SlowMovingQty_ReportCompletedEventHandler(object sender, Fetch_SlowMovingQty_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_SlowMovingQty_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2535,11 +2541,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_NonMovingQty_ReportCompletedEventHandler(object sender, Fetch_NonMovingQty_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_NonMovingQty_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2561,11 +2567,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_CocktailSale_ReportCompletedEventHandler(object sender, Fetch_CocktailSale_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_CocktailSale_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2587,11 +2593,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_BulkLitre_ReportCompletedEventHandler(object sender, Fetch_BulkLitre_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_BulkLitre_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2613,11 +2619,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_BaseQuantity_ReportCompletedEventHandler(object sender, Fetch_BaseQuantity_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_BaseQuantity_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2639,11 +2645,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Abstract_ReportCompletedEventHandler(object sender, Fetch_Abstract_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Abstract_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2665,11 +2671,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_BrandSummary_ReportCompletedEventHandler(object sender, Fetch_BrandSummary_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_BrandSummary_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2691,11 +2697,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Chatai_ReportCompletedEventHandler(object sender, Fetch_Chatai_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Chatai_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2717,11 +2723,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_OptimumQuantity_ReportCompletedEventHandler(object sender, Fetch_OptimumQuantity_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_OptimumQuantity_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2743,11 +2749,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void FetchTaxDetailsCompletedEventHandler(object sender, FetchTaxDetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FetchTaxDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2769,11 +2775,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void BrandOpeningMaster_CRUDCompletedEventHandler(object sender, BrandOpeningMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BrandOpeningMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2795,11 +2801,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void PurchaseMaster_CRUDCompletedEventHandler(object sender, PurchaseMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PurchaseMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2821,11 +2827,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void TransferMaster_CRUDCompletedEventHandler(object sender, TransferMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TransferMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2847,11 +2853,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void PurchaseDetailsMaster_CRUDCompletedEventHandler(object sender, PurchaseDetailsMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PurchaseDetailsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2873,11 +2879,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void TransferDetailsMaster_CRUDCompletedEventHandler(object sender, TransferDetailsMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TransferDetailsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2899,11 +2905,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SaleDetailsMaster_CrudCompletedEventHandler(object sender, SaleDetailsMaster_CrudCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SaleDetailsMaster_CrudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2925,11 +2931,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SaleMaster_CrudCompletedEventHandler(object sender, SaleMaster_CrudCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SaleMaster_CrudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2951,11 +2957,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void BillBook_CrudCompletedEventHandler(object sender, BillBook_CrudCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BillBook_CrudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2977,11 +2983,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void CategoryMaster_CRUDCompletedEventHandler(object sender, CategoryMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3003,11 +3009,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Category_BrandCompletedEventHandler(object sender, Fetch_Category_BrandCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Category_BrandCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3029,11 +3035,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Brand_OpeningCompletedEventHandler(object sender, Fetch_Brand_OpeningCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Brand_OpeningCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3055,11 +3061,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_CategorySizeLinkupCompletedEventHandler(object sender, Fetch_CategorySizeLinkupCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_CategorySizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3081,11 +3087,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void CocktailMaster_CRUDCompletedEventHandler(object sender, CocktailMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CocktailMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3107,11 +3113,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void CocktailBrandsMaster_CRUDCompletedEventHandler(object sender, CocktailBrandsMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CocktailBrandsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3133,11 +3139,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void FetchBrandSizeLinkupCompletedEventHandler(object sender, FetchBrandSizeLinkupCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FetchBrandSizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3159,11 +3165,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void BrandMaster_CRUDCompletedEventHandler(object sender, BrandMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BrandMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3185,11 +3191,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SizeMaster_CRUDCompletedEventHandler(object sender, SizeMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SizeMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3211,11 +3217,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SubCategoryMaster_CRUDCompletedEventHandler(object sender, SubCategoryMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SubCategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3237,11 +3243,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void PermitMaster_CRUDCompletedEventHandler(object sender, PermitMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PermitMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3263,11 +3269,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Save_CategorySizeLinkupCompletedEventHandler(object sender, Save_CategorySizeLinkupCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Save_CategorySizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3289,11 +3295,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void License_CRUDCompletedEventHandler(object sender, License_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class License_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3315,11 +3321,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SupplierMaster_CRUDCompletedEventHandler(object sender, SupplierMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3341,11 +3347,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Test_Dataset_RDLCCompletedEventHandler(object sender, Fetch_Test_Dataset_RDLCCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Test_Dataset_RDLCCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

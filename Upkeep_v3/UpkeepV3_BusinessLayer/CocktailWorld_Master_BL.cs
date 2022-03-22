@@ -87,7 +87,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_FLR3LegalReport(string StrConn)
+        public DataSet Fetch_FLR3LegalReport(int Company_ID,string Date,string License_ID, string StrConn)
         {
             try
             {
@@ -95,6 +95,9 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR3_A", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Date", Date);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

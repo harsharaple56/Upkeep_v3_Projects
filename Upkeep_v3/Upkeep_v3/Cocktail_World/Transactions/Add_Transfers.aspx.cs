@@ -111,7 +111,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                                                  (Convert.ToDecimal(dsTransferDetails.Tables[0].Rows[i]["sPegQty"]) *
                                                                  Convert.ToDecimal(dsTransferDetails.Tables[0].Rows[i]["sPegRate"]));
                                 DataSet dsGetStockDetails = new DataSet();
-                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsTransferDetails.Tables[0].Rows[i]["Brand"].ToString(), dsTransferDetails.Tables[0].Rows[i]["Size"].ToString(), CompanyID, 0,string.Empty, DateTime.Now);
+                                dsGetStockDetails = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, dsTransferDetails.Tables[0].Rows[i]["Brand"].ToString(), dsTransferDetails.Tables[0].Rows[i]["Size"].ToString(), CompanyID, 0, string.Empty, DateTime.Now);
                                 if (dsGetStockDetails.Tables[0].Rows.Count > 0)
                                 {
                                     string getBottle = dsGetStockDetails.Tables[0].Rows[0].ItemArray[0].ToString();
@@ -223,7 +223,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
             else
                 Size_ID = 0;
             if (Size_ID > 0)
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, 0,"Sale", DateTime.Now);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, 0, "Sale", DateTime.Now);
             else
                 ds = null;
             return ds;
@@ -249,7 +249,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
             try
             {
-                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue),string.Empty, DateTime.Now);
+                ds = ObjCocktailWorld.FetchBrandSizeLinkup(0, BrandID, Size_ID, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue), string.Empty, DateTime.Now);
 
                 if (BrandID == 0)
                 {
@@ -766,6 +766,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 if (!string.IsNullOrEmpty(txtTransferDate.Text) && ddlTransferLicense.SelectedIndex != 0 && !string.IsNullOrEmpty(txttpnumber.Text) && grdTransfer.Rows.Count > 0)
                 {
                     bool displayMessage = false;
+                    bool checkamount = false;
 
                     //Add Transfer Details Data in Temporary Datatable
                     DataTable dtInsertTransferData = new DataTable();
@@ -873,7 +874,14 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             }
 
                             if (!string.IsNullOrEmpty(row.FindControl("txttotalamount").ToString()) && header == "Total Amount")
+                            {
                                 TotalAmount = (Bottle_Rate * Bottle_Qty) + (Speg_Rate * SPeg_Qty);
+                                if (TotalAmount == 0)
+                                {
+                                    checkamount = true;
+                                    break;
+                                }
+                            }
 
                             if (!string.IsNullOrEmpty(Brand_Name) && !string.IsNullOrEmpty(Size_Desc))
                             {
@@ -912,7 +920,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                             decimal getClosingSpeg = 0;
 
                             DataSet dsFetchBrand = new DataSet();
-                            dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID, 0,string.Empty, DateTime.Now);
+                            dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID, 0, string.Empty, DateTime.Now);
                             if (dsFetchBrand.Tables[0].Rows.Count > 0)
                             {
                                 getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[0]);
@@ -961,32 +969,39 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                         }
                     }
 
-                    if (grdTransfer.Rows.Count > 0 && dtInsertTransferData.Rows.Count > 0 && dtInsertTransferDetailsData.Rows.Count > 0 && (grdTransfer.Rows.Count == dtInsertTransferData.Rows.Count))
+                    if (!checkamount)
                     {
-                        //Insert Operation for Transfer Data
-                        DataSet dsTransfer = new DataSet();
-                        dsTransfer = ObjCocktailWorld.TransferMaster_CRUD(0, txtTransferDate.Text, txttpnumber.Text, txtinvoicenumber.Text, string.Empty, string.Empty,
-                            Convert.ToInt32(ddlTransferLicense.SelectedValue), Convert.ToInt32(ddlLicense.SelectedValue), LoggedInUserID, CompanyID, "Insert");
-
-                        for (int i = 0; i < dtInsertTransferData.Rows.Count; i++)
+                        if (grdTransfer.Rows.Count > 0 && dtInsertTransferData.Rows.Count > 0 && dtInsertTransferDetailsData.Rows.Count > 0 && (grdTransfer.Rows.Count == dtInsertTransferData.Rows.Count))
                         {
-                            ObjCocktailWorld.TransferDetailsMaster_CRUD(
-                                Convert.ToInt32(dsTransfer.Tables[0].Rows[0]["Transfer_ID"]), string.Empty, txttpnumber.Text,
-                                Convert.ToInt32(dtInsertTransferData.Rows[i]["Opening_ID"]),
-                                Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]) != string.Empty ? Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]) : DateTime.Now.ToString("dd/MMMM/yyyy"),
-                                 Convert.ToString(dtInsertTransferDetailsData.Rows[i]["Boxes"]),
-                                Convert.ToString(dtInsertTransferDetailsData.Rows[i]["BatchNo"]),
-                                 Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["SPeg_Qty"]),
-                                Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Speg_Rate"]),
-                                Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Bottle_Qty"]),
-                                Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Bottle_Rate"]),
-                                Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, string.Empty, string.Empty, "Insert");
-                            displayMessage = true;
-                        }
-                    }
+                            //Insert Operation for Transfer Data
+                            DataSet dsTransfer = new DataSet();
+                            dsTransfer = ObjCocktailWorld.TransferMaster_CRUD(0, txtTransferDate.Text, txttpnumber.Text, txtinvoicenumber.Text, string.Empty, string.Empty,
+                                Convert.ToInt32(ddlTransferLicense.SelectedValue), Convert.ToInt32(ddlLicense.SelectedValue), LoggedInUserID, CompanyID, "Insert");
 
-                    if (displayMessage)
-                        Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
+                            for (int i = 0; i < dtInsertTransferData.Rows.Count; i++)
+                            {
+                                ObjCocktailWorld.TransferDetailsMaster_CRUD(
+                                    Convert.ToInt32(dsTransfer.Tables[0].Rows[0]["Transfer_ID"]), string.Empty, txttpnumber.Text,
+                                    Convert.ToInt32(dtInsertTransferData.Rows[i]["Opening_ID"]),
+                                    Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]) != string.Empty ? Convert.ToString(dtInsertTransferDetailsData.Rows[i]["MfgDate"]) : DateTime.Now.ToString("dd/MMMM/yyyy"),
+                                     Convert.ToString(dtInsertTransferDetailsData.Rows[i]["Boxes"]),
+                                    Convert.ToString(dtInsertTransferDetailsData.Rows[i]["BatchNo"]),
+                                     Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["SPeg_Qty"]),
+                                    Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Speg_Rate"]),
+                                    Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Bottle_Qty"]),
+                                    Convert.ToDecimal(dtInsertTransferDetailsData.Rows[i]["Bottle_Rate"]),
+                                    Convert.ToInt32(ddlLicense.SelectedValue), CompanyID, LoggedInUserID, string.Empty, string.Empty, "Insert");
+                                displayMessage = true;
+                            }
+                        }
+
+                        if (displayMessage)
+                            Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterHiddenField("CheckAmount", "CheckAmount");
+                    }
                 }
             }
             catch (Exception ex)
