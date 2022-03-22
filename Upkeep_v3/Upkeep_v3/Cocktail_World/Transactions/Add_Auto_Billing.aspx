@@ -125,6 +125,8 @@
             var getNegative = $("input[name=Negative]").val();
             var getLicense = $("input[name=License]").val();
             var getDuplicate = $("input[name=Duplicate]").val();
+            var CheckAmount = $("input[name=CheckAmount]").val();
+
             if (getOpening_ID != undefined) {
                 toastr.error("Brand Opening ID not available.");
             }
@@ -139,6 +141,9 @@
             }
             if (getDuplicate != undefined) {
                 toastr.error("This data already in database.");
+            }
+             if (CheckAmount != undefined) {
+                toastr.error("Please enter quantity.");
             }
 
             $('.datetimepicker').datepicker({
@@ -484,7 +489,7 @@
                                             <tr>
                                                 <td colspan="2" class="ClsControlTd">
                                                     <asp:GridView ID="grdBrandLinkup" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
-                                                         AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                                        AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
                                                         ClientIDMode="Static" OnRowDeleting="BrandOnRowDeleting"
                                                         OnRowDataBound="BrandOnRowDataBound" OnPageIndexChanging="grdBrandLinkup_PageIndexChanging">
                                                         <HeaderStyle HorizontalAlign="Center" />

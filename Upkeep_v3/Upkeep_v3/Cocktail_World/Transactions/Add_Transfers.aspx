@@ -55,6 +55,8 @@
             var getOpening_ID = $("input[name=Opening_ID]").val();
             var getBS_QTY = $("input[name=BS_QTY]").val();
             var getNegative = $("input[name=Negative]").val();
+            var CheckAmount = $("input[name=CheckAmount]").val();
+
             if (getOpening_ID != undefined) {
                 toastr.error("Brand Opening ID not available.");
             }
@@ -63,6 +65,9 @@
             }
             if (getNegative != undefined) {
                 toastr.error(getNegative);
+            }
+            if (CheckAmount != undefined) {
+                toastr.error("Please enter quantity.");
             }
 
             $('.datetimepicker').datepicker({
@@ -329,7 +334,7 @@
                                             <tr>
                                                 <td colspan="2" class="ClsControlTd">
                                                     <asp:GridView ID="grdTransfer" class="table table-striped- table-bordered table-hover table-checkable" runat="server" Width="100%"
-                                                         AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                                        AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
                                                         ClientIDMode="Static" OnRowDeleting="Transfer_OnRowDeleting"
                                                         OnRowDataBound="Transfer_OnRowDataBound" OnPageIndexChanging="Transfer_PageIndexChanging">
                                                         <HeaderStyle HorizontalAlign="Center" />

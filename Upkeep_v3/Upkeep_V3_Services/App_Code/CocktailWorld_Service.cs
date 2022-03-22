@@ -51,11 +51,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_FLR3LegalReport()
+    public DataSet Fetch_FLR3LegalReport(int Company_ID, string Date, string License_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_FLR3LegalReport();
+            ds = ObjCocktailWorld.Fetch_FLR3LegalReport(Company_ID,  Date,  License_ID);
         }
         catch (Exception ex)
         {

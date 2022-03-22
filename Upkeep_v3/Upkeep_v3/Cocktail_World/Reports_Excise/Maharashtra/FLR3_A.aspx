@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FLR3_A.aspx.cs"  MasterPageFile="~/BlankMaster.Master" Inherits="Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra.FLR3_A" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FLR3_A.aspx.cs" MasterPageFile="~/BlankMaster.Master" Inherits="Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra.FLR3_A" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
@@ -11,67 +11,14 @@
 
     <script>
         $(document).ready(function () {
-
-
-            $('.m_selectpicker').selectpicker();
-            //alert('1111');
-            var picker = $('#daterangepicker');
-            var start = moment().subtract(6, 'days');
-            var end = moment();
-            //var start = moment();
-            //var end = moment().add(30, 'days');
-
-
-            function cb(start, end, label) {
-                var title = '';
-                var range = '';
-
-
-                range = start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY');
-
-                picker.find('.m-subheader__daterange-date').html(range);
-                picker.find('.m-subheader__daterange-title').html(title);
-
-                $('#start_date').val(start.format('DD/MM/YYYY'));
-                $('#end_date').val(end.format('DD/MM/YYYY'));
-                $('#date_range_title').val(title + range);
-            }
-
-            picker.daterangepicker({
-                direction: mUtil.isRTL(),
-                startDate: start,
-                endDate: end,
-                opens: 'left',
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            }, cb);
-
-            var IsPostBack2 = $('#hdn_IsPostBack').val();
-
-            if (IsPostBack2 == "no") {
-                cb(start, end, '');
-            }
-            else {
-
-                picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
-            }
-
-            $("#m_form_status").on("change", function () {
-                //alert($(this).val());
-                $('#hdnTicketStatus').val($(this).val());
-            })
-
-            $("#m_form_type").on("change", function () {
-                //alert($(this).val());
-                $('#hdnActionStatus').val($(this).val());
-            })
-
+            $('.datetimepicker').datepicker({
+                todayHighlight: true,
+                orientation: 'auto bottom',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true
+            });
         });
     </script>
 
@@ -107,28 +54,22 @@
                         <asp:DropDownList AutoPostBack="true" ID="ddlLicense" runat="server" CssClass="form-control m-input m-input--air" ClientIDMode="Static"></asp:DropDownList>
                     </div>
 
-                    <label class="col-md-2 col-form-label font-weight-bold" style="margin-top: 10px;">Filter Date Range  :</label>
+                    <label class="col-md-1 col-form-label font-weight-bold" style="margin-top: 10px;">Date  :</label>
                     <div class="col-md-3 col-form-label">
                         <div class="m-form__control">
-                            <span class="m-subheader__daterange btn btn-sm btn-outline-brand" style="padding: 0.15rem 0.8rem; width: -webkit-fill-available;" id="daterangepicker">
-                                <span class="m-subheader__daterange-label" style="font-size: 12px;">
-                                    <span class="m-subheader__daterange-title"></span>
-                                    <span class="m-subheader__daterange-date"></span>
-                                    <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
-                                    <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
-                                    <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                                    <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
-                                    <asp:HiddenField ID="hdnTicketStatus" ClientIDMode="Static" runat="server" />
-                                    <asp:HiddenField ID="hdnActionStatus" ClientIDMode="Static" runat="server" />
-                                </span>
-                                <button type="button" class="btn btn-brand btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-brand">
-                                    <i class="la la-angle-down"></i>
-                                </button>
-                            </span>
+                            <div class="input-group date">
+                                <asp:TextBox autocomplete="off" runat="server" type="text" class="form-control m-input datetimepicker" ID="txtDate">
+                                </asp:TextBox>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="la la-calendar" style="font-size: 2rem;"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <label class="col-md-1 col-form-label font-weight-bold" style="padding-right: 0px;"></label>
+                    <label class="col-md-2 col-form-label font-weight-bold" style="padding-right: 0px;"></label>
                     <div class="col-md-2 col-form-label">
                         <div class="btn-group">
                             <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">

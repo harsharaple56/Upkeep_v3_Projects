@@ -57,6 +57,7 @@
             var getNegative = $("input[name=Negative]").val();
             var getLicense = $("input[name=License]").val();
             var getDuplicate = $("input[name=Duplicate]").val();
+            var CheckAmount = $("input[name=CheckAmount]").val();
             if (getOpening_ID != undefined) {
                 toastr.error("Brand Opening ID not available.");
             }
@@ -71,6 +72,9 @@
             }
             if (getDuplicate != undefined) {
                 toastr.error("This data already in database.");
+            }
+            if (CheckAmount != undefined) {
+                toastr.error("Please enter quantity.");
             }
 
             $('.datetimepicker').datepicker({
