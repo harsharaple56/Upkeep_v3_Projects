@@ -22,8 +22,8 @@ namespace Upkeep_v3.Ticketing
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
             CompanyID = Convert.ToInt32(Session["CompanyID"]);
 
-            LoggedInUserID = "1";
-            CompanyID =11;
+            //LoggedInUserID = "1";
+            //CompanyID =11;
 
             if (string.IsNullOrEmpty(LoggedInUserID))
             {
