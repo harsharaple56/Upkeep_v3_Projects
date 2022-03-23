@@ -109,13 +109,15 @@ namespace Upkeep_v3.Ticketing
 
                 e.Row.Cells[1].Visible = false;
                 e.Row.Cells[2].Visible = false;
-                e.Row.Cells[13].Visible = false;
+                e.Row.Cells[15].Visible = false;
+                //e.Row.Cells[14].Visible = false;
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 e.Row.Cells[1].Visible = false;
                 e.Row.Cells[2].Visible = false;
-                e.Row.Cells[13].Visible = false;
+                e.Row.Cells[15].Visible = false;
+                //e.Row.Cells[14].Visible = false;
 
                 //Get the cell content
                 //Change the cell index as per your gridview
@@ -213,6 +215,7 @@ namespace Upkeep_v3.Ticketing
                         dtCTTReport = dsExport.Tables[0];
 
                         dtCTTReport.Columns.Remove("Ticket_ID");
+                        dtCTTReport.Columns.Remove("Ticket_ID1");
                         dtCTTReport.Columns["Tkt_Code"].ColumnName = "Ticket No";
                         //dtCTTReport.Columns["RequestStatus"].ColumnName = "Request Status";
                         //dtCTTReport.Columns["ActionStatus"].ColumnName = "Action Status";
