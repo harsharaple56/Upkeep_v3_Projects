@@ -1377,6 +1377,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public System.Data.DataSet SaleDetailsMaster_Crud(
                     int Sale_ID, 
                     int SaleDetail_ID, 
+                    int Bill_No, 
                     string Brand_Desc, 
                     string Size_Desc, 
                     string Cocktail_Desc, 
@@ -1398,6 +1399,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
             object[] results = this.Invoke("SaleDetailsMaster_Crud", new object[] {
                         Sale_ID,
                         SaleDetail_ID,
+                        Bill_No,
                         Brand_Desc,
                         Size_Desc,
                         Cocktail_Desc,
@@ -1423,6 +1425,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public void SaleDetailsMaster_CrudAsync(
                     int Sale_ID, 
                     int SaleDetail_ID, 
+                    int Bill_No, 
                     string Brand_Desc, 
                     string Size_Desc, 
                     string Cocktail_Desc, 
@@ -1441,13 +1444,14 @@ namespace Upkeep_v3.CocktailWorld_Service {
                     string Action, 
                     int LoggedInUser, 
                     int Company_ID) {
-            this.SaleDetailsMaster_CrudAsync(Sale_ID, SaleDetail_ID, Brand_Desc, Size_Desc, Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount, Permit_Holder, License_ID, Action, LoggedInUser, Company_ID, null);
+            this.SaleDetailsMaster_CrudAsync(Sale_ID, SaleDetail_ID, Bill_No, Brand_Desc, Size_Desc, Cocktail_Desc, Opening_ID, TaxType, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, TaxAmount, Amount, Permit_Holder, License_ID, Action, LoggedInUser, Company_ID, null);
         }
         
         /// <remarks/>
         public void SaleDetailsMaster_CrudAsync(
                     int Sale_ID, 
                     int SaleDetail_ID, 
+                    int Bill_No, 
                     string Brand_Desc, 
                     string Size_Desc, 
                     string Cocktail_Desc, 
@@ -1473,6 +1477,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
             this.InvokeAsync("SaleDetailsMaster_Crud", new object[] {
                         Sale_ID,
                         SaleDetail_ID,
+                        Bill_No,
                         Brand_Desc,
                         Size_Desc,
                         Cocktail_Desc,

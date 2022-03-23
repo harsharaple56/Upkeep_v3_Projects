@@ -51,7 +51,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                 dsSale = ObjCocktailWorld.SaleMaster_Crud(Sale_ID, string.Empty, string.Empty, 0, "Fetch", Convert.ToInt32(LoggedInUserID), CompanyID, false);
 
                 DataSet dsSaleDetail = new DataSet();
-                dsSaleDetail = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, 0, string.Empty, string.Empty, string.Empty, 0, string.Empty, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Fetch", Convert.ToInt32(LoggedInUserID), CompanyID);
+                dsSaleDetail = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, 0,0, string.Empty, string.Empty, string.Empty, 0, string.Empty, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Fetch", Convert.ToInt32(LoggedInUserID), CompanyID);
 
                 if (dsSale.Tables.Count > 0)
                 {
@@ -164,7 +164,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         DataSet dsSD = new DataSet();
-                        dsSD = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, 0, string.Empty, string.Empty, string.Empty, 0, string.Empty, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Delete", Convert.ToInt32(LoggedInUserID), CompanyID);
+                        dsSD = ObjCocktailWorld.SaleDetailsMaster_Crud(Sale_ID, 0,0, string.Empty, string.Empty, string.Empty, 0, string.Empty, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Delete", Convert.ToInt32(LoggedInUserID), CompanyID);
 
                         Response.Redirect(Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx"), false);
                     }
@@ -1039,7 +1039,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                                 for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
                                 {
-                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
+                                    ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToInt32(dsBrandSale.Tables[0].Rows[0]["Bill_No"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
                                         Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
                                         Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
                                         Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),
@@ -1257,7 +1257,7 @@ namespace Upkeep_v3.Cocktail_World.Transactions
 
                             for (int i = 0; i < dtInsertSaleData.Rows.Count; i++)
                             {
-                                ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsCocktailSale.Tables[0].Rows[0]["Sale_ID"]), 0, Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
+                                ObjCocktailWorld.SaleDetailsMaster_Crud(Convert.ToInt32(dsCocktailSale.Tables[0].Rows[0]["Sale_ID"]), 0, 0,Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Brand_Name"]),
                                     Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Size_Desc"]), Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Cocktail_Desc"]),
                                     Convert.ToInt32(dtInsertSaleDetailsData.Rows[i]["Opening_ID"]),
                                     Convert.ToString(dtInsertSaleDetailsData.Rows[i]["Tax_Type"]), Convert.ToDecimal(dtInsertSaleDetailsData.Rows[i]["Bottle_Qty"]),

@@ -87,7 +87,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_FLR3LegalReport(int Company_ID,string Date,string License_ID, string StrConn)
+        public DataSet Fetch_FLR3LegalReport(int Company_ID, string Date, string License_ID, string StrConn)
         {
             try
             {
@@ -437,7 +437,7 @@ namespace UpkeepV3_BusinessLayer
 
 
 
-        public DataSet SaleDetailsMaster_Crud(int Sale_ID, int SaleDetail_ID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID, string StrConn)
+        public DataSet SaleDetailsMaster_Crud(int Sale_ID, int SaleDetail_ID, int Bill_No, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID, string StrConn)
         {
             try
             {
@@ -449,6 +449,7 @@ namespace UpkeepV3_BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Sale_ID", Sale_ID);
                 cmd.Parameters.AddWithValue("@SaleDetail_ID", SaleDetail_ID);
+                cmd.Parameters.AddWithValue("@Bill_No", Bill_No);
                 cmd.Parameters.AddWithValue("@Brand_Desc", Brand_Desc);
                 cmd.Parameters.AddWithValue("@Size_Desc", Size_Desc);
                 cmd.Parameters.AddWithValue("@Cocktail_Desc", Cocktail_Desc);
@@ -480,7 +481,7 @@ namespace UpkeepV3_BusinessLayer
 
 
 
-        public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg,int License_ID, int Company_ID, string LoggedInUser, string Action, string StrConn)
+        public DataSet BrandOpeningMaster_CRUD(int BrandOpening_ID, string CategoryDetails, int BrandID, decimal closingBottle, decimal closingSpeg, int License_ID, int Company_ID, string LoggedInUser, string Action, string StrConn)
         {
             try
             {
@@ -639,7 +640,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int CompanyID,string License_ID, String StrConn) //Added CompanyId by sujata
+        public DataSet Fetch_Brand_Opening(int Cat_Size_ID, int Opening_ID, int BrandID, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int CompanyID, string License_ID, String StrConn) //Added CompanyId by sujata
         {
             try
             {
@@ -667,8 +668,8 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID,string Action
-            ,DateTime date, string StrConn)
+        public DataSet FetchBrand_SizeLinkup(int Category_ID, int Brand_ID, int Size_ID, string Brand_Desc, string Size_Desc, int Company_ID, int License_ID, string Action
+            , DateTime date, string StrConn)
         {
             try
             {
@@ -697,7 +698,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet Fetch_CategorySizeLinkup(int Size_ID,int Category_ID, int License_ID, int Company_ID, string StrConn)
+        public DataSet Fetch_CategorySizeLinkup(int Size_ID, int Category_ID, int License_ID, int Company_ID, string StrConn)
         {
             try
             {
@@ -721,7 +722,7 @@ namespace UpkeepV3_BusinessLayer
             }
 
         }
-        public DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled,string Size,int Cocktail_ID ,string LoggedInUserID, string Action, string StrConn)
+        public DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string Size, int Cocktail_ID, string LoggedInUserID, string Action, string StrConn)
         {
             try
             {
@@ -951,7 +952,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet PermitMaster_CRUD(int Permit_ID,string Permit_Type,string Permit_Holder,string Permit_Number, string Expire_Date,bool Life_Time,string LoggedInUserID,int CompanyID,string Action, string StrConn)
+        public DataSet PermitMaster_CRUD(int Permit_ID, string Permit_Type, string Permit_Holder, string Permit_Number, string Expire_Date, bool Life_Time, string LoggedInUserID, int CompanyID, string Action, string StrConn)
         {
             try
             {
@@ -1072,7 +1073,7 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet CocktailMaster_CRUD(int Cocktail_ID, string Cocktail_Name, string Rate, int Company_ID, string LoggedInUserID,int License_ID, string Action, string StrConn)
+        public DataSet CocktailMaster_CRUD(int Cocktail_ID, string Cocktail_Name, string Rate, int Company_ID, string LoggedInUserID, int License_ID, string Action, string StrConn)
         {
             try
             {
