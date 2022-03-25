@@ -538,6 +538,7 @@ namespace Upkeep_v3.GatePass
                     strInitiator = "R";
                 }
 
+
                 strTransactionPrefix = Convert.ToString(txtGPPrefix.Text.Trim());
 
                 strGPClosureBy = Convert.ToString(hdnGPClosureBy.Value);
@@ -576,6 +577,10 @@ namespace Upkeep_v3.GatePass
                         else if (Status == 2)
                         {
                             lblErrorMsg.Text = "Due to some technical issue your request can not be process. Kindly try after some time";
+                        }
+                        else if (Status == 5)
+                        {
+                            lblErrorMsg.Text = "Approval level can not be removed as it has some open requests";
                         }
                     }
                 }
