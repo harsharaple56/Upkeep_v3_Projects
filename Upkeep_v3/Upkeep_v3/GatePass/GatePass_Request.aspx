@@ -614,7 +614,7 @@
 
                         <asp:Panel ID="pnlGpReqestSuccess" runat="server" CssClass="modalPopup" align="center">
                             <div class="" id="add_sub_location2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                                <div class="modal-dialog" role="document" style="width: 500px !important;">
                                     <div class="modal-content">
                                         <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                             <ContentTemplate>

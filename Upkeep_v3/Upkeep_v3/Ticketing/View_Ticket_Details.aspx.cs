@@ -107,6 +107,22 @@ namespace Upkeep_v3.Ticketing
                             gvActionHistory.DataBind();
                         }
                     }
+
+                    if (dsTicket.Tables.Count > 2)
+                    {
+                        if (dsTicket.Tables[2].Rows.Count > 0)
+                        {
+                            gvCustomField.DataSource = dsTicket.Tables[2];
+                            gvCustomField.DataBind();
+                        }
+                        else
+                        {
+                            dv_Custom_Field.Attributes.Add("style", "display:none;");
+                            gvCustomField.DataSource = null;
+                            gvCustomField.DataBind();
+                        }
+                    }
+
                 }
 
             }
