@@ -57,6 +57,9 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\..\..\..\..\..\Desktop\AdmissionSystem\AdmissionSystem\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="DropDownListChosen, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DropDownListChosen.1.0.2\lib\DropDownListChosen.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -687,6 +690,8 @@
     <Content Include="assets\app\media\img\users\user4.png" />
     <Content Include="assets\app\media\img\users\user5.jpg" />
     <Content Include="assets\app\media\img\verified.jpg" />
+    <Content Include="assets\chosen.jquery.min.js" />
+    <Content Include="assets\chosen.min.css" />
     <Content Include="assets\custom\common.js" />
     <Content Include="assets\custom\Dashboard.css" />
     <Content Include="assets\custom\icons.min.css" />
@@ -1164,9 +1169,11 @@
     <Content Include="Cocktail_World\Setup\Bill_Book.aspx" />
     <Content Include="Cocktail_World\Setup\Brands.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Categories.aspx" />
+    <Content Include="Cocktail_World\Setup\Brand_Code.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Opening_Stock.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Sizes.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Sub_Categories.aspx" />
+    <Content Include="Cocktail_World\Setup\Cocktail_Code.aspx" />
     <Content Include="Cocktail_World\Setup\Cocktail_Recipes.aspx" />
     <Content Include="Cocktail_World\Setup\Frm_Category_Master.aspx" />
     <Content Include="Cocktail_World\Setup\Licenses.aspx" />
@@ -1286,6 +1293,14 @@
     <Content Include="obj\Debug\Upkeep_v3.dll" />
     <Content Include="obj\Debug\Upkeep_v3.pdb" />
     <Content Include="Retailer_Profile.aspx" />
+    <Content Include="Cocktail_World\Template\Brand Opening Stock.xlsx" />
+    <Content Include="CheckList\ImportFile\Checklist_Import_Template %281%29.xlsx" />
+    <Content Include="CheckList\ImportFile\Checklist_Import_Template.xlsx" />
+    <Content Include="CheckList\ImportFile\Checklist_Name_-_Import_Checklist_Template.xlsx" />
+    <Content Include="CheckList\ImportFile\kurla_Checklist.xlsx" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Testing_Codes\SendGrid_emails.aspx" />
     <Content Include="Testing_Codes\SendMail_SMTP.aspx" />
     <Content Include="Ticketing\Add_MyRequest_Public.aspx" />
@@ -4745,6 +4760,13 @@
     <Compile Include="Cocktail_World\Setup\Brand_Categories.aspx.designer.cs">
       <DependentUpon>Brand_Categories.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Code.aspx.cs">
+      <DependentUpon>Brand_Code.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Code.aspx.designer.cs">
+      <DependentUpon>Brand_Code.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Setup\Brand_Opening_Stock.aspx.cs">
       <DependentUpon>Brand_Opening_Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4765,6 +4787,13 @@
     </Compile>
     <Compile Include="Cocktail_World\Setup\Brand_Sub_Categories.aspx.designer.cs">
       <DependentUpon>Brand_Sub_Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Cocktail_Code.aspx.cs">
+      <DependentUpon>Cocktail_Code.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Cocktail_Code.aspx.designer.cs">
+      <DependentUpon>Cocktail_Code.aspx</DependentUpon>
     </Compile>
     <Compile Include="Cocktail_World\Setup\Cocktail_Recipes.aspx.cs">
       <DependentUpon>Cocktail_Recipes.aspx</DependentUpon>
@@ -6838,7 +6867,7 @@
     <Folder Include="Asset_Manager\Assets\" />
     <Folder Include="Asset_Manager\Contracts\" />
     <Folder Include="Asset_Manager\Service_Requests\" />
-    <Folder Include="CheckList\ImportFile\" />
+    <Folder Include="Cocktail_World\ImportFile\" />
     <Folder Include="Cocktail_World\Integrations\MMS\" />
     <Folder Include="Cocktail_World\Integrations\POS\Custom\" />
     <Folder Include="Cocktail_World\Integrations\POS\File_Based\" />

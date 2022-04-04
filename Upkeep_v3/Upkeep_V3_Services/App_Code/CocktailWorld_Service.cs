@@ -265,11 +265,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_BrandSummary_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_BrandSummary_Report(int LicenseID, string From_Date, string To_Date, bool Brandwise, bool Categorywise, bool SubCategorywise, bool IsBulkLitre)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_BrandSummary_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_BrandSummary_Report(LicenseID, From_Date, To_Date, Brandwise, Categorywise, SubCategorywise, IsBulkLitre);
         }
         catch (Exception ex)
         {
@@ -279,11 +279,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Chatai_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_Chatai_Report(int LicenseID, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Chatai_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_Chatai_Report(LicenseID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -307,6 +307,24 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     #endregion
+
+    #region Imports Method Of Cocktail World
+    [WebMethod]
+    public DataSet Import_BrandOpeningStock(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_BrandOpeningStock(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    #endregion
+
 
     [WebMethod]
     public DataSet FetchTaxDetails(int Brand_ID)
@@ -465,11 +483,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Category_Brand(int CompanyId, int CategoryID)   //Added CompanyId by sujata
+    public DataSet Fetch_Category_Brand(int CompanyId, int CategoryID, int BrandID)   //Added CompanyId by sujata
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Category_Brand(CompanyId, CategoryID);
+            ds = ObjCocktailWorld.Fetch_Category_Brand(CompanyId, CategoryID, BrandID);
         }
         catch (Exception ex)
         {

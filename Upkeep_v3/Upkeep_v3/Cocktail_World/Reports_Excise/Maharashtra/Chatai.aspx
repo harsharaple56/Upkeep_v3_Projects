@@ -33,8 +33,8 @@
                 picker.find('.m-subheader__daterange-date').html(range);
                 picker.find('.m-subheader__daterange-title').html(title);
 
-                $('#start_date').val(start.format('DD/MM/YYYY'));
-                $('#end_date').val(end.format('DD/MM/YYYY'));
+                $('#start_date').val(start.format('DD-MMM-YYYY'));
+                $('#end_date').val(end.format('DD-MMM-YYYY'));
                 $('#date_range_title').val(title + range);
             }
 
@@ -144,112 +144,89 @@
 
                 <div class="m-portlet__body">
 
-                    <form class="m-form m-form--fit m--margin-bottom-20">
-                        <div class="row m--margin-bottom-20 m--align-center">
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Search Data:</label>
-                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                            </div>
+                    <div class="row m--margin-bottom-20 m--align-center">
 
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter by License:</label>
+                        <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
+                            <label class="font-weight-bold">Filter by License:</label>
 
-                                <div class="m-form__control">
-                                    <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter by Category:</label>
-
-                                <div class="m-form__control">
-                                    <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
-                                        <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-
-
-
+                            <div class="m-form__control">
+                                <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                                </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="row m--margin-bottom-20 m--align-center">
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter Brand:</label>
+                        <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
+                            <label class="font-weight-bold">Filter Date Range:</label>
 
-                                <div class="m-form__control">
-
-                                    <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                        <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
-                                        <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
-                                        <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter Date Range:</label>
-
-                                <div class="m-form__control">
-                                    <span class="m-subheader__daterange btn btn-sm btn-outline-brand" style="padding: 0.15rem 0.8rem; width: -webkit-fill-available;" id="daterangepicker">
-                                        <span class="m-subheader__daterange-label" style="font-size: 12px;">
-                                            <span class="m-subheader__daterange-title"></span>
-                                            <span class="m-subheader__daterange-date"></span>
-                                            <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="hdnTicketStatus" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="hdnActionStatus" ClientIDMode="Static" runat="server" />
-                                        </span>
-                                        <button type="button" class="btn btn-brand btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-brand">
-                                            <i class="la la-angle-down"></i>
-                                        </button>
+                            <div class="m-form__control">
+                                <span class="m-subheader__daterange btn btn-sm btn-outline-brand" style="padding: 0.15rem 0.8rem; width: -webkit-fill-available;" id="daterangepicker">
+                                    <span class="m-subheader__daterange-label" style="font-size: 12px;">
+                                        <span class="m-subheader__daterange-title"></span>
+                                        <span class="m-subheader__daterange-date"></span>
+                                        <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
+                                        <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
+                                        <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
+                                        <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
+                                        <asp:HiddenField ID="hdnTicketStatus" ClientIDMode="Static" runat="server" />
+                                        <asp:HiddenField ID="hdnActionStatus" ClientIDMode="Static" runat="server" />
                                     </span>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Search Filters:</label>
-                                <div class="m-form__control">
-                                    <button type="button" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
-                                        <span>
-                                            <i class="la la-search"></i>
-                                            <span>Search</span>
-                                        </span>
+                                    <button type="button" class="btn btn-brand btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-brand">
+                                        <i class="la la-angle-down"></i>
                                     </button>
-                                </div>
-
+                                </span>
                             </div>
+
                         </div>
-                    </form>
+                        <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
+                            <label class="font-weight-bold">Search Filters:</label>
+                            <div class="m-form__control">
+                                <button id="btnSearch" runat="server" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
+                                    <span>
+                                        <i class="la la-search"></i>
+                                        <span>Search</span>
+                                    </span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
 
 
+                    <div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%; max-height: 50vh;">
+                        <table width="100%" cellpadding="2" cellspacing="2">
 
-
-                    <!--begin: Datatable -->
-                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
-                        <thead>
                             <tr>
-                               <%-- <th><b>Brand</b></th>--%>
+                                <td colspan="2" class="ClsControlTd">
+                                    <asp:GridView ID="grdChataiReport" runat="server" Width="100%" class="table table-striped- table-bordered table-hover table-checkable"
+                                        AllowSorting="true" AutoGenerateColumns="false" CellPadding="5"
+                                        PagerStyle-HorizontalAlign="Center">
+
+                                        <AlternatingRowStyle BackColor="#E7F3FF"></AlternatingRowStyle>
+                                        <Columns>
+                                        </Columns>
+                                        <EmptyDataTemplate>
+                                            No Records Found !!!
+                                        </EmptyDataTemplate>
+                                        <EmptyDataRowStyle Height="50%" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px"
+                                            HorizontalAlign="Center" />
+
+                                        <HeaderStyle BackColor="#2E5E79" ForeColor="White"></HeaderStyle>
+
+                                        <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" />
+
+                                        <PagerStyle HorizontalAlign="Center"></PagerStyle>
+                                    </asp:GridView>
+                                </td>
                             </tr>
-                        </thead>
-
-                        <tbody>
-                        </tbody>
-                    </table>
-
-                   <h1> Need to refer CW FIFO</h1>
+                            <tr>
+                                <td class="ClsControlTd" align="center" colspan="2">
+                                    <asp:Label ID="lblwarn" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
                     <!--end: Datatable -->
-
                 </div>
             </div>
 

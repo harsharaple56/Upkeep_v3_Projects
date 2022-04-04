@@ -1,13 +1,70 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UpkeepMaster.Master" CodeBehind="Add_Brand_Opening_Stock.aspx.cs" Inherits="Upkeep_v3.Cocktail_World.Setup.Add_Brand_Opening_Stock" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="DropDownListChosen" Namespace="DropDownListChosen" TagPrefix="cc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <style>
+        .chz {
+            padding: 0.85rem 1.15rem;
+            line-height: 1.25;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            font-weight: bold;
+            height: calc(2.95rem + 2px);
+        }
+
+        .chosen-container-single .chosen-single {
+            display: block;
+            width: 100%;
+            height: calc(2.95rem + 2px);
+            padding: 0.85rem 1.15rem;
+            font-size: 1rem;
+            line-height: 1.25;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            background-color: #fff;
+            background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #ffffff), color-stop(50%, #ffffff), color-stop(52%, #ffffff), color-stop(100%, #ffffff));
+            background: -webkit-linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+            background: -moz-linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+            background: -o-linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+            background: linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+            background-clip: padding-box;
+            box-shadow: 0 0 3px white inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+            .chosen-container-single .chosen-single div b {
+                display: block;
+                width: 100%;
+                height: 100%;
+                background: url('WebResource.axd?d=HVPEiozS1UvTkLHiRNIdnfmoEReZmGiXCCXQCLvOYZjJW7-_1ztDrX3OiIn6ac6jmPYbaKN4uqJSJYiIVQ6hWfmOggJWCNQyz9Eo2bPAbyLAtPQb86opO9HqlyPGjTBPYxOCase5581CGVmtEx9T6Q2&t=636544785540000000') no-repeat 0px 10px;
+            }
+
+        .chosen-container-active.chosen-with-drop .chosen-single div b {
+            background-position: -15px 5px;
+        }
+    </style>
+
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+
     <script>
         $(document).ready(function () {
+
             $("#txtCategory").on('input', function () {
                 var val = this.value;
 
@@ -73,6 +130,8 @@
             }
         });
     </script>
+
+
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="row">
@@ -121,12 +180,15 @@
                                         <ContentTemplate>
                                             <div class="m-form__section m-form__section--first">
 
+
+
+
                                                 <div class="form-group m-form__group row">
 
-                                                    <div class="col-lg-4">
+                                                    <label for="example-search-input" class="col-1 col-form-label">License :</label>
+                                                    <div class="col-4">
                                                         <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                                             <ContentTemplate>
-                                                                <label><span style="color: red;">*</span>  License :</label>
                                                                 <asp:DropDownList ID="ddlLicense" AutoPostBack="true" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged"></asp:DropDownList>
                                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlLicense" ValidationGroup="ValidateUser"
                                                                     ErrorMessage="Please select License" InitialValue="0" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -135,38 +197,24 @@
                                                     </div>
 
 
-                                                    <div class="col-lg-4">
-                                                        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                                            <ContentTemplate>
-                                                                <label><span style="color: red;">*</span>  Category :</label>
-                                                                <asp:DropDownList ID="ddlCategory" AutoPostBack="true" class="form-control m-input" runat="server" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged"></asp:DropDownList>
-                                                                <asp:RequiredFieldValidator ID="rfvddlCategory" runat="server" ControlToValidate="ddlCategory" ValidationGroup="ValidateUser"
-                                                                    ErrorMessage="Please select Category" InitialValue="0" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                                            </ContentTemplate>
-                                                        </asp:UpdatePanel>
+                                                    <label for="example-search-input" class="col-1 col-form-label">Brands :</label>
+                                                    <div class="col-4">
+                                                        <cc2:DropDownListChosen AutoPostBack="true" CssClass="chz form-control m-input"
+                                                            ID="DropDownListChosen1" runat="server" Font-Size="Medium" Font-Bold="True" CellPadding="5" CellSpacing="0" DataPlaceHolder="Click here to Search Brands" Width="450px" OnSelectedIndexChanged="DropDownListChosen1_SelectedIndexChanged">
+                                                        </cc2:DropDownListChosen>
+
+                                                        <asp:RequiredFieldValidator ID="rfvddlBrand" runat="server" ControlToValidate="DropDownListChosen1" ValidationGroup="ValidateUser"
+                                                            ErrorMessage="Please select Brand" InitialValue="0" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                                                     </div>
 
 
-                                                    <div class="col-lg-4">
-                                                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                                            <ContentTemplate>
-                                                                <label><span style="color: red;">*</span>  Brand :</label>
-                                                                <asp:DropDownList ID="ddlBrand" AutoPostBack="true" class="form-control m-input" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged" runat="server"></asp:DropDownList>
-                                                                <asp:RequiredFieldValidator ID="rfvddlBrand" runat="server" ControlToValidate="ddlBrand" ValidationGroup="ValidateUser"
-                                                                    ErrorMessage="Please select Brand" InitialValue="0" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                                                            </ContentTemplate>
-                                                            <Triggers>
-                                                                <asp:AsyncPostBackTrigger ControlID="ddlBrand" />
-                                                            </Triggers>
-                                                        </asp:UpdatePanel>
-                                                    </div>
 
                                                 </div>
                                             </div>
                                             </div>
                                         </ContentTemplate>
                                         <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="ddlCategory" />
+                                            <asp:AsyncPostBackTrigger ControlID="ddlLicense" />
                                         </Triggers>
                                     </asp:UpdatePanel>
 
@@ -256,7 +304,7 @@
                                                 </table>
                                             </ContentTemplate>
                                             <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="ddlBrand" />
+                                                <asp:AsyncPostBackTrigger ControlID="DropDownListChosen1" />
                                             </Triggers>
                                         </asp:UpdatePanel>
                                     </div>
@@ -272,7 +320,6 @@
 
             <!--end::Portlet-->
         </div>
-    </div>
     </div>
 
 </asp:Content>

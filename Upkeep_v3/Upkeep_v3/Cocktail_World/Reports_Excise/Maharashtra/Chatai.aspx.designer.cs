@@ -22,24 +22,6 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra {
         protected global::System.Web.UI.WebControls.DropDownList ddlLicense;
         
         /// <summary>
-        /// m_form_status control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList m_form_status;
-        
-        /// <summary>
-        /// m_form_type control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList m_form_type;
-        
-        /// <summary>
         /// start_date control.
         /// </summary>
         /// <remarks>
@@ -92,5 +74,32 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnActionStatus;
+        
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSearch;
+        
+        /// <summary>
+        /// grdChataiReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdChataiReport;
+        
+        /// <summary>
+        /// lblwarn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblwarn;
     }
 }

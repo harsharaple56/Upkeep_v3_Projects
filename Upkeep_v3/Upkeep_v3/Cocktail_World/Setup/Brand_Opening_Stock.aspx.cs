@@ -2,7 +2,12 @@
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.Common;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -33,7 +38,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
         public string BindBrandOpening()
         {
-            string data = "";          
+            string data = "";
 
             try
             {
@@ -282,6 +287,128 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
             // Indicate that the data to send to the client has ended
             Response.End();
+        }
+
+        protected void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            DataSet dsResult = new DataSet();
+
+            if (FU_Category.HasFile && FU_Category.PostedFile != null)
+            {
+                try
+                {
+                    string path = string.Concat(Server.MapPath("~/Cocktail_World/ImportFile/" + FU_Category.FileName));
+                    string extension = Path.GetExtension(FU_Category.PostedFile.FileName);
+                    FU_Category.SaveAs(path);
+
+                    // Connection String to Excel Workbook  
+                    string conString = string.Empty;
+                    switch (extension)
+                    {
+                        case ".xls": //For Excel 97-03.  
+                            conString = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
+                            break;
+                        case ".xlsx": //For Excel 07 and above.  
+                            conString = ConfigurationManager.ConnectionStrings["Excel07+ConString"].ConnectionString;
+                            break;
+                    }
+                    string excelCS = string.Format(conString, path);
+
+                    using (OleDbConnection con = new OleDbConnection(excelCS))
+                    {
+                        OleDbCommand cmd = new OleDbCommand("select * from [Sheet1$]", con);
+                        con.Open();
+                        // Create DbDataReader to Data Worksheet  
+                        DbDataReader dr = cmd.ExecuteReader();
+                        // SQL Server Connection String  
+                        string CS = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString;
+                        // Bulk Copy to SQL Server   
+                        SqlBulkCopy bulkInsert = new SqlBulkCopy(CS);
+                        bulkInsert.DestinationTableName = "Tbl_CW_BrandOpeningStock_Temp_Import";
+                        bulkInsert.ColumnMappings.Add("License Name", "License_Name");
+                        bulkInsert.ColumnMappings.Add("Category", "Category");
+                        bulkInsert.ColumnMappings.Add("Brand Name", "Brand_Name");
+                        bulkInsert.ColumnMappings.Add("Size", "Size");
+                        bulkInsert.ColumnMappings.Add("Bottle Qty", "Bottle_Qty");
+                        bulkInsert.ColumnMappings.Add("Speg Qty", "Speg_Qty");
+                        bulkInsert.ColumnMappings.Add("Bottle Rate", "Bottle_Rate");
+                        bulkInsert.ColumnMappings.Add("Base Qty", "Base_Qty");
+                        bulkInsert.ColumnMappings.Add("Re-Order Level", "Re_Order_Level");
+                        bulkInsert.ColumnMappings.Add("Optimum Level", "Optimum_Level");
+                        bulkInsert.WriteToServer(dr);
+
+                        dsResult = ObjCocktailWorld.Import_BrandOpeningStock(CompanyID, LoggedInUserID);
+
+                        if (dsResult.Tables.Count > 0)
+                        {
+                            if (dsResult.Tables[0].Rows.Count > 0)
+                            {
+                                DataTable dtCTTReport = new DataTable();
+                                dtCTTReport = dsResult.Tables[0];
+                                dtCTTReport.Columns["License_Name"].ColumnName = "License";
+                                dtCTTReport.Columns["Category"].ColumnName = "Category";
+                                dtCTTReport.Columns["Brand_Name"].ColumnName = "Brand";
+                                dtCTTReport.Columns["Size"].ColumnName = "Size";
+                                dtCTTReport.Columns["Bottle_Qty"].ColumnName = "Bottle Qty";
+                                dtCTTReport.Columns["Speg_Qty"].ColumnName = "Speg Qty";
+                                dtCTTReport.Columns["Bottle_Rate"].ColumnName = "Bottle Rate";
+                                dtCTTReport.Columns["Base_Qty"].ColumnName = "Base Qty";
+                                dtCTTReport.Columns["Re_Order_Level"].ColumnName = "Re-Order Level";
+                                dtCTTReport.Columns["Optimum_Level"].ColumnName = "Optimum Level";
+                                dtCTTReport.AcceptChanges();
+
+                                dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:210px;");
+                                pnlImportExport.Attributes.Add("style", "height:580px; width:700px; top:-14px !important;");
+
+                                mpeUserMst.Show();
+                                lblImportErrorMsg.Text = "Below Stock List can not be created, kindly check error message.";
+                                gvImportError.DataSource = dtCTTReport;
+                                gvImportError.DataBind();
+                            }
+                            else
+                            {
+                                BindBrandOpening();
+                            }
+                        }
+                        else
+                        {
+                            BindBrandOpening();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+            }
+        }
+
+        protected void btnCloseImportPopUp_Click(object sender, EventArgs e)
+        {
+            lblImportErrorMsg.Text = "";
+            gvImportError.DataSource = null;
+            gvImportError.DataBind();
+            mpeUserMst.Hide();
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = "~/Cocktail_World/Template/Brand Opening Stock.xlsx";
+                string filename = "Brand Opening Stock.xlsx";
+                Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");
+                Response.TransmitFile(Server.MapPath(filePath));
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
