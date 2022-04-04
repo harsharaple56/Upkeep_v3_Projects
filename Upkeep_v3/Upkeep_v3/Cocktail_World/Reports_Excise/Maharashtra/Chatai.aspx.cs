@@ -1,4 +1,6 @@
-﻿using Microsoft.Reporting.WebForms;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,7 +39,7 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
             ddlLicense.DataTextField = "License_Name";
             ddlLicense.DataValueField = "License_ID";
             ddlLicense.DataBind();
-            ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
+            ddlLicense.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select License--", "0"));
             ddlLicense.SelectedIndex = 1;
         }
 
@@ -1824,5 +1826,156 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
             ViewState["ObjPriDt"] = dtt;
         }
 
+        protected void export_excel_ServerClick(object sender, EventArgs e)
+        {
+            GridView dgGrid = new GridView();
+            DataTable dsExport = new DataTable();
+            string currentDate = string.Empty;
+
+            try
+            {
+                dsExport = ViewState["ObjPriDt"] as DataTable;
+
+                DataTable dtCocktailMasterReport = new DataTable();
+
+                if (dsExport.Rows.Count > 0)
+                {
+                    dtCocktailMasterReport = dsExport;
+                    dtCocktailMasterReport.AcceptChanges();
+
+                    dgGrid.DataSource = dtCocktailMasterReport;
+                    dgGrid.DataBind();
+
+                    currentDate = DateTime.Now.ToString();
+
+                    System.IO.StringWriter tw = new System.IO.StringWriter();
+                    System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+
+                    string filename = "Chatai Report As On " + currentDate + ".xls";
+
+                    string HeaderText = "Chatai Report As On " + currentDate;
+
+                    Style textStyle = new Style();
+                    textStyle.ForeColor = System.Drawing.Color.DarkCyan;
+                    hw.EnterStyle(textStyle);
+
+                    hw.Write("<h2><center>" + HeaderText + "</center></h2> </br>");
+                    hw.ExitStyle(textStyle);
+
+                    dgGrid.RenderControl(hw);
+
+                    Response.ContentType = "application/vnd.ms-excel";
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + "");
+                    this.EnableViewState = false;
+                    Response.Write(tw.ToString());
+                    Response.End();
+                    return;
+
+                }
+                else
+                {
+                    dgGrid.DataSource = null;
+                    dgGrid.DataBind();
+
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void export_pdf_ServerClick(object sender, EventArgs e)
+        {
+            GridView dgGrid = new GridView();
+            Document doc = new Document();
+
+            try
+            {
+
+                DataTable dtReport = new DataTable();
+                dtReport = ViewState["ObjPriDt"] as DataTable;
+
+                if (dtReport.Rows.Count > 0)
+                {
+                    dtReport.AcceptChanges();
+                    dgGrid.DataSource = dtReport;
+                    dgGrid.DataBind();
+
+
+                    System.IO.StringWriter tw = new System.IO.StringWriter();
+                    System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(tw);
+
+                    string filename = "Chatai Report As On" + DateTime.Now + ".pdf";
+
+                    string HeaderText = "Chatai Report As On " + DateTime.Now;
+
+                    Style textStyle = new Style();
+                    textStyle.ForeColor = System.Drawing.Color.DarkCyan;
+                    hw.EnterStyle(textStyle);
+
+                    hw.Write("<h2><center>" + HeaderText + "</center></h2> </br>");
+                    hw.ExitStyle(textStyle);
+
+                    //Write the HTML back to the browser.
+
+                    Response.ContentType = "application/pdf";
+                    Response.AddHeader("Content-Disposition", String.Format("attachment; filename={0}.pdf", "Brand Opening Stock Report"));
+
+                    iTextSharp.text.pdf.PdfPTable grd;
+
+                    PdfWriter writer = PdfWriter.GetInstance(doc, Response.OutputStream);
+                    doc.Open();
+
+                    grd = new PdfPTable(dtReport.Columns.Count);
+                    grd.WidthPercentage = 100.0F;
+
+                    PdfPCell cellRptNm = new PdfPCell(new Phrase("Chatai Report AS ON " + DateTime.Now));
+                    cellRptNm.HorizontalAlignment = 1;
+                    cellRptNm.Colspan = dtReport.Columns.Count;
+                    cellRptNm.Border = 0;
+                    cellRptNm.PaddingBottom = 20.0F;
+                    grd.AddCell(cellRptNm);
+
+                    BaseFont bfTimes = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
+                    iTextSharp.text.Font fnt = new iTextSharp.text.Font(bfTimes, 7);
+
+                    for (var IntLocColCnt = 0; IntLocColCnt <= dtReport.Columns.Count - 1; IntLocColCnt++)
+                    {
+                        PdfPCell cellHD1 = new PdfPCell(new Phrase(dtReport.Columns[IntLocColCnt].ColumnName, fnt));
+                        cellHD1.PaddingBottom = 10.0F;
+                        cellHD1.BackgroundColor = iTextSharp.text.Color.LIGHT_GRAY;
+                        cellHD1.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+                        cellHD1.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
+                        grd.AddCell(cellHD1);
+                    }
+
+                    for (var IntLocRowCnt = 0; IntLocRowCnt <= dtReport.Rows.Count - 1; IntLocRowCnt++)
+                    {
+                        for (var IntLocColCnt = 0; IntLocColCnt <= dtReport.Columns.Count - 1; IntLocColCnt++)
+                        {
+                            string str = Convert.ToString(dtReport.Rows[IntLocRowCnt][IntLocColCnt]);
+                            PdfPCell cell = new PdfPCell(new Phrase(str, fnt));
+                            cell.PaddingBottom = 10.0F;
+                            grd.AddCell(cell);
+                        }
+                    }
+                    doc.Add(grd);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                doc.Close();
+            }
+            // Indicate that the data to send to the client has ended
+            Response.End();
+        }
     }
 }

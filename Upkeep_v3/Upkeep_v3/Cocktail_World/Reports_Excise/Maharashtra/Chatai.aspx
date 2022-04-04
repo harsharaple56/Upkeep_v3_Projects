@@ -118,13 +118,13 @@
                                                     <hr />
 
                                                     <li class="m-nav__item">
-                                                        <a id="export_excel" class="m-nav__link" href="javascript:__doPostBack('export_excel','')">
+                                                        <a id="export_excel" class="m-nav__link" runat="server" onserverclick="export_excel_ServerClick">
                                                             <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
                                                             <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a id="export_pdf" class="m-nav__link" href="javascript:__doPostBack('export_pdf','')">
+                                                        <a id="export_pdf" class="m-nav__link" runat="server" onserverclick="export_pdf_ServerClick">
                                                             <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
                                                             <span class="m-nav__link-text">PDF <b>( .pdf )</b></span>
                                                         </a>

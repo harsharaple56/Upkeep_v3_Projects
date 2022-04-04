@@ -51,7 +51,7 @@
                 <div class="form-group row">
                     <label class="col-md-1 col-form-label font-weight-bold" style="margin-top: 10px;">License  :</label>
                     <div class="col-md-3 col-form-label">
-                        <asp:DropDownList AutoPostBack="true" ID="ddlLicense" runat="server" CssClass="form-control m-input m-input--air" ClientIDMode="Static"></asp:DropDownList>
+                        <asp:DropDownList AutoPostBack="false" ID="ddlLicense" runat="server" CssClass="form-control m-input m-input--air" ClientIDMode="Static"></asp:DropDownList>
                     </div>
 
                     <label class="col-md-1 col-form-label font-weight-bold" style="margin-top: 10px;">Date  :</label>
@@ -72,7 +72,7 @@
                     <label class="col-md-2 col-form-label font-weight-bold" style="padding-right: 0px;"></label>
                     <div class="col-md-2 col-form-label">
                         <div class="btn-group">
-                            <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Transactions/Sales.aspx") %>" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air">
+                            <a id="generate" class="btn btn-danger m-btn m-btn--icon m-btn--pill m-btn--air" runat="server" onserverclick="generate_ServerClick">
                                 <span>
                                     <i class="fa fa-angle-double-right"></i>
                                     <span>Generate</span>
