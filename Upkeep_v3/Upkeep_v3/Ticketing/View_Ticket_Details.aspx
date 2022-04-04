@@ -201,6 +201,29 @@
 
 
                                         <br />
+
+                                        <div id="dv_Custom_Field" runat="server">
+                                            <div class="form-group row" style="background-color: #00c5dc;">
+                                                <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Custom Fields Data</label>
+                                            </div>
+
+                                            <div class="form-group m-form__group row" >
+                                                <asp:GridView ID="gvCustomField" runat="server" CssClass="table table-striped- table-bordered table-hover table-checkable"
+                                                    HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White" AutoGenerateColumns="false">
+                                                    <Columns>
+                                                    <asp:BoundField DataField="Custom Field" HeaderText="Custom Field" ItemStyle-Width="500" />
+                                                    <asp:BoundField DataField="Value" HeaderText="Value" ItemStyle-Width="500" />
+                                                </Columns>
+                                                    <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
+                                                </asp:GridView>
+
+                                            </div>
+                                            <br />
+                                        </div>
+
+
+
+
                                         <div class="form-group row" style="background-color: #00c5dc;">
                                             <label class="col-xl-3 col-lg-3" style="color: #ffffff; margin-top: 1%;">Ticket Assignment</label>
                                         </div>

@@ -175,6 +175,24 @@ namespace Upkeep_v3.Ticketing {
         protected global::System.Web.UI.WebControls.Label lblTicketRaisedBy_EmailID;
         
         /// <summary>
+        /// dv_Custom_Field control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dv_Custom_Field;
+        
+        /// <summary>
+        /// gvCustomField control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCustomField;
+        
+        /// <summary>
         /// lblAssignedDept control.
         /// </summary>
         /// <remarks>
