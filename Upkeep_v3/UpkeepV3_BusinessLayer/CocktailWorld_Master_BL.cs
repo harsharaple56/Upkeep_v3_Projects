@@ -15,7 +15,7 @@ namespace UpkeepV3_BusinessLayer
         DataSet ds = new DataSet();
 
         #region RDLC Reports
-        public DataSet Fetch_CashMemo(string StrConn)
+        public DataSet Fetch_CashMemo(int License_ID, string From_Date, string To_Date, string StrConn)
         {
             try
             {
@@ -23,6 +23,9 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_CashMemo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -51,32 +54,17 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_FetchFlr6Data(string StrConn)
+        public DataSet Fetch_Flr6Data(int Company_ID, string Date, string License_ID, string StrConn)
         {
             try
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR6", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR6_A", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public DataSet Fetch_Flr6Data(string StrConn)
-        {
-            try
-            {
-                string strOutput = string.Empty;
-                SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR6", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Date", Date);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;

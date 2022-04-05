@@ -42,8 +42,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Fetch_Flr4DataOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_FetchFlr6DataOperationCompleted;
-        
         private System.Threading.SendOrPostCallback Fetch_Sales_ReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Purchase_ReportOperationCompleted;
@@ -175,9 +173,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Fetch_Flr4DataCompletedEventHandler Fetch_Flr4DataCompleted;
-        
-        /// <remarks/>
-        public event Fetch_FetchFlr6DataCompletedEventHandler Fetch_FetchFlr6DataCompleted;
         
         /// <remarks/>
         public event Fetch_Sales_ReportCompletedEventHandler Fetch_Sales_ReportCompleted;
@@ -322,22 +317,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Flr6Data", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Flr6Data() {
-            object[] results = this.Invoke("Fetch_Flr6Data", new object[0]);
+        public System.Data.DataSet Fetch_Flr6Data(int Company_ID, string Date, string License_ID) {
+            object[] results = this.Invoke("Fetch_Flr6Data", new object[] {
+                        Company_ID,
+                        Date,
+                        License_ID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Flr6DataAsync() {
-            this.Fetch_Flr6DataAsync(null);
+        public void Fetch_Flr6DataAsync(int Company_ID, string Date, string License_ID) {
+            this.Fetch_Flr6DataAsync(Company_ID, Date, License_ID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Flr6DataAsync(object userState) {
+        public void Fetch_Flr6DataAsync(int Company_ID, string Date, string License_ID, object userState) {
             if ((this.Fetch_Flr6DataOperationCompleted == null)) {
                 this.Fetch_Flr6DataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Flr6DataOperationCompleted);
             }
-            this.InvokeAsync("Fetch_Flr6Data", new object[0], this.Fetch_Flr6DataOperationCompleted, userState);
+            this.InvokeAsync("Fetch_Flr6Data", new object[] {
+                        Company_ID,
+                        Date,
+                        License_ID}, this.Fetch_Flr6DataOperationCompleted, userState);
         }
         
         private void OnFetch_Flr6DataOperationCompleted(object arg) {
@@ -382,22 +383,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CashMemo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_CashMemo() {
-            object[] results = this.Invoke("Fetch_CashMemo", new object[0]);
+        public System.Data.DataSet Fetch_CashMemo(int License_ID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_CashMemo", new object[] {
+                        License_ID,
+                        From_Date,
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_CashMemoAsync() {
-            this.Fetch_CashMemoAsync(null);
+        public void Fetch_CashMemoAsync(int License_ID, string From_Date, string To_Date) {
+            this.Fetch_CashMemoAsync(License_ID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_CashMemoAsync(object userState) {
+        public void Fetch_CashMemoAsync(int License_ID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_CashMemoOperationCompleted == null)) {
                 this.Fetch_CashMemoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CashMemoOperationCompleted);
             }
-            this.InvokeAsync("Fetch_CashMemo", new object[0], this.Fetch_CashMemoOperationCompleted, userState);
+            this.InvokeAsync("Fetch_CashMemo", new object[] {
+                        License_ID,
+                        From_Date,
+                        To_Date}, this.Fetch_CashMemoOperationCompleted, userState);
         }
         
         private void OnFetch_CashMemoOperationCompleted(object arg) {
@@ -458,33 +465,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Fetch_Flr4DataCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Flr4DataCompleted(this, new Fetch_Flr4DataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_FetchFlr6Data", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_FetchFlr6Data() {
-            object[] results = this.Invoke("Fetch_FetchFlr6Data", new object[0]);
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_FetchFlr6DataAsync() {
-            this.Fetch_FetchFlr6DataAsync(null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_FetchFlr6DataAsync(object userState) {
-            if ((this.Fetch_FetchFlr6DataOperationCompleted == null)) {
-                this.Fetch_FetchFlr6DataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_FetchFlr6DataOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_FetchFlr6Data", new object[0], this.Fetch_FetchFlr6DataOperationCompleted, userState);
-        }
-        
-        private void OnFetch_FetchFlr6DataOperationCompleted(object arg) {
-            if ((this.Fetch_FetchFlr6DataCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_FetchFlr6DataCompleted(this, new Fetch_FetchFlr6DataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2414,32 +2394,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Fetch_Flr4DataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void Fetch_FetchFlr6DataCompletedEventHandler(object sender, Fetch_FetchFlr6DataCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_FetchFlr6DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_FetchFlr6DataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

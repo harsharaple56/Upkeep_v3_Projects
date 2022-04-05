@@ -31,12 +31,12 @@ public class My_CocktailWorld
     }
 
     #region RDLC Reports
-    public DataSet Fetch_CashMemo()
+    public DataSet Fetch_CashMemo(int License_ID, string From_Date, string To_Date)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
-            ds = ObjcocktailWorld_Master_BL.Fetch_CashMemo(StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_CashMemo(License_ID, From_Date, To_Date, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -59,12 +59,12 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet Fetch_Flr6Data()
+    public DataSet Fetch_Flr6Data(int Company_ID, string Date, string License_ID)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
-            ds = ObjcocktailWorld_Master_BL.Fetch_Flr6Data(StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_Flr6Data(Company_ID, Date, License_ID, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -101,19 +101,6 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet Fetch_FetchFlr6Data()
-    {
-        try
-        {
-            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
-            ds = ObjcocktailWorld_Master_BL.Fetch_FetchFlr6Data(StrConn);
-            return ds;
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-    }
 
     #endregion
 

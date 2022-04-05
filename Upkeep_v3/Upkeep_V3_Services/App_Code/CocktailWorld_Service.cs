@@ -37,11 +37,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     #region RDLC Reports
 
     [WebMethod]
-    public DataSet Fetch_Flr6Data()
+    public DataSet Fetch_Flr6Data(int Company_ID, string Date, string License_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Flr6Data();
+            ds = ObjCocktailWorld.Fetch_Flr6Data(Company_ID, Date, License_ID);
         }
         catch (Exception ex)
         {
@@ -65,11 +65,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_CashMemo()
+    public DataSet Fetch_CashMemo(int License_ID, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_CashMemo();
+            ds = ObjCocktailWorld.Fetch_CashMemo(License_ID,From_Date,To_Date);
         }
         catch (Exception ex)
         {
@@ -106,19 +106,6 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
-    [WebMethod]
-    public DataSet Fetch_FetchFlr6Data()
-    {
-        try
-        {
-            ds = ObjCocktailWorld.Fetch_FetchFlr6Data();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        return ds;
-    }
 
     #endregion
 
