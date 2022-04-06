@@ -69,7 +69,7 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_CashMemo(License_ID,From_Date,To_Date);
+            ds = ObjCocktailWorld.Fetch_CashMemo(License_ID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -296,6 +296,9 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     #endregion
 
     #region Imports Method Of Cocktail World
+
+
+
     [WebMethod]
     public DataSet Import_BrandOpeningStock(int CompanyID, string LoggedInUserID)
     {
@@ -312,6 +315,20 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
     #endregion
 
+    [WebMethod]
+    public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Validate_NegativeStockNew(licenseid, date, Bill_No, BrandOpeningID, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, CategorytaxID, Taxper, TotalAmount);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
     [WebMethod]
     public DataSet FetchTaxDetails(int Brand_ID)

@@ -446,6 +446,39 @@ namespace UpkeepV3_BusinessLayer
         }
 
         #endregion
+        public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount,string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_ValidateNegativeStockNew", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@licenseid", licenseid);
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@billno", Bill_No);
+                cmd.Parameters.AddWithValue("@BrandOpeningID", BrandOpeningID);
+                cmd.Parameters.AddWithValue("@BottleQty", Bottle_Qty);
+                cmd.Parameters.AddWithValue("@BottleRate", Bottle_Rate);
+                cmd.Parameters.AddWithValue("@SPeg", SPeg_Qty);
+                cmd.Parameters.AddWithValue("@SPegRate", SPeg_Rate);
+                cmd.Parameters.AddWithValue("@LPeg", LPeg_Qty);
+                cmd.Parameters.AddWithValue("@LPegRate", LPeg_Rate);
+                cmd.Parameters.AddWithValue("@CategorytaxID", CategorytaxID);
+                cmd.Parameters.AddWithValue("@Taxper", Taxper);
+                cmd.Parameters.AddWithValue("@TotalAmount", TotalAmount);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
         public DataSet SaleDetailsMaster_Crud(int Sale_ID, int SaleDetail_ID, int Bill_No, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID, string StrConn)
         {

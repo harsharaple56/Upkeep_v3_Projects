@@ -462,6 +462,39 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Validate_NegativeStockNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="licenseid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bill_No" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandOpeningID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottle_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottle_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="SPeg_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="SPeg_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="LPeg_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="LPeg_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategorytaxID" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Taxper" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Validate_NegativeStockNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Validate_NegativeStockNewResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="FetchTaxDetails">
         <s:complexType>
           <s:sequence>
@@ -1268,6 +1301,12 @@
   <wsdl:message name="Import_BrandOpeningStockSoapOut">
     <wsdl:part name="parameters" element="tns:Import_BrandOpeningStockResponse" />
   </wsdl:message>
+  <wsdl:message name="Validate_NegativeStockNewSoapIn">
+    <wsdl:part name="parameters" element="tns:Validate_NegativeStockNew" />
+  </wsdl:message>
+  <wsdl:message name="Validate_NegativeStockNewSoapOut">
+    <wsdl:part name="parameters" element="tns:Validate_NegativeStockNewResponse" />
+  </wsdl:message>
   <wsdl:message name="FetchTaxDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:FetchTaxDetails" />
   </wsdl:message>
@@ -1492,6 +1531,10 @@
     <wsdl:operation name="Import_BrandOpeningStock">
       <wsdl:input message="tns:Import_BrandOpeningStockSoapIn" />
       <wsdl:output message="tns:Import_BrandOpeningStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Validate_NegativeStockNew">
+      <wsdl:input message="tns:Validate_NegativeStockNewSoapIn" />
+      <wsdl:output message="tns:Validate_NegativeStockNewSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FetchTaxDetails">
       <wsdl:input message="tns:FetchTaxDetailsSoapIn" />
@@ -1765,6 +1808,15 @@
     </wsdl:operation>
     <wsdl:operation name="Import_BrandOpeningStock">
       <soap:operation soapAction="http://tempuri.org/Import_BrandOpeningStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validate_NegativeStockNew">
+      <soap:operation soapAction="http://tempuri.org/Validate_NegativeStockNew" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2164,6 +2216,15 @@
     </wsdl:operation>
     <wsdl:operation name="Import_BrandOpeningStock">
       <soap12:operation soapAction="http://tempuri.org/Import_BrandOpeningStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validate_NegativeStockNew">
+      <soap12:operation soapAction="http://tempuri.org/Validate_NegativeStockNew" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -70,6 +70,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Import_BrandOpeningStockOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Validate_NegativeStockNewOperationCompleted;
+        
         private System.Threading.SendOrPostCallback FetchTaxDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback BrandOpeningMaster_CRUDOperationCompleted;
@@ -215,6 +217,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Import_BrandOpeningStockCompletedEventHandler Import_BrandOpeningStockCompleted;
+        
+        /// <remarks/>
+        public event Validate_NegativeStockNewCompletedEventHandler Validate_NegativeStockNewCompleted;
         
         /// <remarks/>
         public event FetchTaxDetailsCompletedEventHandler FetchTaxDetailsCompleted;
@@ -977,6 +982,59 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Import_BrandOpeningStockCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Import_BrandOpeningStockCompleted(this, new Import_BrandOpeningStockCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Validate_NegativeStockNew", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Validate_NegativeStockNew(int licenseid, System.DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount) {
+            object[] results = this.Invoke("Validate_NegativeStockNew", new object[] {
+                        licenseid,
+                        date,
+                        Bill_No,
+                        BrandOpeningID,
+                        Bottle_Qty,
+                        Bottle_Rate,
+                        SPeg_Qty,
+                        SPeg_Rate,
+                        LPeg_Qty,
+                        LPeg_Rate,
+                        CategorytaxID,
+                        Taxper,
+                        TotalAmount});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Validate_NegativeStockNewAsync(int licenseid, System.DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount) {
+            this.Validate_NegativeStockNewAsync(licenseid, date, Bill_No, BrandOpeningID, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, CategorytaxID, Taxper, TotalAmount, null);
+        }
+        
+        /// <remarks/>
+        public void Validate_NegativeStockNewAsync(int licenseid, System.DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount, object userState) {
+            if ((this.Validate_NegativeStockNewOperationCompleted == null)) {
+                this.Validate_NegativeStockNewOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidate_NegativeStockNewOperationCompleted);
+            }
+            this.InvokeAsync("Validate_NegativeStockNew", new object[] {
+                        licenseid,
+                        date,
+                        Bill_No,
+                        BrandOpeningID,
+                        Bottle_Qty,
+                        Bottle_Rate,
+                        SPeg_Qty,
+                        SPeg_Rate,
+                        LPeg_Qty,
+                        LPeg_Rate,
+                        CategorytaxID,
+                        Taxper,
+                        TotalAmount}, this.Validate_NegativeStockNewOperationCompleted, userState);
+        }
+        
+        private void OnValidate_NegativeStockNewOperationCompleted(object arg) {
+            if ((this.Validate_NegativeStockNewCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Validate_NegativeStockNewCompleted(this, new Validate_NegativeStockNewCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2758,6 +2816,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Import_BrandOpeningStockCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Validate_NegativeStockNewCompletedEventHandler(object sender, Validate_NegativeStockNewCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Validate_NegativeStockNewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Validate_NegativeStockNewCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

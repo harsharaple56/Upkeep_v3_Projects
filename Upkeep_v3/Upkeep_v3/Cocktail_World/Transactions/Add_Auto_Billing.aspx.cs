@@ -977,17 +977,12 @@ namespace Upkeep_v3.Cocktail_World.Transactions
                                 decimal getClosingSpeg = 0;
 
                                 DataSet dsFetchBrand = new DataSet();
-                                dsFetchBrand = ObjCocktailWorld.FetchBrandSizeLinkup(0, 0, 0, Brand_Name, Size_Desc, CompanyID, Convert.ToInt32(ddlLicense.SelectedValue), "Sale", Convert.ToDateTime(txtBrandDate.Text));
+                                dsFetchBrand = ObjCocktailWorld.Validate_NegativeStockNew(Convert.ToInt32(ddlLicense.SelectedValue), Convert.ToDateTime(txtBrandDate.Text), 0, Opening_ID,
+                                    Bottle_Qty, Bottle_Rate, SPeg_Qty, Speg_Rate, LPeg_Qty, LPeg_Rate, 0, 0, 0);
 
                                 if (dsFetchBrand.Tables[0].Rows.Count > 0)
                                 {
-                                    getCurrentBottle = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[2]);
-                                    getCurrentsPeg = Convert.ToInt32(dsFetchBrand.Tables[0].Rows[0].ItemArray[3]);
-
-                                    getClosingBottle = getCurrentBottle - Bottle_Qty;
-                                    getClosingSpeg = getCurrentsPeg - SPeg_Qty;
-
-                                    if (getClosingSpeg >= 0 && getClosingBottle >= 0)
+                                    if (Convert.ToDecimal(dsFetchBrand.Tables[0].Rows[0]["stock"]) > 0)
                                     {
                                         //Add Sale Data in Row
                                         DataRow drInsertSaleData = dtInsertSaleData.NewRow();

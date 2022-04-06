@@ -307,6 +307,20 @@ public class My_CocktailWorld
     }
 
     #endregion
+    public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Validate_NegativeStockNew(licenseid, date, Bill_No, BrandOpeningID, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, CategorytaxID, Taxper, TotalAmount, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
 
     public DataSet FetchTaxDetails(int Brand_ID)
     {
