@@ -87,12 +87,16 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet Fetch_FetchCostValuation_Report()
+
+    #endregion
+
+    #region Reports
+    public DataSet Fetch_CostValuation_Report(int License, string From_Date, string To_Date)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
-            ds = ObjcocktailWorld_Master_BL.Fetch_FetchCostValuation_Report(StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_CostValuation_Report(License, From_Date, To_Date, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -101,10 +105,6 @@ public class My_CocktailWorld
         }
     }
 
-
-    #endregion
-
-    #region Reports
     public DataSet Fetch_Sales_Report(string License, string From_Date, string To_Date, string Brand, string Category)
     {
         try

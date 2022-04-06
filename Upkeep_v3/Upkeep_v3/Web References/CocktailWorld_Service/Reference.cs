@@ -38,9 +38,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Fetch_CashMemoOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_FetchCostValuation_ReportOperationCompleted;
-        
         private System.Threading.SendOrPostCallback Fetch_Flr4DataOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_CostValuation_ReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Sales_ReportOperationCompleted;
         
@@ -171,10 +171,10 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public event Fetch_CashMemoCompletedEventHandler Fetch_CashMemoCompleted;
         
         /// <remarks/>
-        public event Fetch_FetchCostValuation_ReportCompletedEventHandler Fetch_FetchCostValuation_ReportCompleted;
+        public event Fetch_Flr4DataCompletedEventHandler Fetch_Flr4DataCompleted;
         
         /// <remarks/>
-        public event Fetch_Flr4DataCompletedEventHandler Fetch_Flr4DataCompleted;
+        public event Fetch_CostValuation_ReportCompletedEventHandler Fetch_CostValuation_ReportCompleted;
         
         /// <remarks/>
         public event Fetch_Sales_ReportCompletedEventHandler Fetch_Sales_ReportCompleted;
@@ -420,33 +420,6 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_FetchCostValuation_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_FetchCostValuation_Report() {
-            object[] results = this.Invoke("Fetch_FetchCostValuation_Report", new object[0]);
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_FetchCostValuation_ReportAsync() {
-            this.Fetch_FetchCostValuation_ReportAsync(null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_FetchCostValuation_ReportAsync(object userState) {
-            if ((this.Fetch_FetchCostValuation_ReportOperationCompleted == null)) {
-                this.Fetch_FetchCostValuation_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_FetchCostValuation_ReportOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_FetchCostValuation_Report", new object[0], this.Fetch_FetchCostValuation_ReportOperationCompleted, userState);
-        }
-        
-        private void OnFetch_FetchCostValuation_ReportOperationCompleted(object arg) {
-            if ((this.Fetch_FetchCostValuation_ReportCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_FetchCostValuation_ReportCompleted(this, new Fetch_FetchCostValuation_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Flr4Data", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet Fetch_Flr4Data() {
             object[] results = this.Invoke("Fetch_Flr4Data", new object[0]);
@@ -470,6 +443,39 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Fetch_Flr4DataCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_Flr4DataCompleted(this, new Fetch_Flr4DataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CostValuation_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_CostValuation_Report(int License, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_CostValuation_Report", new object[] {
+                        License,
+                        From_Date,
+                        To_Date});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_CostValuation_ReportAsync(int License, string From_Date, string To_Date) {
+            this.Fetch_CostValuation_ReportAsync(License, From_Date, To_Date, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_CostValuation_ReportAsync(int License, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_CostValuation_ReportOperationCompleted == null)) {
+                this.Fetch_CostValuation_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CostValuation_ReportOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_CostValuation_Report", new object[] {
+                        License,
+                        From_Date,
+                        To_Date}, this.Fetch_CostValuation_ReportOperationCompleted, userState);
+        }
+        
+        private void OnFetch_CostValuation_ReportOperationCompleted(object arg) {
+            if ((this.Fetch_CostValuation_ReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_CostValuation_ReportCompleted(this, new Fetch_CostValuation_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2415,17 +2421,17 @@ namespace Upkeep_v3.CocktailWorld_Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void Fetch_FetchCostValuation_ReportCompletedEventHandler(object sender, Fetch_FetchCostValuation_ReportCompletedEventArgs e);
+    public delegate void Fetch_Flr4DataCompletedEventHandler(object sender, Fetch_Flr4DataCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_FetchCostValuation_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_Flr4DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_FetchCostValuation_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_Flr4DataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2441,17 +2447,17 @@ namespace Upkeep_v3.CocktailWorld_Service {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
-    public delegate void Fetch_Flr4DataCompletedEventHandler(object sender, Fetch_Flr4DataCompletedEventArgs e);
+    public delegate void Fetch_CostValuation_ReportCompletedEventHandler(object sender, Fetch_CostValuation_ReportCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_Flr4DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_CostValuation_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_Flr4DataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_CostValuation_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -11,7 +11,17 @@
             border-bottom-width: 3px;
         }
     </style>
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
 
@@ -35,8 +45,8 @@
                 picker.find('.m-subheader__daterange-date').html(range);
                 picker.find('.m-subheader__daterange-title').html(title);
 
-                $('#start_date').val(start.format('DD/MM/YYYY'));
-                $('#end_date').val(end.format('DD/MM/YYYY'));
+                $('#start_date').val(start.format('DD-MMM-YYYY'));
+                $('#end_date').val(end.format('DD-MMM-YYYY'));
                 $('#date_range_title').val(title + range);
             }
 
@@ -120,13 +130,13 @@
                                                     <hr />
 
                                                     <li class="m-nav__item">
-                                                        <a id="export_excel" class="m-nav__link" href="javascript:__doPostBack('export_excel','')">
+                                                        <a id="export_excel" class="m-nav__link" runat="server" onserverclick="export_excel_ServerClick">
                                                             <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
                                                             <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a id="export_pdf" class="m-nav__link" href="javascript:__doPostBack('export_pdf','')">
+                                                        <a id="export_pdf" class="m-nav__link" runat="server" onserverclick="export_pdf_ServerClick">
                                                             <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
                                                             <span class="m-nav__link-text">PDF <b>( .pdf )</b></span>
                                                         </a>
@@ -148,54 +158,16 @@
 
                     <form class="m-form m-form--fit m--margin-bottom-20">
                         <div class="row m--margin-bottom-20 m--align-center">
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Search Data:</label>
-                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                            </div>
 
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Filter by License:</label>
 
                                 <div class="m-form__control">
-                                    <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                                    <asp:DropDownList ID="ddlLicense" AutoPostBack="false" runat="server" CssClass="underline form-control" ClientIDMode="Static">
                                     </asp:DropDownList>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter by Category:</label>
-
-                                <div class="m-form__control">
-                                    <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
-                                        <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                        <div class="row m--margin-bottom-20 m--align-center">
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter Brand:</label>
-
-                                <div class="m-form__control">
-
-                                    <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                        <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
-                                        <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
-                                        <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Filter Date Range:</label>
 
@@ -218,10 +190,11 @@
                                 </div>
 
                             </div>
+
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Search Filters:</label>
                                 <div class="m-form__control">
-                                    <button type="button" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
+                                    <button id="btnSearch" runat="server" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
                                         <span>
                                             <i class="la la-search"></i>
                                             <span>Search</span>
@@ -231,6 +204,8 @@
 
                             </div>
                         </div>
+
+
                     </form>
 
 
@@ -258,6 +233,7 @@
                         </thead>
 
                         <tbody>
+                            <%=Bind_Report()%>
                         </tbody>
                     </table>
 

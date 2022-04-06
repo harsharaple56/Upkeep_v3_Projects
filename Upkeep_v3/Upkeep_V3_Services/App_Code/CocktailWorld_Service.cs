@@ -78,19 +78,6 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
-    [WebMethod]
-    public DataSet Fetch_FetchCostValuation_Report()
-    {
-        try
-        {
-            ds = ObjCocktailWorld.Fetch_FetchCostValuation_Report();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        return ds;
-    }
 
     [WebMethod]
     public DataSet Fetch_Flr4Data()
@@ -111,6 +98,20 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     #region Reports
+    [WebMethod]
+    public DataSet Fetch_CostValuation_Report(int License, string From_Date, string To_Date)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_CostValuation_Report(License, From_Date, To_Date);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
     [WebMethod]
     public DataSet Fetch_Sales_Report(string License, string From_Date, string To_Date, string Brand, string Category)
     {

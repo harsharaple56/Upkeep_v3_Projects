@@ -97,25 +97,6 @@ namespace UpkeepV3_BusinessLayer
         }
 
 
-        public DataSet Fetch_FetchCostValuation_Report(string StrConn)
-        {
-            try
-            {
-                string strOutput = string.Empty;
-                SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR3", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
 
         #endregion
 
@@ -203,6 +184,27 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 cmd.Parameters.AddWithValue("@Brand", Brand);
                 cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_CostValuation_Report(int License_ID, string From_Date, string To_Date, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_CostValuation", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
