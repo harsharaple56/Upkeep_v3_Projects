@@ -15,7 +15,7 @@ namespace UpkeepV3_BusinessLayer
         DataSet ds = new DataSet();
 
         #region RDLC Reports
-        public DataSet Fetch_CashMemo(string StrConn)
+        public DataSet Fetch_CashMemo(int License_ID, string From_Date, string To_Date, string StrConn)
         {
             try
             {
@@ -23,6 +23,9 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_CashMemo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -51,32 +54,17 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_FetchFlr6Data(string StrConn)
+        public DataSet Fetch_Flr6Data(int Company_ID, string Date, string License_ID, string StrConn)
         {
             try
             {
                 string strOutput = string.Empty;
                 SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR6", con);
+                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR6_A", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public DataSet Fetch_Flr6Data(string StrConn)
-        {
-            try
-            {
-                string strOutput = string.Empty;
-                SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR6", con);
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@Date", Date);
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -98,25 +86,6 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
                 cmd.Parameters.AddWithValue("@Date", Date);
                 cmd.Parameters.AddWithValue("@License_ID", License_ID);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        public DataSet Fetch_FetchCostValuation_Report(string StrConn)
-        {
-            try
-            {
-                string strOutput = string.Empty;
-                SqlConnection con = new SqlConnection(StrConn);
-                SqlCommand cmd = new SqlCommand("Spr_RDLC_Report_FLR3", con);
-                cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -215,6 +184,27 @@ namespace UpkeepV3_BusinessLayer
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 cmd.Parameters.AddWithValue("@Brand", Brand);
                 cmd.Parameters.AddWithValue("@Category", Category);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_CostValuation_Report(int License_ID, string From_Date, string To_Date, string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Report_CostValuation", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@License_ID", License_ID);
+                cmd.Parameters.AddWithValue("@From_Date", From_Date);
+                cmd.Parameters.AddWithValue("@To_Date", To_Date);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -365,7 +355,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_BrandSummary_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        public DataSet Fetch_BrandSummary_Report(int LicenseID, string From_Date, string To_Date, bool Brandwise, bool Categorywise, bool SubCategorywise, bool IsBulkLitre, string StrConn)
         {
             try
             {
@@ -373,11 +363,13 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Report_BrandSummary", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@LicenseID", LicenseID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
-                cmd.Parameters.AddWithValue("@Brand", Brand);
-                cmd.Parameters.AddWithValue("@Category", Category);
+                cmd.Parameters.AddWithValue("@Brandwise", Brandwise);
+                cmd.Parameters.AddWithValue("@Categorywise", Categorywise);
+                cmd.Parameters.AddWithValue("@SubCategorywise", SubCategorywise);
+                cmd.Parameters.AddWithValue("@IsBulkLitre", IsBulkLitre);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -388,7 +380,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_Chatai_Report(string License, string From_Date, string To_Date, string Brand, string Category, string StrConn)
+        public DataSet Fetch_Chatai_Report(int LicenseID, string From_Date, string To_Date, string StrConn)
         {
             try
             {
@@ -396,11 +388,9 @@ namespace UpkeepV3_BusinessLayer
                 SqlConnection con = new SqlConnection(StrConn);
                 SqlCommand cmd = new SqlCommand("Spr_Report_Chatai", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@License", License);
+                cmd.Parameters.AddWithValue("@LicenseID", LicenseID);
                 cmd.Parameters.AddWithValue("@From_Date", From_Date);
                 cmd.Parameters.AddWithValue("@To_Date", To_Date);
-                cmd.Parameters.AddWithValue("@Brand", Brand);
-                cmd.Parameters.AddWithValue("@Category", Category);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 return ds;
@@ -435,7 +425,62 @@ namespace UpkeepV3_BusinessLayer
         }
         #endregion
 
+        #region Imports Method Of Cocktail World
 
+        public DataSet Import_BrandOpeningStock(int CompanyID, string LoggedInUserID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Import_BrandOpeningStock", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
+        public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount,string StrConn)
+        {
+            try
+            {
+                string strOutput = string.Empty;
+
+                SqlConnection con = new SqlConnection(StrConn);
+
+                SqlCommand cmd = new SqlCommand("Spr_ValidateNegativeStockNew", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@licenseid", licenseid);
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@billno", Bill_No);
+                cmd.Parameters.AddWithValue("@BrandOpeningID", BrandOpeningID);
+                cmd.Parameters.AddWithValue("@BottleQty", Bottle_Qty);
+                cmd.Parameters.AddWithValue("@BottleRate", Bottle_Rate);
+                cmd.Parameters.AddWithValue("@SPeg", SPeg_Qty);
+                cmd.Parameters.AddWithValue("@SPegRate", SPeg_Rate);
+                cmd.Parameters.AddWithValue("@LPeg", LPeg_Qty);
+                cmd.Parameters.AddWithValue("@LPegRate", LPeg_Rate);
+                cmd.Parameters.AddWithValue("@CategorytaxID", CategorytaxID);
+                cmd.Parameters.AddWithValue("@Taxper", Taxper);
+                cmd.Parameters.AddWithValue("@TotalAmount", TotalAmount);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
         public DataSet SaleDetailsMaster_Crud(int Sale_ID, int SaleDetail_ID, int Bill_No, string Brand_Desc, string Size_Desc, string Cocktail_Desc, int Opening_ID, string TaxType, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal TaxAmount, decimal Amount, int Permit_Holder, int License_ID, string Action, int LoggedInUser, int Company_ID, string StrConn)
         {
@@ -618,7 +663,7 @@ namespace UpkeepV3_BusinessLayer
 
         }
 
-        public DataSet Fetch_Category_Brand(int CompanyID, int CategoryID, String StrConn) //Added CompanyId by sujata
+        public DataSet Fetch_Category_Brand(int CompanyID, int CategoryID, int BrandID, String StrConn) //Added CompanyId by sujata
         {
             try
             {
@@ -627,6 +672,7 @@ namespace UpkeepV3_BusinessLayer
                 SqlCommand cmd = new SqlCommand("Spr_Fetch_Category_Brand", con);
                 cmd.Parameters.AddWithValue("@CompanyID", CompanyID);
                 cmd.Parameters.AddWithValue("@CategoryID", CategoryID);
+                cmd.Parameters.AddWithValue("@BrandID", BrandID);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

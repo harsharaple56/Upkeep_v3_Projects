@@ -26,7 +26,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
             if (!IsPostBack)
             {
                 Bind_License();
-                Fetch_Category_Brand();
                 int BrandOpening_ID = Convert.ToInt32(Request.QueryString["BrandOpening_ID"]);
                 if (BrandOpening_ID > 0)
                 {
@@ -40,51 +39,33 @@ namespace Upkeep_v3.Cocktail_World.Setup
             }
         }
 
-        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlCategory.SelectedIndex == 0)
-            {
-                ddlBrand.Items.Clear();
-                grdCatagLinkUp.Visible = false;
-            }
-            Fetch_Category_Brand();
-        }
-
-        protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FetchBrandSizeLinkUp(0, 0);
-        }
+        //protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    FetchBrandSizeLinkUp(0, 0);
+        //}
 
         public void Fetch_Category_Brand()
         {
             grdCatagLinkUp.Visible = false;
             DataSet dsCategory = new DataSet();
-            int CategoryID = 0;
-
-            if (!string.IsNullOrEmpty(ddlCategory.SelectedValue))
-                CategoryID = Convert.ToInt32(ddlCategory.SelectedValue);
-            else
-                CategoryID = 0;
 
             try
             {
-                dsCategory = ObjCocktailWorld.Fetch_Category_Brand(CompanyID, CategoryID);
+                dsCategory = ObjCocktailWorld.Fetch_Category_Brand(CompanyID, 0, 0);
 
-                if (CategoryID == 0)
+                if (dsCategory.Tables[0].Rows.Count > 0)
                 {
-                    ddlCategory.DataSource = dsCategory.Tables[0];
-                    ddlCategory.DataTextField = "Category_Desc";
-                    ddlCategory.DataValueField = "Category_ID";
-                    ddlCategory.DataBind();
-                    ddlCategory.Items.Insert(0, new ListItem("--Select Category--", "0"));
-                }
-                else if (CategoryID > 0)
-                {
-                    ddlBrand.DataSource = dsCategory.Tables[0];
-                    ddlBrand.DataTextField = "Brand_Desc";
-                    ddlBrand.DataValueField = "Brand_ID";
-                    ddlBrand.DataBind();
-                    ddlBrand.Items.Insert(0, new ListItem("--Select Brand--", "0"));
+                    //ddlBrand.DataSource = dsCategory.Tables[0];
+                    //ddlBrand.DataTextField = "Brand_Desc";
+                    //ddlBrand.DataValueField = "Brand_ID";
+                    //ddlBrand.DataBind();
+                    //ddlBrand.Items.Insert(0, new ListItem("--Select Brand--", "0"));
+
+                    DropDownListChosen1.DataSource = dsCategory.Tables[0];
+                    DropDownListChosen1.DataTextField = "Brand_Desc";
+                    DropDownListChosen1.DataValueField = "Brand_ID";
+                    DropDownListChosen1.DataBind();
+                    DropDownListChosen1.Items.Insert(0, new ListItem("--Select Brand--", "0"));
                 }
 
             }
@@ -99,19 +80,35 @@ namespace Upkeep_v3.Cocktail_World.Setup
             try
             {
                 DataSet ds = new DataSet();
-                if (Category_ID == 0)
-                    Category_ID = Convert.ToInt32(ddlCategory.SelectedValue);
-                if (Brand_ID == 0 && !string.IsNullOrEmpty(ddlBrand.SelectedValue.ToString()))
-                    Brand_ID = Convert.ToInt32(ddlBrand.SelectedValue);
-                if (Category_ID != 0 && Brand_ID != 0)
+                DataSet dsCategory = new DataSet();
+
+                //if (Brand_ID == 0 && !string.IsNullOrEmpty(ddlBrand.SelectedValue.ToString()))
+                //    Brand_ID = Convert.ToInt32(ddlBrand.SelectedValue);
+
+                if (Brand_ID == 0 && !string.IsNullOrEmpty(DropDownListChosen1.SelectedValue.ToString()))
+                    Brand_ID = Convert.ToInt32(DropDownListChosen1.SelectedValue);
+
+                if (Brand_ID != 0)
                 {
-                    ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, 0, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue), string.Empty, DateTime.Now);
-                    if (ds.Tables[0].Rows.Count > 0)
+                    dsCategory = ObjCocktailWorld.Fetch_Category_Brand(CompanyID, 0, Brand_ID);
+
+                    if (dsCategory.Tables[0].Rows.Count > 0)
+                        Category_ID = Convert.ToInt32(dsCategory.Tables[0].Rows[0]["Category_ID"].ToString());
+
+                    if (Category_ID != 0 && Brand_ID != 0)
                     {
-                        grdCatagLinkUp.Visible = true;
-                        grdCatagLinkUp.DataSource = ds.Tables[0];
-                        grdCatagLinkUp.DataBind();
+                        ds = ObjCocktailWorld.FetchBrandSizeLinkup(Category_ID, Brand_ID, 0, "", "", CompanyID, Convert.ToInt32(ddlLicense.SelectedValue), string.Empty, DateTime.Now);
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            grdCatagLinkUp.Visible = true;
+                            grdCatagLinkUp.DataSource = ds.Tables[0];
+                            grdCatagLinkUp.DataBind();
+                        }
                     }
+                }
+                else {
+                    grdCatagLinkUp.DataSource = null;
+                    grdCatagLinkUp.DataBind();
                 }
 
             }
@@ -196,7 +193,8 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             CategoryDetails = settings.ToString();
 
                             Cat_Size_ID = Convert.ToInt32(((HiddenField)rows[i].FindControl("hdnSize_ID")).Value);
-                            BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
+                            //BrandID = Convert.ToInt32(ddlBrand.SelectedValue);
+                            BrandID = Convert.ToInt32(DropDownListChosen1.SelectedValue);
                             DataSet dt = new DataSet();
                             dt = ObjCocktailWorld.Fetch_Brand_Opening(Cat_Size_ID, 0, BrandID, "", "", "", CompanyID, Convert.ToString(ddlLicense.SelectedValue));
                             if (dt.Tables[0].Rows.Count == 0)
@@ -272,7 +270,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 {
                     if (ds.Tables[0].Rows.Count > 0)
                     {
-                        ddlCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
+                        //ddlCategory.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Category_ID"]);
                         ddlLicense.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["License_ID"]);
                         FetchBrands(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]), Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]));
                         FetchBrandSizeLinkUp(Convert.ToInt32(ds.Tables[0].Rows[0]["Category_ID"]), Convert.ToInt32(ds.Tables[0].Rows[0]["Brand_ID"]));
@@ -288,14 +286,20 @@ namespace Upkeep_v3.Cocktail_World.Setup
         public void FetchBrands(int categoryid, int brandid)
         {
             DataSet dsCategory = new DataSet();
-            dsCategory = ObjCocktailWorld.Fetch_Category_Brand(CompanyID, categoryid);
+            dsCategory = ObjCocktailWorld.Fetch_Category_Brand(CompanyID, categoryid, 0);
             if (dsCategory.Tables[0].Rows.Count > 0)
             {
-                ddlBrand.DataSource = dsCategory.Tables[0];
-                ddlBrand.DataTextField = "Brand_Desc";
-                ddlBrand.DataValueField = "Brand_ID";
-                ddlBrand.DataBind();
-                ddlBrand.SelectedValue = Convert.ToString(brandid);
+                //ddlBrand.DataSource = dsCategory.Tables[0];
+                //ddlBrand.DataTextField = "Brand_Desc";
+                //ddlBrand.DataValueField = "Brand_ID";
+                //ddlBrand.DataBind();
+                //ddlBrand.SelectedValue = Convert.ToString(brandid);
+
+                DropDownListChosen1.DataSource = dsCategory.Tables[0];
+                DropDownListChosen1.DataTextField = "Brand_Desc";
+                DropDownListChosen1.DataValueField = "Brand_ID";
+                DropDownListChosen1.DataBind();
+                DropDownListChosen1.SelectedValue = Convert.ToString(brandid);
             }
         }
 
@@ -355,6 +359,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
         }
 
         protected void ddlLicense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Fetch_Category_Brand();
+        }
+
+        protected void DropDownListChosen1_SelectedIndexChanged(object sender, EventArgs e)
         {
             FetchBrandSizeLinkUp(0, 0);
         }

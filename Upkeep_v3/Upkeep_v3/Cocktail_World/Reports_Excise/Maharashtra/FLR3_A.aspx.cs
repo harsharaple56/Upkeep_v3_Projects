@@ -57,5 +57,10 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
             ReportViewer1.LocalReport.DataSources.Add(datasource0);
             ReportViewer1.LocalReport.Refresh();
         }
+
+        protected void generate_ServerClick(object sender, EventArgs e)
+        {
+            Fetch_Report();
+        }
     }
 }

@@ -13,7 +13,13 @@
         </s:complexType>
       </s:element>
       <s:element name="Fetch_Flr6Data">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="License_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="Fetch_Flr6DataResponse">
         <s:complexType>
@@ -53,29 +59,18 @@
         </s:complexType>
       </s:element>
       <s:element name="Fetch_CashMemo">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="Fetch_CashMemoResponse">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_CashMemoResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="Fetch_FetchCostValuation_Report">
-        <s:complexType />
-      </s:element>
-      <s:element name="Fetch_FetchCostValuation_ReportResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_FetchCostValuation_ReportResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -103,13 +98,19 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Fetch_FetchFlr6Data">
-        <s:complexType />
-      </s:element>
-      <s:element name="Fetch_FetchFlr6DataResponse">
+      <s:element name="Fetch_CostValuation_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Fetch_FetchFlr6DataResult">
+            <s:element minOccurs="1" maxOccurs="1" name="License" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_CostValuation_ReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_CostValuation_ReportResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -373,11 +374,13 @@
       <s:element name="Fetch_BrandSummary_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Brandwise" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Categorywise" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="SubCategorywise" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsBulkLitre" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -398,11 +401,9 @@
       <s:element name="Fetch_Chatai_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -435,6 +436,61 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_OptimumQuantity_ReportResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_BrandOpeningStock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_BrandOpeningStockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_BrandOpeningStockResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Validate_NegativeStockNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="licenseid" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bill_No" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandOpeningID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottle_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottle_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="SPeg_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="SPeg_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="LPeg_Qty" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="LPeg_Rate" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategorytaxID" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Taxper" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Validate_NegativeStockNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Validate_NegativeStockNewResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -760,6 +816,7 @@
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="CompanyId" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1154,23 +1211,17 @@
   <wsdl:message name="Fetch_CashMemoSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_CashMemoResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_FetchCostValuation_ReportSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_FetchCostValuation_Report" />
-  </wsdl:message>
-  <wsdl:message name="Fetch_FetchCostValuation_ReportSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_FetchCostValuation_ReportResponse" />
-  </wsdl:message>
   <wsdl:message name="Fetch_Flr4DataSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Flr4Data" />
   </wsdl:message>
   <wsdl:message name="Fetch_Flr4DataSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_Flr4DataResponse" />
   </wsdl:message>
-  <wsdl:message name="Fetch_FetchFlr6DataSoapIn">
-    <wsdl:part name="parameters" element="tns:Fetch_FetchFlr6Data" />
+  <wsdl:message name="Fetch_CostValuation_ReportSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_CostValuation_Report" />
   </wsdl:message>
-  <wsdl:message name="Fetch_FetchFlr6DataSoapOut">
-    <wsdl:part name="parameters" element="tns:Fetch_FetchFlr6DataResponse" />
+  <wsdl:message name="Fetch_CostValuation_ReportSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_CostValuation_ReportResponse" />
   </wsdl:message>
   <wsdl:message name="Fetch_Sales_ReportSoapIn">
     <wsdl:part name="parameters" element="tns:Fetch_Sales_Report" />
@@ -1249,6 +1300,18 @@
   </wsdl:message>
   <wsdl:message name="Fetch_OptimumQuantity_ReportSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_OptimumQuantity_ReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_BrandOpeningStockSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_BrandOpeningStock" />
+  </wsdl:message>
+  <wsdl:message name="Import_BrandOpeningStockSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_BrandOpeningStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="Validate_NegativeStockNewSoapIn">
+    <wsdl:part name="parameters" element="tns:Validate_NegativeStockNew" />
+  </wsdl:message>
+  <wsdl:message name="Validate_NegativeStockNewSoapOut">
+    <wsdl:part name="parameters" element="tns:Validate_NegativeStockNewResponse" />
   </wsdl:message>
   <wsdl:message name="FetchTaxDetailsSoapIn">
     <wsdl:part name="parameters" element="tns:FetchTaxDetails" />
@@ -1411,17 +1474,13 @@
       <wsdl:input message="tns:Fetch_CashMemoSoapIn" />
       <wsdl:output message="tns:Fetch_CashMemoSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchCostValuation_Report">
-      <wsdl:input message="tns:Fetch_FetchCostValuation_ReportSoapIn" />
-      <wsdl:output message="tns:Fetch_FetchCostValuation_ReportSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="Fetch_Flr4Data">
       <wsdl:input message="tns:Fetch_Flr4DataSoapIn" />
       <wsdl:output message="tns:Fetch_Flr4DataSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchFlr6Data">
-      <wsdl:input message="tns:Fetch_FetchFlr6DataSoapIn" />
-      <wsdl:output message="tns:Fetch_FetchFlr6DataSoapOut" />
+    <wsdl:operation name="Fetch_CostValuation_Report">
+      <wsdl:input message="tns:Fetch_CostValuation_ReportSoapIn" />
+      <wsdl:output message="tns:Fetch_CostValuation_ReportSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Fetch_Sales_Report">
       <wsdl:input message="tns:Fetch_Sales_ReportSoapIn" />
@@ -1474,6 +1533,14 @@
     <wsdl:operation name="Fetch_OptimumQuantity_Report">
       <wsdl:input message="tns:Fetch_OptimumQuantity_ReportSoapIn" />
       <wsdl:output message="tns:Fetch_OptimumQuantity_ReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_BrandOpeningStock">
+      <wsdl:input message="tns:Import_BrandOpeningStockSoapIn" />
+      <wsdl:output message="tns:Import_BrandOpeningStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Validate_NegativeStockNew">
+      <wsdl:input message="tns:Validate_NegativeStockNewSoapIn" />
+      <wsdl:output message="tns:Validate_NegativeStockNewSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="FetchTaxDetails">
       <wsdl:input message="tns:FetchTaxDetailsSoapIn" />
@@ -1610,15 +1677,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchCostValuation_Report">
-      <soap:operation soapAction="http://tempuri.org/Fetch_FetchCostValuation_Report" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Fetch_Flr4Data">
       <soap:operation soapAction="http://tempuri.org/Fetch_Flr4Data" style="document" />
       <wsdl:input>
@@ -1628,8 +1686,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchFlr6Data">
-      <soap:operation soapAction="http://tempuri.org/Fetch_FetchFlr6Data" style="document" />
+    <wsdl:operation name="Fetch_CostValuation_Report">
+      <soap:operation soapAction="http://tempuri.org/Fetch_CostValuation_Report" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1747,6 +1805,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_OptimumQuantity_Report">
       <soap:operation soapAction="http://tempuri.org/Fetch_OptimumQuantity_Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_BrandOpeningStock">
+      <soap:operation soapAction="http://tempuri.org/Import_BrandOpeningStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validate_NegativeStockNew">
+      <soap:operation soapAction="http://tempuri.org/Validate_NegativeStockNew" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2009,15 +2085,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchCostValuation_Report">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_FetchCostValuation_Report" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="Fetch_Flr4Data">
       <soap12:operation soapAction="http://tempuri.org/Fetch_Flr4Data" style="document" />
       <wsdl:input>
@@ -2027,8 +2094,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Fetch_FetchFlr6Data">
-      <soap12:operation soapAction="http://tempuri.org/Fetch_FetchFlr6Data" style="document" />
+    <wsdl:operation name="Fetch_CostValuation_Report">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_CostValuation_Report" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2146,6 +2213,24 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_OptimumQuantity_Report">
       <soap12:operation soapAction="http://tempuri.org/Fetch_OptimumQuantity_Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_BrandOpeningStock">
+      <soap12:operation soapAction="http://tempuri.org/Import_BrandOpeningStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validate_NegativeStockNew">
+      <soap12:operation soapAction="http://tempuri.org/Validate_NegativeStockNew" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -37,11 +37,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     #region RDLC Reports
 
     [WebMethod]
-    public DataSet Fetch_Flr6Data()
+    public DataSet Fetch_Flr6Data(int Company_ID, string Date, string License_ID)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Flr6Data();
+            ds = ObjCocktailWorld.Fetch_Flr6Data(Company_ID, Date, License_ID);
         }
         catch (Exception ex)
         {
@@ -65,11 +65,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_CashMemo()
+    public DataSet Fetch_CashMemo(int License_ID, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_CashMemo();
+            ds = ObjCocktailWorld.Fetch_CashMemo(License_ID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -78,19 +78,6 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
-    [WebMethod]
-    public DataSet Fetch_FetchCostValuation_Report()
-    {
-        try
-        {
-            ds = ObjCocktailWorld.Fetch_FetchCostValuation_Report();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        return ds;
-    }
 
     [WebMethod]
     public DataSet Fetch_Flr4Data()
@@ -106,12 +93,17 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
+
+    #endregion
+
+
+    #region Reports
     [WebMethod]
-    public DataSet Fetch_FetchFlr6Data()
+    public DataSet Fetch_CostValuation_Report(int License, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_FetchFlr6Data();
+            ds = ObjCocktailWorld.Fetch_CostValuation_Report(License, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -120,10 +112,6 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
-    #endregion
-
-
-    #region Reports
     [WebMethod]
     public DataSet Fetch_Sales_Report(string License, string From_Date, string To_Date, string Brand, string Category)
     {
@@ -265,11 +253,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_BrandSummary_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_BrandSummary_Report(int LicenseID, string From_Date, string To_Date, bool Brandwise, bool Categorywise, bool SubCategorywise, bool IsBulkLitre)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_BrandSummary_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_BrandSummary_Report(LicenseID, From_Date, To_Date, Brandwise, Categorywise, SubCategorywise, IsBulkLitre);
         }
         catch (Exception ex)
         {
@@ -279,11 +267,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Chatai_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_Chatai_Report(int LicenseID, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Chatai_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_Chatai_Report(LicenseID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -307,6 +295,41 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     #endregion
+
+    #region Imports Method Of Cocktail World
+
+
+
+    [WebMethod]
+    public DataSet Import_BrandOpeningStock(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_BrandOpeningStock(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    #endregion
+
+    [WebMethod]
+    public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Validate_NegativeStockNew(licenseid, date, Bill_No, BrandOpeningID, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, CategorytaxID, Taxper, TotalAmount);
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
     [WebMethod]
     public DataSet FetchTaxDetails(int Brand_ID)
@@ -465,11 +488,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Category_Brand(int CompanyId, int CategoryID)   //Added CompanyId by sujata
+    public DataSet Fetch_Category_Brand(int CompanyId, int CategoryID, int BrandID)   //Added CompanyId by sujata
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Category_Brand(CompanyId, CategoryID);
+            ds = ObjCocktailWorld.Fetch_Category_Brand(CompanyId, CategoryID, BrandID);
         }
         catch (Exception ex)
         {

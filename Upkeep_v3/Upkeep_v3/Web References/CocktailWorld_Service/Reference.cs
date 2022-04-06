@@ -24,7 +24,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="CocktailWorld_ServiceSoap", Namespace="http://tempuri.org/")]
@@ -38,11 +38,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Fetch_CashMemoOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_FetchCostValuation_ReportOperationCompleted;
-        
         private System.Threading.SendOrPostCallback Fetch_Flr4DataOperationCompleted;
         
-        private System.Threading.SendOrPostCallback Fetch_FetchFlr6DataOperationCompleted;
+        private System.Threading.SendOrPostCallback Fetch_CostValuation_ReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_Sales_ReportOperationCompleted;
         
@@ -69,6 +67,10 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private System.Threading.SendOrPostCallback Fetch_Chatai_ReportOperationCompleted;
         
         private System.Threading.SendOrPostCallback Fetch_OptimumQuantity_ReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_BrandOpeningStockOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Validate_NegativeStockNewOperationCompleted;
         
         private System.Threading.SendOrPostCallback FetchTaxDetailsOperationCompleted;
         
@@ -169,13 +171,10 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public event Fetch_CashMemoCompletedEventHandler Fetch_CashMemoCompleted;
         
         /// <remarks/>
-        public event Fetch_FetchCostValuation_ReportCompletedEventHandler Fetch_FetchCostValuation_ReportCompleted;
-        
-        /// <remarks/>
         public event Fetch_Flr4DataCompletedEventHandler Fetch_Flr4DataCompleted;
         
         /// <remarks/>
-        public event Fetch_FetchFlr6DataCompletedEventHandler Fetch_FetchFlr6DataCompleted;
+        public event Fetch_CostValuation_ReportCompletedEventHandler Fetch_CostValuation_ReportCompleted;
         
         /// <remarks/>
         public event Fetch_Sales_ReportCompletedEventHandler Fetch_Sales_ReportCompleted;
@@ -215,6 +214,12 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Fetch_OptimumQuantity_ReportCompletedEventHandler Fetch_OptimumQuantity_ReportCompleted;
+        
+        /// <remarks/>
+        public event Import_BrandOpeningStockCompletedEventHandler Import_BrandOpeningStockCompleted;
+        
+        /// <remarks/>
+        public event Validate_NegativeStockNewCompletedEventHandler Validate_NegativeStockNewCompleted;
         
         /// <remarks/>
         public event FetchTaxDetailsCompletedEventHandler FetchTaxDetailsCompleted;
@@ -317,22 +322,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Flr6Data", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Flr6Data() {
-            object[] results = this.Invoke("Fetch_Flr6Data", new object[0]);
+        public System.Data.DataSet Fetch_Flr6Data(int Company_ID, string Date, string License_ID) {
+            object[] results = this.Invoke("Fetch_Flr6Data", new object[] {
+                        Company_ID,
+                        Date,
+                        License_ID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Flr6DataAsync() {
-            this.Fetch_Flr6DataAsync(null);
+        public void Fetch_Flr6DataAsync(int Company_ID, string Date, string License_ID) {
+            this.Fetch_Flr6DataAsync(Company_ID, Date, License_ID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Flr6DataAsync(object userState) {
+        public void Fetch_Flr6DataAsync(int Company_ID, string Date, string License_ID, object userState) {
             if ((this.Fetch_Flr6DataOperationCompleted == null)) {
                 this.Fetch_Flr6DataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Flr6DataOperationCompleted);
             }
-            this.InvokeAsync("Fetch_Flr6Data", new object[0], this.Fetch_Flr6DataOperationCompleted, userState);
+            this.InvokeAsync("Fetch_Flr6Data", new object[] {
+                        Company_ID,
+                        Date,
+                        License_ID}, this.Fetch_Flr6DataOperationCompleted, userState);
         }
         
         private void OnFetch_Flr6DataOperationCompleted(object arg) {
@@ -377,55 +388,34 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CashMemo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_CashMemo() {
-            object[] results = this.Invoke("Fetch_CashMemo", new object[0]);
+        public System.Data.DataSet Fetch_CashMemo(int License_ID, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_CashMemo", new object[] {
+                        License_ID,
+                        From_Date,
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_CashMemoAsync() {
-            this.Fetch_CashMemoAsync(null);
+        public void Fetch_CashMemoAsync(int License_ID, string From_Date, string To_Date) {
+            this.Fetch_CashMemoAsync(License_ID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_CashMemoAsync(object userState) {
+        public void Fetch_CashMemoAsync(int License_ID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_CashMemoOperationCompleted == null)) {
                 this.Fetch_CashMemoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CashMemoOperationCompleted);
             }
-            this.InvokeAsync("Fetch_CashMemo", new object[0], this.Fetch_CashMemoOperationCompleted, userState);
+            this.InvokeAsync("Fetch_CashMemo", new object[] {
+                        License_ID,
+                        From_Date,
+                        To_Date}, this.Fetch_CashMemoOperationCompleted, userState);
         }
         
         private void OnFetch_CashMemoOperationCompleted(object arg) {
             if ((this.Fetch_CashMemoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_CashMemoCompleted(this, new Fetch_CashMemoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_FetchCostValuation_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_FetchCostValuation_Report() {
-            object[] results = this.Invoke("Fetch_FetchCostValuation_Report", new object[0]);
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void Fetch_FetchCostValuation_ReportAsync() {
-            this.Fetch_FetchCostValuation_ReportAsync(null);
-        }
-        
-        /// <remarks/>
-        public void Fetch_FetchCostValuation_ReportAsync(object userState) {
-            if ((this.Fetch_FetchCostValuation_ReportOperationCompleted == null)) {
-                this.Fetch_FetchCostValuation_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_FetchCostValuation_ReportOperationCompleted);
-            }
-            this.InvokeAsync("Fetch_FetchCostValuation_Report", new object[0], this.Fetch_FetchCostValuation_ReportOperationCompleted, userState);
-        }
-        
-        private void OnFetch_FetchCostValuation_ReportOperationCompleted(object arg) {
-            if ((this.Fetch_FetchCostValuation_ReportCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_FetchCostValuation_ReportCompleted(this, new Fetch_FetchCostValuation_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -457,29 +447,35 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_FetchFlr6Data", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_FetchFlr6Data() {
-            object[] results = this.Invoke("Fetch_FetchFlr6Data", new object[0]);
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CostValuation_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_CostValuation_Report(int License, string From_Date, string To_Date) {
+            object[] results = this.Invoke("Fetch_CostValuation_Report", new object[] {
+                        License,
+                        From_Date,
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_FetchFlr6DataAsync() {
-            this.Fetch_FetchFlr6DataAsync(null);
+        public void Fetch_CostValuation_ReportAsync(int License, string From_Date, string To_Date) {
+            this.Fetch_CostValuation_ReportAsync(License, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_FetchFlr6DataAsync(object userState) {
-            if ((this.Fetch_FetchFlr6DataOperationCompleted == null)) {
-                this.Fetch_FetchFlr6DataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_FetchFlr6DataOperationCompleted);
+        public void Fetch_CostValuation_ReportAsync(int License, string From_Date, string To_Date, object userState) {
+            if ((this.Fetch_CostValuation_ReportOperationCompleted == null)) {
+                this.Fetch_CostValuation_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CostValuation_ReportOperationCompleted);
             }
-            this.InvokeAsync("Fetch_FetchFlr6Data", new object[0], this.Fetch_FetchFlr6DataOperationCompleted, userState);
+            this.InvokeAsync("Fetch_CostValuation_Report", new object[] {
+                        License,
+                        From_Date,
+                        To_Date}, this.Fetch_CostValuation_ReportOperationCompleted, userState);
         }
         
-        private void OnFetch_FetchFlr6DataOperationCompleted(object arg) {
-            if ((this.Fetch_FetchFlr6DataCompleted != null)) {
+        private void OnFetch_CostValuation_ReportOperationCompleted(object arg) {
+            if ((this.Fetch_CostValuation_ReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.Fetch_FetchFlr6DataCompleted(this, new Fetch_FetchFlr6DataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.Fetch_CostValuation_ReportCompleted(this, new Fetch_CostValuation_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -855,32 +851,36 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_BrandSummary_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_BrandSummary_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+        public System.Data.DataSet Fetch_BrandSummary_Report(int LicenseID, string From_Date, string To_Date, bool Brandwise, bool Categorywise, bool SubCategorywise, bool IsBulkLitre) {
             object[] results = this.Invoke("Fetch_BrandSummary_Report", new object[] {
-                        License,
+                        LicenseID,
                         From_Date,
                         To_Date,
-                        Brand,
-                        Category});
+                        Brandwise,
+                        Categorywise,
+                        SubCategorywise,
+                        IsBulkLitre});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_BrandSummary_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
-            this.Fetch_BrandSummary_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        public void Fetch_BrandSummary_ReportAsync(int LicenseID, string From_Date, string To_Date, bool Brandwise, bool Categorywise, bool SubCategorywise, bool IsBulkLitre) {
+            this.Fetch_BrandSummary_ReportAsync(LicenseID, From_Date, To_Date, Brandwise, Categorywise, SubCategorywise, IsBulkLitre, null);
         }
         
         /// <remarks/>
-        public void Fetch_BrandSummary_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+        public void Fetch_BrandSummary_ReportAsync(int LicenseID, string From_Date, string To_Date, bool Brandwise, bool Categorywise, bool SubCategorywise, bool IsBulkLitre, object userState) {
             if ((this.Fetch_BrandSummary_ReportOperationCompleted == null)) {
                 this.Fetch_BrandSummary_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_BrandSummary_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_BrandSummary_Report", new object[] {
-                        License,
+                        LicenseID,
                         From_Date,
                         To_Date,
-                        Brand,
-                        Category}, this.Fetch_BrandSummary_ReportOperationCompleted, userState);
+                        Brandwise,
+                        Categorywise,
+                        SubCategorywise,
+                        IsBulkLitre}, this.Fetch_BrandSummary_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_BrandSummary_ReportOperationCompleted(object arg) {
@@ -892,32 +892,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Chatai_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Chatai_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+        public System.Data.DataSet Fetch_Chatai_Report(int LicenseID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_Chatai_Report", new object[] {
-                        License,
+                        LicenseID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category});
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Chatai_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
-            this.Fetch_Chatai_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        public void Fetch_Chatai_ReportAsync(int LicenseID, string From_Date, string To_Date) {
+            this.Fetch_Chatai_ReportAsync(LicenseID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_Chatai_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+        public void Fetch_Chatai_ReportAsync(int LicenseID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_Chatai_ReportOperationCompleted == null)) {
                 this.Fetch_Chatai_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Chatai_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_Chatai_Report", new object[] {
-                        License,
+                        LicenseID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category}, this.Fetch_Chatai_ReportOperationCompleted, userState);
+                        To_Date}, this.Fetch_Chatai_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_Chatai_ReportOperationCompleted(object arg) {
@@ -961,6 +957,90 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Fetch_OptimumQuantity_ReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_OptimumQuantity_ReportCompleted(this, new Fetch_OptimumQuantity_ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_BrandOpeningStock", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_BrandOpeningStock(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_BrandOpeningStock", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_BrandOpeningStockAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_BrandOpeningStockAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_BrandOpeningStockAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_BrandOpeningStockOperationCompleted == null)) {
+                this.Import_BrandOpeningStockOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_BrandOpeningStockOperationCompleted);
+            }
+            this.InvokeAsync("Import_BrandOpeningStock", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_BrandOpeningStockOperationCompleted, userState);
+        }
+        
+        private void OnImport_BrandOpeningStockOperationCompleted(object arg) {
+            if ((this.Import_BrandOpeningStockCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_BrandOpeningStockCompleted(this, new Import_BrandOpeningStockCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Validate_NegativeStockNew", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Validate_NegativeStockNew(int licenseid, System.DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount) {
+            object[] results = this.Invoke("Validate_NegativeStockNew", new object[] {
+                        licenseid,
+                        date,
+                        Bill_No,
+                        BrandOpeningID,
+                        Bottle_Qty,
+                        Bottle_Rate,
+                        SPeg_Qty,
+                        SPeg_Rate,
+                        LPeg_Qty,
+                        LPeg_Rate,
+                        CategorytaxID,
+                        Taxper,
+                        TotalAmount});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Validate_NegativeStockNewAsync(int licenseid, System.DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount) {
+            this.Validate_NegativeStockNewAsync(licenseid, date, Bill_No, BrandOpeningID, Bottle_Qty, Bottle_Rate, SPeg_Qty, SPeg_Rate, LPeg_Qty, LPeg_Rate, CategorytaxID, Taxper, TotalAmount, null);
+        }
+        
+        /// <remarks/>
+        public void Validate_NegativeStockNewAsync(int licenseid, System.DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount, object userState) {
+            if ((this.Validate_NegativeStockNewOperationCompleted == null)) {
+                this.Validate_NegativeStockNewOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidate_NegativeStockNewOperationCompleted);
+            }
+            this.InvokeAsync("Validate_NegativeStockNew", new object[] {
+                        licenseid,
+                        date,
+                        Bill_No,
+                        BrandOpeningID,
+                        Bottle_Qty,
+                        Bottle_Rate,
+                        SPeg_Qty,
+                        SPeg_Rate,
+                        LPeg_Qty,
+                        LPeg_Rate,
+                        CategorytaxID,
+                        Taxper,
+                        TotalAmount}, this.Validate_NegativeStockNewOperationCompleted, userState);
+        }
+        
+        private void OnValidate_NegativeStockNewOperationCompleted(object arg) {
+            if ((this.Validate_NegativeStockNewCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Validate_NegativeStockNewCompleted(this, new Validate_NegativeStockNewCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1630,26 +1710,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Category_Brand", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Category_Brand(int CompanyId, int CategoryID) {
+        public System.Data.DataSet Fetch_Category_Brand(int CompanyId, int CategoryID, int BrandID) {
             object[] results = this.Invoke("Fetch_Category_Brand", new object[] {
                         CompanyId,
-                        CategoryID});
+                        CategoryID,
+                        BrandID});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Category_BrandAsync(int CompanyId, int CategoryID) {
-            this.Fetch_Category_BrandAsync(CompanyId, CategoryID, null);
+        public void Fetch_Category_BrandAsync(int CompanyId, int CategoryID, int BrandID) {
+            this.Fetch_Category_BrandAsync(CompanyId, CategoryID, BrandID, null);
         }
         
         /// <remarks/>
-        public void Fetch_Category_BrandAsync(int CompanyId, int CategoryID, object userState) {
+        public void Fetch_Category_BrandAsync(int CompanyId, int CategoryID, int BrandID, object userState) {
             if ((this.Fetch_Category_BrandOperationCompleted == null)) {
                 this.Fetch_Category_BrandOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Category_BrandOperationCompleted);
             }
             this.InvokeAsync("Fetch_Category_Brand", new object[] {
                         CompanyId,
-                        CategoryID}, this.Fetch_Category_BrandOperationCompleted, userState);
+                        CategoryID,
+                        BrandID}, this.Fetch_Category_BrandOperationCompleted, userState);
         }
         
         private void OnFetch_Category_BrandOperationCompleted(object arg) {
@@ -2234,11 +2316,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2260,11 +2342,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Flr6DataCompletedEventHandler(object sender, Fetch_Flr6DataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Flr6DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2286,11 +2368,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_FLR3LegalReportCompletedEventHandler(object sender, Fetch_FLR3LegalReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_FLR3LegalReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2312,11 +2394,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_CashMemoCompletedEventHandler(object sender, Fetch_CashMemoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_CashMemoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2338,37 +2420,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_FetchCostValuation_ReportCompletedEventHandler(object sender, Fetch_FetchCostValuation_ReportCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_FetchCostValuation_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal Fetch_FetchCostValuation_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Flr4DataCompletedEventHandler(object sender, Fetch_Flr4DataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Flr4DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2390,18 +2446,18 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void Fetch_FetchFlr6DataCompletedEventHandler(object sender, Fetch_FetchFlr6DataCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Fetch_CostValuation_ReportCompletedEventHandler(object sender, Fetch_CostValuation_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class Fetch_FetchFlr6DataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class Fetch_CostValuation_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal Fetch_FetchFlr6DataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal Fetch_CostValuation_ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2416,11 +2472,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Sales_ReportCompletedEventHandler(object sender, Fetch_Sales_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Sales_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2442,11 +2498,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Purchase_ReportCompletedEventHandler(object sender, Fetch_Purchase_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Purchase_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2468,11 +2524,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Transfer_ReportCompletedEventHandler(object sender, Fetch_Transfer_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Transfer_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2494,11 +2550,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Cost_ReportCompletedEventHandler(object sender, Fetch_Cost_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Cost_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2520,11 +2576,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_SlowMovingQty_ReportCompletedEventHandler(object sender, Fetch_SlowMovingQty_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_SlowMovingQty_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2546,11 +2602,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_NonMovingQty_ReportCompletedEventHandler(object sender, Fetch_NonMovingQty_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_NonMovingQty_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2572,11 +2628,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_CocktailSale_ReportCompletedEventHandler(object sender, Fetch_CocktailSale_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_CocktailSale_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2598,11 +2654,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_BulkLitre_ReportCompletedEventHandler(object sender, Fetch_BulkLitre_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_BulkLitre_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2624,11 +2680,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_BaseQuantity_ReportCompletedEventHandler(object sender, Fetch_BaseQuantity_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_BaseQuantity_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2650,11 +2706,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Abstract_ReportCompletedEventHandler(object sender, Fetch_Abstract_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Abstract_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2676,11 +2732,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_BrandSummary_ReportCompletedEventHandler(object sender, Fetch_BrandSummary_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_BrandSummary_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2702,11 +2758,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Chatai_ReportCompletedEventHandler(object sender, Fetch_Chatai_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Chatai_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2728,11 +2784,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_OptimumQuantity_ReportCompletedEventHandler(object sender, Fetch_OptimumQuantity_ReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_OptimumQuantity_ReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2754,11 +2810,63 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_BrandOpeningStockCompletedEventHandler(object sender, Import_BrandOpeningStockCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_BrandOpeningStockCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_BrandOpeningStockCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Validate_NegativeStockNewCompletedEventHandler(object sender, Validate_NegativeStockNewCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Validate_NegativeStockNewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Validate_NegativeStockNewCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void FetchTaxDetailsCompletedEventHandler(object sender, FetchTaxDetailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FetchTaxDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2780,11 +2888,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void BrandOpeningMaster_CRUDCompletedEventHandler(object sender, BrandOpeningMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BrandOpeningMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2806,11 +2914,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void PurchaseMaster_CRUDCompletedEventHandler(object sender, PurchaseMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PurchaseMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2832,11 +2940,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void TransferMaster_CRUDCompletedEventHandler(object sender, TransferMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TransferMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2858,11 +2966,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void PurchaseDetailsMaster_CRUDCompletedEventHandler(object sender, PurchaseDetailsMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PurchaseDetailsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2884,11 +2992,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void TransferDetailsMaster_CRUDCompletedEventHandler(object sender, TransferDetailsMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TransferDetailsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2910,11 +3018,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SaleDetailsMaster_CrudCompletedEventHandler(object sender, SaleDetailsMaster_CrudCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SaleDetailsMaster_CrudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2936,11 +3044,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SaleMaster_CrudCompletedEventHandler(object sender, SaleMaster_CrudCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SaleMaster_CrudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2962,11 +3070,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void BillBook_CrudCompletedEventHandler(object sender, BillBook_CrudCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BillBook_CrudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2988,11 +3096,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void CategoryMaster_CRUDCompletedEventHandler(object sender, CategoryMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3014,11 +3122,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Category_BrandCompletedEventHandler(object sender, Fetch_Category_BrandCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Category_BrandCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3040,11 +3148,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Brand_OpeningCompletedEventHandler(object sender, Fetch_Brand_OpeningCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Brand_OpeningCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3066,11 +3174,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_CategorySizeLinkupCompletedEventHandler(object sender, Fetch_CategorySizeLinkupCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_CategorySizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3092,11 +3200,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void CocktailMaster_CRUDCompletedEventHandler(object sender, CocktailMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CocktailMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3118,11 +3226,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void CocktailBrandsMaster_CRUDCompletedEventHandler(object sender, CocktailBrandsMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CocktailBrandsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3144,11 +3252,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void FetchBrandSizeLinkupCompletedEventHandler(object sender, FetchBrandSizeLinkupCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class FetchBrandSizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3170,11 +3278,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void BrandMaster_CRUDCompletedEventHandler(object sender, BrandMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BrandMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3196,11 +3304,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SizeMaster_CRUDCompletedEventHandler(object sender, SizeMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SizeMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3222,11 +3330,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SubCategoryMaster_CRUDCompletedEventHandler(object sender, SubCategoryMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SubCategoryMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3248,11 +3356,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void PermitMaster_CRUDCompletedEventHandler(object sender, PermitMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PermitMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3274,11 +3382,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Save_CategorySizeLinkupCompletedEventHandler(object sender, Save_CategorySizeLinkupCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Save_CategorySizeLinkupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3300,11 +3408,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void License_CRUDCompletedEventHandler(object sender, License_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class License_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3326,11 +3434,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void SupplierMaster_CRUDCompletedEventHandler(object sender, SupplierMaster_CRUDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SupplierMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3352,11 +3460,11 @@ namespace Upkeep_v3.CocktailWorld_Service {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     public delegate void Fetch_Test_Dataset_RDLCCompletedEventHandler(object sender, Fetch_Test_Dataset_RDLCCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class Fetch_Test_Dataset_RDLCCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
