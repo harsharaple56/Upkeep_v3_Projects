@@ -57,6 +57,9 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\..\..\..\..\..\Desktop\AdmissionSystem\AdmissionSystem\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="DropDownListChosen, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DropDownListChosen.1.0.2\lib\DropDownListChosen.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -1286,6 +1289,9 @@
     <Content Include="obj\Debug\Upkeep_v3.dll" />
     <Content Include="obj\Debug\Upkeep_v3.pdb" />
     <Content Include="Retailer_Profile.aspx" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Testing_Codes\SendGrid_emails.aspx" />
     <Content Include="Testing_Codes\SendMail_SMTP.aspx" />
     <Content Include="Ticketing\Add_MyRequest_Public.aspx" />
