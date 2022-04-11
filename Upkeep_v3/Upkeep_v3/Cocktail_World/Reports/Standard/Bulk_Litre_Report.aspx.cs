@@ -14,6 +14,7 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
         CocktailWorld_Service.CocktailWorld_Service ObjCocktailWorld = new CocktailWorld_Service.CocktailWorld_Service();
         string LoggedInUserID = string.Empty;
         int CompanyID = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             LoggedInUserID = Convert.ToString(Session["LoggedInUserID"]);
@@ -35,18 +36,16 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
             ddlLicense.DataValueField = "License_ID";
             ddlLicense.DataBind();
             ddlLicense.Items.Insert(0, new ListItem("--Select License--", "0"));
+            ddlLicense.SelectedIndex = 1;
         }
 
         public string Bind_Report()
         {
             string data = "";
             DataSet ds = new DataSet();
-            string License = ddlLicense.SelectedValue;
+            int License_ID = Convert.ToInt32(ddlLicense.SelectedValue);
             string From_Date = string.Empty;
             string To_Date = string.Empty;
-            string Bill_No = string.Empty;
-            string Brand = string.Empty;
-            string Category = string.Empty;
 
             try
             {
@@ -58,7 +57,7 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
                 else
                 {
                     DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture)).AddDays(-6);
-                    From_Date = FromDate.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    From_Date = FromDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
                 }
 
                 if (end_date.Value != "")
@@ -67,11 +66,11 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
                 }
                 else
                 {
-                    To_Date = DateTime.Now.ToString("dd/MMM/yy", CultureInfo.InvariantCulture);
+                    To_Date = DateTime.Now.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
                 }
 
 
-                ds = ObjCocktailWorld.Fetch_BulkLitre_Report("1057", "2021-02-03 00:00:00", "2022-02-03 00:00:00", Brand, Category);
+                ds = ObjCocktailWorld.Fetch_BulkLitre_Report(License_ID,From_Date,To_Date);
 
                 if (ds.Tables.Count > 0)
                 {
@@ -94,7 +93,6 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
                                     "<td>" + Sale + "</td>" +
                                     "<td>" + Closing + "</td>" +
                                     "</tr>";
-
                         }
                     }
                 }
@@ -104,6 +102,16 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
                 throw ex;
             }
             return data;
+        }
+
+        protected void export_pdf_ServerClick(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void export_excel_ServerClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

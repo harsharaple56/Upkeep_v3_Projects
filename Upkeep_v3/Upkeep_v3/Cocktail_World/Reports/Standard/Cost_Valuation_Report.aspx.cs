@@ -40,7 +40,7 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
             ddlLicense.SelectedIndex = 1;
         }
 
-        public string Bind_Report()
+        public string Bind_BrandReport()
         {
             string data = "";
             DataSet ds = new DataSet();
@@ -117,27 +117,71 @@ namespace Upkeep_v3.Cocktail_World.Reports.Standard
                         }
                     }
 
-                    //if (ds.Tables[1].Rows.Count > 0)
-                    //{
-                    //    int count = Convert.ToInt32(ds.Tables[1].Rows.Count);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return data;
+        }
 
-                    //    for (int i = 0; i < count; i++)
-                    //    {
-                    //        string Category = Convert.ToString(ds.Tables[1].Rows[i]["Category"]);
-                    //        string Size = Convert.ToString(ds.Tables[1].Rows[i]["Size"]);
-                    //        string Stock = Convert.ToString(ds.Tables[1].Rows[i]["Stock"]);
-                    //        string UnitCost = Convert.ToString(ds.Tables[1].Rows[i]["UnitCost"]);
-                    //        string CostValue = Convert.ToString(ds.Tables[1].Rows[i]["CostValue"]);
+        public string Bind_CategoryReport()
+        {
+            string data = "";
+            DataSet ds = new DataSet();
+            int LicenseID = Convert.ToInt32(ddlLicense.SelectedValue);
+            string From_Date = string.Empty;
+            string To_Date = string.Empty;
 
-                    //        data += "<tr>" +
-                    //             "<td>" + Category + "</td>" +
-                    //            "<td>" + Size + "</td>" +
-                    //            "<td>" + Stock + "</td>" +
-                    //            "<td>" + UnitCost + "</td>" +
-                    //            "<td>" + CostValue + "</td>" +
-                    //            "</tr>";
-                    //    }
-                    //}
+            try
+            {
+
+                if (start_date.Value != "")
+                {
+                    From_Date = Convert.ToString(start_date.Value);
+                }
+                else
+                {
+                    DateTime FromDate = DateTime.Parse(DateTime.Now.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture)).AddDays(-6);
+                    From_Date = FromDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
+                }
+
+                if (end_date.Value != "")
+                {
+                    To_Date = Convert.ToString(end_date.Value);
+                }
+                else
+                {
+                    To_Date = DateTime.Now.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
+                }
+
+
+                ds = ObjCocktailWorld.Fetch_CostValuation_Report(LicenseID, From_Date, To_Date);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
+                        int count = Convert.ToInt32(ds.Tables[1].Rows.Count);
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            string Category1 = Convert.ToString(ds.Tables[1].Rows[i]["Category"]);
+                            string Size1 = Convert.ToString(ds.Tables[1].Rows[i]["Size"]);
+                            string Stock1 = Convert.ToString(ds.Tables[1].Rows[i]["Stock"]);
+                            string UnitCost1 = Convert.ToString(ds.Tables[1].Rows[i]["UnitCost"]);
+                            string CostValue1 = Convert.ToString(ds.Tables[1].Rows[i]["CostValue"]);
+
+                            data += "<tr>" +
+                                 "<td>" + Category1 + "</td>" +
+                                "<td>" + Size1 + "</td>" +
+                                "<td>" + Stock1 + "</td>" +
+                                "<td>" + UnitCost1 + "</td>" +
+                                "<td>" + CostValue1 + "</td>" +
+                                "</tr>";
+                        }
+                    }
                 }
             }
             catch (Exception ex)

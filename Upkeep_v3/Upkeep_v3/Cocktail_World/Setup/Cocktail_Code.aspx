@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cocktail_Code.aspx.cs" MasterPageFile="~/UpkeepMaster.Master" Inherits="Upkeep_v3.Cocktail_World.Setup.Cocktail_Code" %>
 
 
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -11,7 +10,7 @@
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript"></script>
 
 
-
+     <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
     <div class="m-content">
         <div class="m-grid__item m-grid__item--fluid">
 
@@ -38,13 +37,14 @@
 
                             <li class="m-portlet__nav-item">
 
-                                <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Setup/Assign_Cocktail_Code.aspx") %>"
-                                    class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-                                    <span>
-                                        <i class="flaticon-add"></i>
-                                        <span>Add Cocktail Code</span>
-                                    </span>
-                                </a>
+                                <asp:LinkButton ID="btnAddLicense" runat="server" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                <span>
+                                    <i class="flaticon-add"></i>
+                                    <span>Assign Cocktail Code</span>
+                                </span>
+                                </asp:LinkButton>
+                                <cc1:ModalPopupExtender ID="mpeLicenseMaster" runat="server" PopupControlID="pnlLicenseMaster" TargetControlID="btnAddLicense" BackgroundCssClass="modalBackground"
+                                    CancelControlID="btnCloseHeader" />
                             </li>
 
 
@@ -72,14 +72,14 @@
                                                     <hr />
 
                                                     <li class="m-nav__item">
-                                                        <a class="m-nav__link" id="A1" runat="server" >
+                                                        <a class="m-nav__link" id="A1" runat="server">
                                                             <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
                                                             <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
                                                         </a>
                                                     </li>
 
                                                     <li class="m-nav__item">
-                                                        <a class="m-nav__link" id="A2" runat="server" >
+                                                        <a class="m-nav__link" id="A2" runat="server">
                                                             <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
                                                             <span class="m-nav__link-text">Pdf  <b>( .pdf )</b></span>
                                                         </a>
@@ -102,36 +102,6 @@
 
                     <div class="m-form m-form--fit m--margin-bottom-20">
                         <div class="row m--align-center">
-
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-
-                                <label class="font-weight-bold">Cocktail Name :</label>
-                                <input type="text" class="form-control m-input" placeholder="Search..." id="CocktailName" />
-
-                            </div>
-
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Cocktail Code :</label>
-                                <input type="text" class="form-control m-input" placeholder="Search..." id="CocktailCode" />
-                            </div>
-
-
-
-
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Search Filters :</label>
-                                <div class="m-form__control">
-                                    <button class="btn m-btn--pill    btn-primary m-btn m-btn--custom" id="btnSearch" runat="server">
-                                        <span>
-                                            <i class="la la-search"></i>
-                                            <span>Search</span>
-                                        </span>
-                                    </button>
-                                </div>
-
-                            </div>
-
-
                         </div>
 
 
@@ -174,5 +144,51 @@
 
     </div>
 
-</asp:Content>
+    <asp:Panel ID="pnlLicenseMaster" runat="server" align="center" Style="display: none; width: 50%;">
+        <div class="" id="add_sub_location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Assign Cocktail Code</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
 
+                            <div class="modal-body">
+
+                                <div class="form-group m-form__group row">
+                                    <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Cocktail Name :</label>
+                                    <asp:DropDownList ID="ddlCocktail" class="form-control" Style="width: 60%" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="rfvBrand" runat="server" ControlToValidate="ddlCocktail" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please Select Cocktail"></asp:RequiredFieldValidator>
+                                </div>
+
+
+                                <div class="form-group m-form__group row">
+                                    <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Cocktail Code :</label>
+                                    <asp:TextBox ID="txtcode" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtcode" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please enter cocktail code"></asp:RequiredFieldValidator>
+                                </div>
+
+
+                                <asp:Label ID="lblError" ForeColor="Red" runat="server" CssClass="form-control-label"></asp:Label>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <asp:Button ID="btnCloseCategory" Text="Close" runat="server" class="btn btn-danger"  />
+                                <asp:Button ID="btnLicenseSave" runat="server" class="btn btn-primary" CausesValidation="true" ValidationGroup="validationWorkflow"  Text="Save" />
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="btnAddLicense" EventName="Click" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </asp:Panel>
+</asp:Content>

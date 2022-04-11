@@ -169,11 +169,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_SlowMovingQty_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_SlowMovingQty_Report(int License_ID, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_SlowMovingQty_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_SlowMovingQty_Report(License_ID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -183,11 +183,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_NonMovingQty_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_NonMovingQty_Report(int License_ID, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_NonMovingQty_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_NonMovingQty_Report(License_ID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -211,11 +211,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_BulkLitre_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_BulkLitre_Report(int License_ID, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_BulkLitre_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_BulkLitre_Report(License_ID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -225,11 +225,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_BaseQuantity_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_BaseQuantity_Report(int License_ID, string Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_BaseQuantity_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_BaseQuantity_Report(License_ID, Date);
         }
         catch (Exception ex)
         {
@@ -239,11 +239,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_Abstract_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_Abstract_Report(int License_ID, string From_Date, string To_Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_Abstract_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_Abstract_Report(License_ID, From_Date, To_Date);
         }
         catch (Exception ex)
         {
@@ -281,11 +281,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_OptimumQuantity_Report(string License, string From_Date, string To_Date, string Brand, string Category)
+    public DataSet Fetch_OptimumQuantity_Report(int License_ID, string Date)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_OptimumQuantity_Report(License, From_Date, To_Date, Brand, Category);
+            ds = ObjCocktailWorld.Fetch_OptimumQuantity_Report(License_ID,Date);
         }
         catch (Exception ex)
         {
@@ -297,8 +297,6 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     #endregion
 
     #region Imports Method Of Cocktail World
-
-
 
     [WebMethod]
     public DataSet Import_BrandOpeningStock(int CompanyID, string LoggedInUserID)
@@ -314,6 +312,131 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
 
+    [WebMethod]
+    public DataSet Import_Brands(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_Brands(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_Supplier(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_Supplier(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_BrandCode(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_BrandCode(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_Cocktail(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_Cocktail(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_CocktailCode(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_CocktailCode(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_Sale(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_Sale(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_Purchase(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_Purchase(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_AutoBilling(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_AutoBilling(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Import_Transfer(int CompanyID, string LoggedInUserID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Import_Transfer(CompanyID, LoggedInUserID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
     #endregion
 
     [WebMethod]

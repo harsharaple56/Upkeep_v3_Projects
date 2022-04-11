@@ -224,11 +224,9 @@
       <s:element name="Fetch_SlowMovingQty_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -249,11 +247,9 @@
       <s:element name="Fetch_NonMovingQty_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -299,11 +295,9 @@
       <s:element name="Fetch_BulkLitre_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -324,11 +318,8 @@
       <s:element name="Fetch_BaseQuantity_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -349,11 +340,9 @@
       <s:element name="Fetch_Abstract_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -424,11 +413,8 @@
       <s:element name="Fetch_OptimumQuantity_Report">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="License" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -458,6 +444,204 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Import_BrandOpeningStockResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_Brands">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_BrandsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_BrandsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_Supplier">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_SupplierResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_SupplierResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_BrandCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_BrandCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_BrandCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_Cocktail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_CocktailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_CocktailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_CocktailCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_CocktailCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_CocktailCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_Sale">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_SaleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_SaleResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_Purchase">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_PurchaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_PurchaseResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_AutoBilling">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_AutoBillingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_AutoBillingResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_Transfer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompanyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_TransferResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_TransferResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1307,6 +1491,60 @@
   <wsdl:message name="Import_BrandOpeningStockSoapOut">
     <wsdl:part name="parameters" element="tns:Import_BrandOpeningStockResponse" />
   </wsdl:message>
+  <wsdl:message name="Import_BrandsSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_Brands" />
+  </wsdl:message>
+  <wsdl:message name="Import_BrandsSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_BrandsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_SupplierSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_Supplier" />
+  </wsdl:message>
+  <wsdl:message name="Import_SupplierSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_SupplierResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_BrandCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_BrandCode" />
+  </wsdl:message>
+  <wsdl:message name="Import_BrandCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_BrandCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_CocktailSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_Cocktail" />
+  </wsdl:message>
+  <wsdl:message name="Import_CocktailSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_CocktailResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_CocktailCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_CocktailCode" />
+  </wsdl:message>
+  <wsdl:message name="Import_CocktailCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_CocktailCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_SaleSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_Sale" />
+  </wsdl:message>
+  <wsdl:message name="Import_SaleSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_SaleResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_PurchaseSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_Purchase" />
+  </wsdl:message>
+  <wsdl:message name="Import_PurchaseSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_PurchaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_AutoBillingSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_AutoBilling" />
+  </wsdl:message>
+  <wsdl:message name="Import_AutoBillingSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_AutoBillingResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_TransferSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_Transfer" />
+  </wsdl:message>
+  <wsdl:message name="Import_TransferSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_TransferResponse" />
+  </wsdl:message>
   <wsdl:message name="Validate_NegativeStockNewSoapIn">
     <wsdl:part name="parameters" element="tns:Validate_NegativeStockNew" />
   </wsdl:message>
@@ -1537,6 +1775,42 @@
     <wsdl:operation name="Import_BrandOpeningStock">
       <wsdl:input message="tns:Import_BrandOpeningStockSoapIn" />
       <wsdl:output message="tns:Import_BrandOpeningStockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_Brands">
+      <wsdl:input message="tns:Import_BrandsSoapIn" />
+      <wsdl:output message="tns:Import_BrandsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_Supplier">
+      <wsdl:input message="tns:Import_SupplierSoapIn" />
+      <wsdl:output message="tns:Import_SupplierSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_BrandCode">
+      <wsdl:input message="tns:Import_BrandCodeSoapIn" />
+      <wsdl:output message="tns:Import_BrandCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_Cocktail">
+      <wsdl:input message="tns:Import_CocktailSoapIn" />
+      <wsdl:output message="tns:Import_CocktailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_CocktailCode">
+      <wsdl:input message="tns:Import_CocktailCodeSoapIn" />
+      <wsdl:output message="tns:Import_CocktailCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_Sale">
+      <wsdl:input message="tns:Import_SaleSoapIn" />
+      <wsdl:output message="tns:Import_SaleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_Purchase">
+      <wsdl:input message="tns:Import_PurchaseSoapIn" />
+      <wsdl:output message="tns:Import_PurchaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_AutoBilling">
+      <wsdl:input message="tns:Import_AutoBillingSoapIn" />
+      <wsdl:output message="tns:Import_AutoBillingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_Transfer">
+      <wsdl:input message="tns:Import_TransferSoapIn" />
+      <wsdl:output message="tns:Import_TransferSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Validate_NegativeStockNew">
       <wsdl:input message="tns:Validate_NegativeStockNewSoapIn" />
@@ -1814,6 +2088,87 @@
     </wsdl:operation>
     <wsdl:operation name="Import_BrandOpeningStock">
       <soap:operation soapAction="http://tempuri.org/Import_BrandOpeningStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Brands">
+      <soap:operation soapAction="http://tempuri.org/Import_Brands" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Supplier">
+      <soap:operation soapAction="http://tempuri.org/Import_Supplier" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_BrandCode">
+      <soap:operation soapAction="http://tempuri.org/Import_BrandCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Cocktail">
+      <soap:operation soapAction="http://tempuri.org/Import_Cocktail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_CocktailCode">
+      <soap:operation soapAction="http://tempuri.org/Import_CocktailCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Sale">
+      <soap:operation soapAction="http://tempuri.org/Import_Sale" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Purchase">
+      <soap:operation soapAction="http://tempuri.org/Import_Purchase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_AutoBilling">
+      <soap:operation soapAction="http://tempuri.org/Import_AutoBilling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Transfer">
+      <soap:operation soapAction="http://tempuri.org/Import_Transfer" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2222,6 +2577,87 @@
     </wsdl:operation>
     <wsdl:operation name="Import_BrandOpeningStock">
       <soap12:operation soapAction="http://tempuri.org/Import_BrandOpeningStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Brands">
+      <soap12:operation soapAction="http://tempuri.org/Import_Brands" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Supplier">
+      <soap12:operation soapAction="http://tempuri.org/Import_Supplier" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_BrandCode">
+      <soap12:operation soapAction="http://tempuri.org/Import_BrandCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Cocktail">
+      <soap12:operation soapAction="http://tempuri.org/Import_Cocktail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_CocktailCode">
+      <soap12:operation soapAction="http://tempuri.org/Import_CocktailCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Sale">
+      <soap12:operation soapAction="http://tempuri.org/Import_Sale" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Purchase">
+      <soap12:operation soapAction="http://tempuri.org/Import_Purchase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_AutoBilling">
+      <soap12:operation soapAction="http://tempuri.org/Import_AutoBilling" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Transfer">
+      <soap12:operation soapAction="http://tempuri.org/Import_Transfer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

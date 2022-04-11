@@ -70,6 +70,24 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Import_BrandOpeningStockOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Import_BrandsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_SupplierOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_BrandCodeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_CocktailOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_CocktailCodeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_SaleOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_PurchaseOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_AutoBillingOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_TransferOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Validate_NegativeStockNewOperationCompleted;
         
         private System.Threading.SendOrPostCallback FetchTaxDetailsOperationCompleted;
@@ -217,6 +235,33 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Import_BrandOpeningStockCompletedEventHandler Import_BrandOpeningStockCompleted;
+        
+        /// <remarks/>
+        public event Import_BrandsCompletedEventHandler Import_BrandsCompleted;
+        
+        /// <remarks/>
+        public event Import_SupplierCompletedEventHandler Import_SupplierCompleted;
+        
+        /// <remarks/>
+        public event Import_BrandCodeCompletedEventHandler Import_BrandCodeCompleted;
+        
+        /// <remarks/>
+        public event Import_CocktailCompletedEventHandler Import_CocktailCompleted;
+        
+        /// <remarks/>
+        public event Import_CocktailCodeCompletedEventHandler Import_CocktailCodeCompleted;
+        
+        /// <remarks/>
+        public event Import_SaleCompletedEventHandler Import_SaleCompleted;
+        
+        /// <remarks/>
+        public event Import_PurchaseCompletedEventHandler Import_PurchaseCompleted;
+        
+        /// <remarks/>
+        public event Import_AutoBillingCompletedEventHandler Import_AutoBillingCompleted;
+        
+        /// <remarks/>
+        public event Import_TransferCompletedEventHandler Import_TransferCompleted;
         
         /// <remarks/>
         public event Validate_NegativeStockNewCompletedEventHandler Validate_NegativeStockNewCompleted;
@@ -629,32 +674,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_SlowMovingQty_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_SlowMovingQty_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+        public System.Data.DataSet Fetch_SlowMovingQty_Report(int License_ID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_SlowMovingQty_Report", new object[] {
-                        License,
+                        License_ID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category});
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_SlowMovingQty_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
-            this.Fetch_SlowMovingQty_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        public void Fetch_SlowMovingQty_ReportAsync(int License_ID, string From_Date, string To_Date) {
+            this.Fetch_SlowMovingQty_ReportAsync(License_ID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_SlowMovingQty_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+        public void Fetch_SlowMovingQty_ReportAsync(int License_ID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_SlowMovingQty_ReportOperationCompleted == null)) {
                 this.Fetch_SlowMovingQty_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_SlowMovingQty_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_SlowMovingQty_Report", new object[] {
-                        License,
+                        License_ID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category}, this.Fetch_SlowMovingQty_ReportOperationCompleted, userState);
+                        To_Date}, this.Fetch_SlowMovingQty_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_SlowMovingQty_ReportOperationCompleted(object arg) {
@@ -666,32 +707,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_NonMovingQty_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_NonMovingQty_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+        public System.Data.DataSet Fetch_NonMovingQty_Report(int License_ID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_NonMovingQty_Report", new object[] {
-                        License,
+                        License_ID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category});
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_NonMovingQty_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
-            this.Fetch_NonMovingQty_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        public void Fetch_NonMovingQty_ReportAsync(int License_ID, string From_Date, string To_Date) {
+            this.Fetch_NonMovingQty_ReportAsync(License_ID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_NonMovingQty_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+        public void Fetch_NonMovingQty_ReportAsync(int License_ID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_NonMovingQty_ReportOperationCompleted == null)) {
                 this.Fetch_NonMovingQty_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_NonMovingQty_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_NonMovingQty_Report", new object[] {
-                        License,
+                        License_ID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category}, this.Fetch_NonMovingQty_ReportOperationCompleted, userState);
+                        To_Date}, this.Fetch_NonMovingQty_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_NonMovingQty_ReportOperationCompleted(object arg) {
@@ -740,32 +777,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_BulkLitre_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_BulkLitre_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+        public System.Data.DataSet Fetch_BulkLitre_Report(int License_ID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_BulkLitre_Report", new object[] {
-                        License,
+                        License_ID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category});
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_BulkLitre_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
-            this.Fetch_BulkLitre_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        public void Fetch_BulkLitre_ReportAsync(int License_ID, string From_Date, string To_Date) {
+            this.Fetch_BulkLitre_ReportAsync(License_ID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_BulkLitre_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+        public void Fetch_BulkLitre_ReportAsync(int License_ID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_BulkLitre_ReportOperationCompleted == null)) {
                 this.Fetch_BulkLitre_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_BulkLitre_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_BulkLitre_Report", new object[] {
-                        License,
+                        License_ID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category}, this.Fetch_BulkLitre_ReportOperationCompleted, userState);
+                        To_Date}, this.Fetch_BulkLitre_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_BulkLitre_ReportOperationCompleted(object arg) {
@@ -777,32 +810,26 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_BaseQuantity_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_BaseQuantity_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+        public System.Data.DataSet Fetch_BaseQuantity_Report(int License_ID, string Date) {
             object[] results = this.Invoke("Fetch_BaseQuantity_Report", new object[] {
-                        License,
-                        From_Date,
-                        To_Date,
-                        Brand,
-                        Category});
+                        License_ID,
+                        Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_BaseQuantity_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
-            this.Fetch_BaseQuantity_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        public void Fetch_BaseQuantity_ReportAsync(int License_ID, string Date) {
+            this.Fetch_BaseQuantity_ReportAsync(License_ID, Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_BaseQuantity_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+        public void Fetch_BaseQuantity_ReportAsync(int License_ID, string Date, object userState) {
             if ((this.Fetch_BaseQuantity_ReportOperationCompleted == null)) {
                 this.Fetch_BaseQuantity_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_BaseQuantity_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_BaseQuantity_Report", new object[] {
-                        License,
-                        From_Date,
-                        To_Date,
-                        Brand,
-                        Category}, this.Fetch_BaseQuantity_ReportOperationCompleted, userState);
+                        License_ID,
+                        Date}, this.Fetch_BaseQuantity_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_BaseQuantity_ReportOperationCompleted(object arg) {
@@ -814,32 +841,28 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_Abstract_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_Abstract_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+        public System.Data.DataSet Fetch_Abstract_Report(int License_ID, string From_Date, string To_Date) {
             object[] results = this.Invoke("Fetch_Abstract_Report", new object[] {
-                        License,
+                        License_ID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category});
+                        To_Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_Abstract_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
-            this.Fetch_Abstract_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        public void Fetch_Abstract_ReportAsync(int License_ID, string From_Date, string To_Date) {
+            this.Fetch_Abstract_ReportAsync(License_ID, From_Date, To_Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_Abstract_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+        public void Fetch_Abstract_ReportAsync(int License_ID, string From_Date, string To_Date, object userState) {
             if ((this.Fetch_Abstract_ReportOperationCompleted == null)) {
                 this.Fetch_Abstract_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_Abstract_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_Abstract_Report", new object[] {
-                        License,
+                        License_ID,
                         From_Date,
-                        To_Date,
-                        Brand,
-                        Category}, this.Fetch_Abstract_ReportOperationCompleted, userState);
+                        To_Date}, this.Fetch_Abstract_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_Abstract_ReportOperationCompleted(object arg) {
@@ -925,32 +948,26 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_OptimumQuantity_Report", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_OptimumQuantity_Report(string License, string From_Date, string To_Date, string Brand, string Category) {
+        public System.Data.DataSet Fetch_OptimumQuantity_Report(int License_ID, string Date) {
             object[] results = this.Invoke("Fetch_OptimumQuantity_Report", new object[] {
-                        License,
-                        From_Date,
-                        To_Date,
-                        Brand,
-                        Category});
+                        License_ID,
+                        Date});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_OptimumQuantity_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category) {
-            this.Fetch_OptimumQuantity_ReportAsync(License, From_Date, To_Date, Brand, Category, null);
+        public void Fetch_OptimumQuantity_ReportAsync(int License_ID, string Date) {
+            this.Fetch_OptimumQuantity_ReportAsync(License_ID, Date, null);
         }
         
         /// <remarks/>
-        public void Fetch_OptimumQuantity_ReportAsync(string License, string From_Date, string To_Date, string Brand, string Category, object userState) {
+        public void Fetch_OptimumQuantity_ReportAsync(int License_ID, string Date, object userState) {
             if ((this.Fetch_OptimumQuantity_ReportOperationCompleted == null)) {
                 this.Fetch_OptimumQuantity_ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_OptimumQuantity_ReportOperationCompleted);
             }
             this.InvokeAsync("Fetch_OptimumQuantity_Report", new object[] {
-                        License,
-                        From_Date,
-                        To_Date,
-                        Brand,
-                        Category}, this.Fetch_OptimumQuantity_ReportOperationCompleted, userState);
+                        License_ID,
+                        Date}, this.Fetch_OptimumQuantity_ReportOperationCompleted, userState);
         }
         
         private void OnFetch_OptimumQuantity_ReportOperationCompleted(object arg) {
@@ -988,6 +1005,285 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Import_BrandOpeningStockCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Import_BrandOpeningStockCompleted(this, new Import_BrandOpeningStockCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_Brands", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_Brands(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_Brands", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_BrandsAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_BrandsAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_BrandsAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_BrandsOperationCompleted == null)) {
+                this.Import_BrandsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_BrandsOperationCompleted);
+            }
+            this.InvokeAsync("Import_Brands", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_BrandsOperationCompleted, userState);
+        }
+        
+        private void OnImport_BrandsOperationCompleted(object arg) {
+            if ((this.Import_BrandsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_BrandsCompleted(this, new Import_BrandsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_Supplier", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_Supplier(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_Supplier", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_SupplierAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_SupplierAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_SupplierAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_SupplierOperationCompleted == null)) {
+                this.Import_SupplierOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_SupplierOperationCompleted);
+            }
+            this.InvokeAsync("Import_Supplier", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_SupplierOperationCompleted, userState);
+        }
+        
+        private void OnImport_SupplierOperationCompleted(object arg) {
+            if ((this.Import_SupplierCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_SupplierCompleted(this, new Import_SupplierCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_BrandCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_BrandCode(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_BrandCode", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_BrandCodeAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_BrandCodeAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_BrandCodeAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_BrandCodeOperationCompleted == null)) {
+                this.Import_BrandCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_BrandCodeOperationCompleted);
+            }
+            this.InvokeAsync("Import_BrandCode", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_BrandCodeOperationCompleted, userState);
+        }
+        
+        private void OnImport_BrandCodeOperationCompleted(object arg) {
+            if ((this.Import_BrandCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_BrandCodeCompleted(this, new Import_BrandCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_Cocktail", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_Cocktail(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_Cocktail", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_CocktailAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_CocktailAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_CocktailAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_CocktailOperationCompleted == null)) {
+                this.Import_CocktailOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_CocktailOperationCompleted);
+            }
+            this.InvokeAsync("Import_Cocktail", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_CocktailOperationCompleted, userState);
+        }
+        
+        private void OnImport_CocktailOperationCompleted(object arg) {
+            if ((this.Import_CocktailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_CocktailCompleted(this, new Import_CocktailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_CocktailCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_CocktailCode(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_CocktailCode", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_CocktailCodeAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_CocktailCodeAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_CocktailCodeAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_CocktailCodeOperationCompleted == null)) {
+                this.Import_CocktailCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_CocktailCodeOperationCompleted);
+            }
+            this.InvokeAsync("Import_CocktailCode", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_CocktailCodeOperationCompleted, userState);
+        }
+        
+        private void OnImport_CocktailCodeOperationCompleted(object arg) {
+            if ((this.Import_CocktailCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_CocktailCodeCompleted(this, new Import_CocktailCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_Sale", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_Sale(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_Sale", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_SaleAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_SaleAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_SaleAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_SaleOperationCompleted == null)) {
+                this.Import_SaleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_SaleOperationCompleted);
+            }
+            this.InvokeAsync("Import_Sale", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_SaleOperationCompleted, userState);
+        }
+        
+        private void OnImport_SaleOperationCompleted(object arg) {
+            if ((this.Import_SaleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_SaleCompleted(this, new Import_SaleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_Purchase", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_Purchase(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_Purchase", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_PurchaseAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_PurchaseAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_PurchaseAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_PurchaseOperationCompleted == null)) {
+                this.Import_PurchaseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_PurchaseOperationCompleted);
+            }
+            this.InvokeAsync("Import_Purchase", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_PurchaseOperationCompleted, userState);
+        }
+        
+        private void OnImport_PurchaseOperationCompleted(object arg) {
+            if ((this.Import_PurchaseCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_PurchaseCompleted(this, new Import_PurchaseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_AutoBilling", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_AutoBilling(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_AutoBilling", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_AutoBillingAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_AutoBillingAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_AutoBillingAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_AutoBillingOperationCompleted == null)) {
+                this.Import_AutoBillingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_AutoBillingOperationCompleted);
+            }
+            this.InvokeAsync("Import_AutoBilling", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_AutoBillingOperationCompleted, userState);
+        }
+        
+        private void OnImport_AutoBillingOperationCompleted(object arg) {
+            if ((this.Import_AutoBillingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_AutoBillingCompleted(this, new Import_AutoBillingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Import_Transfer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Import_Transfer(int CompanyID, string LoggedInUserID) {
+            object[] results = this.Invoke("Import_Transfer", new object[] {
+                        CompanyID,
+                        LoggedInUserID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_TransferAsync(int CompanyID, string LoggedInUserID) {
+            this.Import_TransferAsync(CompanyID, LoggedInUserID, null);
+        }
+        
+        /// <remarks/>
+        public void Import_TransferAsync(int CompanyID, string LoggedInUserID, object userState) {
+            if ((this.Import_TransferOperationCompleted == null)) {
+                this.Import_TransferOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_TransferOperationCompleted);
+            }
+            this.InvokeAsync("Import_Transfer", new object[] {
+                        CompanyID,
+                        LoggedInUserID}, this.Import_TransferOperationCompleted, userState);
+        }
+        
+        private void OnImport_TransferOperationCompleted(object arg) {
+            if ((this.Import_TransferCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_TransferCompleted(this, new Import_TransferCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2822,6 +3118,240 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Import_BrandOpeningStockCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_BrandsCompletedEventHandler(object sender, Import_BrandsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_BrandsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_BrandsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_SupplierCompletedEventHandler(object sender, Import_SupplierCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_SupplierCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_SupplierCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_BrandCodeCompletedEventHandler(object sender, Import_BrandCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_BrandCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_BrandCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_CocktailCompletedEventHandler(object sender, Import_CocktailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_CocktailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_CocktailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_CocktailCodeCompletedEventHandler(object sender, Import_CocktailCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_CocktailCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_CocktailCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_SaleCompletedEventHandler(object sender, Import_SaleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_SaleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_SaleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_PurchaseCompletedEventHandler(object sender, Import_PurchaseCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_PurchaseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_PurchaseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_AutoBillingCompletedEventHandler(object sender, Import_AutoBillingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_AutoBillingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_AutoBillingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Import_TransferCompletedEventHandler(object sender, Import_TransferCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_TransferCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_TransferCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

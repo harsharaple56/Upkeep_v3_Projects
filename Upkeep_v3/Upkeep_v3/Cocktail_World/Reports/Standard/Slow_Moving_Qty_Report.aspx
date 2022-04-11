@@ -2,16 +2,12 @@
 
 
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style type="text/css">
-        .underline {
-            border-bottom-color: #5867dd;
-            border-bottom-width: 3px;
-        }
-    </style>
 
+    <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
 
@@ -35,8 +31,8 @@
                 picker.find('.m-subheader__daterange-date').html(range);
                 picker.find('.m-subheader__daterange-title').html(title);
 
-                $('#start_date').val(start.format('DD/MM/YYYY'));
-                $('#end_date').val(end.format('DD/MM/YYYY'));
+                $('#start_date').val(start.format('DD-MMM-YYYY'));
+                $('#end_date').val(end.format('DD-MMM-YYYY'));
                 $('#date_range_title').val(title + range);
             }
 
@@ -77,125 +73,99 @@
 
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
 
-    <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="m-content">
-            <div class="m-portlet m-portlet--mobile">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Slow Moving Quantity Report</h3>
+            $('#m_table_2').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+        });
+    </script>
+
+    <div runat="server">
+        <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+        <div class="m-grid__item m-grid__item--fluid">
+            <div class="m-content">
+                <div class="m-portlet m-portlet--mobile">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">Cost Valuation Report	</h3>
+                            </div>
                         </div>
-                    </div>
+                        <div class="m-portlet__head-tools">
+                            <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/View_Reports.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
+                                <span>
+                                    <i class="la la-arrow-left"></i>
+                                    <span>Back</span>
+                                </span>
+                            </a>
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
 
-                    <div class="m-portlet__head-tools">
+                                    <a href="#" class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
+                                        <span>
+                                            <i class="fa fa-database" aria-hidden="true"></i>
+                                            <span>Export Data</span>
+                                        </span>
 
+                                    </a>
+                                    <div class="m-dropdown__wrapper" style="z-index: 101;">
+                                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 73px;"></span>
+                                        <div class="m-dropdown__inner">
+                                            <div class="m-dropdown__body">
+                                                <div class="m-dropdown__content">
+                                                    <ul class="m-nav">
+                                                        <li class="m-nav__section m-nav__section--first">
+                                                            <span class="m-nav__section-text">Export Data Format</span>
+                                                        </li>
+                                                        <hr />
 
-
-                        <a href="<%= Page.ResolveClientUrl("~/Cocktail_World/Reports/View_Reports.aspx") %>" class="btn btn-metal m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air m--margin-right-10">
-                            <span>
-                                <i class="la la-arrow-left"></i>
-                                <span>Back</span>
-                            </span>
-                        </a>
-                        <ul class="m-portlet__nav">
-                            <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-
-                                <a href="#" class="btn m-btn--pill btn-outline-focus m-btn--icon m-btn--air">
-                                    <span>
-                                        <i class="fa fa-database" aria-hidden="true"></i>
-                                        <span>Export Data</span>
-                                    </span>
-
-                                </a>
-                                <div class="m-dropdown__wrapper" style="z-index: 101;">
-                                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 73px;"></span>
-                                    <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__body">
-                                            <div class="m-dropdown__content">
-                                                <ul class="m-nav">
-                                                    <li class="m-nav__section m-nav__section--first">
-                                                        <span class="m-nav__section-text">Export Data Format</span>
-                                                    </li>
-                                                    <hr />
-
-                                                    <li class="m-nav__item">
-                                                        <a id="export_excel" class="m-nav__link" href="javascript:__doPostBack('export_excel','')">
-                                                            <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
-                                                            <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="m-nav__item">
-                                                        <a id="export_pdf" class="m-nav__link" href="javascript:__doPostBack('export_pdf','')">
-                                                            <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
-                                                            <span class="m-nav__link-text">PDF <b>( .pdf )</b></span>
-                                                        </a>
-                                                    </li>
+                                                        <li class="m-nav__item">
+                                                            <a id="export_excel" class="m-nav__link" runat="server">
+                                                                <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
+                                                                <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="m-nav__item">
+                                                            <a id="export_pdf" class="m-nav__link" runat="server">
+                                                                <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
+                                                                <span class="m-nav__link-text">PDF <b>( .pdf )</b></span>
+                                                            </a>
+                                                        </li>
 
 
-                                                </ul>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-
-                </div>
-
-                <div class="m-portlet__body">
-
-                    <form class="m-form m-form--fit m--margin-bottom-20">
+                    <div class="m-portlet__body">
                         <div class="row m--margin-bottom-20 m--align-center">
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Search Data:</label>
-                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                            </div>
-
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Filter by License:</label>
 
                                 <div class="m-form__control">
-                                    <asp:DropDownList ID="ddlLicense" runat="server" CssClass="underline form-control" ClientIDMode="Static">
+                                    <asp:DropDownList ID="ddlLicense" AutoPostBack="false" runat="server" CssClass="underline form-control" ClientIDMode="Static">
                                     </asp:DropDownList>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter by Category:</label>
-
-                                <div class="m-form__control">
-                                    <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
-                                        <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                        <div class="row m--margin-bottom-20 m--align-center">
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter Brand:</label>
-
-                                <div class="m-form__control">
-
-                                    <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                        <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
-                                        <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
-                                        <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Filter Date Range:</label>
 
@@ -218,10 +188,11 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
+
+                           <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Search Filters:</label>
                                 <div class="m-form__control">
-                                    <button type="button" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
+                                    <button id="btnSearch" runat="server" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
                                         <span>
                                             <i class="la la-search"></i>
                                             <span>Search</span>
@@ -231,40 +202,154 @@
 
                             </div>
                         </div>
-                    </form>
+
+                        <div class="row m--margin-bottom-20 m--align-center">
+                            <div class="col-lg-5 m--margin-bottom-10-tablet-and-mobile">
+                                <label class="font-weight-bold">
+                                    Brands Details : 
+                                    <asp:Label ID="lblBrandCount" runat="server"></asp:Label>
+                                    &nbsp;
+                            <asp:Label ID="lblBelowBrand" runat="server"></asp:Label>
+                                    &nbsp;
+                            <asp:Label ID="lblAboveBrand" runat="server"></asp:Label>
+                                </label>
+                            </div>
+
+                            <div class="col-lg-5 m--margin-bottom-10-tablet-and-mobile">
+                                <label class="font-weight-bold">
+                                    Category Details : 
+                                    <asp:Label ID="lblCategory" runat="server"></asp:Label>
+                                    &nbsp;
+                            <asp:Label ID="lblBelowCategory" runat="server"></asp:Label>
+                                    &nbsp;
+                            <asp:Label ID="lblAbovecategory" runat="server"></asp:Label>
+                                </label>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <ul class="nav nav-tabs m-tabs-line m-tabs-line--primary m-tabs-line--2x" role="tablist">
+                            <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_tabs_6_1" role="tab">
+                                    <i class="fa fa-wine-bottle"></i>Brand 
+                                </a>
+                            </li>
 
 
+                            <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_3" role="tab">
+                                    <i class="fa fa-glass-cheers"></i>Category
+                                </a>
+                            </li>
+                        </ul>
 
+                        <div class="tab-content">
+                            <div class="tab-pane active show" id="m_tabs_6_1" role="tabpanel">
 
-                    <!--begin: Datatable -->
-                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Sub-Category</th>
-                                <th>Brand</th>
-                                <th>Size</th>
-                                <th>Opening</th>
-                                <th>Purchase</th>
-                                <th>Total</th>
-                                <th>Sale</th>
-                                <th>SalePercentage</th>
-                            </tr>
-                        </thead>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <!--begin::Portlet-->
+                                        <div class="m-portlet m-portlet--bordered-semi">
+                                            <div class="m-portlet__head">
+                                                <div class="m-portlet__head-caption">
+                                                    <div class="m-portlet__head-title">
+                                                        <span class="m-portlet__head-icon">
+                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
 
-                        <tbody>
-                        </tbody>
-                    </table>
+                                                        </span>
+                                                        <h3 class="m-portlet__head-text">Brand Wise Report
+                                                        </h3>
+                                                    </div>
 
-                    <!--end: Datatable -->
+                                                </div>
+                                            </div>
+                                            <div class="m-portlet__body">
+                                                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Brand</th>
+                                                            <th>Size</th>
+                                                            <th>Category</th>
+                                                            <th>Opening Stock</th>
+                                                            <th>Opening Unit Cost</th>
+                                                            <th>Opening Cost Value</th>
+                                                            <th>Purchase</th>
+                                                            <th>Purchase Cost</th>
+                                                            <th>Sale</th>
+                                                            <th>Sale Revenue</th>
+                                                            <th>Sale Cost</th>
+                                                            <th>Sale Profit</th>
+                                                            <th>Closing Stock</th>
+                                                            <th>Closing Unit Cost </th>
+                                                            <th>Closing Cost Value</th>
+                                                        </tr>
 
+                                                    </thead>
+                                                    <tbody>
+                                                          <%=Bind_BrandReport()%>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!--end::Portlet-->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane" id="m_tabs_6_3" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <!--begin::Portlet-->
+                                        <div class="m-portlet m-portlet--bordered-semi">
+                                            <div class="m-portlet__head">
+                                                <div class="m-portlet__head-caption">
+                                                    <div class="m-portlet__head-title">
+                                                        <span class="m-portlet__head-icon">
+                                                            <i class="la la-file-text-o" style="font-size: 2.4rem;" aria-hidden="true"></i>
+
+                                                        </span>
+                                                        <h3 class="m-portlet__head-text">Category Wise Report
+                                                        </h3>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="m-portlet__body">
+                                                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_2">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Category</th>
+                                                            <th>Size</th>
+                                                            <th>Stock</th>
+                                                            <th>Unit Cost </th>
+                                                            <th>Cost Value</th>
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                          <%=Bind_CategoryReport()%>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!--end::Portlet-->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--begin: Datatable -->
+
+                    </div>
                 </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
             </div>
-
-            <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
 
 </asp:Content>
-
-

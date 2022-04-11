@@ -14,69 +14,25 @@
     <script>
         $(document).ready(function () {
 
-
-            $('.m_selectpicker').selectpicker();
-            //alert('1111');
-            var picker = $('#daterangepicker');
-            var start = moment().subtract(6, 'days');
-            var end = moment();
-            //var start = moment();
-            //var end = moment().add(30, 'days');
-
-
-            function cb(start, end, label) {
-                var title = '';
-                var range = '';
-
-
-                range = start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY');
-
-                picker.find('.m-subheader__daterange-date').html(range);
-                picker.find('.m-subheader__daterange-title').html(title);
-
-                $('#start_date').val(start.format('DD/MM/YYYY'));
-                $('#end_date').val(end.format('DD/MM/YYYY'));
-                $('#date_range_title').val(title + range);
-            }
-
-            picker.daterangepicker({
-                direction: mUtil.isRTL(),
-                startDate: start,
-                endDate: end,
-                opens: 'left',
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
                 }
-            }, cb);
+            });
 
-            var IsPostBack2 = $('#hdn_IsPostBack').val();
 
-            if (IsPostBack2 == "no") {
-                cb(start, end, '');
-            }
-            else {
-
-                picker.find('.m-subheader__daterange-title').html($('#date_range_title').val());
-            }
-
-            $("#m_form_status").on("change", function () {
-                //alert($(this).val());
-                $('#hdnTicketStatus').val($(this).val());
-            })
-
-            $("#m_form_type").on("change", function () {
-                //alert($(this).val());
-                $('#hdnActionStatus').val($(this).val());
-            })
-
+            $('.datetimepicker').datepicker({
+                todayHighlight: true,
+                orientation: 'auto bottom',
+                autoclose: true,
+                pickerPosition: 'bottom-right',
+                format: 'dd-MM-yyyy',
+                showMeridian: true
+            });
         });
     </script>
-
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
         <div class="m-content">
             <div class="m-portlet m-portlet--mobile">
@@ -147,10 +103,7 @@
 
                     <form class="m-form m-form--fit m--margin-bottom-20">
                         <div class="row m--margin-bottom-20 m--align-center">
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Search Data:</label>
-                                <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
-                            </div>
+
 
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Filter by License:</label>
@@ -162,65 +115,24 @@
                             </div>
 
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter by Category:</label>
-
+                                <label class="font-weight-bold">Date:</label>
                                 <div class="m-form__control">
-                                    <asp:DropDownList ID="m_form_status" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="Open" Text="Open"></asp:ListItem>
-                                        <asp:ListItem Value="Parked" Text="Parked"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                        <div class="row m--margin-bottom-20 m--align-center">
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter Brand:</label>
-
-                                <div class="m-form__control">
-
-                                    <asp:DropDownList ID="m_form_type" runat="server" CssClass="form-control" ClientIDMode="Static">
-                                        <asp:ListItem Value="All" Text="All"></asp:ListItem>
-                                        <asp:ListItem Value="In Progress" Text="In Progress"></asp:ListItem>
-                                        <asp:ListItem Value="Accepted" Text="Accepted"></asp:ListItem>
-                                        <asp:ListItem Value="Assigned" Text="Assigned"></asp:ListItem>
-                                        <asp:ListItem Value="Hold" Text="Hold"></asp:ListItem>
-                                        <asp:ListItem Value="Closed" Text="Closed"></asp:ListItem>
-                                        <asp:ListItem Value="Expired" Text="Expired"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <div class="input-group date">
+                                        <asp:TextBox autocomplete="off" runat="server" type="text" class="form-control m-input datetimepicker" ID="txtDate">
+                                        </asp:TextBox>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar" style="font-size: 2rem;"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
-                                <label class="font-weight-bold">Filter Date Range:</label>
 
-                                <div class="m-form__control">
-                                    <span class="m-subheader__daterange btn btn-sm btn-outline-brand" style="padding: 0.15rem 0.8rem; width: -webkit-fill-available;" id="daterangepicker">
-                                        <span class="m-subheader__daterange-label" style="font-size: 12px;">
-                                            <span class="m-subheader__daterange-title"></span>
-                                            <span class="m-subheader__daterange-date"></span>
-                                            <asp:HiddenField ID="start_date" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="end_date" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="hdn_IsPostBack" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="date_range_title" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="hdnTicketStatus" ClientIDMode="Static" runat="server" />
-                                            <asp:HiddenField ID="hdnActionStatus" ClientIDMode="Static" runat="server" />
-                                        </span>
-                                        <button type="button" class="btn btn-brand btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill m--font-brand">
-                                            <i class="la la-angle-down"></i>
-                                        </button>
-                                    </span>
-                                </div>
-
-                            </div>
                             <div class="col-lg-4 m--margin-bottom-10-tablet-and-mobile">
                                 <label class="font-weight-bold">Search Filters:</label>
                                 <div class="m-form__control">
-                                    <button type="button" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
+                                    <button id="btnSearch" runat="server" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
                                         <span>
                                             <i class="la la-search"></i>
                                             <span>Search</span>
@@ -229,7 +141,9 @@
                                 </div>
 
                             </div>
+
                         </div>
+
                     </form>
 
 
@@ -258,6 +172,7 @@
                         </thead>
 
                         <tbody>
+                            <%=Bind_Report()%>
                         </tbody>
                     </table>
 

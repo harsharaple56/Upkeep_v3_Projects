@@ -324,7 +324,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         string CS = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString;
                         // Bulk Copy to SQL Server   
                         SqlBulkCopy bulkInsert = new SqlBulkCopy(CS);
-                        bulkInsert.DestinationTableName = "Tbl_CW_BrandOpeningStock_Temp_Import";
+                        bulkInsert.DestinationTableName = "Tbl_CW_Import_BrandOpeningStock_Temp";
                         bulkInsert.ColumnMappings.Add("License Name", "License_Name");
                         bulkInsert.ColumnMappings.Add("Category", "Category");
                         bulkInsert.ColumnMappings.Add("Brand Name", "Brand_Name");
