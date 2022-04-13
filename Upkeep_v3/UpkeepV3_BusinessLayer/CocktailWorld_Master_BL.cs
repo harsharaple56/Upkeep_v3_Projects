@@ -614,6 +614,77 @@ namespace UpkeepV3_BusinessLayer
         }
 
         #endregion
+
+        public DataSet Save_WashDay(int License_ID, string From_Date,string To_Date,bool sale, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Save_WashDay", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LicenseID", License_ID);
+                cmd.Parameters.AddWithValue("@fromdate", From_Date);
+                cmd.Parameters.AddWithValue("@todate", To_Date);
+                cmd.Parameters.AddWithValue("@sale", sale);
+                cmd.Parameters.AddWithValue("@outbit", 1);
+                cmd.Parameters.AddWithValue("@outmsg", 100);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Save_BrandCode(int AssignBrandCodeID, int BrandOpeningID, int LicenseID, string BrandCode,string LoggedInUserID,int TypeID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Save_AssignBrandCode", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@AssignBrandCodeID", AssignBrandCodeID);
+                cmd.Parameters.AddWithValue("@BrandOpeningID", BrandOpeningID);
+                cmd.Parameters.AddWithValue("@LicenseID", LicenseID);
+                cmd.Parameters.AddWithValue("@BrandCode", BrandCode);
+                cmd.Parameters.AddWithValue("@LoggedInUserID", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@TypeID", TypeID);
+                cmd.Parameters.AddWithValue("@Outbit", 1);
+                cmd.Parameters.AddWithValue("@OutMsg", 100);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet Fetch_AssignBrandCode(int BrandID, int LicenseID, int AssignBrandCodeID, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_Fetch_AssignBrandCode", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BrandID", BrandID);
+                cmd.Parameters.AddWithValue("@LicenseID", LicenseID);
+                cmd.Parameters.AddWithValue("@AssignBrandCodeID", AssignBrandCodeID);
+                cmd.Parameters.AddWithValue("@Outbit", 1);
+                cmd.Parameters.AddWithValue("@OutMsg", 100);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount, string StrConn)
         {
             try

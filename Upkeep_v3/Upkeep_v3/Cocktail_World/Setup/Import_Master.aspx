@@ -100,15 +100,22 @@
                                 </div>
 
                                 <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                    <asp:LinkButton  ID="btnImportExcelPopup" ValidationGroup="validationDept" runat="server" class="btnchange btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                        <ContentTemplate>
+                                            <asp:LinkButton ID="btnImportExcelPopup" ValidationGroup="validationDept" runat="server" class="btnchange btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
                                 <span>
                                     <i class="fa fa-file-import"></i>
                                     <span>Import File</span>
                                 </span>
-                                    </asp:LinkButton>
-                                    <cc1:ModalPopupExtender ID="mpeUserMst" runat="server" PopupControlID="pnlImportExport" TargetControlID="btnImportExcelPopup"
-                                        CancelControlID="btnCloseHeader1" BackgroundCssClass="modalBackground">
-                                    </cc1:ModalPopupExtender>
+                                            </asp:LinkButton>
+                                            <cc1:ModalPopupExtender ID="mpeUserMst" runat="server" PopupControlID="pnlImportExport" TargetControlID="btnImportExcelPopup"
+                                                CancelControlID="btnCloseHeader1" BackgroundCssClass="modalBackground">
+                                            </cc1:ModalPopupExtender>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="ddlMaster" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
                                 </div>
 
 

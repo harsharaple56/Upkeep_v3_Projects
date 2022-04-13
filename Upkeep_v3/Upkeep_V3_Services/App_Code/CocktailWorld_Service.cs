@@ -285,7 +285,7 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_OptimumQuantity_Report(License_ID,Date);
+            ds = ObjCocktailWorld.Fetch_OptimumQuantity_Report(License_ID, Date);
         }
         catch (Exception ex)
         {
@@ -438,6 +438,48 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         return ds;
     }
     #endregion
+
+    [WebMethod]
+    public DataSet Save_WashDay(int License_ID, string From_Date, string To_Date, bool sale)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Save_WashDay(License_ID, From_Date, To_Date, sale);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Save_BrandCode(int AssignBrandCodeID, int BrandOpeningID, int LicenseID, string BrandCode, string LoggedInUserID, int TypeID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Save_BrandCode(AssignBrandCodeID, BrandOpeningID, LicenseID, BrandCode, LoggedInUserID, TypeID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Fetch_AssignBrandCode(int BrandID, int LicenseID, int AssignBrandCodeID)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Fetch_AssignBrandCode(BrandID, LicenseID, AssignBrandCodeID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
 
     [WebMethod]
     public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount)

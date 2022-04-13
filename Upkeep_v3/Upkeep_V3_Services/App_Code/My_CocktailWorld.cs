@@ -432,6 +432,49 @@ public class My_CocktailWorld
         }
     }
     #endregion
+
+    public DataSet Save_WashDay(int License_ID, string From_Date, string To_Date, bool sale)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Save_WashDay(License_ID, From_Date, To_Date, sale, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Save_BrandCode(int AssignBrandCodeID, int BrandOpeningID, int LicenseID, string BrandCode, string LoggedInUserID, int TypeID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Save_BrandCode(AssignBrandCodeID, BrandOpeningID, LicenseID, BrandCode, LoggedInUserID, TypeID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public DataSet Fetch_AssignBrandCode(int BrandID, int LicenseID, int AssignBrandCodeID)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Fetch_AssignBrandCode(BrandID, LicenseID, AssignBrandCodeID, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount)
     {
         try

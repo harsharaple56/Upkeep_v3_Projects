@@ -385,7 +385,7 @@
                                     <span class="m-portlet__head-icon">
                                         <i class="fa fa-stream" style="font-size: 2.4rem;" aria-hidden="true"></i>
                                     </span>
-                                    <h6 class="m-portlet__head-text">Brand Sub-Categories
+                                    <h6 class="m-portlet__head-text">Sub Categories
                                     </h6>
                                 </div>
 

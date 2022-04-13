@@ -88,6 +88,12 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Import_TransferOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Save_WashDayOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Save_BrandCodeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Fetch_AssignBrandCodeOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Validate_NegativeStockNewOperationCompleted;
         
         private System.Threading.SendOrPostCallback FetchTaxDetailsOperationCompleted;
@@ -262,6 +268,15 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event Import_TransferCompletedEventHandler Import_TransferCompleted;
+        
+        /// <remarks/>
+        public event Save_WashDayCompletedEventHandler Save_WashDayCompleted;
+        
+        /// <remarks/>
+        public event Save_BrandCodeCompletedEventHandler Save_BrandCodeCompleted;
+        
+        /// <remarks/>
+        public event Fetch_AssignBrandCodeCompletedEventHandler Fetch_AssignBrandCodeCompleted;
         
         /// <remarks/>
         public event Validate_NegativeStockNewCompletedEventHandler Validate_NegativeStockNewCompleted;
@@ -1284,6 +1299,113 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Import_TransferCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Import_TransferCompleted(this, new Import_TransferCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Save_WashDay", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Save_WashDay(int License_ID, string From_Date, string To_Date, bool sale) {
+            object[] results = this.Invoke("Save_WashDay", new object[] {
+                        License_ID,
+                        From_Date,
+                        To_Date,
+                        sale});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Save_WashDayAsync(int License_ID, string From_Date, string To_Date, bool sale) {
+            this.Save_WashDayAsync(License_ID, From_Date, To_Date, sale, null);
+        }
+        
+        /// <remarks/>
+        public void Save_WashDayAsync(int License_ID, string From_Date, string To_Date, bool sale, object userState) {
+            if ((this.Save_WashDayOperationCompleted == null)) {
+                this.Save_WashDayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSave_WashDayOperationCompleted);
+            }
+            this.InvokeAsync("Save_WashDay", new object[] {
+                        License_ID,
+                        From_Date,
+                        To_Date,
+                        sale}, this.Save_WashDayOperationCompleted, userState);
+        }
+        
+        private void OnSave_WashDayOperationCompleted(object arg) {
+            if ((this.Save_WashDayCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Save_WashDayCompleted(this, new Save_WashDayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Save_BrandCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Save_BrandCode(int AssignBrandCodeID, int BrandOpeningID, int LicenseID, string BrandCode, string LoggedInUserID, int TypeID) {
+            object[] results = this.Invoke("Save_BrandCode", new object[] {
+                        AssignBrandCodeID,
+                        BrandOpeningID,
+                        LicenseID,
+                        BrandCode,
+                        LoggedInUserID,
+                        TypeID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Save_BrandCodeAsync(int AssignBrandCodeID, int BrandOpeningID, int LicenseID, string BrandCode, string LoggedInUserID, int TypeID) {
+            this.Save_BrandCodeAsync(AssignBrandCodeID, BrandOpeningID, LicenseID, BrandCode, LoggedInUserID, TypeID, null);
+        }
+        
+        /// <remarks/>
+        public void Save_BrandCodeAsync(int AssignBrandCodeID, int BrandOpeningID, int LicenseID, string BrandCode, string LoggedInUserID, int TypeID, object userState) {
+            if ((this.Save_BrandCodeOperationCompleted == null)) {
+                this.Save_BrandCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSave_BrandCodeOperationCompleted);
+            }
+            this.InvokeAsync("Save_BrandCode", new object[] {
+                        AssignBrandCodeID,
+                        BrandOpeningID,
+                        LicenseID,
+                        BrandCode,
+                        LoggedInUserID,
+                        TypeID}, this.Save_BrandCodeOperationCompleted, userState);
+        }
+        
+        private void OnSave_BrandCodeOperationCompleted(object arg) {
+            if ((this.Save_BrandCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Save_BrandCodeCompleted(this, new Save_BrandCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_AssignBrandCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Fetch_AssignBrandCode(int BrandID, int LicenseID, int AssignBrandCodeID) {
+            object[] results = this.Invoke("Fetch_AssignBrandCode", new object[] {
+                        BrandID,
+                        LicenseID,
+                        AssignBrandCodeID});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Fetch_AssignBrandCodeAsync(int BrandID, int LicenseID, int AssignBrandCodeID) {
+            this.Fetch_AssignBrandCodeAsync(BrandID, LicenseID, AssignBrandCodeID, null);
+        }
+        
+        /// <remarks/>
+        public void Fetch_AssignBrandCodeAsync(int BrandID, int LicenseID, int AssignBrandCodeID, object userState) {
+            if ((this.Fetch_AssignBrandCodeOperationCompleted == null)) {
+                this.Fetch_AssignBrandCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_AssignBrandCodeOperationCompleted);
+            }
+            this.InvokeAsync("Fetch_AssignBrandCode", new object[] {
+                        BrandID,
+                        LicenseID,
+                        AssignBrandCodeID}, this.Fetch_AssignBrandCodeOperationCompleted, userState);
+        }
+        
+        private void OnFetch_AssignBrandCodeOperationCompleted(object arg) {
+            if ((this.Fetch_AssignBrandCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Fetch_AssignBrandCodeCompleted(this, new Fetch_AssignBrandCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3352,6 +3474,84 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Import_TransferCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Save_WashDayCompletedEventHandler(object sender, Save_WashDayCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Save_WashDayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Save_WashDayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Save_BrandCodeCompletedEventHandler(object sender, Save_BrandCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Save_BrandCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Save_BrandCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Fetch_AssignBrandCodeCompletedEventHandler(object sender, Fetch_AssignBrandCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Fetch_AssignBrandCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Fetch_AssignBrandCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

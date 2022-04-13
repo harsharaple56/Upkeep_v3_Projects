@@ -1,15 +1,95 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Brand_Code.aspx.cs" MasterPageFile="~/UpkeepMaster.Master" Inherits="Upkeep_v3.Cocktail_World.Setup.Brand_Code" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
+<%@ Register Assembly="DropDownListChosen" Namespace="DropDownListChosen" TagPrefix="cc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
     <script src="<%= Page.ResolveClientUrl("~/assets/demo/custom/crud/metronic-datatable/base/html-table.js") %>" type="text/javascript"></script>
+    <style type="text/css">
+        .modalBackground {
+            background-color: grey;
+            filter: alpha(opacity=90);
+            opacity: 0.8;
+        }
 
+        .modalPopup {
+            /*background-color: #fff;
+            border: 3px solid #ccc;*/
+            padding: 10px;
+            width: 300px;
+        }
 
-     <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
+       
+    </style>
+    <style>
+        .chz {
+            padding: 0.85rem 1.15rem;
+            line-height: 1.25;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            font-weight: bold;
+            height: calc(2.95rem + 2px);
+        }
+
+        .chosen-container-single .chosen-single {
+            display: block;
+            width: 100%;
+            height: calc(2.95rem + 2px);
+            padding: 0.85rem 1.15rem;
+            font-size: 1rem;
+            line-height: 1.25;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            background-color: #fff;
+            background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #ffffff), color-stop(50%, #ffffff), color-stop(52%, #ffffff), color-stop(100%, #ffffff));
+            background: -webkit-linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+            background: -moz-linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+            background: -o-linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+            background: linear-gradient(top, #ffffff 20%, #ffffff 50%, #ffffff 52%, #ffffff 100%);
+            background-clip: padding-box;
+            box-shadow: 0 0 3px white inset, 0 1px 1px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+            .chosen-container-single .chosen-single div b {
+                display: block;
+                width: 100%;
+                height: 100%;
+                background: url('WebResource.axd?d=HVPEiozS1UvTkLHiRNIdnfmoEReZmGiXCCXQCLvOYZjJW7-_1ztDrX3OiIn6ac6jmPYbaKN4uqJSJYiIVQ6hWfmOggJWCNQyz9Eo2bPAbyLAtPQb86opO9HqlyPGjTBPYxOCase5581CGVmtEx9T6Q2&t=636544785540000000') no-repeat 0px 10px;
+            }
+
+        .chosen-container-active.chosen-with-drop .chosen-single div b {
+            background-position: -15px 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#m_table_1').DataTable({
+                responsive: true,
+                pagingType: 'full_numbers',
+                'fnDrawCallback': function () {
+                    init_plugins();
+                }
+            });
+
+        });
+    </script>
+
+    <cc1:ToolkitScriptManager runat="server"></cc1:ToolkitScriptManager>
     <div class="m-content">
         <div class="m-grid__item m-grid__item--fluid">
 
@@ -55,7 +135,7 @@
                                 <a href="#" class="btn m-btn--pill    btn-primary m-btn m-btn--custom">
                                     <span>
                                         <i class="fa flaticon-grid-menu"></i>
-                                        <span>Export Data</span>
+                                        <span>Import & Export Data</span>
                                     </span>
 
                                 </a>
@@ -71,21 +151,40 @@
                                                     <hr />
 
                                                     <li class="m-nav__item">
-                                                        <a class="m-nav__link" id="A1" runat="server">
+                                                        <a class="m-nav__link" id="exce" runat="server" onserverclick="exce_ServerClick">
                                                             <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
                                                             <span class="m-nav__link-text">Excel <b>( .xls )</b></span>
                                                         </a>
                                                     </li>
 
                                                     <li class="m-nav__item">
-                                                        <a class="m-nav__link" id="A2" runat="server">
+                                                        <a class="m-nav__link" id="pdf" runat="server" onserverclick="pdf_ServerClick">
                                                             <i class="m-nav__link-icon la la-file-pdf-o" style="font-size: 2rem"></i>
                                                             <span class="m-nav__link-text">Pdf  <b>( .pdf )</b></span>
                                                         </a>
                                                     </li>
 
                                                 </ul>
+                                                <br />
+                                                <ul class="m-nav">
+                                                    <li class="m-nav__section m-nav__section--first">
+                                                        <span class="m-nav__section-text"><i class="fa fa-file-import"></i>Import Data</span>
+                                                    </li>
+                                                    <hr />
+                                                    <li class="m-nav__item">
+                                                        <asp:LinkButton class="m-nav__link" runat="server" ID="btnImportExcelPopup">
+                                                <span>
+                                                      <i class="m-nav__link-icon la la-file-excel-o" style="font-size: 2rem"></i>
+                                                     <span class="m-nav__link-text">&nbsp;Import <b>( .xls )</b></span>
+                                                </span>
+                                                        </asp:LinkButton>
 
+                                                        <cc1:ModalPopupExtender ID="mpeUserMst" runat="server" PopupControlID="pnlImportExport" TargetControlID="btnImportExcelPopup"
+                                                            CancelControlID="btnCloseHeader1" BackgroundCssClass="modalBackground">
+                                                        </cc1:ModalPopupExtender>
+                                                    </li>
+
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -96,40 +195,31 @@
                     </div>
                 </div>
                 <div class="m-portlet__body">
-                    <!--begin: Search Form -->
 
-
-                    <div class="m-form m-form--fit m--margin-bottom-20">
-                        <div class="row m--align-center">
+                    <div class="form-group m-form__group row">
+                        <div class="col-4"></div>
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <%--<label for="example-search-input" class="col-1 col-form-label">License :</label>--%>
+                            <asp:DropDownList ID="ddlLicense_grd" class="form-control" Style="width: 100%" AutoPostBack="true" runat="server"></asp:DropDownList>
                         </div>
-
-
                     </div>
 
 
-                    <!--end: Search Form -->
-
-                    <!--begin: Datatable -->
                     <table class="m-datatable" id="html_table" width="100%">
                         <thead>
                             <tr>
-                                <th title="Ticket Number" data-field="TicketNo">Ticket Number</th>
-                                <%--<th title="Field #2" data-field="Owner">Zone</th>--%>
-                                <th title="Location" data-field="Location">Location</th>
-                                <%--<th title="Field #4" data-field="CarMake">Sub Location</th>--%>
-                                <th title="Category" data-field="Cat">Category</th>
-                                <th title="Sub Category" data-field="SubCat">Sub Category</th>
-                                <th title="Request Date" data-field="RequestDate">Request Date</th>
-                                <th title="Raised By" data-field="RaisedBy">RaisedBy</th>
-                                <th title="Down Time" data-field="Down_Time">Down Time</th>
-                                <th title="Request Status" data-field="RequestStatus">Request Status</th>
-                                <th title="Action Status" data-field="ActionStatus">Action Status</th>
-                                <%--<th title="Field #10" data-field="Type">View</th>--%>
+                                <th>Brand Desc</th>
+                                <th>Brand Code</th>
+                                <th>Alias</th>
+                                <th>SPeg</th>
+                                <th>LPeg</th>
+                                <th>Bottle</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <%--<%=bindgrid()%>--%>
+                            <%=bindgrid()%>
                         </tbody>
                     </table>
 
@@ -159,8 +249,16 @@
                             <div class="modal-body">
 
                                 <div class="form-group m-form__group row">
+                                    <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">License :</label>
+                                    <asp:DropDownList OnSelectedIndexChanged="ddlLicense_SelectedIndexChanged" ID="ddlLicense" class="form-control" Style="width: 60%" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlLicense" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please Select License"></asp:RequiredFieldValidator>
+                                </div>
+
+                                <div class="form-group m-form__group row">
                                     <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Brand :</label>
-                                    <asp:DropDownList ID="ddlBrand" class="form-control" Style="width: 60%" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                    <cc2:DropDownListChosen AutoPostBack="true" CssClass="chz form-control m-input"
+                                        ID="ddlBrand" runat="server" Font-Size="Medium" Font-Bold="True" cellpadding="5" cellspacing="0" DataPlaceHolder="Click here to Search Brands" Width="300px" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged">
+                                    </cc2:DropDownListChosen>
                                     <asp:RequiredFieldValidator ID="rfvBrand" runat="server" ControlToValidate="ddlBrand" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please Select Brand"></asp:RequiredFieldValidator>
                                 </div>
 
@@ -174,19 +272,19 @@
                                 <div class="form-group m-form__group row">
                                     <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Bottle :</label>
                                     <asp:TextBox ID="txtBottle" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBottle" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please Select Size"></asp:RequiredFieldValidator>
+
                                 </div>
 
                                 <div class="form-group m-form__group row">
                                     <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Speg :</label>
                                     <asp:TextBox ID="txtSpeg" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSpeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please Select Size"></asp:RequiredFieldValidator>
+
                                 </div>
 
                                 <div class="form-group m-form__group row">
                                     <label for="message-text" class="col-xl-4 col-lg-3 form-control-label">Lpeg :</label>
                                     <asp:TextBox ID="txtlpeg" runat="server" class="form-control" Style="width: 60%;" onkeypress="return RestrictSpaceSpecial(event)"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtlpeg" Visible="true" Style="margin-left: 34%;" ValidationGroup="validationWorkflow" ForeColor="Red" ErrorMessage="Please Select Size"></asp:RequiredFieldValidator>
+
                                 </div>
 
 
@@ -195,8 +293,8 @@
                             </div>
 
                             <div class="modal-footer">
-                                <asp:Button ID="btnCloseCategory" Text="Close" runat="server" class="btn btn-danger"  />
-                                <asp:Button ID="btnLicenseSave" runat="server" class="btn btn-primary" CausesValidation="true" ValidationGroup="validationWorkflow"  Text="Save" />
+                                <asp:Button ID="btnCloseCategory" OnClick="btnCloseCategory_Click" Text="Close" runat="server" class="btn btn-danger" />
+                                <asp:Button ID="btnLicenseSave" OnClick="btnLicenseSave_Click" runat="server" class="btn btn-primary" CausesValidation="true" ValidationGroup="validationWorkflow" Text="Save" />
                             </div>
                         </ContentTemplate>
                         <Triggers>
@@ -207,5 +305,62 @@
             </div>
         </div>
         <!-- End Modal -->
+    </asp:Panel>
+
+    <asp:Panel ID="pnlImportExport" runat="server" CssClass="modalPopup" align="center" Style="display: none; width: 50%;">
+        <div class="" id="add_sub_location1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="max-width: 700px;">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Import Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnCloseHeader1" runat="server">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group m-form__group row">
+                            <label for="message-text" class="col-xl-2 col-lg-2 form-control-label">Import :</label>
+                            <div class="col-xl-8 col-lg-4 custom-file">
+                                <asp:FileUpload ID="FU_Category" CssClass="custom-file-input" runat="server" />
+                                <label class="custom-file-label" for="FU_Category">Choose file</label>
+
+                            </div>
+                            <div class="col-xl-6 col-lg-6">
+                                <asp:RequiredFieldValidator ID="rfvImport" runat="server" ControlToValidate="FU_Category" ErrorMessage="Please upload a file" ForeColor="Red"
+                                    Display="Dynamic" ValidationGroup="ValidationImport"></asp:RequiredFieldValidator>
+                                <span id="ImportError_Msg" style="color: red;"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <asp:Label ID="lblImportErrorMsg" Text="" runat="server" CssClass="col-xl-10 col-lg-10 col-form-label" ForeColor="Red"></asp:Label>
+                        </div>
+
+                        <div class="form-group m-form__group row" style="justify-content: center;">
+                            <div class="col-xl-11 col-lg-11" style="overflow-y: auto; height: 210px; display: none;" id="dvErrorGrid" runat="server">
+                                <asp:GridView ID="gvImportError" runat="server" AutoGenerateColumns="true" HeaderStyle-BackColor="#f4f3f8" HeaderStyle-ForeColor="Black"
+                                    CssClass="table table-striped- table-bordered table-hover table-checkable">
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <asp:LinkButton Style="margin-right: 250px;" ID="lnk" OnClick="lnk_Click" runat="server" ClientIDMode="Static">
+                                    <img src="../../assets/app/media/img/icons/download_sample_26.png" />
+                                    <span>Download Sample Import File</span>
+                        </asp:LinkButton>
+                        <asp:Button ID="btnImportExcel" Text="Import" runat="server" OnClick="btnImportExcel_Click" ValidationGroup="ValidationImport" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" />
+                        <asp:Button ID="btnCloseImportPopUp" Text="Close" runat="server" OnClick="btnCloseImportPopUp_Click" class="btn btn-danger  m-btn m-btn--icon m-btn--wide m-btn--md" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </asp:Panel>
 </asp:Content>

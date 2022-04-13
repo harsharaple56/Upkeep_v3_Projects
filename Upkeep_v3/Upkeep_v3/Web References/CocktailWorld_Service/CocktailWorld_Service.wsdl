@@ -652,6 +652,79 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Save_WashDay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="License_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="From_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To_Date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sale" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Save_WashDayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Save_WashDayResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Save_BrandCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AssignBrandCodeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandOpeningID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BrandCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Save_BrandCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Save_BrandCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_AssignBrandCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AssignBrandCodeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Fetch_AssignBrandCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fetch_AssignBrandCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Validate_NegativeStockNew">
         <s:complexType>
           <s:sequence>
@@ -1545,6 +1618,24 @@
   <wsdl:message name="Import_TransferSoapOut">
     <wsdl:part name="parameters" element="tns:Import_TransferResponse" />
   </wsdl:message>
+  <wsdl:message name="Save_WashDaySoapIn">
+    <wsdl:part name="parameters" element="tns:Save_WashDay" />
+  </wsdl:message>
+  <wsdl:message name="Save_WashDaySoapOut">
+    <wsdl:part name="parameters" element="tns:Save_WashDayResponse" />
+  </wsdl:message>
+  <wsdl:message name="Save_BrandCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Save_BrandCode" />
+  </wsdl:message>
+  <wsdl:message name="Save_BrandCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Save_BrandCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_AssignBrandCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Fetch_AssignBrandCode" />
+  </wsdl:message>
+  <wsdl:message name="Fetch_AssignBrandCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Fetch_AssignBrandCodeResponse" />
+  </wsdl:message>
   <wsdl:message name="Validate_NegativeStockNewSoapIn">
     <wsdl:part name="parameters" element="tns:Validate_NegativeStockNew" />
   </wsdl:message>
@@ -1811,6 +1902,18 @@
     <wsdl:operation name="Import_Transfer">
       <wsdl:input message="tns:Import_TransferSoapIn" />
       <wsdl:output message="tns:Import_TransferSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Save_WashDay">
+      <wsdl:input message="tns:Save_WashDaySoapIn" />
+      <wsdl:output message="tns:Save_WashDaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Save_BrandCode">
+      <wsdl:input message="tns:Save_BrandCodeSoapIn" />
+      <wsdl:output message="tns:Save_BrandCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_AssignBrandCode">
+      <wsdl:input message="tns:Fetch_AssignBrandCodeSoapIn" />
+      <wsdl:output message="tns:Fetch_AssignBrandCodeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Validate_NegativeStockNew">
       <wsdl:input message="tns:Validate_NegativeStockNewSoapIn" />
@@ -2169,6 +2272,33 @@
     </wsdl:operation>
     <wsdl:operation name="Import_Transfer">
       <soap:operation soapAction="http://tempuri.org/Import_Transfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_WashDay">
+      <soap:operation soapAction="http://tempuri.org/Save_WashDay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_BrandCode">
+      <soap:operation soapAction="http://tempuri.org/Save_BrandCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_AssignBrandCode">
+      <soap:operation soapAction="http://tempuri.org/Fetch_AssignBrandCode" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2658,6 +2788,33 @@
     </wsdl:operation>
     <wsdl:operation name="Import_Transfer">
       <soap12:operation soapAction="http://tempuri.org/Import_Transfer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_WashDay">
+      <soap12:operation soapAction="http://tempuri.org/Save_WashDay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save_BrandCode">
+      <soap12:operation soapAction="http://tempuri.org/Save_BrandCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fetch_AssignBrandCode">
+      <soap12:operation soapAction="http://tempuri.org/Fetch_AssignBrandCode" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
