@@ -73,7 +73,7 @@ public class My_CocktailWorld
         }
     }
 
-    public DataSet Fetch_FLR3LegalReport(int Company_ID, string Date, string License_ID)
+    public DataSet Fetch_FLR3LegalReport(string Company_ID, string Date, string License_ID)
     {
         try
         {
@@ -474,6 +474,21 @@ public class My_CocktailWorld
             throw ex;
         }
     }
+
+    public DataSet Spr_CRUD_CocktailCode(int LicenseID, int CocktailCodeId, int CocktailID, string CocktailName, string CocktailCodeDesc, string LoggedInUserID, int Company_ID, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.Spr_CRUD_CocktailCode(LicenseID, CocktailCodeId, CocktailID, CocktailName, CocktailCodeDesc, LoggedInUserID, Company_ID, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
 
     public DataSet Validate_NegativeStockNew(int licenseid, DateTime date, int Bill_No, int BrandOpeningID, decimal Bottle_Qty, decimal Bottle_Rate, decimal SPeg_Qty, decimal SPeg_Rate, decimal LPeg_Qty, decimal LPeg_Rate, decimal CategorytaxID, decimal Taxper, decimal TotalAmount)
     {

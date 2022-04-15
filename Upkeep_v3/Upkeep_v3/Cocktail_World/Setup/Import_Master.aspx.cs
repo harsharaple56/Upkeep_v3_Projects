@@ -303,17 +303,13 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         string CS = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString;
                         // Bulk Copy to SQL Server   
                         SqlBulkCopy bulkInsert = new SqlBulkCopy(CS);
-                        bulkInsert.DestinationTableName = "Tbl_CW_BrandOpeningStock_Temp_Import";
-                        bulkInsert.ColumnMappings.Add("License Name", "License_Name");
-                        bulkInsert.ColumnMappings.Add("Category", "Category");
+                        bulkInsert.DestinationTableName = "Tbl_CW_Import_BrandCode_Temp";
+                        bulkInsert.ColumnMappings.Add("Brand Name", "Brand");
+                        bulkInsert.ColumnMappings.Add("Alias", "Size");
                         bulkInsert.ColumnMappings.Add("Brand Name", "Brand_Name");
-                        bulkInsert.ColumnMappings.Add("Size", "Size");
-                        bulkInsert.ColumnMappings.Add("Bottle Qty", "Bottle_Qty");
-                        bulkInsert.ColumnMappings.Add("Speg Qty", "Speg_Qty");
-                        bulkInsert.ColumnMappings.Add("Bottle Rate", "Bottle_Rate");
-                        bulkInsert.ColumnMappings.Add("Base Qty", "Base_Qty");
-                        bulkInsert.ColumnMappings.Add("Re-Order Level", "Re_Order_Level");
-                        bulkInsert.ColumnMappings.Add("Optimum Level", "Optimum_Level");
+                        bulkInsert.ColumnMappings.Add("Bottle", "Bottle");
+                        bulkInsert.ColumnMappings.Add("Speg", "Speg");
+                        bulkInsert.ColumnMappings.Add("Lpeg", "Lpeg");
                         bulkInsert.WriteToServer(dr);
 
                         dsResult = ObjCocktailWorld.Import_BrandOpeningStock(CompanyID, LoggedInUserID);
@@ -324,16 +320,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             {
                                 DataTable dtCTTReport = new DataTable();
                                 dtCTTReport = dsResult.Tables[0];
-                                dtCTTReport.Columns["License_Name"].ColumnName = "License";
-                                dtCTTReport.Columns["Category"].ColumnName = "Category";
-                                dtCTTReport.Columns["Brand_Name"].ColumnName = "Brand";
-                                dtCTTReport.Columns["Size"].ColumnName = "Size";
-                                dtCTTReport.Columns["Bottle_Qty"].ColumnName = "Bottle Qty";
-                                dtCTTReport.Columns["Speg_Qty"].ColumnName = "Speg Qty";
-                                dtCTTReport.Columns["Bottle_Rate"].ColumnName = "Bottle Rate";
-                                dtCTTReport.Columns["Base_Qty"].ColumnName = "Base Qty";
-                                dtCTTReport.Columns["Re_Order_Level"].ColumnName = "Re-Order Level";
-                                dtCTTReport.Columns["Optimum_Level"].ColumnName = "Optimum Level";
                                 dtCTTReport.AcceptChanges();
 
                                 dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:210px;");
@@ -473,17 +459,10 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         string CS = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString;
                         // Bulk Copy to SQL Server   
                         SqlBulkCopy bulkInsert = new SqlBulkCopy(CS);
-                        bulkInsert.DestinationTableName = "Tbl_CW_BrandOpeningStock_Temp_Import";
-                        bulkInsert.ColumnMappings.Add("License Name", "License_Name");
-                        bulkInsert.ColumnMappings.Add("Category", "Category");
-                        bulkInsert.ColumnMappings.Add("Brand Name", "Brand_Name");
-                        bulkInsert.ColumnMappings.Add("Size", "Size");
-                        bulkInsert.ColumnMappings.Add("Bottle Qty", "Bottle_Qty");
-                        bulkInsert.ColumnMappings.Add("Speg Qty", "Speg_Qty");
-                        bulkInsert.ColumnMappings.Add("Bottle Rate", "Bottle_Rate");
-                        bulkInsert.ColumnMappings.Add("Base Qty", "Base_Qty");
-                        bulkInsert.ColumnMappings.Add("Re-Order Level", "Re_Order_Level");
-                        bulkInsert.ColumnMappings.Add("Optimum Level", "Optimum_Level");
+                        bulkInsert.DestinationTableName = "Tbl_CW_Import_CocktailCode_Temp";
+                        bulkInsert.ColumnMappings.Add("Cocktail", "Cocktail_Desc");
+                        bulkInsert.ColumnMappings.Add("Cocktail Code", "Cocktail_Code");
+                        bulkInsert.ColumnMappings.Add("License Name", "License_Desc");
                         bulkInsert.WriteToServer(dr);
 
                         dsResult = ObjCocktailWorld.Import_BrandOpeningStock(CompanyID, LoggedInUserID);
@@ -494,16 +473,6 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             {
                                 DataTable dtCTTReport = new DataTable();
                                 dtCTTReport = dsResult.Tables[0];
-                                dtCTTReport.Columns["License_Name"].ColumnName = "License";
-                                dtCTTReport.Columns["Category"].ColumnName = "Category";
-                                dtCTTReport.Columns["Brand_Name"].ColumnName = "Brand";
-                                dtCTTReport.Columns["Size"].ColumnName = "Size";
-                                dtCTTReport.Columns["Bottle_Qty"].ColumnName = "Bottle Qty";
-                                dtCTTReport.Columns["Speg_Qty"].ColumnName = "Speg Qty";
-                                dtCTTReport.Columns["Bottle_Rate"].ColumnName = "Bottle Rate";
-                                dtCTTReport.Columns["Base_Qty"].ColumnName = "Base Qty";
-                                dtCTTReport.Columns["Re_Order_Level"].ColumnName = "Re-Order Level";
-                                dtCTTReport.Columns["Optimum_Level"].ColumnName = "Optimum Level";
                                 dtCTTReport.AcceptChanges();
 
                                 dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:210px;");
@@ -629,12 +598,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 if (name == "Brand")
                 {
                     filePath = "~/Cocktail_World/Template/Brand.xlsx";
-                    filename = "Brand Opening Stock.xlsx";
+                    filename = "Brand.xlsx";
                 }
                 if (name == "Supplier")
                 {
                     filePath = "~/Cocktail_World/Template/Supplier.xlsx";
-                    filename = "Brand Opening Stock.xlsx";
+                    filename = "Supplier.xlsx";
                 }
                 if (name == "Brand Opening")
                 {
@@ -644,17 +613,17 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 if (name == "Brand Code")
                 {
                     filePath = "~/Cocktail_World/Template/Brand Code.xlsx";
-                    filename = "Brand Opening Stock.xlsx";
+                    filename = "Brand Code.xlsx";
                 }
                 if (name == "Cocktail Code")
                 {
                     filePath = "~/Cocktail_World/Template/Cocktail Code.xlsx";
-                    filename = "Brand Opening Stock.xlsx";
+                    filename = "Cocktail Code.xlsx";
                 }
                 if (name == "Cocktail")
                 {
                     filePath = "~/Cocktail_World/Template/Cocktail.xlsx";
-                    filename = "Brand Opening Stock.xlsx";
+                    filename = "Cocktail.xlsx";
                 }
 
                 Response.AddHeader("Content-Disposition", "attachment;filename=\"" + filename + "\"");

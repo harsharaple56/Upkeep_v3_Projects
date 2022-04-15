@@ -94,6 +94,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback Fetch_AssignBrandCodeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback Spr_CRUD_CocktailCodeOperationCompleted;
+        
         private System.Threading.SendOrPostCallback Validate_NegativeStockNewOperationCompleted;
         
         private System.Threading.SendOrPostCallback FetchTaxDetailsOperationCompleted;
@@ -279,6 +281,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         public event Fetch_AssignBrandCodeCompletedEventHandler Fetch_AssignBrandCodeCompleted;
         
         /// <remarks/>
+        public event Spr_CRUD_CocktailCodeCompletedEventHandler Spr_CRUD_CocktailCodeCompleted;
+        
+        /// <remarks/>
         public event Validate_NegativeStockNewCompletedEventHandler Validate_NegativeStockNewCompleted;
         
         /// <remarks/>
@@ -415,7 +420,7 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_FLR3LegalReport", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_FLR3LegalReport(int Company_ID, string Date, string License_ID) {
+        public System.Data.DataSet Fetch_FLR3LegalReport(string Company_ID, string Date, string License_ID) {
             object[] results = this.Invoke("Fetch_FLR3LegalReport", new object[] {
                         Company_ID,
                         Date,
@@ -424,12 +429,12 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void Fetch_FLR3LegalReportAsync(int Company_ID, string Date, string License_ID) {
+        public void Fetch_FLR3LegalReportAsync(string Company_ID, string Date, string License_ID) {
             this.Fetch_FLR3LegalReportAsync(Company_ID, Date, License_ID, null);
         }
         
         /// <remarks/>
-        public void Fetch_FLR3LegalReportAsync(int Company_ID, string Date, string License_ID, object userState) {
+        public void Fetch_FLR3LegalReportAsync(string Company_ID, string Date, string License_ID, object userState) {
             if ((this.Fetch_FLR3LegalReportOperationCompleted == null)) {
                 this.Fetch_FLR3LegalReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_FLR3LegalReportOperationCompleted);
             }
@@ -1406,6 +1411,49 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.Fetch_AssignBrandCodeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.Fetch_AssignBrandCodeCompleted(this, new Fetch_AssignBrandCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Spr_CRUD_CocktailCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet Spr_CRUD_CocktailCode(int LicenseID, int CocktailCodeId, int CocktailID, string CocktailName, string CocktailCodeDesc, string LoggedInUserID, int Company_ID, string Action) {
+            object[] results = this.Invoke("Spr_CRUD_CocktailCode", new object[] {
+                        LicenseID,
+                        CocktailCodeId,
+                        CocktailID,
+                        CocktailName,
+                        CocktailCodeDesc,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Spr_CRUD_CocktailCodeAsync(int LicenseID, int CocktailCodeId, int CocktailID, string CocktailName, string CocktailCodeDesc, string LoggedInUserID, int Company_ID, string Action) {
+            this.Spr_CRUD_CocktailCodeAsync(LicenseID, CocktailCodeId, CocktailID, CocktailName, CocktailCodeDesc, LoggedInUserID, Company_ID, Action, null);
+        }
+        
+        /// <remarks/>
+        public void Spr_CRUD_CocktailCodeAsync(int LicenseID, int CocktailCodeId, int CocktailID, string CocktailName, string CocktailCodeDesc, string LoggedInUserID, int Company_ID, string Action, object userState) {
+            if ((this.Spr_CRUD_CocktailCodeOperationCompleted == null)) {
+                this.Spr_CRUD_CocktailCodeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSpr_CRUD_CocktailCodeOperationCompleted);
+            }
+            this.InvokeAsync("Spr_CRUD_CocktailCode", new object[] {
+                        LicenseID,
+                        CocktailCodeId,
+                        CocktailID,
+                        CocktailName,
+                        CocktailCodeDesc,
+                        LoggedInUserID,
+                        Company_ID,
+                        Action}, this.Spr_CRUD_CocktailCodeOperationCompleted, userState);
+        }
+        
+        private void OnSpr_CRUD_CocktailCodeOperationCompleted(object arg) {
+            if ((this.Spr_CRUD_CocktailCodeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Spr_CRUD_CocktailCodeCompleted(this, new Spr_CRUD_CocktailCodeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3552,6 +3600,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal Fetch_AssignBrandCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void Spr_CRUD_CocktailCodeCompletedEventHandler(object sender, Spr_CRUD_CocktailCodeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Spr_CRUD_CocktailCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Spr_CRUD_CocktailCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

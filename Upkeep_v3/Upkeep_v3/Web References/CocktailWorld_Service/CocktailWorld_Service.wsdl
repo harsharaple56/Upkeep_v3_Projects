@@ -38,7 +38,7 @@
       <s:element name="Fetch_FLR3LegalReport">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Company_ID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="License_ID" type="s:string" />
           </s:sequence>
@@ -715,6 +715,34 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="Fetch_AssignBrandCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Spr_CRUD_CocktailCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LicenseID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CocktailCodeId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CocktailID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CocktailName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CocktailCodeDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LoggedInUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Company_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Spr_CRUD_CocktailCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Spr_CRUD_CocktailCodeResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1636,6 +1664,12 @@
   <wsdl:message name="Fetch_AssignBrandCodeSoapOut">
     <wsdl:part name="parameters" element="tns:Fetch_AssignBrandCodeResponse" />
   </wsdl:message>
+  <wsdl:message name="Spr_CRUD_CocktailCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:Spr_CRUD_CocktailCode" />
+  </wsdl:message>
+  <wsdl:message name="Spr_CRUD_CocktailCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:Spr_CRUD_CocktailCodeResponse" />
+  </wsdl:message>
   <wsdl:message name="Validate_NegativeStockNewSoapIn">
     <wsdl:part name="parameters" element="tns:Validate_NegativeStockNew" />
   </wsdl:message>
@@ -1914,6 +1948,10 @@
     <wsdl:operation name="Fetch_AssignBrandCode">
       <wsdl:input message="tns:Fetch_AssignBrandCodeSoapIn" />
       <wsdl:output message="tns:Fetch_AssignBrandCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Spr_CRUD_CocktailCode">
+      <wsdl:input message="tns:Spr_CRUD_CocktailCodeSoapIn" />
+      <wsdl:output message="tns:Spr_CRUD_CocktailCodeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Validate_NegativeStockNew">
       <wsdl:input message="tns:Validate_NegativeStockNewSoapIn" />
@@ -2299,6 +2337,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_AssignBrandCode">
       <soap:operation soapAction="http://tempuri.org/Fetch_AssignBrandCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Spr_CRUD_CocktailCode">
+      <soap:operation soapAction="http://tempuri.org/Spr_CRUD_CocktailCode" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2815,6 +2862,15 @@
     </wsdl:operation>
     <wsdl:operation name="Fetch_AssignBrandCode">
       <soap12:operation soapAction="http://tempuri.org/Fetch_AssignBrandCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Spr_CRUD_CocktailCode">
+      <soap12:operation soapAction="http://tempuri.org/Spr_CRUD_CocktailCode" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

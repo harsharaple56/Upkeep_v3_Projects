@@ -45,7 +45,7 @@ namespace Upkeep_v3.Cocktail_World.Reports_Excise.Maharashtra
             string license = ddlLicense.SelectedValue;
 
             DataSet dsReport = new DataSet();
-            dsReport = ObjCocktailWorld.Fetch_FLR3LegalReport(CompanyID, date, license);
+            dsReport = ObjCocktailWorld.Fetch_FLR3LegalReport(Convert.ToString(CompanyID), date, license);
 
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Cocktail_World/Reports_Excise/Maharashtra/RDLC_Files/FLR3_A.rdlc");

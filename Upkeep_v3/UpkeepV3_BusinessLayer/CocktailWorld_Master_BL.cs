@@ -75,7 +75,7 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
-        public DataSet Fetch_FLR3LegalReport(int Company_ID, string Date, string License_ID, string StrConn)
+        public DataSet Fetch_FLR3LegalReport(string Company_ID, string Date, string License_ID, string StrConn)
         {
             try
             {
@@ -638,6 +638,31 @@ namespace UpkeepV3_BusinessLayer
             }
         }
 
+        public DataSet Spr_CRUD_CocktailCode(int LicenseID, int CocktailCodeId, int CocktailID, string CocktailName, string CocktailCodeDesc, string LoggedInUserID, int Company_ID,string Action, string StrConn)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(StrConn);
+                SqlCommand cmd = new SqlCommand("Spr_CRUD_CW_CocktailWorld_CocktailCode", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@LicenseID", LicenseID);
+                cmd.Parameters.AddWithValue("@CocktailCodeId", CocktailCodeId);
+                cmd.Parameters.AddWithValue("@CocktailID", CocktailID);
+                cmd.Parameters.AddWithValue("@CocktailName", CocktailName);
+                cmd.Parameters.AddWithValue("@CocktailCodeDesc", CocktailCodeDesc);
+                cmd.Parameters.AddWithValue("@Company_ID", Company_ID);
+                cmd.Parameters.AddWithValue("@LoggedInUser", LoggedInUserID);
+                cmd.Parameters.AddWithValue("@Action", Action);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet Save_BrandCode(int AssignBrandCodeID, int BrandOpeningID, int LicenseID, string BrandCode,string LoggedInUserID,int TypeID, string StrConn)
         {
             try
@@ -662,6 +687,8 @@ namespace UpkeepV3_BusinessLayer
                 throw ex;
             }
         }
+
+
 
         public DataSet Fetch_AssignBrandCode(int BrandID, int LicenseID, int AssignBrandCodeID, string StrConn)
         {

@@ -51,7 +51,7 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet Fetch_FLR3LegalReport(int Company_ID, string Date, string License_ID)
+    public DataSet Fetch_FLR3LegalReport(string Company_ID, string Date, string License_ID)
     {
         try
         {
@@ -473,6 +473,20 @@ public class CocktailWorld_Service : System.Web.Services.WebService
         try
         {
             ds = ObjCocktailWorld.Fetch_AssignBrandCode(BrandID, LicenseID, AssignBrandCodeID);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        return ds;
+    }
+
+    [WebMethod]
+    public DataSet Spr_CRUD_CocktailCode(int LicenseID, int CocktailCodeId, int CocktailID, string CocktailName, string CocktailCodeDesc, string LoggedInUserID, int Company_ID, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.Spr_CRUD_CocktailCode(LicenseID, CocktailCodeId, CocktailID, CocktailName, CocktailCodeDesc, LoggedInUserID, Company_ID, Action);
         }
         catch (Exception ex)
         {
