@@ -67,6 +67,15 @@ namespace Upkeep_v3.General_Masters {
         protected global::System.Web.UI.WebControls.Label lblErrorMsg;
         
         /// <summary>
+        /// hdn_selected_users control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_selected_users;
+        
+        /// <summary>
         /// Usernm control.
         /// </summary>
         /// <remarks>

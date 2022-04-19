@@ -690,8 +690,6 @@
     <Content Include="assets\app\media\img\users\user4.png" />
     <Content Include="assets\app\media\img\users\user5.jpg" />
     <Content Include="assets\app\media\img\verified.jpg" />
-    <Content Include="assets\chosen.jquery.min.js" />
-    <Content Include="assets\chosen.min.css" />
     <Content Include="assets\custom\common.js" />
     <Content Include="assets\custom\Dashboard.css" />
     <Content Include="assets\custom\icons.min.css" />
@@ -1306,9 +1304,6 @@
     <Content Include="Cocktail_World\Template\Cocktail Code.xlsx" />
     <Content Include="Cocktail_World\Template\Cocktail.xlsx" />
     <Content Include="Cocktail_World\Template\Supplier.xls" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Testing_Codes\SendGrid_emails.aspx" />
     <Content Include="Testing_Codes\SendMail_SMTP.aspx" />
     <Content Include="Ticketing\Add_MyRequest_Public.aspx" />
@@ -6906,6 +6901,7 @@
     <Folder Include="General_Masters\LocationQRCodes\" />
     <Folder Include="RetailerImages\" />
     <Folder Include="Retailer_Sales\" />
+    <Folder Include="Scripts\" />
     <Folder Include="Support_Portal\Images\" />
     <Folder Include="UserImages\" />
     <Folder Include="vendors\handlebars\.idea\" />

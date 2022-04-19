@@ -77,8 +77,15 @@ namespace Upkeep_v3.General_Masters
                         Usernm.DataSource = ds;
                         Usernm.DataBind();
 
+                    }
+                }
 
+                if (ds.Tables.Count > 1)
+                {
+                    if (ds.Tables[1].Rows.Count > 0)
+                    {
 
+                        hdn_selected_users.Value = Convert.ToString(ds.Tables[1].Rows[0]["selected_users"]);
 
                     }
                 }
@@ -111,18 +118,21 @@ namespace Upkeep_v3.General_Masters
             try
             {
 
-                for (int i = 0; i < count; i++)
-                {
-                    bool isChecked = ((CheckBox)rows[i].FindControl("chkUserID")).Checked;
-                    if (isChecked)
-                    {
-                        //string EmployeeID = gvEmployee.Rows[i].Cells[1].Text;
-                        string UserID = ((HiddenField)rows[i].FindControl("hdnUserID")).Value;
-                        SelectedUsers = SelectedUsers + UserID + ",";
-                    }
-                }
+                //for (int i = 0; i < count; i++)
+                //{
+                //    bool isChecked = ((CheckBox)rows[i].FindControl("chkUserID")).Checked;
+                //    if (isChecked)
+                //    {
+                //        //string EmployeeID = gvEmployee.Rows[i].Cells[1].Text;
+                //        string UserID = ((HiddenField)rows[i].FindControl("hdnUserID")).Value;
+                //        SelectedUsers = SelectedUsers + UserID + ",";
+                //    }
+                //}
 
-                SelectedUsers = SelectedUsers.TrimEnd(',');
+                string selected_users = Convert.ToString(hdn_selected_users.Value);
+                SelectedUsers = selected_users.TrimEnd(',');
+                SelectedUsers = selected_users.TrimStart(',');
+
                 if (SelectedUsers != "")
                 {
                     ds = ObjUpkeepCC.UserGroupMaster_CRUD(Grp_Id, txtGroupName.Text, SelectedUsers, CompanyID, LoggedInUserID, Action);

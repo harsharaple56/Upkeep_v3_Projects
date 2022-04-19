@@ -245,7 +245,7 @@
 
                                 </div>
 
-                                <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red">dddd</asp:Label>
+                                <asp:Label ID="lblCategoryErrorMsg" Text="" runat="server" CssClass="col-xl-3 col-lg-3 col-form-label" ForeColor="Red"></asp:Label>
                             </div>
                             <div class="modal-footer">
                                 <asp:Button ID="btnCategorySave" runat="server" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" CausesValidation="true" ValidationGroup="validationWorkflow" OnClick="btnCategorySave_Click1" Text="Save" />

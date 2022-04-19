@@ -19,12 +19,14 @@
 
         var DatatableHtmlTableDemo = {
             init: function () {
-                var e; e = $(".m-datatable").mDatatable({
+                var e;
+                e = $(".m-datatable").mDatatable({
                     data: { saveState: { cookie: !1 } },
                     search: { input: $("#generalSearch") }
 
-                    , responsive: true,
-                    pagingType: 'full_numbers',
+                    //, responsive: true,
+                    //pagingType: 'full_numbers',
+                    , "paging": false,
                     scrollX: true,
                     'fnDrawCallback': function () {
                         init_plugins();
@@ -39,19 +41,40 @@
     <%--<script src="assets/jquery-1.7.2.min.js"></script>--%>
 
     <script type="text/javascript">
-        <%--$(function () {
-           
-            $("#<%=btnAddUserGrp.ClientID%>").click(function () {
-                
-                var empcd = window.document.getElementById('<%=GrdEmp.ClientID%>');
-
-                $("#<%=Usernm.ClientID%> input[type=checkbox]:checked").each(function () {
-                    var row = $(this).closest("tr")[0];
-                   
-                    empcd.value = row.cells[1].innerHTML + "," + empcd.value;
-                });
+        $(document).ready(function () {
+            $('#Usernm').DataTable({
+                "paging": false,
+                "ordering": false,
+                "info": false
             });
-        });--%>
+
+
+            var selected_users = $("#hdn_selected_users").val();
+            //alert(assigned_loc);
+            var selected_users_array = selected_users.split(',');
+            var selectedusers = []; // pass already assigned location in json format for edit mode
+            for (var i = 0; i < selected_users_array.length; ++i) {
+
+                selectedusers.push(selected_users_array[i]);
+            }
+
+            $(".selected_user").change(function () {
+                if ($(this).is(":checked"))
+                    selectedusers.push(this.id);
+                else {
+                    //alert(this.id);
+                    var x = selectedusers.indexOf(this.id);
+                    //alert(x);
+                    selectedusers.splice(x, 1);
+                }
+                //alert($("#hdnAssignedLocation").val());
+                //alert(selectedusers);
+                $("#hdn_selected_users").val(selectedusers);
+            });
+
+
+
+        });
 
 
         function Search_Gridview(strKey, strGV) {
@@ -75,91 +98,29 @@
         }
 
 
-
-
-        <%--function FunLocCheck(VarLocChkObj, VarLocLoop) {
-            if (VarLocChkObj.checked == true) {
-                if (document.getElementById('<%=this.TxtMembers.ClientID%>').value.indexOf("=$=" + VarLocChkObj.value + "=$=") < 0) {
-                    if (document.getElementById('<%=this.TxtMembers.ClientID%>').value == "") //if it is 1st item in a hidden field
-                    {
-                        document.getElementById('<%=this.TxtMembers.ClientID%>').value = "=$=" + VarLocChkObj.value + "=$=";
-                    }
-                    else//if it is not 1st item in a hidden field
-                    {
-                        document.getElementById('<%=this.TxtMembers.ClientID%>').value += VarLocChkObj.value + "=$=";
-                        VarLocChkObj.checked = true;
-                    }
-                }
-            }
-            else //if check box is unchecked then remove Designation id from hidden field
-            {
-                if (document.getElementById('<%=this.TxtMembers.ClientID%>').value.indexOf("=$=" + VarLocChkObj.value + "=$=") >= 0) {
-                    document.getElementById('<%=this.TxtMembers.ClientID%>').value = document.getElementById('<%=this.TxtMembers.ClientID%>').value.replace("=$=" + VarLocChkObj.value + "=$=", "=$=");
-                }
-            }
-        }--%>
-
-       <%-- function FunPubOnload() {
-           
-            if (window.document.getElementById('<%=TxtMembers.ClientID%>').value != "") {
-                var temp = window.document.getElementById('<%=TxtMembers.ClientID%>').value;
-                var arrt = temp.split("=$=");
-                var i;
-               
-                for (i = 1; i < arrt.length - 1; i++) {
-                    window.document.getElementById('<%=HdnEmpDetail.ClientID%>').value = arrt[i];
-                   
-                    FunPubNeedload()
-                }
-            }
-        }--%>
-
-
-
-        <%--function FunPubNeedload() {
-          
-            if (window.document.getElementById('<%=HdnEmpDetail.ClientID%>').value != "") {
-                var hdnValues = window.document.getElementById('<%=HdnEmpDetail.ClientID%>').value;
-                var VarLocStrCount;
-               
-                for (var intCount = 0; ; intCount++) {
-                    if (intCount <= 9) {
-                        VarLocStrCount = intCount;
-                    }
-                    else {
-                        VarLocStrCount = intCount;
-                    }
-
-                    var chkBox = window.document.all('ContentPlaceHolder1_Usernm_ctl00_' + VarLocStrCount);
-
-                    if (chkBox != null) {
-
-                        var chkBoxVal = Trim(chkBox.value) + "=$=";
-                        var chkboxval1 = Trim(chkBox.value);
-
-                        if (window.document.getElementById('<%=HdnEmpDetail.ClientID%>').value != "") {
-
-
-                            if (Trim(chkboxval1) == Trim(hdnValues)) {
-                                chkBox.checked = true;
-                            }
-                        }
-                    }
-                    else {
-                        break;
-                    }
-                }
-
-            }
-        }--%>
-
-
-
-
         function Trim(myString) {
             return myString.replace(/^\s*(\b.*\b|)\s*$/, "$1");
         }
 
+        function GetSelected() {
+            //debugger;
+            //Reference the GridView.
+            var grid = document.getElementById("<%=Usernm.ClientID%>");
+            var grid_row_count = document.getElementById("<%=Usernm.ClientID%>").rows;
+
+            //Reference the CheckBoxes in GridView.
+            var checkBoxes = grid.getElementsByTagName("INPUT");
+            var message = "";
+
+            for (var i = 0; i < grid_row_count.length; i++) {
+
+                if (checkBoxes[i].checked) {
+                    alert(i);
+                }
+
+               
+            }
+        }
 
 
     </script>
@@ -194,7 +155,7 @@
                                         <div class="btn-group">
 
                                             <asp:Button ID="btnAddUserGrp" runat="server" class="btn btn-accent  m-btn m-btn--icon m-btn--wide m-btn--md" OnClick="btnAddUserGrp_Click" Text="+ Add User Group" ValidationGroup="validationGroupName" />
-
+                                            
                                         </div>
                                     </div>
 
@@ -221,7 +182,7 @@
 
                                                 </div>
 
-                                              <%--  <div class="form-group m-form__group row">
+                                                <%--  <div class="form-group m-form__group row">
                                                     <div class="col-xl-6">
                                                         <asp:TextBox ID="txtSearchUserName" runat="server" placeholder="Search UserName" class="form-control" onkeyup="Search_Gridview(this, 'ContentPlaceHolder1_Usernm')"></asp:TextBox>
                                                     </div>
@@ -237,7 +198,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" style="display: none;">
                                             <div class="m-input-icon m-input-icon--left">
                                                 <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch" />
                                                 <span class="m-input-icon__icon m-input-icon__icon--left">
@@ -246,42 +207,47 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group m-form__group row">
-                                            <div class="" id="m_table_1">
-                                                <asp:GridView ID="Usernm" runat="server" AutoGenerateColumns="False"
-                                                    CssClass="table table-striped- table-bordered table-hover table-checkable m-datatable"
-                                                    OnRowDataBound="Usernm_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
-                                                    <Columns>
-                                                        <%--<asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                                    </div>
+                                    <asp:HiddenField ID="hdn_selected_users" runat="server" ClientIDMode="Static" />
+
+                                    <div class="form-group m-form__group row col-xl-12">
+                                        <div class=" col-xl-10" id="m_table_1">
+                                            <asp:GridView ID="Usernm" runat="server" AutoGenerateColumns="False" ClientIDMode="Static"
+                                                CssClass="table table-striped- table-bordered table-hover table-checkable datatable"
+                                                OnRowDataBound="Usernm_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
+                                                <Columns>
+                                                    <%--<asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
                                                         <ItemTemplate>
                                                         </ItemTemplate>
                                                         <ItemStyle CssClass="table-checkbox" />
                                                     </asp:TemplateField>--%>
 
-                                                        <asp:TemplateField HeaderText="Select" HeaderStyle-Width="100" ItemStyle-Width="100" HeaderStyle-BorderWidth="0">
-                                                            <ItemTemplate>
-                                                                <asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success" Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />
-                                                                <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' />
+                                                    <asp:TemplateField HeaderText="Select" HeaderStyle-Width="100" ItemStyle-Width="100" HeaderStyle-BorderWidth="0">
+                                                        <ItemTemplate>
+                                                            <%--<asp:CheckBox ID="chkUserID" runat="server" CssClass="checkbox--success " Checked='<%# Convert.ToBoolean(Eval("Is_Selected")) %>' />--%>
+                                                            <input type = 'checkbox' <%#Eval("Selected") %> name='chk_userid' id="<%#Eval("User_ID") %>" class='checkbox--success selected_user' />
 
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                                            <asp:HiddenField ID="hdnUserID" runat="server" Value='<%#Eval("User_ID") %>' ClientIDMode="Static" />
 
-                                                        <%--<asp:BoundField DataField="User_ID" HeaderText="User_ID" 
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <%--<asp:BoundField DataField="User_ID" HeaderText="User_ID" 
                                                             SortExpression="User_ID" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" />--%>
-                                                        <asp:BoundField DataField="F_Name" HeaderText="User Name" ReadOnly="True" SortExpression="F_Name" HeaderStyle-Width="300" ItemStyle-Width="300" />
+                                                    <asp:BoundField DataField="F_Name" HeaderText="User Name" ReadOnly="True" SortExpression="F_Name" HeaderStyle-Width="300" ItemStyle-Width="300" />
 
-                                                    </Columns>
-                                                    <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
-                                                </asp:GridView>
+                                                </Columns>
+                                                <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
+                                            </asp:GridView>
 
-                                            </div>
                                         </div>
-
-                                        <asp:TextBox ID="TxtMembers" runat="server" Width="100%" Style="display: none;"></asp:TextBox>
-                                        <input type="hidden" id="HdnEmpDetail" runat="server" />
-                                        <asp:HiddenField ID="GrdEmp" runat="server" />
-                                        <asp:HiddenField ID="ChkEmp" runat="server" />
                                     </div>
+
+                                    <asp:TextBox ID="TxtMembers" runat="server" Width="100%" Style="display: none;"></asp:TextBox>
+                                    <input type="hidden" id="HdnEmpDetail" runat="server" />
+                                    <asp:HiddenField ID="GrdEmp" runat="server" />
+                                    <asp:HiddenField ID="ChkEmp" runat="server" />
+
                                 </div>
 
                             </div>

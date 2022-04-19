@@ -38,7 +38,7 @@ namespace Upkeep_v3.Ticketing
                 int DelCategory_ID = Convert.ToInt32(Request.QueryString["DelCategory_ID"]);
                 if (DelCategory_ID > 0)
                 {
-                    // DeleteCategory(DelWorkflowID);
+                    DeleteCategory(DelCategory_ID);
                 }
 
             }
@@ -95,7 +95,7 @@ namespace Upkeep_v3.Ticketing
                             string Category_Desc = Convert.ToString(ds.Tables[0].Rows[i]["Category_Desc"]);
                             string Department = Convert.ToString(ds.Tables[0].Rows[i]["Dept_Desc"]);
 
-                            data += "<tr><td>" + Category_Desc + "</td><td>" + Department + "</td><td><a href='Frm_Category.aspx?Category_ID=" + Category_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Frm_Category.aspx.aspx?DelCategory_ID=" + Category_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
+                            data += "<tr><td>" + Category_Desc + "</td><td>" + Department + "</td><td><a href='Frm_Category.aspx?Category_ID=" + Category_ID + "' class='btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only' data-placement='top' title='Edit record'> <i id='btnedit' runat='server' class='la la-edit'></i> </a>  <a href='Frm_Category.aspx?DelCategory_ID=" + Category_ID + "' class='btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only has-confirmation' data-container='body' data-toggle='m-tooltip' data-placement='top' title='Delete record'> 	<i class='la la-trash'></i> </a> </td></tr>";
 
                         }
                     }
@@ -339,5 +339,27 @@ namespace Upkeep_v3.Ticketing
         {
 
         }
+
+        public void DeleteCategory(int Category_ID)
+        {
+            try
+            {
+                ds = ObjUpkeep.CategoryMaster_CRUD(CompanyID, Category_ID, "", 0, LoggedInUserID, "D");
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        Response.Redirect(Page.ResolveClientUrl("~/Ticketing/Frm_Category.aspx"), false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }
