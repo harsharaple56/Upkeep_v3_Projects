@@ -102,7 +102,7 @@
             return myString.replace(/^\s*(\b.*\b|)\s*$/, "$1");
         }
 
-        function GetSelected() {
+        <%--function GetSelected() {
             //debugger;
             //Reference the GridView.
             var grid = document.getElementById("<%=Usernm.ClientID%>");
@@ -116,11 +116,9 @@
 
                 if (checkBoxes[i].checked) {
                     alert(i);
-                }
-
-               
+                }              
             }
-        }
+        }--%>
 
 
     </script>
