@@ -106,6 +106,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
         public void Brand_Import()
         {
             DataSet dsResult = new DataSet();
+
             if (FU_Category.HasFile && FU_Category.PostedFile != null)
             {
                 try
@@ -139,12 +140,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         SqlBulkCopy bulkInsert = new SqlBulkCopy(CS);
                         bulkInsert.DestinationTableName = "Tbl_CW_Import_Brand_Temp";
                         bulkInsert.ColumnMappings.Add("Category", "Category");
-                        bulkInsert.ColumnMappings.Add("Brand Name", "Brand_Name");
-                        bulkInsert.ColumnMappings.Add("Short Name", "Short_Name");
+                        bulkInsert.ColumnMappings.Add("Brand Name", "Brand");
+                        bulkInsert.ColumnMappings.Add("Short Name", "ShortName");
                         bulkInsert.ColumnMappings.Add("Strength", "Strength");
-                        bulkInsert.ColumnMappings.Add("Purchase_Rate_Peg", "Purchase_Rate_Peg");
-                        bulkInsert.ColumnMappings.Add("Selling_Rate_Peg", "Selling_Rate_Peg");
-                        bulkInsert.ColumnMappings.Add("Selling_Rate_Bottle", "Selling_Rate_Bottle");
+                        bulkInsert.ColumnMappings.Add("Purchase_Rate_Peg", "PurRatePeg");
+                        bulkInsert.ColumnMappings.Add("Selling_Rate_Peg", "SellRatePeg");
+                        bulkInsert.ColumnMappings.Add("Selling_Rate_Bottle", "SellRateBottle");
                         bulkInsert.ColumnMappings.Add("SubCategory", "SubCategory");
                         bulkInsert.WriteToServer(dr);
 
@@ -157,12 +158,12 @@ namespace Upkeep_v3.Cocktail_World.Setup
                                 DataTable dtCTTReport = new DataTable();
                                 dtCTTReport = dsResult.Tables[0];
                                 dtCTTReport.Columns["Category"].ColumnName = "Category";
-                                dtCTTReport.Columns["Brand_Name"].ColumnName = "Brand";
-                                dtCTTReport.Columns["Short_Name"].ColumnName = "Short_Name";
+                                dtCTTReport.Columns["Brand"].ColumnName = "Brand";
+                                dtCTTReport.Columns["ShortName"].ColumnName = "ShortName";
                                 dtCTTReport.Columns["Strength"].ColumnName = "Strength";
-                                dtCTTReport.Columns["Purchase_Rate_Peg"].ColumnName = "Purchase_Rate_Peg";
-                                dtCTTReport.Columns["Selling_Rate_Peg"].ColumnName = "Selling_Rate_Peg";
-                                dtCTTReport.Columns["Selling_Rate_Bottle"].ColumnName = "Selling_Rate_Bottle";
+                                dtCTTReport.Columns["PurRatePeg"].ColumnName = "PurRatePeg";
+                                dtCTTReport.Columns["SellRatePeg"].ColumnName = "SellRatePeg";
+                                dtCTTReport.Columns["SellRateBottle"].ColumnName = "SellRateBottle";
                                 dtCTTReport.Columns["SubCategory"].ColumnName = "SubCategory";
                                 dtCTTReport.AcceptChanges();
 
@@ -174,6 +175,10 @@ namespace Upkeep_v3.Cocktail_World.Setup
                                 gvImportError.DataSource = dtCTTReport;
                                 gvImportError.DataBind();
                             }
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterHiddenField("Redirect", "Redirect");
                         }
                     }
                 }

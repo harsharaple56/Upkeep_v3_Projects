@@ -188,7 +188,7 @@
                                                     <asp:TemplateField HeaderText="Alias" ItemStyle-HorizontalAlign="Center">
                                                         <ItemTemplate>
                                                             <asp:HiddenField ID="hdnSize_ID" runat="server" Value='<%#(DataBinder.Eval(Container.DataItem,"Size_ID"))%>' />
-                                                            <asp:TextBox class="form-control m-input" ID="txtalias" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Alias"))%>'></asp:TextBox>
+                                                            <asp:TextBox onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"  class="form-control m-input" ID="txtalias" runat="server" Text='<%#(DataBinder.Eval(Container.DataItem,"Alias"))%>'></asp:TextBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 

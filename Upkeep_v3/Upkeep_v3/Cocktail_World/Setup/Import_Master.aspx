@@ -35,6 +35,15 @@
                     init_plugins();
                 }
             });
+
+            var Redirect = $("input[name=Redirect]").val();
+            if (Redirect != undefined) {
+                Swal.fire(
+                    'Success..!',
+                    'Your data successfully imported!',
+                    'success'
+                )
+            }
         });
     </script>
 
