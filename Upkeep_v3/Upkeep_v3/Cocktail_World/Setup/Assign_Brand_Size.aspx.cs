@@ -183,7 +183,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                 License_ID = Convert.ToInt32(ddlLicense.SelectedValue);
                 if (License_ID != 0 && Category_ID != 0)
                 {
-                    ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(0, Category_ID, License_ID, CompanyID);
+                    ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(0, Category_ID, License_ID, CompanyID,0);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         if (ddlCategory.SelectedIndex > 0)
@@ -265,7 +265,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
 
                             #region Fetch Old Data
                             DataSet dataSet = new DataSet();
-                            dataSet = ObjCocktailWorld.Fetch_CategorySizeLinkup(Convert.ToInt32(hdnSize_ID), CategoryID, LicenseID, CompanyID);
+                            dataSet = ObjCocktailWorld.Fetch_CategorySizeLinkup(Convert.ToInt32(hdnSize_ID), CategoryID, LicenseID, CompanyID,0);
                             if (dataSet.Tables[0].Rows.Count > 0)
                             {
                                 if (dataSet.Tables[0].Rows[0]["NoOfSpeg"].ToString() == txtnoofspeg && dataSet.Tables[0].Rows[0]["PegSize"].ToString() == txtpegsize

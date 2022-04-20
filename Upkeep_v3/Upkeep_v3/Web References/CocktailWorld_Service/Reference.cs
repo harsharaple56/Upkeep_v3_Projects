@@ -132,6 +132,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         private System.Threading.SendOrPostCallback BrandMaster_CRUDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback BrandDetailsMaster_CRUDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback SizeMaster_CRUDOperationCompleted;
         
         private System.Threading.SendOrPostCallback SubCategoryMaster_CRUDOperationCompleted;
@@ -336,6 +338,9 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         public event BrandMaster_CRUDCompletedEventHandler BrandMaster_CRUDCompleted;
+        
+        /// <remarks/>
+        public event BrandDetailsMaster_CRUDCompletedEventHandler BrandDetailsMaster_CRUDCompleted;
         
         /// <remarks/>
         public event SizeMaster_CRUDCompletedEventHandler SizeMaster_CRUDCompleted;
@@ -2252,22 +2257,23 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Fetch_CategorySizeLinkup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet Fetch_CategorySizeLinkup(int Size_ID, int Category_ID, int License_ID, int Company_ID) {
+        public System.Data.DataSet Fetch_CategorySizeLinkup(int Size_ID, int Category_ID, int License_ID, int Company_ID, int Is_Brand) {
             object[] results = this.Invoke("Fetch_CategorySizeLinkup", new object[] {
                         Size_ID,
                         Category_ID,
                         License_ID,
-                        Company_ID});
+                        Company_ID,
+                        Is_Brand});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void Fetch_CategorySizeLinkupAsync(int Size_ID, int Category_ID, int License_ID, int Company_ID) {
-            this.Fetch_CategorySizeLinkupAsync(Size_ID, Category_ID, License_ID, Company_ID, null);
+        public void Fetch_CategorySizeLinkupAsync(int Size_ID, int Category_ID, int License_ID, int Company_ID, int Is_Brand) {
+            this.Fetch_CategorySizeLinkupAsync(Size_ID, Category_ID, License_ID, Company_ID, Is_Brand, null);
         }
         
         /// <remarks/>
-        public void Fetch_CategorySizeLinkupAsync(int Size_ID, int Category_ID, int License_ID, int Company_ID, object userState) {
+        public void Fetch_CategorySizeLinkupAsync(int Size_ID, int Category_ID, int License_ID, int Company_ID, int Is_Brand, object userState) {
             if ((this.Fetch_CategorySizeLinkupOperationCompleted == null)) {
                 this.Fetch_CategorySizeLinkupOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFetch_CategorySizeLinkupOperationCompleted);
             }
@@ -2275,7 +2281,8 @@ namespace Upkeep_v3.CocktailWorld_Service {
                         Size_ID,
                         Category_ID,
                         License_ID,
-                        Company_ID}, this.Fetch_CategorySizeLinkupOperationCompleted, userState);
+                        Company_ID,
+                        Is_Brand}, this.Fetch_CategorySizeLinkupOperationCompleted, userState);
         }
         
         private void OnFetch_CategorySizeLinkupOperationCompleted(object arg) {
@@ -2416,19 +2423,16 @@ namespace Upkeep_v3.CocktailWorld_Service {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/BrandMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string Size, int Cocktail_ID, string LoggedInUserID, string Action) {
+        public System.Data.DataSet BrandMaster_CRUD(int Company_ID, int License_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, string Size, int Cocktail_ID, string LoggedInUserID, string Action) {
             object[] results = this.Invoke("BrandMaster_CRUD", new object[] {
                         Company_ID,
+                        License_ID,
                         Brand_ID,
                         Category_ID,
                         SubCategory_ID,
                         Brand_Desc,
                         Brand_Short_Name,
                         Strength,
-                        Purchase_Rate_Peg,
-                        Selling_Rate_Peg,
-                        Selling_Rate_Bottle,
-                        Is_Disabled,
                         Size,
                         Cocktail_ID,
                         LoggedInUserID,
@@ -2437,43 +2441,24 @@ namespace Upkeep_v3.CocktailWorld_Service {
         }
         
         /// <remarks/>
-        public void BrandMaster_CRUDAsync(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string Size, int Cocktail_ID, string LoggedInUserID, string Action) {
-            this.BrandMaster_CRUDAsync(Company_ID, Brand_ID, Category_ID, SubCategory_ID, Brand_Desc, Brand_Short_Name, Strength, Purchase_Rate_Peg, Selling_Rate_Peg, Selling_Rate_Bottle, Is_Disabled, Size, Cocktail_ID, LoggedInUserID, Action, null);
+        public void BrandMaster_CRUDAsync(int Company_ID, int License_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, string Size, int Cocktail_ID, string LoggedInUserID, string Action) {
+            this.BrandMaster_CRUDAsync(Company_ID, License_ID, Brand_ID, Category_ID, SubCategory_ID, Brand_Desc, Brand_Short_Name, Strength, Size, Cocktail_ID, LoggedInUserID, Action, null);
         }
         
         /// <remarks/>
-        public void BrandMaster_CRUDAsync(
-                    int Company_ID, 
-                    int Brand_ID, 
-                    int Category_ID, 
-                    int SubCategory_ID, 
-                    string Brand_Desc, 
-                    string Brand_Short_Name, 
-                    int Strength, 
-                    int Purchase_Rate_Peg, 
-                    int Selling_Rate_Peg, 
-                    int Selling_Rate_Bottle, 
-                    int Is_Disabled, 
-                    string Size, 
-                    int Cocktail_ID, 
-                    string LoggedInUserID, 
-                    string Action, 
-                    object userState) {
+        public void BrandMaster_CRUDAsync(int Company_ID, int License_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, string Size, int Cocktail_ID, string LoggedInUserID, string Action, object userState) {
             if ((this.BrandMaster_CRUDOperationCompleted == null)) {
                 this.BrandMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBrandMaster_CRUDOperationCompleted);
             }
             this.InvokeAsync("BrandMaster_CRUD", new object[] {
                         Company_ID,
+                        License_ID,
                         Brand_ID,
                         Category_ID,
                         SubCategory_ID,
                         Brand_Desc,
                         Brand_Short_Name,
                         Strength,
-                        Purchase_Rate_Peg,
-                        Selling_Rate_Peg,
-                        Selling_Rate_Bottle,
-                        Is_Disabled,
                         Size,
                         Cocktail_ID,
                         LoggedInUserID,
@@ -2484,6 +2469,43 @@ namespace Upkeep_v3.CocktailWorld_Service {
             if ((this.BrandMaster_CRUDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.BrandMaster_CRUDCompleted(this, new BrandMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/BrandDetailsMaster_CRUD", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet BrandDetailsMaster_CRUD(int Brand_ID, int Size_ID, int BoxQty, decimal BtlPurRate, string Action) {
+            object[] results = this.Invoke("BrandDetailsMaster_CRUD", new object[] {
+                        Brand_ID,
+                        Size_ID,
+                        BoxQty,
+                        BtlPurRate,
+                        Action});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void BrandDetailsMaster_CRUDAsync(int Brand_ID, int Size_ID, int BoxQty, decimal BtlPurRate, string Action) {
+            this.BrandDetailsMaster_CRUDAsync(Brand_ID, Size_ID, BoxQty, BtlPurRate, Action, null);
+        }
+        
+        /// <remarks/>
+        public void BrandDetailsMaster_CRUDAsync(int Brand_ID, int Size_ID, int BoxQty, decimal BtlPurRate, string Action, object userState) {
+            if ((this.BrandDetailsMaster_CRUDOperationCompleted == null)) {
+                this.BrandDetailsMaster_CRUDOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBrandDetailsMaster_CRUDOperationCompleted);
+            }
+            this.InvokeAsync("BrandDetailsMaster_CRUD", new object[] {
+                        Brand_ID,
+                        Size_ID,
+                        BoxQty,
+                        BtlPurRate,
+                        Action}, this.BrandDetailsMaster_CRUDOperationCompleted, userState);
+        }
+        
+        private void OnBrandDetailsMaster_CRUDOperationCompleted(object arg) {
+            if ((this.BrandDetailsMaster_CRUDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.BrandDetailsMaster_CRUDCompleted(this, new BrandDetailsMaster_CRUDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4094,6 +4116,32 @@ namespace Upkeep_v3.CocktailWorld_Service {
         private object[] results;
         
         internal BrandMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    public delegate void BrandDetailsMaster_CRUDCompletedEventHandler(object sender, BrandDetailsMaster_CRUDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4161.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class BrandDetailsMaster_CRUDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal BrandDetailsMaster_CRUDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

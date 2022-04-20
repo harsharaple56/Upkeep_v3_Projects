@@ -656,12 +656,12 @@ public class My_CocktailWorld
     }
 
 
-    public DataSet Fetch_CategorySizeLinkup(int Size_ID, int Category_ID, int License_ID, int Company_ID)
+    public DataSet Fetch_CategorySizeLinkup(int Size_ID, int Category_ID, int License_ID, int Company_ID, int Is_Brand)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
-            ds = ObjcocktailWorld_Master_BL.Fetch_CategorySizeLinkup(Size_ID, Category_ID, License_ID, Company_ID, StrConn);
+            ds = ObjcocktailWorld_Master_BL.Fetch_CategorySizeLinkup(Size_ID, Category_ID, License_ID, Company_ID, Is_Brand, StrConn);
             return ds;
         }
         catch (Exception ex)
@@ -700,12 +700,26 @@ public class My_CocktailWorld
         }
 
     }
-    public DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string Size, int Cocktail_ID, string LoggedInUserID, string Action)
+    public DataSet BrandMaster_CRUD(int Company_ID,int License_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, string Size, int Cocktail_ID, string LoggedInUserID, string Action)
     {
         try
         {
             StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
-            ds = ObjcocktailWorld_Master_BL.BrandMaster_CRUD(Company_ID, Brand_ID, Category_ID, SubCategory_ID, Brand_Desc, Brand_Short_Name, Strength, Purchase_Rate_Peg, Selling_Rate_Peg, Selling_Rate_Bottle, Is_Disabled, Size, Cocktail_ID, LoggedInUserID, Action, StrConn);
+            ds = ObjcocktailWorld_Master_BL.BrandMaster_CRUD(Company_ID, License_ID, Brand_ID, Category_ID, SubCategory_ID, Brand_Desc, Brand_Short_Name, Strength, Size, Cocktail_ID, LoggedInUserID, Action, StrConn);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+     public DataSet BrandDetailsMaster_CRUD(int Brand_ID, int Size_ID, int BoxQty, decimal BtlPurRate, string Action)
+    {
+        try
+        {
+            StrConn = ConfigurationManager.ConnectionStrings["Cocktailworld_ConString"].ConnectionString.ToString();
+            ds = ObjcocktailWorld_Master_BL.BrandDetailsMaster_CRUD(Brand_ID, Size_ID,BoxQty,BtlPurRate,Action, StrConn);
             return ds;
         }
         catch (Exception ex)

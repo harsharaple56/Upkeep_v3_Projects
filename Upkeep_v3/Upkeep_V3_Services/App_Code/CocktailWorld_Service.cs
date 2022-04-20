@@ -698,11 +698,11 @@ public class CocktailWorld_Service : System.Web.Services.WebService
 
 
     [WebMethod]
-    public DataSet Fetch_CategorySizeLinkup(int Size_ID, int Category_ID, int License_ID, int Company_ID)
+    public DataSet Fetch_CategorySizeLinkup(int Size_ID, int Category_ID, int License_ID, int Company_ID, int Is_Brand)
     {
         try
         {
-            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Size_ID, Category_ID, License_ID, Company_ID);
+            ds = ObjCocktailWorld.Fetch_CategorySizeLinkup(Size_ID, Category_ID, License_ID, Company_ID,  Is_Brand);
 
         }
         catch (Exception ex)
@@ -758,11 +758,28 @@ public class CocktailWorld_Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataSet BrandMaster_CRUD(int Company_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, int Purchase_Rate_Peg, int Selling_Rate_Peg, int Selling_Rate_Bottle, int Is_Disabled, string Size, int Cocktail_ID, string LoggedInUserID, string Action)
+    public DataSet BrandMaster_CRUD(int Company_ID,int License_ID, int Brand_ID, int Category_ID, int SubCategory_ID, string Brand_Desc, string Brand_Short_Name, int Strength, string Size, int Cocktail_ID, string LoggedInUserID, string Action)
     {
         try
         {
-            ds = ObjCocktailWorld.BrandMaster_CRUD(Company_ID, Brand_ID, Category_ID, SubCategory_ID, Brand_Desc, Brand_Short_Name, Strength, Purchase_Rate_Peg, Selling_Rate_Peg, Selling_Rate_Bottle, Is_Disabled, Size, Cocktail_ID, LoggedInUserID, Action);
+            ds = ObjCocktailWorld.BrandMaster_CRUD(Company_ID, License_ID, Brand_ID, Category_ID, SubCategory_ID, Brand_Desc, Brand_Short_Name, Strength,  Size, Cocktail_ID, LoggedInUserID, Action);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+        }
+        return ds;
+
+
+    }
+
+    [WebMethod]
+    public DataSet BrandDetailsMaster_CRUD(int Brand_ID, int Size_ID, int BoxQty, decimal BtlPurRate, string Action)
+    {
+        try
+        {
+            ds = ObjCocktailWorld.BrandDetailsMaster_CRUD(Brand_ID, Size_ID, BoxQty, BtlPurRate, Action);
         }
         catch (Exception ex)
         {

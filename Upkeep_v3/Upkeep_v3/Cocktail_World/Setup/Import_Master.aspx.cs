@@ -144,8 +144,9 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         bulkInsert.ColumnMappings.Add("Short Name", "ShortName");
                         bulkInsert.ColumnMappings.Add("Strength", "Strength");
                         bulkInsert.ColumnMappings.Add("Purchase_Rate_Peg", "PurRatePeg");
-                        bulkInsert.ColumnMappings.Add("Selling_Rate_Peg", "SellRatePeg");
-                        bulkInsert.ColumnMappings.Add("Selling_Rate_Bottle", "SellRateBottle");
+                        bulkInsert.ColumnMappings.Add("Purchase_Rate", "Purchase_Rate");
+                        bulkInsert.ColumnMappings.Add("Size", "Size");
+                        bulkInsert.ColumnMappings.Add("BoxQty", "BoxQty");
                         bulkInsert.ColumnMappings.Add("SubCategory", "SubCategory");
                         bulkInsert.WriteToServer(dr);
 
@@ -157,14 +158,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                             {
                                 DataTable dtCTTReport = new DataTable();
                                 dtCTTReport = dsResult.Tables[0];
-                                dtCTTReport.Columns["Category"].ColumnName = "Category";
-                                dtCTTReport.Columns["Brand"].ColumnName = "Brand";
-                                dtCTTReport.Columns["ShortName"].ColumnName = "ShortName";
-                                dtCTTReport.Columns["Strength"].ColumnName = "Strength";
-                                dtCTTReport.Columns["PurRatePeg"].ColumnName = "PurRatePeg";
-                                dtCTTReport.Columns["SellRatePeg"].ColumnName = "SellRatePeg";
-                                dtCTTReport.Columns["SellRateBottle"].ColumnName = "SellRateBottle";
-                                dtCTTReport.Columns["SubCategory"].ColumnName = "SubCategory";
+                                
                                 dtCTTReport.AcceptChanges();
 
                                 dvErrorGrid.Attributes.Add("style", "display:block; overflow-y:auto; height:210px;");
