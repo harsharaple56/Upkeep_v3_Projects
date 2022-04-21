@@ -144,10 +144,11 @@ namespace Upkeep_v3.Cocktail_World.Setup
                         bulkInsert.ColumnMappings.Add("Short Name", "ShortName");
                         bulkInsert.ColumnMappings.Add("Strength", "Strength");
                         bulkInsert.ColumnMappings.Add("Purchase_Rate_Peg", "PurRatePeg");
-                        bulkInsert.ColumnMappings.Add("Purchase_Rate", "Purchase_Rate");
                         bulkInsert.ColumnMappings.Add("Size", "Size");
                         bulkInsert.ColumnMappings.Add("BoxQty", "BoxQty");
                         bulkInsert.ColumnMappings.Add("SubCategory", "SubCategory");
+                        bulkInsert.ColumnMappings.Add("Purchase_Rate", "Purchase_Rate");
+                        bulkInsert.ColumnMappings.Add("License_Name", "License");
                         bulkInsert.WriteToServer(dr);
 
                         dsResult = ObjCocktailWorld.Import_Brands(CompanyID, LoggedInUserID);
