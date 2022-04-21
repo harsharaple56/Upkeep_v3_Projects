@@ -243,7 +243,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                                 }
                                 DataSet dsBrandId = new DataSet();
                                 string grdAction = string.Empty;
-                                dsBrandId = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, name, string.Empty, 0, 0, 0, 0, 0,size, Convert.ToInt32(ds.Tables[0].Rows[0]["Cocktail_ID"]), LoggedInUserID, "Fetch");
+                                dsBrandId = ObjCocktailWorld.BrandMaster_CRUD(CompanyID,0, 0, 0, 0, name, string.Empty, 0,size, Convert.ToInt32(ds.Tables[0].Rows[0]["Cocktail_ID"]), LoggedInUserID, "Fetch");
                                 if (dsBrandId.Tables[0].Rows.Count > 0)
                                 {
                                     int CocktailBrandID = dsBrandId.Tables[0].Rows[0]["Cocktail_Brand_ID"].ToString() != "" ? Convert.ToInt32(dsBrandId.Tables[0].Rows[0]["Cocktail_Brand_ID"]) : 0;
@@ -287,7 +287,7 @@ namespace Upkeep_v3.Cocktail_World.Setup
                                 }
                                 DataSet dsBrandId = new DataSet();
                                 string grdAction = string.Empty;
-                                dsBrandId = ObjCocktailWorld.BrandMaster_CRUD(CompanyID, 0, 0, 0, name, string.Empty, 0, 0, 0, 0, 0,size, Convert.ToInt32(ds.Tables[0].Rows[0]["Cocktail_ID"]), LoggedInUserID, "Fetch");
+                                dsBrandId = ObjCocktailWorld.BrandMaster_CRUD(CompanyID,0, 0, 0, 0, name, string.Empty,  0,size, Convert.ToInt32(ds.Tables[0].Rows[0]["Cocktail_ID"]), LoggedInUserID, "Fetch");
                                 if (dsBrandId.Tables[1].Rows.Count > 0)
                                 {
                                     int CocktailBrandID = 0;

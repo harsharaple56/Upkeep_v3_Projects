@@ -1168,6 +1168,7 @@
     <Content Include="Cocktail_World\Setup\Brands.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Categories.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Code.aspx" />
+    <Content Include="Cocktail_World\Setup\Brand_Details.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Opening_Stock.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Sizes.aspx" />
     <Content Include="Cocktail_World\Setup\Brand_Sub_Categories.aspx" />
@@ -4770,6 +4771,13 @@
     <Compile Include="Cocktail_World\Setup\Brand_Code.aspx.designer.cs">
       <DependentUpon>Brand_Code.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Details.aspx.cs">
+      <DependentUpon>Brand_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cocktail_World\Setup\Brand_Details.aspx.designer.cs">
+      <DependentUpon>Brand_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cocktail_World\Setup\Brand_Opening_Stock.aspx.cs">
       <DependentUpon>Brand_Opening_Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6922,15 +6930,6 @@
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Access.Dao">
-      <Guid>{4AC9E1DA-5BAD-4AC7-86E3-24F4CDCECA28}</Guid>
-      <VersionMajor>12</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
