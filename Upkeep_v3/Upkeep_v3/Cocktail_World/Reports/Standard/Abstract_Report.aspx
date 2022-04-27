@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
-
         .underline {
             border-bottom-color: #5867dd;
             border-bottom-width: 3px;
