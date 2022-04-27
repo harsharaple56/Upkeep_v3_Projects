@@ -11,6 +11,7 @@
     </style>
 
     <script src="<%= Page.ResolveClientUrl("~/vendors/jquery/dist/jquery.js") %>" type="text/javascript"></script>
+
     <script>
         $(document).ready(function () {
 
